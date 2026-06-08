@@ -10,11 +10,6 @@ export interface D20Roll {
   isFumble: boolean;
 }
 
-function rollD20(): number {
-  return Math.floor(Math.random() * 20) + 1;
-}
-
-/** Tirada d20 con modificador y ventaja/desventaja (reglas 2024). */
 export function tirarD20(modifier = 0, mode: RollMode = "normal"): D20Roll {
   if (mode === "normal") {
     const used = rollD20();
@@ -44,4 +39,17 @@ export function tirarD20(modifier = 0, mode: RollMode = "normal"): D20Roll {
     isCritical: used === 20,
     isFumble: used === 1,
   };
+}
+
+function rollD20(): number {
+  return Math.floor(Math.random() * 20) + 1;
+}
+
+/** Tirada de dado genérico, p. ej. d8, d10, d12. */
+export function tirarDadoDenominacion(denominacion: string): number {
+  const match = /^d(\d+)$/i.exec(denominacion.trim());
+  if (!match) return 0;
+  const sides = Number.parseInt(match[1] ?? "0", 10);
+  if (sides < 1) return 0;
+  return Math.floor(Math.random() * sides) + 1;
 }

@@ -336,21 +336,21 @@ Barra fija inferior (móvil): acceso rápido Combate + tirada d20.
 - [x] Scripts `build-srd.ts`, `build-i18n-es.ts`
 - [x] JSON clases (12), subclases (12), armaduras (13), hechizos (340), especies (14), trasfondos (4)
 - [x] Traducciones ES vía Foundry `translate-dnd5e-sdr2-es`
-- [ ] Tests de conteo / Zod SRD en CI
+- [x] Tests de conteo / Zod SRD en CI
 
 ### Fase 2 — Motor de reglas
 
 - [x] `dice`, `ability`, `combat` (CA armadura + escudo)
-- [ ] `character`, `spells`, `rests`
+- [x] `character`, `spells`, `rests`
 
 ### Fase 3 — UI ficha jugable
 
-- Pantallas lista, creación, tabs
-- Integración reglas + Dexie
+- [x] Pantallas lista, creación, tabs (Resumen, Combate, Hechizos, Equipo, Notas)
+- [x] Integración reglas + Dexie
 
 ### Fase 4 — Polish
 
-- PWA offline completo
-- Export tracker
-- Ajustes + licencias
-- Deploy GH Pages
+- [x] Export tracker
+- [x] Ajustes + licencias + versión
+- [x] Deploy GH Pages (CI)
+- [ ] PWA offline completo (service worker activo tras deploy)

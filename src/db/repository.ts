@@ -5,7 +5,7 @@ import {
   type Character,
   type TrackerExport,
 } from "@/schemas/character";
-import { modificadorAtributo } from "@/rules/ability";
+import { iniciativa } from "@/rules/character";
 
 export async function listarPersonajes(): Promise<Character[]> {
   return db.characters.orderBy("meta.updatedAt").reverse().toArray();
@@ -32,10 +32,6 @@ export function exportarBackup(character: Character): string {
 }
 
 export function exportarTracker(character: Character, armorClass: number): string {
-  const iniciativa =
-    character.combat.initiativeOverride ??
-    modificadorAtributo(character.abilities.dex);
-
   const payload: TrackerExport = {
     nombre: character.identity.name,
     jugador: character.identity.playerName,
@@ -43,7 +39,7 @@ export function exportarTracker(character: Character, armorClass: number): strin
     hp_max: character.combat.hpMax,
     hp_actual: character.combat.hpCurrent,
     ca: armorClass,
-    iniciativa,
+    iniciativa: iniciativa(character),
   };
 
   return JSON.stringify(TrackerExportSchema.parse(payload), null, 2);

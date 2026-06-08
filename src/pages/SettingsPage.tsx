@@ -37,7 +37,9 @@ export function SettingsPage() {
         </section>
 
         <section className="rounded-xl border border-white/10 bg-panel p-4 text-sm text-muted">
-          <h2 className="mb-2 text-lg font-semibold text-white">Licencias</h2>
+          <h2 className="mb-2 text-lg font-semibold text-white">Acerca de</h2>
+          <p>Versión app: 0.1.0 · Schema personaje: v1</p>
+          <h2 className="mb-2 mt-4 text-lg font-semibold text-white">Licencias</h2>
           <p>
             Contenido de reglas derivado del SRD 5.2.1 © Wizards of the Coast / D&D Beyond —
             Creative Commons Attribution 4.0.

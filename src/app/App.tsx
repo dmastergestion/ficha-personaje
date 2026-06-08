@@ -1,7 +1,7 @@
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import { CharacterListPage } from "@/pages/CharacterListPage";
 import { CharacterNewPage } from "@/pages/CharacterNewPage";
-import { CharacterSheetPage } from "@/pages/CharacterSheetPage";
+import { CharacterSheetPage } from "@/pages/character-sheet/CharacterSheetPage";
 import { SettingsPage } from "@/pages/SettingsPage";
 
 const basename = import.meta.env.BASE_URL.replace(/\/$/, "") || undefined;

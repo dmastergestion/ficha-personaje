@@ -39,6 +39,10 @@ export interface SrdEntry {
   nameEn: string;
 }
 
+export interface SrdSubclass extends SrdEntry {
+  classId: string;
+}
+
 export interface I18nBundle {
   classes: Record<string, string>;
   subclasses: Record<string, string>;
@@ -50,7 +54,7 @@ export interface I18nBundle {
 }
 
 export const srdClasses = classesData as SrdClass[];
-export const srdSubclasses = subclassesData as SrdEntry[];
+export const srdSubclasses = subclassesData as SrdSubclass[];
 export const srdArmor = armorData as SrdArmor[];
 export const srdSpells = spellsData as SrdSpell[];
 export const srdSpecies = speciesData as SrdEntry[];

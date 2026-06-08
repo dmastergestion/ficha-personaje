@@ -126,7 +126,7 @@ export function crearPersonajeVacio(input: {
       hpMax: 10,
       hpCurrent: 10,
       hpTemp: 0,
-      hitDiceTotal: 1,
+      hitDiceTotal: input.level ?? 1,
       hitDiceUsed: 0,
       hitDie: "d8",
       armorClassOverride: null,
