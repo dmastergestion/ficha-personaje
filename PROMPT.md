@@ -8,15 +8,15 @@ Lee **`SPEC.md`** antes de cualquier cambio. Es la fuente de verdad del alcance.
 - Proyecto **aislado** de `suiteDM`; sin imports cruzados.
 - **React sin lógica de reglas** → todo en `src/rules/`.
 - **Zod** = forma persistida; **Dexie** = IndexedDB; derivados **no se guardan**.
-- Fase activa: **v1 mesa** (ver tabla en SPEC). No implementar multiclass, PDF ni efectos automáticos.
+- Fase activa: **v2** (efectos, inventario, PWA+). No implementar multiclass ni PDF hasta cerrar v2.0.
 - UX mesa: acciones críticas `#ffd54f`; daño PV ≤2 clics; tirada ≤1 clic.
 - SRD: build desde Markdown EN + i18n ES híbrido (SPEC § Pipeline SRD).
 - Cambio mínimo por iteración; una mejora visible por paso.
 - Código y comentarios en **castellano**.
 
-## No hacer (v1)
+## No hacer (v2 pendiente)
 
-- Tracker, multijugador, backend, APIs runtime, reglas 2014, integración automática suite DM.
+- Tracker, multijugador, backend, APIs runtime, reglas 2014, integración automática suite DM, multiclass, PDF.
 
 ## Archivos clave
 

@@ -1,4 +1,5 @@
 import { z } from "zod";
+import { CONDITION_IDS } from "@/lib/conditions";
 import {
   ABILITY_KEYS,
   SCHEMA_VERSION,
@@ -8,6 +9,7 @@ import {
 
 const abilityKeySchema = z.enum(ABILITY_KEYS);
 const skillKeySchema = z.enum(SKILL_KEYS);
+const conditionIdSchema = z.enum(CONDITION_IDS);
 
 const spellSlotsUsedSchema = z.object(
   Object.fromEntries(SPELL_SLOT_LEVELS.map((n) => [n, z.number().int().min(0)])) as Record<
@@ -15,6 +17,14 @@ const spellSlotsUsedSchema = z.object(
     z.ZodNumber
   >,
 );
+
+const equipmentItemSchema = z.object({
+  id: z.string(),
+  name: z.string(),
+  qty: z.number().int().min(0),
+  weightLb: z.number().min(0),
+  notes: z.string().optional(),
+});
 
 export const CharacterSchema = z.object({
   id: z.string().uuid(),
@@ -56,19 +66,14 @@ export const CharacterSchema = z.object({
     initiativeOverride: z.number().int().nullable(),
     speedOverride: z.number().int().nullable(),
     inspiration: z.boolean(),
-    conditions: z.array(z.string()),
+    conditionIds: z.array(conditionIdSchema),
+    conditionsCustom: z.array(z.string()),
+    exhaustionLevel: z.number().int().min(0).max(6),
   }),
   equipment: z.object({
     armorId: z.string().nullable(),
     shieldEquipped: z.boolean(),
-    items: z.array(
-      z.object({
-        id: z.string(),
-        name: z.string(),
-        qty: z.number().int().min(0),
-        notes: z.string().optional(),
-      }),
-    ),
+    items: z.array(equipmentItemSchema),
   }),
   spells: z.object({
     abilityKey: abilityKeySchema.nullable(),
@@ -82,6 +87,7 @@ export const CharacterSchema = z.object({
 });
 
 export type Character = z.infer<typeof CharacterSchema>;
+export type EquipmentItem = z.infer<typeof equipmentItemSchema>;
 
 export const TrackerExportSchema = z.object({
   nombre: z.string(),
@@ -133,7 +139,9 @@ export function crearPersonajeVacio(input: {
       initiativeOverride: null,
       speedOverride: null,
       inspiration: false,
-      conditions: [],
+      conditionIds: [],
+      conditionsCustom: [],
+      exhaustionLevel: 0,
     },
     equipment: {
       armorId: null,

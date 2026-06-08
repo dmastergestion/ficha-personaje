@@ -1,5 +1,6 @@
 import type { AbilityKey, SkillKey } from "@/lib/constants";
 import { bonificadorCompetencia, modificadorAtributo } from "@/rules/ability";
+import { calcularModificadoresCondiciones } from "@/rules/effects";
 import type { Character } from "@/schemas/character";
 
 export const SKILL_ABILITIES: Record<SkillKey, AbilityKey> = {
@@ -84,5 +85,11 @@ export function iniciativa(character: Character): number {
 }
 
 export function velocidad(character: Character, base = 30): number {
-  return character.combat.speedOverride ?? base;
+  const baseSpeed = character.combat.speedOverride ?? base;
+  const mods = calcularModificadoresCondiciones(
+    character.combat.conditionIds,
+    character.combat.exhaustionLevel,
+  );
+  if (mods.velocidadCero) return 0;
+  return Math.max(0, Math.floor(baseSpeed * mods.multiplicadorVelocidad));
 }

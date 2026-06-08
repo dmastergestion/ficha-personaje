@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { ConditionPanel } from "@/components/ConditionPanel";
 import { Button } from "@/components/layout";
 import { RollModeSelector } from "@/components/RollModeSelector";
 import { ABILITY_KEYS, SKILL_KEYS } from "@/lib/constants";
@@ -12,7 +13,13 @@ import {
   velocidad,
 } from "@/rules/character";
 import { calcularClaseArmadura } from "@/rules/combat";
-import { tirarD20 } from "@/rules/dice";
+import { tiradaPericia, tiradaSalvacion } from "@/rules/effects";
+import {
+  capacidadCarga,
+  estadoCarga,
+  etiquetaEstadoCarga,
+  pesoTotalInventario,
+} from "@/rules/inventory";
 import {
   aplicarDescansoCorto,
   aplicarDescansoLargo,
@@ -20,6 +27,7 @@ import {
 } from "@/rules/rests";
 import { srdArmor, t } from "@/rules/srd";
 import type { SheetTabProps } from "@/pages/character-sheet/types";
+import type { EquipmentItem } from "@/schemas/character";
 import { useUiStore } from "@/stores/ui-store";
 
 const ARMOR_OPTIONS = srdArmor.filter((item) => item.category !== "shield");
@@ -73,8 +81,35 @@ export function TabCombate({ character, onChange }: SheetTabProps) {
     onChange({ ...character, combat: { ...character.combat, hpCurrent } });
   }
 
-  function tirar(mod: number) {
-    setUltimaTirada(tirarD20(mod, rollMode));
+  function tirarSalvacionRoll(key: AbilityKey) {
+    const mod = modificadorSalvacion(character, key);
+    const result = tiradaSalvacion(
+      mod,
+      key,
+      rollMode,
+      character.combat.conditionIds,
+      character.combat.exhaustionLevel,
+    );
+    if ("autoFallo" in result) {
+      setUltimaTirada({
+        mode: "normal",
+        rolls: [1],
+        used: 1,
+        modifier: mod,
+        total: 1 + mod,
+        isCritical: false,
+        isFumble: true,
+      });
+      return;
+    }
+    setUltimaTirada(result);
+  }
+
+  function tirarPericiaRoll(skill: SkillKey) {
+    const mod = modificadorPericia(character, skill);
+    setUltimaTirada(
+      tiradaPericia(mod, rollMode, character.combat.conditionIds, character.combat.exhaustionLevel),
+    );
   }
 
   return (
@@ -257,7 +292,7 @@ export function TabCombate({ character, onChange }: SheetTabProps) {
                   />
                   {ABILITY_LABELS_ES[key]}
                 </label>
-                <Button variant="critical" onClick={() => tirar(mod)}>
+                <Button variant="critical" onClick={() => tirarSalvacionRoll(key)}>
                   {mod >= 0 ? `+${mod}` : mod} d20
                 </Button>
               </div>
@@ -283,7 +318,7 @@ export function TabCombate({ character, onChange }: SheetTabProps) {
                     />
                     {SKILL_LABELS_ES[skill]}
                   </label>
-                  <Button variant="critical" onClick={() => tirar(mod)}>
+                  <Button variant="critical" onClick={() => tirarPericiaRoll(skill)}>
                     {mod >= 0 ? `+${mod}` : mod}
                   </Button>
                 </div>
@@ -293,26 +328,7 @@ export function TabCombate({ character, onChange }: SheetTabProps) {
         </div>
       </section>
 
-      <section className="rounded-xl border border-white/10 bg-panel p-4">
-        <h3 className="mb-2 font-semibold">Condiciones</h3>
-        <textarea
-          className="min-h-20 w-full rounded-lg border border-white/10 bg-surface px-3 py-2 text-sm"
-          placeholder="Una condición por línea (manual v1)"
-          value={character.combat.conditions.join("\n")}
-          onChange={(e) =>
-            onChange({
-              ...character,
-              combat: {
-                ...character.combat,
-                conditions: e.target.value
-                  .split("\n")
-                  .map((s) => s.trim())
-                  .filter(Boolean),
-              },
-            })
-          }
-        />
-      </section>
+      <ConditionPanel character={character} onChange={onChange} />
 
       {ultimaTirada && (
         <p className="rounded-lg bg-panel px-3 py-2 text-sm">
@@ -336,6 +352,39 @@ export function TabEquipo({ character, onChange }: SheetTabProps) {
     shield,
     character.combat.armorClassOverride,
   );
+  const pesoTotal = pesoTotalInventario(character.equipment.items);
+  const capacidad = capacidadCarga(character.abilities.str);
+  const carga = estadoCarga(character.abilities.str, pesoTotal);
+
+  function actualizarItem(index: number, partial: Partial<EquipmentItem>) {
+    const items = character.equipment.items.map((item, i) =>
+      i === index ? { ...item, ...partial } : item,
+    );
+    onChange({ ...character, equipment: { ...character.equipment, items } });
+  }
+
+  function eliminarItem(index: number) {
+    onChange({
+      ...character,
+      equipment: {
+        ...character.equipment,
+        items: character.equipment.items.filter((_, i) => i !== index),
+      },
+    });
+  }
+
+  function agregarItem() {
+    const item: EquipmentItem = {
+      id: crypto.randomUUID(),
+      name: "",
+      qty: 1,
+      weightLb: 0,
+    };
+    onChange({
+      ...character,
+      equipment: { ...character.equipment, items: [...character.equipment.items, item] },
+    });
+  }
 
   return (
     <div className="space-y-4 rounded-xl border border-white/10 bg-panel p-4">
@@ -393,29 +442,66 @@ export function TabEquipo({ character, onChange }: SheetTabProps) {
           }
         />
       </label>
+
       <div>
-        <h3 className="mb-2 font-semibold">Inventario libre</h3>
-        <textarea
-          className="min-h-32 w-full rounded-lg border border-white/10 bg-surface px-3 py-2 text-sm"
-          placeholder="Objetos, uno por línea"
-          value={character.equipment.items.map((i) => i.name).join("\n")}
-          onChange={(e) =>
-            onChange({
-              ...character,
-              equipment: {
-                ...character.equipment,
-                items: e.target.value
-                  .split("\n")
-                  .map((name, idx) => ({
-                    id: String(idx),
-                    name: name.trim(),
-                    qty: 1,
-                  }))
-                  .filter((i) => i.name),
-              },
-            })
-          }
-        />
+        <div className="mb-2 flex flex-wrap items-center justify-between gap-2">
+          <h3 className="font-semibold">Inventario</h3>
+          <p
+            className={`text-sm ${carga === "sobrecarga" ? "text-red-400" : "text-muted"}`}
+          >
+            {pesoTotal.toFixed(1)} / {capacidad} lb · {etiquetaEstadoCarga(carga)}
+          </p>
+        </div>
+
+        <div className="space-y-2">
+          {character.equipment.items.map((item, index) => (
+            <div
+              key={item.id}
+              className="grid gap-2 rounded-lg bg-surface p-2 sm:grid-cols-[1fr,4rem,5rem,1fr,auto]"
+            >
+              <input
+                className="rounded border border-white/10 bg-panel px-2 py-1 text-sm"
+                placeholder="Nombre"
+                value={item.name}
+                onChange={(e) => actualizarItem(index, { name: e.target.value })}
+              />
+              <input
+                type="number"
+                min={0}
+                className="rounded border border-white/10 bg-panel px-2 py-1 text-sm"
+                title="Cantidad"
+                value={item.qty}
+                onChange={(e) =>
+                  actualizarItem(index, { qty: Math.max(0, Number(e.target.value) || 0) })
+                }
+              />
+              <input
+                type="number"
+                min={0}
+                step={0.1}
+                className="rounded border border-white/10 bg-panel px-2 py-1 text-sm"
+                title="Peso (lb) por unidad"
+                value={item.weightLb}
+                onChange={(e) =>
+                  actualizarItem(index, { weightLb: Math.max(0, Number(e.target.value) || 0) })
+                }
+              />
+              <input
+                className="rounded border border-white/10 bg-panel px-2 py-1 text-sm"
+                placeholder="Notas"
+                value={item.notes ?? ""}
+                onChange={(e) => actualizarItem(index, { notes: e.target.value || undefined })}
+              />
+              <Button variant="ghost" onClick={() => eliminarItem(index)}>
+                ✕
+              </Button>
+            </div>
+          ))}
+        </div>
+
+        <Button className="mt-3" onClick={agregarItem}>
+          Añadir objeto
+        </Button>
       </div>
     </div>
   );

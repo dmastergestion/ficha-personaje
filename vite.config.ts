@@ -12,7 +12,7 @@ export default defineConfig({
     react(),
     tailwindcss(),
     VitePWA({
-      registerType: "autoUpdate",
+      registerType: "prompt",
       includeAssets: ["favicon.svg"],
       manifest: {
         name: "Ficha de personaje D&D 2024",
@@ -21,7 +21,21 @@ export default defineConfig({
         theme_color: "#1a1a1a",
         background_color: "#1a1a1a",
         display: "standalone",
+        orientation: "portrait",
         lang: "es",
+        start_url: base,
+        scope: base,
+        categories: ["games", "utilities"],
+        shortcuts: [
+          {
+            name: "Nuevo personaje",
+            url: `${base}new`,
+          },
+          {
+            name: "Mis personajes",
+            url: base,
+          },
+        ],
         icons: [
           {
             src: "favicon.svg",
@@ -32,7 +46,19 @@ export default defineConfig({
         ],
       },
       workbox: {
-        globPatterns: ["**/*.{js,css,html,ico,svg,json}"],
+        globPatterns: ["**/*.{js,css,html,ico,svg,json,woff2}"],
+        navigateFallback: `${base}index.html`,
+        navigateFallbackDenylist: [/^\/api\//],
+        runtimeCaching: [
+          {
+            urlPattern: ({ request }) => request.mode === "navigate",
+            handler: "NetworkFirst",
+            options: {
+              cacheName: "pages-cache",
+              networkTimeoutSeconds: 3,
+            },
+          },
+        ],
       },
     }),
   ],

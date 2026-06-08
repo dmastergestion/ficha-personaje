@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { OfflineIndicator } from "@/components/OfflineIndicator";
 import { cn } from "@/lib/utils";
 
 interface LayoutProps {
@@ -12,7 +13,10 @@ export function Layout({ title, children, actions }: LayoutProps) {
     <div className="mx-auto flex min-h-screen max-w-5xl flex-col px-4 py-6">
       <header className="mb-6 flex flex-wrap items-center justify-between gap-3 border-b border-white/10 pb-4">
         <div>
-          <p className="text-sm text-muted">D&D 2024 · SRD · Offline</p>
+          <p className="flex flex-wrap items-center gap-2 text-sm text-muted">
+            <span>D&D 2024 · SRD</span>
+            <OfflineIndicator />
+          </p>
           <h1 className="text-2xl font-bold">{title}</h1>
         </div>
         <nav className="flex flex-wrap gap-2">

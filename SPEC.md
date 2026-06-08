@@ -75,7 +75,19 @@ Tracker de iniciativa de grupo, mapas, multijugador, vista DM/party, VTT, backen
 
 ### v2 — Posterior
 
-PDF inspirado en ficha WoTC (no réplica), multiclass, efectos con reglas, inventario avanzado, mejoras PWA.
+PDF inspirado en ficha WoTC (no réplica), multiclass, ~~efectos con reglas~~, ~~inventario avanzado~~, ~~mejoras PWA~~.
+
+#### v2.0 — Efectos, inventario y PWA+ (en curso)
+
+| Feature | Estado |
+|---------|--------|
+| Condiciones SRD con reglas automáticas (ventaja/desventaja, autofallo, velocidad) | [x] |
+| Agotamiento nivel 0–6 | [x] |
+| Inventario con peso, qty, notas; carga STR×15 lb | [x] |
+| Schema v2 + migración Dexie/import v1 | [x] |
+| PWA: banner actualización, indicador offline, manifest shortcuts | [x] |
+| PDF export | [ ] |
+| Multiclass | [ ] |
 
 ---
 

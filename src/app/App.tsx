@@ -1,4 +1,5 @@
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
+import { UpdateBanner } from "@/components/UpdateBanner";
 import { CharacterListPage } from "@/pages/CharacterListPage";
 import { CharacterNewPage } from "@/pages/CharacterNewPage";
 import { CharacterSheetPage } from "@/pages/character-sheet/CharacterSheetPage";
@@ -9,6 +10,7 @@ const basename = import.meta.env.BASE_URL.replace(/\/$/, "") || undefined;
 export function App() {
   return (
     <BrowserRouter basename={basename}>
+      <UpdateBanner />
       <Routes>
         <Route path="/" element={<CharacterListPage />} />
         <Route path="/new" element={<CharacterNewPage />} />

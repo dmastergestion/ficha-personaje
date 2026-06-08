@@ -60,7 +60,7 @@ export function CharacterSheetPage() {
         {tab === "notas" && <TabNotas character={character} onChange={(n) => void persist(n)} />}
       </div>
 
-      <BottomCombatBar onSelectTab={setTab} />
+      <BottomCombatBar character={character} onSelectTab={setTab} />
     </Layout>
   );
 }

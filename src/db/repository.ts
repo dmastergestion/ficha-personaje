@@ -5,6 +5,7 @@ import {
   type Character,
   type TrackerExport,
 } from "@/schemas/character";
+import { normalizarPersonaje } from "@/schemas/migrate";
 import { iniciativa } from "@/rules/character";
 
 export async function listarPersonajes(): Promise<Character[]> {
@@ -47,7 +48,7 @@ export function exportarTracker(character: Character, armorClass: number): strin
 
 export function importarPersonaje(json: string): Character {
   const raw: unknown = JSON.parse(json);
-  return CharacterSchema.parse(raw);
+  return normalizarPersonaje(raw);
 }
 
 export function descargarJson(filename: string, content: string): void {

@@ -1,10 +1,17 @@
 import { Button } from "@/components/layout";
 import { RollModeSelector } from "@/components/RollModeSelector";
-import { tirarD20 } from "@/rules/dice";
-import { useUiStore } from "@/stores/ui-store";
+import { tiradaAtaque } from "@/rules/effects";
+import type { Character } from "@/schemas/character";
 import type { SheetTab } from "@/pages/character-sheet/types";
+import { useUiStore } from "@/stores/ui-store";
 
-export function BottomCombatBar({ onSelectTab }: { onSelectTab: (tab: SheetTab) => void }) {
+export function BottomCombatBar({
+  character,
+  onSelectTab,
+}: {
+  character: Character;
+  onSelectTab: (tab: SheetTab) => void;
+}) {
   const rollMode = useUiStore((s) => s.rollMode);
   const setRollMode = useUiStore((s) => s.setRollMode);
   const setUltimaTirada = useUiStore((s) => s.setUltimaTirada);
@@ -27,7 +34,16 @@ export function BottomCombatBar({ onSelectTab }: { onSelectTab: (tab: SheetTab) 
         <Button
           variant="critical"
           className="flex-1"
-          onClick={() => setUltimaTirada(tirarD20(0, rollMode))}
+          onClick={() =>
+            setUltimaTirada(
+              tiradaAtaque(
+                0,
+                rollMode,
+                character.combat.conditionIds,
+                character.combat.exhaustionLevel,
+              ),
+            )
+          }
         >
           Tirar d20
         </Button>

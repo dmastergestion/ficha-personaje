@@ -3,7 +3,7 @@ import { cn } from "@/lib/utils";
 import { ABILITY_KEYS } from "@/lib/constants";
 import { bonificadorCompetencia, modificadorAtributo } from "@/rules/ability";
 import { ABILITY_LABELS_ES } from "@/rules/character";
-import { tirarD20 } from "@/rules/dice";
+import { tiradaPericia } from "@/rules/effects";
 import { srdBackgrounds, srdSpecies, srdSubclasses, t } from "@/rules/srd";
 import type { SheetTabProps } from "@/pages/character-sheet/types";
 import { SHEET_TABS } from "@/pages/character-sheet/types";
@@ -154,7 +154,16 @@ export function TabResumen({ character, onChange }: SheetTabProps) {
               <Button
                 variant="critical"
                 className="mt-1 w-full text-xs"
-                onClick={() => setUltimaTirada(tirarD20(mod, rollMode))}
+                onClick={() =>
+                  setUltimaTirada(
+                    tiradaPericia(
+                      mod,
+                      rollMode,
+                      character.combat.conditionIds,
+                      character.combat.exhaustionLevel,
+                    ),
+                  )
+                }
               >
                 {mod >= 0 ? `+${mod}` : mod} d20
               </Button>
