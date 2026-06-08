@@ -59,3 +59,25 @@ export function descargarJson(filename: string, content: string): void {
   anchor.click();
   URL.revokeObjectURL(url);
 }
+
+export function nombreArchivoExport(prefix: string, name: string): string {
+  const fecha = new Date().toISOString().slice(0, 10);
+  const safe = name.replace(/[^\w\s-]/g, "").trim() || "personaje";
+  return `${prefix}-${safe}-${fecha}.json`;
+}
+
+export async function duplicarPersonaje(id: string): Promise<Character | undefined> {
+  const original = await obtenerPersonaje(id);
+  if (!original) return undefined;
+
+  const now = new Date().toISOString();
+  const copia: Character = {
+    ...structuredClone(original),
+    id: crypto.randomUUID(),
+    meta: { createdAt: now, updatedAt: now },
+    identity: { ...original.identity, name: `${original.identity.name} (copia)` },
+  };
+
+  await guardarPersonaje(copia);
+  return copia;
+}

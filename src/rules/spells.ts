@@ -124,3 +124,8 @@ export function espaciosMaximos(
 export function esLanzador(classId: string): boolean {
   return tipoLanzador(classId) !== "none";
 }
+
+/** Clérigo, druida y mago preparan conjuros; el resto usa lista conocida. */
+export function usaListaPreparados(classId: string): boolean {
+  return classId === "wizard" || classId === "cleric" || classId === "druid";
+}

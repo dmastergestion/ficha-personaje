@@ -271,10 +271,15 @@ flowchart LR
 - FAB / botón: nuevo personaje.
 - Enlace a Ajustes.
 
-### `/new` — Creación rápida
+### `/new` — Asistente de creación (5 pasos)
 
-- Campos mínimos: nombre, jugador, clase (select SRD), especie, nivel inicial.
-- Resto editable en ficha. Atributos por defecto 10. Guardar → redirige a ficha.
+1. **Identidad** — nombre del personaje, jugador
+2. **Origen** — especie, trasfondo (opcional)
+3. **Clase** — clase, subclase opcional, nivel inicial
+4. **Atributos** — array estándar auto-asignado por clase o edición manual
+5. **Resumen** — confirmación; calcula PV nivel 1 y crea ficha
+
+Guardar → redirige a `/character/:id`.
 
 ### `/character/:id` — Ficha (tabs)
 
@@ -353,4 +358,5 @@ Barra fija inferior (móvil): acceso rápido Combate + tirada d20.
 - [x] Export tracker
 - [x] Ajustes + licencias + versión
 - [x] Deploy GH Pages (CI)
-- [ ] PWA offline completo (service worker activo tras deploy)
+- [x] PWA offline (service worker registrado + precache en build)
+- [x] Duplicar personaje, barra móvil combate/d20, proficiencias SRD

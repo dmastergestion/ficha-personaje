@@ -4,10 +4,12 @@ import { InstallBanner } from "@/components/InstallBanner";
 import { Button, Layout } from "@/components/layout";
 import {
   descargarJson,
+  duplicarPersonaje,
   eliminarPersonaje,
   exportarBackup,
   exportarTracker,
   listarPersonajes,
+  nombreArchivoExport,
 } from "@/db/repository";
 import type { Character } from "@/schemas/character";
 import { calcularClaseArmadura } from "@/rules/combat";
@@ -26,6 +28,11 @@ export function CharacterListPage() {
   useEffect(() => {
     void recargar();
   }, []);
+
+  async function onDuplicate(id: string) {
+    await duplicarPersonaje(id);
+    await recargar();
+  }
 
   async function onDelete(id: string, name: string) {
     if (!window.confirm(`¿Eliminar a ${name}?`)) return;
@@ -89,7 +96,7 @@ export function CharacterListPage() {
                   <Button
                     onClick={() =>
                       descargarJson(
-                        `ficha-${character.identity.name}.json`,
+                        nombreArchivoExport("ficha", character.identity.name),
                         exportarBackup(character),
                       )
                     }
@@ -99,13 +106,14 @@ export function CharacterListPage() {
                   <Button
                     onClick={() =>
                       descargarJson(
-                        `tracker-${character.identity.name}.json`,
+                        nombreArchivoExport("tracker", character.identity.name),
                         exportarTracker(character, ca),
                       )
                     }
                   >
                     Tracker
                   </Button>
+                  <Button onClick={() => void onDuplicate(character.id)}>Duplicar</Button>
                   <Button
                     variant="ghost"
                     onClick={() => void onDelete(character.id, character.identity.name)}

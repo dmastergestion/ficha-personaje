@@ -1,15 +1,113 @@
+import { useState } from "react";
 import { Button } from "@/components/layout";
 import { SPELL_SLOT_LEVELS } from "@/lib/constants";
-import { espaciosMaximos, esLanzador } from "@/rules/spells";
+import { espaciosMaximos, esLanzador, tipoLanzador, usaListaPreparados } from "@/rules/spells";
+import { tirarD20 } from "@/rules/dice";
 import { ajustarEspacioUsado } from "@/rules/rests";
 import { srdSpells, t } from "@/rules/srd";
 import type { SheetTabProps } from "@/pages/character-sheet/types";
-import { useState } from "react";
+import { useUiStore } from "@/stores/ui-store";
+
+function agregarConjuro(
+  character: SheetTabProps["character"],
+  spellId: string,
+  level: number,
+): SheetTabProps["character"] {
+  if (level === 0) {
+    if (character.spells.cantripsKnown.includes(spellId)) return character;
+    return {
+      ...character,
+      spells: {
+        ...character.spells,
+        cantripsKnown: [...character.spells.cantripsKnown, spellId],
+      },
+    };
+  }
+
+  if (usaListaPreparados(character.identity.classId)) {
+    if (character.spells.spellsPrepared.includes(spellId)) return character;
+    return {
+      ...character,
+      spells: {
+        ...character.spells,
+        spellsPrepared: [...character.spells.spellsPrepared, spellId],
+      },
+    };
+  }
+
+  if (character.spells.spellsKnown.includes(spellId)) return character;
+  return {
+    ...character,
+    spells: {
+      ...character.spells,
+      spellsKnown: [...character.spells.spellsKnown, spellId],
+    },
+  };
+}
+
+function quitarConjuro(
+  character: SheetTabProps["character"],
+  spellId: string,
+  list: "cantrips" | "known" | "prepared",
+): SheetTabProps["character"] {
+  if (list === "cantrips") {
+    return {
+      ...character,
+      spells: {
+        ...character.spells,
+        cantripsKnown: character.spells.cantripsKnown.filter((s) => s !== spellId),
+      },
+    };
+  }
+  if (list === "prepared") {
+    return {
+      ...character,
+      spells: {
+        ...character.spells,
+        spellsPrepared: character.spells.spellsPrepared.filter((s) => s !== spellId),
+      },
+    };
+  }
+  return {
+    ...character,
+    spells: {
+      ...character.spells,
+      spellsKnown: character.spells.spellsKnown.filter((s) => s !== spellId),
+    },
+  };
+}
+
+function SpellRow({
+  id,
+  onRemove,
+  onCast,
+}: {
+  id: string;
+  onRemove: () => void;
+  onCast: () => void;
+}) {
+  return (
+    <li className="flex items-center justify-between gap-2 text-sm">
+      <span>{t("spells", id, id)}</span>
+      <div className="flex gap-1">
+        <Button variant="critical" onClick={onCast}>
+          Lanzar
+        </Button>
+        <Button variant="ghost" onClick={onRemove}>
+          Quitar
+        </Button>
+      </div>
+    </li>
+  );
+}
 
 export function TabHechizos({ character, onChange }: SheetTabProps) {
   const [busqueda, setBusqueda] = useState("");
   const maxSlots = espaciosMaximos(character.identity.classId, character.identity.level);
   const lanzador = esLanzador(character.identity.classId);
+  const preparados = usaListaPreparados(character.identity.classId);
+  const rollMode = useUiStore((s) => s.rollMode);
+  const setUltimaTirada = useUiStore((s) => s.setUltimaTirada);
 
   const filtrados = srdSpells
     .filter((s) => t("spells", s.id, s.nameEn).toLowerCase().includes(busqueda.toLowerCase()))
@@ -23,10 +121,14 @@ export function TabHechizos({ character, onChange }: SheetTabProps) {
     );
   }
 
+  const kind = tipoLanzador(character.identity.classId);
+
   return (
     <div className="space-y-4">
       <section className="rounded-xl border border-white/10 bg-panel p-4">
-        <h3 className="mb-3 font-semibold">Espacios de conjuro</h3>
+        <h3 className="mb-3 font-semibold">
+          {kind === "pact" ? "Magia de pacto" : "Espacios de conjuro"}
+        </h3>
         <div className="grid grid-cols-3 gap-2 sm:grid-cols-5">
           {SPELL_SLOT_LEVELS.map((level) => {
             if (maxSlots[level] === 0) return null;
@@ -52,10 +154,15 @@ export function TabHechizos({ character, onChange }: SheetTabProps) {
             );
           })}
         </div>
+        {character.spells.abilityKey && (
+          <p className="mt-2 text-xs text-muted">
+            Atributo de conjuro: {character.spells.abilityKey.toUpperCase()}
+          </p>
+        )}
       </section>
 
       <section className="rounded-xl border border-white/10 bg-panel p-4">
-        <h3 className="mb-2 font-semibold">Conjuros conocidos</h3>
+        <h3 className="mb-2 font-semibold">Buscar conjuro SRD</h3>
         <input
           className="mb-2 w-full rounded-lg border border-white/10 bg-surface px-3 py-2 text-sm"
           placeholder="Buscar conjuro SRD…"
@@ -70,14 +177,7 @@ export function TabHechizos({ character, onChange }: SheetTabProps) {
                   type="button"
                   className="w-full px-3 py-2 text-left text-sm hover:bg-white/5"
                   onClick={() => {
-                    if (character.spells.spellsKnown.includes(spell.id)) return;
-                    onChange({
-                      ...character,
-                      spells: {
-                        ...character.spells,
-                        spellsKnown: [...character.spells.spellsKnown, spell.id],
-                      },
-                    });
+                    onChange(agregarConjuro(character, spell.id, spell.level));
                     setBusqueda("");
                   }}
                 >
@@ -90,26 +190,44 @@ export function TabHechizos({ character, onChange }: SheetTabProps) {
             ))}
           </ul>
         )}
+      </section>
+
+      <section className="rounded-xl border border-white/10 bg-panel p-4">
+        <h3 className="mb-2 font-semibold">Trucos</h3>
         <ul className="space-y-1">
-          {character.spells.spellsKnown.map((id) => (
-            <li key={id} className="flex items-center justify-between text-sm">
-              <span>{t("spells", id, id)}</span>
-              <Button
-                variant="ghost"
-                onClick={() =>
-                  onChange({
-                    ...character,
-                    spells: {
-                      ...character.spells,
-                      spellsKnown: character.spells.spellsKnown.filter((s) => s !== id),
-                    },
-                  })
-                }
-              >
-                Quitar
-              </Button>
-            </li>
+          {character.spells.cantripsKnown.map((id) => (
+            <SpellRow
+              key={id}
+              id={id}
+              onRemove={() => onChange(quitarConjuro(character, id, "cantrips"))}
+              onCast={() => setUltimaTirada(tirarD20(0, rollMode))}
+            />
           ))}
+          {character.spells.cantripsKnown.length === 0 && (
+            <li className="text-sm text-muted">Sin trucos añadidos.</li>
+          )}
+        </ul>
+      </section>
+
+      <section className="rounded-xl border border-white/10 bg-panel p-4">
+        <h3 className="mb-2 font-semibold">
+          {preparados ? "Conjuros preparados" : "Conjuros conocidos"}
+        </h3>
+        <ul className="space-y-1">
+          {(preparados ? character.spells.spellsPrepared : character.spells.spellsKnown).map(
+            (id) => (
+              <SpellRow
+                key={id}
+                id={id}
+                onRemove={() =>
+                  onChange(quitarConjuro(character, id, preparados ? "prepared" : "known"))
+                }
+                onCast={() => setUltimaTirada(tirarD20(0, rollMode))}
+              />
+            ),
+          )}
+          {(preparados ? character.spells.spellsPrepared : character.spells.spellsKnown)
+            .length === 0 && <li className="text-sm text-muted">Sin conjuros añadidos.</li>}
         </ul>
       </section>
     </div>
