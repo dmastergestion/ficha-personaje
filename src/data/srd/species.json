@@ -1,0 +1,72 @@
+[
+  {
+    "id": "dragonborn",
+    "srdId": "phbspDragonborn0",
+    "nameEn": "Dragonborn"
+  },
+  {
+    "id": "dwarf",
+    "srdId": "phbspDwarf000000",
+    "nameEn": "Dwarf"
+  },
+  {
+    "id": "elf-drow",
+    "srdId": "phbspDrow0000000",
+    "nameEn": "Elf, Drow"
+  },
+  {
+    "id": "elf-high",
+    "srdId": "phbspHighElf0000",
+    "nameEn": "Elf, High"
+  },
+  {
+    "id": "elf-wood",
+    "srdId": "phbspWoodElf0000",
+    "nameEn": "Elf, Wood"
+  },
+  {
+    "id": "gnome-forest",
+    "srdId": "phbspForestGnome",
+    "nameEn": "Gnome, Forest"
+  },
+  {
+    "id": "gnome-rock",
+    "srdId": "phbspRockGnome00",
+    "nameEn": "Gnome, Rock"
+  },
+  {
+    "id": "goliath",
+    "srdId": "phbspGoliath0000",
+    "nameEn": "Goliath"
+  },
+  {
+    "id": "halfling",
+    "srdId": "phbspHalfling000",
+    "nameEn": "Halfling"
+  },
+  {
+    "id": "human",
+    "srdId": "phbspHuman000000",
+    "nameEn": "Human"
+  },
+  {
+    "id": "orc",
+    "srdId": "phbspOrc00000000",
+    "nameEn": "Orc"
+  },
+  {
+    "id": "tiefling-abyssal",
+    "srdId": "phbspAbyssalTief",
+    "nameEn": "Tiefling, Abyssal"
+  },
+  {
+    "id": "tiefling-chthonic",
+    "srdId": "phbspChthonicTie",
+    "nameEn": "Tiefling, Chthonic"
+  },
+  {
+    "id": "tiefling-infernal",
+    "srdId": "phbspInfernalTie",
+    "nameEn": "Tiefling, Infernal"
+  }
+]

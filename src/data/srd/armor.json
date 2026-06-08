@@ -1,0 +1,132 @@
+[
+  {
+    "id": "shield",
+    "srdId": "phbarmShield0000",
+    "nameEn": "Shield",
+    "category": "shield",
+    "baseAc": 2,
+    "dexMax": null,
+    "strengthMin": null,
+    "stealthDisadvantage": false
+  },
+  {
+    "id": "chain-mail",
+    "srdId": "phbarmChainMail0",
+    "nameEn": "Chain Mail",
+    "category": "heavy",
+    "baseAc": 16,
+    "dexMax": 0,
+    "strengthMin": 13,
+    "stealthDisadvantage": false
+  },
+  {
+    "id": "plate-armor",
+    "srdId": "phbarmPlateArmor",
+    "nameEn": "Plate Armor",
+    "category": "heavy",
+    "baseAc": 18,
+    "dexMax": 0,
+    "strengthMin": 15,
+    "stealthDisadvantage": false
+  },
+  {
+    "id": "ring-mail",
+    "srdId": "phbarmRingMail00",
+    "nameEn": "Ring Mail",
+    "category": "heavy",
+    "baseAc": 14,
+    "dexMax": 0,
+    "strengthMin": null,
+    "stealthDisadvantage": false
+  },
+  {
+    "id": "splint-armor",
+    "srdId": "phbarmSplintArmo",
+    "nameEn": "Splint Armor",
+    "category": "heavy",
+    "baseAc": 17,
+    "dexMax": 0,
+    "strengthMin": 15,
+    "stealthDisadvantage": false
+  },
+  {
+    "id": "leather-armor",
+    "srdId": "phbarmLeatherArm",
+    "nameEn": "Leather Armor",
+    "category": "light",
+    "baseAc": 11,
+    "dexMax": null,
+    "strengthMin": null,
+    "stealthDisadvantage": false
+  },
+  {
+    "id": "padded-armor",
+    "srdId": "phbarmPaddedArmo",
+    "nameEn": "Padded Armor",
+    "category": "light",
+    "baseAc": 11,
+    "dexMax": null,
+    "strengthMin": null,
+    "stealthDisadvantage": false
+  },
+  {
+    "id": "studded-leather-armor",
+    "srdId": "phbarmStuddedLea",
+    "nameEn": "Studded Leather Armor",
+    "category": "light",
+    "baseAc": 12,
+    "dexMax": null,
+    "strengthMin": null,
+    "stealthDisadvantage": false
+  },
+  {
+    "id": "breastplate",
+    "srdId": "phbarmBreastplat",
+    "nameEn": "Breastplate",
+    "category": "medium",
+    "baseAc": 14,
+    "dexMax": 2,
+    "strengthMin": null,
+    "stealthDisadvantage": false
+  },
+  {
+    "id": "chain-shirt",
+    "srdId": "phbarmChainShirt",
+    "nameEn": "Chain Shirt",
+    "category": "medium",
+    "baseAc": 13,
+    "dexMax": 2,
+    "strengthMin": null,
+    "stealthDisadvantage": false
+  },
+  {
+    "id": "half-plate-armor",
+    "srdId": "phbarmHalfPlateA",
+    "nameEn": "Half Plate Armor",
+    "category": "medium",
+    "baseAc": 15,
+    "dexMax": 2,
+    "strengthMin": null,
+    "stealthDisadvantage": false
+  },
+  {
+    "id": "hide-armor",
+    "srdId": "phbarmHideArmor0",
+    "nameEn": "Hide Armor",
+    "category": "medium",
+    "baseAc": 12,
+    "dexMax": 2,
+    "strengthMin": null,
+    "stealthDisadvantage": false
+  },
+  {
+    "id": "scale-mail",
+    "srdId": "phbarmScaleMail0",
+    "nameEn": "Scale Mail",
+    "category": "medium",
+    "baseAc": 14,
+    "dexMax": 2,
+    "strengthMin": null,
+    "stealthDisadvantage": false
+  }
+]

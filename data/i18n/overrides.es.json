@@ -1,0 +1,10 @@
+{
+  "ui": {
+    "str": "Fuerza",
+    "dex": "Destreza",
+    "con": "Constitución",
+    "int": "Inteligencia",
+    "wis": "Sabiduría",
+    "cha": "Carisma"
+  }
+}

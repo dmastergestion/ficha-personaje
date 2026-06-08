@@ -1,0 +1,13 @@
+{
+  "version": 1,
+  "source": "foundryvtt/dnd5e SRD 2024 (CC-BY-4.0)",
+  "generatedAt": "2026-06-08T18:02:21.189Z",
+  "counts": {
+    "classes": 12,
+    "subclasses": 12,
+    "armor": 13,
+    "spells": 340,
+    "species": 14,
+    "backgrounds": 4
+  }
+}

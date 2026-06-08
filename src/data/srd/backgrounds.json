@@ -1,0 +1,22 @@
+[
+  {
+    "id": "acolyte",
+    "srdId": "phbbgAcolyte0000",
+    "nameEn": "Acolyte"
+  },
+  {
+    "id": "criminal",
+    "srdId": "phbbgCriminal000",
+    "nameEn": "Criminal"
+  },
+  {
+    "id": "sage",
+    "srdId": "phbbgSage0000000",
+    "nameEn": "Sage"
+  },
+  {
+    "id": "soldier",
+    "srdId": "phbbgSoldier0000",
+    "nameEn": "Soldier"
+  }
+]

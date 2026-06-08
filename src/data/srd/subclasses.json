@@ -1,0 +1,74 @@
+[
+  {
+    "id": "berserker",
+    "srdId": "phbbrbBerserker0",
+    "nameEn": "Path of the Berserker",
+    "classId": "barbarian"
+  },
+  {
+    "id": "lore",
+    "srdId": "phbbrdLore000000",
+    "nameEn": "College of Lore",
+    "classId": "bard"
+  },
+  {
+    "id": "life",
+    "srdId": "phbclcLifeDomain",
+    "nameEn": "Life Domain",
+    "classId": "cleric"
+  },
+  {
+    "id": "land",
+    "srdId": "phbdrdCirland000",
+    "nameEn": "Circle of the Land",
+    "classId": "druid"
+  },
+  {
+    "id": "champion",
+    "srdId": "phbftrChampion00",
+    "nameEn": "Champion",
+    "classId": "fighter"
+  },
+  {
+    "id": "hand",
+    "srdId": "phbmnkOpenHandWa",
+    "nameEn": "Warrior of the Open Hand",
+    "classId": "monk"
+  },
+  {
+    "id": "devotion",
+    "srdId": "phbpdnOathOfDevo",
+    "nameEn": "Oath of Devotion",
+    "classId": "paladin"
+  },
+  {
+    "id": "hunter",
+    "srdId": "phbrgrHunter0000",
+    "nameEn": "Hunter",
+    "classId": "ranger"
+  },
+  {
+    "id": "thief",
+    "srdId": "phbrgeThief00000",
+    "nameEn": "Thief",
+    "classId": "rogue"
+  },
+  {
+    "id": "draconic",
+    "srdId": "phbscrDraconicSo",
+    "nameEn": "Draconic Sorcery",
+    "classId": "sorcerer"
+  },
+  {
+    "id": "fiend",
+    "srdId": "phbwlkFiendPatro",
+    "nameEn": "Fiend Patron",
+    "classId": "warlock"
+  },
+  {
+    "id": "evoker",
+    "srdId": "phbwzdEvoker0000",
+    "nameEn": "Evoker",
+    "classId": "wizard"
+  }
+]

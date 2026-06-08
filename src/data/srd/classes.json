@@ -1,0 +1,114 @@
+[
+  {
+    "id": "barbarian",
+    "srdId": "phbbrbBarbarian0",
+    "nameEn": "Barbarian",
+    "hitDie": "d12",
+    "primaryAbilities": [
+      "str"
+    ]
+  },
+  {
+    "id": "bard",
+    "srdId": "phbbrdBard000000",
+    "nameEn": "Bard",
+    "hitDie": "d8",
+    "primaryAbilities": [
+      "cha"
+    ]
+  },
+  {
+    "id": "cleric",
+    "srdId": "phbclcCleric0000",
+    "nameEn": "Cleric",
+    "hitDie": "d8",
+    "primaryAbilities": [
+      "wis"
+    ]
+  },
+  {
+    "id": "druid",
+    "srdId": "phbdrdDruid00000",
+    "nameEn": "Druid",
+    "hitDie": "d8",
+    "primaryAbilities": [
+      "wis"
+    ]
+  },
+  {
+    "id": "fighter",
+    "srdId": "phbftrFighter000",
+    "nameEn": "Fighter",
+    "hitDie": "d10",
+    "primaryAbilities": [
+      "str",
+      "dex"
+    ]
+  },
+  {
+    "id": "monk",
+    "srdId": "phbmnkMonk000000",
+    "nameEn": "Monk",
+    "hitDie": "d8",
+    "primaryAbilities": [
+      "dex",
+      "wis"
+    ]
+  },
+  {
+    "id": "paladin",
+    "srdId": "phbpdnPaladin000",
+    "nameEn": "Paladin",
+    "hitDie": "d10",
+    "primaryAbilities": [
+      "str",
+      "cha"
+    ]
+  },
+  {
+    "id": "ranger",
+    "srdId": "phbrgrRanger0000",
+    "nameEn": "Ranger",
+    "hitDie": "d10",
+    "primaryAbilities": [
+      "dex",
+      "wis"
+    ]
+  },
+  {
+    "id": "rogue",
+    "srdId": "phbrgeRogue00000",
+    "nameEn": "Rogue",
+    "hitDie": "d8",
+    "primaryAbilities": [
+      "dex"
+    ]
+  },
+  {
+    "id": "sorcerer",
+    "srdId": "phbscrSorcerer00",
+    "nameEn": "Sorcerer",
+    "hitDie": "d6",
+    "primaryAbilities": [
+      "cha"
+    ]
+  },
+  {
+    "id": "warlock",
+    "srdId": "phbwlkWarlock000",
+    "nameEn": "Warlock",
+    "hitDie": "d8",
+    "primaryAbilities": [
+      "cha"
+    ]
+  },
+  {
+    "id": "wizard",
+    "srdId": "phbwzdWizard0000",
+    "nameEn": "Wizard",
+    "hitDie": "d6",
+    "primaryAbilities": [
+      "int"
+    ]
+  }
+]
