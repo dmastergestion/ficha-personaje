@@ -4,7 +4,7 @@ PWA offline-first para fichas de personaje **D&D 5e (SRD 5.2.1 / reglas 2024)**.
 
 ## Uso sin instalar nada (jugadores / mesa)
 
-1. Abre la app publicada: **https://dmastergestion.github.io/ficha-personaje/**
+1. Abre la app publicada: **https://dmastergestion.github.io/ficha-personaje/** (se despliega automáticamente en cada push a `master`)
 2. En Chrome/Edge: menú → **Instalar aplicación** / **Añadir a pantalla de inicio**
 3. Listo: funciona **offline** con tus personajes guardados en el dispositivo
 
