@@ -67,4 +67,15 @@ export default defineConfig({
       "@": path.resolve(__dirname, "src"),
     },
   },
+  build: {
+    rollupOptions: {
+      output: {
+        manualChunks(id) {
+          if (id.includes("@react-pdf") || id.includes("yoga-layout") || id.includes("fontkit")) {
+            return "react-pdf";
+          }
+        },
+      },
+    },
+  },
 });

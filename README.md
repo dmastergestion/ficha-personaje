@@ -40,6 +40,13 @@ Los JSON generados en `src/data/` se versionan para que CI y usuarios no dependa
 | `npm test` | Vitest (reglas + db) |
 | `npm run build:data` | Regenerar SRD + traducciones ES |
 
+## Funcionalidades (v2)
+
+- Asistente de creación por pasos, multiclase SRD, condiciones con reglas automáticas
+- Inventario con peso y carga (STR × 15 lb)
+- Export JSON, tracker y **PDF** (carga bajo demanda)
+- PWA offline con aviso de actualización
+
 ## Documentación
 
 - [`SPEC.md`](SPEC.md) — contrato del proyecto
