@@ -24,7 +24,7 @@ describe("Dexie v2", () => {
     await db.characters.put(CharacterSchema.parse(character));
     const loaded = await db.characters.get(character.id);
 
-    expect(loaded?.schemaVersion).toBe(2);
+    expect(loaded?.schemaVersion).toBe(3);
     expect(loaded?.combat.conditionIds).toEqual([]);
     await db.delete();
   });
@@ -58,7 +58,7 @@ describe("Dexie v2", () => {
     const upgraded = new FichaDatabase(dbName);
     const loaded = await upgraded.characters.get(base.id);
 
-    expect(loaded?.schemaVersion).toBe(2);
+    expect(loaded?.schemaVersion).toBe(3);
     expect(loaded?.combat.conditionsCustom).toEqual(["Cansado"]);
     await upgraded.delete();
   });

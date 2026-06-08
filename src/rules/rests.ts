@@ -2,7 +2,7 @@ import type { SpellSlotLevel } from "@/lib/constants";
 import { SPELL_SLOT_LEVELS } from "@/lib/constants";
 import { modificadorAtributo } from "@/rules/ability";
 import { tirarDadoDenominacion } from "@/rules/dice";
-import { espaciosMaximos, tipoLanzador } from "@/rules/spells";
+import { espaciosMaximosPersonaje, espaciosPactoMaximos, nivelBrujo } from "@/rules/spells";
 import type { Character } from "@/schemas/character";
 
 function slotsVacios(): Character["spells"]["spellSlotsUsed"] {
@@ -24,14 +24,14 @@ export function aplicarDescansoLargo(character: Character): Character {
     spells: {
       ...character.spells,
       spellSlotsUsed: slotsVacios(),
-      pactMagicUsed: tipoLanzador(character.identity.classId) === "pact" ? 0 : character.spells.pactMagicUsed,
+      pactMagicUsed: nivelBrujo(character.identity.classes) > 0 ? 0 : character.spells.pactMagicUsed,
     },
   };
 }
 
 /** Descanso corto: brujo recupera espacios de pacto. */
 export function aplicarDescansoCorto(character: Character): Character {
-  if (tipoLanzador(character.identity.classId) !== "pact") {
+  if (nivelBrujo(character.identity.classes) === 0) {
     return character;
   }
   return {
@@ -78,7 +78,7 @@ export function ajustarEspacioUsado(
   level: SpellSlotLevel,
   delta: number,
 ): Character {
-  const max = espaciosMaximos(character.identity.classId, character.identity.level)[level];
+  const max = espaciosMaximosPersonaje(character)[level];
   const actual = character.spells.spellSlotsUsed[level];
   const next = Math.min(max, Math.max(0, actual + delta));
 
@@ -91,5 +91,16 @@ export function ajustarEspacioUsado(
         [level]: next,
       },
     },
+  };
+}
+
+export function ajustarPactoUsado(character: Character, delta: number): Character {
+  const max = espaciosPactoMaximos(character.identity.classes);
+  if (max === 0) return character;
+  const actual = character.spells.pactMagicUsed ?? 0;
+  const next = Math.min(max, Math.max(0, actual + delta));
+  return {
+    ...character,
+    spells: { ...character.spells, pactMagicUsed: next },
   };
 }

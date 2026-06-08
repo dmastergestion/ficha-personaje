@@ -1,18 +1,47 @@
+import { useState } from "react";
 import { Button } from "@/components/layout";
 import { cn } from "@/lib/utils";
 import { ABILITY_KEYS } from "@/lib/constants";
 import { bonificadorCompetencia, modificadorAtributo } from "@/rules/ability";
 import { ABILITY_LABELS_ES } from "@/rules/character";
 import { tiradaPericia } from "@/rules/effects";
-import { srdBackgrounds, srdSpecies, srdSubclasses, t } from "@/rules/srd";
+import {
+  actualizarNivelClase,
+  agregarClase,
+  descripcionClases,
+  eliminarClase,
+  sincronizarIdentidadMulticlase,
+  validarClases,
+} from "@/rules/multiclass";
+import { srdBackgrounds, srdClasses, srdSpecies, srdSubclasses, t } from "@/rules/srd";
 import type { SheetTabProps } from "@/pages/character-sheet/types";
 import { SHEET_TABS } from "@/pages/character-sheet/types";
 import { useUiStore } from "@/stores/ui-store";
 
 export function TabResumen({ character, onChange }: SheetTabProps) {
+  const [errorClases, setErrorClases] = useState<string | null>(null);
   const pb = bonificadorCompetencia(character.identity.level);
   const rollMode = useUiStore((s) => s.rollMode);
   const setUltimaTirada = useUiStore((s) => s.setUltimaTirada);
+
+  function aplicarClases(classes: typeof character.identity.classes) {
+    const msg = validarClases(classes);
+    if (msg) {
+      setErrorClases(msg);
+      return;
+    }
+    setErrorClases(null);
+    const sync = sincronizarIdentidadMulticlase(classes);
+    onChange({
+      ...character,
+      identity: { ...character.identity, ...sync },
+      combat: { ...character.combat, hitDiceTotal: sync.level },
+    });
+  }
+
+  const clasesDisponibles = srdClasses.filter(
+    (c) => !character.identity.classes.some((x) => x.classId === c.id),
+  );
 
   return (
     <div className="space-y-4 rounded-xl border border-white/10 bg-panel p-4">
@@ -44,21 +73,11 @@ export function TabResumen({ character, onChange }: SheetTabProps) {
           />
         </label>
         <label className="block space-y-1 text-sm">
-          <span className="text-muted">Nivel</span>
+          <span className="text-muted">Nivel total</span>
           <input
-            type="number"
-            min={1}
-            max={20}
             className="w-full rounded-lg border border-white/10 bg-surface px-3 py-2"
             value={character.identity.level}
-            onChange={(e) => {
-              const level = Math.min(20, Math.max(1, Number(e.target.value) || 1));
-              onChange({
-                ...character,
-                identity: { ...character.identity, level },
-                combat: { ...character.combat, hitDiceTotal: level },
-              });
-            }}
+            readOnly
           />
         </label>
         <label className="block space-y-1 text-sm">
@@ -100,33 +119,100 @@ export function TabResumen({ character, onChange }: SheetTabProps) {
             ))}
           </select>
         </label>
-        <label className="block space-y-1 text-sm sm:col-span-2">
-          <span className="text-muted">Subclase</span>
-          <select
-            className="w-full rounded-lg border border-white/10 bg-surface px-3 py-2"
-            value={character.identity.subclassId ?? ""}
-            onChange={(e) =>
-              onChange({
-                ...character,
-                identity: { ...character.identity, subclassId: e.target.value || null },
-              })
-            }
-          >
-            <option value="">—</option>
-            {srdSubclasses
-              .filter((sc) => sc.classId === character.identity.classId)
-              .map((sc) => (
-                <option key={sc.id} value={sc.id}>
-                  {t("subclasses", sc.id, sc.nameEn)}
-                </option>
-              ))}
-          </select>
-        </label>
       </div>
 
+      <section className="rounded-lg bg-surface p-3">
+        <h3 className="mb-2 font-semibold">Clases (multiclase)</h3>
+        <p className="mb-3 text-sm text-muted">{descripcionClases(character.identity.classes)}</p>
+        <div className="space-y-2">
+          {character.identity.classes.map((cl) => (
+            <div
+              key={cl.classId}
+              className="grid gap-2 rounded-lg bg-panel p-2 sm:grid-cols-[1fr,5rem,1fr,auto]"
+            >
+              <span className="self-center text-sm font-medium">
+                {t("classes", cl.classId, cl.classId)}
+              </span>
+              <input
+                type="number"
+                min={1}
+                max={20}
+                className="rounded border border-white/10 bg-surface px-2 py-1 text-sm"
+                value={cl.level}
+                onChange={(e) =>
+                  aplicarClases(
+                    actualizarNivelClase(
+                      character.identity.classes,
+                      cl.classId,
+                      Number(e.target.value) || 1,
+                    ),
+                  )
+                }
+              />
+              <select
+                className="rounded border border-white/10 bg-surface px-2 py-1 text-sm"
+                value={cl.subclassId ?? ""}
+                onChange={(e) =>
+                  aplicarClases(
+                    character.identity.classes.map((c) =>
+                      c.classId === cl.classId
+                        ? { ...c, subclassId: e.target.value || null }
+                        : c,
+                    ),
+                  )
+                }
+              >
+                <option value="">Sin subclase</option>
+                {srdSubclasses
+                  .filter((sc) => sc.classId === cl.classId)
+                  .map((sc) => (
+                    <option key={sc.id} value={sc.id}>
+                      {t("subclasses", sc.id, sc.nameEn)}
+                    </option>
+                  ))}
+              </select>
+              {character.identity.classes.length > 1 && (
+                <Button
+                  variant="ghost"
+                  onClick={() => {
+                    const next = eliminarClase(character.identity.classes, cl.classId);
+                    if (next) aplicarClases(next);
+                  }}
+                >
+                  Quitar
+                </Button>
+              )}
+            </div>
+          ))}
+        </div>
+        {clasesDisponibles.length > 0 && (
+          <div className="mt-3 flex flex-wrap items-center gap-2">
+            <select
+              id="add-class"
+              className="rounded border border-white/10 bg-surface px-2 py-1 text-sm"
+              defaultValue=""
+              onChange={(e) => {
+                const classId = e.target.value;
+                if (!classId) return;
+                const next = agregarClase(character.identity.classes, classId);
+                if (next) aplicarClases(next);
+                e.target.value = "";
+              }}
+            >
+              <option value="">Añadir clase…</option>
+              {clasesDisponibles.map((c) => (
+                <option key={c.id} value={c.id}>
+                  {t("classes", c.id, c.nameEn)}
+                </option>
+              ))}
+            </select>
+          </div>
+        )}
+        {errorClases && <p className="mt-2 text-sm text-red-400">{errorClases}</p>}
+      </section>
+
       <p className="text-sm text-muted">
-        {t("classes", character.identity.classId, character.identity.classId)} · PB +{pb} · Dado
-        de golpe {character.combat.hitDie}
+        PB +{pb} · Dado de golpe {character.combat.hitDie}
       </p>
 
       <div className="grid grid-cols-2 gap-2 sm:grid-cols-3">

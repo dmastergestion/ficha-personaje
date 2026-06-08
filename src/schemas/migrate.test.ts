@@ -3,7 +3,7 @@ import { crearPersonajeVacio } from "@/schemas/character";
 import { migrarPersonajeV1 } from "@/schemas/migrate";
 
 describe("migrarPersonajeV1", () => {
-  it("convierte conditions a conditionsCustom y añade weightLb", () => {
+  it("convierte conditions a conditionsCustom y migra a v3", () => {
     const base = crearPersonajeVacio({ name: "A", playerName: "B", classId: "fighter" });
     const v1 = {
       ...base,
@@ -23,10 +23,10 @@ describe("migrarPersonajeV1", () => {
       },
     };
 
-    const v2 = migrarPersonajeV1(v1);
-    expect(v2.schemaVersion).toBe(2);
-    expect(v2.combat.conditionsCustom).toEqual(["Herido", "Maldito"]);
-    expect(v2.combat.conditionIds).toEqual([]);
-    expect(v2.equipment.items.every((i) => i.weightLb === 0)).toBe(true);
+    const v3 = migrarPersonajeV1(v1);
+    expect(v3.schemaVersion).toBe(3);
+    expect(v3.combat.conditionsCustom).toEqual(["Herido", "Maldito"]);
+    expect(v3.identity.classes).toHaveLength(1);
+    expect(v3.equipment.items.every((i) => i.weightLb === 0)).toBe(true);
   });
 });

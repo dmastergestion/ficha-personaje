@@ -8,7 +8,8 @@ import { SheetTabBar, TabResumen } from "@/pages/character-sheet/TabResumen";
 import { TabCombate, TabEquipo } from "@/pages/character-sheet/TabCombate";
 import { TabHechizos, TabNotas } from "@/pages/character-sheet/TabHechizos";
 import type { SheetTab } from "@/pages/character-sheet/types";
-import { t } from "@/rules/srd";
+import { exportarFichaPdf } from "@/pdf/exportPdf";
+import { descripcionClases } from "@/rules/multiclass";
 import { useUiStore } from "@/stores/ui-store";
 
 export function CharacterSheetPage() {
@@ -41,15 +42,17 @@ export function CharacterSheetPage() {
     <Layout
       title={character.identity.name}
       actions={
-        <Link to="/">
-          <Button>Volver</Button>
-        </Link>
+        <>
+          <Button onClick={() => void exportarFichaPdf(character)}>PDF</Button>
+          <Link to="/">
+            <Button>Volver</Button>
+          </Link>
+        </>
       }
     >
       <div className="pb-24 md:pb-0">
         <p className="mb-2 text-sm text-muted">
-          {t("classes", character.identity.classId, character.identity.classId)} · Nivel{" "}
-          {character.identity.level}
+          {descripcionClases(character.identity.classes)} · Total {character.identity.level}
         </p>
         <SheetTabBar active={tab} onSelect={(id) => setTab(id as SheetTab)} />
 

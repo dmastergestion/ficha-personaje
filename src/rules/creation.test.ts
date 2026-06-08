@@ -28,5 +28,8 @@ describe("crearPersonajeDesdeAsistente", () => {
     });
     expect(character.proficiencies.savingThrows).toEqual(["int", "wis"]);
     expect(character.proficiencies.skills).toEqual(["arcana", "history"]);
+    expect(character.identity.classes).toEqual([
+      { classId: "wizard", subclassId: null, level: 1 },
+    ]);
   });
 });

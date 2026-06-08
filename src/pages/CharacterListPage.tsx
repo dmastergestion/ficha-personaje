@@ -13,7 +13,8 @@ import {
 } from "@/db/repository";
 import type { Character } from "@/schemas/character";
 import { calcularClaseArmadura } from "@/rules/combat";
-import { srdArmor, t } from "@/rules/srd";
+import { descripcionClases } from "@/rules/multiclass";
+import { srdArmor } from "@/rules/srd";
 
 export function CharacterListPage() {
   const [characters, setCharacters] = useState<Character[]>([]);
@@ -81,7 +82,7 @@ export function CharacterListPage() {
                   <div>
                     <h2 className="text-lg font-semibold">{character.identity.name}</h2>
                     <p className="text-sm text-muted">
-                      {t("classes", character.identity.classId, character.identity.classId)} · Nivel{" "}
+                      {descripcionClases(character.identity.classes)} · Total{" "}
                       {character.identity.level}
                     </p>
                     <p className="text-sm">

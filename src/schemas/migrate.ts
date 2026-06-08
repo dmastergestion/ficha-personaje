@@ -4,6 +4,7 @@ import {
   SKILL_KEYS,
   SPELL_SLOT_LEVELS,
 } from "@/lib/constants";
+import { CONDITION_IDS } from "@/lib/conditions";
 import { CharacterSchema, type Character } from "@/schemas/character";
 
 /** Schema v1 para importar backups antiguos. */
@@ -77,11 +78,49 @@ const CharacterSchemaV1 = z.object({
   notes: z.string(),
 });
 
+const CharacterSchemaV2 = CharacterSchemaV1.extend({
+  schemaVersion: z.literal(2),
+  combat: CharacterSchemaV1.shape.combat.omit({ conditions: true }).extend({
+    conditionIds: z.array(z.enum(CONDITION_IDS)),
+    conditionsCustom: z.array(z.string()),
+    exhaustionLevel: z.number().int().min(0).max(6),
+  }),
+  equipment: CharacterSchemaV1.shape.equipment.extend({
+    items: z.array(
+      z.object({
+        id: z.string(),
+        name: z.string(),
+        qty: z.number().int().min(0),
+        weightLb: z.number().min(0),
+        notes: z.string().optional(),
+      }),
+    ),
+  }),
+});
+
+export function migrarPersonajeV2(raw: unknown): Character {
+  const v2 = CharacterSchemaV2.parse(raw);
+  return CharacterSchema.parse({
+    ...v2,
+    schemaVersion: 3,
+    identity: {
+      ...v2.identity,
+      classes: [
+        {
+          classId: v2.identity.classId,
+          subclassId: v2.identity.subclassId,
+          level: v2.identity.level,
+        },
+      ],
+    },
+  });
+}
+
 export function migrarPersonajeV1(raw: unknown): Character {
   const v1 = CharacterSchemaV1.parse(raw);
   const { conditions, ...combatRest } = v1.combat;
 
-  return CharacterSchema.parse({
+  return migrarPersonajeV2({
     ...v1,
     schemaVersion: 2,
     combat: {
@@ -101,13 +140,12 @@ export function migrarPersonajeV1(raw: unknown): Character {
 }
 
 export function normalizarPersonaje(raw: unknown): Character {
-  const v2 = CharacterSchema.safeParse(raw);
-  if (v2.success) return v2.data;
+  const v3 = CharacterSchema.safeParse(raw);
+  if (v3.success) return v3.data;
 
   const asRecord = raw as { schemaVersion?: number } | null;
-  if (asRecord?.schemaVersion === 1) {
-    return migrarPersonajeV1(raw);
-  }
+  if (asRecord?.schemaVersion === 2) return migrarPersonajeV2(raw);
+  if (asRecord?.schemaVersion === 1) return migrarPersonajeV1(raw);
 
   throw new Error("Formato de personaje no reconocido");
 }
@@ -129,4 +167,19 @@ export function migrarRegistroDexieV1(char: Record<string, unknown>): void {
   }));
 
   char.schemaVersion = 2;
+}
+
+export function migrarRegistroDexieV2(char: Record<string, unknown>): void {
+  if (char.schemaVersion !== 2) return;
+
+  const identity = char.identity as Record<string, unknown>;
+  identity.classes = [
+    {
+      classId: identity.classId,
+      subclassId: identity.subclassId ?? null,
+      level: identity.level,
+    },
+  ];
+
+  char.schemaVersion = 3;
 }

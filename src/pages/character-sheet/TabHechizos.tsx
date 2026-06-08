@@ -1,9 +1,16 @@
 import { useState } from "react";
 import { Button } from "@/components/layout";
 import { SPELL_SLOT_LEVELS } from "@/lib/constants";
-import { espaciosMaximos, esLanzador, tipoLanzador, usaListaPreparados } from "@/rules/spells";
+import {
+  espaciosMaximosPersonaje,
+  espaciosPactoMaximos,
+  esLanzadorPersonaje,
+  nivelBrujo,
+  nivelEfectivoConjuro,
+  usaPreparadosMulticlase,
+} from "@/rules/spells";
 import { tirarD20 } from "@/rules/dice";
-import { ajustarEspacioUsado } from "@/rules/rests";
+import { ajustarEspacioUsado, ajustarPactoUsado } from "@/rules/rests";
 import { srdSpells, t } from "@/rules/srd";
 import type { SheetTabProps } from "@/pages/character-sheet/types";
 import { useUiStore } from "@/stores/ui-store";
@@ -24,7 +31,7 @@ function agregarConjuro(
     };
   }
 
-  if (usaListaPreparados(character.identity.classId)) {
+  if (usaPreparadosMulticlase(character.identity.classes)) {
     if (character.spells.spellsPrepared.includes(spellId)) return character;
     return {
       ...character,
@@ -103,9 +110,11 @@ function SpellRow({
 
 export function TabHechizos({ character, onChange }: SheetTabProps) {
   const [busqueda, setBusqueda] = useState("");
-  const maxSlots = espaciosMaximos(character.identity.classId, character.identity.level);
-  const lanzador = esLanzador(character.identity.classId);
-  const preparados = usaListaPreparados(character.identity.classId);
+  const maxSlots = espaciosMaximosPersonaje(character);
+  const lanzador = esLanzadorPersonaje(character);
+  const preparados = usaPreparadosMulticlase(character.identity.classes);
+  const pactMax = espaciosPactoMaximos(character.identity.classes);
+  const pactUsed = character.spells.pactMagicUsed ?? 0;
   const rollMode = useUiStore((s) => s.rollMode);
   const setUltimaTirada = useUiStore((s) => s.setUltimaTirada);
 
@@ -116,50 +125,70 @@ export function TabHechizos({ character, onChange }: SheetTabProps) {
   if (!lanzador) {
     return (
       <p className="rounded-xl border border-white/10 bg-panel p-4 text-muted">
-        Esta clase no usa espacios de conjuro en v1.
+        Este personaje no usa conjuros.
       </p>
     );
   }
 
-  const kind = tipoLanzador(character.identity.classId);
+  const effectiveLevel = nivelEfectivoConjuro(character.identity.classes);
 
   return (
     <div className="space-y-4">
-      <section className="rounded-xl border border-white/10 bg-panel p-4">
-        <h3 className="mb-3 font-semibold">
-          {kind === "pact" ? "Magia de pacto" : "Espacios de conjuro"}
-        </h3>
-        <div className="grid grid-cols-3 gap-2 sm:grid-cols-5">
-          {SPELL_SLOT_LEVELS.map((level) => {
-            if (maxSlots[level] === 0) return null;
-            const usados = character.spells.spellSlotsUsed[level];
-            return (
-              <div key={level} className="rounded-lg bg-surface p-2 text-center text-sm">
-                <div className="text-muted">Niv {level}</div>
-                <div className="text-lg font-bold">
-                  {usados}/{maxSlots[level]}
+      {effectiveLevel > 0 && (
+        <section className="rounded-xl border border-white/10 bg-panel p-4">
+          <h3 className="mb-3 font-semibold">
+            Espacios de conjuro (nivel efectivo {effectiveLevel})
+          </h3>
+          <div className="grid grid-cols-3 gap-2 sm:grid-cols-5">
+            {SPELL_SLOT_LEVELS.map((level) => {
+              if (maxSlots[level] === 0) return null;
+              const usados = character.spells.spellSlotsUsed[level];
+              return (
+                <div key={level} className="rounded-lg bg-surface p-2 text-center text-sm">
+                  <div className="text-muted">Niv {level}</div>
+                  <div className="text-lg font-bold">
+                    {usados}/{maxSlots[level]}
+                  </div>
+                  <div className="mt-1 flex justify-center gap-1">
+                    <Button
+                      variant="critical"
+                      onClick={() => onChange(ajustarEspacioUsado(character, level, 1))}
+                    >
+                      +
+                    </Button>
+                    <Button onClick={() => onChange(ajustarEspacioUsado(character, level, -1))}>
+                      −
+                    </Button>
+                  </div>
                 </div>
-                <div className="mt-1 flex justify-center gap-1">
-                  <Button
-                    variant="critical"
-                    onClick={() => onChange(ajustarEspacioUsado(character, level, 1))}
-                  >
-                    +
-                  </Button>
-                  <Button onClick={() => onChange(ajustarEspacioUsado(character, level, -1))}>
-                    −
-                  </Button>
-                </div>
-              </div>
-            );
-          })}
-        </div>
-        {character.spells.abilityKey && (
-          <p className="mt-2 text-xs text-muted">
-            Atributo de conjuro: {character.spells.abilityKey.toUpperCase()}
-          </p>
-        )}
-      </section>
+              );
+            })}
+          </div>
+        </section>
+      )}
+
+      {pactMax > 0 && (
+        <section className="rounded-xl border border-white/10 bg-panel p-4">
+          <h3 className="mb-3 font-semibold">
+            Magia de pacto (brujo {nivelBrujo(character.identity.classes)})
+          </h3>
+          <div className="flex items-center gap-3">
+            <span className="text-lg font-bold">
+              {pactUsed}/{pactMax}
+            </span>
+            <Button variant="critical" onClick={() => onChange(ajustarPactoUsado(character, 1))}>
+              +
+            </Button>
+            <Button onClick={() => onChange(ajustarPactoUsado(character, -1))}>−</Button>
+          </div>
+        </section>
+      )}
+
+      {character.spells.abilityKey && (
+        <p className="text-xs text-muted">
+          Atributo de conjuro: {character.spells.abilityKey.toUpperCase()}
+        </p>
+      )}
 
       <section className="rounded-xl border border-white/10 bg-panel p-4">
         <h3 className="mb-2 font-semibold">Buscar conjuro SRD</h3>

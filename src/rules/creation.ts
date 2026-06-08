@@ -74,6 +74,13 @@ export function crearPersonajeDesdeAsistente(datos: DatosAsistente): Character {
       ...character.identity,
       subclassId: datos.subclassId,
       backgroundId: datos.backgroundId,
+      classes: [
+        {
+          classId: datos.classId,
+          subclassId: datos.subclassId,
+          level: datos.level,
+        },
+      ],
     },
     abilities: { ...datos.abilities },
     proficiencies: {

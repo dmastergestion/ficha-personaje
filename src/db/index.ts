@@ -1,5 +1,5 @@
 import Dexie, { type EntityTable } from "dexie";
-import { migrarRegistroDexieV1 } from "@/schemas/migrate";
+import { migrarRegistroDexieV1, migrarRegistroDexieV2 } from "@/schemas/migrate";
 import type { Character } from "@/schemas/character";
 
 export class FichaDatabase extends Dexie {
@@ -20,6 +20,18 @@ export class FichaDatabase extends Dexie {
           .toCollection()
           .modify((char: Record<string, unknown>) => {
             migrarRegistroDexieV1(char);
+          });
+      });
+    this.version(3)
+      .stores({
+        characters: "id, identity.name, identity.classId, meta.updatedAt",
+      })
+      .upgrade(async (tx) => {
+        await tx
+          .table("characters")
+          .toCollection()
+          .modify((char: Record<string, unknown>) => {
+            migrarRegistroDexieV2(char);
           });
       });
   }
