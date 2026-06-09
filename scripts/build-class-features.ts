@@ -1,0 +1,279 @@
+/**
+ * Genera src/data/srd/class-feature-meta.json con rasgos de clase PHB 2024 (SRD).
+ * Excluye mejoras de atributos y dotes épicas (nivel 19); se gestionan en código.
+ * Ejecutar: npm run build:class-features
+ */
+import fs from "node:fs";
+import path from "node:path";
+import { fileURLToPath, pathToFileURL } from "node:url";
+
+const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
+const outPath = path.join(root, "src", "data", "srd", "class-feature-meta.json");
+
+export type ClassFeatureEntry = { level: number; name: string; description: string };
+
+const CLASS_FEATURES: Record<string, ClassFeatureEntry[]> = {
+  barbarian: [
+    { level: 1, name: "Rabia", description: "Como acción adicional entras en rabia: ventaja en Fuerza, resistencia a contundente/perforante/cortante, bonificador de daño cuerpo a cuerpo con Fuerza. Usos y daño escalan con el nivel." },
+    { level: 1, name: "Defensa sin armadura", description: "Si no llevas armadura, tu CA base es 10 + DES + CON. Puedes usar escudo." },
+    { level: 1, name: "Maestría con armas", description: "Usas propiedades de maestría de dos armas cuerpo a cuerpo simples o marciales; cambias una tras descanso largo. Aumenta con el nivel." },
+    { level: 2, name: "Sentido del peligro", description: "Ventaja en salvaciones de Destreza salvo que estés incapacitado." },
+    { level: 2, name: "Ataque temerario", description: "En tu primer ataque del turno puedes atacar temerariamente: ventaja en ataques con Fuerza, pero los ataques contra ti tienen ventaja hasta tu siguiente turno." },
+    { level: 3, name: "Subclase de bárbaro", description: "Eliges una vía/primordial que define rasgos adicionales en niveles posteriores." },
+    { level: 3, name: "Conocimiento primal", description: "Ganas competencia en otra pericia de bárbaro. En rabia, ciertas pericias (Acrobacias, Intimidación, Percepción, Sigilo, Supervivencia) pueden usar Fuerza." },
+    { level: 5, name: "Ataque adicional", description: "Atacas dos veces al usar la acción Atacar." },
+    { level: 5, name: "Movimiento rápido", description: "+10 pies de velocidad si no llevas armadura pesada." },
+    { level: 6, name: "Rasgo de subclase", description: "Nuevo rasgo de tu subclase elegida." },
+    { level: 7, name: "Instinto feral", description: "Ventaja en tiradas de iniciativa." },
+    { level: 7, name: "Embestida instintiva", description: "Al entrar en rabia con acción adicional, puedes moverte hasta la mitad de tu velocidad." },
+    { level: 9, name: "Golpe brutal", description: "Si usas Ataque temerario, puedes renunciar a ventaja en un ataque de Fuerza para infligir +1d10 y un efecto (Empuje o Tendón cortado)." },
+    { level: 10, name: "Rasgo de subclase", description: "Nuevo rasgo de tu subclase elegida." },
+    { level: 11, name: "Rabia implacable", description: "Si caes a 0 PG en rabia, puedes hacer salvación de CON CD 10 (sube +5 por uso) para quedarte con PG = 2 × nivel de bárbaro." },
+    { level: 13, name: "Golpe brutal mejorado", description: "Nuevas opciones de Golpe brutal: Golpe tambaleante y Golpe desgarrador." },
+    { level: 14, name: "Rasgo de subclase", description: "Nuevo rasgo de tu subclase elegida." },
+    { level: 15, name: "Rabia persistente", description: "Al tirar iniciativa recuperas todos los usos de Rabia (1/descanso largo). La rabia dura 10 minutos sin extenderla." },
+    { level: 17, name: "Golpe brutal superior", description: "Golpe brutal inflige +2d10 y puedes aplicar dos efectos distintos a la vez." },
+    { level: 18, name: "Fuerza indomable", description: "En pruebas o salvaciones de Fuerza, si el total es menor que tu puntuación de Fuerza, usas la puntuación." },
+    { level: 20, name: "Campeón primal", description: "Fuerza y Constitución +4 (máx. 25)." },
+  ],
+  bard: [
+    { level: 1, name: "Inspiración bárdica", description: "Como acción adicional inspiras a un aliado a 18 m con un dado (d6→d12). Puede sumarlo a una prueba d20 fallida. Usos = mod. CAR (mín. 1), recuperas en descanso largo." },
+    { level: 1, name: "Lanzamiento de conjuros", description: "Conjuros de bardo con Carisma; preparas de la lista de bardo. Recuperas espacios en descanso largo." },
+    { level: 2, name: "Pericia", description: "Expertise en dos pericias (otras dos en nivel 9)." },
+    { level: 2, name: "Todoterreno", description: "Sumas la mitad de tu bonificador de competencia (redondeado abajo) a pruebas con pericias en las que no tienes competencia." },
+    { level: 3, name: "Subclase de bardo", description: "Eliges un colegio que otorga rasgos en niveles posteriores." },
+    { level: 5, name: "Fuente de inspiración", description: "Recuperas toda la Inspiración bárdica en descanso corto o largo. Puedes gastar un espacio para recuperar un uso." },
+    { level: 6, name: "Rasgo de subclase", description: "Nuevo rasgo de tu subclase elegida." },
+    { level: 7, name: "Contraencanto", description: "Reacción: si tú o un aliado a 9 m falla salvación contra Encantado/Asustado, repites la tirada con ventaja." },
+    { level: 9, name: "Pericia adicional", description: "Expertise en otras dos pericias." },
+    { level: 10, name: "Secretos mágicos", description: "Al subir de nivel (incluido el 10), nuevos conjuros preparados pueden elegirse de listas de bardo, clérigo, druida o mago." },
+    { level: 14, name: "Rasgo de subclase", description: "Nuevo rasgo de tu subclase elegida." },
+    { level: 18, name: "Inspiración superior", description: "Al tirar iniciativa, recuperas usos de Inspiración bárdica hasta tener dos si tenías menos." },
+    { level: 20, name: "Palabras de creación", description: "Siempre tienes preparados Palabra de poder: curar y Palabra de poder: matar; al lanzarlos puedes apuntar a un segundo objetivo a 3 m del primero." },
+  ],
+  cleric: [
+    { level: 1, name: "Lanzamiento de conjuros", description: "Conjuros de clérigo con Sabiduría; preparas tras descanso largo. Recuperas espacios en descanso largo." },
+    { level: 1, name: "Orden divino", description: "Protector: armas marciales y armadura pesada. Taumaturgo: un truco extra y bonificador a Arcano/Religión = mod. SAB." },
+    { level: 2, name: "Canalizar divinidad", description: "2 usos (recuperas 1 en descanso corto, todos en largo). Chispa divina (curar o daño necrótico/radiante) y Expulsar no muertos." },
+    { level: 3, name: "Subclase de clérigo", description: "Eliges un dominio con conjuros y rasgos propios." },
+    { level: 5, name: "Abrasar no muertos", description: "Al Expulsar no muertos, los que fallen la salvación reciben daño radiante = tirada de d8 (mod. SAB, mín. 1d8)." },
+    { level: 6, name: "Rasgo de subclase", description: "Nuevo rasgo de tu subclase elegida." },
+    { level: 7, name: "Golpes benditos", description: "Golpe divino (+1d8 necrótico/radiante con arma) o Conjuro potente (mod. SAB al daño de trucos)." },
+    { level: 8, name: "Rasgo de subclase", description: "Nuevo rasgo de tu subclase elegida." },
+    { level: 10, name: "Intervención divina", description: "Acción mágica: lanzas un conjuro de clérigo de nivel 5 o menor sin espacio ni componentes. 1/descanso largo." },
+    { level: 12, name: "Rasgo de subclase", description: "Nuevo rasgo de tu subclase elegida." },
+    { level: 14, name: "Golpes benditos mejorados", description: "Golpe divino pasa a +2d8, o Conjuro potente otorga PG temporales = 2 × mod. SAB al aliado al dañar con truco." },
+    { level: 17, name: "Rasgo de subclase", description: "Nuevo rasgo de tu subclase elegida." },
+    { level: 20, name: "Intervención divina superior", description: "Puedes elegir Deseo con Intervención divina; tras hacerlo no la usas de nuevo hasta 2d4 descansos largos." },
+  ],
+  druid: [
+    { level: 1, name: "Lanzamiento de conjuros", description: "Conjuros de druida con Sabiduría; preparas tras descanso largo." },
+    { level: 1, name: "Druídico", description: "Conoces druídico y siempre tienes preparado Hablar con animales. Puedes dejar mensajes ocultos en druídico." },
+    { level: 1, name: "Orden primal", description: "Mago: un truco extra y bonificador a Arcano/Naturaleza. Guardián: armas marciales y armadura media." },
+    { level: 2, name: "Forma salvaje", description: "Acción adicional: te transformas en bestia conocida (usos en tabla; recuperas 1 en descanso corto). PG temporales = nivel de druida." },
+    { level: 2, name: "Compañero salvaje", description: "Acción mágica: gastas Forma salvaje o espacio para lanzar Encontrar familiar sin componentes (familiar feérico)." },
+    { level: 3, name: "Subclase de druida", description: "Eliges un círculo con rasgos y conjuros propios." },
+    { level: 5, name: "Resurgimiento salvaje", description: "1/turno recuperas un uso de Forma salvaje gastando un espacio, o conviertes un uso en espacio de nivel 1 (1/descanso largo)." },
+    { level: 6, name: "Rasgo de subclase", description: "Nuevo rasgo de tu subclase elegida." },
+    { level: 7, name: "Furia elemental", description: "Conjuro potente (mod. SAB a trucos) o Golpe primal (+1d8 frío/fuego/relámpago/trueno con arma o ataque de bestia)." },
+    { level: 10, name: "Rasgo de subclase", description: "Nuevo rasgo de tu subclase elegida." },
+    { level: 14, name: "Rasgo de subclase", description: "Nuevo rasgo de tu subclase elegida." },
+    { level: 15, name: "Furia elemental mejorada", description: "Conjuro potente: alcance de trucos +90 m. Golpe primal: +2d8." },
+    { level: 18, name: "Conjuros de bestia", description: "En Forma salvaje puedes lanzar conjuros salvo componentes con coste o consumibles." },
+    { level: 20, name: "Archidruida", description: "Al iniciativa recuperas un uso de Forma salvaje si no quedan. Conviertes usos en espacios (2 niveles por uso). Envejeces 1 año cada 10." },
+  ],
+  fighter: [
+    { level: 1, name: "Estilo de combate", description: "Ganas un dote de Estilo de combate; puedes cambiarlo al subir de nivel de guerrero." },
+    { level: 1, name: "Segundo aliento", description: "Acción adicional: recuperas 1d10 + nivel de guerrero PG (2 usos; recuperas 1 en descanso corto)." },
+    { level: 1, name: "Maestría con armas", description: "Maestría de tres armas simples/marciales; cambias una tras descanso largo." },
+    { level: 2, name: "Oleada de acción", description: "Una acción adicional por turno (excepto Mágica). 1/descanso corto o largo; 2 usos desde nivel 17 (1/turno)." },
+    { level: 2, name: "Mente táctica", description: "Si fallas una prueba de habilidad, puedes gastar Segundo aliento para sumar 1d10 en lugar de curarte." },
+    { level: 3, name: "Subclase de guerrero", description: "Eliges una especialización marcial." },
+    { level: 5, name: "Ataque adicional", description: "Atacas dos veces con la acción Atacar." },
+    { level: 5, name: "Cambio táctico", description: "Al usar Segundo aliento puedes moverte hasta la mitad de tu velocidad sin provocar ataques de oportunidad." },
+    { level: 7, name: "Rasgo de subclase", description: "Nuevo rasgo de tu subclase elegida." },
+    { level: 9, name: "Indomable", description: "Si fallas una salvación, la repites sumando tu nivel de guerrero. 1/descanso largo; 2 en 13; 3 en 17." },
+    { level: 9, name: "Maestro táctico", description: "Al atacar con maestría de arma, puedes cambiar la propiedad por Empujar, Debilitar o Ralentizar." },
+    { level: 10, name: "Rasgo de subclase", description: "Nuevo rasgo de tu subclase elegida." },
+    { level: 11, name: "Ataques extra", description: "Atacas tres veces con la acción Atacar." },
+    { level: 13, name: "Ataques estudiados", description: "Si fallas un ataque contra una criatura, tienes ventaja en el siguiente ataque contra ella antes del final de tu siguiente turno." },
+    { level: 15, name: "Rasgo de subclase", description: "Nuevo rasgo de tu subclase elegida." },
+    { level: 18, name: "Rasgo de subclase", description: "Nuevo rasgo de tu subclase elegida." },
+    { level: 20, name: "Ataques extra superiores", description: "Atacas cuatro veces con la acción Atacar." },
+  ],
+  monk: [
+    { level: 1, name: "Artes marciales", description: "Sin armadura/escudo: ataque desarmado extra como acción adicional, dado marcial (escala), ataques con DES." },
+    { level: 1, name: "Defensa sin armadura", description: "CA = 10 + DES + SAB sin armadura ni escudo." },
+    { level: 2, name: "Enfoque del monje", description: "Puntos de enfoque para Ráfaga de golpes, Defensa paciente y Paso del viento (recuperas en descanso corto/largo)." },
+    { level: 2, name: "Movimiento sin armadura", description: "+10 pies de velocidad sin armadura/escudo (escala con nivel)." },
+    { level: 2, name: "Metabolismo asombroso", description: "Al tirar iniciativa recuperas todos los puntos de enfoque y curas nivel + dado marcial PG. 1/descanso largo." },
+    { level: 3, name: "Desviar ataques", description: "Reacción: reduces daño contundente/perforante/cortante en 1d10 + DES + nivel; a 0 PG puedes redirigir daño gastando enfoque." },
+    { level: 3, name: "Subclase de monje", description: "Eliges una tradición monástica." },
+    { level: 4, name: "Caída lenta", description: "Reacción al caer: reduces el daño de caída en 5 × nivel de monje." },
+    { level: 5, name: "Ataque adicional", description: "Atacas dos veces con la acción Atacar." },
+    { level: 5, name: "Golpe aturdidor", description: "1/turno al impactar: gastas 1 enfoque; salvación de CON o Aturdido (o velocidad mitad y ventaja contra el objetivo)." },
+    { level: 6, name: "Golpes potenciados", description: "Ataques desarmados pueden infligir daño de fuerza." },
+    { level: 6, name: "Rasgo de subclase", description: "Nuevo rasgo de tu subclase elegida." },
+    { level: 7, name: "Evasión", description: "Salvaciones de DES: éxito = sin daño, fallo = mitad (salvo incapacitado)." },
+    { level: 9, name: "Movimiento acrobático", description: "Puedes correr por superficies verticales y líquidos en tu turno." },
+    { level: 10, name: "Enfoque intensificado", description: "Ráfaga: 3 golpes; Defensa paciente: PG temp. = 2 dados marciales; Paso del viento: mueves aliado adyacente." },
+    { level: 10, name: "Autorrestauración", description: "Al final de tu turno eliminas Encantado, Asustado o Envenenado. No sufres agotamiento por ayuno." },
+    { level: 11, name: "Rasgo de subclase", description: "Nuevo rasgo de tu subclase elegida." },
+    { level: 13, name: "Desviar energía", description: "Desviar ataques funciona contra cualquier tipo de daño." },
+    { level: 14, name: "Superviviente disciplinado", description: "Competencia en todas las salvaciones; puedes gastar 1 enfoque para repetir una salvación fallida." },
+    { level: 15, name: "Enfoque perfecto", description: "Al iniciativa (sin Metabolismo asombroso) recuperas enfoque hasta 4 si tenías 3 o menos." },
+    { level: 17, name: "Rasgo de subclase", description: "Nuevo rasgo de tu subclase elegida." },
+    { level: 18, name: "Defensa superior", description: "Al inicio del turno puedes gastar 3 enfoque para resistencia a todo daño excepto fuerza durante 1 minuto." },
+    { level: 20, name: "Cuerpo y mente", description: "Destreza y Sabiduría +4 (máx. 25)." },
+  ],
+  paladin: [
+    { level: 1, name: "Imposición de manos", description: "Reserva de curación = 5 × nivel de paladín; acción adicional para curar o gastar 5 PV para quitar Envenenado." },
+    { level: 1, name: "Lanzamiento de conjuros", description: "Conjuros de paladín con Carisma; preparas tras descanso largo (espacios en tabla)." },
+    { level: 1, name: "Maestría con armas", description: "Maestría de dos armas con las que tengas competencia; cambias tras descanso largo." },
+    { level: 2, name: "Estilo de combate", description: "Dote de Estilo de combate o Guerrero bendito (2 trucos de clérigo)." },
+    { level: 2, name: "Castigo del paladín", description: "Siempre tienes preparado Castigo divino; 1/descanso largo lo lanzas sin espacio." },
+    { level: 3, name: "Canalizar divinidad", description: "2 usos (recuperas 1 en descanso corto). Sentido divino y efectos de juramento." },
+    { level: 3, name: "Subclase de paladín", description: "Eliges un juramento sagrado." },
+    { level: 5, name: "Ataque adicional", description: "Atacas dos veces con la acción Atacar." },
+    { level: 5, name: "Corcel fiel", description: "Siempre tienes preparado Encontrar corcel; 1/descanso largo sin espacio." },
+    { level: 6, name: "Aura de protección", description: "Emisión 3 m: tú y aliados +mod. CAR (mín. +1) a salvaciones." },
+    { level: 7, name: "Rasgo de subclase", description: "Nuevo rasgo de tu subclase elegida." },
+    { level: 9, name: "Repudiar enemigos", description: "Canalizar divinidad: Asustas criaturas elegidas (mod. CAR) a 18 m; turno limitado a mover, acción o acción adicional." },
+    { level: 10, name: "Aura de coraje", description: "Aliados en tu aura tienen inmunidad a Asustado." },
+    { level: 11, name: "Golpes radiantes", description: "+1d8 radiante al impactar con arma cuerpo a cuerpo o desarmado." },
+    { level: 14, name: "Toque restaurador", description: "Con Imposición de manos puedes quitar condiciones (5 PV cada una): Cegado, Encantado, Sordo, Asustado, Paralizado, Aturdido." },
+    { level: 15, name: "Rasgo de subclase", description: "Nuevo rasgo de tu subclase elegida." },
+    { level: 18, name: "Expansión del aura", description: "Aura de protección pasa a 9 m." },
+    { level: 20, name: "Rasgo de subclase", description: "Rasgo de nivel 20 de tu juramento." },
+  ],
+  ranger: [
+    { level: 1, name: "Lanzamiento de conjuros", description: "Conjuros de explorador con Sabiduría; preparas tras descanso largo." },
+    { level: 1, name: "Enemigo favorecido", description: "Siempre tienes preparado Marca del cazador; lanzamientos sin espacio según tabla (recuperas en descanso largo)." },
+    { level: 1, name: "Maestría con armas", description: "Maestría de dos armas; cambias tras descanso largo." },
+    { level: 2, name: "Explorador diestro", description: "Expertise en una pericia y aprendes dos idiomas." },
+    { level: 2, name: "Estilo de combate", description: "Dote de Estilo de combate o Guerrero druídico (2 trucos de druida)." },
+    { level: 3, name: "Subclase de explorador", description: "Eliges un arquetipo de explorador." },
+    { level: 5, name: "Ataque adicional", description: "Atacas dos veces con la acción Atacar." },
+    { level: 6, name: "Movilidad errante", description: "+10 pies sin armadura pesada; velocidad de trepar y nadar = velocidad." },
+    { level: 7, name: "Rasgo de subclase", description: "Nuevo rasgo de tu subclase elegida." },
+    { level: 9, name: "Pericia", description: "Expertise en dos pericias adicionales." },
+    { level: 10, name: "Incansable", description: "Acción mágica: PG temporales 1d8 + mod. SAB (usos = mod. SAB/descanso largo). Tras descanso corto reduces agotamiento en 1." },
+    { level: 11, name: "Rasgo de subclase", description: "Nuevo rasgo de tu subclase elegida." },
+    { level: 13, name: "Cazador implacable", description: "El daño no rompe tu concentración en Marca del cazador." },
+    { level: 14, name: "Velo de la naturaleza", description: "Acción adicional: Invisible hasta fin de tu siguiente turno (usos = mod. SAB/descanso largo)." },
+    { level: 15, name: "Rasgo de subclase", description: "Nuevo rasgo de tu subclase elegida." },
+    { level: 17, name: "Cazador preciso", description: "Ventaja en ataques contra la criatura marcada por Marca del cazador." },
+    { level: 18, name: "Sentidos feroces", description: "Ceguera 9 m." },
+    { level: 20, name: "Destripador de enemigos", description: "El dado extra de Marca del cazador es d10 en lugar de d6." },
+  ],
+  rogue: [
+    { level: 1, name: "Pericia", description: "Expertise en dos pericias (otras dos en nivel 6)." },
+    { level: 1, name: "Ataque furtivo", description: "1/turno +d6 (escala) si ventaja o aliado adyacente al objetivo, con arma de filigrana o a distancia." },
+    { level: 1, name: "Jerga de ladrones", description: "Conoces jerga de ladrones y un idioma adicional." },
+    { level: 1, name: "Maestría con armas", description: "Maestría de dos armas; cambias tras descanso largo." },
+    { level: 2, name: "Acción astuta", description: "Acción adicional: Correr, Desenganchar o Esconderse." },
+    { level: 3, name: "Subclase de pícaro", description: "Eliges un arquetipo de pícaro." },
+    { level: 3, name: "Puntería firme", description: "Acción adicional: ventaja en tu próximo ataque este turno si no te moviste; velocidad 0 hasta fin del turno." },
+    { level: 5, name: "Golpe astuto", description: "Al Ataque furtivo puedes renunciar a dados para Veneno, Derribar o Retirada (coste en dados)." },
+    { level: 5, name: "Esquiva asombrosa", description: "Reacción: reduces a la mitad el daño de un ataque que puedes ver." },
+    { level: 6, name: "Pericia adicional", description: "Expertise en otras dos pericias." },
+    { level: 7, name: "Evasión", description: "Salvaciones de DES: éxito sin daño, fallo mitad." },
+    { level: 7, name: "Talento fiable", description: "En pruebas con pericia o herramienta, un d20 de 9 o menos cuenta como 10." },
+    { level: 9, name: "Rasgo de subclase", description: "Nuevo rasgo de tu subclase elegida." },
+    { level: 11, name: "Golpe astuto mejorado", description: "Puedes aplicar dos efectos de Golpe astuto pagando cada coste." },
+    { level: 13, name: "Rasgo de subclase", description: "Nuevo rasgo de tu subclase elegida." },
+    { level: 14, name: "Golpes arteros", description: "Nuevas opciones de Golpe astuto: Aturdir, Noquear y Oscurecer." },
+    { level: 15, name: "Mente escurridiza", description: "Competencia en salvaciones de Sabiduría y Carisma." },
+    { level: 17, name: "Rasgo de subclase", description: "Nuevo rasgo de tu subclase elegida." },
+    { level: 18, name: "Escurridizo", description: "Ningún ataque tiene ventaja contra ti salvo que estés incapacitado." },
+    { level: 20, name: "Golpe de suerte", description: "Si fallas una prueba d20, la conviertes en 20. 1/descanso corto o largo." },
+  ],
+  sorcerer: [
+    { level: 1, name: "Lanzamiento de conjuros", description: "Conjuros de hechicero con Carisma; preparas al subir de nivel." },
+    { level: 1, name: "Hechicería innata", description: "Acción adicional 1 min: +1 CD de conjuros y ventaja en ataques de hechicero. 2/descanso largo." },
+    { level: 2, name: "Fuente de magia", description: "Puntos de hechicería para metamagia y convertir espacios ↔ puntos." },
+    { level: 2, name: "Metamagia", description: "Dos opciones de metamagia (más en 10 y 17)." },
+    { level: 3, name: "Subclase de hechicero", description: "Eliges un origen de hechicería." },
+    { level: 5, name: "Restauración hechicera", description: "Tras descanso corto recuperas puntos ≤ mitad de nivel (1/descanso largo)." },
+    { level: 6, name: "Rasgo de subclase", description: "Nuevo rasgo de tu subclase elegida." },
+    { level: 7, name: "Hechicería encarnada", description: "Puedes activar Hechicería innata gastando 2 puntos; mientras dura, hasta 2 metamagias por conjuro." },
+    { level: 10, name: "Metamagia adicional", description: "Aprendes dos opciones más de metamagia." },
+    { level: 14, name: "Rasgo de subclase", description: "Nuevo rasgo de tu subclase elegida." },
+    { level: 17, name: "Metamagia superior", description: "Aprendes otras dos opciones de metamagia." },
+    { level: 18, name: "Rasgo de subclase", description: "Nuevo rasgo de tu subclase elegida." },
+    { level: 20, name: "Apoteosis arcana", description: "Con Hechicería innata activa, 1 metamagia por turno sin gastar puntos." },
+  ],
+  warlock: [
+    { level: 1, name: "Invocaciones eldritch", description: "Eliges invocaciones místicas (cantidad en tabla); puedes cambiar una al subir de nivel." },
+    { level: 1, name: "Magia de pacto", description: "Espacios de pacto de un solo nivel que recuperas en descanso corto o largo. Conjuros preparados con Carisma." },
+    { level: 2, name: "Astucia mágica", description: "Ritual de 1 minuto: recuperas espacios de pacto ≤ mitad del máximo (1/descanso largo)." },
+    { level: 3, name: "Subclase de brujo", description: "Eliges un patrono con rasgos propios." },
+    { level: 6, name: "Rasgo de subclase", description: "Nuevo rasgo de tu subclase elegida." },
+    { level: 9, name: "Contactar patrono", description: "Siempre tienes Contactar con plano superior; 1/descanso largo sin espacio ni componentes." },
+    { level: 10, name: "Rasgo de subclase", description: "Nuevo rasgo de tu subclase elegida." },
+    { level: 11, name: "Arcanum místico (6.º)", description: "Puedes lanzar un conjuro de brujo de nivel 6 una vez por descanso largo sin espacio." },
+    { level: 13, name: "Arcanum místico (7.º)", description: "Conjuro de nivel 7 una vez por descanso largo sin espacio." },
+    { level: 14, name: "Rasgo de subclase", description: "Nuevo rasgo de tu subclase elegida." },
+    { level: 15, name: "Arcanum místico (8.º)", description: "Conjuro de nivel 8 una vez por descanso largo sin espacio." },
+    { level: 17, name: "Arcanum místico (9.º)", description: "Conjuro de nivel 9 una vez por descanso largo sin espacio." },
+    { level: 20, name: "Maestro eldritch", description: "Recuperas un espacio de pacto gastado al terminar un descanso corto (1/descanso largo)." },
+  ],
+  wizard: [
+    { level: 1, name: "Lanzamiento de conjuros", description: "Libro de conjuros; preparas con Inteligencia tras descanso largo. Aprendes 2 conjuros al subir de nivel." },
+    { level: 1, name: "Adepto de rituales", description: "Puedes lanzar conjuros con etiqueta Ritual del libro sin prepararlos (leyendo el libro)." },
+    { level: 1, name: "Recuperación arcana", description: "Tras descanso corto recuperas espacios cuya suma ≤ mitad de nivel (redondeado arriba), ninguno de 6.º+. 1/descanso largo." },
+    { level: 2, name: "Erudito", description: "Expertise en una pericia elegida entre Arcano, Historia, Investigación, Medicina, Naturaleza o Religión." },
+    { level: 3, name: "Subclase de mago", description: "Eliges una tradición arcana." },
+    { level: 5, name: "Memorizar conjuro", description: "Tras descanso corto cambias un conjuro preparado por otro del libro." },
+    { level: 6, name: "Rasgo de subclase", description: "Nuevo rasgo de tu subclase elegida." },
+    { level: 10, name: "Rasgo de subclase", description: "Nuevo rasgo de tu subclase elegida." },
+    { level: 14, name: "Rasgo de subclase", description: "Nuevo rasgo de tu subclase elegida." },
+    { level: 18, name: "Maestría de conjuros", description: "Siempre preparados un conjuro de nivel 1 y otro de 2 (acción); los lanzas a will en su nivel mínimo." },
+    { level: 20, name: "Conjuros signature", description: "Dos conjuros de nivel 3 siempre preparados; 1/descanso corto o largo cada uno sin espacio a nivel 3." },
+  ],
+};
+
+const CLASS_ORDER = [
+  "barbarian",
+  "bard",
+  "cleric",
+  "druid",
+  "fighter",
+  "monk",
+  "paladin",
+  "ranger",
+  "rogue",
+  "sorcerer",
+  "warlock",
+  "wizard",
+] as const;
+
+function sortFeatures(entries: ClassFeatureEntry[]): ClassFeatureEntry[] {
+  return [...entries].sort((a, b) => a.level - b.level || a.name.localeCompare(b.name, "es"));
+}
+
+function buildOutput(): Record<string, ClassFeatureEntry[]> {
+  const out: Record<string, ClassFeatureEntry[]> = {};
+  for (const classId of CLASS_ORDER) {
+    out[classId] = sortFeatures(CLASS_FEATURES[classId]);
+  }
+  return out;
+}
+
+function main() {
+  const data = buildOutput();
+  fs.mkdirSync(path.dirname(outPath), { recursive: true });
+  fs.writeFileSync(outPath, `${JSON.stringify(data, null, 2)}\n`);
+
+  const counts: Record<string, number> = {};
+  for (const classId of CLASS_ORDER) {
+    counts[classId] = data[classId].length;
+  }
+  console.log(JSON.stringify({ total: Object.values(counts).reduce((a, b) => a + b, 0), perClass: counts }, null, 2));
+}
+
+const isMain =
+  process.argv[1] !== undefined &&
+  pathToFileURL(path.resolve(process.argv[1])).href === import.meta.url;
+
+if (isMain) main();

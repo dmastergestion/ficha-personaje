@@ -1,0 +1,110 @@
+{
+  "dragonborn": {
+    "size": "Mediano",
+    "speed": 30,
+    "skillProficiencies": [],
+    "traits": "Draconic Ancestry: Your lineage stems from a dragon progenitor. Choose the kind of dragon from the Draconic Ancestors table. Your choice affects your Breath Weapon and XPHB traits as well as your appearance.\n\nBreath Weapon: When you take the {@action Attack|XPHB} action on your turn, you can replace one of your attacks with an exhalation of magical energy in either a 15-foot Cone or a 30-foot Line that is 5 feet wide (choose the shape each time). Each creature in that area must make a Dexterity saving throw ({@dc 8} plus your Constitution modifier and Proficiency Bonus). On a failed save, a creature takes 1d10 damage of the type determined by your Draconic Ancestry trait. On a successful save, a creature takes half as much damage. This damage increases by 1d10 when you reach character levels 5 (2d10), 11 (3d10), and 17 (4d10). You can use this Breath Weapon a number of times equal to your Proficiency Bonus, and you regain all expended uses when you finish a Long Rest|XPHB.\n\nDamage Resistance: You have Resistance|XPHB to the damage type determined by your Draconic Ancestry trait.\n\nDarkvision: You have Darkvision with a range of 60 feet.\n\nDraconic Flight: When you reach character level 5, you can channel draconic magic to give yourself temporary flight. As a XPHB condition. During that time, you have a XPHB. Your wings appear to be made of the same energy as your Breath Weapon. Once you use this trait, you can't use it again until you finish a Long Rest|XPHB."
+  },
+  "dwarf": {
+    "size": "Mediano",
+    "speed": 30,
+    "skillProficiencies": [],
+    "traits": "Darkvision: You have Darkvision with a range of 120 feet.\n\nDwarven Resilience: You have XPHB on saving throws you make to avoid or end the Poisoned condition.\n\nDwarven Toughness: Your Hit Point maximum increases by 1, and it increases by 1 again whenever you gain a level.\n\nStonecunning: As a XPHB with a range of 60 feet for 10 minutes. You must be on a stone surface or touching a stone surface to use this Tremorsense. The stone can be natural or worked. You can use this XPHB|Proficiency Bonus, and you regain all expended uses when you finish a Long Rest|XPHB."
+  },
+  "elf-drow": {
+    "size": "Mediano",
+    "speed": 30,
+    "skillProficiencies": [
+      "Elegir: insight, perception, survival"
+    ],
+    "traits": "Darkvision: You have Darkvision with a range of 60 feet.\n\nElven Lineage: You are part of a lineage that grants you supernatural abilities. Choose a lineage from the Elven Lineages table. You gain the level 1 benefit of that lineage. When you reach character levels 3 and 5, you learn a higher-level spell, as shown on the table. You always have that spell prepared. You can cast it once without a spell slot, and you regain the ability to cast it in that way when you finish a Long Rest|XPHB. You can also cast the spell using any spell slots you have of the appropriate level. Intelligence, Wisdom, or Charisma is your spellcasting ability for the spells you cast with this trait (choose the ability when you select the lineage).\n\nFey Ancestry: You have XPHB condition.\n\nKeen Senses: You have proficiency in the Insight, Perception, or Survival skill.\n\nTrance: You don't need to sleep, and magic can't put you to sleep. You can finish a Long Rest|XPHB in 4 hours if you spend those hours in a trancelike meditation, during which you retain consciousness."
+  },
+  "elf-high": {
+    "size": "Mediano",
+    "speed": 30,
+    "skillProficiencies": [
+      "Elegir: insight, perception, survival"
+    ],
+    "traits": "Darkvision: You have Darkvision with a range of 60 feet.\n\nElven Lineage: You are part of a lineage that grants you supernatural abilities. Choose a lineage from the Elven Lineages table. You gain the level 1 benefit of that lineage. When you reach character levels 3 and 5, you learn a higher-level spell, as shown on the table. You always have that spell prepared. You can cast it once without a spell slot, and you regain the ability to cast it in that way when you finish a Long Rest|XPHB. You can also cast the spell using any spell slots you have of the appropriate level. Intelligence, Wisdom, or Charisma is your spellcasting ability for the spells you cast with this trait (choose the ability when you select the lineage).\n\nFey Ancestry: You have XPHB condition.\n\nKeen Senses: You have proficiency in the Insight, Perception, or Survival skill.\n\nTrance: You don't need to sleep, and magic can't put you to sleep. You can finish a Long Rest|XPHB in 4 hours if you spend those hours in a trancelike meditation, during which you retain consciousness."
+  },
+  "elf-wood": {
+    "size": "Mediano",
+    "speed": 30,
+    "skillProficiencies": [
+      "Elegir: insight, perception, survival"
+    ],
+    "traits": "Darkvision: You have Darkvision with a range of 60 feet.\n\nElven Lineage: You are part of a lineage that grants you supernatural abilities. Choose a lineage from the Elven Lineages table. You gain the level 1 benefit of that lineage. When you reach character levels 3 and 5, you learn a higher-level spell, as shown on the table. You always have that spell prepared. You can cast it once without a spell slot, and you regain the ability to cast it in that way when you finish a Long Rest|XPHB. You can also cast the spell using any spell slots you have of the appropriate level. Intelligence, Wisdom, or Charisma is your spellcasting ability for the spells you cast with this trait (choose the ability when you select the lineage).\n\nFey Ancestry: You have XPHB condition.\n\nKeen Senses: You have proficiency in the Insight, Perception, or Survival skill.\n\nTrance: You don't need to sleep, and magic can't put you to sleep. You can finish a Long Rest|XPHB in 4 hours if you spend those hours in a trancelike meditation, during which you retain consciousness."
+  },
+  "gnome-forest": {
+    "size": "Pequeño",
+    "speed": 30,
+    "skillProficiencies": [],
+    "traits": "Darkvision: You have Darkvision with a range of 60 feet.\n\nGnomish Cunning: You have Advantage|XPHB on Intelligence, Wisdom, and Charisma saving throws.\n\nGnomish Lineage: You are part of a lineage that grants you supernatural abilities. Choose one of the following options; whichever one you choose, Intelligence, Wisdom, or Charisma is your spellcasting ability for the spells you cast with this trait (choose the ability when you select the lineage): Forest Gnome: You know the Minor Illusion cantrip. You also always have the Speak with Animals spell prepared. You can cast it without a spell slot a number of times equal to your Proficiency Bonus, and you regain all expended uses when you finish a Long Rest|XPHB. You can also use any spell slots you have to cast the spell. Rock Gnome: You know the Mending and Prestidigitation cantrips. In addition, you can spend 10 minutes casting Prestidigitation to create a Tiny clockwork device (AC 5, 1 HP), such as a toy, fire starter, or music box. When you create the device, you determine its function by choosing one effect from Prestidigitation; the device produces that effect whenever you or another creature takes a XPHB action."
+  },
+  "gnome-rock": {
+    "size": "Pequeño",
+    "speed": 30,
+    "skillProficiencies": [],
+    "traits": "Darkvision: You have Darkvision with a range of 60 feet.\n\nGnomish Cunning: You have Advantage|XPHB on Intelligence, Wisdom, and Charisma saving throws.\n\nGnomish Lineage: You are part of a lineage that grants you supernatural abilities. Choose one of the following options; whichever one you choose, Intelligence, Wisdom, or Charisma is your spellcasting ability for the spells you cast with this trait (choose the ability when you select the lineage): Forest Gnome: You know the Minor Illusion cantrip. You also always have the Speak with Animals spell prepared. You can cast it without a spell slot a number of times equal to your Proficiency Bonus, and you regain all expended uses when you finish a Long Rest|XPHB. You can also use any spell slots you have to cast the spell. Rock Gnome: You know the Mending and Prestidigitation cantrips. In addition, you can spend 10 minutes casting Prestidigitation to create a Tiny clockwork device (AC 5, 1 HP), such as a toy, fire starter, or music box. When you create the device, you determine its function by choosing one effect from Prestidigitation; the device produces that effect whenever you or another creature takes a XPHB action."
+  },
+  "goliath": {
+    "size": "Mediano",
+    "speed": 35,
+    "skillProficiencies": [],
+    "traits": "Ascendencia gigante: elige un beneficio sobrenatural de tu linaje (usos = bonificador de competencia, recuperas en descanso largo).\n\nForma grande: a partir del nivel 5 de personaje, puedes volverte Grande como acción adicional.\n\nComplexión poderosa: ventaja para escapar de agarre; cuentas como una talla más para capacidad de carga."
+  },
+  "goliath-cloud-giant": {
+    "traits": "Traslado de nube (gigante de las nubes): como acción adicional, te teletransportas hasta 9 m a un espacio desocupado que veas.\n\nForma grande y complexión poderosa (rasgos de goliat)."
+  },
+  "goliath-fire-giant": {
+    "traits": "Quemadura de fuego (gigante de fuego): cuando impactas con un ataque y haces daño, puedes infligir 1d10 de daño de fuego adicional.\n\nForma grande y complexión poderosa (rasgos de goliat)."
+  },
+  "goliath-frost-giant": {
+    "traits": "Escarcha (gigante de escarcha): cuando impactas con un ataque y haces daño, puedes infligir 1d6 de daño de frío y reducir la velocidad del objetivo 3 m hasta tu siguiente turno.\n\nForma grande y complexión poderosa (rasgos de goliat)."
+  },
+  "goliath-hill-giant": {
+    "traits": "Caída de colina (gigante de colina): cuando impactas a una criatura Mediana o menor y haces daño, puedes derribarla.\n\nForma grande y complexión poderosa (rasgos de goliat)."
+  },
+  "goliath-stone-giant": {
+    "traits": "Resistencia de piedra (gigante de piedra): cuando recibes daño, puedes usar tu reacción para tirar 1d12, sumar tu modificador de Constitución y reducir el daño en esa cantidad.\n\nForma grande y complexión poderosa (rasgos de goliat)."
+  },
+  "goliath-storm-giant": {
+    "traits": "Trueno de tormenta (gigante de tormenta): cuando recibes daño de una criatura a 18 m o menos, puedes usar tu reacción para infligirle 1d8 de daño de trueno.\n\nForma grande y complexión poderosa (rasgos de goliat)."
+  },
+  "halfling": {
+    "size": "Pequeño",
+    "speed": 30,
+    "skillProficiencies": [],
+    "traits": "Brave: You have XPHB condition.\n\nHalfling Nimbleness: You can move through the space of any creature that is a size larger than you, but you can't stop in the same space.\n\nLuck: When you roll a 1 on the d20 of a D20 Test|XPHB, you can reroll the die, and you must use the new roll.\n\nNaturally Stealthy: You can take the {@action Hide|XPHB} action even when you are obscured only by a creature that is at least one size larger than you."
+  },
+  "human": {
+    "size": "Pequeño",
+    "speed": 30,
+    "skillProficiencies": [],
+    "traits": "Resourceful: You gain XPHB.\n\nSkillful: You gain proficiency in one skill of your choice.\n\nVersatile: You gain an of your choice."
+  },
+  "orc": {
+    "size": "Mediano",
+    "speed": 30,
+    "skillProficiencies": [],
+    "traits": "Adrenaline Rush: You can take the {@action Dash|XPHB} action as a XPHB equal to your Proficiency Bonus. You can use this trait a number of times equal to your Proficiency Bonus, and you regain all expended uses when you finish a Short or Long Rest|XPHB.\n\nDarkvision: You have Darkvision with a range of 120 feet.\n\nRelentless Endurance: When you are reduced to 0 XPHB|Hit Point instead. Once you use this trait, you can't do so again until you finish a Long Rest|XPHB."
+  },
+  "tiefling-abyssal": {
+    "size": "Pequeño",
+    "speed": 30,
+    "skillProficiencies": [],
+    "traits": "Darkvision: You have Darkvision with a range of 60 feet.\n\nFiendish Legacy: You are the recipient of a legacy that grants you supernatural abilities. Choose a legacy from the Fiendish Legacies table. You gain the level 1 benefit of the chosen legacy. When you reach character levels 3 and 5, you learn a higher-level spell, as shown on the table. You always have that spell prepared. You can cast it once without a spell slot, and you regain the ability to cast it in that way when you finish a Long Rest|XPHB. You can also cast the spell using any spell slots you have of the appropriate level. Intelligence, Wisdom, or Charisma is your spellcasting ability for the spells you cast with this trait (choose the ability when you select the legacy).\n\nOtherworldly Presence: You know the Thaumaturgy cantrip. When you cast it with this trait, the spell uses the same spellcasting ability you use for your Fiendish Legacy Trait."
+  },
+  "tiefling-chthonic": {
+    "size": "Pequeño",
+    "speed": 30,
+    "skillProficiencies": [],
+    "traits": "Darkvision: You have Darkvision with a range of 60 feet.\n\nFiendish Legacy: You are the recipient of a legacy that grants you supernatural abilities. Choose a legacy from the Fiendish Legacies table. You gain the level 1 benefit of the chosen legacy. When you reach character levels 3 and 5, you learn a higher-level spell, as shown on the table. You always have that spell prepared. You can cast it once without a spell slot, and you regain the ability to cast it in that way when you finish a Long Rest|XPHB. You can also cast the spell using any spell slots you have of the appropriate level. Intelligence, Wisdom, or Charisma is your spellcasting ability for the spells you cast with this trait (choose the ability when you select the legacy).\n\nOtherworldly Presence: You know the Thaumaturgy cantrip. When you cast it with this trait, the spell uses the same spellcasting ability you use for your Fiendish Legacy Trait."
+  },
+  "tiefling-infernal": {
+    "size": "Pequeño",
+    "speed": 30,
+    "skillProficiencies": [],
+    "traits": "Darkvision: You have Darkvision with a range of 60 feet.\n\nFiendish Legacy: You are the recipient of a legacy that grants you supernatural abilities. Choose a legacy from the Fiendish Legacies table. You gain the level 1 benefit of the chosen legacy. When you reach character levels 3 and 5, you learn a higher-level spell, as shown on the table. You always have that spell prepared. You can cast it once without a spell slot, and you regain the ability to cast it in that way when you finish a Long Rest|XPHB. You can also cast the spell using any spell slots you have of the appropriate level. Intelligence, Wisdom, or Charisma is your spellcasting ability for the spells you cast with this trait (choose the ability when you select the legacy).\n\nOtherworldly Presence: You know the Thaumaturgy cantrip. When you cast it with this trait, the spell uses the same spellcasting ability you use for your Fiendish Legacy Trait."
+  }
+}

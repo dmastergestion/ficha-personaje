@@ -1,5 +1,5 @@
 import { describe, expect, it, vi, afterEach } from "vitest";
-import { tirarD20 } from "@/rules/dice";
+import { construirTiradaD20, tirarD20 } from "@/rules/dice";
 
 describe("tirarD20", () => {
   afterEach(() => {
@@ -27,5 +27,17 @@ describe("tirarD20", () => {
     random.mockReturnValueOnce(0.95).mockReturnValueOnce(0.05);
     const roll = tirarD20(0, "disadvantage");
     expect(roll.used).toBe(2);
+  });
+
+  it("usa valores físicos en modo normal", () => {
+    const result = construirTiradaD20(3, "normal", {
+      source: "physical",
+      manual: { die1: 15 },
+    });
+    expect(result.ok).toBe(true);
+    if (!result.ok) return;
+    expect(result.roll.used).toBe(15);
+    expect(result.roll.total).toBe(18);
+    expect(result.roll.source).toBe("physical");
   });
 });

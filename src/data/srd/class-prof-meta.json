@@ -1,0 +1,62 @@
+{
+  "barbarian": {
+    "armor": ["light", "medium", "shield"],
+    "weapons": ["simple", "martial"],
+    "tools": []
+  },
+  "bard": {
+    "armor": ["light"],
+    "weapons": ["simple"],
+    "tools": ["musical instrument"]
+  },
+  "cleric": {
+    "armor": ["light", "medium", "shield"],
+    "weapons": ["simple"],
+    "tools": []
+  },
+  "druid": {
+    "armor": ["light", "shield"],
+    "weapons": ["simple"],
+    "tools": ["herbalism kit"]
+  },
+  "fighter": {
+    "armor": ["light", "medium", "heavy", "shield"],
+    "weapons": ["simple", "martial"],
+    "tools": []
+  },
+  "monk": {
+    "armor": [],
+    "weapons": ["simple", "martial (light)"],
+    "tools": ["artisan's tools", "musical instrument"]
+  },
+  "paladin": {
+    "armor": ["light", "medium", "heavy", "shield"],
+    "weapons": ["simple", "martial"],
+    "tools": []
+  },
+  "ranger": {
+    "armor": ["light", "medium", "shield"],
+    "weapons": ["simple", "martial"],
+    "tools": []
+  },
+  "rogue": {
+    "armor": ["light"],
+    "weapons": ["simple", "martial (finesse/light)"],
+    "tools": ["thieves' tools"]
+  },
+  "sorcerer": {
+    "armor": [],
+    "weapons": ["simple"],
+    "tools": []
+  },
+  "warlock": {
+    "armor": ["light"],
+    "weapons": ["simple"],
+    "tools": []
+  },
+  "wizard": {
+    "armor": [],
+    "weapons": ["simple"],
+    "tools": []
+  }
+}

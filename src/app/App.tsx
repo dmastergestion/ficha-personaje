@@ -1,6 +1,7 @@
 import { lazy, Suspense } from "react";
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import { UpdateBanner } from "@/components/UpdateBanner";
+import { CatalogProvider } from "@/components/CatalogProvider";
 
 const CharacterListPage = lazy(() =>
   import("@/pages/CharacterListPage").then((m) => ({ default: m.CharacterListPage })),
@@ -30,16 +31,18 @@ function CargandoPagina() {
 export function App() {
   return (
     <BrowserRouter basename={basename}>
-      <UpdateBanner />
-      <Suspense fallback={<CargandoPagina />}>
-        <Routes>
-          <Route path="/" element={<CharacterListPage />} />
-          <Route path="/new" element={<CharacterNewPage />} />
-          <Route path="/character/:id" element={<CharacterSheetPage />} />
-          <Route path="/settings" element={<SettingsPage />} />
-          <Route path="*" element={<Navigate to="/" replace />} />
-        </Routes>
-      </Suspense>
+      <CatalogProvider>
+        <UpdateBanner />
+        <Suspense fallback={<CargandoPagina />}>
+          <Routes>
+            <Route path="/" element={<CharacterListPage />} />
+            <Route path="/new" element={<CharacterNewPage />} />
+            <Route path="/character/:id" element={<CharacterSheetPage />} />
+            <Route path="/settings" element={<SettingsPage />} />
+            <Route path="*" element={<Navigate to="/" replace />} />
+          </Routes>
+        </Suspense>
+      </CatalogProvider>
     </BrowserRouter>
   );
 }

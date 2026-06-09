@@ -52,14 +52,22 @@ function main() {
   const classes = loadJson<SrdItem[]>(path.join(srdDir, "classes.json"));
   const subclasses = loadJson<SrdItem[]>(path.join(srdDir, "subclasses.json"));
   const armor = loadJson<SrdItem[]>(path.join(srdDir, "armor.json"));
+  const weapons = loadJson<SrdItem[]>(path.join(srdDir, "weapons.json"));
   const spells = loadJson<SrdItem[]>(path.join(srdDir, "spells.json"));
   const species = loadJson<SrdItem[]>(path.join(srdDir, "species.json"));
   const backgrounds = loadJson<SrdItem[]>(path.join(srdDir, "backgrounds.json"));
+  const feats = fs.existsSync(path.join(srdDir, "feats.json"))
+    ? loadJson<SrdItem[]>(path.join(srdDir, "feats.json"))
+    : [];
 
   const classesTr = loadTranslate("dnd5e.classes24.json");
   const equipmentTr = loadTranslate("dnd5e.equipment24.json");
   const spellsTr = loadTranslate("dnd5e.spells24.json");
   const originsTr = loadTranslate("dnd5e.origins24.json");
+  const featsTr = loadTranslate("dnd5e.feats24.json");
+  const featNamesEs = fs.existsSync(path.join(root, "data", "i18n", "feat-names-es.json"))
+    ? loadJson<Record<string, string>>(path.join(root, "data", "i18n", "feat-names-es.json"))
+    : {};
 
   const overrides = fs.existsSync(overridesPath)
     ? loadJson<Record<string, Record<string, string>>>(overridesPath)
@@ -69,9 +77,15 @@ function main() {
     classes: translateBySrdId(classes, classesTr.entries, classesTr.folders),
     subclasses: translateBySrdId(subclasses, classesTr.entries, classesTr.folders),
     armor: translateBySrdId(armor, equipmentTr.entries, equipmentTr.folders),
+    weapons: translateBySrdId(weapons, equipmentTr.entries, equipmentTr.folders),
     spells: translateBySrdId(spells, spellsTr.entries, spellsTr.folders),
     species: translateBySrdId(species, originsTr.entries, originsTr.folders),
     backgrounds: translateBySrdId(backgrounds, originsTr.entries, originsTr.folders),
+    feats: {
+      ...translateBySrdId(feats, featsTr.entries, featsTr.folders),
+      ...featNamesEs,
+      ...overrides.feats,
+    },
     ui: {
       appName: "Ficha de personaje D&D 2024",
       offline: "Modo offline",

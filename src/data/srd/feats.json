@@ -1,0 +1,387 @@
+[
+  {
+    "id": "ability-score-improvement",
+    "srdId": "ability-score-improvement",
+    "nameEn": "Ability Score Improvement"
+  },
+  {
+    "id": "actor",
+    "srdId": "actor",
+    "nameEn": "Actor"
+  },
+  {
+    "id": "alert",
+    "srdId": "alert",
+    "nameEn": "Alert"
+  },
+  {
+    "id": "archery",
+    "srdId": "archery",
+    "nameEn": "Archery"
+  },
+  {
+    "id": "athlete",
+    "srdId": "athlete",
+    "nameEn": "Athlete"
+  },
+  {
+    "id": "blessed-warrior",
+    "srdId": "blessed-warrior",
+    "nameEn": "Blessed Warrior"
+  },
+  {
+    "id": "blind-fighting",
+    "srdId": "blind-fighting",
+    "nameEn": "Blind Fighting"
+  },
+  {
+    "id": "boon-of-combat-prowess",
+    "srdId": "boon-of-combat-prowess",
+    "nameEn": "Boon of Combat Prowess"
+  },
+  {
+    "id": "boon-of-dimensional-travel",
+    "srdId": "boon-of-dimensional-travel",
+    "nameEn": "Boon of Dimensional Travel"
+  },
+  {
+    "id": "boon-of-energy-resistance",
+    "srdId": "boon-of-energy-resistance",
+    "nameEn": "Boon of Energy Resistance"
+  },
+  {
+    "id": "boon-of-fate",
+    "srdId": "boon-of-fate",
+    "nameEn": "Boon of Fate"
+  },
+  {
+    "id": "boon-of-fortitude",
+    "srdId": "boon-of-fortitude",
+    "nameEn": "Boon of Fortitude"
+  },
+  {
+    "id": "boon-of-irresistible-offense",
+    "srdId": "boon-of-irresistible-offense",
+    "nameEn": "Boon of Irresistible Offense"
+  },
+  {
+    "id": "boon-of-recovery",
+    "srdId": "boon-of-recovery",
+    "nameEn": "Boon of Recovery"
+  },
+  {
+    "id": "boon-of-skill",
+    "srdId": "boon-of-skill",
+    "nameEn": "Boon of Skill"
+  },
+  {
+    "id": "boon-of-speed",
+    "srdId": "boon-of-speed",
+    "nameEn": "Boon of Speed"
+  },
+  {
+    "id": "boon-of-spell-recall",
+    "srdId": "boon-of-spell-recall",
+    "nameEn": "Boon of Spell Recall"
+  },
+  {
+    "id": "boon-of-the-night-spirit",
+    "srdId": "boon-of-the-night-spirit",
+    "nameEn": "Boon of the Night Spirit"
+  },
+  {
+    "id": "boon-of-truesight",
+    "srdId": "boon-of-truesight",
+    "nameEn": "Boon of Truesight"
+  },
+  {
+    "id": "charger",
+    "srdId": "charger",
+    "nameEn": "Charger"
+  },
+  {
+    "id": "chef",
+    "srdId": "chef",
+    "nameEn": "Chef"
+  },
+  {
+    "id": "crafter",
+    "srdId": "crafter",
+    "nameEn": "Crafter"
+  },
+  {
+    "id": "crossbow-expert",
+    "srdId": "crossbow-expert",
+    "nameEn": "Crossbow Expert"
+  },
+  {
+    "id": "crusher",
+    "srdId": "crusher",
+    "nameEn": "Crusher"
+  },
+  {
+    "id": "defense",
+    "srdId": "defense",
+    "nameEn": "Defense"
+  },
+  {
+    "id": "defensive-duelist",
+    "srdId": "defensive-duelist",
+    "nameEn": "Defensive Duelist"
+  },
+  {
+    "id": "druidic-warrior",
+    "srdId": "druidic-warrior",
+    "nameEn": "Druidic Warrior"
+  },
+  {
+    "id": "dual-wielder",
+    "srdId": "dual-wielder",
+    "nameEn": "Dual Wielder"
+  },
+  {
+    "id": "dueling",
+    "srdId": "dueling",
+    "nameEn": "Dueling"
+  },
+  {
+    "id": "durable",
+    "srdId": "durable",
+    "nameEn": "Durable"
+  },
+  {
+    "id": "elemental-adept",
+    "srdId": "elemental-adept",
+    "nameEn": "Elemental Adept"
+  },
+  {
+    "id": "fey-touched",
+    "srdId": "fey-touched",
+    "nameEn": "Fey-Touched"
+  },
+  {
+    "id": "grappler",
+    "srdId": "grappler",
+    "nameEn": "Grappler"
+  },
+  {
+    "id": "great-weapon-fighting",
+    "srdId": "great-weapon-fighting",
+    "nameEn": "Great Weapon Fighting"
+  },
+  {
+    "id": "great-weapon-master",
+    "srdId": "great-weapon-master",
+    "nameEn": "Great Weapon Master"
+  },
+  {
+    "id": "healer",
+    "srdId": "healer",
+    "nameEn": "Healer"
+  },
+  {
+    "id": "heavily-armored",
+    "srdId": "heavily-armored",
+    "nameEn": "Heavily Armored"
+  },
+  {
+    "id": "heavy-armor-master",
+    "srdId": "heavy-armor-master",
+    "nameEn": "Heavy Armor Master"
+  },
+  {
+    "id": "inspiring-leader",
+    "srdId": "inspiring-leader",
+    "nameEn": "Inspiring Leader"
+  },
+  {
+    "id": "interception",
+    "srdId": "interception",
+    "nameEn": "Interception"
+  },
+  {
+    "id": "keen-mind",
+    "srdId": "keen-mind",
+    "nameEn": "Keen Mind"
+  },
+  {
+    "id": "lightly-armored",
+    "srdId": "lightly-armored",
+    "nameEn": "Lightly Armored"
+  },
+  {
+    "id": "lucky",
+    "srdId": "lucky",
+    "nameEn": "Lucky"
+  },
+  {
+    "id": "mage-slayer",
+    "srdId": "mage-slayer",
+    "nameEn": "Mage Slayer"
+  },
+  {
+    "id": "magic-initiate",
+    "srdId": "magic-initiate",
+    "nameEn": "Magic Initiate"
+  },
+  {
+    "id": "martial-weapon-training",
+    "srdId": "martial-weapon-training",
+    "nameEn": "Martial Weapon Training"
+  },
+  {
+    "id": "medium-armor-master",
+    "srdId": "medium-armor-master",
+    "nameEn": "Medium Armor Master"
+  },
+  {
+    "id": "moderately-armored",
+    "srdId": "moderately-armored",
+    "nameEn": "Moderately Armored"
+  },
+  {
+    "id": "mounted-combatant",
+    "srdId": "mounted-combatant",
+    "nameEn": "Mounted Combatant"
+  },
+  {
+    "id": "musician",
+    "srdId": "musician",
+    "nameEn": "Musician"
+  },
+  {
+    "id": "observant",
+    "srdId": "observant",
+    "nameEn": "Observant"
+  },
+  {
+    "id": "piercer",
+    "srdId": "piercer",
+    "nameEn": "Piercer"
+  },
+  {
+    "id": "poisoner",
+    "srdId": "poisoner",
+    "nameEn": "Poisoner"
+  },
+  {
+    "id": "polearm-master",
+    "srdId": "polearm-master",
+    "nameEn": "Polearm Master"
+  },
+  {
+    "id": "protection",
+    "srdId": "protection",
+    "nameEn": "Protection"
+  },
+  {
+    "id": "resilient",
+    "srdId": "resilient",
+    "nameEn": "Resilient"
+  },
+  {
+    "id": "ritual-caster",
+    "srdId": "ritual-caster",
+    "nameEn": "Ritual Caster"
+  },
+  {
+    "id": "savage-attacker",
+    "srdId": "savage-attacker",
+    "nameEn": "Savage Attacker"
+  },
+  {
+    "id": "sentinel",
+    "srdId": "sentinel",
+    "nameEn": "Sentinel"
+  },
+  {
+    "id": "shadow-touched",
+    "srdId": "shadow-touched",
+    "nameEn": "Shadow-Touched"
+  },
+  {
+    "id": "sharpshooter",
+    "srdId": "sharpshooter",
+    "nameEn": "Sharpshooter"
+  },
+  {
+    "id": "shield-master",
+    "srdId": "shield-master",
+    "nameEn": "Shield Master"
+  },
+  {
+    "id": "skill-expert",
+    "srdId": "skill-expert",
+    "nameEn": "Skill Expert"
+  },
+  {
+    "id": "skilled",
+    "srdId": "skilled",
+    "nameEn": "Skilled"
+  },
+  {
+    "id": "skulker",
+    "srdId": "skulker",
+    "nameEn": "Skulker"
+  },
+  {
+    "id": "slasher",
+    "srdId": "slasher",
+    "nameEn": "Slasher"
+  },
+  {
+    "id": "speedy",
+    "srdId": "speedy",
+    "nameEn": "Speedy"
+  },
+  {
+    "id": "spell-sniper",
+    "srdId": "spell-sniper",
+    "nameEn": "Spell Sniper"
+  },
+  {
+    "id": "tavern-brawler",
+    "srdId": "tavern-brawler",
+    "nameEn": "Tavern Brawler"
+  },
+  {
+    "id": "telekinetic",
+    "srdId": "telekinetic",
+    "nameEn": "Telekinetic"
+  },
+  {
+    "id": "telepathic",
+    "srdId": "telepathic",
+    "nameEn": "Telepathic"
+  },
+  {
+    "id": "thrown-weapon-fighting",
+    "srdId": "thrown-weapon-fighting",
+    "nameEn": "Thrown Weapon Fighting"
+  },
+  {
+    "id": "tough",
+    "srdId": "tough",
+    "nameEn": "Tough"
+  },
+  {
+    "id": "two-weapon-fighting",
+    "srdId": "two-weapon-fighting",
+    "nameEn": "Two-Weapon Fighting"
+  },
+  {
+    "id": "unarmed-fighting",
+    "srdId": "unarmed-fighting",
+    "nameEn": "Unarmed Fighting"
+  },
+  {
+    "id": "war-caster",
+    "srdId": "war-caster",
+    "nameEn": "War Caster"
+  },
+  {
+    "id": "weapon-master",
+    "srdId": "weapon-master",
+    "nameEn": "Weapon Master"
+  }
+]

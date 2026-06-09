@@ -29,6 +29,15 @@ git clone --depth 1 https://github.com/foundryvtt-sinregistrar/translate-dnd5e-s
 npm run build:data
 ```
 
+**Contenido PHB 2024 (local, no se sube a GitHub):** descarga datos 5etools y genera un pack importable:
+
+```powershell
+npm run fetch:5etools      # vendor/5etools-src/data/ (gitignored)
+npm run build:content-pack # vendor/content-pack/xphb-pack.json
+```
+
+Requiere tener el PHB; el pack queda solo en tu máquina (`vendor/` está en `.gitignore`).
+
 Los JSON generados en `src/data/` se versionan para que CI y usuarios no dependan de `vendor/`.
 
 ## Scripts
@@ -39,6 +48,8 @@ Los JSON generados en `src/data/` se versionan para que CI y usuarios no dependa
 | `npm run build` | Build producción |
 | `npm test` | Vitest (reglas + db) |
 | `npm run build:data` | Regenerar SRD + traducciones ES |
+| `npm run fetch:5etools` | Descargar JSON 5etools (solo `data/`) |
+| `npm run build:content-pack` | Generar pack XPHB local desde 5etools |
 
 ## Funcionalidades (v2)
 

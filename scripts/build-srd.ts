@@ -19,7 +19,10 @@ interface YamlDoc {
     hd?: { denomination?: string };
     primaryAbility?: { value?: string[] };
     armor?: { value?: number; dex?: number | null };
-    type?: { value?: string };
+    damage?: { base?: { number?: number; denomination?: number; types?: string[] } };
+    properties?: string[];
+    type?: { value?: string; baseItem?: string };
+    weight?: { value?: number };
     strength?: number | null;
   };
 }
@@ -117,6 +120,47 @@ function buildArmor() {
   return armor.length;
 }
 
+function buildWeapons() {
+  const files = fg.sync("equipment24/weapons/**/*.yml", {
+    cwd: dnd5eRoot,
+    ignore: ["**/magical/**", "**/_folder.yml"],
+  });
+
+  const weapons: Record<string, unknown>[] = [];
+
+  for (const rel of files) {
+    const doc = readYaml(path.join(dnd5eRoot, rel));
+    if (doc.type !== "weapon" || !doc._id || !doc.name) continue;
+
+    const sys = doc.system;
+    const base = sys?.damage?.base;
+    if (!base?.denomination) continue;
+
+    const properties = sys?.properties ?? [];
+    const typeVal = sys?.type?.value ?? "";
+    const isRanged = typeVal.endsWith("R");
+    const isFinesse = properties.includes("fin");
+    const abilityKey = isRanged || isFinesse ? "dex" : "str";
+    const damageDie = `${base.number ?? 1}d${base.denomination}`;
+
+    weapons.push({
+      id: sys?.identifier ?? sys?.type?.baseItem ?? doc._id,
+      srdId: doc._id,
+      nameEn: doc.name,
+      category: typeVal,
+      damageDie,
+      damageType: base.types?.[0] ?? "",
+      abilityKey,
+      weightLb: sys?.weight?.value ?? 0,
+      properties,
+    });
+  }
+
+  weapons.sort((a, b) => String(a.nameEn).localeCompare(String(b.nameEn)));
+  writeJson("weapons.json", weapons);
+  return weapons.length;
+}
+
 function buildSpells() {
   const files = fg.sync("spells24/**/*.yml", {
     cwd: dnd5eRoot,
@@ -181,6 +225,7 @@ function main() {
 
   const classes = buildClasses();
   const armorCount = buildArmor();
+  const weaponCount = buildWeapons();
   const spellCount = buildSpells();
   const origins = buildOrigins();
 
@@ -192,6 +237,7 @@ function main() {
       classes: classes.classes,
       subclasses: classes.subclasses,
       armor: armorCount,
+      weapons: weaponCount,
       spells: spellCount,
       species: origins.species,
       backgrounds: origins.backgrounds,
@@ -199,7 +245,7 @@ function main() {
   });
 
   console.log("SRD generado en src/data/srd/");
-  console.log(JSON.stringify({ classes, armor: armorCount, spells: spellCount, origins }, null, 2));
+  console.log(JSON.stringify({ classes, armor: armorCount, weapons: weaponCount, spells: spellCount, origins }, null, 2));
 }
 
 main();

@@ -1,5 +1,5 @@
 import { Button } from "@/components/layout";
-import { RollModeSelector } from "@/components/RollModeSelector";
+import { useDiceRollOptions } from "@/hooks/useDiceRollOptions";
 import { tiradaAtaque } from "@/rules/effects";
 import type { Character } from "@/schemas/character";
 import type { SheetTab } from "@/pages/character-sheet/types";
@@ -13,20 +13,11 @@ export function BottomCombatBar({
   onSelectTab: (tab: SheetTab) => void;
 }) {
   const rollMode = useUiStore((s) => s.rollMode);
-  const setRollMode = useUiStore((s) => s.setRollMode);
+  const diceRoll = useDiceRollOptions();
   const setUltimaTirada = useUiStore((s) => s.setUltimaTirada);
-  const ultimaTirada = useUiStore((s) => s.ultimaTirada);
 
   return (
     <div className="fixed inset-x-0 bottom-0 z-40 border-t border-white/10 bg-surface/95 p-3 pb-[max(0.75rem,env(safe-area-inset-bottom))] backdrop-blur md:hidden">
-      <div className="mb-2 flex items-center justify-between gap-2">
-        <RollModeSelector mode={rollMode} onChange={setRollMode} />
-        {ultimaTirada && (
-          <span className="text-xs text-muted">
-            d20: {ultimaTirada.used}+{ultimaTirada.modifier}={ultimaTirada.total}
-          </span>
-        )}
-      </div>
       <div className="flex gap-2">
         <Button className="flex-1" onClick={() => onSelectTab("combate")}>
           Combate
@@ -34,16 +25,24 @@ export function BottomCombatBar({
         <Button
           variant="critical"
           className="flex-1"
-          onClick={() =>
-            setUltimaTirada(
-              tiradaAtaque(
-                0,
-                rollMode,
-                character.combat.conditionIds,
-                character.combat.exhaustionLevel,
-              ),
-            )
-          }
+          onClick={() => {
+            if (!diceRoll.isReady) {
+              setUltimaTirada(null, diceRoll.error);
+              return;
+            }
+            const result = tiradaAtaque(
+              0,
+              rollMode,
+              character.combat.conditionIds,
+              character.combat.exhaustionLevel,
+              diceRoll.options,
+            );
+            if ("error" in result) {
+              setUltimaTirada(null, result.error);
+              return;
+            }
+            setUltimaTirada(result);
+          }}
         >
           Tirar d20
         </Button>

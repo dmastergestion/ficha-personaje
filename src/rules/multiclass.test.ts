@@ -1,6 +1,7 @@
 import { describe, expect, it } from "vitest";
 import {
   agregarClase,
+  ajustarNivelTotal,
   descripcionClases,
   nivelTotalClases,
   sincronizarIdentidadMulticlase,
@@ -45,5 +46,16 @@ describe("multiclass", () => {
     expect(
       descripcionClases([{ classId: "fighter", subclassId: null, level: 2 }]),
     ).toContain("2");
+  });
+
+  it("ajusta nivel total de uno en uno", () => {
+    const base = [{ classId: "wizard", subclassId: null, level: 3 }];
+    expect(ajustarNivelTotal(base, 1)).toEqual([
+      { classId: "wizard", subclassId: null, level: 4 },
+    ]);
+    expect(ajustarNivelTotal(base, -1)).toEqual([
+      { classId: "wizard", subclassId: null, level: 2 },
+    ]);
+    expect(ajustarNivelTotal([{ classId: "wizard", subclassId: null, level: 1 }], -1)).toBeNull();
   });
 });

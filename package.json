@@ -4,12 +4,20 @@
   "version": "0.3.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
+    "dev": "tsx scripts/copy-content-pack.ts && vite",
     "build": "tsc -b && vite build",
     "preview": "vite preview",
     "test": "vitest run",
     "test:watch": "vitest",
-    "build:data": "tsx scripts/build-srd.ts && tsx scripts/build-i18n-es.ts"
+    "build:data": "tsx scripts/build-srd.ts && tsx scripts/build-i18n-es.ts && tsx scripts/build-spell-meta.ts && tsx scripts/build-spell-lists.ts && tsx scripts/build-srd-extras.ts",
+    "build:spell-meta": "tsx scripts/build-spell-meta.ts",
+    "build:spell-lists": "tsx scripts/build-spell-lists.ts",
+    "build:srd-extras": "tsx scripts/build-srd-extras.ts",
+    "build:class-features": "tsx scripts/build-class-features.ts",
+    "fetch:5etools": "powershell -ExecutionPolicy Bypass -File scripts/fetch-5etools.ps1",
+    "build:content-pack": "tsx scripts/convert-5etools.ts",
+    "copy:content-pack": "tsx scripts/copy-content-pack.ts",
+    "build:pack": "npm run build:content-pack && npm run copy:content-pack"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.0.1",

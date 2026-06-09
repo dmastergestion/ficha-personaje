@@ -84,6 +84,10 @@ export function iniciativa(character: Character): number {
   );
 }
 
+export function percepcionPasiva(character: Character): number {
+  return 10 + modificadorPericia(character, "perception");
+}
+
 export function velocidad(character: Character, base = 30): number {
   const baseSpeed = character.combat.speedOverride ?? base;
   const mods = calcularModificadoresCondiciones(

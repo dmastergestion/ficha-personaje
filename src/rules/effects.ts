@@ -1,7 +1,7 @@
 import type { AbilityKey } from "@/lib/constants";
 import type { ConditionId } from "@/lib/conditions";
-import type { RollMode, D20Roll } from "@/rules/dice";
-import { tirarD20 } from "@/rules/dice";
+import type { RollMode, D20Roll, DiceRollOptions } from "@/rules/dice";
+import { construirTiradaD20 } from "@/rules/dice";
 
 export interface ModificadoresCondicion {
   ventajaAtaques: boolean;
@@ -120,6 +120,7 @@ export function tiradaSalvacion(
   modoElegido: RollMode,
   conditionIds: ConditionId[],
   exhaustionLevel: number,
+  diceOptions?: DiceRollOptions,
 ): ResultadoTirada {
   const mods = calcularModificadoresCondiciones(conditionIds, exhaustionLevel);
   if (mods.salvacionAutoFallo.has(ability)) {
@@ -130,7 +131,9 @@ export function tiradaSalvacion(
     mods.ventajaSalvaciones,
     mods.desventajaSalvaciones,
   );
-  return tirarD20(modificador, mode);
+  const result = construirTiradaD20(modificador, mode, diceOptions);
+  if (!result.ok) return { autoFallo: true, razon: result.error };
+  return result.roll;
 }
 
 export function tiradaPericia(
@@ -138,14 +141,17 @@ export function tiradaPericia(
   modoElegido: RollMode,
   conditionIds: ConditionId[],
   exhaustionLevel: number,
-): D20Roll {
+  diceOptions?: DiceRollOptions,
+): D20Roll | { error: string } {
   const mods = calcularModificadoresCondiciones(conditionIds, exhaustionLevel);
   const mode = resolverModoTirada(
     modoElegido,
     mods.ventajaPericias,
     mods.desventajaPericias,
   );
-  return tirarD20(modificador, mode);
+  const result = construirTiradaD20(modificador, mode, diceOptions);
+  if (!result.ok) return { error: result.error };
+  return result.roll;
 }
 
 export function tiradaAtaque(
@@ -153,14 +159,17 @@ export function tiradaAtaque(
   modoElegido: RollMode,
   conditionIds: ConditionId[],
   exhaustionLevel: number,
-): D20Roll {
+  diceOptions?: DiceRollOptions,
+): D20Roll | { error: string } {
   const mods = calcularModificadoresCondiciones(conditionIds, exhaustionLevel);
   const mode = resolverModoTirada(
     modoElegido,
     mods.ventajaAtaques,
     mods.desventajaAtaques,
   );
-  return tirarD20(modificador, mode);
+  const result = construirTiradaD20(modificador, mode, diceOptions);
+  if (!result.ok) return { error: result.error };
+  return result.roll;
 }
 
 export function resumenEfectosActivos(

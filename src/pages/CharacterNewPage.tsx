@@ -1,5 +1,7 @@
 import { useMemo, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { OriginSidePanel } from "@/components/OriginSidePanel";
+import { SpeciesPicker } from "@/components/SpeciesPicker";
 import { Button, Layout } from "@/components/layout";
 import { cn } from "@/lib/utils";
 import type { AbilityKey } from "@/lib/constants";
@@ -7,20 +9,21 @@ import { ABILITY_KEYS } from "@/lib/constants";
 import { guardarPersonaje } from "@/db/repository";
 import { ABILITY_LABELS_ES } from "@/rules/character";
 import {
+  ARRAY_ESTANDAR,
   asignarArrayEstandar,
+  asignarArrayEstandarManual,
+  asignarTiradas4d6,
   crearPersonajeDesdeAsistente,
-  pvMaximoNivel1,
   type DatosAsistente,
 } from "@/rules/creation";
+import { pvMaximoPersonaje } from "@/rules/resources";
 import { modificadorAtributo } from "@/rules/ability";
+import type { Tirada4d6 } from "@/rules/dice";
+import { tirarSeisAtributos4d6 } from "@/rules/dice";
 import {
   obtenerClase,
-  srdBackgrounds,
-  srdClasses,
-  srdSpecies,
-  srdSubclasses,
-  t,
 } from "@/rules/srd";
+import { useCatalogStore } from "@/stores/catalog-store";
 
 const PASOS = [
   { id: 0, titulo: "Identidad" },
@@ -36,26 +39,90 @@ const ABILITIES_DEFAULT = Object.fromEntries(
 
 export function CharacterNewPage() {
   const navigate = useNavigate();
+  const catalog = useCatalogStore((s) => s.catalog);
   const [paso, setPaso] = useState(0);
   const [error, setError] = useState<string | null>(null);
-  const [datos, setDatos] = useState<DatosAsistente>({
+  const [tiradas4d6, setTiradas4d6] = useState<Tirada4d6[] | null>(null);
+  const [asignacion4d6, setAsignacion4d6] = useState<Partial<Record<AbilityKey, number>>>({});
+  const [asignacionArray, setAsignacionArray] = useState<Partial<Record<AbilityKey, number>>>({});
+  const [modoAtributos, setModoAtributos] = useState<"manual" | "4d6" | "array">("manual");
+  const [datos, setDatos] = useState<DatosAsistente>(() => ({
     name: "",
     playerName: "",
-    speciesId: srdSpecies[0]?.id ?? null,
+    speciesId: catalog.species[0]?.id ?? null,
     backgroundId: null,
-    classId: srdClasses[0]?.id ?? "fighter",
+    classId: catalog.classes[0]?.id ?? "fighter",
     subclassId: null,
     level: 1,
     abilities: { ...ABILITIES_DEFAULT },
-  });
+  }));
 
   const subclasesFiltradas = useMemo(
-    () => srdSubclasses.filter((sc) => sc.classId === datos.classId),
-    [datos.classId],
+    () => catalog.subclasses.filter((sc) => sc.classId === datos.classId),
+    [catalog.subclasses, datos.classId],
   );
 
   function actualizar(partial: Partial<DatosAsistente>) {
     setDatos((prev) => ({ ...prev, ...partial }));
+  }
+
+  function tirarAtributos4d6() {
+    const tiradas = tirarSeisAtributos4d6();
+    setModoAtributos("4d6");
+    setTiradas4d6(tiradas);
+    setAsignacion4d6({});
+    setAsignacionArray({});
+  }
+
+  function asignarTiradaAtributo(key: AbilityKey, index: number | null) {
+    const next = { ...asignacion4d6 };
+    if (index === null) {
+      delete next[key];
+    } else {
+      for (const other of ABILITY_KEYS) {
+        if (other !== key && next[other] === index) delete next[other];
+      }
+      next[key] = index;
+    }
+    setAsignacion4d6(next);
+    const abilities = asignarTiradas4d6(tiradas4d6 ?? [], next);
+    if (abilities) actualizar({ abilities });
+  }
+
+  function usarArrayEstandar() {
+    setModoAtributos("array");
+    setTiradas4d6(null);
+    setAsignacion4d6({});
+    setAsignacionArray({});
+    actualizar({
+      abilities: Object.fromEntries(ABILITY_KEYS.map((k) => [k, 10])) as Record<
+        AbilityKey,
+        number
+      >,
+    });
+  }
+
+  function asignarValorArray(key: AbilityKey, index: number | null) {
+    const next = { ...asignacionArray };
+    if (index === null) {
+      delete next[key];
+    } else {
+      for (const other of ABILITY_KEYS) {
+        if (other !== key && next[other] === index) delete next[other];
+      }
+      next[key] = index;
+    }
+    setAsignacionArray(next);
+    const abilities = asignarArrayEstandarManual(next);
+    if (abilities) actualizar({ abilities });
+  }
+
+  function aplicarArrayAutomatico() {
+    setModoAtributos("array");
+    setTiradas4d6(null);
+    setAsignacion4d6({});
+    setAsignacionArray({});
+    actualizar({ abilities: asignarArrayEstandar(datos.classId) });
   }
 
   function validarPasoActual(): string | null {
@@ -91,8 +158,10 @@ export function CharacterNewPage() {
     navigate(`/character/${character.id}`);
   }
 
+  const muestraPanelLateral = paso === 1 || paso === 2;
+
   return (
-    <Layout title="Nuevo personaje">
+    <Layout title="Nuevo personaje" wide={muestraPanelLateral}>
       <nav className="mb-6 flex flex-wrap gap-2">
         {PASOS.map((p, index) => (
           <div
@@ -110,7 +179,13 @@ export function CharacterNewPage() {
         ))}
       </nav>
 
-      <div className="mx-auto max-w-xl rounded-xl border border-white/10 bg-panel p-6">
+      <div
+        className={cn(
+          "mx-auto rounded-xl border border-white/10 bg-panel p-6",
+          muestraPanelLateral ? "grid max-w-5xl gap-6 lg:grid-cols-[1fr,18rem]" : "max-w-xl",
+        )}
+      >
+        <div className="min-w-0">
         {paso === 0 && (
           <div className="space-y-4">
             <h2 className="text-lg font-semibold">¿Cómo se llama tu personaje?</h2>
@@ -137,20 +212,21 @@ export function CharacterNewPage() {
         {paso === 1 && (
           <div className="space-y-4">
             <h2 className="text-lg font-semibold">Origen</h2>
-            <label className="block space-y-1 text-sm">
-              <span className="text-muted">Especie</span>
-              <select
-                className="w-full rounded-lg border border-white/10 bg-surface px-3 py-2"
-                value={datos.speciesId ?? ""}
-                onChange={(e) => actualizar({ speciesId: e.target.value || null })}
-              >
-                {srdSpecies.map((s) => (
-                  <option key={s.id} value={s.id}>
-                    {t("species", s.id, s.nameEn)}
-                  </option>
-                ))}
-              </select>
-            </label>
+            {!catalog.pack && (
+              <p className="rounded-lg border border-accent/40 bg-accent/10 px-3 py-2 text-sm">
+                Solo SRD ({catalog.backgrounds.length} trasfondos). Importa el pack PHB en{" "}
+                <a className="text-gold underline" href={`${import.meta.env.BASE_URL}settings`}>
+                  Ajustes
+                </a>{" "}
+                o ejecuta <code className="text-xs">npm run build:content-pack</code> y reinicia el
+                servidor.
+              </p>
+            )}
+            <SpeciesPicker
+              catalog={catalog}
+              speciesId={datos.speciesId}
+              onChange={(speciesId) => actualizar({ speciesId })}
+            />
             <label className="block space-y-1 text-sm">
               <span className="text-muted">Trasfondo</span>
               <select
@@ -159,9 +235,9 @@ export function CharacterNewPage() {
                 onChange={(e) => actualizar({ backgroundId: e.target.value || null })}
               >
                 <option value="">— Elegir después —</option>
-                {srdBackgrounds.map((b) => (
+                {catalog.backgrounds.map((b) => (
                   <option key={b.id} value={b.id}>
-                    {t("backgrounds", b.id, b.nameEn)}
+                    {catalog.t("backgrounds", b.id, b.nameEn)}
                   </option>
                 ))}
               </select>
@@ -185,9 +261,9 @@ export function CharacterNewPage() {
                   })
                 }
               >
-                {srdClasses.map((c) => (
+                {catalog.classes.map((c) => (
                   <option key={c.id} value={c.id}>
-                    {t("classes", c.id, c.nameEn)}
+                    {catalog.t("classes", c.id, c.nameEn)}
                   </option>
                 ))}
               </select>
@@ -203,7 +279,7 @@ export function CharacterNewPage() {
                   <option value="">— Elegir después —</option>
                   {subclasesFiltradas.map((sc) => (
                     <option key={sc.id} value={sc.id}>
-                      {t("subclasses", sc.id, sc.nameEn)}
+                      {catalog.t("subclasses", sc.id, sc.nameEn)}
                     </option>
                   ))}
                 </select>
@@ -231,45 +307,160 @@ export function CharacterNewPage() {
           <div className="space-y-4">
             <div className="flex flex-wrap items-center justify-between gap-2">
               <h2 className="text-lg font-semibold">Atributos</h2>
-              <Button
-                type="button"
-                onClick={() => actualizar({ abilities: asignarArrayEstandar(datos.classId) })}
-              >
-                Array estándar
-              </Button>
+              <div className="flex flex-wrap gap-2">
+                <Button type="button" variant="critical" onClick={tirarAtributos4d6}>
+                  Tirar 4d6
+                </Button>
+                <Button type="button" onClick={usarArrayEstandar}>
+                  Array estándar
+                </Button>
+                <Button type="button" variant="ghost" onClick={aplicarArrayAutomatico}>
+                  Auto por clase
+                </Button>
+              </div>
             </div>
-            <p className="text-sm text-muted">
-              Array estándar: 15, 14, 13, 12, 10, 8 — asignado según tu clase. Puedes ajustar
-              manualmente.
-            </p>
-            <div className="grid grid-cols-2 gap-3">
-              {ABILITY_KEYS.map((key) => {
-                const mod = modificadorAtributo(datos.abilities[key]);
-                return (
-                  <label key={key} className="rounded-lg bg-surface px-3 py-2 text-sm">
-                    <span className="text-muted">{ABILITY_LABELS_ES[key]}</span>
-                    <input
-                      type="number"
-                      min={3}
-                      max={30}
-                      className="mt-1 w-full bg-transparent text-lg font-semibold outline-none"
-                      value={datos.abilities[key]}
-                      onChange={(e) =>
-                        actualizar({
-                          abilities: {
-                            ...datos.abilities,
-                            [key]: Math.min(30, Math.max(3, Number(e.target.value) || 10)),
-                          },
-                        })
-                      }
-                    />
-                    <span className="text-xs text-muted">
-                      Mod {mod >= 0 ? `+${mod}` : mod}
-                    </span>
-                  </label>
-                );
-              })}
-            </div>
+
+            {modoAtributos === "array" ? (
+              <>
+                <p className="text-sm text-muted">
+                  Asigna cada valor del array estándar (15, 14, 13, 12, 10, 8) a un atributo.
+                </p>
+                <div className="flex flex-wrap gap-2">
+                  {ARRAY_ESTANDAR.map((valor, index) => {
+                    const usado = Object.values(asignacionArray).includes(index);
+                    return (
+                      <span
+                        key={index}
+                        className={cn(
+                          "rounded-lg border px-3 py-1 text-sm",
+                          usado
+                            ? "border-gold/40 bg-gold/10 text-gold"
+                            : "border-white/10 bg-surface text-muted",
+                        )}
+                      >
+                        {valor}
+                      </span>
+                    );
+                  })}
+                </div>
+                <div className="grid grid-cols-2 gap-3">
+                  {ABILITY_KEYS.map((key) => {
+                    const mod = modificadorAtributo(datos.abilities[key]);
+                    return (
+                      <label key={key} className="rounded-lg bg-surface px-3 py-2 text-sm">
+                        <span className="text-muted">{ABILITY_LABELS_ES[key]}</span>
+                        <select
+                          className="mt-1 w-full rounded border border-white/10 bg-panel px-2 py-1"
+                          value={asignacionArray[key] ?? ""}
+                          onChange={(e) =>
+                            asignarValorArray(
+                              key,
+                              e.target.value === "" ? null : Number(e.target.value),
+                            )
+                          }
+                        >
+                          <option value="">— Elegir valor —</option>
+                          {ARRAY_ESTANDAR.map((valor, index) => (
+                            <option key={index} value={index}>
+                              {valor}
+                            </option>
+                          ))}
+                        </select>
+                        <span className="text-xs text-muted">
+                          Valor {datos.abilities[key]} · Mod {mod >= 0 ? `+${mod}` : mod}
+                        </span>
+                      </label>
+                    );
+                  })}
+                </div>
+              </>
+            ) : tiradas4d6 ? (
+              <>
+                <p className="text-sm text-muted">
+                  Seis tiradas de 4d6 (se descarta el más bajo). Asigna cada resultado a un
+                  atributo.
+                </p>
+                <div className="grid gap-2 sm:grid-cols-2">
+                  {tiradas4d6.map((tirada, index) => (
+                    <div
+                      key={index}
+                      className="rounded-lg border border-white/10 bg-surface px-3 py-2 text-sm"
+                    >
+                      <div className="font-semibold">Tirada {index + 1}: {tirada.total}</div>
+                      <div className="text-xs text-muted">
+                        {tirada.dice.join(", ")} · descarta {tirada.dropped}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+                <div className="grid grid-cols-2 gap-3">
+                  {ABILITY_KEYS.map((key) => {
+                    const mod = modificadorAtributo(datos.abilities[key]);
+                    return (
+                      <label key={key} className="rounded-lg bg-surface px-3 py-2 text-sm">
+                        <span className="text-muted">{ABILITY_LABELS_ES[key]}</span>
+                        <select
+                          className="mt-1 w-full rounded border border-white/10 bg-panel px-2 py-1"
+                          value={asignacion4d6[key] ?? ""}
+                          onChange={(e) =>
+                            asignarTiradaAtributo(
+                              key,
+                              e.target.value === "" ? null : Number(e.target.value),
+                            )
+                          }
+                        >
+                          <option value="">— Elegir tirada —</option>
+                          {tiradas4d6.map((tirada, index) => (
+                            <option key={index} value={index}>
+                              Tirada {index + 1}: {tirada.total}
+                            </option>
+                          ))}
+                        </select>
+                        <span className="text-xs text-muted">
+                          Valor {datos.abilities[key]} · Mod {mod >= 0 ? `+${mod}` : mod}
+                        </span>
+                      </label>
+                    );
+                  })}
+                </div>
+              </>
+            ) : (
+              <>
+                <p className="text-sm text-muted">
+                  Pulsa «Tirar 4d6» para generar atributos, o «Array estándar» (15, 14, 13, 12, 10,
+                  8). También puedes ajustar manualmente.
+                </p>
+                <div className="grid grid-cols-2 gap-3">
+                  {ABILITY_KEYS.map((key) => {
+                    const mod = modificadorAtributo(datos.abilities[key]);
+                    return (
+                      <label key={key} className="rounded-lg bg-surface px-3 py-2 text-sm">
+                        <span className="text-muted">{ABILITY_LABELS_ES[key]}</span>
+                        <input
+                          type="number"
+                          min={3}
+                          max={30}
+                          className="mt-1 w-full bg-transparent text-lg font-semibold outline-none"
+                          value={datos.abilities[key]}
+                          onChange={(e) => {
+                            setModoAtributos("manual");
+                            actualizar({
+                              abilities: {
+                                ...datos.abilities,
+                                [key]: Math.min(30, Math.max(3, Number(e.target.value) || 10)),
+                              },
+                            });
+                          }}
+                        />
+                        <span className="text-xs text-muted">
+                          Mod {mod >= 0 ? `+${mod}` : mod}
+                        </span>
+                      </label>
+                    );
+                  })}
+                </div>
+              </>
+            )}
           </div>
         )}
 
@@ -280,20 +471,21 @@ export function CharacterNewPage() {
               <strong>{datos.name}</strong> · {datos.playerName || "Sin jugador"}
             </p>
             <p>
-              {t("species", datos.speciesId, "—")} ·{" "}
-              {t("classes", datos.classId, datos.classId)} · Nivel {datos.level}
+              {catalog.t("species", datos.speciesId, "—")} ·{" "}
+              {catalog.t("classes", datos.classId, datos.classId)} · Nivel {datos.level}
             </p>
             {datos.backgroundId && (
-              <p>Trasfondo: {t("backgrounds", datos.backgroundId, datos.backgroundId)}</p>
+              <p>Trasfondo: {catalog.t("backgrounds", datos.backgroundId, datos.backgroundId)}</p>
             )}
             {datos.subclassId && (
-              <p>Subclase: {t("subclasses", datos.subclassId, datos.subclassId)}</p>
+              <p>Subclase: {catalog.t("subclasses", datos.subclassId, datos.subclassId)}</p>
             )}
             <p>
               PV estimados:{" "}
-              {pvMaximoNivel1(
+              {pvMaximoPersonaje(
                 obtenerClase(datos.classId)?.hitDie ?? "d8",
                 datos.abilities.con,
+                datos.level,
               )}
             </p>
             <div className="flex flex-wrap gap-2 pt-2">
@@ -322,6 +514,22 @@ export function CharacterNewPage() {
             </Button>
           )}
         </div>
+        </div>
+
+        {muestraPanelLateral && (
+          <OriginSidePanel
+            catalog={catalog}
+            speciesId={datos.speciesId}
+            backgroundId={datos.backgroundId}
+            classId={paso >= 2 ? datos.classId : undefined}
+            subclassId={paso >= 2 ? datos.subclassId : undefined}
+            classes={
+              paso >= 2
+                ? [{ classId: datos.classId, subclassId: datos.subclassId, level: datos.level }]
+                : undefined
+            }
+          />
+        )}
       </div>
     </Layout>
   );

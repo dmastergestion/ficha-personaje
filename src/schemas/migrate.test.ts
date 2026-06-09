@@ -23,10 +23,11 @@ describe("migrarPersonajeV1", () => {
       },
     };
 
-    const v3 = migrarPersonajeV1(v1);
-    expect(v3.schemaVersion).toBe(3);
-    expect(v3.combat.conditionsCustom).toEqual(["Herido", "Maldito"]);
-    expect(v3.identity.classes).toHaveLength(1);
-    expect(v3.equipment.items.every((i) => i.weightLb === 0)).toBe(true);
+    const v6 = migrarPersonajeV1(v1);
+    expect(v6.schemaVersion).toBe(6);
+    expect(v6.combat.deathSaves).toEqual({ successes: 0, failures: 0 });
+    expect(v6.combat.conditionsCustom).toEqual(["Herido", "Maldito"]);
+    expect(v6.identity.classes).toHaveLength(1);
+    expect(v6.equipment.items.every((i) => i.weightLb === 0)).toBe(true);
   });
 });

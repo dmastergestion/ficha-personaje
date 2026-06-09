@@ -1,5 +1,5 @@
 import type { ClassLevel } from "@/schemas/character";
-import { t } from "@/rules/srd";
+import { obtenerClase, t } from "@/rules/srd";
 
 export function nivelTotalClases(classes: ClassLevel[]): number {
   return classes.reduce((sum, c) => sum + c.level, 0);
@@ -32,6 +32,31 @@ export function descripcionClases(classes: ClassLevel[]): string {
     .join(" / ");
 }
 
+/** Desglose de dados de golpe agrupados por denominación (ej. 10d10 + 2d6). */
+export function dadosDeGolpePorClase(
+  classes: ClassLevel[],
+): { die: string; total: number }[] {
+  const porDado = new Map<string, number>();
+  for (const c of classes) {
+    const die = obtenerClase(c.classId)?.hitDie ?? "d8";
+    porDado.set(die, (porDado.get(die) ?? 0) + c.level);
+  }
+  return [...porDado.entries()]
+    .map(([die, total]) => ({ die, total }))
+    .sort((a, b) => {
+      const fa = Number.parseInt(a.die.slice(1), 10) || 0;
+      const fb = Number.parseInt(b.die.slice(1), 10) || 0;
+      return fb - fa;
+    });
+}
+
+/** Texto del desglose de dados de golpe (ej. "10d10 + 2d6"). */
+export function descripcionDadosGolpe(classes: ClassLevel[]): string {
+  return dadosDeGolpePorClase(classes)
+    .map(({ die, total }) => `${total}${die}`)
+    .join(" + ");
+}
+
 export function validarClases(classes: ClassLevel[]): string | null {
   if (classes.length === 0) return "Añade al menos una clase.";
   const total = nivelTotalClases(classes);
@@ -51,6 +76,25 @@ export function agregarClase(classes: ClassLevel[], classId: string): ClassLevel
 export function eliminarClase(classes: ClassLevel[], classId: string): ClassLevel[] | null {
   if (classes.length <= 1) return null;
   return classes.filter((c) => c.classId !== classId);
+}
+
+/** Sube o baja el nivel total en 1 (clase principal al subir; al bajar, la que tenga nivel > 1). */
+export function ajustarNivelTotal(classes: ClassLevel[], delta: number): ClassLevel[] | null {
+  if (delta === 0) return classes;
+  const total = nivelTotalClases(classes);
+  if (delta > 0) {
+    if (total >= 20) return null;
+    const principal = clasePrincipal(classes);
+    return actualizarNivelClase(classes, principal.classId, principal.level + 1);
+  }
+  if (total <= classes.length) return null;
+  const principal = clasePrincipal(classes);
+  if (principal.level > 1) {
+    return actualizarNivelClase(classes, principal.classId, principal.level - 1);
+  }
+  const otra = classes.find((c) => c.classId !== principal.classId && c.level > 1);
+  if (!otra) return null;
+  return actualizarNivelClase(classes, otra.classId, otra.level - 1);
 }
 
 export function actualizarNivelClase(

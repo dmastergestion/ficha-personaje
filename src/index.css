@@ -2,17 +2,86 @@
 
 @theme {
   --color-gold: #ffd54f;
-  --color-surface: #1a1a1a;
-  --color-panel: #252525;
-  --color-muted: #9ca3af;
+  --color-surface: #141414;
+  --color-panel: #1f1f1f;
+  --color-elevated: #2a2a2a;
+  --color-muted: #a8b0bd;
+  --color-border: rgb(255 255 255 / 0.12);
 }
 
 body {
-  @apply bg-surface text-white antialiased;
+  @apply bg-surface text-[15px] leading-relaxed text-white antialiased;
   margin: 0;
   min-height: 100vh;
 }
 
 #root {
   min-height: 100vh;
+}
+
+@layer components {
+  .sheet-card {
+    @apply rounded-xl border border-white/10 bg-panel p-4;
+  }
+
+  .sheet-section-title {
+    @apply mb-3 text-base font-semibold tracking-tight text-white;
+  }
+
+  .sheet-field-label {
+    @apply mb-1 block text-sm font-medium text-muted;
+  }
+
+  .sheet-input {
+    @apply w-full rounded-lg border border-white/15 bg-surface px-3 py-2.5 text-[15px] text-white transition-colors placeholder:text-muted/50 focus:border-gold/40 focus:outline-none focus:ring-2 focus:ring-gold/20;
+  }
+
+  .sheet-select {
+    @apply w-full appearance-none rounded-lg border border-white/15 bg-surface bg-[length:1rem] bg-[right_0.65rem_center] bg-no-repeat px-3 py-2.5 pr-9 text-[15px] text-white transition-colors focus:border-gold/40 focus:outline-none focus:ring-2 focus:ring-gold/20;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3E%3Cpath stroke='%23a8b0bd' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='m6 8 4 4 4-4'/%3E%3C/svg%3E");
+  }
+
+  .sheet-quick-stats {
+    @apply mb-4 grid grid-cols-2 gap-2 sm:grid-cols-3 xl:grid-cols-6;
+  }
+
+  .sheet-stat-pill {
+    @apply flex min-w-0 flex-col rounded-lg border border-white/10 bg-panel px-3 py-2.5;
+  }
+
+  .sheet-stat-pill-accent {
+    @apply border-gold/30 bg-gold/5;
+  }
+
+  .sheet-stat-pill-label {
+    @apply text-xs font-medium uppercase tracking-wide text-muted;
+  }
+
+  .sheet-stat-pill-value {
+    @apply mt-0.5 text-lg font-bold tabular-nums leading-tight;
+  }
+
+  .sheet-stat-pill-sub {
+    @apply mt-1 truncate text-xs text-muted;
+  }
+
+  .sheet-tab-bar {
+    @apply mb-4 flex gap-1 overflow-x-auto rounded-xl border border-white/10 bg-panel p-1;
+  }
+
+  .sheet-tab {
+    @apply shrink-0 rounded-lg px-4 py-2.5 text-sm font-medium text-muted transition-colors hover:text-white;
+  }
+
+  .sheet-tab-active {
+    @apply bg-gold font-semibold text-black shadow-sm hover:text-black;
+  }
+
+  .sheet-sidebar {
+    @apply hidden w-72 shrink-0 flex-col gap-3 lg:sticky lg:top-4 lg:flex lg:self-start;
+  }
+
+  .sheet-sidebar-panel {
+    @apply rounded-xl border border-white/10 bg-panel p-4;
+  }
 }

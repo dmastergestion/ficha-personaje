@@ -1,0 +1,110 @@
+{
+  "barbarian": [
+    {
+      "id": "rage",
+      "name": "Rabia",
+      "recharge": "long",
+      "perLevel": { "1": 2, "3": 3, "6": 4, "12": 5, "17": 6 }
+    }
+  ],
+  "bard": [
+    {
+      "id": "bardic-inspiration",
+      "name": "Inspiración bárdica",
+      "recharge": "long",
+      "perLevel": { "1": 2, "5": 3, "10": 4, "15": 5 }
+    }
+  ],
+  "cleric": [
+    {
+      "id": "channel-divinity",
+      "name": "Canalizar divinidad",
+      "recharge": "short",
+      "perLevel": { "2": 2, "6": 3, "18": 4 }
+    }
+  ],
+  "druid": [
+    {
+      "id": "wild-shape",
+      "name": "Forma salvaje",
+      "recharge": "long",
+      "perLevel": { "2": 2, "4": 3, "8": 4, "10": 5, "12": 6, "16": 7, "20": 8 }
+    }
+  ],
+  "fighter": [
+    {
+      "id": "second-wind",
+      "name": "Segundo aliento",
+      "recharge": "short",
+      "perLevel": { "1": 2, "4": 3, "10": 4 }
+    },
+    {
+      "id": "action-surge",
+      "name": "Oleada de acción",
+      "recharge": "long",
+      "perLevel": { "2": 1, "17": 2 }
+    }
+  ],
+  "monk": [
+    {
+      "id": "focus-points",
+      "name": "Puntos de enfoque",
+      "recharge": "short",
+      "perLevel": { "1": 1, "2": 2, "3": 3, "4": 4, "5": 5, "6": 6, "7": 7, "8": 8, "9": 9, "10": 10, "11": 11, "12": 12, "13": 13, "14": 14, "15": 15, "16": 16, "17": 17, "18": 18, "19": 19, "20": 20 }
+    }
+  ],
+  "paladin": [
+    {
+      "id": "channel-divinity",
+      "name": "Canalizar divinidad",
+      "recharge": "short",
+      "perLevel": { "3": 2, "11": 3 }
+    },
+    {
+      "id": "lay-on-hands",
+      "name": "Imposición de manos",
+      "recharge": "long",
+      "perLevel": { "1": 5, "2": 10, "3": 15, "4": 20, "5": 25, "6": 30, "7": 35, "8": 40, "9": 45, "10": 50, "11": 55, "12": 60, "13": 65, "14": 70, "15": 75, "16": 80, "17": 85, "18": 90, "19": 95, "20": 100 }
+    }
+  ],
+  "ranger": [
+    {
+      "id": "favored-enemy",
+      "name": "Enemigo favorecido",
+      "recharge": "long",
+      "perLevel": { "1": 2, "5": 3, "9": 4, "13": 5, "17": 6 }
+    }
+  ],
+  "rogue": [
+    {
+      "id": "sneak-attack",
+      "name": "Ataque furtivo (dados)",
+      "recharge": "none",
+      "perLevel": { "1": 1, "3": 2, "5": 3, "7": 4, "9": 5, "11": 6, "13": 7, "15": 8, "17": 9, "19": 10 }
+    }
+  ],
+  "sorcerer": [
+    {
+      "id": "sorcery-points",
+      "name": "Puntos de hechicería",
+      "recharge": "long",
+      "perLevel": { "2": 2, "3": 3, "4": 4, "5": 5, "6": 6, "7": 7, "8": 8, "9": 9, "10": 10, "11": 11, "12": 12, "13": 13, "14": 14, "15": 15, "16": 16, "17": 17, "18": 18, "19": 19, "20": 20 }
+    }
+  ],
+  "warlock": [
+    {
+      "id": "invocations",
+      "name": "Invocaciones (referencia)",
+      "recharge": "none",
+      "perLevel": { "2": 2, "5": 3, "7": 4, "9": 5, "12": 6, "15": 7, "18": 8 }
+    }
+  ],
+  "wizard": [
+    {
+      "id": "arcane-recovery",
+      "name": "Recuperación arcana",
+      "recharge": "long",
+      "perLevel": { "1": 1 }
+    }
+  ]
+}

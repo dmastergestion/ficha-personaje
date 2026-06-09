@@ -6,11 +6,14 @@ interface LayoutProps {
   title: string;
   children: React.ReactNode;
   actions?: React.ReactNode;
+  wide?: boolean;
 }
 
-export function Layout({ title, children, actions }: LayoutProps) {
+export function Layout({ title, children, actions, wide = false }: LayoutProps) {
   return (
-    <div className="mx-auto flex min-h-screen max-w-5xl flex-col px-4 py-6">
+    <div
+      className={`mx-auto flex min-h-screen flex-col px-4 py-5 sm:px-6 ${wide ? "max-w-[90rem]" : "max-w-5xl"}`}
+    >
       <header className="mb-6 flex flex-wrap items-center justify-between gap-3 border-b border-white/10 pb-4">
         <div>
           <p className="flex flex-wrap items-center gap-2 text-sm text-muted">

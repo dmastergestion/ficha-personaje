@@ -6,19 +6,28 @@ import {
   type TrackerExport,
 } from "@/schemas/character";
 import { normalizarPersonaje } from "@/schemas/migrate";
+import { sanitizarRecursos, recursosCompletos } from "@/rules/resources";
+import { prepararPersonajeConjuro } from "@/rules/spell-cast";
 import { iniciativa } from "@/rules/character";
 
 export async function listarPersonajes(): Promise<Character[]> {
-  return db.characters.orderBy("meta.updatedAt").reverse().toArray();
+  const filas = await db.characters.orderBy("meta.updatedAt").reverse().toArray();
+  return filas.flatMap((raw) => {
+    const parsed = CharacterSchema.safeParse(raw);
+    if (!parsed.success) return [];
+    return [prepararPersonajeConjuro(sanitizarRecursos(parsed.data))];
+  });
 }
 
 export async function obtenerPersonaje(id: string): Promise<Character | undefined> {
-  return db.characters.get(id);
+  const raw = await db.characters.get(id);
+  if (!raw) return undefined;
+  return prepararPersonajeConjuro(sanitizarRecursos(CharacterSchema.parse(raw)));
 }
 
 export async function guardarPersonaje(character: Character): Promise<void> {
   const parsed = CharacterSchema.parse({
-    ...character,
+    ...prepararPersonajeConjuro(sanitizarRecursos(character)),
     meta: { ...character.meta, updatedAt: new Date().toISOString() },
   });
   await db.characters.put(parsed);
@@ -79,6 +88,6 @@ export async function duplicarPersonaje(id: string): Promise<Character | undefin
     identity: { ...original.identity, name: `${original.identity.name} (copia)` },
   };
 
-  await guardarPersonaje(copia);
-  return copia;
+  await guardarPersonaje(recursosCompletos(copia));
+  return recursosCompletos(copia);
 }

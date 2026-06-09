@@ -1,0 +1,5070 @@
+{
+  "alarm": {
+    "classes": [
+      "artificer",
+      "ranger",
+      "wizard"
+    ],
+    "subclasses": [
+      {
+        "classId": "bard",
+        "subclassId": "lore"
+      },
+      {
+        "classId": "fighter",
+        "subclassId": "eldritch-knight"
+      },
+      {
+        "classId": "rogue",
+        "subclassId": "arcane-trickster"
+      }
+    ]
+  },
+  "animal-friendship": {
+    "classes": [
+      "bard",
+      "druid",
+      "ranger"
+    ],
+    "subclasses": [
+      {
+        "classId": "bard",
+        "subclassId": "lore"
+      }
+    ]
+  },
+  "bane": {
+    "classes": [
+      "bard",
+      "cleric",
+      "warlock"
+    ],
+    "subclasses": [
+      {
+        "classId": "bard",
+        "subclassId": "lore"
+      }
+    ]
+  },
+  "bless": {
+    "classes": [
+      "cleric",
+      "paladin"
+    ],
+    "subclasses": [
+      {
+        "classId": "bard",
+        "subclassId": "lore"
+      },
+      {
+        "classId": "cleric",
+        "subclassId": "life"
+      }
+    ]
+  },
+  "burning-hands": {
+    "classes": [
+      "sorcerer",
+      "wizard"
+    ],
+    "subclasses": [
+      {
+        "classId": "bard",
+        "subclassId": "lore"
+      },
+      {
+        "classId": "cleric",
+        "subclassId": "light"
+      },
+      {
+        "classId": "druid",
+        "subclassId": "land"
+      },
+      {
+        "classId": "fighter",
+        "subclassId": "eldritch-knight"
+      },
+      {
+        "classId": "rogue",
+        "subclassId": "arcane-trickster"
+      },
+      {
+        "classId": "warlock",
+        "subclassId": "fiend"
+      },
+      {
+        "classId": "wizard",
+        "subclassId": "evoker"
+      }
+    ]
+  },
+  "charm-person": {
+    "classes": [
+      "bard",
+      "druid",
+      "sorcerer",
+      "warlock",
+      "wizard"
+    ],
+    "subclasses": [
+      {
+        "classId": "bard",
+        "subclassId": "lore"
+      },
+      {
+        "classId": "fighter",
+        "subclassId": "eldritch-knight"
+      },
+      {
+        "classId": "rogue",
+        "subclassId": "arcane-trickster"
+      }
+    ]
+  },
+  "chromatic-orb": {
+    "classes": [
+      "sorcerer",
+      "wizard"
+    ],
+    "subclasses": [
+      {
+        "classId": "bard",
+        "subclassId": "lore"
+      },
+      {
+        "classId": "fighter",
+        "subclassId": "eldritch-knight"
+      },
+      {
+        "classId": "rogue",
+        "subclassId": "arcane-trickster"
+      },
+      {
+        "classId": "sorcerer",
+        "subclassId": "draconic"
+      },
+      {
+        "classId": "wizard",
+        "subclassId": "evoker"
+      }
+    ]
+  },
+  "color-spray": {
+    "classes": [
+      "bard",
+      "sorcerer",
+      "wizard"
+    ],
+    "subclasses": [
+      {
+        "classId": "bard",
+        "subclassId": "lore"
+      },
+      {
+        "classId": "fighter",
+        "subclassId": "eldritch-knight"
+      },
+      {
+        "classId": "rogue",
+        "subclassId": "arcane-trickster"
+      }
+    ]
+  },
+  "command": {
+    "classes": [
+      "bard",
+      "cleric",
+      "paladin"
+    ],
+    "subclasses": [
+      {
+        "classId": "bard",
+        "subclassId": "lore"
+      },
+      {
+        "classId": "sorcerer",
+        "subclassId": "draconic"
+      },
+      {
+        "classId": "warlock",
+        "subclassId": "fiend"
+      }
+    ]
+  },
+  "comprehend-languages": {
+    "classes": [
+      "bard",
+      "sorcerer",
+      "warlock",
+      "wizard"
+    ],
+    "subclasses": [
+      {
+        "classId": "bard",
+        "subclassId": "lore"
+      },
+      {
+        "classId": "fighter",
+        "subclassId": "eldritch-knight"
+      },
+      {
+        "classId": "rogue",
+        "subclassId": "arcane-trickster"
+      }
+    ]
+  },
+  "create-or-destroy-water": {
+    "classes": [
+      "cleric",
+      "druid"
+    ],
+    "subclasses": [
+      {
+        "classId": "bard",
+        "subclassId": "lore"
+      }
+    ]
+  },
+  "cure-wounds": {
+    "classes": [
+      "artificer",
+      "bard",
+      "cleric",
+      "druid",
+      "paladin",
+      "ranger"
+    ],
+    "subclasses": [
+      {
+        "classId": "bard",
+        "subclassId": "lore"
+      },
+      {
+        "classId": "cleric",
+        "subclassId": "life"
+      }
+    ]
+  },
+  "detect-evil-and-good": {
+    "classes": [
+      "cleric",
+      "paladin"
+    ],
+    "subclasses": [
+      {
+        "classId": "bard",
+        "subclassId": "lore"
+      }
+    ]
+  },
+  "detect-magic": {
+    "classes": [
+      "artificer",
+      "bard",
+      "cleric",
+      "druid",
+      "paladin",
+      "ranger",
+      "sorcerer",
+      "warlock",
+      "wizard"
+    ],
+    "subclasses": [
+      {
+        "classId": "bard",
+        "subclassId": "lore"
+      },
+      {
+        "classId": "fighter",
+        "subclassId": "eldritch-knight"
+      },
+      {
+        "classId": "rogue",
+        "subclassId": "arcane-trickster"
+      }
+    ]
+  },
+  "detect-poison-and-disease": {
+    "classes": [
+      "cleric",
+      "druid",
+      "paladin",
+      "ranger"
+    ],
+    "subclasses": [
+      {
+        "classId": "bard",
+        "subclassId": "lore"
+      }
+    ]
+  },
+  "disguise-self": {
+    "classes": [
+      "artificer",
+      "bard",
+      "sorcerer",
+      "wizard"
+    ],
+    "subclasses": [
+      {
+        "classId": "bard",
+        "subclassId": "lore"
+      },
+      {
+        "classId": "fighter",
+        "subclassId": "eldritch-knight"
+      },
+      {
+        "classId": "rogue",
+        "subclassId": "arcane-trickster"
+      }
+    ]
+  },
+  "dissonant-whispers": {
+    "classes": [
+      "bard"
+    ],
+    "subclasses": []
+  },
+  "divine-favor": {
+    "classes": [
+      "paladin"
+    ],
+    "subclasses": []
+  },
+  "divine-smite": {
+    "classes": [
+      "paladin"
+    ],
+    "subclasses": []
+  },
+  "ensnaring-strike": {
+    "classes": [
+      "ranger"
+    ],
+    "subclasses": []
+  },
+  "entangle": {
+    "classes": [
+      "druid",
+      "ranger"
+    ],
+    "subclasses": [
+      {
+        "classId": "bard",
+        "subclassId": "lore"
+      }
+    ]
+  },
+  "expeditious-retreat": {
+    "classes": [
+      "artificer",
+      "sorcerer",
+      "warlock",
+      "wizard"
+    ],
+    "subclasses": [
+      {
+        "classId": "bard",
+        "subclassId": "lore"
+      },
+      {
+        "classId": "fighter",
+        "subclassId": "eldritch-knight"
+      },
+      {
+        "classId": "rogue",
+        "subclassId": "arcane-trickster"
+      }
+    ]
+  },
+  "faerie-fire": {
+    "classes": [
+      "artificer",
+      "bard",
+      "druid"
+    ],
+    "subclasses": [
+      {
+        "classId": "bard",
+        "subclassId": "lore"
+      },
+      {
+        "classId": "cleric",
+        "subclassId": "light"
+      }
+    ]
+  },
+  "false-life": {
+    "classes": [
+      "artificer",
+      "sorcerer",
+      "wizard"
+    ],
+    "subclasses": [
+      {
+        "classId": "bard",
+        "subclassId": "lore"
+      },
+      {
+        "classId": "fighter",
+        "subclassId": "eldritch-knight"
+      },
+      {
+        "classId": "rogue",
+        "subclassId": "arcane-trickster"
+      }
+    ]
+  },
+  "feather-fall": {
+    "classes": [
+      "artificer",
+      "bard",
+      "sorcerer",
+      "wizard"
+    ],
+    "subclasses": [
+      {
+        "classId": "bard",
+        "subclassId": "lore"
+      },
+      {
+        "classId": "fighter",
+        "subclassId": "eldritch-knight"
+      },
+      {
+        "classId": "rogue",
+        "subclassId": "arcane-trickster"
+      }
+    ]
+  },
+  "find-familiar": {
+    "classes": [
+      "wizard"
+    ],
+    "subclasses": [
+      {
+        "classId": "bard",
+        "subclassId": "lore"
+      },
+      {
+        "classId": "fighter",
+        "subclassId": "eldritch-knight"
+      },
+      {
+        "classId": "rogue",
+        "subclassId": "arcane-trickster"
+      }
+    ]
+  },
+  "fog-cloud": {
+    "classes": [
+      "druid",
+      "ranger",
+      "sorcerer",
+      "wizard"
+    ],
+    "subclasses": [
+      {
+        "classId": "bard",
+        "subclassId": "lore"
+      },
+      {
+        "classId": "druid",
+        "subclassId": "land"
+      },
+      {
+        "classId": "fighter",
+        "subclassId": "eldritch-knight"
+      },
+      {
+        "classId": "rogue",
+        "subclassId": "arcane-trickster"
+      }
+    ]
+  },
+  "goodberry": {
+    "classes": [
+      "druid",
+      "ranger"
+    ],
+    "subclasses": [
+      {
+        "classId": "bard",
+        "subclassId": "lore"
+      }
+    ]
+  },
+  "grease": {
+    "classes": [
+      "artificer",
+      "sorcerer",
+      "wizard"
+    ],
+    "subclasses": [
+      {
+        "classId": "bard",
+        "subclassId": "lore"
+      },
+      {
+        "classId": "fighter",
+        "subclassId": "eldritch-knight"
+      },
+      {
+        "classId": "rogue",
+        "subclassId": "arcane-trickster"
+      }
+    ]
+  },
+  "guiding-bolt": {
+    "classes": [
+      "cleric"
+    ],
+    "subclasses": [
+      {
+        "classId": "bard",
+        "subclassId": "lore"
+      }
+    ]
+  },
+  "healing-word": {
+    "classes": [
+      "bard",
+      "cleric",
+      "druid"
+    ],
+    "subclasses": [
+      {
+        "classId": "bard",
+        "subclassId": "lore"
+      }
+    ]
+  },
+  "hellish-rebuke": {
+    "classes": [
+      "warlock"
+    ],
+    "subclasses": []
+  },
+  "heroism": {
+    "classes": [
+      "bard",
+      "paladin"
+    ],
+    "subclasses": []
+  },
+  "hex": {
+    "classes": [
+      "warlock"
+    ],
+    "subclasses": []
+  },
+  "hunters-mark": {
+    "classes": [
+      "ranger"
+    ],
+    "subclasses": []
+  },
+  "ice-knife": {
+    "classes": [
+      "druid",
+      "sorcerer",
+      "wizard"
+    ],
+    "subclasses": [
+      {
+        "classId": "bard",
+        "subclassId": "lore"
+      },
+      {
+        "classId": "fighter",
+        "subclassId": "eldritch-knight"
+      },
+      {
+        "classId": "rogue",
+        "subclassId": "arcane-trickster"
+      }
+    ]
+  },
+  "identify": {
+    "classes": [
+      "artificer",
+      "bard",
+      "wizard"
+    ],
+    "subclasses": [
+      {
+        "classId": "bard",
+        "subclassId": "lore"
+      },
+      {
+        "classId": "fighter",
+        "subclassId": "eldritch-knight"
+      },
+      {
+        "classId": "rogue",
+        "subclassId": "arcane-trickster"
+      }
+    ]
+  },
+  "illusory-script": {
+    "classes": [
+      "bard",
+      "warlock",
+      "wizard"
+    ],
+    "subclasses": [
+      {
+        "classId": "bard",
+        "subclassId": "lore"
+      },
+      {
+        "classId": "fighter",
+        "subclassId": "eldritch-knight"
+      },
+      {
+        "classId": "rogue",
+        "subclassId": "arcane-trickster"
+      }
+    ]
+  },
+  "inflict-wounds": {
+    "classes": [
+      "cleric"
+    ],
+    "subclasses": [
+      {
+        "classId": "bard",
+        "subclassId": "lore"
+      }
+    ]
+  },
+  "jump": {
+    "classes": [
+      "artificer",
+      "druid",
+      "ranger",
+      "sorcerer",
+      "wizard"
+    ],
+    "subclasses": [
+      {
+        "classId": "bard",
+        "subclassId": "lore"
+      },
+      {
+        "classId": "fighter",
+        "subclassId": "eldritch-knight"
+      },
+      {
+        "classId": "rogue",
+        "subclassId": "arcane-trickster"
+      }
+    ]
+  },
+  "longstrider": {
+    "classes": [
+      "artificer",
+      "bard",
+      "druid",
+      "ranger",
+      "wizard"
+    ],
+    "subclasses": [
+      {
+        "classId": "bard",
+        "subclassId": "lore"
+      },
+      {
+        "classId": "fighter",
+        "subclassId": "eldritch-knight"
+      },
+      {
+        "classId": "rogue",
+        "subclassId": "arcane-trickster"
+      }
+    ]
+  },
+  "mage-armor": {
+    "classes": [
+      "sorcerer",
+      "wizard"
+    ],
+    "subclasses": [
+      {
+        "classId": "bard",
+        "subclassId": "lore"
+      },
+      {
+        "classId": "fighter",
+        "subclassId": "eldritch-knight"
+      },
+      {
+        "classId": "rogue",
+        "subclassId": "arcane-trickster"
+      }
+    ]
+  },
+  "magic-missile": {
+    "classes": [
+      "sorcerer",
+      "wizard"
+    ],
+    "subclasses": [
+      {
+        "classId": "bard",
+        "subclassId": "lore"
+      },
+      {
+        "classId": "fighter",
+        "subclassId": "eldritch-knight"
+      },
+      {
+        "classId": "rogue",
+        "subclassId": "arcane-trickster"
+      },
+      {
+        "classId": "wizard",
+        "subclassId": "evoker"
+      }
+    ]
+  },
+  "protection-from-evil-and-good": {
+    "classes": [
+      "cleric",
+      "druid",
+      "paladin",
+      "warlock",
+      "wizard"
+    ],
+    "subclasses": [
+      {
+        "classId": "bard",
+        "subclassId": "lore"
+      },
+      {
+        "classId": "fighter",
+        "subclassId": "eldritch-knight"
+      },
+      {
+        "classId": "paladin",
+        "subclassId": "devotion"
+      },
+      {
+        "classId": "rogue",
+        "subclassId": "arcane-trickster"
+      }
+    ]
+  },
+  "purify-food-and-drink": {
+    "classes": [
+      "artificer",
+      "cleric",
+      "druid",
+      "paladin"
+    ],
+    "subclasses": [
+      {
+        "classId": "bard",
+        "subclassId": "lore"
+      }
+    ]
+  },
+  "ray-of-sickness": {
+    "classes": [
+      "sorcerer",
+      "wizard"
+    ],
+    "subclasses": [
+      {
+        "classId": "bard",
+        "subclassId": "lore"
+      },
+      {
+        "classId": "druid",
+        "subclassId": "land"
+      },
+      {
+        "classId": "fighter",
+        "subclassId": "eldritch-knight"
+      },
+      {
+        "classId": "rogue",
+        "subclassId": "arcane-trickster"
+      }
+    ]
+  },
+  "sanctuary": {
+    "classes": [
+      "artificer",
+      "cleric"
+    ],
+    "subclasses": [
+      {
+        "classId": "bard",
+        "subclassId": "lore"
+      },
+      {
+        "classId": "paladin",
+        "subclassId": "devotion"
+      }
+    ]
+  },
+  "searing-smite": {
+    "classes": [
+      "paladin"
+    ],
+    "subclasses": []
+  },
+  "shield-of-faith": {
+    "classes": [
+      "cleric",
+      "paladin"
+    ],
+    "subclasses": [
+      {
+        "classId": "bard",
+        "subclassId": "lore"
+      },
+      {
+        "classId": "paladin",
+        "subclassId": "devotion"
+      }
+    ]
+  },
+  "shield": {
+    "classes": [
+      "sorcerer",
+      "wizard"
+    ],
+    "subclasses": [
+      {
+        "classId": "bard",
+        "subclassId": "lore"
+      },
+      {
+        "classId": "fighter",
+        "subclassId": "eldritch-knight"
+      },
+      {
+        "classId": "rogue",
+        "subclassId": "arcane-trickster"
+      }
+    ]
+  },
+  "silent-image": {
+    "classes": [
+      "bard",
+      "sorcerer",
+      "wizard"
+    ],
+    "subclasses": [
+      {
+        "classId": "bard",
+        "subclassId": "lore"
+      },
+      {
+        "classId": "fighter",
+        "subclassId": "eldritch-knight"
+      },
+      {
+        "classId": "rogue",
+        "subclassId": "arcane-trickster"
+      }
+    ]
+  },
+  "sleep": {
+    "classes": [
+      "bard",
+      "sorcerer",
+      "wizard"
+    ],
+    "subclasses": [
+      {
+        "classId": "bard",
+        "subclassId": "lore"
+      },
+      {
+        "classId": "druid",
+        "subclassId": "land"
+      },
+      {
+        "classId": "fighter",
+        "subclassId": "eldritch-knight"
+      },
+      {
+        "classId": "rogue",
+        "subclassId": "arcane-trickster"
+      }
+    ]
+  },
+  "speak-with-animals": {
+    "classes": [
+      "bard",
+      "druid",
+      "ranger",
+      "warlock"
+    ],
+    "subclasses": [
+      {
+        "classId": "bard",
+        "subclassId": "lore"
+      }
+    ]
+  },
+  "thunderwave": {
+    "classes": [
+      "bard",
+      "druid",
+      "sorcerer",
+      "wizard"
+    ],
+    "subclasses": [
+      {
+        "classId": "bard",
+        "subclassId": "lore"
+      },
+      {
+        "classId": "fighter",
+        "subclassId": "eldritch-knight"
+      },
+      {
+        "classId": "rogue",
+        "subclassId": "arcane-trickster"
+      },
+      {
+        "classId": "wizard",
+        "subclassId": "evoker"
+      }
+    ]
+  },
+  "unseen-servant": {
+    "classes": [
+      "bard",
+      "warlock",
+      "wizard"
+    ],
+    "subclasses": [
+      {
+        "classId": "bard",
+        "subclassId": "lore"
+      },
+      {
+        "classId": "fighter",
+        "subclassId": "eldritch-knight"
+      },
+      {
+        "classId": "rogue",
+        "subclassId": "arcane-trickster"
+      }
+    ]
+  },
+  "aid": {
+    "classes": [
+      "artificer",
+      "bard",
+      "cleric",
+      "druid",
+      "paladin",
+      "ranger"
+    ],
+    "subclasses": [
+      {
+        "classId": "bard",
+        "subclassId": "lore"
+      },
+      {
+        "classId": "cleric",
+        "subclassId": "life"
+      },
+      {
+        "classId": "paladin",
+        "subclassId": "devotion"
+      }
+    ]
+  },
+  "alter-self": {
+    "classes": [
+      "artificer",
+      "sorcerer",
+      "wizard"
+    ],
+    "subclasses": [
+      {
+        "classId": "bard",
+        "subclassId": "lore"
+      },
+      {
+        "classId": "fighter",
+        "subclassId": "eldritch-knight"
+      },
+      {
+        "classId": "rogue",
+        "subclassId": "arcane-trickster"
+      },
+      {
+        "classId": "sorcerer",
+        "subclassId": "draconic"
+      }
+    ]
+  },
+  "animal-messenger": {
+    "classes": [
+      "bard",
+      "druid",
+      "ranger"
+    ],
+    "subclasses": [
+      {
+        "classId": "bard",
+        "subclassId": "lore"
+      }
+    ]
+  },
+  "arcane-lock": {
+    "classes": [
+      "artificer",
+      "wizard"
+    ],
+    "subclasses": [
+      {
+        "classId": "bard",
+        "subclassId": "lore"
+      },
+      {
+        "classId": "fighter",
+        "subclassId": "eldritch-knight"
+      },
+      {
+        "classId": "rogue",
+        "subclassId": "arcane-trickster"
+      }
+    ]
+  },
+  "arcane-vigor": {
+    "classes": [
+      "artificer",
+      "sorcerer",
+      "wizard"
+    ],
+    "subclasses": [
+      {
+        "classId": "bard",
+        "subclassId": "lore"
+      },
+      {
+        "classId": "fighter",
+        "subclassId": "eldritch-knight"
+      },
+      {
+        "classId": "rogue",
+        "subclassId": "arcane-trickster"
+      }
+    ]
+  },
+  "augury": {
+    "classes": [
+      "cleric",
+      "druid",
+      "wizard"
+    ],
+    "subclasses": [
+      {
+        "classId": "bard",
+        "subclassId": "lore"
+      },
+      {
+        "classId": "fighter",
+        "subclassId": "eldritch-knight"
+      },
+      {
+        "classId": "rogue",
+        "subclassId": "arcane-trickster"
+      }
+    ]
+  },
+  "barkskin": {
+    "classes": [
+      "druid",
+      "ranger"
+    ],
+    "subclasses": [
+      {
+        "classId": "bard",
+        "subclassId": "lore"
+      },
+      {
+        "classId": "druid",
+        "subclassId": "land"
+      }
+    ]
+  },
+  "blindness-deafness": {
+    "classes": [
+      "bard",
+      "cleric",
+      "sorcerer",
+      "wizard"
+    ],
+    "subclasses": [
+      {
+        "classId": "bard",
+        "subclassId": "lore"
+      },
+      {
+        "classId": "fighter",
+        "subclassId": "eldritch-knight"
+      },
+      {
+        "classId": "rogue",
+        "subclassId": "arcane-trickster"
+      },
+      {
+        "classId": "warlock",
+        "subclassId": "fiend"
+      }
+    ]
+  },
+  "blur": {
+    "classes": [
+      "artificer",
+      "sorcerer",
+      "wizard"
+    ],
+    "subclasses": [
+      {
+        "classId": "bard",
+        "subclassId": "lore"
+      },
+      {
+        "classId": "druid",
+        "subclassId": "land"
+      },
+      {
+        "classId": "fighter",
+        "subclassId": "eldritch-knight"
+      },
+      {
+        "classId": "rogue",
+        "subclassId": "arcane-trickster"
+      }
+    ]
+  },
+  "calm-emotions": {
+    "classes": [
+      "bard",
+      "cleric"
+    ],
+    "subclasses": [
+      {
+        "classId": "bard",
+        "subclassId": "lore"
+      }
+    ]
+  },
+  "continual-flame": {
+    "classes": [
+      "artificer",
+      "cleric",
+      "druid",
+      "wizard"
+    ],
+    "subclasses": [
+      {
+        "classId": "bard",
+        "subclassId": "lore"
+      },
+      {
+        "classId": "fighter",
+        "subclassId": "eldritch-knight"
+      },
+      {
+        "classId": "rogue",
+        "subclassId": "arcane-trickster"
+      },
+      {
+        "classId": "wizard",
+        "subclassId": "evoker"
+      }
+    ]
+  },
+  "darkness": {
+    "classes": [
+      "sorcerer",
+      "warlock",
+      "wizard"
+    ],
+    "subclasses": [
+      {
+        "classId": "bard",
+        "subclassId": "lore"
+      },
+      {
+        "classId": "druid",
+        "subclassId": "land"
+      },
+      {
+        "classId": "fighter",
+        "subclassId": "eldritch-knight"
+      },
+      {
+        "classId": "rogue",
+        "subclassId": "arcane-trickster"
+      },
+      {
+        "classId": "wizard",
+        "subclassId": "evoker"
+      }
+    ]
+  },
+  "darkvision": {
+    "classes": [
+      "artificer",
+      "druid",
+      "ranger",
+      "sorcerer",
+      "wizard"
+    ],
+    "subclasses": [
+      {
+        "classId": "bard",
+        "subclassId": "lore"
+      },
+      {
+        "classId": "fighter",
+        "subclassId": "eldritch-knight"
+      },
+      {
+        "classId": "rogue",
+        "subclassId": "arcane-trickster"
+      }
+    ]
+  },
+  "detect-thoughts": {
+    "classes": [
+      "bard",
+      "sorcerer",
+      "wizard"
+    ],
+    "subclasses": [
+      {
+        "classId": "bard",
+        "subclassId": "lore"
+      },
+      {
+        "classId": "fighter",
+        "subclassId": "eldritch-knight"
+      },
+      {
+        "classId": "rogue",
+        "subclassId": "arcane-trickster"
+      }
+    ]
+  },
+  "dragons-breath": {
+    "classes": [
+      "artificer",
+      "sorcerer",
+      "wizard"
+    ],
+    "subclasses": [
+      {
+        "classId": "bard",
+        "subclassId": "lore"
+      },
+      {
+        "classId": "fighter",
+        "subclassId": "eldritch-knight"
+      },
+      {
+        "classId": "rogue",
+        "subclassId": "arcane-trickster"
+      },
+      {
+        "classId": "sorcerer",
+        "subclassId": "draconic"
+      }
+    ]
+  },
+  "enhance-ability": {
+    "classes": [
+      "artificer",
+      "bard",
+      "cleric",
+      "druid",
+      "ranger",
+      "sorcerer",
+      "wizard"
+    ],
+    "subclasses": [
+      {
+        "classId": "bard",
+        "subclassId": "lore"
+      },
+      {
+        "classId": "fighter",
+        "subclassId": "eldritch-knight"
+      },
+      {
+        "classId": "rogue",
+        "subclassId": "arcane-trickster"
+      }
+    ]
+  },
+  "enlarge-reduce": {
+    "classes": [
+      "artificer",
+      "bard",
+      "druid",
+      "sorcerer",
+      "wizard"
+    ],
+    "subclasses": [
+      {
+        "classId": "bard",
+        "subclassId": "lore"
+      },
+      {
+        "classId": "fighter",
+        "subclassId": "eldritch-knight"
+      },
+      {
+        "classId": "rogue",
+        "subclassId": "arcane-trickster"
+      }
+    ]
+  },
+  "enthrall": {
+    "classes": [
+      "bard",
+      "warlock"
+    ],
+    "subclasses": []
+  },
+  "find-steed": {
+    "classes": [
+      "paladin"
+    ],
+    "subclasses": []
+  },
+  "find-traps": {
+    "classes": [
+      "cleric",
+      "druid",
+      "ranger"
+    ],
+    "subclasses": [
+      {
+        "classId": "bard",
+        "subclassId": "lore"
+      }
+    ]
+  },
+  "flame-blade": {
+    "classes": [
+      "druid",
+      "sorcerer"
+    ],
+    "subclasses": [
+      {
+        "classId": "bard",
+        "subclassId": "lore"
+      }
+    ]
+  },
+  "flaming-sphere": {
+    "classes": [
+      "druid",
+      "sorcerer",
+      "wizard"
+    ],
+    "subclasses": [
+      {
+        "classId": "bard",
+        "subclassId": "lore"
+      },
+      {
+        "classId": "cleric",
+        "subclassId": "light"
+      },
+      {
+        "classId": "fighter",
+        "subclassId": "eldritch-knight"
+      },
+      {
+        "classId": "rogue",
+        "subclassId": "arcane-trickster"
+      }
+    ]
+  },
+  "gentle-repose": {
+    "classes": [
+      "cleric",
+      "paladin",
+      "wizard"
+    ],
+    "subclasses": [
+      {
+        "classId": "bard",
+        "subclassId": "lore"
+      },
+      {
+        "classId": "fighter",
+        "subclassId": "eldritch-knight"
+      },
+      {
+        "classId": "rogue",
+        "subclassId": "arcane-trickster"
+      }
+    ]
+  },
+  "gust-of-wind": {
+    "classes": [
+      "druid",
+      "ranger",
+      "sorcerer",
+      "wizard"
+    ],
+    "subclasses": [
+      {
+        "classId": "bard",
+        "subclassId": "lore"
+      },
+      {
+        "classId": "fighter",
+        "subclassId": "eldritch-knight"
+      },
+      {
+        "classId": "rogue",
+        "subclassId": "arcane-trickster"
+      },
+      {
+        "classId": "wizard",
+        "subclassId": "evoker"
+      }
+    ]
+  },
+  "heat-metal": {
+    "classes": [
+      "artificer",
+      "bard",
+      "druid"
+    ],
+    "subclasses": [
+      {
+        "classId": "bard",
+        "subclassId": "lore"
+      }
+    ]
+  },
+  "hold-person": {
+    "classes": [
+      "bard",
+      "cleric",
+      "druid",
+      "sorcerer",
+      "warlock",
+      "wizard"
+    ],
+    "subclasses": [
+      {
+        "classId": "bard",
+        "subclassId": "lore"
+      },
+      {
+        "classId": "druid",
+        "subclassId": "land"
+      },
+      {
+        "classId": "fighter",
+        "subclassId": "eldritch-knight"
+      },
+      {
+        "classId": "rogue",
+        "subclassId": "arcane-trickster"
+      }
+    ]
+  },
+  "invisibility": {
+    "classes": [
+      "artificer",
+      "bard",
+      "sorcerer",
+      "warlock",
+      "wizard"
+    ],
+    "subclasses": [
+      {
+        "classId": "bard",
+        "subclassId": "lore"
+      },
+      {
+        "classId": "druid",
+        "subclassId": "land"
+      },
+      {
+        "classId": "fighter",
+        "subclassId": "eldritch-knight"
+      },
+      {
+        "classId": "rogue",
+        "subclassId": "arcane-trickster"
+      }
+    ]
+  },
+  "knock": {
+    "classes": [
+      "bard",
+      "sorcerer",
+      "wizard"
+    ],
+    "subclasses": [
+      {
+        "classId": "bard",
+        "subclassId": "lore"
+      },
+      {
+        "classId": "fighter",
+        "subclassId": "eldritch-knight"
+      },
+      {
+        "classId": "rogue",
+        "subclassId": "arcane-trickster"
+      }
+    ]
+  },
+  "lesser-restoration": {
+    "classes": [
+      "artificer",
+      "bard",
+      "cleric",
+      "druid",
+      "paladin",
+      "ranger"
+    ],
+    "subclasses": [
+      {
+        "classId": "bard",
+        "subclassId": "lore"
+      },
+      {
+        "classId": "cleric",
+        "subclassId": "life"
+      },
+      {
+        "classId": "paladin",
+        "subclassId": "devotion"
+      }
+    ]
+  },
+  "levitate": {
+    "classes": [
+      "artificer",
+      "sorcerer",
+      "wizard"
+    ],
+    "subclasses": [
+      {
+        "classId": "bard",
+        "subclassId": "lore"
+      },
+      {
+        "classId": "fighter",
+        "subclassId": "eldritch-knight"
+      },
+      {
+        "classId": "rogue",
+        "subclassId": "arcane-trickster"
+      }
+    ]
+  },
+  "locate-animals-or-plants": {
+    "classes": [
+      "bard",
+      "druid",
+      "ranger"
+    ],
+    "subclasses": [
+      {
+        "classId": "bard",
+        "subclassId": "lore"
+      }
+    ]
+  },
+  "locate-object": {
+    "classes": [
+      "bard",
+      "cleric",
+      "druid",
+      "paladin",
+      "ranger",
+      "wizard"
+    ],
+    "subclasses": [
+      {
+        "classId": "bard",
+        "subclassId": "lore"
+      },
+      {
+        "classId": "fighter",
+        "subclassId": "eldritch-knight"
+      },
+      {
+        "classId": "rogue",
+        "subclassId": "arcane-trickster"
+      }
+    ]
+  },
+  "magic-mouth": {
+    "classes": [
+      "artificer",
+      "bard",
+      "wizard"
+    ],
+    "subclasses": [
+      {
+        "classId": "bard",
+        "subclassId": "lore"
+      },
+      {
+        "classId": "fighter",
+        "subclassId": "eldritch-knight"
+      },
+      {
+        "classId": "rogue",
+        "subclassId": "arcane-trickster"
+      }
+    ]
+  },
+  "magic-weapon": {
+    "classes": [
+      "artificer",
+      "paladin",
+      "ranger",
+      "sorcerer",
+      "wizard"
+    ],
+    "subclasses": [
+      {
+        "classId": "bard",
+        "subclassId": "lore"
+      },
+      {
+        "classId": "fighter",
+        "subclassId": "eldritch-knight"
+      },
+      {
+        "classId": "rogue",
+        "subclassId": "arcane-trickster"
+      }
+    ]
+  },
+  "mind-spike": {
+    "classes": [
+      "sorcerer",
+      "warlock",
+      "wizard"
+    ],
+    "subclasses": [
+      {
+        "classId": "bard",
+        "subclassId": "lore"
+      },
+      {
+        "classId": "fighter",
+        "subclassId": "eldritch-knight"
+      },
+      {
+        "classId": "rogue",
+        "subclassId": "arcane-trickster"
+      }
+    ]
+  },
+  "mirror-image": {
+    "classes": [
+      "bard",
+      "sorcerer",
+      "warlock",
+      "wizard"
+    ],
+    "subclasses": [
+      {
+        "classId": "bard",
+        "subclassId": "lore"
+      },
+      {
+        "classId": "druid",
+        "subclassId": "land"
+      },
+      {
+        "classId": "fighter",
+        "subclassId": "eldritch-knight"
+      },
+      {
+        "classId": "rogue",
+        "subclassId": "arcane-trickster"
+      }
+    ]
+  },
+  "misty-step": {
+    "classes": [
+      "sorcerer",
+      "warlock",
+      "wizard"
+    ],
+    "subclasses": [
+      {
+        "classId": "bard",
+        "subclassId": "lore"
+      },
+      {
+        "classId": "druid",
+        "subclassId": "land"
+      },
+      {
+        "classId": "fighter",
+        "subclassId": "eldritch-knight"
+      },
+      {
+        "classId": "rogue",
+        "subclassId": "arcane-trickster"
+      }
+    ]
+  },
+  "moonbeam": {
+    "classes": [
+      "druid"
+    ],
+    "subclasses": [
+      {
+        "classId": "bard",
+        "subclassId": "lore"
+      }
+    ]
+  },
+  "pass-without-trace": {
+    "classes": [
+      "druid",
+      "ranger"
+    ],
+    "subclasses": [
+      {
+        "classId": "bard",
+        "subclassId": "lore"
+      },
+      {
+        "classId": "druid",
+        "subclassId": "land"
+      }
+    ]
+  },
+  "phantasmal-force": {
+    "classes": [
+      "bard",
+      "sorcerer",
+      "wizard"
+    ],
+    "subclasses": [
+      {
+        "classId": "bard",
+        "subclassId": "lore"
+      },
+      {
+        "classId": "fighter",
+        "subclassId": "eldritch-knight"
+      },
+      {
+        "classId": "rogue",
+        "subclassId": "arcane-trickster"
+      }
+    ]
+  },
+  "prayer-of-healing": {
+    "classes": [
+      "cleric",
+      "paladin"
+    ],
+    "subclasses": [
+      {
+        "classId": "bard",
+        "subclassId": "lore"
+      }
+    ]
+  },
+  "protection-from-poison": {
+    "classes": [
+      "artificer",
+      "cleric",
+      "druid",
+      "paladin",
+      "ranger"
+    ],
+    "subclasses": [
+      {
+        "classId": "bard",
+        "subclassId": "lore"
+      }
+    ]
+  },
+  "ray-of-enfeeblement": {
+    "classes": [
+      "warlock",
+      "wizard"
+    ],
+    "subclasses": [
+      {
+        "classId": "bard",
+        "subclassId": "lore"
+      },
+      {
+        "classId": "fighter",
+        "subclassId": "eldritch-knight"
+      },
+      {
+        "classId": "rogue",
+        "subclassId": "arcane-trickster"
+      }
+    ]
+  },
+  "rope-trick": {
+    "classes": [
+      "artificer",
+      "wizard"
+    ],
+    "subclasses": [
+      {
+        "classId": "bard",
+        "subclassId": "lore"
+      },
+      {
+        "classId": "fighter",
+        "subclassId": "eldritch-knight"
+      },
+      {
+        "classId": "rogue",
+        "subclassId": "arcane-trickster"
+      }
+    ]
+  },
+  "scorching-ray": {
+    "classes": [
+      "sorcerer",
+      "wizard"
+    ],
+    "subclasses": [
+      {
+        "classId": "bard",
+        "subclassId": "lore"
+      },
+      {
+        "classId": "cleric",
+        "subclassId": "light"
+      },
+      {
+        "classId": "fighter",
+        "subclassId": "eldritch-knight"
+      },
+      {
+        "classId": "rogue",
+        "subclassId": "arcane-trickster"
+      },
+      {
+        "classId": "warlock",
+        "subclassId": "fiend"
+      },
+      {
+        "classId": "wizard",
+        "subclassId": "evoker"
+      }
+    ]
+  },
+  "see-invisibility": {
+    "classes": [
+      "artificer",
+      "bard",
+      "sorcerer",
+      "wizard"
+    ],
+    "subclasses": [
+      {
+        "classId": "bard",
+        "subclassId": "lore"
+      },
+      {
+        "classId": "cleric",
+        "subclassId": "light"
+      },
+      {
+        "classId": "fighter",
+        "subclassId": "eldritch-knight"
+      },
+      {
+        "classId": "rogue",
+        "subclassId": "arcane-trickster"
+      }
+    ]
+  },
+  "shatter": {
+    "classes": [
+      "bard",
+      "sorcerer",
+      "wizard"
+    ],
+    "subclasses": [
+      {
+        "classId": "bard",
+        "subclassId": "lore"
+      },
+      {
+        "classId": "fighter",
+        "subclassId": "eldritch-knight"
+      },
+      {
+        "classId": "rogue",
+        "subclassId": "arcane-trickster"
+      },
+      {
+        "classId": "wizard",
+        "subclassId": "evoker"
+      }
+    ]
+  },
+  "shining-smite": {
+    "classes": [
+      "paladin"
+    ],
+    "subclasses": []
+  },
+  "silence": {
+    "classes": [
+      "bard",
+      "cleric",
+      "ranger"
+    ],
+    "subclasses": [
+      {
+        "classId": "bard",
+        "subclassId": "lore"
+      },
+      {
+        "classId": "druid",
+        "subclassId": "land"
+      }
+    ]
+  },
+  "spider-climb": {
+    "classes": [
+      "artificer",
+      "sorcerer",
+      "warlock",
+      "wizard"
+    ],
+    "subclasses": [
+      {
+        "classId": "bard",
+        "subclassId": "lore"
+      },
+      {
+        "classId": "druid",
+        "subclassId": "land"
+      },
+      {
+        "classId": "fighter",
+        "subclassId": "eldritch-knight"
+      },
+      {
+        "classId": "rogue",
+        "subclassId": "arcane-trickster"
+      }
+    ]
+  },
+  "spike-growth": {
+    "classes": [
+      "druid",
+      "ranger"
+    ],
+    "subclasses": [
+      {
+        "classId": "bard",
+        "subclassId": "lore"
+      },
+      {
+        "classId": "druid",
+        "subclassId": "land"
+      }
+    ]
+  },
+  "spiritual-weapon": {
+    "classes": [
+      "cleric"
+    ],
+    "subclasses": [
+      {
+        "classId": "bard",
+        "subclassId": "lore"
+      },
+      {
+        "classId": "cleric",
+        "subclassId": "life"
+      }
+    ]
+  },
+  "suggestion": {
+    "classes": [
+      "bard",
+      "sorcerer",
+      "warlock",
+      "wizard"
+    ],
+    "subclasses": [
+      {
+        "classId": "bard",
+        "subclassId": "lore"
+      },
+      {
+        "classId": "fighter",
+        "subclassId": "eldritch-knight"
+      },
+      {
+        "classId": "rogue",
+        "subclassId": "arcane-trickster"
+      },
+      {
+        "classId": "warlock",
+        "subclassId": "fiend"
+      }
+    ]
+  },
+  "warding-bond": {
+    "classes": [
+      "cleric",
+      "paladin"
+    ],
+    "subclasses": [
+      {
+        "classId": "bard",
+        "subclassId": "lore"
+      }
+    ]
+  },
+  "web": {
+    "classes": [
+      "artificer",
+      "sorcerer",
+      "wizard"
+    ],
+    "subclasses": [
+      {
+        "classId": "bard",
+        "subclassId": "lore"
+      },
+      {
+        "classId": "druid",
+        "subclassId": "land"
+      },
+      {
+        "classId": "fighter",
+        "subclassId": "eldritch-knight"
+      },
+      {
+        "classId": "rogue",
+        "subclassId": "arcane-trickster"
+      }
+    ]
+  },
+  "zone-of-truth": {
+    "classes": [
+      "bard",
+      "cleric",
+      "paladin"
+    ],
+    "subclasses": [
+      {
+        "classId": "bard",
+        "subclassId": "lore"
+      },
+      {
+        "classId": "paladin",
+        "subclassId": "devotion"
+      }
+    ]
+  },
+  "animate-dead": {
+    "classes": [
+      "cleric",
+      "wizard"
+    ],
+    "subclasses": [
+      {
+        "classId": "bard",
+        "subclassId": "lore"
+      },
+      {
+        "classId": "fighter",
+        "subclassId": "eldritch-knight"
+      },
+      {
+        "classId": "rogue",
+        "subclassId": "arcane-trickster"
+      }
+    ]
+  },
+  "beacon-of-hope": {
+    "classes": [
+      "cleric"
+    ],
+    "subclasses": [
+      {
+        "classId": "bard",
+        "subclassId": "lore"
+      },
+      {
+        "classId": "cleric",
+        "subclassId": "life"
+      },
+      {
+        "classId": "paladin",
+        "subclassId": "devotion"
+      }
+    ]
+  },
+  "bestow-curse": {
+    "classes": [
+      "bard",
+      "cleric",
+      "wizard"
+    ],
+    "subclasses": [
+      {
+        "classId": "bard",
+        "subclassId": "lore"
+      },
+      {
+        "classId": "fighter",
+        "subclassId": "eldritch-knight"
+      },
+      {
+        "classId": "rogue",
+        "subclassId": "arcane-trickster"
+      }
+    ]
+  },
+  "blink": {
+    "classes": [
+      "artificer",
+      "sorcerer",
+      "wizard"
+    ],
+    "subclasses": [
+      {
+        "classId": "bard",
+        "subclassId": "lore"
+      },
+      {
+        "classId": "fighter",
+        "subclassId": "eldritch-knight"
+      },
+      {
+        "classId": "rogue",
+        "subclassId": "arcane-trickster"
+      }
+    ]
+  },
+  "call-lightning": {
+    "classes": [
+      "druid"
+    ],
+    "subclasses": [
+      {
+        "classId": "bard",
+        "subclassId": "lore"
+      },
+      {
+        "classId": "druid",
+        "subclassId": "land"
+      }
+    ]
+  },
+  "clairvoyance": {
+    "classes": [
+      "bard",
+      "cleric",
+      "sorcerer",
+      "wizard"
+    ],
+    "subclasses": [
+      {
+        "classId": "bard",
+        "subclassId": "lore"
+      },
+      {
+        "classId": "fighter",
+        "subclassId": "eldritch-knight"
+      },
+      {
+        "classId": "rogue",
+        "subclassId": "arcane-trickster"
+      }
+    ]
+  },
+  "conjure-animals": {
+    "classes": [
+      "druid",
+      "ranger"
+    ],
+    "subclasses": [
+      {
+        "classId": "bard",
+        "subclassId": "lore"
+      }
+    ]
+  },
+  "counterspell": {
+    "classes": [
+      "sorcerer",
+      "warlock",
+      "wizard"
+    ],
+    "subclasses": [
+      {
+        "classId": "bard",
+        "subclassId": "lore"
+      },
+      {
+        "classId": "fighter",
+        "subclassId": "eldritch-knight"
+      },
+      {
+        "classId": "rogue",
+        "subclassId": "arcane-trickster"
+      }
+    ]
+  },
+  "create-food-and-water": {
+    "classes": [
+      "artificer",
+      "cleric",
+      "paladin"
+    ],
+    "subclasses": [
+      {
+        "classId": "bard",
+        "subclassId": "lore"
+      },
+      {
+        "classId": "druid",
+        "subclassId": "land"
+      }
+    ]
+  },
+  "daylight": {
+    "classes": [
+      "cleric",
+      "druid",
+      "paladin",
+      "ranger",
+      "sorcerer"
+    ],
+    "subclasses": [
+      {
+        "classId": "bard",
+        "subclassId": "lore"
+      },
+      {
+        "classId": "cleric",
+        "subclassId": "light"
+      },
+      {
+        "classId": "druid",
+        "subclassId": "land"
+      }
+    ]
+  },
+  "dispel-magic": {
+    "classes": [
+      "artificer",
+      "bard",
+      "cleric",
+      "druid",
+      "paladin",
+      "ranger",
+      "sorcerer",
+      "warlock",
+      "wizard"
+    ],
+    "subclasses": [
+      {
+        "classId": "bard",
+        "subclassId": "lore"
+      },
+      {
+        "classId": "fighter",
+        "subclassId": "eldritch-knight"
+      },
+      {
+        "classId": "paladin",
+        "subclassId": "devotion"
+      },
+      {
+        "classId": "rogue",
+        "subclassId": "arcane-trickster"
+      }
+    ]
+  },
+  "fear": {
+    "classes": [
+      "bard",
+      "sorcerer",
+      "warlock",
+      "wizard"
+    ],
+    "subclasses": [
+      {
+        "classId": "bard",
+        "subclassId": "lore"
+      },
+      {
+        "classId": "fighter",
+        "subclassId": "eldritch-knight"
+      },
+      {
+        "classId": "rogue",
+        "subclassId": "arcane-trickster"
+      },
+      {
+        "classId": "sorcerer",
+        "subclassId": "draconic"
+      }
+    ]
+  },
+  "fireball": {
+    "classes": [
+      "sorcerer",
+      "wizard"
+    ],
+    "subclasses": [
+      {
+        "classId": "bard",
+        "subclassId": "lore"
+      },
+      {
+        "classId": "cleric",
+        "subclassId": "light"
+      },
+      {
+        "classId": "druid",
+        "subclassId": "land"
+      },
+      {
+        "classId": "fighter",
+        "subclassId": "eldritch-knight"
+      },
+      {
+        "classId": "rogue",
+        "subclassId": "arcane-trickster"
+      },
+      {
+        "classId": "warlock",
+        "subclassId": "fiend"
+      },
+      {
+        "classId": "wizard",
+        "subclassId": "evoker"
+      }
+    ]
+  },
+  "fly": {
+    "classes": [
+      "artificer",
+      "sorcerer",
+      "warlock",
+      "wizard"
+    ],
+    "subclasses": [
+      {
+        "classId": "bard",
+        "subclassId": "lore"
+      },
+      {
+        "classId": "fighter",
+        "subclassId": "eldritch-knight"
+      },
+      {
+        "classId": "rogue",
+        "subclassId": "arcane-trickster"
+      },
+      {
+        "classId": "sorcerer",
+        "subclassId": "draconic"
+      }
+    ]
+  },
+  "gaseous-form": {
+    "classes": [
+      "sorcerer",
+      "warlock",
+      "wizard"
+    ],
+    "subclasses": [
+      {
+        "classId": "bard",
+        "subclassId": "lore"
+      },
+      {
+        "classId": "druid",
+        "subclassId": "land"
+      },
+      {
+        "classId": "fighter",
+        "subclassId": "eldritch-knight"
+      },
+      {
+        "classId": "rogue",
+        "subclassId": "arcane-trickster"
+      }
+    ]
+  },
+  "glyph-of-warding": {
+    "classes": [
+      "artificer",
+      "bard",
+      "cleric",
+      "wizard"
+    ],
+    "subclasses": [
+      {
+        "classId": "bard",
+        "subclassId": "lore"
+      },
+      {
+        "classId": "fighter",
+        "subclassId": "eldritch-knight"
+      },
+      {
+        "classId": "rogue",
+        "subclassId": "arcane-trickster"
+      }
+    ]
+  },
+  "haste": {
+    "classes": [
+      "artificer",
+      "sorcerer",
+      "wizard"
+    ],
+    "subclasses": [
+      {
+        "classId": "bard",
+        "subclassId": "lore"
+      },
+      {
+        "classId": "druid",
+        "subclassId": "land"
+      },
+      {
+        "classId": "fighter",
+        "subclassId": "eldritch-knight"
+      },
+      {
+        "classId": "rogue",
+        "subclassId": "arcane-trickster"
+      }
+    ]
+  },
+  "hypnotic-pattern": {
+    "classes": [
+      "bard",
+      "sorcerer",
+      "warlock",
+      "wizard"
+    ],
+    "subclasses": [
+      {
+        "classId": "bard",
+        "subclassId": "lore"
+      },
+      {
+        "classId": "fighter",
+        "subclassId": "eldritch-knight"
+      },
+      {
+        "classId": "rogue",
+        "subclassId": "arcane-trickster"
+      }
+    ]
+  },
+  "lightning-bolt": {
+    "classes": [
+      "sorcerer",
+      "wizard"
+    ],
+    "subclasses": [
+      {
+        "classId": "bard",
+        "subclassId": "lore"
+      },
+      {
+        "classId": "druid",
+        "subclassId": "land"
+      },
+      {
+        "classId": "fighter",
+        "subclassId": "eldritch-knight"
+      },
+      {
+        "classId": "rogue",
+        "subclassId": "arcane-trickster"
+      },
+      {
+        "classId": "wizard",
+        "subclassId": "evoker"
+      }
+    ]
+  },
+  "magic-circle": {
+    "classes": [
+      "cleric",
+      "paladin",
+      "warlock",
+      "wizard"
+    ],
+    "subclasses": [
+      {
+        "classId": "bard",
+        "subclassId": "lore"
+      },
+      {
+        "classId": "fighter",
+        "subclassId": "eldritch-knight"
+      },
+      {
+        "classId": "rogue",
+        "subclassId": "arcane-trickster"
+      }
+    ]
+  },
+  "major-image": {
+    "classes": [
+      "bard",
+      "sorcerer",
+      "warlock",
+      "wizard"
+    ],
+    "subclasses": [
+      {
+        "classId": "bard",
+        "subclassId": "lore"
+      },
+      {
+        "classId": "fighter",
+        "subclassId": "eldritch-knight"
+      },
+      {
+        "classId": "rogue",
+        "subclassId": "arcane-trickster"
+      }
+    ]
+  },
+  "mass-healing-word": {
+    "classes": [
+      "bard",
+      "cleric"
+    ],
+    "subclasses": [
+      {
+        "classId": "bard",
+        "subclassId": "lore"
+      },
+      {
+        "classId": "cleric",
+        "subclassId": "life"
+      }
+    ]
+  },
+  "meld-into-stone": {
+    "classes": [
+      "cleric",
+      "druid",
+      "ranger"
+    ],
+    "subclasses": [
+      {
+        "classId": "bard",
+        "subclassId": "lore"
+      },
+      {
+        "classId": "druid",
+        "subclassId": "land"
+      }
+    ]
+  },
+  "nondetection": {
+    "classes": [
+      "bard",
+      "ranger",
+      "wizard"
+    ],
+    "subclasses": [
+      {
+        "classId": "bard",
+        "subclassId": "lore"
+      },
+      {
+        "classId": "fighter",
+        "subclassId": "eldritch-knight"
+      },
+      {
+        "classId": "rogue",
+        "subclassId": "arcane-trickster"
+      }
+    ]
+  },
+  "phantom-steed": {
+    "classes": [
+      "wizard"
+    ],
+    "subclasses": [
+      {
+        "classId": "bard",
+        "subclassId": "lore"
+      },
+      {
+        "classId": "fighter",
+        "subclassId": "eldritch-knight"
+      },
+      {
+        "classId": "rogue",
+        "subclassId": "arcane-trickster"
+      }
+    ]
+  },
+  "plant-growth": {
+    "classes": [
+      "bard",
+      "druid",
+      "ranger"
+    ],
+    "subclasses": [
+      {
+        "classId": "bard",
+        "subclassId": "lore"
+      },
+      {
+        "classId": "druid",
+        "subclassId": "land"
+      }
+    ]
+  },
+  "protection-from-energy": {
+    "classes": [
+      "artificer",
+      "cleric",
+      "druid",
+      "ranger",
+      "sorcerer",
+      "wizard"
+    ],
+    "subclasses": [
+      {
+        "classId": "bard",
+        "subclassId": "lore"
+      },
+      {
+        "classId": "druid",
+        "subclassId": "land"
+      },
+      {
+        "classId": "fighter",
+        "subclassId": "eldritch-knight"
+      },
+      {
+        "classId": "rogue",
+        "subclassId": "arcane-trickster"
+      }
+    ]
+  },
+  "remove-curse": {
+    "classes": [
+      "cleric",
+      "paladin",
+      "warlock",
+      "wizard"
+    ],
+    "subclasses": [
+      {
+        "classId": "bard",
+        "subclassId": "lore"
+      },
+      {
+        "classId": "fighter",
+        "subclassId": "eldritch-knight"
+      },
+      {
+        "classId": "rogue",
+        "subclassId": "arcane-trickster"
+      }
+    ]
+  },
+  "revivify": {
+    "classes": [
+      "artificer",
+      "cleric",
+      "druid",
+      "paladin",
+      "ranger"
+    ],
+    "subclasses": [
+      {
+        "classId": "bard",
+        "subclassId": "lore"
+      },
+      {
+        "classId": "cleric",
+        "subclassId": "life"
+      }
+    ]
+  },
+  "sending": {
+    "classes": [
+      "bard",
+      "cleric",
+      "wizard"
+    ],
+    "subclasses": [
+      {
+        "classId": "bard",
+        "subclassId": "lore"
+      },
+      {
+        "classId": "fighter",
+        "subclassId": "eldritch-knight"
+      },
+      {
+        "classId": "rogue",
+        "subclassId": "arcane-trickster"
+      }
+    ]
+  },
+  "sleet-storm": {
+    "classes": [
+      "druid",
+      "sorcerer",
+      "wizard"
+    ],
+    "subclasses": [
+      {
+        "classId": "bard",
+        "subclassId": "lore"
+      },
+      {
+        "classId": "druid",
+        "subclassId": "land"
+      },
+      {
+        "classId": "fighter",
+        "subclassId": "eldritch-knight"
+      },
+      {
+        "classId": "rogue",
+        "subclassId": "arcane-trickster"
+      }
+    ]
+  },
+  "slow": {
+    "classes": [
+      "bard",
+      "sorcerer",
+      "wizard"
+    ],
+    "subclasses": [
+      {
+        "classId": "bard",
+        "subclassId": "lore"
+      },
+      {
+        "classId": "druid",
+        "subclassId": "land"
+      },
+      {
+        "classId": "fighter",
+        "subclassId": "eldritch-knight"
+      },
+      {
+        "classId": "rogue",
+        "subclassId": "arcane-trickster"
+      }
+    ]
+  },
+  "speak-with-dead": {
+    "classes": [
+      "bard",
+      "cleric",
+      "wizard"
+    ],
+    "subclasses": [
+      {
+        "classId": "bard",
+        "subclassId": "lore"
+      },
+      {
+        "classId": "fighter",
+        "subclassId": "eldritch-knight"
+      },
+      {
+        "classId": "rogue",
+        "subclassId": "arcane-trickster"
+      }
+    ]
+  },
+  "speak-with-plants": {
+    "classes": [
+      "bard",
+      "druid",
+      "ranger"
+    ],
+    "subclasses": [
+      {
+        "classId": "bard",
+        "subclassId": "lore"
+      }
+    ]
+  },
+  "spirit-guardians": {
+    "classes": [
+      "cleric"
+    ],
+    "subclasses": [
+      {
+        "classId": "bard",
+        "subclassId": "lore"
+      }
+    ]
+  },
+  "stinking-cloud": {
+    "classes": [
+      "bard",
+      "sorcerer",
+      "wizard"
+    ],
+    "subclasses": [
+      {
+        "classId": "bard",
+        "subclassId": "lore"
+      },
+      {
+        "classId": "druid",
+        "subclassId": "land"
+      },
+      {
+        "classId": "fighter",
+        "subclassId": "eldritch-knight"
+      },
+      {
+        "classId": "rogue",
+        "subclassId": "arcane-trickster"
+      },
+      {
+        "classId": "warlock",
+        "subclassId": "fiend"
+      }
+    ]
+  },
+  "tongues": {
+    "classes": [
+      "bard",
+      "cleric",
+      "sorcerer",
+      "warlock",
+      "wizard"
+    ],
+    "subclasses": [
+      {
+        "classId": "bard",
+        "subclassId": "lore"
+      },
+      {
+        "classId": "fighter",
+        "subclassId": "eldritch-knight"
+      },
+      {
+        "classId": "rogue",
+        "subclassId": "arcane-trickster"
+      }
+    ]
+  },
+  "vampiric-touch": {
+    "classes": [
+      "sorcerer",
+      "warlock",
+      "wizard"
+    ],
+    "subclasses": [
+      {
+        "classId": "bard",
+        "subclassId": "lore"
+      },
+      {
+        "classId": "fighter",
+        "subclassId": "eldritch-knight"
+      },
+      {
+        "classId": "rogue",
+        "subclassId": "arcane-trickster"
+      }
+    ]
+  },
+  "water-breathing": {
+    "classes": [
+      "artificer",
+      "druid",
+      "ranger",
+      "sorcerer",
+      "wizard"
+    ],
+    "subclasses": [
+      {
+        "classId": "bard",
+        "subclassId": "lore"
+      },
+      {
+        "classId": "druid",
+        "subclassId": "land"
+      },
+      {
+        "classId": "fighter",
+        "subclassId": "eldritch-knight"
+      },
+      {
+        "classId": "rogue",
+        "subclassId": "arcane-trickster"
+      }
+    ]
+  },
+  "water-walk": {
+    "classes": [
+      "artificer",
+      "cleric",
+      "druid",
+      "ranger",
+      "sorcerer"
+    ],
+    "subclasses": [
+      {
+        "classId": "bard",
+        "subclassId": "lore"
+      },
+      {
+        "classId": "druid",
+        "subclassId": "land"
+      }
+    ]
+  },
+  "wind-wall": {
+    "classes": [
+      "druid",
+      "ranger"
+    ],
+    "subclasses": [
+      {
+        "classId": "bard",
+        "subclassId": "lore"
+      }
+    ]
+  },
+  "arcane-eye": {
+    "classes": [
+      "artificer",
+      "wizard"
+    ],
+    "subclasses": [
+      {
+        "classId": "cleric",
+        "subclassId": "light"
+      },
+      {
+        "classId": "fighter",
+        "subclassId": "eldritch-knight"
+      },
+      {
+        "classId": "rogue",
+        "subclassId": "arcane-trickster"
+      },
+      {
+        "classId": "sorcerer",
+        "subclassId": "draconic"
+      }
+    ]
+  },
+  "aura-of-life": {
+    "classes": [
+      "cleric",
+      "paladin"
+    ],
+    "subclasses": [
+      {
+        "classId": "cleric",
+        "subclassId": "life"
+      }
+    ]
+  },
+  "banishment": {
+    "classes": [
+      "cleric",
+      "paladin",
+      "sorcerer",
+      "warlock",
+      "wizard"
+    ],
+    "subclasses": [
+      {
+        "classId": "fighter",
+        "subclassId": "eldritch-knight"
+      },
+      {
+        "classId": "rogue",
+        "subclassId": "arcane-trickster"
+      }
+    ]
+  },
+  "blight": {
+    "classes": [
+      "druid",
+      "sorcerer",
+      "warlock",
+      "wizard"
+    ],
+    "subclasses": [
+      {
+        "classId": "druid",
+        "subclassId": "land"
+      },
+      {
+        "classId": "fighter",
+        "subclassId": "eldritch-knight"
+      },
+      {
+        "classId": "rogue",
+        "subclassId": "arcane-trickster"
+      }
+    ]
+  },
+  "charm-monster": {
+    "classes": [
+      "bard",
+      "druid",
+      "sorcerer",
+      "warlock",
+      "wizard"
+    ],
+    "subclasses": [
+      {
+        "classId": "fighter",
+        "subclassId": "eldritch-knight"
+      },
+      {
+        "classId": "rogue",
+        "subclassId": "arcane-trickster"
+      },
+      {
+        "classId": "sorcerer",
+        "subclassId": "draconic"
+      }
+    ]
+  },
+  "compulsion": {
+    "classes": [
+      "bard"
+    ],
+    "subclasses": []
+  },
+  "confusion": {
+    "classes": [
+      "bard",
+      "druid",
+      "sorcerer",
+      "wizard"
+    ],
+    "subclasses": [
+      {
+        "classId": "fighter",
+        "subclassId": "eldritch-knight"
+      },
+      {
+        "classId": "rogue",
+        "subclassId": "arcane-trickster"
+      }
+    ]
+  },
+  "conjure-minor-elementals": {
+    "classes": [
+      "druid",
+      "wizard"
+    ],
+    "subclasses": [
+      {
+        "classId": "fighter",
+        "subclassId": "eldritch-knight"
+      },
+      {
+        "classId": "rogue",
+        "subclassId": "arcane-trickster"
+      }
+    ]
+  },
+  "conjure-woodland-beings": {
+    "classes": [
+      "druid",
+      "ranger"
+    ],
+    "subclasses": []
+  },
+  "control-water": {
+    "classes": [
+      "cleric",
+      "druid",
+      "wizard"
+    ],
+    "subclasses": [
+      {
+        "classId": "druid",
+        "subclassId": "land"
+      },
+      {
+        "classId": "fighter",
+        "subclassId": "eldritch-knight"
+      },
+      {
+        "classId": "rogue",
+        "subclassId": "arcane-trickster"
+      }
+    ]
+  },
+  "death-ward": {
+    "classes": [
+      "cleric",
+      "paladin"
+    ],
+    "subclasses": [
+      {
+        "classId": "cleric",
+        "subclassId": "life"
+      }
+    ]
+  },
+  "dimension-door": {
+    "classes": [
+      "bard",
+      "sorcerer",
+      "warlock",
+      "wizard"
+    ],
+    "subclasses": [
+      {
+        "classId": "fighter",
+        "subclassId": "eldritch-knight"
+      },
+      {
+        "classId": "rogue",
+        "subclassId": "arcane-trickster"
+      }
+    ]
+  },
+  "divination": {
+    "classes": [
+      "cleric",
+      "druid",
+      "wizard"
+    ],
+    "subclasses": [
+      {
+        "classId": "druid",
+        "subclassId": "land"
+      },
+      {
+        "classId": "fighter",
+        "subclassId": "eldritch-knight"
+      },
+      {
+        "classId": "rogue",
+        "subclassId": "arcane-trickster"
+      }
+    ]
+  },
+  "dominate-beast": {
+    "classes": [
+      "druid",
+      "ranger",
+      "sorcerer"
+    ],
+    "subclasses": []
+  },
+  "fabricate": {
+    "classes": [
+      "artificer",
+      "wizard"
+    ],
+    "subclasses": [
+      {
+        "classId": "fighter",
+        "subclassId": "eldritch-knight"
+      },
+      {
+        "classId": "rogue",
+        "subclassId": "arcane-trickster"
+      }
+    ]
+  },
+  "fire-shield": {
+    "classes": [
+      "druid",
+      "sorcerer",
+      "wizard"
+    ],
+    "subclasses": [
+      {
+        "classId": "fighter",
+        "subclassId": "eldritch-knight"
+      },
+      {
+        "classId": "rogue",
+        "subclassId": "arcane-trickster"
+      },
+      {
+        "classId": "warlock",
+        "subclassId": "fiend"
+      },
+      {
+        "classId": "wizard",
+        "subclassId": "evoker"
+      }
+    ]
+  },
+  "freedom-of-movement": {
+    "classes": [
+      "artificer",
+      "bard",
+      "cleric",
+      "druid",
+      "ranger"
+    ],
+    "subclasses": [
+      {
+        "classId": "druid",
+        "subclassId": "land"
+      },
+      {
+        "classId": "paladin",
+        "subclassId": "devotion"
+      }
+    ]
+  },
+  "giant-insect": {
+    "classes": [
+      "druid"
+    ],
+    "subclasses": []
+  },
+  "greater-invisibility": {
+    "classes": [
+      "bard",
+      "sorcerer",
+      "wizard"
+    ],
+    "subclasses": [
+      {
+        "classId": "druid",
+        "subclassId": "land"
+      },
+      {
+        "classId": "fighter",
+        "subclassId": "eldritch-knight"
+      },
+      {
+        "classId": "rogue",
+        "subclassId": "arcane-trickster"
+      }
+    ]
+  },
+  "guardian-of-faith": {
+    "classes": [
+      "cleric"
+    ],
+    "subclasses": [
+      {
+        "classId": "cleric",
+        "subclassId": "life"
+      },
+      {
+        "classId": "cleric",
+        "subclassId": "light"
+      },
+      {
+        "classId": "paladin",
+        "subclassId": "devotion"
+      }
+    ]
+  },
+  "hallucinatory-terrain": {
+    "classes": [
+      "bard",
+      "druid",
+      "warlock",
+      "wizard"
+    ],
+    "subclasses": [
+      {
+        "classId": "druid",
+        "subclassId": "land"
+      },
+      {
+        "classId": "fighter",
+        "subclassId": "eldritch-knight"
+      },
+      {
+        "classId": "rogue",
+        "subclassId": "arcane-trickster"
+      }
+    ]
+  },
+  "ice-storm": {
+    "classes": [
+      "druid",
+      "sorcerer",
+      "wizard"
+    ],
+    "subclasses": [
+      {
+        "classId": "druid",
+        "subclassId": "land"
+      },
+      {
+        "classId": "fighter",
+        "subclassId": "eldritch-knight"
+      },
+      {
+        "classId": "rogue",
+        "subclassId": "arcane-trickster"
+      },
+      {
+        "classId": "wizard",
+        "subclassId": "evoker"
+      }
+    ]
+  },
+  "locate-creature": {
+    "classes": [
+      "bard",
+      "cleric",
+      "druid",
+      "paladin",
+      "ranger",
+      "wizard"
+    ],
+    "subclasses": [
+      {
+        "classId": "druid",
+        "subclassId": "land"
+      },
+      {
+        "classId": "fighter",
+        "subclassId": "eldritch-knight"
+      },
+      {
+        "classId": "rogue",
+        "subclassId": "arcane-trickster"
+      }
+    ]
+  },
+  "phantasmal-killer": {
+    "classes": [
+      "bard",
+      "wizard"
+    ],
+    "subclasses": [
+      {
+        "classId": "fighter",
+        "subclassId": "eldritch-knight"
+      },
+      {
+        "classId": "rogue",
+        "subclassId": "arcane-trickster"
+      }
+    ]
+  },
+  "polymorph": {
+    "classes": [
+      "bard",
+      "druid",
+      "sorcerer",
+      "wizard"
+    ],
+    "subclasses": [
+      {
+        "classId": "druid",
+        "subclassId": "land"
+      },
+      {
+        "classId": "fighter",
+        "subclassId": "eldritch-knight"
+      },
+      {
+        "classId": "rogue",
+        "subclassId": "arcane-trickster"
+      }
+    ]
+  },
+  "stone-shape": {
+    "classes": [
+      "artificer",
+      "cleric",
+      "druid",
+      "wizard"
+    ],
+    "subclasses": [
+      {
+        "classId": "druid",
+        "subclassId": "land"
+      },
+      {
+        "classId": "fighter",
+        "subclassId": "eldritch-knight"
+      },
+      {
+        "classId": "rogue",
+        "subclassId": "arcane-trickster"
+      }
+    ]
+  },
+  "stoneskin": {
+    "classes": [
+      "artificer",
+      "druid",
+      "ranger",
+      "sorcerer",
+      "wizard"
+    ],
+    "subclasses": [
+      {
+        "classId": "druid",
+        "subclassId": "land"
+      },
+      {
+        "classId": "fighter",
+        "subclassId": "eldritch-knight"
+      },
+      {
+        "classId": "rogue",
+        "subclassId": "arcane-trickster"
+      }
+    ]
+  },
+  "vitriolic-sphere": {
+    "classes": [
+      "sorcerer",
+      "wizard"
+    ],
+    "subclasses": [
+      {
+        "classId": "fighter",
+        "subclassId": "eldritch-knight"
+      },
+      {
+        "classId": "rogue",
+        "subclassId": "arcane-trickster"
+      },
+      {
+        "classId": "wizard",
+        "subclassId": "evoker"
+      }
+    ]
+  },
+  "wall-of-fire": {
+    "classes": [
+      "druid",
+      "sorcerer",
+      "wizard"
+    ],
+    "subclasses": [
+      {
+        "classId": "cleric",
+        "subclassId": "light"
+      },
+      {
+        "classId": "fighter",
+        "subclassId": "eldritch-knight"
+      },
+      {
+        "classId": "rogue",
+        "subclassId": "arcane-trickster"
+      },
+      {
+        "classId": "warlock",
+        "subclassId": "fiend"
+      },
+      {
+        "classId": "wizard",
+        "subclassId": "evoker"
+      }
+    ]
+  },
+  "animate-objects": {
+    "classes": [
+      "artificer",
+      "bard",
+      "sorcerer",
+      "wizard"
+    ],
+    "subclasses": []
+  },
+  "antilife-shell": {
+    "classes": [
+      "druid"
+    ],
+    "subclasses": []
+  },
+  "awaken": {
+    "classes": [
+      "bard",
+      "druid"
+    ],
+    "subclasses": []
+  },
+  "cloudkill": {
+    "classes": [
+      "sorcerer",
+      "wizard"
+    ],
+    "subclasses": [
+      {
+        "classId": "druid",
+        "subclassId": "land"
+      }
+    ]
+  },
+  "commune-with-nature": {
+    "classes": [
+      "druid",
+      "ranger"
+    ],
+    "subclasses": [
+      {
+        "classId": "druid",
+        "subclassId": "land"
+      }
+    ]
+  },
+  "commune": {
+    "classes": [
+      "cleric"
+    ],
+    "subclasses": [
+      {
+        "classId": "paladin",
+        "subclassId": "devotion"
+      }
+    ]
+  },
+  "cone-of-cold": {
+    "classes": [
+      "druid",
+      "sorcerer",
+      "wizard"
+    ],
+    "subclasses": [
+      {
+        "classId": "druid",
+        "subclassId": "land"
+      },
+      {
+        "classId": "wizard",
+        "subclassId": "evoker"
+      }
+    ]
+  },
+  "conjure-elemental": {
+    "classes": [
+      "druid",
+      "wizard"
+    ],
+    "subclasses": [
+      {
+        "classId": "druid",
+        "subclassId": "land"
+      }
+    ]
+  },
+  "contact-other-plane": {
+    "classes": [
+      "warlock",
+      "wizard"
+    ],
+    "subclasses": []
+  },
+  "contagion": {
+    "classes": [
+      "cleric",
+      "druid"
+    ],
+    "subclasses": []
+  },
+  "creation": {
+    "classes": [
+      "artificer",
+      "sorcerer",
+      "wizard"
+    ],
+    "subclasses": []
+  },
+  "dispel-evil-and-good": {
+    "classes": [
+      "cleric",
+      "paladin"
+    ],
+    "subclasses": []
+  },
+  "dominate-person": {
+    "classes": [
+      "bard",
+      "sorcerer",
+      "wizard"
+    ],
+    "subclasses": []
+  },
+  "dream": {
+    "classes": [
+      "bard",
+      "warlock",
+      "wizard"
+    ],
+    "subclasses": [
+      {
+        "classId": "druid",
+        "subclassId": "land"
+      }
+    ]
+  },
+  "flame-strike": {
+    "classes": [
+      "cleric"
+    ],
+    "subclasses": [
+      {
+        "classId": "cleric",
+        "subclassId": "light"
+      },
+      {
+        "classId": "paladin",
+        "subclassId": "devotion"
+      },
+      {
+        "classId": "warlock",
+        "subclassId": "fiend"
+      }
+    ]
+  },
+  "geas": {
+    "classes": [
+      "bard",
+      "cleric",
+      "druid",
+      "paladin",
+      "wizard"
+    ],
+    "subclasses": [
+      {
+        "classId": "warlock",
+        "subclassId": "fiend"
+      }
+    ]
+  },
+  "greater-restoration": {
+    "classes": [
+      "artificer",
+      "bard",
+      "cleric",
+      "druid",
+      "paladin",
+      "ranger"
+    ],
+    "subclasses": [
+      {
+        "classId": "cleric",
+        "subclassId": "life"
+      }
+    ]
+  },
+  "hallow": {
+    "classes": [
+      "cleric"
+    ],
+    "subclasses": [
+      {
+        "classId": "warlock",
+        "subclassId": "fiend"
+      }
+    ]
+  },
+  "hold-monster": {
+    "classes": [
+      "bard",
+      "sorcerer",
+      "warlock",
+      "wizard"
+    ],
+    "subclasses": []
+  },
+  "insect-plague": {
+    "classes": [
+      "cleric",
+      "druid",
+      "sorcerer"
+    ],
+    "subclasses": [
+      {
+        "classId": "druid",
+        "subclassId": "land"
+      },
+      {
+        "classId": "warlock",
+        "subclassId": "fiend"
+      }
+    ]
+  },
+  "legend-lore": {
+    "classes": [
+      "bard",
+      "cleric",
+      "wizard"
+    ],
+    "subclasses": [
+      {
+        "classId": "sorcerer",
+        "subclassId": "draconic"
+      }
+    ]
+  },
+  "mass-cure-wounds": {
+    "classes": [
+      "bard",
+      "cleric",
+      "druid"
+    ],
+    "subclasses": [
+      {
+        "classId": "cleric",
+        "subclassId": "life"
+      }
+    ]
+  },
+  "mislead": {
+    "classes": [
+      "bard",
+      "warlock",
+      "wizard"
+    ],
+    "subclasses": []
+  },
+  "modify-memory": {
+    "classes": [
+      "bard",
+      "wizard"
+    ],
+    "subclasses": []
+  },
+  "passwall": {
+    "classes": [
+      "wizard"
+    ],
+    "subclasses": [
+      {
+        "classId": "druid",
+        "subclassId": "land"
+      }
+    ]
+  },
+  "planar-binding": {
+    "classes": [
+      "bard",
+      "cleric",
+      "druid",
+      "warlock",
+      "wizard"
+    ],
+    "subclasses": []
+  },
+  "raise-dead": {
+    "classes": [
+      "bard",
+      "cleric",
+      "paladin"
+    ],
+    "subclasses": [
+      {
+        "classId": "cleric",
+        "subclassId": "life"
+      }
+    ]
+  },
+  "reincarnate": {
+    "classes": [
+      "druid"
+    ],
+    "subclasses": []
+  },
+  "scrying": {
+    "classes": [
+      "bard",
+      "cleric",
+      "druid",
+      "warlock",
+      "wizard"
+    ],
+    "subclasses": [
+      {
+        "classId": "cleric",
+        "subclassId": "light"
+      },
+      {
+        "classId": "druid",
+        "subclassId": "land"
+      }
+    ]
+  },
+  "seeming": {
+    "classes": [
+      "bard",
+      "sorcerer",
+      "wizard"
+    ],
+    "subclasses": []
+  },
+  "summon-dragon": {
+    "classes": [
+      "wizard"
+    ],
+    "subclasses": [
+      {
+        "classId": "sorcerer",
+        "subclassId": "draconic"
+      }
+    ]
+  },
+  "telekinesis": {
+    "classes": [
+      "sorcerer",
+      "wizard"
+    ],
+    "subclasses": []
+  },
+  "teleportation-circle": {
+    "classes": [
+      "bard",
+      "sorcerer",
+      "warlock",
+      "wizard"
+    ],
+    "subclasses": []
+  },
+  "tree-stride": {
+    "classes": [
+      "druid",
+      "ranger"
+    ],
+    "subclasses": [
+      {
+        "classId": "druid",
+        "subclassId": "land"
+      }
+    ]
+  },
+  "wall-of-force": {
+    "classes": [
+      "wizard"
+    ],
+    "subclasses": [
+      {
+        "classId": "wizard",
+        "subclassId": "evoker"
+      }
+    ]
+  },
+  "wall-of-stone": {
+    "classes": [
+      "artificer",
+      "druid",
+      "sorcerer",
+      "wizard"
+    ],
+    "subclasses": [
+      {
+        "classId": "druid",
+        "subclassId": "land"
+      },
+      {
+        "classId": "wizard",
+        "subclassId": "evoker"
+      }
+    ]
+  },
+  "blade-barrier": {
+    "classes": [
+      "cleric"
+    ],
+    "subclasses": []
+  },
+  "chain-lightning": {
+    "classes": [
+      "sorcerer",
+      "wizard"
+    ],
+    "subclasses": [
+      {
+        "classId": "wizard",
+        "subclassId": "evoker"
+      }
+    ]
+  },
+  "circle-of-death": {
+    "classes": [
+      "sorcerer",
+      "warlock",
+      "wizard"
+    ],
+    "subclasses": []
+  },
+  "conjure-fey": {
+    "classes": [
+      "druid"
+    ],
+    "subclasses": []
+  },
+  "contingency": {
+    "classes": [
+      "wizard"
+    ],
+    "subclasses": []
+  },
+  "create-undead": {
+    "classes": [
+      "cleric",
+      "warlock",
+      "wizard"
+    ],
+    "subclasses": []
+  },
+  "disintegrate": {
+    "classes": [
+      "sorcerer",
+      "wizard"
+    ],
+    "subclasses": []
+  },
+  "eyebite": {
+    "classes": [
+      "bard",
+      "sorcerer",
+      "warlock",
+      "wizard"
+    ],
+    "subclasses": []
+  },
+  "find-the-path": {
+    "classes": [
+      "bard",
+      "cleric",
+      "druid"
+    ],
+    "subclasses": []
+  },
+  "flesh-to-stone": {
+    "classes": [
+      "druid",
+      "sorcerer",
+      "wizard"
+    ],
+    "subclasses": []
+  },
+  "forbiddance": {
+    "classes": [
+      "cleric"
+    ],
+    "subclasses": []
+  },
+  "globe-of-invulnerability": {
+    "classes": [
+      "sorcerer",
+      "wizard"
+    ],
+    "subclasses": []
+  },
+  "guards-and-wards": {
+    "classes": [
+      "bard",
+      "wizard"
+    ],
+    "subclasses": []
+  },
+  "harm": {
+    "classes": [
+      "cleric"
+    ],
+    "subclasses": []
+  },
+  "heal": {
+    "classes": [
+      "cleric",
+      "druid"
+    ],
+    "subclasses": []
+  },
+  "heroes-feast": {
+    "classes": [
+      "bard",
+      "cleric",
+      "druid"
+    ],
+    "subclasses": []
+  },
+  "magic-jar": {
+    "classes": [
+      "wizard"
+    ],
+    "subclasses": []
+  },
+  "mass-suggestion": {
+    "classes": [
+      "bard",
+      "sorcerer",
+      "wizard"
+    ],
+    "subclasses": []
+  },
+  "move-earth": {
+    "classes": [
+      "druid",
+      "sorcerer",
+      "wizard"
+    ],
+    "subclasses": []
+  },
+  "planar-ally": {
+    "classes": [
+      "cleric"
+    ],
+    "subclasses": []
+  },
+  "programmed-illusion": {
+    "classes": [
+      "bard",
+      "wizard"
+    ],
+    "subclasses": []
+  },
+  "sunbeam": {
+    "classes": [
+      "cleric",
+      "druid",
+      "sorcerer",
+      "wizard"
+    ],
+    "subclasses": [
+      {
+        "classId": "wizard",
+        "subclassId": "evoker"
+      }
+    ]
+  },
+  "transport-via-plants": {
+    "classes": [
+      "druid"
+    ],
+    "subclasses": []
+  },
+  "true-seeing": {
+    "classes": [
+      "bard",
+      "cleric",
+      "sorcerer",
+      "warlock",
+      "wizard"
+    ],
+    "subclasses": []
+  },
+  "wall-of-ice": {
+    "classes": [
+      "wizard"
+    ],
+    "subclasses": [
+      {
+        "classId": "wizard",
+        "subclassId": "evoker"
+      }
+    ]
+  },
+  "wall-of-thorns": {
+    "classes": [
+      "druid"
+    ],
+    "subclasses": []
+  },
+  "wind-walk": {
+    "classes": [
+      "druid"
+    ],
+    "subclasses": []
+  },
+  "word-of-recall": {
+    "classes": [
+      "cleric"
+    ],
+    "subclasses": []
+  },
+  "conjure-celestial": {
+    "classes": [
+      "cleric"
+    ],
+    "subclasses": []
+  },
+  "delayed-blast-fireball": {
+    "classes": [
+      "sorcerer",
+      "wizard"
+    ],
+    "subclasses": [
+      {
+        "classId": "wizard",
+        "subclassId": "evoker"
+      }
+    ]
+  },
+  "divine-word": {
+    "classes": [
+      "cleric"
+    ],
+    "subclasses": []
+  },
+  "etherealness": {
+    "classes": [
+      "bard",
+      "cleric",
+      "sorcerer",
+      "warlock",
+      "wizard"
+    ],
+    "subclasses": []
+  },
+  "finger-of-death": {
+    "classes": [
+      "sorcerer",
+      "warlock",
+      "wizard"
+    ],
+    "subclasses": []
+  },
+  "fire-storm": {
+    "classes": [
+      "cleric",
+      "druid",
+      "sorcerer"
+    ],
+    "subclasses": []
+  },
+  "forcecage": {
+    "classes": [
+      "bard",
+      "warlock",
+      "wizard"
+    ],
+    "subclasses": [
+      {
+        "classId": "wizard",
+        "subclassId": "evoker"
+      }
+    ]
+  },
+  "mirage-arcane": {
+    "classes": [
+      "bard",
+      "druid",
+      "wizard"
+    ],
+    "subclasses": []
+  },
+  "plane-shift": {
+    "classes": [
+      "cleric",
+      "druid",
+      "sorcerer",
+      "warlock",
+      "wizard"
+    ],
+    "subclasses": []
+  },
+  "prismatic-spray": {
+    "classes": [
+      "bard",
+      "sorcerer",
+      "wizard"
+    ],
+    "subclasses": [
+      {
+        "classId": "wizard",
+        "subclassId": "evoker"
+      }
+    ]
+  },
+  "project-image": {
+    "classes": [
+      "bard",
+      "wizard"
+    ],
+    "subclasses": []
+  },
+  "regenerate": {
+    "classes": [
+      "bard",
+      "cleric",
+      "druid"
+    ],
+    "subclasses": []
+  },
+  "resurrection": {
+    "classes": [
+      "bard",
+      "cleric"
+    ],
+    "subclasses": []
+  },
+  "reverse-gravity": {
+    "classes": [
+      "druid",
+      "sorcerer",
+      "wizard"
+    ],
+    "subclasses": []
+  },
+  "sequester": {
+    "classes": [
+      "wizard"
+    ],
+    "subclasses": []
+  },
+  "simulacrum": {
+    "classes": [
+      "wizard"
+    ],
+    "subclasses": []
+  },
+  "symbol": {
+    "classes": [
+      "bard",
+      "cleric",
+      "druid",
+      "wizard"
+    ],
+    "subclasses": []
+  },
+  "teleport": {
+    "classes": [
+      "bard",
+      "sorcerer",
+      "wizard"
+    ],
+    "subclasses": []
+  },
+  "animal-shapes": {
+    "classes": [
+      "druid"
+    ],
+    "subclasses": []
+  },
+  "antimagic-field": {
+    "classes": [
+      "cleric",
+      "wizard"
+    ],
+    "subclasses": []
+  },
+  "antipathy-sympathy": {
+    "classes": [
+      "bard",
+      "druid",
+      "wizard"
+    ],
+    "subclasses": []
+  },
+  "befuddlement": {
+    "classes": [
+      "bard",
+      "druid",
+      "warlock",
+      "wizard"
+    ],
+    "subclasses": []
+  },
+  "clone": {
+    "classes": [
+      "wizard"
+    ],
+    "subclasses": []
+  },
+  "control-weather": {
+    "classes": [
+      "cleric",
+      "druid",
+      "wizard"
+    ],
+    "subclasses": []
+  },
+  "demiplane": {
+    "classes": [
+      "sorcerer",
+      "warlock",
+      "wizard"
+    ],
+    "subclasses": []
+  },
+  "dominate-monster": {
+    "classes": [
+      "bard",
+      "sorcerer",
+      "warlock",
+      "wizard"
+    ],
+    "subclasses": []
+  },
+  "earthquake": {
+    "classes": [
+      "cleric",
+      "druid",
+      "sorcerer"
+    ],
+    "subclasses": []
+  },
+  "glibness": {
+    "classes": [
+      "bard",
+      "warlock"
+    ],
+    "subclasses": []
+  },
+  "holy-aura": {
+    "classes": [
+      "cleric"
+    ],
+    "subclasses": []
+  },
+  "incendiary-cloud": {
+    "classes": [
+      "druid",
+      "sorcerer",
+      "wizard"
+    ],
+    "subclasses": []
+  },
+  "maze": {
+    "classes": [
+      "wizard"
+    ],
+    "subclasses": []
+  },
+  "mind-blank": {
+    "classes": [
+      "bard",
+      "wizard"
+    ],
+    "subclasses": []
+  },
+  "power-word-stun": {
+    "classes": [
+      "bard",
+      "sorcerer",
+      "warlock",
+      "wizard"
+    ],
+    "subclasses": []
+  },
+  "sunburst": {
+    "classes": [
+      "cleric",
+      "druid",
+      "sorcerer",
+      "wizard"
+    ],
+    "subclasses": [
+      {
+        "classId": "wizard",
+        "subclassId": "evoker"
+      }
+    ]
+  },
+  "tsunami": {
+    "classes": [
+      "druid"
+    ],
+    "subclasses": []
+  },
+  "astral-projection": {
+    "classes": [
+      "cleric",
+      "warlock",
+      "wizard"
+    ],
+    "subclasses": []
+  },
+  "foresight": {
+    "classes": [
+      "bard",
+      "druid",
+      "warlock",
+      "wizard"
+    ],
+    "subclasses": []
+  },
+  "gate": {
+    "classes": [
+      "cleric",
+      "sorcerer",
+      "warlock",
+      "wizard"
+    ],
+    "subclasses": []
+  },
+  "imprisonment": {
+    "classes": [
+      "warlock",
+      "wizard"
+    ],
+    "subclasses": []
+  },
+  "mass-heal": {
+    "classes": [
+      "cleric"
+    ],
+    "subclasses": []
+  },
+  "meteor-swarm": {
+    "classes": [
+      "sorcerer",
+      "wizard"
+    ],
+    "subclasses": [
+      {
+        "classId": "wizard",
+        "subclassId": "evoker"
+      }
+    ]
+  },
+  "power-word-heal": {
+    "classes": [
+      "bard",
+      "cleric"
+    ],
+    "subclasses": []
+  },
+  "power-word-kill": {
+    "classes": [
+      "bard",
+      "sorcerer",
+      "warlock",
+      "wizard"
+    ],
+    "subclasses": []
+  },
+  "prismatic-wall": {
+    "classes": [
+      "bard",
+      "wizard"
+    ],
+    "subclasses": []
+  },
+  "shapechange": {
+    "classes": [
+      "druid",
+      "wizard"
+    ],
+    "subclasses": []
+  },
+  "storm-of-vengeance": {
+    "classes": [
+      "druid"
+    ],
+    "subclasses": []
+  },
+  "time-stop": {
+    "classes": [
+      "sorcerer",
+      "wizard"
+    ],
+    "subclasses": []
+  },
+  "true-polymorph": {
+    "classes": [
+      "bard",
+      "warlock",
+      "wizard"
+    ],
+    "subclasses": []
+  },
+  "true-resurrection": {
+    "classes": [
+      "cleric",
+      "druid"
+    ],
+    "subclasses": []
+  },
+  "weird": {
+    "classes": [
+      "warlock",
+      "wizard"
+    ],
+    "subclasses": []
+  },
+  "wish": {
+    "classes": [
+      "sorcerer",
+      "wizard"
+    ],
+    "subclasses": []
+  },
+  "acid-splash": {
+    "classes": [
+      "artificer",
+      "sorcerer",
+      "wizard"
+    ],
+    "subclasses": [
+      {
+        "classId": "bard",
+        "subclassId": "lore"
+      },
+      {
+        "classId": "druid",
+        "subclassId": "land"
+      },
+      {
+        "classId": "fighter",
+        "subclassId": "eldritch-knight"
+      },
+      {
+        "classId": "rogue",
+        "subclassId": "arcane-trickster"
+      },
+      {
+        "classId": "wizard",
+        "subclassId": "evoker"
+      }
+    ]
+  },
+  "chill-touch": {
+    "classes": [
+      "sorcerer",
+      "warlock",
+      "wizard"
+    ],
+    "subclasses": [
+      {
+        "classId": "bard",
+        "subclassId": "lore"
+      },
+      {
+        "classId": "fighter",
+        "subclassId": "eldritch-knight"
+      },
+      {
+        "classId": "rogue",
+        "subclassId": "arcane-trickster"
+      }
+    ]
+  },
+  "dancing-lights": {
+    "classes": [
+      "artificer",
+      "bard",
+      "sorcerer",
+      "wizard"
+    ],
+    "subclasses": [
+      {
+        "classId": "bard",
+        "subclassId": "lore"
+      },
+      {
+        "classId": "fighter",
+        "subclassId": "eldritch-knight"
+      },
+      {
+        "classId": "rogue",
+        "subclassId": "arcane-trickster"
+      }
+    ]
+  },
+  "druidcraft": {
+    "classes": [
+      "druid"
+    ],
+    "subclasses": [
+      {
+        "classId": "bard",
+        "subclassId": "lore"
+      },
+      {
+        "classId": "druid",
+        "subclassId": "land"
+      }
+    ]
+  },
+  "eldritch-blast": {
+    "classes": [
+      "warlock"
+    ],
+    "subclasses": []
+  },
+  "elementalism": {
+    "classes": [
+      "artificer",
+      "druid",
+      "sorcerer",
+      "wizard"
+    ],
+    "subclasses": [
+      {
+        "classId": "bard",
+        "subclassId": "lore"
+      },
+      {
+        "classId": "druid",
+        "subclassId": "land"
+      },
+      {
+        "classId": "fighter",
+        "subclassId": "eldritch-knight"
+      },
+      {
+        "classId": "rogue",
+        "subclassId": "arcane-trickster"
+      }
+    ]
+  },
+  "fire-bolt": {
+    "classes": [
+      "artificer",
+      "sorcerer",
+      "wizard"
+    ],
+    "subclasses": [
+      {
+        "classId": "bard",
+        "subclassId": "lore"
+      },
+      {
+        "classId": "druid",
+        "subclassId": "land"
+      },
+      {
+        "classId": "fighter",
+        "subclassId": "eldritch-knight"
+      },
+      {
+        "classId": "rogue",
+        "subclassId": "arcane-trickster"
+      },
+      {
+        "classId": "wizard",
+        "subclassId": "evoker"
+      }
+    ]
+  },
+  "guidance": {
+    "classes": [
+      "artificer",
+      "cleric",
+      "druid"
+    ],
+    "subclasses": [
+      {
+        "classId": "bard",
+        "subclassId": "lore"
+      },
+      {
+        "classId": "druid",
+        "subclassId": "land"
+      }
+    ]
+  },
+  "light": {
+    "classes": [
+      "artificer",
+      "bard",
+      "cleric",
+      "sorcerer",
+      "wizard"
+    ],
+    "subclasses": [
+      {
+        "classId": "bard",
+        "subclassId": "lore"
+      },
+      {
+        "classId": "cleric",
+        "subclassId": "light"
+      },
+      {
+        "classId": "fighter",
+        "subclassId": "eldritch-knight"
+      },
+      {
+        "classId": "rogue",
+        "subclassId": "arcane-trickster"
+      },
+      {
+        "classId": "wizard",
+        "subclassId": "evoker"
+      }
+    ]
+  },
+  "mage-hand": {
+    "classes": [
+      "artificer",
+      "bard",
+      "sorcerer",
+      "warlock",
+      "wizard"
+    ],
+    "subclasses": [
+      {
+        "classId": "bard",
+        "subclassId": "lore"
+      },
+      {
+        "classId": "fighter",
+        "subclassId": "eldritch-knight"
+      },
+      {
+        "classId": "rogue",
+        "subclassId": "arcane-trickster"
+      }
+    ]
+  },
+  "mending": {
+    "classes": [
+      "bard",
+      "cleric",
+      "druid",
+      "sorcerer",
+      "wizard"
+    ],
+    "subclasses": [
+      {
+        "classId": "bard",
+        "subclassId": "lore"
+      },
+      {
+        "classId": "druid",
+        "subclassId": "land"
+      },
+      {
+        "classId": "fighter",
+        "subclassId": "eldritch-knight"
+      },
+      {
+        "classId": "rogue",
+        "subclassId": "arcane-trickster"
+      }
+    ]
+  },
+  "message": {
+    "classes": [
+      "artificer",
+      "bard",
+      "druid",
+      "sorcerer",
+      "wizard"
+    ],
+    "subclasses": [
+      {
+        "classId": "bard",
+        "subclassId": "lore"
+      },
+      {
+        "classId": "druid",
+        "subclassId": "land"
+      },
+      {
+        "classId": "fighter",
+        "subclassId": "eldritch-knight"
+      },
+      {
+        "classId": "rogue",
+        "subclassId": "arcane-trickster"
+      }
+    ]
+  },
+  "minor-illusion": {
+    "classes": [
+      "bard",
+      "sorcerer",
+      "warlock",
+      "wizard"
+    ],
+    "subclasses": [
+      {
+        "classId": "bard",
+        "subclassId": "lore"
+      },
+      {
+        "classId": "fighter",
+        "subclassId": "eldritch-knight"
+      },
+      {
+        "classId": "rogue",
+        "subclassId": "arcane-trickster"
+      }
+    ]
+  },
+  "poison-spray": {
+    "classes": [
+      "artificer",
+      "druid",
+      "sorcerer",
+      "warlock",
+      "wizard"
+    ],
+    "subclasses": [
+      {
+        "classId": "bard",
+        "subclassId": "lore"
+      },
+      {
+        "classId": "druid",
+        "subclassId": "land"
+      },
+      {
+        "classId": "fighter",
+        "subclassId": "eldritch-knight"
+      },
+      {
+        "classId": "rogue",
+        "subclassId": "arcane-trickster"
+      }
+    ]
+  },
+  "prestidigitation": {
+    "classes": [
+      "artificer",
+      "bard",
+      "sorcerer",
+      "warlock",
+      "wizard"
+    ],
+    "subclasses": [
+      {
+        "classId": "bard",
+        "subclassId": "lore"
+      },
+      {
+        "classId": "fighter",
+        "subclassId": "eldritch-knight"
+      },
+      {
+        "classId": "rogue",
+        "subclassId": "arcane-trickster"
+      }
+    ]
+  },
+  "produce-flame": {
+    "classes": [
+      "druid"
+    ],
+    "subclasses": [
+      {
+        "classId": "bard",
+        "subclassId": "lore"
+      },
+      {
+        "classId": "druid",
+        "subclassId": "land"
+      }
+    ]
+  },
+  "ray-of-frost": {
+    "classes": [
+      "artificer",
+      "sorcerer",
+      "wizard"
+    ],
+    "subclasses": [
+      {
+        "classId": "bard",
+        "subclassId": "lore"
+      },
+      {
+        "classId": "druid",
+        "subclassId": "land"
+      },
+      {
+        "classId": "fighter",
+        "subclassId": "eldritch-knight"
+      },
+      {
+        "classId": "rogue",
+        "subclassId": "arcane-trickster"
+      },
+      {
+        "classId": "wizard",
+        "subclassId": "evoker"
+      }
+    ]
+  },
+  "resistance": {
+    "classes": [
+      "artificer",
+      "cleric",
+      "druid"
+    ],
+    "subclasses": [
+      {
+        "classId": "bard",
+        "subclassId": "lore"
+      },
+      {
+        "classId": "druid",
+        "subclassId": "land"
+      }
+    ]
+  },
+  "sacred-flame": {
+    "classes": [
+      "cleric"
+    ],
+    "subclasses": [
+      {
+        "classId": "bard",
+        "subclassId": "lore"
+      }
+    ]
+  },
+  "shillelagh": {
+    "classes": [
+      "druid"
+    ],
+    "subclasses": [
+      {
+        "classId": "bard",
+        "subclassId": "lore"
+      },
+      {
+        "classId": "druid",
+        "subclassId": "land"
+      }
+    ]
+  },
+  "shocking-grasp": {
+    "classes": [
+      "artificer",
+      "sorcerer",
+      "wizard"
+    ],
+    "subclasses": [
+      {
+        "classId": "bard",
+        "subclassId": "lore"
+      },
+      {
+        "classId": "druid",
+        "subclassId": "land"
+      },
+      {
+        "classId": "fighter",
+        "subclassId": "eldritch-knight"
+      },
+      {
+        "classId": "rogue",
+        "subclassId": "arcane-trickster"
+      },
+      {
+        "classId": "wizard",
+        "subclassId": "evoker"
+      }
+    ]
+  },
+  "sorcerous-burst": {
+    "classes": [
+      "sorcerer"
+    ],
+    "subclasses": []
+  },
+  "spare-the-dying": {
+    "classes": [
+      "artificer",
+      "cleric",
+      "druid"
+    ],
+    "subclasses": [
+      {
+        "classId": "bard",
+        "subclassId": "lore"
+      },
+      {
+        "classId": "druid",
+        "subclassId": "land"
+      }
+    ]
+  },
+  "starry-wisp": {
+    "classes": [
+      "bard",
+      "druid"
+    ],
+    "subclasses": [
+      {
+        "classId": "bard",
+        "subclassId": "lore"
+      },
+      {
+        "classId": "druid",
+        "subclassId": "land"
+      }
+    ]
+  },
+  "thaumaturgy": {
+    "classes": [
+      "cleric"
+    ],
+    "subclasses": [
+      {
+        "classId": "bard",
+        "subclassId": "lore"
+      }
+    ]
+  },
+  "true-strike": {
+    "classes": [
+      "artificer",
+      "bard",
+      "sorcerer",
+      "warlock",
+      "wizard"
+    ],
+    "subclasses": [
+      {
+        "classId": "bard",
+        "subclassId": "lore"
+      },
+      {
+        "classId": "fighter",
+        "subclassId": "eldritch-knight"
+      },
+      {
+        "classId": "rogue",
+        "subclassId": "arcane-trickster"
+      }
+    ]
+  },
+  "vicious-mockery": {
+    "classes": [
+      "bard"
+    ],
+    "subclasses": []
+  }
+}

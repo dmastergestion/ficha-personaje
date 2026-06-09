@@ -61,7 +61,7 @@ export function CharacterListPage() {
           </Link>
         </div>
       ) : (
-        <ul className="grid gap-4 sm:grid-cols-2">
+        <ul className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
           {characters.map((character) => {
             const ca = calcularClaseArmadura(
               character.abilities.dex,

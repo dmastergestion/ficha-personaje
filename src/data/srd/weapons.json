@@ -1,0 +1,665 @@
+[
+  {
+    "id": "battleaxe",
+    "srdId": "phbwepBattleaxe0",
+    "nameEn": "Battleaxe",
+    "category": "martialM",
+    "damageDie": "1d8",
+    "damageType": "slashing",
+    "abilityKey": "str",
+    "weightLb": 4,
+    "properties": [
+      "ver"
+    ]
+  },
+  {
+    "id": "club",
+    "srdId": "phbwepClub000000",
+    "nameEn": "Club",
+    "category": "simpleM",
+    "damageDie": "1d4",
+    "damageType": "bludgeoning",
+    "abilityKey": "str",
+    "weightLb": 2,
+    "properties": [
+      "lgt"
+    ]
+  },
+  {
+    "id": "dagger",
+    "srdId": "phbwepDagger0000",
+    "nameEn": "Dagger",
+    "category": "simpleM",
+    "damageDie": "1d4",
+    "damageType": "piercing",
+    "abilityKey": "dex",
+    "weightLb": 1,
+    "properties": [
+      "fin",
+      "lgt",
+      "thr"
+    ]
+  },
+  {
+    "id": "dart",
+    "srdId": "phbwepDart000000",
+    "nameEn": "Dart",
+    "category": "simpleR",
+    "damageDie": "1d4",
+    "damageType": "piercing",
+    "abilityKey": "dex",
+    "weightLb": 0.25,
+    "properties": [
+      "fin",
+      "thr"
+    ]
+  },
+  {
+    "id": "flail",
+    "srdId": "phbwepFlail00000",
+    "nameEn": "Flail",
+    "category": "martialM",
+    "damageDie": "1d8",
+    "damageType": "bludgeoning",
+    "abilityKey": "str",
+    "weightLb": 2,
+    "properties": []
+  },
+  {
+    "id": "glaive",
+    "srdId": "phbwepGlaive0000",
+    "nameEn": "Glaive",
+    "category": "martialM",
+    "damageDie": "1d10",
+    "damageType": "slashing",
+    "abilityKey": "str",
+    "weightLb": 6,
+    "properties": [
+      "hvy",
+      "rch",
+      "two"
+    ]
+  },
+  {
+    "id": "greataxe",
+    "srdId": "phbwepGreataxe00",
+    "nameEn": "Greataxe",
+    "category": "martialM",
+    "damageDie": "1d12",
+    "damageType": "slashing",
+    "abilityKey": "str",
+    "weightLb": 7,
+    "properties": [
+      "hvy",
+      "two"
+    ]
+  },
+  {
+    "id": "greatclub",
+    "srdId": "phbwepGreatclub0",
+    "nameEn": "Greatclub",
+    "category": "simpleM",
+    "damageDie": "1d8",
+    "damageType": "bludgeoning",
+    "abilityKey": "str",
+    "weightLb": 10,
+    "properties": [
+      "two"
+    ]
+  },
+  {
+    "id": "greatsword",
+    "srdId": "phbwepGreatsword",
+    "nameEn": "Greatsword",
+    "category": "martialM",
+    "damageDie": "2d6",
+    "damageType": "slashing",
+    "abilityKey": "str",
+    "weightLb": 6,
+    "properties": [
+      "hvy",
+      "two"
+    ]
+  },
+  {
+    "id": "halberd",
+    "srdId": "phbwepHalberd000",
+    "nameEn": "Halberd",
+    "category": "martialM",
+    "damageDie": "1d10",
+    "damageType": "slashing",
+    "abilityKey": "str",
+    "weightLb": 6,
+    "properties": [
+      "hvy",
+      "rch",
+      "two"
+    ]
+  },
+  {
+    "id": "hand-crossbow",
+    "srdId": "phbwepHandCrossb",
+    "nameEn": "Hand Crossbow",
+    "category": "martialR",
+    "damageDie": "1d6",
+    "damageType": "piercing",
+    "abilityKey": "dex",
+    "weightLb": 3,
+    "properties": [
+      "amm",
+      "lgt",
+      "lod"
+    ]
+  },
+  {
+    "id": "handaxe",
+    "srdId": "phbwepHandaxe000",
+    "nameEn": "Handaxe",
+    "category": "simpleM",
+    "damageDie": "1d6",
+    "damageType": "slashing",
+    "abilityKey": "str",
+    "weightLb": 2,
+    "properties": [
+      "lgt",
+      "thr"
+    ]
+  },
+  {
+    "id": "heavy-crossbow",
+    "srdId": "phbwepHeavyCross",
+    "nameEn": "Heavy Crossbow",
+    "category": "martialR",
+    "damageDie": "1d10",
+    "damageType": "piercing",
+    "abilityKey": "dex",
+    "weightLb": 18,
+    "properties": [
+      "amm",
+      "hvy",
+      "lod",
+      "two"
+    ]
+  },
+  {
+    "id": "javelin",
+    "srdId": "phbwepJavelin000",
+    "nameEn": "Javelin",
+    "category": "simpleM",
+    "damageDie": "1d6",
+    "damageType": "piercing",
+    "abilityKey": "str",
+    "weightLb": 2,
+    "properties": [
+      "thr"
+    ]
+  },
+  {
+    "id": "lance",
+    "srdId": "phbwepLance00000",
+    "nameEn": "Lance",
+    "category": "martialM",
+    "damageDie": "1d10",
+    "damageType": "piercing",
+    "abilityKey": "str",
+    "weightLb": 6,
+    "properties": [
+      "hvy",
+      "rch",
+      "two"
+    ]
+  },
+  {
+    "id": "light-crossbow",
+    "srdId": "phbwepLightCross",
+    "nameEn": "Light Crossbow",
+    "category": "simpleR",
+    "damageDie": "1d8",
+    "damageType": "piercing",
+    "abilityKey": "dex",
+    "weightLb": 5,
+    "properties": [
+      "amm",
+      "lod",
+      "two"
+    ]
+  },
+  {
+    "id": "light-hammer",
+    "srdId": "phbwepLightHamme",
+    "nameEn": "Light Hammer",
+    "category": "simpleM",
+    "damageDie": "1d4",
+    "damageType": "bludgeoning",
+    "abilityKey": "str",
+    "weightLb": 2,
+    "properties": [
+      "lgt",
+      "thr"
+    ]
+  },
+  {
+    "id": "longbow",
+    "srdId": "phbwepLongbow000",
+    "nameEn": "Longbow",
+    "category": "martialR",
+    "damageDie": "1d8",
+    "damageType": "piercing",
+    "abilityKey": "dex",
+    "weightLb": 2,
+    "properties": [
+      "amm",
+      "hvy",
+      "two"
+    ]
+  },
+  {
+    "id": "longsword",
+    "srdId": "phbwepLongsword0",
+    "nameEn": "Longsword",
+    "category": "martialM",
+    "damageDie": "1d8",
+    "damageType": "slashing",
+    "abilityKey": "str",
+    "weightLb": 3,
+    "properties": [
+      "ver"
+    ]
+  },
+  {
+    "id": "mace",
+    "srdId": "phbwepMace000000",
+    "nameEn": "Mace",
+    "category": "simpleM",
+    "damageDie": "1d6",
+    "damageType": "bludgeoning",
+    "abilityKey": "str",
+    "weightLb": 4,
+    "properties": []
+  },
+  {
+    "id": "maul",
+    "srdId": "phbwepMaul000000",
+    "nameEn": "Maul",
+    "category": "martialM",
+    "damageDie": "2d6",
+    "damageType": "bludgeoning",
+    "abilityKey": "str",
+    "weightLb": 10,
+    "properties": [
+      "hvy",
+      "two"
+    ]
+  },
+  {
+    "id": "morningstar",
+    "srdId": "phbwepMorningsta",
+    "nameEn": "Morningstar",
+    "category": "martialM",
+    "damageDie": "1d8",
+    "damageType": "piercing",
+    "abilityKey": "str",
+    "weightLb": 4,
+    "properties": []
+  },
+  {
+    "id": "musket",
+    "srdId": "phbwepMusket0000",
+    "nameEn": "Musket",
+    "category": "martialR",
+    "damageDie": "1d12",
+    "damageType": "piercing",
+    "abilityKey": "dex",
+    "weightLb": 10,
+    "properties": [
+      "amm",
+      "lod",
+      "two"
+    ]
+  },
+  {
+    "id": "pike",
+    "srdId": "phbwepPike000000",
+    "nameEn": "Pike",
+    "category": "martialM",
+    "damageDie": "1d10",
+    "damageType": "piercing",
+    "abilityKey": "str",
+    "weightLb": 18,
+    "properties": [
+      "hvy",
+      "rch",
+      "two"
+    ]
+  },
+  {
+    "id": "pistol",
+    "srdId": "phbwepPistol0000",
+    "nameEn": "Pistol",
+    "category": "martialR",
+    "damageDie": "1d10",
+    "damageType": "piercing",
+    "abilityKey": "dex",
+    "weightLb": 3,
+    "properties": [
+      "amm",
+      "lod"
+    ]
+  },
+  {
+    "id": "quarterstaff",
+    "srdId": "phbwepQuartersta",
+    "nameEn": "Quarterstaff",
+    "category": "simpleM",
+    "damageDie": "1d6",
+    "damageType": "bludgeoning",
+    "abilityKey": "str",
+    "weightLb": 4,
+    "properties": [
+      "ver"
+    ]
+  },
+  {
+    "id": "rapier",
+    "srdId": "phbwepRapier0000",
+    "nameEn": "Rapier",
+    "category": "martialM",
+    "damageDie": "1d8",
+    "damageType": "piercing",
+    "abilityKey": "dex",
+    "weightLb": 2,
+    "properties": [
+      "fin"
+    ]
+  },
+  {
+    "id": "scimitar",
+    "srdId": "phbwepScimitar00",
+    "nameEn": "Scimitar",
+    "category": "martialM",
+    "damageDie": "1d6",
+    "damageType": "slashing",
+    "abilityKey": "dex",
+    "weightLb": 3,
+    "properties": [
+      "fin",
+      "lgt"
+    ]
+  },
+  {
+    "id": "shortbow",
+    "srdId": "phbwepShortbow00",
+    "nameEn": "Shortbow",
+    "category": "simpleR",
+    "damageDie": "1d6",
+    "damageType": "piercing",
+    "abilityKey": "dex",
+    "weightLb": 2,
+    "properties": [
+      "amm",
+      "two"
+    ]
+  },
+  {
+    "id": "shortsword",
+    "srdId": "phbwepShortsword",
+    "nameEn": "Shortsword",
+    "category": "martialM",
+    "damageDie": "1d6",
+    "damageType": "piercing",
+    "abilityKey": "dex",
+    "weightLb": 2,
+    "properties": [
+      "fin",
+      "lgt"
+    ]
+  },
+  {
+    "id": "sickle",
+    "srdId": "phbwepSickle0000",
+    "nameEn": "Sickle",
+    "category": "simpleM",
+    "damageDie": "1d4",
+    "damageType": "slashing",
+    "abilityKey": "str",
+    "weightLb": 2,
+    "properties": [
+      "lgt"
+    ]
+  },
+  {
+    "id": "sling",
+    "srdId": "phbwepSling00000",
+    "nameEn": "Sling",
+    "category": "simpleR",
+    "damageDie": "1d4",
+    "damageType": "bludgeoning",
+    "abilityKey": "dex",
+    "weightLb": 0,
+    "properties": [
+      "amm"
+    ]
+  },
+  {
+    "id": "spear",
+    "srdId": "phbwepSpear00000",
+    "nameEn": "Spear",
+    "category": "simpleM",
+    "damageDie": "1d6",
+    "damageType": "piercing",
+    "abilityKey": "str",
+    "weightLb": 3,
+    "properties": [
+      "thr",
+      "ver"
+    ]
+  },
+  {
+    "id": "staff-of-charming",
+    "srdId": "dmgStaffOfCharmi",
+    "nameEn": "Staff of Charming",
+    "category": "simpleM",
+    "damageDie": "1d6",
+    "damageType": "bludgeoning",
+    "abilityKey": "str",
+    "weightLb": 4,
+    "properties": [
+      "mgc",
+      "ver"
+    ]
+  },
+  {
+    "id": "staff-of-fire",
+    "srdId": "dmgStaffOfFire00",
+    "nameEn": "Staff of Fire",
+    "category": "simpleM",
+    "damageDie": "1d6",
+    "damageType": "bludgeoning",
+    "abilityKey": "str",
+    "weightLb": 4,
+    "properties": [
+      "mgc",
+      "ver"
+    ]
+  },
+  {
+    "id": "staff-of-frost",
+    "srdId": "dmgStaffOfFrost0",
+    "nameEn": "Staff of Frost",
+    "category": "simpleM",
+    "damageDie": "1d6",
+    "damageType": "bludgeoning",
+    "abilityKey": "str",
+    "weightLb": 4,
+    "properties": [
+      "mgc",
+      "ver"
+    ]
+  },
+  {
+    "id": "staff-of-healing",
+    "srdId": "dmgStaffOfHealin",
+    "nameEn": "Staff of Healing",
+    "category": "simpleM",
+    "damageDie": "1d6",
+    "damageType": "bludgeoning",
+    "abilityKey": "str",
+    "weightLb": 4,
+    "properties": [
+      "mgc",
+      "ver"
+    ]
+  },
+  {
+    "id": "staff-of-power",
+    "srdId": "dmgStaffOfPower0",
+    "nameEn": "Staff of Power",
+    "category": "simpleM",
+    "damageDie": "1d6",
+    "damageType": "bludgeoning",
+    "abilityKey": "str",
+    "weightLb": 4,
+    "properties": [
+      "mgc",
+      "ver"
+    ]
+  },
+  {
+    "id": "staff-of-striking",
+    "srdId": "dmgStaffOfStriki",
+    "nameEn": "Staff of Striking",
+    "category": "simpleM",
+    "damageDie": "1d6",
+    "damageType": "bludgeoning",
+    "abilityKey": "str",
+    "weightLb": 4,
+    "properties": [
+      "mgc",
+      "ver"
+    ]
+  },
+  {
+    "id": "staff-of-swarming-insects",
+    "srdId": "dmgStaffOfSwarmi",
+    "nameEn": "Staff of Swarming Insects",
+    "category": "simpleM",
+    "damageDie": "1d6",
+    "damageType": "bludgeoning",
+    "abilityKey": "str",
+    "weightLb": 4,
+    "properties": [
+      "mgc",
+      "ver"
+    ]
+  },
+  {
+    "id": "staff-of-the-magi",
+    "srdId": "dmgStaffOfTheMag",
+    "nameEn": "Staff of the Magi",
+    "category": "simpleM",
+    "damageDie": "1d6",
+    "damageType": "bludgeoning",
+    "abilityKey": "str",
+    "weightLb": 4,
+    "properties": [
+      "mgc",
+      "ver"
+    ]
+  },
+  {
+    "id": "staff-of-the-woodlands",
+    "srdId": "dmgStaffOfTheWoo",
+    "nameEn": "Staff of the Woodlands",
+    "category": "simpleM",
+    "damageDie": "1d6",
+    "damageType": "bludgeoning",
+    "abilityKey": "str",
+    "weightLb": 4,
+    "properties": [
+      "mgc",
+      "ver"
+    ]
+  },
+  {
+    "id": "staff-of-thunder-and-lightning",
+    "srdId": "dmgStaffOfThunde",
+    "nameEn": "Staff of Thunder and Lightning",
+    "category": "simpleM",
+    "damageDie": "1d6",
+    "damageType": "bludgeoning",
+    "abilityKey": "str",
+    "weightLb": 4,
+    "properties": [
+      "mgc",
+      "ver"
+    ]
+  },
+  {
+    "id": "staff-of-withering",
+    "srdId": "dmgStaffOfWither",
+    "nameEn": "Staff of Withering",
+    "category": "simpleM",
+    "damageDie": "1d6",
+    "damageType": "bludgeoning",
+    "abilityKey": "str",
+    "weightLb": 4,
+    "properties": [
+      "mgc",
+      "ver"
+    ]
+  },
+  {
+    "id": "trident",
+    "srdId": "phbwepTrident000",
+    "nameEn": "Trident",
+    "category": "martialM",
+    "damageDie": "1d8",
+    "damageType": "piercing",
+    "abilityKey": "str",
+    "weightLb": 4,
+    "properties": [
+      "thr",
+      "ver"
+    ]
+  },
+  {
+    "id": "war-pick",
+    "srdId": "phbwepWarPick000",
+    "nameEn": "War Pick",
+    "category": "martialM",
+    "damageDie": "1d8",
+    "damageType": "piercing",
+    "abilityKey": "str",
+    "weightLb": 2,
+    "properties": [
+      "ver"
+    ]
+  },
+  {
+    "id": "warhammer",
+    "srdId": "phbwepWarhammer0",
+    "nameEn": "Warhammer",
+    "category": "martialM",
+    "damageDie": "1d8",
+    "damageType": "bludgeoning",
+    "abilityKey": "str",
+    "weightLb": 5,
+    "properties": [
+      "ver"
+    ]
+  },
+  {
+    "id": "whip",
+    "srdId": "phbwepWhip000000",
+    "nameEn": "Whip",
+    "category": "martialM",
+    "damageDie": "1d4",
+    "damageType": "slashing",
+    "abilityKey": "dex",
+    "weightLb": 3,
+    "properties": [
+      "fin",
+      "rch"
+    ]
+  }
+]

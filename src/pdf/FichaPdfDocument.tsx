@@ -1,7 +1,7 @@
 import { Document, Page, StyleSheet, Text, View } from "@react-pdf/renderer";
 import { ABILITY_KEYS } from "@/lib/constants";
 import { bonificadorCompetencia, modificadorAtributo } from "@/rules/ability";
-import { ABILITY_LABELS_ES, iniciativa } from "@/rules/character";
+import { ABILITY_LABELS_ES, iniciativa, percepcionPasiva } from "@/rules/character";
 import { calcularClaseArmadura } from "@/rules/combat";
 import { descripcionClases } from "@/rules/multiclass";
 import type { Character } from "@/schemas/character";
@@ -51,6 +51,17 @@ export function FichaPdfDocument({ character, armorClass }: FichaPdfDocumentProp
           <View style={styles.row}>
             <Text style={styles.label}>Iniciativa</Text>
             <Text>{iniciativa(character)}</Text>
+          </View>
+          <View style={styles.row}>
+            <Text style={styles.label}>Percepción pasiva</Text>
+            <Text>{percepcionPasiva(character)}</Text>
+          </View>
+          <View style={styles.row}>
+            <Text style={styles.label}>Monedas</Text>
+            <Text>
+              {character.equipment.currency.pp} pp · {character.equipment.currency.gp} po ·{" "}
+              {character.equipment.currency.sp} pc
+            </Text>
           </View>
         </View>
 

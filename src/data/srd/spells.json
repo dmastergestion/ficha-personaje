@@ -4,2379 +4,2719 @@
     "srdId": "phbsplAlarm00000",
     "nameEn": "Alarm",
     "level": 1,
-    "school": "abj"
+    "school": "abj",
+    "concentration": false
   },
   {
     "id": "animal-friendship",
     "srdId": "phbsplAnimalFrie",
     "nameEn": "Animal Friendship",
     "level": 1,
-    "school": "enc"
+    "school": "enc",
+    "concentration": false
   },
   {
     "id": "bane",
     "srdId": "phbsplBane000000",
     "nameEn": "Bane",
     "level": 1,
-    "school": "enc"
+    "school": "enc",
+    "concentration": true
   },
   {
     "id": "bless",
     "srdId": "phbsplBless00000",
     "nameEn": "Bless",
     "level": 1,
-    "school": "enc"
+    "school": "enc",
+    "concentration": true
   },
   {
     "id": "burning-hands",
     "srdId": "phbsplBurningHan",
     "nameEn": "Burning Hands",
     "level": 1,
-    "school": "evo"
+    "school": "evo",
+    "concentration": false
   },
   {
     "id": "charm-person",
     "srdId": "phbsplCharmPerso",
     "nameEn": "Charm Person",
     "level": 1,
-    "school": "enc"
+    "school": "enc",
+    "concentration": false
   },
   {
     "id": "chromatic-orb",
     "srdId": "phbsplChromaticO",
     "nameEn": "Chromatic Orb",
     "level": 1,
-    "school": "evo"
+    "school": "evo",
+    "concentration": false
   },
   {
     "id": "color-spray",
     "srdId": "phbsplColorSpray",
     "nameEn": "Color Spray",
     "level": 1,
-    "school": "ill"
+    "school": "ill",
+    "concentration": false
   },
   {
     "id": "command",
     "srdId": "phbsplCommand000",
     "nameEn": "Command",
     "level": 1,
-    "school": "enc"
+    "school": "enc",
+    "concentration": false
   },
   {
     "id": "comprehend-languages",
     "srdId": "phbsplComprehend",
     "nameEn": "Comprehend Languages",
     "level": 1,
-    "school": "div"
+    "school": "div",
+    "concentration": false
   },
   {
     "id": "create-or-destroy-water",
     "srdId": "phbsplCreateorDe",
     "nameEn": "Create or Destroy Water",
     "level": 1,
-    "school": "trs"
+    "school": "trs",
+    "concentration": false
   },
   {
     "id": "cure-wounds",
     "srdId": "phbsplCureWounds",
     "nameEn": "Cure Wounds",
     "level": 1,
-    "school": "abj"
+    "school": "abj",
+    "concentration": false
   },
   {
     "id": "detect-evil-and-good",
     "srdId": "phbsplDetectEvil",
     "nameEn": "Detect Evil and Good",
     "level": 1,
-    "school": "div"
+    "school": "div",
+    "concentration": true
   },
   {
     "id": "detect-magic",
     "srdId": "phbsplDetectMagi",
     "nameEn": "Detect Magic",
     "level": 1,
-    "school": "div"
+    "school": "div",
+    "concentration": true
   },
   {
     "id": "detect-poison-and-disease",
     "srdId": "phbsplDetectPois",
     "nameEn": "Detect Poison and Disease",
     "level": 1,
-    "school": "div"
+    "school": "div",
+    "concentration": true
   },
   {
     "id": "disguise-self",
     "srdId": "phbsplDisguiseSe",
     "nameEn": "Disguise Self",
     "level": 1,
-    "school": "ill"
+    "school": "ill",
+    "concentration": false
   },
   {
     "id": "dissonant-whispers",
     "srdId": "phbsplDissonantW",
     "nameEn": "Dissonant Whispers",
     "level": 1,
-    "school": "enc"
+    "school": "enc",
+    "concentration": false
   },
   {
     "id": "divine-favor",
     "srdId": "phbsplDivineFavo",
     "nameEn": "Divine Favor",
     "level": 1,
-    "school": "trs"
+    "school": "trs",
+    "concentration": false
   },
   {
     "id": "divine-smite",
     "srdId": "phbsplDivineSmit",
     "nameEn": "Divine Smite",
     "level": 1,
-    "school": "evo"
+    "school": "evo",
+    "concentration": false
   },
   {
     "id": "ensnaring-strike",
     "srdId": "phbsplEnsnaringS",
     "nameEn": "Ensnaring Strike",
     "level": 1,
-    "school": "con"
+    "school": "con",
+    "concentration": true
   },
   {
     "id": "entangle",
     "srdId": "phbsplEntangle00",
     "nameEn": "Entangle",
     "level": 1,
-    "school": "con"
+    "school": "con",
+    "concentration": true
   },
   {
     "id": "expeditious-retreat",
     "srdId": "phbsplExpeditiou",
     "nameEn": "Expeditious Retreat",
     "level": 1,
-    "school": "trs"
+    "school": "trs",
+    "concentration": true
   },
   {
     "id": "faerie-fire",
     "srdId": "phbsplFaerieFire",
     "nameEn": "Faerie Fire",
     "level": 1,
-    "school": "evo"
+    "school": "evo",
+    "concentration": true
   },
   {
     "id": "false-life",
     "srdId": "phbsplFalseLife0",
     "nameEn": "False Life",
     "level": 1,
-    "school": "nec"
+    "school": "nec",
+    "concentration": false
   },
   {
     "id": "feather-fall",
     "srdId": "phbsplFeatherFal",
     "nameEn": "Feather Fall",
     "level": 1,
-    "school": "trs"
+    "school": "trs",
+    "concentration": false
   },
   {
     "id": "find-familiar",
     "srdId": "phbsplFindFamili",
     "nameEn": "Find Familiar",
     "level": 1,
-    "school": "con"
+    "school": "con",
+    "concentration": false
   },
   {
     "id": "tensers-floating-disk",
     "srdId": "phbsplTensersFlo",
     "nameEn": "Floating Disk",
     "level": 1,
-    "school": "con"
+    "school": "con",
+    "concentration": false
   },
   {
     "id": "fog-cloud",
     "srdId": "phbsplFogCloud00",
     "nameEn": "Fog Cloud",
     "level": 1,
-    "school": "con"
+    "school": "con",
+    "concentration": true
   },
   {
     "id": "goodberry",
     "srdId": "phbsplGoodberry0",
     "nameEn": "Goodberry",
     "level": 1,
-    "school": "con"
+    "school": "con",
+    "concentration": false
   },
   {
     "id": "grease",
     "srdId": "phbsplGrease0000",
     "nameEn": "Grease",
     "level": 1,
-    "school": "con"
+    "school": "con",
+    "concentration": false
   },
   {
     "id": "guiding-bolt",
     "srdId": "phbsplGuidingBol",
     "nameEn": "Guiding Bolt",
     "level": 1,
-    "school": "evo"
+    "school": "evo",
+    "concentration": false
   },
   {
     "id": "healing-word",
     "srdId": "phbsplHealingWor",
     "nameEn": "Healing Word",
     "level": 1,
-    "school": "abj"
+    "school": "abj",
+    "concentration": false
   },
   {
     "id": "hellish-rebuke",
     "srdId": "phbsplHellishReb",
     "nameEn": "Hellish Rebuke",
     "level": 1,
-    "school": "evo"
+    "school": "evo",
+    "concentration": false
   },
   {
     "id": "heroism",
     "srdId": "phbsplHeroism000",
     "nameEn": "Heroism",
     "level": 1,
-    "school": "enc"
+    "school": "enc",
+    "concentration": true
   },
   {
     "id": "hex",
     "srdId": "phbsplHex0000000",
     "nameEn": "Hex",
     "level": 1,
-    "school": "enc"
+    "school": "enc",
+    "concentration": true
   },
   {
     "id": "hideous-laughter",
     "srdId": "phbsplTashasHide",
     "nameEn": "Hideous Laughter",
     "level": 1,
-    "school": "enc"
+    "school": "enc",
+    "concentration": false
   },
   {
     "id": "hunters-mark",
     "srdId": "phbsplHuntersMar",
     "nameEn": "Hunter's Mark",
     "level": 1,
-    "school": "div"
+    "school": "div",
+    "concentration": true
   },
   {
     "id": "ice-knife",
     "srdId": "phbsplIceKnife00",
     "nameEn": "Ice Knife",
     "level": 1,
-    "school": "con"
+    "school": "con",
+    "concentration": false
   },
   {
     "id": "identify",
     "srdId": "phbsplIdentify00",
     "nameEn": "Identify",
     "level": 1,
-    "school": "div"
+    "school": "div",
+    "concentration": false
   },
   {
     "id": "illusory-script",
     "srdId": "phbsplIllusorySc",
     "nameEn": "Illusory Script",
     "level": 1,
-    "school": "ill"
+    "school": "ill",
+    "concentration": false
   },
   {
     "id": "inflict-wounds",
     "srdId": "phbsplInflictWou",
     "nameEn": "Inflict Wounds",
     "level": 1,
-    "school": "nec"
+    "school": "nec",
+    "concentration": false
   },
   {
     "id": "jump",
     "srdId": "phbsplJump000000",
     "nameEn": "Jump",
     "level": 1,
-    "school": "trs"
+    "school": "trs",
+    "concentration": false
   },
   {
     "id": "longstrider",
     "srdId": "phbsplLongstride",
     "nameEn": "Longstrider",
     "level": 1,
-    "school": "trs"
+    "school": "trs",
+    "concentration": false
   },
   {
     "id": "mage-armor",
     "srdId": "phbsplMageArmor0",
     "nameEn": "Mage Armor",
     "level": 1,
-    "school": "abj"
+    "school": "abj",
+    "concentration": false
   },
   {
     "id": "magic-missile",
     "srdId": "phbsplMagicMissi",
     "nameEn": "Magic Missile",
     "level": 1,
-    "school": "evo"
+    "school": "evo",
+    "concentration": false
   },
   {
     "id": "protection-from-evil-and-good",
     "srdId": "phbEvilAndGoodPr",
     "nameEn": "Protection from Evil and Good",
     "level": 1,
-    "school": "abj"
+    "school": "abj",
+    "concentration": true
   },
   {
     "id": "purify-food-and-drink",
     "srdId": "phbsplPurifyFood",
     "nameEn": "Purify Food and Drink",
     "level": 1,
-    "school": "trs"
+    "school": "trs",
+    "concentration": false
   },
   {
     "id": "ray-of-sickness",
     "srdId": "phbsplRayofSickn",
     "nameEn": "Ray of Sickness",
     "level": 1,
-    "school": "nec"
+    "school": "nec",
+    "concentration": false
   },
   {
     "id": "sanctuary",
     "srdId": "phbSanctuary0000",
     "nameEn": "Sanctuary",
     "level": 1,
-    "school": "abj"
+    "school": "abj",
+    "concentration": false
   },
   {
     "id": "searing-smite",
     "srdId": "phbsplSearingSmi",
     "nameEn": "Searing Smite",
     "level": 1,
-    "school": "evo"
+    "school": "evo",
+    "concentration": false
   },
   {
     "id": "shield-of-faith",
     "srdId": "phbsplShieldofFa",
     "nameEn": "Shield of Faith",
     "level": 1,
-    "school": "abj"
+    "school": "abj",
+    "concentration": true
   },
   {
     "id": "shield",
     "srdId": "phbsplShield0000",
     "nameEn": "Shield",
     "level": 1,
-    "school": "abj"
+    "school": "abj",
+    "concentration": false
   },
   {
     "id": "silent-image",
     "srdId": "phbsplSilentImag",
     "nameEn": "Silent Image",
     "level": 1,
-    "school": "ill"
+    "school": "ill",
+    "concentration": true
   },
   {
     "id": "sleep",
     "srdId": "phbsplSleep00000",
     "nameEn": "Sleep",
     "level": 1,
-    "school": "enc"
+    "school": "enc",
+    "concentration": true
   },
   {
     "id": "speak-with-animals",
     "srdId": "phbsplSpeakwithA",
     "nameEn": "Speak with Animals",
     "level": 1,
-    "school": "div"
+    "school": "div",
+    "concentration": false
   },
   {
     "id": "thunderwave",
     "srdId": "phbsplThunderwav",
     "nameEn": "Thunderwave",
     "level": 1,
-    "school": "evo"
+    "school": "evo",
+    "concentration": false
   },
   {
     "id": "unseen-servant",
     "srdId": "phbsplUnseenServ",
     "nameEn": "Unseen Servant",
     "level": 1,
-    "school": "con"
+    "school": "con",
+    "concentration": false
   },
   {
     "id": "acid-arrow",
     "srdId": "phbsplMelfsAcidA",
     "nameEn": "Acid Arrow",
     "level": 2,
-    "school": "evo"
+    "school": "evo",
+    "concentration": false
   },
   {
     "id": "aid",
     "srdId": "phbsplAid0000000",
     "nameEn": "Aid",
     "level": 2,
-    "school": "abj"
+    "school": "abj",
+    "concentration": false
   },
   {
     "id": "alter-self",
     "srdId": "phbsplAlterSelf0",
     "nameEn": "Alter Self",
     "level": 2,
-    "school": "trs"
+    "school": "trs",
+    "concentration": true
   },
   {
     "id": "animal-messenger",
     "srdId": "phbsplAnimalMess",
     "nameEn": "Animal Messenger",
     "level": 2,
-    "school": "enc"
+    "school": "enc",
+    "concentration": false
   },
   {
     "id": "arcane-lock",
     "srdId": "phbsplArcaneLock",
     "nameEn": "Arcane Lock",
     "level": 2,
-    "school": "abj"
+    "school": "abj",
+    "concentration": false
   },
   {
     "id": "arcane-vigor",
     "srdId": "phbsplArcaneVigo",
     "nameEn": "Arcane Vigor",
     "level": 2,
-    "school": "abj"
+    "school": "abj",
+    "concentration": false
   },
   {
     "id": "arcanists-magic-aura",
     "srdId": "phbsplNystulsMag",
     "nameEn": "Arcanist's Magic Aura",
     "level": 2,
-    "school": "ill"
+    "school": "ill",
+    "concentration": false
   },
   {
     "id": "augury",
     "srdId": "phbsplAugury0000",
     "nameEn": "Augury",
     "level": 2,
-    "school": "div"
+    "school": "div",
+    "concentration": false
   },
   {
     "id": "barkskin",
     "srdId": "phbsplBarkskin00",
     "nameEn": "Barkskin",
     "level": 2,
-    "school": "trs"
+    "school": "trs",
+    "concentration": false
   },
   {
     "id": "blindness-deafness",
     "srdId": "phbsplBlindnessD",
     "nameEn": "Blindness/Deafness",
     "level": 2,
-    "school": "trs"
+    "school": "trs",
+    "concentration": false
   },
   {
     "id": "blur",
     "srdId": "phbsplBlur000000",
     "nameEn": "Blur",
     "level": 2,
-    "school": "ill"
+    "school": "ill",
+    "concentration": true
   },
   {
     "id": "calm-emotions",
     "srdId": "phbsplCalmEmotio",
     "nameEn": "Calm Emotions",
     "level": 2,
-    "school": "enc"
+    "school": "enc",
+    "concentration": true
   },
   {
     "id": "continual-flame",
     "srdId": "phbsplContinualF",
     "nameEn": "Continual Flame",
     "level": 2,
-    "school": "evo"
+    "school": "evo",
+    "concentration": false
   },
   {
     "id": "darkness",
     "srdId": "phbsplDarkness00",
     "nameEn": "Darkness",
     "level": 2,
-    "school": "evo"
+    "school": "evo",
+    "concentration": true
   },
   {
     "id": "darkvision",
     "srdId": "phbsplDarkvision",
     "nameEn": "Darkvision",
     "level": 2,
-    "school": "trs"
+    "school": "trs",
+    "concentration": false
   },
   {
     "id": "detect-thoughts",
     "srdId": "phbsplDetectThou",
     "nameEn": "Detect Thoughts",
     "level": 2,
-    "school": "div"
+    "school": "div",
+    "concentration": true
   },
   {
     "id": "dragons-breath",
     "srdId": "phbsplDragonsBre",
     "nameEn": "Dragon's Breath",
     "level": 2,
-    "school": "trs"
+    "school": "trs",
+    "concentration": true
   },
   {
     "id": "enhance-ability",
     "srdId": "phbsplEnhanceAbi",
     "nameEn": "Enhance Ability",
     "level": 2,
-    "school": "trs"
+    "school": "trs",
+    "concentration": true
   },
   {
     "id": "enlarge-reduce",
     "srdId": "phbsplEnlargeRed",
     "nameEn": "Enlarge/Reduce",
     "level": 2,
-    "school": "trs"
+    "school": "trs",
+    "concentration": true
   },
   {
     "id": "enthrall",
     "srdId": "phbsplEnthrall00",
     "nameEn": "Enthrall",
     "level": 2,
-    "school": "enc"
+    "school": "enc",
+    "concentration": false
   },
   {
     "id": "find-steed",
     "srdId": "phbsplFindSteed0",
     "nameEn": "Find Steed",
     "level": 2,
-    "school": "con"
+    "school": "con",
+    "concentration": false
   },
   {
     "id": "find-traps",
     "srdId": "phbsplFindTraps0",
     "nameEn": "Find Traps",
     "level": 2,
-    "school": "div"
+    "school": "div",
+    "concentration": false
   },
   {
     "id": "flame-blade",
     "srdId": "phbsplFlameBlade",
     "nameEn": "Flame Blade",
     "level": 2,
-    "school": "evo"
+    "school": "evo",
+    "concentration": true
   },
   {
     "id": "flaming-sphere",
     "srdId": "phbsplFlamingSph",
     "nameEn": "Flaming Sphere",
     "level": 2,
-    "school": "con"
+    "school": "con",
+    "concentration": true
   },
   {
     "id": "gentle-repose",
     "srdId": "phbsplGentleRepo",
     "nameEn": "Gentle Repose",
     "level": 2,
-    "school": "nec"
+    "school": "nec",
+    "concentration": false
   },
   {
     "id": "gust-of-wind",
     "srdId": "phbsplGustofWind",
     "nameEn": "Gust of Wind",
     "level": 2,
-    "school": "evo"
+    "school": "evo",
+    "concentration": true
   },
   {
     "id": "heat-metal",
     "srdId": "phbsplHeatMetal0",
     "nameEn": "Heat Metal",
     "level": 2,
-    "school": "trs"
+    "school": "trs",
+    "concentration": true
   },
   {
     "id": "hold-person",
     "srdId": "phbsplHoldPerson",
     "nameEn": "Hold Person",
     "level": 2,
-    "school": "enc"
+    "school": "enc",
+    "concentration": true
   },
   {
     "id": "invisibility",
     "srdId": "phbsplInvisibili",
     "nameEn": "Invisibility",
     "level": 2,
-    "school": "ill"
+    "school": "ill",
+    "concentration": true
   },
   {
     "id": "knock",
     "srdId": "phbsplKnock00000",
     "nameEn": "Knock",
     "level": 2,
-    "school": "trs"
+    "school": "trs",
+    "concentration": false
   },
   {
     "id": "lesser-restoration",
     "srdId": "phbsplLesserRest",
     "nameEn": "Lesser Restoration",
     "level": 2,
-    "school": "abj"
+    "school": "abj",
+    "concentration": false
   },
   {
     "id": "levitate",
     "srdId": "phbsplLevitate00",
     "nameEn": "Levitate",
     "level": 2,
-    "school": "trs"
+    "school": "trs",
+    "concentration": true
   },
   {
     "id": "locate-animals-or-plants",
     "srdId": "phbsplLocateAnim",
     "nameEn": "Locate Animals or Plants",
     "level": 2,
-    "school": "div"
+    "school": "div",
+    "concentration": false
   },
   {
     "id": "locate-object",
     "srdId": "phbsplLocateObje",
     "nameEn": "Locate Object",
     "level": 2,
-    "school": "div"
+    "school": "div",
+    "concentration": true
   },
   {
     "id": "magic-mouth",
     "srdId": "phbsplMagicMouth",
     "nameEn": "Magic Mouth",
     "level": 2,
-    "school": "ill"
+    "school": "ill",
+    "concentration": false
   },
   {
     "id": "magic-weapon",
     "srdId": "phbsplMagicWeapo",
     "nameEn": "Magic Weapon",
     "level": 2,
-    "school": "trs"
+    "school": "trs",
+    "concentration": false
   },
   {
     "id": "mind-spike",
     "srdId": "phbsplMindSpike0",
     "nameEn": "Mind Spike",
     "level": 2,
-    "school": "div"
+    "school": "div",
+    "concentration": true
   },
   {
     "id": "mirror-image",
     "srdId": "phbsplMirrorImag",
     "nameEn": "Mirror Image",
     "level": 2,
-    "school": "ill"
+    "school": "ill",
+    "concentration": false
   },
   {
     "id": "misty-step",
     "srdId": "phbsplMistyStep0",
     "nameEn": "Misty Step",
     "level": 2,
-    "school": "con"
+    "school": "con",
+    "concentration": false
   },
   {
     "id": "moonbeam",
     "srdId": "phbsplMoonbeam00",
     "nameEn": "Moonbeam",
     "level": 2,
-    "school": "evo"
+    "school": "evo",
+    "concentration": true
   },
   {
     "id": "pass-without-trace",
     "srdId": "phbsplPasswithou",
     "nameEn": "Pass without Trace",
     "level": 2,
-    "school": "abj"
+    "school": "abj",
+    "concentration": true
   },
   {
     "id": "phantasmal-force",
     "srdId": "phbPhantasmalFor",
     "nameEn": "Phantasmal Force",
     "level": 2,
-    "school": "ill"
+    "school": "ill",
+    "concentration": true
   },
   {
     "id": "prayer-of-healing",
     "srdId": "phbsplPrayerofHe",
     "nameEn": "Prayer of Healing",
     "level": 2,
-    "school": "abj"
+    "school": "abj",
+    "concentration": false
   },
   {
     "id": "protection-from-poison",
     "srdId": "phbsplProtection",
     "nameEn": "Protection from Poison",
     "level": 2,
-    "school": "abj"
+    "school": "abj",
+    "concentration": false
   },
   {
     "id": "ray-of-enfeeblement",
     "srdId": "phbsplRayofEnfee",
     "nameEn": "Ray of Enfeeblement",
     "level": 2,
-    "school": "nec"
+    "school": "nec",
+    "concentration": true
   },
   {
     "id": "rope-trick",
     "srdId": "phbsplRopeTrick0",
     "nameEn": "Rope Trick",
     "level": 2,
-    "school": "trs"
+    "school": "trs",
+    "concentration": false
   },
   {
     "id": "scorching-ray",
     "srdId": "phbsplScorchingR",
     "nameEn": "Scorching Ray",
     "level": 2,
-    "school": "evo"
+    "school": "evo",
+    "concentration": false
   },
   {
     "id": "see-invisibility",
     "srdId": "phbsplSeeInvisib",
     "nameEn": "See Invisibility",
     "level": 2,
-    "school": "div"
+    "school": "div",
+    "concentration": false
   },
   {
     "id": "shatter",
     "srdId": "phbsplShatter000",
     "nameEn": "Shatter",
     "level": 2,
-    "school": "evo"
+    "school": "evo",
+    "concentration": false
   },
   {
     "id": "shining-smite",
     "srdId": "phbsplShiningSmi",
     "nameEn": "Shining Smite",
     "level": 2,
-    "school": "trs"
+    "school": "trs",
+    "concentration": true
   },
   {
     "id": "silence",
     "srdId": "phbsplSilence000",
     "nameEn": "Silence",
     "level": 2,
-    "school": "ill"
+    "school": "ill",
+    "concentration": true
   },
   {
     "id": "spider-climb",
     "srdId": "phbsplSpiderClim",
     "nameEn": "Spider Climb",
     "level": 2,
-    "school": "trs"
+    "school": "trs",
+    "concentration": true
   },
   {
     "id": "spike-growth",
     "srdId": "phbsplSpikeGrowt",
     "nameEn": "Spike Growth",
     "level": 2,
-    "school": "trs"
+    "school": "trs",
+    "concentration": true
   },
   {
     "id": "spiritual-weapon",
     "srdId": "phbsplSpiritualW",
     "nameEn": "Spiritual Weapon",
     "level": 2,
-    "school": "evo"
+    "school": "evo",
+    "concentration": true
   },
   {
     "id": "suggestion",
     "srdId": "phbsplSuggestion",
     "nameEn": "Suggestion",
     "level": 2,
-    "school": "enc"
+    "school": "enc",
+    "concentration": true
   },
   {
     "id": "warding-bond",
     "srdId": "phbsplWardingBon",
     "nameEn": "Warding Bond",
     "level": 2,
-    "school": "abj"
+    "school": "abj",
+    "concentration": false
   },
   {
     "id": "web",
     "srdId": "phbsplWeb0000000",
     "nameEn": "Web",
     "level": 2,
-    "school": "con"
+    "school": "con",
+    "concentration": true
   },
   {
     "id": "zone-of-truth",
     "srdId": "phbsplZoneofTrut",
     "nameEn": "Zone of Truth",
     "level": 2,
-    "school": "enc"
+    "school": "enc",
+    "concentration": false
   },
   {
     "id": "animate-dead",
     "srdId": "phbsplAnimateDea",
     "nameEn": "Animate Dead",
     "level": 3,
-    "school": "nec"
+    "school": "nec",
+    "concentration": false
   },
   {
     "id": "beacon-of-hope",
     "srdId": "phbsplBeaconofHo",
     "nameEn": "Beacon of Hope",
     "level": 3,
-    "school": "abj"
+    "school": "abj",
+    "concentration": true
   },
   {
     "id": "bestow-curse",
     "srdId": "phbsplBestowCurs",
     "nameEn": "Bestow Curse",
     "level": 3,
-    "school": "nec"
+    "school": "nec",
+    "concentration": true
   },
   {
     "id": "blink",
     "srdId": "phbsplBlink00000",
     "nameEn": "Blink",
     "level": 3,
-    "school": "trs"
+    "school": "trs",
+    "concentration": false
   },
   {
     "id": "call-lightning",
     "srdId": "phbsplCallLightn",
     "nameEn": "Call Lightning",
     "level": 3,
-    "school": "con"
+    "school": "con",
+    "concentration": true
   },
   {
     "id": "clairvoyance",
     "srdId": "phbsplClairvoyan",
     "nameEn": "Clairvoyance",
     "level": 3,
-    "school": "div"
+    "school": "div",
+    "concentration": true
   },
   {
     "id": "conjure-animals",
     "srdId": "phbsplConjureAni",
     "nameEn": "Conjure Animals",
     "level": 3,
-    "school": "con"
+    "school": "con",
+    "concentration": true
   },
   {
     "id": "counterspell",
     "srdId": "phbsplCounterspe",
     "nameEn": "Counterspell",
     "level": 3,
-    "school": "abj"
+    "school": "abj",
+    "concentration": false
   },
   {
     "id": "create-food-and-water",
     "srdId": "phbsplCreateFood",
     "nameEn": "Create Food and Water",
     "level": 3,
-    "school": "con"
+    "school": "con",
+    "concentration": false
   },
   {
     "id": "daylight",
     "srdId": "phbsplDaylight00",
     "nameEn": "Daylight",
     "level": 3,
-    "school": "evo"
+    "school": "evo",
+    "concentration": false
   },
   {
     "id": "dispel-magic",
     "srdId": "phbsplDispelMagi",
     "nameEn": "Dispel Magic",
     "level": 3,
-    "school": "abj"
+    "school": "abj",
+    "concentration": false
   },
   {
     "id": "fear",
     "srdId": "phbsplFear000000",
     "nameEn": "Fear",
     "level": 3,
-    "school": "ill"
+    "school": "ill",
+    "concentration": true
   },
   {
     "id": "fireball",
     "srdId": "phbsplFireball00",
     "nameEn": "Fireball",
     "level": 3,
-    "school": "evo"
+    "school": "evo",
+    "concentration": false
   },
   {
     "id": "fly",
     "srdId": "phbsplFly0000000",
     "nameEn": "Fly",
     "level": 3,
-    "school": "trs"
+    "school": "trs",
+    "concentration": true
   },
   {
     "id": "gaseous-form",
     "srdId": "phbsplGaseousFor",
     "nameEn": "Gaseous Form",
     "level": 3,
-    "school": "trs"
+    "school": "trs",
+    "concentration": true
   },
   {
     "id": "glyph-of-warding",
     "srdId": "phbsplGlyphofWar",
     "nameEn": "Glyph of Warding",
     "level": 3,
-    "school": "abj"
+    "school": "abj",
+    "concentration": false
   },
   {
     "id": "haste",
     "srdId": "phbsplHaste00000",
     "nameEn": "Haste",
     "level": 3,
-    "school": "trs"
+    "school": "trs",
+    "concentration": true
   },
   {
     "id": "hypnotic-pattern",
     "srdId": "phbsplHypnoticPa",
     "nameEn": "Hypnotic Pattern",
     "level": 3,
-    "school": "ill"
+    "school": "ill",
+    "concentration": true
   },
   {
     "id": "lightning-bolt",
     "srdId": "phbsplLightningB",
     "nameEn": "Lightning Bolt",
     "level": 3,
-    "school": "evo"
+    "school": "evo",
+    "concentration": false
   },
   {
     "id": "magic-circle",
     "srdId": "phbsplMagicCircl",
     "nameEn": "Magic Circle",
     "level": 3,
-    "school": "abj"
+    "school": "abj",
+    "concentration": false
   },
   {
     "id": "major-image",
     "srdId": "phbsplMajorImage",
     "nameEn": "Major Image",
     "level": 3,
-    "school": "ill"
+    "school": "ill",
+    "concentration": true
   },
   {
     "id": "mass-healing-word",
     "srdId": "phbsplMassHealin",
     "nameEn": "Mass Healing Word",
     "level": 3,
-    "school": "abj"
+    "school": "abj",
+    "concentration": false
   },
   {
     "id": "meld-into-stone",
     "srdId": "phbsplMeldintoSt",
     "nameEn": "Meld into Stone",
     "level": 3,
-    "school": "trs"
+    "school": "trs",
+    "concentration": false
   },
   {
     "id": "nondetection",
     "srdId": "phbsplNondetecti",
     "nameEn": "Nondetection",
     "level": 3,
-    "school": "abj"
+    "school": "abj",
+    "concentration": false
   },
   {
     "id": "phantom-steed",
     "srdId": "phbsplPhantomSte",
     "nameEn": "Phantom Steed",
     "level": 3,
-    "school": "ill"
+    "school": "ill",
+    "concentration": false
   },
   {
     "id": "plant-growth",
     "srdId": "phbsplPlantGrowt",
     "nameEn": "Plant Growth",
     "level": 3,
-    "school": "trs"
+    "school": "trs",
+    "concentration": false
   },
   {
     "id": "protection-from-energy",
     "srdId": "phbProtectionFro",
     "nameEn": "Protection from Energy",
     "level": 3,
-    "school": "abj"
+    "school": "abj",
+    "concentration": true
   },
   {
     "id": "remove-curse",
     "srdId": "phbsplRemoveCurs",
     "nameEn": "Remove Curse",
     "level": 3,
-    "school": "abj"
+    "school": "abj",
+    "concentration": false
   },
   {
     "id": "revivify",
     "srdId": "phbsplRevivify00",
     "nameEn": "Revivify",
     "level": 3,
-    "school": "nec"
+    "school": "nec",
+    "concentration": false
   },
   {
     "id": "sending",
     "srdId": "phbsplSending000",
     "nameEn": "Sending",
     "level": 3,
-    "school": "div"
+    "school": "div",
+    "concentration": false
   },
   {
     "id": "sleet-storm",
     "srdId": "phbsplSleetStorm",
     "nameEn": "Sleet Storm",
     "level": 3,
-    "school": "con"
+    "school": "con",
+    "concentration": true
   },
   {
     "id": "slow",
     "srdId": "phbsplSlow000000",
     "nameEn": "Slow",
     "level": 3,
-    "school": "trs"
+    "school": "trs",
+    "concentration": true
   },
   {
     "id": "speak-with-dead",
     "srdId": "phbsplSpeakwithD",
     "nameEn": "Speak with Dead",
     "level": 3,
-    "school": "nec"
+    "school": "nec",
+    "concentration": false
   },
   {
     "id": "speak-with-plants",
     "srdId": "phbsplSpeakwithP",
     "nameEn": "Speak with Plants",
     "level": 3,
-    "school": "trs"
+    "school": "trs",
+    "concentration": false
   },
   {
     "id": "spirit-guardians",
     "srdId": "phbsplSpiritGuar",
     "nameEn": "Spirit Guardians",
     "level": 3,
-    "school": "con"
+    "school": "con",
+    "concentration": true
   },
   {
     "id": "stinking-cloud",
     "srdId": "phbsplStinkingCl",
     "nameEn": "Stinking Cloud",
     "level": 3,
-    "school": "con"
+    "school": "con",
+    "concentration": true
   },
   {
     "id": "tiny-hut",
     "srdId": "phbsplLeomundsTi",
     "nameEn": "Tiny Hut",
     "level": 3,
-    "school": "evo"
+    "school": "evo",
+    "concentration": false
   },
   {
     "id": "tongues",
     "srdId": "phbsplTongues000",
     "nameEn": "Tongues",
     "level": 3,
-    "school": "div"
+    "school": "div",
+    "concentration": false
   },
   {
     "id": "vampiric-touch",
     "srdId": "phbsplVampiricTo",
     "nameEn": "Vampiric Touch",
     "level": 3,
-    "school": "nec"
+    "school": "nec",
+    "concentration": true
   },
   {
     "id": "water-breathing",
     "srdId": "phbsplWaterBreat",
     "nameEn": "Water Breathing",
     "level": 3,
-    "school": "trs"
+    "school": "trs",
+    "concentration": false
   },
   {
     "id": "water-walk",
     "srdId": "phbsplWaterWalk0",
     "nameEn": "Water Walk",
     "level": 3,
-    "school": "trs"
+    "school": "trs",
+    "concentration": false
   },
   {
     "id": "wind-wall",
     "srdId": "phbsplWindWall00",
     "nameEn": "Wind Wall",
     "level": 3,
-    "school": "evo"
+    "school": "evo",
+    "concentration": true
   },
   {
     "id": "arcane-eye",
     "srdId": "phbsplArcaneEye0",
     "nameEn": "Arcane Eye",
     "level": 4,
-    "school": "div"
+    "school": "div",
+    "concentration": true
   },
   {
     "id": "aura-of-life",
     "srdId": "phbsplAuraofLife",
     "nameEn": "Aura of Life",
     "level": 4,
-    "school": "abj"
+    "school": "abj",
+    "concentration": true
   },
   {
     "id": "banishment",
     "srdId": "phbsplBanishment",
     "nameEn": "Banishment",
     "level": 4,
-    "school": "abj"
+    "school": "abj",
+    "concentration": true
   },
   {
     "id": "black-tentacles",
     "srdId": "phbsplEvardsBlac",
     "nameEn": "Black Tentacles",
     "level": 4,
-    "school": "con"
+    "school": "con",
+    "concentration": false
   },
   {
     "id": "blight",
     "srdId": "phbsplBlight0000",
     "nameEn": "Blight",
     "level": 4,
-    "school": "nec"
+    "school": "nec",
+    "concentration": false
   },
   {
     "id": "charm-monster",
     "srdId": "phbsplCharmMonst",
     "nameEn": "Charm Monster",
     "level": 4,
-    "school": "enc"
+    "school": "enc",
+    "concentration": false
   },
   {
     "id": "compulsion",
     "srdId": "phbsplCompulsion",
     "nameEn": "Compulsion",
     "level": 4,
-    "school": "enc"
+    "school": "enc",
+    "concentration": true
   },
   {
     "id": "confusion",
     "srdId": "phbsplConfusion0",
     "nameEn": "Confusion",
     "level": 4,
-    "school": "enc"
+    "school": "enc",
+    "concentration": true
   },
   {
     "id": "conjure-minor-elementals",
     "srdId": "phbsplConjureMin",
     "nameEn": "Conjure Minor Elementals",
     "level": 4,
-    "school": "con"
+    "school": "con",
+    "concentration": true
   },
   {
     "id": "conjure-woodland-beings",
     "srdId": "phbsplConjureWoo",
     "nameEn": "Conjure Woodland Beings",
     "level": 4,
-    "school": "con"
+    "school": "con",
+    "concentration": true
   },
   {
     "id": "control-water",
     "srdId": "phbsplControlWat",
     "nameEn": "Control Water",
     "level": 4,
-    "school": "trs"
+    "school": "trs",
+    "concentration": true
   },
   {
     "id": "death-ward",
     "srdId": "phbsplDeathWard0",
     "nameEn": "Death Ward",
     "level": 4,
-    "school": "abj"
+    "school": "abj",
+    "concentration": false
   },
   {
     "id": "dimension-door",
     "srdId": "phbsplDimensionD",
     "nameEn": "Dimension Door",
     "level": 4,
-    "school": "con"
+    "school": "con",
+    "concentration": false
   },
   {
     "id": "divination",
     "srdId": "phbsplDivination",
     "nameEn": "Divination",
     "level": 4,
-    "school": "div"
+    "school": "div",
+    "concentration": false
   },
   {
     "id": "dominate-beast",
     "srdId": "phbsplDominateBe",
     "nameEn": "Dominate Beast",
     "level": 4,
-    "school": "enc"
+    "school": "enc",
+    "concentration": true
   },
   {
     "id": "fabricate",
     "srdId": "phbsplFabricate0",
     "nameEn": "Fabricate",
     "level": 4,
-    "school": "trs"
+    "school": "trs",
+    "concentration": false
   },
   {
     "id": "faithful-hound",
     "srdId": "phbFaithfulHound",
     "nameEn": "Faithful Hound",
     "level": 4,
-    "school": "con"
+    "school": "con",
+    "concentration": false
   },
   {
     "id": "fire-shield",
     "srdId": "phbsplFireShield",
     "nameEn": "Fire Shield",
     "level": 4,
-    "school": "evo"
+    "school": "evo",
+    "concentration": false
   },
   {
     "id": "freedom-of-movement",
     "srdId": "phbsplFreedomofM",
     "nameEn": "Freedom of Movement",
     "level": 4,
-    "school": "abj"
+    "school": "abj",
+    "concentration": false
   },
   {
     "id": "giant-insect",
     "srdId": "phbsplGiantInsec",
     "nameEn": "Giant Insect",
     "level": 4,
-    "school": "con"
+    "school": "con",
+    "concentration": true
   },
   {
     "id": "greater-invisibility",
     "srdId": "phbsplGreaterInv",
     "nameEn": "Greater Invisibility",
     "level": 4,
-    "school": "ill"
+    "school": "ill",
+    "concentration": true
   },
   {
     "id": "guardian-of-faith",
     "srdId": "phbsplGuardianof",
     "nameEn": "Guardian of Faith",
     "level": 4,
-    "school": "con"
+    "school": "con",
+    "concentration": false
   },
   {
     "id": "hallucinatory-terrain",
     "srdId": "phbsplHallucinat",
     "nameEn": "Hallucinatory Terrain",
     "level": 4,
-    "school": "ill"
+    "school": "ill",
+    "concentration": false
   },
   {
     "id": "ice-storm",
     "srdId": "phbsplIceStorm00",
     "nameEn": "Ice Storm",
     "level": 4,
-    "school": "evo"
+    "school": "evo",
+    "concentration": false
   },
   {
     "id": "locate-creature",
     "srdId": "phbsplLocateCrea",
     "nameEn": "Locate Creature",
     "level": 4,
-    "school": "div"
+    "school": "div",
+    "concentration": true
   },
   {
     "id": "phantasmal-killer",
     "srdId": "phbsplPhantasmal",
     "nameEn": "Phantasmal Killer",
     "level": 4,
-    "school": "ill"
+    "school": "ill",
+    "concentration": true
   },
   {
     "id": "polymorph",
     "srdId": "phbsplPolymorph0",
     "nameEn": "Polymorph",
     "level": 4,
-    "school": "trs"
+    "school": "trs",
+    "concentration": true
   },
   {
     "id": "private-sanctum",
     "srdId": "phbPrivateSanctu",
     "nameEn": "Private Sanctum",
     "level": 4,
-    "school": "abj"
+    "school": "abj",
+    "concentration": false
   },
   {
     "id": "resilient-sphere",
     "srdId": "phbsplOtilukesRe",
     "nameEn": "Resilient Sphere",
     "level": 4,
-    "school": "abj"
+    "school": "abj",
+    "concentration": false
   },
   {
     "id": "secret-chest",
     "srdId": "phbsplLeomundsSe",
     "nameEn": "Secret Chest",
     "level": 4,
-    "school": "con"
+    "school": "con",
+    "concentration": false
   },
   {
     "id": "stone-shape",
     "srdId": "phbsplStoneShape",
     "nameEn": "Stone Shape",
     "level": 4,
-    "school": "trs"
+    "school": "trs",
+    "concentration": false
   },
   {
     "id": "stoneskin",
     "srdId": "phbsplStoneskin0",
     "nameEn": "Stoneskin",
     "level": 4,
-    "school": "trs"
+    "school": "trs",
+    "concentration": true
   },
   {
     "id": "vitriolic-sphere",
     "srdId": "phbsplVitriolicS",
     "nameEn": "Vitriolic Sphere",
     "level": 4,
-    "school": "evo"
+    "school": "evo",
+    "concentration": false
   },
   {
     "id": "wall-of-fire",
     "srdId": "phbsplWallofFire",
     "nameEn": "Wall of Fire",
     "level": 4,
-    "school": "evo"
+    "school": "evo",
+    "concentration": true
   },
   {
     "id": "animate-objects",
     "srdId": "phbsplAnimateObj",
     "nameEn": "Animate Objects",
     "level": 5,
-    "school": "trs"
+    "school": "trs",
+    "concentration": true
   },
   {
     "id": "antilife-shell",
     "srdId": "phbsplAntilifeSh",
     "nameEn": "Antilife Shell",
     "level": 5,
-    "school": "abj"
+    "school": "abj",
+    "concentration": true
   },
   {
     "id": "arcane-hand",
     "srdId": "phbsplBigbysHand",
     "nameEn": "Arcane Hand",
     "level": 5,
-    "school": "evo"
+    "school": "evo",
+    "concentration": false
   },
   {
     "id": "awaken",
     "srdId": "phbsplAwaken0000",
     "nameEn": "Awaken",
     "level": 5,
-    "school": "trs"
+    "school": "trs",
+    "concentration": false
   },
   {
     "id": "cloudkill",
     "srdId": "phbsplCloudkill0",
     "nameEn": "Cloudkill",
     "level": 5,
-    "school": "con"
+    "school": "con",
+    "concentration": true
   },
   {
     "id": "commune-with-nature",
     "srdId": "phbsplCommunewit",
     "nameEn": "Commune with Nature",
     "level": 5,
-    "school": "div"
+    "school": "div",
+    "concentration": false
   },
   {
     "id": "commune",
     "srdId": "phbsplCommune000",
     "nameEn": "Commune",
     "level": 5,
-    "school": "div"
+    "school": "div",
+    "concentration": false
   },
   {
     "id": "cone-of-cold",
     "srdId": "phbsplConeofCold",
     "nameEn": "Cone of Cold",
     "level": 5,
-    "school": "evo"
+    "school": "evo",
+    "concentration": false
   },
   {
     "id": "conjure-elemental",
     "srdId": "phbsplConjureEle",
     "nameEn": "Conjure Elemental",
     "level": 5,
-    "school": "con"
+    "school": "con",
+    "concentration": true
   },
   {
     "id": "contact-other-plane",
     "srdId": "phbsplContactOth",
     "nameEn": "Contact Other Plane",
     "level": 5,
-    "school": "div"
+    "school": "div",
+    "concentration": false
   },
   {
     "id": "contagion",
     "srdId": "phbsplContagion0",
     "nameEn": "Contagion",
     "level": 5,
-    "school": "nec"
+    "school": "nec",
+    "concentration": false
   },
   {
     "id": "creation",
     "srdId": "phbsplCreation00",
     "nameEn": "Creation",
     "level": 5,
-    "school": "ill"
+    "school": "ill",
+    "concentration": false
   },
   {
     "id": "dispel-evil-and-good",
     "srdId": "phbsplDispelEvil",
     "nameEn": "Dispel Evil and Good",
     "level": 5,
-    "school": "abj"
+    "school": "abj",
+    "concentration": true
   },
   {
     "id": "dominate-person",
     "srdId": "phbsplDominatePe",
     "nameEn": "Dominate Person",
     "level": 5,
-    "school": "enc"
+    "school": "enc",
+    "concentration": true
   },
   {
     "id": "dream",
     "srdId": "phbsplDream00000",
     "nameEn": "Dream",
     "level": 5,
-    "school": "ill"
+    "school": "ill",
+    "concentration": false
   },
   {
     "id": "flame-strike",
     "srdId": "phbsplFlameStrik",
     "nameEn": "Flame Strike",
     "level": 5,
-    "school": "evo"
+    "school": "evo",
+    "concentration": false
   },
   {
     "id": "geas",
     "srdId": "phbsplGeas000000",
     "nameEn": "Geas",
     "level": 5,
-    "school": "enc"
+    "school": "enc",
+    "concentration": false
   },
   {
     "id": "greater-restoration",
     "srdId": "phbsplGreaterRes",
     "nameEn": "Greater Restoration",
     "level": 5,
-    "school": "abj"
+    "school": "abj",
+    "concentration": false
   },
   {
     "id": "hallow",
     "srdId": "phbsplHallow0000",
     "nameEn": "Hallow",
     "level": 5,
-    "school": "abj"
+    "school": "abj",
+    "concentration": false
   },
   {
     "id": "hold-monster",
     "srdId": "phbsplHoldMonste",
     "nameEn": "Hold Monster",
     "level": 5,
-    "school": "enc"
+    "school": "enc",
+    "concentration": true
   },
   {
     "id": "insect-plague",
     "srdId": "phbsplInsectPlag",
     "nameEn": "Insect Plague",
     "level": 5,
-    "school": "con"
+    "school": "con",
+    "concentration": true
   },
   {
     "id": "legend-lore",
     "srdId": "phbsplLegendLore",
     "nameEn": "Legend Lore",
     "level": 5,
-    "school": "div"
+    "school": "div",
+    "concentration": false
   },
   {
     "id": "mass-cure-wounds",
     "srdId": "phbsplMassCureWo",
     "nameEn": "Mass Cure Wounds",
     "level": 5,
-    "school": "abj"
+    "school": "abj",
+    "concentration": false
   },
   {
     "id": "mislead",
     "srdId": "phbsplMislead000",
     "nameEn": "Mislead",
     "level": 5,
-    "school": "ill"
+    "school": "ill",
+    "concentration": true
   },
   {
     "id": "modify-memory",
     "srdId": "phbsplModifyMemo",
     "nameEn": "Modify Memory",
     "level": 5,
-    "school": "enc"
+    "school": "enc",
+    "concentration": true
   },
   {
     "id": "passwall",
     "srdId": "phbsplPasswall00",
     "nameEn": "Passwall",
     "level": 5,
-    "school": "trs"
+    "school": "trs",
+    "concentration": false
   },
   {
     "id": "planar-binding",
     "srdId": "phbsplPlanarBind",
     "nameEn": "Planar Binding",
     "level": 5,
-    "school": "abj"
+    "school": "abj",
+    "concentration": false
   },
   {
     "id": "raise-dead",
     "srdId": "phbsplRaiseDead0",
     "nameEn": "Raise Dead",
     "level": 5,
-    "school": "nec"
+    "school": "nec",
+    "concentration": false
   },
   {
     "id": "reincarnate",
     "srdId": "phbsplReincarnat",
     "nameEn": "Reincarnate",
     "level": 5,
-    "school": "nec"
+    "school": "nec",
+    "concentration": false
   },
   {
     "id": "scrying",
     "srdId": "phbsplScrying000",
     "nameEn": "Scrying",
     "level": 5,
-    "school": "div"
+    "school": "div",
+    "concentration": true
   },
   {
     "id": "seeming",
     "srdId": "phbsplSeeming000",
     "nameEn": "Seeming",
     "level": 5,
-    "school": "ill"
+    "school": "ill",
+    "concentration": false
   },
   {
     "id": "summon-dragon",
     "srdId": "phbsplSummonDrag",
     "nameEn": "Summon Dragon",
     "level": 5,
-    "school": "con"
+    "school": "con",
+    "concentration": true
   },
   {
     "id": "telekinesis",
     "srdId": "phbsplTelekinesi",
     "nameEn": "Telekinesis",
     "level": 5,
-    "school": "trs"
+    "school": "trs",
+    "concentration": true
   },
   {
     "id": "telepathic-bond",
     "srdId": "phbsplRarysTelep",
     "nameEn": "Telepathic Bond",
     "level": 5,
-    "school": "div"
+    "school": "div",
+    "concentration": false
   },
   {
     "id": "teleportation-circle",
     "srdId": "phbsplTeleportat",
     "nameEn": "Teleportation Circle",
     "level": 5,
-    "school": "con"
+    "school": "con",
+    "concentration": false
   },
   {
     "id": "tree-stride",
     "srdId": "phbsplTreeStride",
     "nameEn": "Tree Stride",
     "level": 5,
-    "school": "con"
+    "school": "con",
+    "concentration": true
   },
   {
     "id": "wall-of-force",
     "srdId": "phbsplWallofForc",
     "nameEn": "Wall of Force",
     "level": 5,
-    "school": "evo"
+    "school": "evo",
+    "concentration": true
   },
   {
     "id": "wall-of-stone",
     "srdId": "phbsplWallofSton",
     "nameEn": "Wall of Stone",
     "level": 5,
-    "school": "evo"
+    "school": "evo",
+    "concentration": true
   },
   {
     "id": "blade-barrier",
     "srdId": "phbsplBladeBarri",
     "nameEn": "Blade Barrier",
     "level": 6,
-    "school": "evo"
+    "school": "evo",
+    "concentration": true
   },
   {
     "id": "chain-lightning",
     "srdId": "phbsplChainLight",
     "nameEn": "Chain Lightning",
     "level": 6,
-    "school": "evo"
+    "school": "evo",
+    "concentration": false
   },
   {
     "id": "circle-of-death",
     "srdId": "phbsplCircleofDe",
     "nameEn": "Circle of Death",
     "level": 6,
-    "school": "nec"
+    "school": "nec",
+    "concentration": false
   },
   {
     "id": "conjure-fey",
     "srdId": "phbsplConjureFey",
     "nameEn": "Conjure Fey",
     "level": 6,
-    "school": "con"
+    "school": "con",
+    "concentration": true
   },
   {
     "id": "contingency",
     "srdId": "phbsplContingenc",
     "nameEn": "Contingency",
     "level": 6,
-    "school": "abj"
+    "school": "abj",
+    "concentration": false
   },
   {
     "id": "create-undead",
     "srdId": "phbsplCreateUnde",
     "nameEn": "Create Undead",
     "level": 6,
-    "school": "nec"
+    "school": "nec",
+    "concentration": false
   },
   {
     "id": "disintegrate",
     "srdId": "phbsplDisintegra",
     "nameEn": "Disintegrate",
     "level": 6,
-    "school": "trs"
+    "school": "trs",
+    "concentration": false
   },
   {
     "id": "eyebite",
     "srdId": "phbsplEyebite000",
     "nameEn": "Eyebite",
     "level": 6,
-    "school": "nec"
+    "school": "nec",
+    "concentration": true
   },
   {
     "id": "find-the-path",
     "srdId": "phbsplFindthePat",
     "nameEn": "Find the Path",
     "level": 6,
-    "school": "div"
+    "school": "div",
+    "concentration": true
   },
   {
     "id": "flesh-to-stone",
     "srdId": "phbsplFleshtoSto",
     "nameEn": "Flesh to Stone",
     "level": 6,
-    "school": "trs"
+    "school": "trs",
+    "concentration": true
   },
   {
     "id": "forbiddance",
     "srdId": "phbsplForbiddanc",
     "nameEn": "Forbiddance",
     "level": 6,
-    "school": "abj"
+    "school": "abj",
+    "concentration": false
   },
   {
     "id": "freezing-sphere",
     "srdId": "phbsplOtilukesFr",
     "nameEn": "Freezing Sphere",
     "level": 6,
-    "school": "evo"
+    "school": "evo",
+    "concentration": false
   },
   {
     "id": "globe-of-invulnerability",
     "srdId": "phbsplGlobeofInv",
     "nameEn": "Globe of Invulnerability",
     "level": 6,
-    "school": "abj"
+    "school": "abj",
+    "concentration": true
   },
   {
     "id": "guards-and-wards",
     "srdId": "phbsplGuardsandW",
     "nameEn": "Guards and Wards",
     "level": 6,
-    "school": "abj"
+    "school": "abj",
+    "concentration": false
   },
   {
     "id": "harm",
     "srdId": "phbsplHarm000000",
     "nameEn": "Harm",
     "level": 6,
-    "school": "nec"
+    "school": "nec",
+    "concentration": false
   },
   {
     "id": "heal",
     "srdId": "phbsplHeal000000",
     "nameEn": "Heal",
     "level": 6,
-    "school": "abj"
+    "school": "abj",
+    "concentration": false
   },
   {
     "id": "heroes-feast",
     "srdId": "phbsplHeroesFeas",
     "nameEn": "Heroes' Feast",
     "level": 6,
-    "school": "con"
+    "school": "con",
+    "concentration": false
   },
   {
     "id": "instant-summons",
     "srdId": "phbsplDrawmijsIn",
     "nameEn": "Instant Summons",
     "level": 6,
-    "school": "con"
+    "school": "con",
+    "concentration": false
   },
   {
     "id": "irresistible-dance",
     "srdId": "phbsplOttosIrres",
     "nameEn": "Irresistible Dance",
     "level": 6,
-    "school": "enc"
+    "school": "enc",
+    "concentration": false
   },
   {
     "id": "magic-jar",
     "srdId": "phbsplMagicJar00",
     "nameEn": "Magic Jar",
     "level": 6,
-    "school": "nec"
+    "school": "nec",
+    "concentration": false
   },
   {
     "id": "mass-suggestion",
     "srdId": "phbsplMassSugges",
     "nameEn": "Mass Suggestion",
     "level": 6,
-    "school": "enc"
+    "school": "enc",
+    "concentration": false
   },
   {
     "id": "move-earth",
     "srdId": "phbsplMoveEarth0",
     "nameEn": "Move Earth",
     "level": 6,
-    "school": "trs"
+    "school": "trs",
+    "concentration": true
   },
   {
     "id": "planar-ally",
     "srdId": "phbsplPlanarAlly",
     "nameEn": "Planar Ally",
     "level": 6,
-    "school": "con"
+    "school": "con",
+    "concentration": false
   },
   {
     "id": "programmed-illusion",
     "srdId": "phbsplProgrammed",
     "nameEn": "Programmed Illusion",
     "level": 6,
-    "school": "ill"
+    "school": "ill",
+    "concentration": false
   },
   {
     "id": "sunbeam",
     "srdId": "phbsplSunbeam000",
     "nameEn": "Sunbeam",
     "level": 6,
-    "school": "evo"
+    "school": "evo",
+    "concentration": true
   },
   {
     "id": "transport-via-plants",
     "srdId": "phbsplTransportv",
     "nameEn": "Transport via Plants",
     "level": 6,
-    "school": "con"
+    "school": "con",
+    "concentration": false
   },
   {
     "id": "true-seeing",
     "srdId": "phbsplTrueSeeing",
     "nameEn": "True Seeing",
     "level": 6,
-    "school": "div"
+    "school": "div",
+    "concentration": false
   },
   {
     "id": "wall-of-ice",
     "srdId": "phbsplWallofIce0",
     "nameEn": "Wall of Ice",
     "level": 6,
-    "school": "evo"
+    "school": "evo",
+    "concentration": true
   },
   {
     "id": "wall-of-thorns",
     "srdId": "phbsplWallofThor",
     "nameEn": "Wall of Thorns",
     "level": 6,
-    "school": "con"
+    "school": "con",
+    "concentration": true
   },
   {
     "id": "wind-walk",
     "srdId": "phbsplWindWalk00",
     "nameEn": "Wind Walk",
     "level": 6,
-    "school": "trs"
+    "school": "trs",
+    "concentration": false
   },
   {
     "id": "word-of-recall",
     "srdId": "phbsplWordofReca",
     "nameEn": "Word of Recall",
     "level": 6,
-    "school": "con"
+    "school": "con",
+    "concentration": false
   },
   {
     "id": "arcane-sword",
     "srdId": "phbswdMordenkain",
     "nameEn": "Arcane Sword",
     "level": 7,
-    "school": "evo"
+    "school": "evo",
+    "concentration": false
   },
   {
     "id": "conjure-celestial",
     "srdId": "phbsplConjureCel",
     "nameEn": "Conjure Celestial",
     "level": 7,
-    "school": "con"
+    "school": "con",
+    "concentration": true
   },
   {
     "id": "delayed-blast-fireball",
     "srdId": "phbsplDelayedBla",
     "nameEn": "Delayed Blast Fireball",
     "level": 7,
-    "school": "evo"
+    "school": "evo",
+    "concentration": true
   },
   {
     "id": "divine-word",
     "srdId": "phbsplDivineWord",
     "nameEn": "Divine Word",
     "level": 7,
-    "school": "evo"
+    "school": "evo",
+    "concentration": false
   },
   {
     "id": "etherealness",
     "srdId": "phbsplEtherealne",
     "nameEn": "Etherealness",
     "level": 7,
-    "school": "con"
+    "school": "con",
+    "concentration": false
   },
   {
     "id": "finger-of-death",
     "srdId": "phbsplFingerofDe",
     "nameEn": "Finger of Death",
     "level": 7,
-    "school": "nec"
+    "school": "nec",
+    "concentration": false
   },
   {
     "id": "fire-storm",
     "srdId": "phbsplFireStorm0",
     "nameEn": "Fire Storm",
     "level": 7,
-    "school": "evo"
+    "school": "evo",
+    "concentration": false
   },
   {
     "id": "forcecage",
     "srdId": "phbsplForcecage0",
     "nameEn": "Forcecage",
     "level": 7,
-    "school": "evo"
+    "school": "evo",
+    "concentration": true
   },
   {
     "id": "magnificent-mansion",
     "srdId": "phbMagnificentMa",
     "nameEn": "Magnificent Mansion",
     "level": 7,
-    "school": "con"
+    "school": "con",
+    "concentration": false
   },
   {
     "id": "mirage-arcane",
     "srdId": "phbsplMirageArca",
     "nameEn": "Mirage Arcane",
     "level": 7,
-    "school": "ill"
+    "school": "ill",
+    "concentration": false
   },
   {
     "id": "plane-shift",
     "srdId": "phbsplPlaneShift",
     "nameEn": "Plane Shift",
     "level": 7,
-    "school": "con"
+    "school": "con",
+    "concentration": false
   },
   {
     "id": "prismatic-spray",
     "srdId": "phbsplPrismaticS",
     "nameEn": "Prismatic Spray",
     "level": 7,
-    "school": "evo"
+    "school": "evo",
+    "concentration": false
   },
   {
     "id": "project-image",
     "srdId": "phbsplProjectIma",
     "nameEn": "Project Image",
     "level": 7,
-    "school": "ill"
+    "school": "ill",
+    "concentration": true
   },
   {
     "id": "regenerate",
     "srdId": "phbsplRegenerate",
     "nameEn": "Regenerate",
     "level": 7,
-    "school": "trs"
+    "school": "trs",
+    "concentration": false
   },
   {
     "id": "resurrection",
     "srdId": "phbsplResurrecti",
     "nameEn": "Resurrection",
     "level": 7,
-    "school": "nec"
+    "school": "nec",
+    "concentration": false
   },
   {
     "id": "reverse-gravity",
     "srdId": "phbsplReverseGra",
     "nameEn": "Reverse Gravity",
     "level": 7,
-    "school": "trs"
+    "school": "trs",
+    "concentration": true
   },
   {
     "id": "sequester",
     "srdId": "phbsplSequester0",
     "nameEn": "Sequester",
     "level": 7,
-    "school": "trs"
+    "school": "trs",
+    "concentration": false
   },
   {
     "id": "simulacrum",
     "srdId": "phbsplSimulacrum",
     "nameEn": "Simulacrum",
     "level": 7,
-    "school": "ill"
+    "school": "ill",
+    "concentration": false
   },
   {
     "id": "symbol",
     "srdId": "phbsplSymbol0000",
     "nameEn": "Symbol",
     "level": 7,
-    "school": "abj"
+    "school": "abj",
+    "concentration": false
   },
   {
     "id": "teleport",
     "srdId": "phbsplTeleport00",
     "nameEn": "Teleport",
     "level": 7,
-    "school": "con"
+    "school": "con",
+    "concentration": false
   },
   {
     "id": "animal-shapes",
     "srdId": "phbsplAnimalShap",
     "nameEn": "Animal Shapes",
     "level": 8,
-    "school": "trs"
+    "school": "trs",
+    "concentration": false
   },
   {
     "id": "antimagic-field",
     "srdId": "phbsplAntimagicF",
     "nameEn": "Antimagic Field",
     "level": 8,
-    "school": "abj"
+    "school": "abj",
+    "concentration": true
   },
   {
     "id": "antipathy-sympathy",
     "srdId": "phbsplAntipathyS",
     "nameEn": "Antipathy/Sympathy",
     "level": 8,
-    "school": "enc"
+    "school": "enc",
+    "concentration": false
   },
   {
     "id": "befuddlement",
     "srdId": "phbsplBefuddleme",
     "nameEn": "Befuddlement",
     "level": 8,
-    "school": "enc"
+    "school": "enc",
+    "concentration": false
   },
   {
     "id": "clone",
     "srdId": "phbsplClone00000",
     "nameEn": "Clone",
     "level": 8,
-    "school": "nec"
+    "school": "nec",
+    "concentration": false
   },
   {
     "id": "control-weather",
     "srdId": "phbsplControlWea",
     "nameEn": "Control Weather",
     "level": 8,
-    "school": "trs"
+    "school": "trs",
+    "concentration": true
   },
   {
     "id": "demiplane",
     "srdId": "phbsplDemiplane0",
     "nameEn": "Demiplane",
     "level": 8,
-    "school": "con"
+    "school": "con",
+    "concentration": false
   },
   {
     "id": "dominate-monster",
     "srdId": "phbsplDominateMo",
     "nameEn": "Dominate Monster",
     "level": 8,
-    "school": "enc"
+    "school": "enc",
+    "concentration": true
   },
   {
     "id": "earthquake",
     "srdId": "phbsplEarthquake",
     "nameEn": "Earthquake",
     "level": 8,
-    "school": "trs"
+    "school": "trs",
+    "concentration": true
   },
   {
     "id": "glibness",
     "srdId": "phbsplGlibness00",
     "nameEn": "Glibness",
     "level": 8,
-    "school": "enc"
+    "school": "enc",
+    "concentration": false
   },
   {
     "id": "holy-aura",
     "srdId": "phbsplHolyAura00",
     "nameEn": "Holy Aura",
     "level": 8,
-    "school": "abj"
+    "school": "abj",
+    "concentration": true
   },
   {
     "id": "incendiary-cloud",
     "srdId": "phbsplIncendiary",
     "nameEn": "Incendiary Cloud",
     "level": 8,
-    "school": "con"
+    "school": "con",
+    "concentration": true
   },
   {
     "id": "maze",
     "srdId": "phbsplMaze000000",
     "nameEn": "Maze",
     "level": 8,
-    "school": "con"
+    "school": "con",
+    "concentration": true
   },
   {
     "id": "mind-blank",
     "srdId": "phbsplMindBlank0",
     "nameEn": "Mind Blank",
     "level": 8,
-    "school": "abj"
+    "school": "abj",
+    "concentration": false
   },
   {
     "id": "power-word-stun",
     "srdId": "phbsplPowerWordS",
     "nameEn": "Power Word Stun",
     "level": 8,
-    "school": "enc"
+    "school": "enc",
+    "concentration": false
   },
   {
     "id": "sunburst",
     "srdId": "phbsplSunburst00",
     "nameEn": "Sunburst",
     "level": 8,
-    "school": "evo"
+    "school": "evo",
+    "concentration": false
   },
   {
     "id": "tsunami",
     "srdId": "phbsplTsunami000",
     "nameEn": "Tsunami",
     "level": 8,
-    "school": "con"
+    "school": "con",
+    "concentration": true
   },
   {
     "id": "astral-projection",
     "srdId": "phbsplAstralProj",
     "nameEn": "Astral Projection",
     "level": 9,
-    "school": "nec"
+    "school": "nec",
+    "concentration": false
   },
   {
     "id": "foresight",
     "srdId": "phbsplForesight0",
     "nameEn": "Foresight",
     "level": 9,
-    "school": "div"
+    "school": "div",
+    "concentration": false
   },
   {
     "id": "gate",
     "srdId": "phbsplGate000000",
     "nameEn": "Gate",
     "level": 9,
-    "school": "con"
+    "school": "con",
+    "concentration": true
   },
   {
     "id": "imprisonment",
     "srdId": "phbsplImprisonme",
     "nameEn": "Imprisonment",
     "level": 9,
-    "school": "abj"
+    "school": "abj",
+    "concentration": false
   },
   {
     "id": "mass-heal",
     "srdId": "phbsplMassHeal00",
     "nameEn": "Mass Heal",
     "level": 9,
-    "school": "abj"
+    "school": "abj",
+    "concentration": false
   },
   {
     "id": "meteor-swarm",
     "srdId": "phbsplMeteorSwar",
     "nameEn": "Meteor Swarm",
     "level": 9,
-    "school": "evo"
+    "school": "evo",
+    "concentration": false
   },
   {
     "id": "power-word-heal",
     "srdId": "phbsplPowerWordH",
     "nameEn": "Power Word Heal",
     "level": 9,
-    "school": "enc"
+    "school": "enc",
+    "concentration": false
   },
   {
     "id": "power-word-kill",
     "srdId": "phbsplPowerWordK",
     "nameEn": "Power Word Kill",
     "level": 9,
-    "school": "enc"
+    "school": "enc",
+    "concentration": false
   },
   {
     "id": "prismatic-wall",
     "srdId": "phbsplPrismaticW",
     "nameEn": "Prismatic Wall",
     "level": 9,
-    "school": "abj"
+    "school": "abj",
+    "concentration": false
   },
   {
     "id": "shapechange",
     "srdId": "phbsplShapechang",
     "nameEn": "Shapechange",
     "level": 9,
-    "school": "trs"
+    "school": "trs",
+    "concentration": true
   },
   {
     "id": "storm-of-vengeance",
     "srdId": "phbsplStormofVen",
     "nameEn": "Storm of Vengeance",
     "level": 9,
-    "school": "con"
+    "school": "con",
+    "concentration": true
   },
   {
     "id": "time-stop",
     "srdId": "phbsplTimeStop00",
     "nameEn": "Time Stop",
     "level": 9,
-    "school": "trs"
+    "school": "trs",
+    "concentration": false
   },
   {
     "id": "true-polymorph",
     "srdId": "phbsplTruePolymo",
     "nameEn": "True Polymorph",
     "level": 9,
-    "school": "trs"
+    "school": "trs",
+    "concentration": true
   },
   {
     "id": "true-resurrection",
     "srdId": "phbsplTrueResurr",
     "nameEn": "True Resurrection",
     "level": 9,
-    "school": "nec"
+    "school": "nec",
+    "concentration": false
   },
   {
     "id": "weird",
     "srdId": "phbsplWeird00000",
     "nameEn": "Weird",
     "level": 9,
-    "school": "ill"
+    "school": "ill",
+    "concentration": true
   },
   {
     "id": "wish",
     "srdId": "phbsplWish000000",
     "nameEn": "Wish",
     "level": 9,
-    "school": "con"
+    "school": "con",
+    "concentration": false
   },
   {
     "id": "acid-splash",
     "srdId": "phbsplAcidSplash",
     "nameEn": "Acid Splash",
     "level": 0,
-    "school": "evo"
+    "school": "evo",
+    "concentration": false
   },
   {
     "id": "chill-touch",
     "srdId": "phbsplChillTouch",
     "nameEn": "Chill Touch",
     "level": 0,
-    "school": "nec"
+    "school": "nec",
+    "concentration": false
   },
   {
     "id": "dancing-lights",
     "srdId": "phbsplDancingLig",
     "nameEn": "Dancing Lights",
     "level": 0,
-    "school": "ill"
+    "school": "ill",
+    "concentration": true
   },
   {
     "id": "druidcraft",
     "srdId": "phbsplDruidcraft",
     "nameEn": "Druidcraft",
     "level": 0,
-    "school": "trs"
+    "school": "trs",
+    "concentration": false
   },
   {
     "id": "eldritch-blast",
     "srdId": "phbsplEldritchBl",
     "nameEn": "Eldritch Blast",
     "level": 0,
-    "school": "evo"
+    "school": "evo",
+    "concentration": false
   },
   {
     "id": "elementalism",
     "srdId": "phbsplElementali",
     "nameEn": "Elementalism",
     "level": 0,
-    "school": "trs"
+    "school": "trs",
+    "concentration": false
   },
   {
     "id": "fire-bolt",
     "srdId": "phbsplFireBolt00",
     "nameEn": "Fire Bolt",
     "level": 0,
-    "school": "evo"
+    "school": "evo",
+    "concentration": false
   },
   {
     "id": "guidance",
     "srdId": "phbsplGuidance00",
     "nameEn": "Guidance",
     "level": 0,
-    "school": "div"
+    "school": "div",
+    "concentration": true
   },
   {
     "id": "light",
     "srdId": "phbsplLight00000",
     "nameEn": "Light",
     "level": 0,
-    "school": "evo"
+    "school": "evo",
+    "concentration": false
   },
   {
     "id": "mage-hand",
     "srdId": "phbsplMageHand00",
     "nameEn": "Mage Hand",
     "level": 0,
-    "school": "con"
+    "school": "con",
+    "concentration": false
   },
   {
     "id": "mending",
     "srdId": "phbsplMending000",
     "nameEn": "Mending",
     "level": 0,
-    "school": "trs"
+    "school": "trs",
+    "concentration": false
   },
   {
     "id": "message",
     "srdId": "phbsplMessage000",
     "nameEn": "Message",
     "level": 0,
-    "school": "trs"
+    "school": "trs",
+    "concentration": false
   },
   {
     "id": "minor-illusion",
     "srdId": "phbsplMinorIllus",
     "nameEn": "Minor Illusion",
     "level": 0,
-    "school": "ill"
+    "school": "ill",
+    "concentration": false
   },
   {
     "id": "poison-spray",
     "srdId": "phbsplPoisonSpra",
     "nameEn": "Poison Spray",
     "level": 0,
-    "school": "nec"
+    "school": "nec",
+    "concentration": false
   },
   {
     "id": "prestidigitation",
     "srdId": "phbsplPrestidigi",
     "nameEn": "Prestidigitation",
     "level": 0,
-    "school": "trs"
+    "school": "trs",
+    "concentration": false
   },
   {
     "id": "produce-flame",
     "srdId": "phbsplProduceFla",
     "nameEn": "Produce Flame",
     "level": 0,
-    "school": "con"
+    "school": "con",
+    "concentration": false
   },
   {
     "id": "ray-of-frost",
     "srdId": "phbsplRayofFrost",
     "nameEn": "Ray of Frost",
     "level": 0,
-    "school": "evo"
+    "school": "evo",
+    "concentration": false
   },
   {
     "id": "resistance",
     "srdId": "phbsplResistance",
     "nameEn": "Resistance",
     "level": 0,
-    "school": "abj"
+    "school": "abj",
+    "concentration": true
   },
   {
     "id": "sacred-flame",
     "srdId": "phbsplSacredFlam",
     "nameEn": "Sacred Flame",
     "level": 0,
-    "school": "evo"
+    "school": "evo",
+    "concentration": false
   },
   {
     "id": "shillelagh",
     "srdId": "phbsplShillelagh",
     "nameEn": "Shillelagh",
     "level": 0,
-    "school": "trs"
+    "school": "trs",
+    "concentration": false
   },
   {
     "id": "shocking-grasp",
     "srdId": "phbsplShockingGr",
     "nameEn": "Shocking Grasp",
     "level": 0,
-    "school": "evo"
+    "school": "evo",
+    "concentration": false
   },
   {
     "id": "sorcerous-burst",
     "srdId": "phbsplSorcerousB",
     "nameEn": "Sorcerous Burst",
     "level": 0,
-    "school": "evo"
+    "school": "evo",
+    "concentration": false
   },
   {
     "id": "spare-the-dying",
     "srdId": "phbsplSparetheDy",
     "nameEn": "Spare the Dying",
     "level": 0,
-    "school": "nec"
+    "school": "nec",
+    "concentration": false
   },
   {
     "id": "starry-wisp",
     "srdId": "phbsplStarryWisp",
     "nameEn": "Starry Wisp",
     "level": 0,
-    "school": "evo"
+    "school": "evo",
+    "concentration": false
   },
   {
     "id": "thaumaturgy",
     "srdId": "phbsplThaumaturg",
     "nameEn": "Thaumaturgy",
     "level": 0,
-    "school": "trs"
+    "school": "trs",
+    "concentration": false
   },
   {
     "id": "true-strike",
     "srdId": "phbsplTrueStrike",
     "nameEn": "True Strike",
     "level": 0,
-    "school": "div"
+    "school": "div",
+    "concentration": false
   },
   {
     "id": "vicious-mockery",
     "srdId": "phbsplViciousMoc",
     "nameEn": "Vicious Mockery",
     "level": 0,
-    "school": "enc"
+    "school": "enc",
+    "concentration": false
   }
 ]

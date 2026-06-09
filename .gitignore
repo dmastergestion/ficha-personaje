@@ -3,6 +3,7 @@ dist/
 dev-dist/
 .vite/
 vendor/
+public/content-pack/
 *.log
 .env
 .env.*

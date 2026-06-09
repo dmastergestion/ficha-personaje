@@ -1,0 +1,44 @@
+{
+  "acolyte": {
+    "skillProficiencies": [
+      "insight",
+      "religion"
+    ],
+    "toolProficiencies": [
+      "calligrapher's supplies"
+    ],
+    "feat": "magic initiate —  cleric",
+    "traits": "Ability Scores:: Intelligence, Wisdom, Charisma Feat:: {@feat Magic Initiate|XPHB} (Cleric) Skill Proficiencies:: Insight, Religion Tool Proficiency:: Calligrapher's Supplies Equipment:: Choose A or B: (A) Calligrapher's Supplies, Book, Holy Symbol, Parchment (10 sheets), Robe, 8 GP; or (B) 50 GP"
+  },
+  "criminal": {
+    "skillProficiencies": [
+      "sleight of hand",
+      "stealth"
+    ],
+    "toolProficiencies": [
+      "thieves' tools"
+    ],
+    "feat": "alert",
+    "traits": "Ability Scores:: Dexterity, Constitution, Intelligence Feat:: {@feat Alert|XPHB} Skill Proficiencies:: Sleight of Hand, Stealth Tool Proficiency:: Thieves' Tools Equipment:: Choose A or B: (A) Dagger, Thieves' Tools, Crowbar, Pouch, Traveler's Clothes, 16 GP; or (B) 50 GP"
+  },
+  "sage": {
+    "skillProficiencies": [
+      "arcana",
+      "history"
+    ],
+    "toolProficiencies": [
+      "calligrapher's supplies"
+    ],
+    "feat": "magic initiate —  wizard",
+    "traits": "Ability Scores:: Constitution, Intelligence, Wisdom Feat:: {@feat Magic Initiate|XPHB} (Wizard) Skill Proficiencies:: Arcana, History Tool Proficiency:: Calligrapher's Supplies Equipment:: Choose A or B: (A) Quarterstaff, Calligrapher's Supplies, Book (history), Parchment (8 sheets), Robe, 8 GP; or (B) 50 GP"
+  },
+  "soldier": {
+    "skillProficiencies": [
+      "athletics",
+      "intimidation"
+    ],
+    "toolProficiencies": [],
+    "feat": "savage attacker",
+    "traits": "Ability Scores:: Strength, Dexterity, Constitution Feat:: {@feat Savage Attacker|XPHB} Skill Proficiencies:: Athletics, Intimidation Tool Proficiency:: Choose one kind of Gaming Set Equipment:: Choose A or B: (A) Spear, Shortbow, Arrow, Gaming Set (same as above), Healer's Kit, Quiver, Traveler's Clothes, 14 GP; or (B) 50 GP"
+  }
+}

@@ -1,0 +1,55 @@
+import featDescriptionsEs from "@/data/i18n/feat-descriptions-es.json";
+import featMetaJson from "@/data/srd/feat-meta.json";
+
+type FeatMetaEntry = { description?: string; descriptionEs?: string };
+
+type FeatMetaFull = FeatMetaEntry & { name?: string; nameEs?: string };
+
+const featMeta = featMetaJson as Record<string, FeatMetaFull>;
+const manualEs = featDescriptionsEs as Record<string, string>;
+
+/** Convierte texto de trasfondo ("magic initiate — cleric") al id del catálogo. */
+export function idDoteDesdeTexto(raw: string): string | undefined {
+  const base = raw.split(/[—–-]/)[0]?.trim().toLowerCase().replace(/\s+/g, "-") ?? "";
+  if (!base) return undefined;
+  if (featMeta[base]) return base;
+  const byName = Object.entries(featMeta).find(
+    ([, m]) => m.name?.toLowerCase().replace(/\s+/g, "-") === base,
+  );
+  return byName?.[0];
+}
+
+export function nombreDote(id: string): string {
+  const entry = featMeta[id];
+  return entry?.nameEs || entry?.name || id;
+}
+
+/** Limpia marcadores 5etools/Foundry para lectura en ficha. */
+export function limpiarTextoDote(text: string): string {
+  return text
+    .replace(/\{@(?:feat|action|item|itemProperty|filter|skill|table)[^}]+\}/gi, "")
+    .replace(/\|XPHB/gi, "")
+    .replace(/XPHB\|/gi, "")
+    .replace(/&amp;Reference\[([^\]]+)\]/gi, "$1")
+    .replace(/&nbsp;/g, " ")
+    .replace(/Proficiency Bonus/gi, "bonificador de competencia")
+    .replace(/Hit Points/gi, "puntos de golpe")
+    .replace(/Long Rest/gi, "descanso largo")
+    .replace(/Short Rest/gi, "descanso corto")
+    .replace(/Bonus Action/gi, "acción adicional")
+    .replace(/Advantage/gi, "ventaja")
+    .replace(/Disadvantage/gi, "desventaja")
+    .replace(/\n{3,}/g, "\n\n")
+    .trim();
+}
+
+export function descripcionDote(id: string, notes?: string): string | undefined {
+  const entry = featMeta[id];
+  if (!entry) return notes?.trim() || manualEs[id];
+
+  const fromMeta = entry.descriptionEs ?? manualEs[id];
+  if (fromMeta) return limpiarTextoDote(fromMeta);
+
+  if (entry.description) return limpiarTextoDote(entry.description);
+  return notes?.trim() || undefined;
+}

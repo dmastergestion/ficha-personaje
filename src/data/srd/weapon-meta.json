@@ -1,0 +1,64 @@
+{
+  "battleaxe": {
+    "versatileDamageDie": "1d10"
+  },
+  "dagger": {
+    "range": "20/60"
+  },
+  "dart": {
+    "range": "20/60"
+  },
+  "hand-crossbow": {
+    "range": "30/120"
+  },
+  "handaxe": {
+    "range": "20/60"
+  },
+  "heavy-crossbow": {
+    "range": "100/400"
+  },
+  "javelin": {
+    "range": "30/120"
+  },
+  "light-crossbow": {
+    "range": "80/320"
+  },
+  "light-hammer": {
+    "range": "20/60"
+  },
+  "longbow": {
+    "range": "150/600"
+  },
+  "longsword": {
+    "versatileDamageDie": "1d10"
+  },
+  "musket": {
+    "range": "40/120"
+  },
+  "pistol": {
+    "range": "30/90"
+  },
+  "quarterstaff": {
+    "versatileDamageDie": "1d8"
+  },
+  "shortbow": {
+    "range": "80/320"
+  },
+  "sling": {
+    "range": "30/120"
+  },
+  "spear": {
+    "versatileDamageDie": "1d8",
+    "range": "20/60"
+  },
+  "trident": {
+    "versatileDamageDie": "1d10",
+    "range": "20/60"
+  },
+  "war-pick": {
+    "versatileDamageDie": "1d10"
+  },
+  "warhammer": {
+    "versatileDamageDie": "1d10"
+  }
+}
