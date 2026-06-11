@@ -92,7 +92,7 @@ const FOUNDRY_TERM_FIX_ES: [RegExp, string][] = [
   [/\bUnarmed Strike\b/g, "Golpe sin armas"],
   [/\bBonus Action\b/g, "acción adicional"],
   [/\bMagic Action\b/g, "acción mágica"],
-  [/\bReaction\b/g, "Reacción"],
+  [/\bReaction\b/g, "reacción"],
 ];
 
 export function sanitizarTerminosFoundryEs(text: string): string {

@@ -256,17 +256,17 @@
     {
       "level": 3,
       "name": "Destello Protector",
-      "description": "Cuando una criatura que puedes ver a 9 metros de ti realiza una tirada de ataque, puedes usar una Reacción para imponer Desventaja en esa tirada de ataque, haciendo que la luz destelle justo antes de que golpee o falle. Puedes usar esta característica un número de veces igual a tu modificador de Sabiduría (mínimo una vez). Recuperas todos los usos gastados al finalizar un Descanso Largo."
+      "description": "Cuando una criatura que puedes ver a 9 metros de ti realiza una tirada de ataque, puedes usar una reacción para imponer desventaja en esa tirada de ataque, haciendo que la luz destelle justo antes de que golpee o falle. Puedes usar esta característica un número de veces igual a tu modificador de Sabiduría (mínimo una vez). Recuperas todos los usos gastados al finalizar un descanso largo."
     },
     {
       "level": 6,
       "name": "Destello Protector Mejorado",
-      "description": "Recuperas todos los usos gastados de tu Destello Protector al finalizar un Descanso Corto o Largo. Además, cada vez que usas el Destello Protector, puedes otorgarle al objetivo del ataque desencadenante un número de Puntos de Golpe Temporales igual a 2d6 más tu modificador de Sabiduría."
+      "description": "Recuperas todos los usos gastados de tu Destello Protector al finalizar un descanso corto o Largo. Además, cada vez que usas el Destello Protector, puedes otorgarle al objetivo del ataque desencadenante un número de puntos de golpe Temporales igual a 2d6 más tu modificador de Sabiduría."
     },
     {
       "level": 17,
       "name": "Corona de Luz",
-      "description": "Como acción mágica, haces que emitas un aura de luz solar que dura 1 minuto o hasta que la disiparas (sin acción requerida). Emites Luz Brillante en un radio de 18 metros y Luz Tenue durante 9 metros adicionales. Tus enemigos en el área de Luz Brillante tienen Desventaja en las tiradas de salvación contra tu Resplandor del Amanecer y cualquier conjuro que inflige daño de Fuego o Radiante. Puedes usar esta característica un número de veces igual a tu modificador de Sabiduría (mínimo una vez), y recuperas todos los usos gastados al finalizar un Descanso Largo."
+      "description": "Como acción mágica, haces que emitas un aura de luz solar que dura 1 minuto o hasta que la disiparas (sin acción requerida). Emites luz brillante en un radio de 18 metros y luz tenue durante 9 metros adicionales. Tus enemigos en el área de luz brillante tienen desventaja en las tiradas de salvación contra tu Resplandor del Amanecer y cualquier conjuro que inflige daño de fuego o Radiante. Puedes usar esta característica un número de veces igual a tu modificador de Sabiduría (mínimo una vez), y recuperas todos los usos gastados al finalizar un descanso largo."
     }
   ],
   "trickery": [
@@ -278,12 +278,12 @@
     {
       "level": 3,
       "name": "Bendición del Embaucador",
-      "description": "Como acción mágica, puedes elegir a ti mismo o a una criatura voluntaria a 9 metros de ti para tener Ventaja en las pruebas de Destreza (Sigilo). Esta bendición dura hasta que finalices un Descanso Largo o uses esta característica de nuevo."
+      "description": "Como acción mágica, puedes elegir a ti mismo o a una criatura voluntaria a 9 metros de ti para tener ventaja en las pruebas de Destreza (Sigilo). Esta bendición dura hasta que finalices un descanso largo o uses esta característica de nuevo."
     },
     {
       "level": 3,
       "name": "Invocar Duplicidad",
-      "description": "Como acción mágica, creas una ilusión perfecta de ti mismo que dura 1 minuto o hasta que pierdas Concentración. La ilusión aparece en un espacio desocupado que puedes ver a 9 metros de ti. La ilusión está animada e imita tus expresiones y gestos. Mientras persiste, obtienes los siguientes beneficios. Lanzar Conjuros: Puedes lanzar conjuros como si estuvieras en el espacio de la ilusión, pero debes usar tus propios sentidos. Distraer: Cuando tanto tú como tu ilusión estáis a 1,5 metros de una criatura que puede ver la ilusión, tienes Ventaja en las tiradas de ataque contra esa criatura, dado lo distractora que resulta la ilusión para el objetivo. Mover: Como acción adicional, puedes mover la ilusión hasta 9 metros a un espacio desocupado que puedas ver dentro de 36 metros de ti."
+      "description": "Como acción mágica, creas una ilusión perfecta de ti mismo que dura 1 minuto o hasta que pierdas Concentración. La ilusión aparece en un espacio desocupado que puedes ver a 9 metros de ti. La ilusión está animada e imita tus expresiones y gestos. Mientras persiste, obtienes los siguientes beneficios. Lanzar Conjuros: Puedes lanzar conjuros como si estuvieras en el espacio de la ilusión, pero debes usar tus propios sentidos. Distraer: Cuando tanto tú como tu ilusión estáis a 1,5 metros de una criatura que puede ver la ilusión, tienes ventaja en las tiradas de ataque contra esa criatura, dado lo distractora que resulta la ilusión para el objetivo. Mover: Como acción adicional, puedes mover la ilusión hasta 9 metros a un espacio desocupado que puedas ver dentro de 36 metros de ti."
     },
     {
       "level": 3,
@@ -298,7 +298,7 @@
     {
       "level": 17,
       "name": "Duplicidad Mejorada",
-      "description": "La ilusión de tu Invocar Duplicidad se ha vuelto más poderosa de las siguientes maneras. Distracción Compartida: Cuando tú y tus aliados realizáis tiradas de ataque contra una criatura a 1,5 metros de la ilusión, las tiradas de ataque tienen Ventaja. Ilusión Curativa: Cuando la ilusión termina, tú o una criatura de tu elección a 1,5 metros de ella recupera un número de Puntos de Golpe igual a tu nivel de Clérigo."
+      "description": "La ilusión de tu Invocar Duplicidad se ha vuelto más poderosa de las siguientes maneras. Distracción Compartida: Cuando tú y tus aliados realizáis tiradas de ataque contra una criatura a 1,5 metros de la ilusión, las tiradas de ataque tienen ventaja. Ilusión Curativa: Cuando la ilusión termina, tú o una criatura de tu elección a 1,5 metros de ella recupera un número de puntos de golpe igual a tu nivel de Clérigo."
     }
   ],
   "war": [
@@ -310,7 +310,7 @@
     {
       "level": 3,
       "name": "Golpe Guiado",
-      "description": "Cuando tú o una criatura a 9 metros de ti falláis una tirada de ataque, puedes gastar un uso de tu Canal de Divinidad y otorgar a esa tirada un bonificador de +10, lo que potencialmente puede hacer que impacte. Cuando usas esta característica para beneficiar la tirada de ataque de otra criatura, debes usar una Reacción para hacerlo."
+      "description": "Cuando tú o una criatura a 9 metros de ti falláis una tirada de ataque, puedes gastar un uso de tu Canal de Divinidad y otorgar a esa tirada un bonificador de +10, lo que potencialmente puede hacer que impacte. Cuando usas esta característica para beneficiar la tirada de ataque de otra criatura, debes usar una reacción para hacerlo."
     },
     {
       "level": 3,
@@ -320,7 +320,7 @@
     {
       "level": 3,
       "name": "Sacerdote de la Guerra",
-      "description": "Como acción adicional, puedes realizar un ataque con un arma. Puedes usar esta acción adicional un número de veces igual a tu modificador de Sabiduría (mínimo una vez). Recuperas todos los usos gastados al finalizar un Descanso Corto o Largo."
+      "description": "Como acción adicional, puedes realizar un ataque con un arma. Puedes usar esta acción adicional un número de veces igual a tu modificador de Sabiduría (mínimo una vez). Recuperas todos los usos gastados al finalizar un descanso corto o Largo."
     },
     {
       "level": 6,
@@ -330,7 +330,7 @@
     {
       "level": 17,
       "name": "Avatar de la Batalla",
-      "description": "Obtienes Resistencia al daño contundente, perforante y cortante."
+      "description": "Obtienes resistencia al daño contundente, perforante y cortante."
     }
   ],
   "land": [
@@ -359,7 +359,7 @@
     {
       "level": 3,
       "name": "Formas del Círculo",
-      "description": "Puedes canalizar magia lunar cuando adoptas una forma de Forma Salvaje, obteniendo los beneficios que se describen a continuación. Índice de Desafío: El Índice de Desafío máximo para la forma es igual a tu nivel de Druida dividido entre 3 (redondeado hacia abajo). Clase de Armadura: Hasta que abandones la forma, tu CA es igual a 13 más tu modificador de Sabiduría si ese total es mayor que la CA de la Bestia. Puntos de Golpe Temporales: Obtienes un número de Puntos de Golpe Temporales igual a tres veces tu nivel de Druida."
+      "description": "Puedes canalizar magia lunar cuando adoptas una forma de Forma Salvaje, obteniendo los beneficios que se describen a continuación. Índice de Desafío: El Índice de Desafío máximo para la forma es igual a tu nivel de Druida dividido entre 3 (redondeado hacia abajo). Clase de Armadura: Hasta que abandones la forma, tu CA es igual a 13 más tu modificador de Sabiduría si ese total es mayor que la CA de la Bestia. puntos de golpe Temporales: Obtienes un número de puntos de golpe Temporales igual a tres veces tu nivel de Druida."
     },
     {
       "level": 6,
@@ -369,7 +369,7 @@
     {
       "level": 10,
       "name": "Paso a la Luz de la Luna",
-      "description": "Te transportas mágicamente, reapareciendo en medio de un destello de luz de luna. Como acción adicional, te teletransportas hasta 9 metros a un espacio desocupado que puedas ver y tienes Ventaja en la siguiente tirada de ataque que realices antes del final de este turno. Puedes usar esta característica un número de veces igual a tu modificador de Sabiduría (mínimo una vez), y recuperas todos los usos gastados al finalizar un Descanso Largo. También puedes recuperar usos gastando un espacio de conjuro de nivel 2 o superior por cada uso que desees restaurar (sin acción requerida)."
+      "description": "Te transportas mágicamente, reapareciendo en medio de un destello de luz de luna. Como acción adicional, te teletransportas hasta 9 metros a un espacio desocupado que puedas ver y tienes ventaja en la siguiente tirada de ataque que realices antes del final de este turno. Puedes usar esta característica un número de veces igual a tu modificador de Sabiduría (mínimo una vez), y recuperas todos los usos gastados al finalizar un descanso largo. También puedes recuperar usos gastando un espacio de conjuro de nivel 2 o superior por cada uso que desees restaurar (sin acción requerida)."
     },
     {
       "level": 14,
@@ -381,7 +381,7 @@
     {
       "level": 3,
       "name": "Ira del Mar",
-      "description": "Como acción adicional, manifiestas una Emanación de spray del océano que te rodea durante 10 minutos. Termina antes si la disiparas (sin acción requerida), la manifiestas de nuevo, o tienes la condición de Incapacitado. Cuando manifiestas la Emanación y como acción adicional al inicio de tus turnos posteriores mientras dura, puedes hacer que golpee a una criatura de tu elección a 3 metros de ti dentro de la Emanación. La criatura debe superar una tirada de salvación de Constitución contra tu CD de conjuro o sufrir daño de Frío y, si la criatura es Grande o menor, ser empujada hasta 4,5 metros lejos de ti. Para determinar este daño, lanza un número de d6 igual a tu modificador de Sabiduría (mínimo un dado)."
+      "description": "Como acción adicional, manifiestas una Emanación de spray del océano que te rodea durante 10 minutos. Termina antes si la disiparas (sin acción requerida), la manifiestas de nuevo, o tienes la condición de Incapacitado. Cuando manifiestas la Emanación y como acción adicional al inicio de tus turnos posteriores mientras dura, puedes hacer que golpee a una criatura de tu elección a 3 metros de ti dentro de la Emanación. La criatura debe superar una tirada de salvación de Constitución contra tu CD de conjuro o sufrir daño de frío y, si la criatura es Grande o menor, ser empujada hasta 4,5 metros lejos de ti. Para determinar este daño, lanza un número de d6 igual a tu modificador de Sabiduría (mínimo un dado)."
     },
     {
       "level": 6,
@@ -391,7 +391,7 @@
     {
       "level": 10,
       "name": "Nacido de la Tormenta",
-      "description": "Tu Ira del Mar confiere dos beneficios más mientras está activa, como se detalla a continuación. Vuelo: Obtienes una velocidad de vuelo igual a tu velocidad. Resistencia: Tienes Resistencia al daño de Frío, Relámpago y Trueno."
+      "description": "Tu Ira del Mar confiere dos beneficios más mientras está activa, como se detalla a continuación. Vuelo: Obtienes una velocidad de vuelo igual a tu velocidad. Resistencia: Tienes resistencia al daño de frío, Relámpago y Trueno."
     },
     {
       "level": 14,
@@ -403,12 +403,12 @@
     {
       "level": 3,
       "name": "Mapa Estelar",
-      "description": "Has creado un mapa estelar como parte de tus estudios celestiales. Es un objeto Diminuto, y puedes usarlo como Foco de Lanzamiento de Conjuros para tus conjuros de Druida. Determinas su forma lanzando en la tabla de Mapa Estelar o eligiendo una. Mientras sostienes el mapa, tienes los conjuros Guía y Proyectil de Luz preparados, y puedes lanzar Proyectil de Luz sin gastar un espacio de conjuro. Puedes lanzarlo de esa manera un número de veces igual a tu modificador de Sabiduría (mínimo una vez), y recuperas todos los usos gastados al finalizar un Descanso Largo. Si pierdes el mapa, puedes realizar una ceremonia de 1 hora para crear mágicamente un sustituto. Esta ceremonia puede realizarse durante un Descanso Corto o Largo, y destruye el mapa anterior."
+      "description": "Has creado un mapa estelar como parte de tus estudios celestiales. Es un objeto Diminuto, y puedes usarlo como Foco de Lanzamiento de Conjuros para tus conjuros de Druida. Determinas su forma lanzando en la tabla de Mapa Estelar o eligiendo una. Mientras sostienes el mapa, tienes los conjuros Guía y Proyectil de Luz preparados, y puedes lanzar Proyectil de Luz sin gastar un espacio de conjuro. Puedes lanzarlo de esa manera un número de veces igual a tu modificador de Sabiduría (mínimo una vez), y recuperas todos los usos gastados al finalizar un descanso largo. Si pierdes el mapa, puedes realizar una ceremonia de 1 hora para crear mágicamente un sustituto. Esta ceremonia puede realizarse durante un descanso corto o Largo, y destruye el mapa anterior."
     },
     {
       "level": 3,
       "name": "Forma Estrellada",
-      "description": "Como acción adicional, puedes gastar un uso de tu característica de Forma Salvaje para adoptar una forma estrellada en lugar de transformarte. Mientras estás en tu forma estrellada, conservas tus estadísticas de juego, pero tu cuerpo se vuelve luminoso, tus articulaciones brillan como estrellas y líneas resplandecientes las conectan como en un mapa estelar. Esta forma emite Luz Brillante en un radio de 3 metros y Luz Tenue durante 3 metros adicionales. La forma dura 10 minutos. Termina antes si la disiparas (sin acción requerida), tienes la condición de Incapacitado, o usas esta característica de nuevo. Cada vez que adoptas tu forma estrellada, elige cuál de las siguientes constelaciones brilla en tu cuerpo; tu elección te otorga ciertos beneficios mientras estás en la forma."
+      "description": "Como acción adicional, puedes gastar un uso de tu característica de Forma Salvaje para adoptar una forma estrellada en lugar de transformarte. Mientras estás en tu forma estrellada, conservas tus estadísticas de juego, pero tu cuerpo se vuelve luminoso, tus articulaciones brillan como estrellas y líneas resplandecientes las conectan como en un mapa estelar. Esta forma emite luz brillante en un radio de 3 metros y luz tenue durante 3 metros adicionales. La forma dura 10 minutos. Termina antes si la disiparas (sin acción requerida), tienes la condición de Incapacitado, o usas esta característica de nuevo. Cada vez que adoptas tu forma estrellada, elige cuál de las siguientes constelaciones brilla en tu cuerpo; tu elección te otorga ciertos beneficios mientras estás en la forma."
     },
     {
       "level": 3,
@@ -418,7 +418,7 @@
     {
       "level": 3,
       "name": "Cáliz",
-      "description": "Aparece en ti una constelación de una copa que da vida. Cada vez que lanzas un conjuro usando un espacio de conjuro que restaura Puntos de Golpe a una criatura, tú o una criatura a 1,5 metros de ti recupera Puntos de Golpe igual a 1d8 más tu modificador de Sabiduría."
+      "description": "Aparece en ti una constelación de una copa que da vida. Cada vez que lanzas un conjuro usando un espacio de conjuro que restaura puntos de golpe a una criatura, tú o una criatura a 1,5 metros de ti recupera puntos de golpe igual a 1d8 más tu modificador de Sabiduría."
     },
     {
       "level": 3,
@@ -428,7 +428,7 @@
     {
       "level": 6,
       "name": "Presagio Cósmico",
-      "description": "Cada vez que finalices un Descanso Largo, lanzas un dado y obtienes acceso a una Reacción especial según hayas sacado un número par o impar. Augurio (par): Cada vez que una criatura que puedas ver a 9 metros de ti esté a punto de realizar una tirada de ataque, una prueba de habilidad o una tirada de salvación, puedes usar tu Reacción para lanzar 1d6 y añadir el número obtenido al total. Mal Augurio (impar): Cada vez que una criatura que puedas ver a 9 metros de ti esté a punto de realizar una tirada de ataque, una prueba de habilidad o una tirada de salvación, puedes usar tu Reacción para lanzar 1d6 y restar el número obtenido del total. Puedes usar esta Reacción un número de veces igual a tu modificador de Sabiduría (mínimo una vez), y recuperas todos los usos gastados al finalizar un Descanso Largo."
+      "description": "Cada vez que finalices un descanso largo, lanzas un dado y obtienes acceso a una reacción especial según hayas sacado un número par o impar. Augurio (par): Cada vez que una criatura que puedas ver a 9 metros de ti esté a punto de realizar una tirada de ataque, una prueba de característica o una tirada de salvación, puedes usar tu reacción para lanzar 1d6 y añadir el número obtenido al total. Mal Augurio (impar): Cada vez que una criatura que puedas ver a 9 metros de ti esté a punto de realizar una tirada de ataque, una prueba de característica o una tirada de salvación, puedes usar tu reacción para lanzar 1d6 y restar el número obtenido del total. Puedes usar esta reacción un número de veces igual a tu modificador de Sabiduría (mínimo una vez), y recuperas todos los usos gastados al finalizar un descanso largo."
     },
     {
       "level": 10,
@@ -438,7 +438,7 @@
     {
       "level": 14,
       "name": "Lleno de Estrellas",
-      "description": "Mientras estás en tu Forma Estrellada, te vuelves parcialmente incorpóreo, lo que te otorga Resistencia al daño contundente, perforante y cortante."
+      "description": "Mientras estás en tu Forma Estrellada, te vuelves parcialmente incorpóreo, lo que te otorga resistencia al daño contundente, perforante y cortante."
     }
   ],
   "battle-master": [
@@ -450,7 +450,7 @@
     {
       "level": 3,
       "name": "Superioridad en Combate",
-      "description": "Tu experiencia en el campo de batalla ha refinado tus técnicas de combate. Aprendes maniobras que se alimentan de dados especiales llamados Dados de Superioridad. Maniobras: Aprendes tres maniobras de tu elección de la sección «Opciones de Maniobra» más adelante en la descripción de esta subclase. Muchas maniobras mejoran un ataque de alguna manera. Solo puedes usar una maniobra por ataque. Aprendes dos maniobras adicionales de tu elección cuando alcanzas los niveles de Guerrero 7, 10 y 15. Cada vez que aprendes nuevas maniobras, también puedes reemplazar una maniobra que conozcas por otra diferente. Dados de Superioridad: Tienes cuatro Dados de Superioridad, que son d8. Un Dado de Superioridad se gasta cuando lo usas. Recuperas todos los Dados de Superioridad gastados al finalizar un Descanso Corto o Largo. Obtienes un Dado de Superioridad adicional cuando alcanzas los niveles de Guerrero 7 (cinco dados en total) y 15 (seis dados en total). Tiradas de Salvación: Si una maniobra requiere una tirada de salvación, la CD es igual a 8 más tu modificador de Fuerza o Destreza (a tu elección) y Bonificador de Competencia."
+      "description": "Tu experiencia en el campo de batalla ha refinado tus técnicas de combate. Aprendes maniobras que se alimentan de dados especiales llamados Dados de Superioridad. Maniobras: Aprendes tres maniobras de tu elección de la sección «Opciones de Maniobra» más adelante en la descripción de esta subclase. Muchas maniobras mejoran un ataque de alguna manera. Solo puedes usar una maniobra por ataque. Aprendes dos maniobras adicionales de tu elección cuando alcanzas los niveles de Guerrero 7, 10 y 15. Cada vez que aprendes nuevas maniobras, también puedes reemplazar una maniobra que conozcas por otra diferente. Dados de Superioridad: Tienes cuatro Dados de Superioridad, que son d8. Un Dado de Superioridad se gasta cuando lo usas. Recuperas todos los Dados de Superioridad gastados al finalizar un descanso corto o Largo. Obtienes un Dado de Superioridad adicional cuando alcanzas los niveles de Guerrero 7 (cinco dados en total) y 15 (seis dados en total). Tiradas de Salvación: Si una maniobra requiere una tirada de salvación, la CD es igual a 8 más tu modificador de Fuerza o Destreza (a tu elección) y bonificador de competencia."
     },
     {
       "level": 3,
@@ -465,7 +465,7 @@
     {
       "level": 7,
       "name": "Conoce a tu Enemigo",
-      "description": "Como acción adicional, puedes discernir ciertas fortalezas y debilidades de una criatura que puedas ver a 9 metros de ti; sabes si esa criatura tiene alguna Inmunidad, Resistencia o Vulnerabilidad, y si las tiene, sabes cuáles son. Una vez que uses esta característica, no puedes hacerlo de nuevo hasta que finalices un Descanso Largo. También puedes restaurar un uso de la característica gastando un Dado de Superioridad (sin acción requerida)."
+      "description": "Como acción adicional, puedes discernir ciertas fortalezas y debilidades de una criatura que puedas ver a 9 metros de ti; sabes si esa criatura tiene alguna inmunidad, Resistencia o vulnerabilidad, y si las tiene, sabes cuáles son. Una vez que uses esta característica, no puedes hacerlo de nuevo hasta que finalices un descanso largo. También puedes restaurar un uso de la característica gastando un Dado de Superioridad (sin acción requerida)."
     },
     {
       "level": 10,
@@ -529,12 +529,12 @@
     {
       "level": 3,
       "name": "Lanzamiento de Conjuros",
-      "description": "Has aprendido a lanzar conjuros. La información siguiente detalla cómo usas las reglas de lanzamiento de conjuros como Caballero Sobrenatural. Trucos: Conoces dos trucos de tu elección de la lista de conjuros de Mago. Rayo de Escarcha y Agarre Conmocionante son recomendados. Cuando ganas un nivel de Guerrero, puedes reemplazar uno de estos trucos por otro truco de tu elección de la lista de Mago. Cuando alcanzas el nivel 10 de Guerrero, aprendes otro truco de Mago de tu elección. Espacios de Conjuro: La tabla de Lanzamiento de Conjuros del Caballero Sobrenatural muestra cuántos espacios de conjuro tienes para lanzar tus conjuros de nivel 1 o superior. Recuperas todos los espacios gastados al finalizar un Descanso Largo. Conjuros Preparados de Nivel 1 o Superior: Preparas la lista de conjuros de nivel 1 o superior disponibles para lanzar con esta característica. Para empezar, elige tres conjuros de nivel 1 de la lista de conjuros de Mago. Manos Ardientes, Salto y Escudo son recomendados. El número de conjuros en tu lista aumenta a medida que ganas niveles de Guerrero, como se muestra en la columna de Conjuros Preparados de la tabla. Cuando ese número aumenta, elige conjuros adicionales de la lista de Mago hasta que el número coincida con el de la tabla. Los conjuros elegidos deben ser de un nivel para el que tengas espacios de conjuro. Cambiar tus Conjuros Preparados: Cuando ganas un nivel de Guerrero, puedes reemplazar un conjuro de tu lista por otro conjuro de Mago para el que tengas espacios de conjuro. Aptitud de Lanzamiento: La Inteligencia es tu aptitud de lanzamiento de conjuros para tus conjuros de Mago. Foco de Lanzamiento: Puedes usar un Foco Arcano como Foco de Lanzamiento de Conjuros para tus conjuros de Mago."
+      "description": "Has aprendido a lanzar conjuros. La información siguiente detalla cómo usas las reglas de lanzamiento de conjuros como Caballero Sobrenatural. Trucos: Conoces dos trucos de tu elección de la lista de conjuros de Mago. Rayo de Escarcha y Agarre Conmocionante son recomendados. Cuando ganas un nivel de Guerrero, puedes reemplazar uno de estos trucos por otro truco de tu elección de la lista de Mago. Cuando alcanzas el nivel 10 de Guerrero, aprendes otro truco de Mago de tu elección. Espacios de Conjuro: La tabla de Lanzamiento de Conjuros del Caballero Sobrenatural muestra cuántos espacios de conjuro tienes para lanzar tus conjuros de nivel 1 o superior. Recuperas todos los espacios gastados al finalizar un descanso largo. Conjuros Preparados de Nivel 1 o Superior: Preparas la lista de conjuros de nivel 1 o superior disponibles para lanzar con esta característica. Para empezar, elige tres conjuros de nivel 1 de la lista de conjuros de Mago. Manos Ardientes, Salto y Escudo son recomendados. El número de conjuros en tu lista aumenta a medida que ganas niveles de Guerrero, como se muestra en la columna de Conjuros Preparados de la tabla. Cuando ese número aumenta, elige conjuros adicionales de la lista de Mago hasta que el número coincida con el de la tabla. Los conjuros elegidos deben ser de un nivel para el que tengas espacios de conjuro. Cambiar tus Conjuros Preparados: Cuando ganas un nivel de Guerrero, puedes reemplazar un conjuro de tu lista por otro conjuro de Mago para el que tengas espacios de conjuro. Aptitud de Lanzamiento: La Inteligencia es tu aptitud de lanzamiento de conjuros para tus conjuros de Mago. Foco de Lanzamiento: Puedes usar un Foco Arcano como Foco de Lanzamiento de Conjuros para tus conjuros de Mago."
     },
     {
       "level": 3,
       "name": "Vínculo de Guerra",
-      "description": "Aprendes un ritual que crea un vínculo mágico entre tú y un arma. Realizas el ritual durante 1 hora, que puede hacerse durante un Descanso Corto. El arma debe estar a tu alcance durante todo el ritual, al final del cual tocas el arma y forjas el vínculo. El vínculo falla si otro Guerrero ya está vinculado al arma o si el arma es un objeto mágico con el que alguien más está sintonizado. Una vez que hayas vinculado un arma a ti mismo, no puedes ser desarmado de esa arma a menos que tengas la condición de Incapacitado. Si está en el mismo plano de existencia, puedes convocar esa arma como acción adicional, haciendo que se teletransporte instantáneamente a tu mano. Puedes tener hasta dos armas vinculadas, pero solo puedes convocar una a la vez con una acción adicional. Si intentas vincularte con una tercera arma, debes romper el vínculo con una de las otras dos."
+      "description": "Aprendes un ritual que crea un vínculo mágico entre tú y un arma. Realizas el ritual durante 1 hora, que puede hacerse durante un descanso corto. El arma debe estar a tu alcance durante todo el ritual, al final del cual tocas el arma y forjas el vínculo. El vínculo falla si otro Guerrero ya está vinculado al arma o si el arma es un objeto mágico con el que alguien más está sintonizado. Una vez que hayas vinculado un arma a ti mismo, no puedes ser desarmado de esa arma a menos que tengas la condición de Incapacitado. Si está en el mismo plano de existencia, puedes convocar esa arma como acción adicional, haciendo que se teletransporte instantáneamente a tu mano. Puedes tener hasta dos armas vinculadas, pero solo puedes convocar una a la vez con una acción adicional. Si intentas vincularte con una tercera arma, debes romper el vínculo con una de las otras dos."
     },
     {
       "level": 7,
@@ -544,7 +544,7 @@
     {
       "level": 10,
       "name": "Golpe Sobrenatural",
-      "description": "Aprendes a hacer que tus golpes de arma socaven la capacidad de una criatura para resistir tus conjuros. Cuando impactas a una criatura con un ataque usando un arma, esa criatura tiene Desventaja en la siguiente tirada de salvación que realice contra un conjuro que lances antes del final de tu siguiente turno."
+      "description": "Aprendes a hacer que tus golpes de arma socaven la capacidad de una criatura para resistir tus conjuros. Cuando impactas a una criatura con un ataque usando un arma, esa criatura tiene desventaja en la siguiente tirada de salvación que realice contra un conjuro que lances antes del final de tu siguiente turno."
     },
     {
       "level": 15,
@@ -566,27 +566,27 @@
     {
       "level": 3,
       "name": "Poder Psiónico",
-      "description": "Albergas un manantial de energía psiónica dentro de ti. Está representada por tus Dados de Energía Psiónica, que alimentan los poderes que tienes de esta subclase. La tabla de Dados de Energía del Guerrero Psiónico muestra el tamaño y el número de estos dados que tienes cuando alcanzas ciertos niveles de Guerrero. Cualquier característica de esta subclase que use un Dado de Energía Psiónica solo usa los dados de esta subclase. Algunos de tus poderes gastan el Dado de Energía Psiónica, como se especifica en la descripción de cada poder, y no puedes usar un poder si requiere que uses un dado cuando todos tus Dados de Energía Psiónica están gastados. Recuperas uno de tus Dados de Energía Psiónica gastados al finalizar un Descanso Corto o Largo."
+      "description": "Albergas un manantial de energía psiónica dentro de ti. Está representada por tus Dados de Energía Psiónica, que alimentan los poderes que tienes de esta subclase. La tabla de Dados de Energía del Guerrero Psiónico muestra el tamaño y el número de estos dados que tienes cuando alcanzas ciertos niveles de Guerrero. Cualquier característica de esta subclase que use un Dado de Energía Psiónica solo usa los dados de esta subclase. Algunos de tus poderes gastan el Dado de Energía Psiónica, como se especifica en la descripción de cada poder, y no puedes usar un poder si requiere que uses un dado cuando todos tus Dados de Energía Psiónica están gastados. Recuperas uno de tus Dados de Energía Psiónica gastados al finalizar un descanso corto o Largo."
     },
     {
       "level": 3,
       "name": "Campo Protector",
-      "description": "Cuando tú u otra criatura que puedas ver a 9 metros de ti recibe daño, puedes usar una Reacción para gastar un Dado de Energía Psiónica, lanzarlo y reducir el daño recibido en el número obtenido más tu modificador de Inteligencia (reducción mínima de 1), creando un escudo momentáneo de fuerza telequinética."
+      "description": "Cuando tú u otra criatura que puedas ver a 9 metros de ti recibe daño, puedes usar una reacción para gastar un Dado de Energía Psiónica, lanzarlo y reducir el daño recibido en el número obtenido más tu modificador de Inteligencia (reducción mínima de 1), creando un escudo momentáneo de fuerza telequinética."
     },
     {
       "level": 3,
       "name": "Golpe Psiónico",
-      "description": "Puedes propulsar tus armas con fuerza psiónica. Una vez en cada uno de tus turnos, inmediatamente después de impactar a un objetivo a 9 metros de ti con un ataque y causarle daño con un arma, puedes gastar un Dado de Energía Psiónica, lanzarlo e infligir daño de Fuerza al objetivo igual al número obtenido más tu modificador de Inteligencia."
+      "description": "Puedes propulsar tus armas con fuerza psiónica. Una vez en cada uno de tus turnos, inmediatamente después de impactar a un objetivo a 9 metros de ti con un ataque y causarle daño con un arma, puedes gastar un Dado de Energía Psiónica, lanzarlo e infligir daño de fuerza al objetivo igual al número obtenido más tu modificador de Inteligencia."
     },
     {
       "level": 3,
       "name": "Movimiento Telequinético",
-      "description": "Puedes mover un objeto o una criatura con tu mente. Como acción mágica, elige un objetivo que puedas ver a 9 metros de ti; el objetivo debe ser un objeto suelto de tamaño Grande o menor, o una criatura voluntaria que no seas tú. Transportas el objetivo hasta 9 metros a un espacio desocupado que puedas ver. Alternativamente, si el objetivo es un objeto Diminuto, puedes transportarlo hacia o desde tu mano. Una vez que realices esta acción, no puedes hacerlo de nuevo hasta que finalices un Descanso Corto o Largo, a menos que gastes un Dado de Energía Psiónica (sin acción requerida) para restaurar tu uso de ella."
+      "description": "Puedes mover un objeto o una criatura con tu mente. Como acción mágica, elige un objetivo que puedas ver a 9 metros de ti; el objetivo debe ser un objeto suelto de tamaño Grande o menor, o una criatura voluntaria que no seas tú. Transportas el objetivo hasta 9 metros a un espacio desocupado que puedas ver. Alternativamente, si el objetivo es un objeto Diminuto, puedes transportarlo hacia o desde tu mano. Una vez que realices esta acción, no puedes hacerlo de nuevo hasta que finalices un descanso corto o Largo, a menos que gastes un Dado de Energía Psiónica (sin acción requerida) para restaurar tu uso de ella."
     },
     {
       "level": 7,
       "name": "Salto Psiónico",
-      "description": "Como acción adicional, puedes propulsarte psíonicamente, obteniendo una velocidad de vuelo igual al doble de tu velocidad hasta el final del turno actual. Una vez que uses esta característica, no puedes hacerlo de nuevo hasta que finalices un Descanso Corto o Largo, a menos que gastes un Dado de Energía Psiónica (sin acción requerida) para restaurar tu uso de ella."
+      "description": "Como acción adicional, puedes propulsarte psíonicamente, obteniendo una velocidad de vuelo igual al doble de tu velocidad hasta el final del turno actual. Una vez que uses esta característica, no puedes hacerlo de nuevo hasta que finalices un descanso corto o Largo, a menos que gastes un Dado de Energía Psiónica (sin acción requerida) para restaurar tu uso de ella."
     },
     {
       "level": 7,
@@ -596,29 +596,29 @@
     {
       "level": 7,
       "name": "Empuje Telequinético",
-      "description": "Cuando infliges daño a un objetivo con tu Golpe Psiónico, puedes obligar al objetivo a realizar una tirada de salvación de Fuerza (CD 8 más tu modificador de Inteligencia y Bonificador de Competencia). Si falla la tirada, puedes otorgar al objetivo la condición de Derribado o transportarlo hasta 3 metros horizontalmente."
+      "description": "Cuando infliges daño a un objetivo con tu Golpe Psiónico, puedes obligar al objetivo a realizar una tirada de salvación de Fuerza (CD 8 más tu modificador de Inteligencia y bonificador de competencia). Si falla la tirada, puedes otorgar al objetivo la condición de Derribado o transportarlo hasta 3 metros horizontalmente."
     },
     {
       "level": 10,
       "name": "Mente Protegida",
-      "description": "Tienes Resistencia al daño Psíquico. Además, si comienzas tu turno con la condición de Hechizado o Asustado, puedes gastar un Dado de Energía Psiónica (sin acción requerida) y terminar todos los efectos sobre ti que te otorguen esas condiciones."
+      "description": "Tienes resistencia al daño Psíquico. Además, si comienzas tu turno con la condición de Hechizado o Asustado, puedes gastar un Dado de Energía Psiónica (sin acción requerida) y terminar todos los efectos sobre ti que te otorguen esas condiciones."
     },
     {
       "level": 15,
       "name": "Baluarte de Fuerza",
-      "description": "Puedes protegerte a ti mismo y a otros con fuerza telequinética. Como acción adicional, puedes elegir criaturas que puedas ver —incluido tú mismo—, hasta un número igual a tu modificador de Inteligencia (mínimo una criatura), a 9 metros de ti. Cada criatura elegida obtiene Cobertura a Medias durante 1 minuto o hasta que tengas la condición de Incapacitado. Una vez uses esta característica, no puedes hacerlo de nuevo hasta que finalices un Descanso Largo, a menos que gastes un Dado de Energía Psiónica (sin acción requerida) para restaurar tu uso de ella."
+      "description": "Puedes protegerte a ti mismo y a otros con fuerza telequinética. Como acción adicional, puedes elegir criaturas que puedas ver —incluido tú mismo—, hasta un número igual a tu modificador de Inteligencia (mínimo una criatura), a 9 metros de ti. Cada criatura elegida obtiene Cobertura a Medias durante 1 minuto o hasta que tengas la condición de Incapacitado. Una vez uses esta característica, no puedes hacerlo de nuevo hasta que finalices un descanso largo, a menos que gastes un Dado de Energía Psiónica (sin acción requerida) para restaurar tu uso de ella."
     },
     {
       "level": 18,
       "name": "Maestro Telequinético",
-      "description": "Siempre tienes el conjuro Telequinesia preparado. Con esta característica, puedes lanzarlo sin un espacio de conjuro ni componentes, y tu aptitud de lanzamiento de conjuros para él es la Inteligencia. En cada uno de tus turnos mientras mantienes Concentración en él, incluido el turno en que lo lanzas, puedes realizar un ataque con un arma como acción adicional. Una vez que lances el conjuro con esta característica, no puedes hacerlo de esta manera de nuevo hasta que finalices un Descanso Largo, a menos que gastes un Dado de Energía Psiónica (sin acción requerida) para restaurar tu uso de ella."
+      "description": "Siempre tienes el conjuro Telequinesia preparado. Con esta característica, puedes lanzarlo sin un espacio de conjuro ni componentes, y tu aptitud de lanzamiento de conjuros para él es la Inteligencia. En cada uno de tus turnos mientras mantienes Concentración en él, incluido el turno en que lo lanzas, puedes realizar un ataque con un arma como acción adicional. Una vez que lances el conjuro con esta característica, no puedes hacerlo de esta manera de nuevo hasta que finalices un descanso largo, a menos que gastes un Dado de Energía Psiónica (sin acción requerida) para restaurar tu uso de ella."
     }
   ],
   "elements": [
     {
       "level": 3,
       "name": "Sintonía Elemental",
-      "description": "Al inicio de tu turno, puedes gastar 1 Punto de Concentración para imbuirte de energía elemental. La energía dura 10 minutos o hasta que tengas la condición de Incapacitado. Obtienes los siguientes beneficios mientras esta característica está activa. Alcance: Cuando realizas un Golpe Desarmado, tu alcance es 3 metros mayor de lo normal, ya que la energía elemental se extiende desde ti. Golpes Elementales: Cuando impactas con tu Golpe Desarmado, puedes hacer que infliga tu elección de daño de Ácido, Frío, Fuego, Relámpago o Trueno en lugar de su tipo de daño normal. Cuando infliges uno de estos tipos con él, también puedes obligar al objetivo a realizar una tirada de salvación de Fuerza. Si falla, puedes mover al objetivo hasta 3 metros hacia ti o alejándolo de ti, ya que la energía elemental arremolinada lo rodea."
+      "description": "Al inicio de tu turno, puedes gastar 1 Punto de Concentración para imbuirte de energía elemental. La energía dura 10 minutos o hasta que tengas la condición de Incapacitado. Obtienes los siguientes beneficios mientras esta característica está activa. Alcance: Cuando realizas un Golpe Desarmado, tu alcance es 3 metros mayor de lo normal, ya que la energía elemental se extiende desde ti. Golpes Elementales: Cuando impactas con tu Golpe Desarmado, puedes hacer que infliga tu elección de daño de ácido, Frío, Fuego, Relámpago o Trueno en lugar de su tipo de daño normal. Cuando infliges uno de estos tipos con él, también puedes obligar al objetivo a realizar una tirada de salvación de Fuerza. Si falla, puedes mover al objetivo hasta 3 metros hacia ti o alejándolo de ti, ya que la energía elemental arremolinada lo rodea."
     },
     {
       "level": 3,
@@ -643,7 +643,7 @@
     {
       "level": 17,
       "name": "Epítome Elemental",
-      "description": "Mientras tu Sintonía Elemental está activa, también obtienes los siguientes beneficios. Resistencia al Daño: Obtienes Resistencia a uno de los siguientes tipos de daño de tu elección: Ácido, Frío, Fuego, Relámpago o Trueno. Al inicio de cada uno de tus turnos, puedes cambiar esta elección. Zancada Destructiva: Cuando usas tu Paso del Viento, tu velocidad aumenta 6 metros hasta el final del turno. Durante ese tiempo, cualquier criatura de tu elección sufre daño igual a un lanzamiento de tu dado de Artes Marciales cuando entras en un espacio a 1,5 metros de ella. El tipo de daño es tu elección de Ácido, Frío, Fuego, Relámpago o Trueno. Una criatura solo puede sufrir este daño una vez por turno. Golpes Potenciados: Una vez en cada uno de tus turnos, puedes infligir daño adicional a un objetivo igual a un lanzamiento de tu dado de Artes Marciales cuando lo impactes con un Golpe Desarmado. El daño adicional es del mismo tipo que el infligido por ese golpe."
+      "description": "Mientras tu Sintonía Elemental está activa, también obtienes los siguientes beneficios. resistencia al daño: Obtienes Resistencia a uno de los siguientes tipos de daño de tu elección: Ácido, Frío, Fuego, Relámpago o Trueno. Al inicio de cada uno de tus turnos, puedes cambiar esta elección. Zancada Destructiva: Cuando usas tu Paso del Viento, tu velocidad aumenta 6 metros hasta el final del turno. Durante ese tiempo, cualquier criatura de tu elección sufre daño igual a un lanzamiento de tu dado de Artes Marciales cuando entras en un espacio a 1,5 metros de ella. El tipo de daño es tu elección de Ácido, Frío, Fuego, Relámpago o Trueno. Una criatura solo puede sufrir este daño una vez por turno. Golpes Potenciados: Una vez en cada uno de tus turnos, puedes infligir daño adicional a un objetivo igual a un lanzamiento de tu dado de Artes Marciales cuando lo impactes con un Golpe Desarmado. El daño adicional es del mismo tipo que el infligido por ese golpe."
     }
   ],
   "mercy": [
@@ -660,7 +660,7 @@
     {
       "level": 3,
       "name": "Mano de la Curación",
-      "description": "Como acción mágica, puedes gastar 1 Punto de Concentración para tocar a una criatura y restaurar un número de Puntos de Golpe igual a un lanzamiento de tu dado de Artes Marciales más tu modificador de Sabiduría. Cuando usas tu Ráfaga de Golpes, puedes reemplazar uno de los Golpes Desarmados con un uso de esta característica sin gastar un Punto de Concentración para la curación."
+      "description": "Como acción mágica, puedes gastar 1 Punto de Concentración para tocar a una criatura y restaurar un número de puntos de golpe igual a un lanzamiento de tu dado de Artes Marciales más tu modificador de Sabiduría. Cuando usas tu Ráfaga de Golpes, puedes reemplazar uno de los Golpes Desarmados con un uso de esta característica sin gastar un Punto de Concentración para la curación."
     },
     {
       "level": 3,
@@ -675,12 +675,12 @@
     {
       "level": 11,
       "name": "Ráfaga de Curación y Daño",
-      "description": "Cuando usas tu Ráfaga de Golpes, puedes reemplazar cada uno de los Golpes Desarmados con un uso de la Mano de la Curación sin gastar Puntos de Concentración para la curación. Además, cuando realizas un Golpe Desarmado con la Ráfaga de Golpes e infliges daño, puedes usar la Mano del Daño con ese golpe sin gastar un Punto de Concentración para la Mano del Daño. Aún puedes usar la Mano del Daño solo una vez por turno. Puedes usar estos beneficios un número total de veces igual a tu modificador de Sabiduría (mínimo una vez). Recuperas todos los usos gastados al finalizar un Descanso Largo."
+      "description": "Cuando usas tu Ráfaga de Golpes, puedes reemplazar cada uno de los Golpes Desarmados con un uso de la Mano de la Curación sin gastar Puntos de Concentración para la curación. Además, cuando realizas un Golpe Desarmado con la Ráfaga de Golpes e infliges daño, puedes usar la Mano del Daño con ese golpe sin gastar un Punto de Concentración para la Mano del Daño. Aún puedes usar la Mano del Daño solo una vez por turno. Puedes usar estos beneficios un número total de veces igual a tu modificador de Sabiduría (mínimo una vez). Recuperas todos los usos gastados al finalizar un descanso largo."
     },
     {
       "level": 17,
       "name": "Mano de la Misericordia Suprema",
-      "description": "Tu dominio de la energía vital abre la puerta a la misericordia suprema. Como acción mágica, puedes tocar el cadáver de una criatura que murió en las últimas 24 horas y gastar 5 Puntos de Concentración. La criatura vuelve entonces a la vida con un número de Puntos de Golpe igual a 4d10 más tu modificador de Sabiduría, libre de las condiciones de Cegado, Ensordecido, Paralizado, Envenenado y Aturdido. Una vez que uses esta característica, no puedes usarla de nuevo hasta que finalices un Descanso Largo."
+      "description": "Tu dominio de la energía vital abre la puerta a la misericordia suprema. Como acción mágica, puedes tocar el cadáver de una criatura que murió en las últimas 24 horas y gastar 5 Puntos de Concentración. La criatura vuelve entonces a la vida con un número de puntos de golpe igual a 4d10 más tu modificador de Sabiduría, libre de las condiciones de Cegado, Ensordecido, Paralizado, Envenenado y Aturdido. Una vez que uses esta característica, no puedes usarla de nuevo hasta que finalices un descanso largo."
     }
   ],
   "open-hand": [
@@ -739,29 +739,29 @@
     {
       "level": 6,
       "name": "Paso de Sombra",
-      "description": "Mientras estás completamente dentro de Luz Tenue u Oscuridad, puedes usar una acción adicional para teletransportarte hasta 18 metros a un espacio desocupado que puedas ver que también esté en Luz Tenue u Oscuridad. Luego tienes Ventaja en la siguiente tirada de ataque cuerpo a cuerpo que realices antes del final del turno actual."
+      "description": "Mientras estás completamente dentro de luz tenue u Oscuridad, puedes usar una acción adicional para teletransportarte hasta 18 metros a un espacio desocupado que puedas ver que también esté en luz tenue u Oscuridad. Luego tienes ventaja en la siguiente tirada de ataque cuerpo a cuerpo que realices antes del final del turno actual."
     },
     {
       "level": 11,
       "name": "Paso de Sombra Mejorado",
-      "description": "Puedes aprovechar tu conexión con el Shadowfell para potenciar tu teletransportación. Cuando usas tu Paso de Sombra, puedes gastar 1 Punto de Concentración para eliminar el requisito de que debas empezar y terminar en Luz Tenue u Oscuridad para ese uso de la característica. Como parte de esta acción adicional, puedes realizar un Golpe Desarmado inmediatamente después de teletransportarte."
+      "description": "Puedes aprovechar tu conexión con el Shadowfell para potenciar tu teletransportación. Cuando usas tu Paso de Sombra, puedes gastar 1 Punto de Concentración para eliminar el requisito de que debas empezar y terminar en luz tenue u Oscuridad para ese uso de la característica. Como parte de esta acción adicional, puedes realizar un Golpe Desarmado inmediatamente después de teletransportarte."
     },
     {
       "level": 17,
       "name": "Capa de Sombras",
-      "description": "Como acción mágica mientras estás completamente dentro de Luz Tenue u Oscuridad, puedes gastar 3 Puntos de Concentración para cubrirte de sombras durante 1 minuto, hasta que tengas la condición de Incapacitado, o hasta que termines tu turno en Luz Brillante. Mientras estás cubierto por estas sombras, obtienes los siguientes beneficios. Invisibilidad: Tienes la condición de Invisible. Parcialmente Incorpóreo: Puedes moverte a través de espacios ocupados como si fueran Terreno Difícil. Si terminas tu turno en ese espacio, eres desplazado al último espacio desocupado en el que estuviste. Ráfaga de Sombras: Puedes usar tu Ráfaga de Golpes sin gastar ningún Punto de Concentración."
+      "description": "Como acción mágica mientras estás completamente dentro de luz tenue u Oscuridad, puedes gastar 3 Puntos de Concentración para cubrirte de sombras durante 1 minuto, hasta que tengas la condición de Incapacitado, o hasta que termines tu turno en luz brillante. Mientras estás cubierto por estas sombras, obtienes los siguientes beneficios. Invisibilidad: Tienes la condición de Invisible. Parcialmente Incorpóreo: Puedes moverte a través de espacios ocupados como si fueran Terreno Difícil. Si terminas tu turno en ese espacio, eres desplazado al último espacio desocupado en el que estuviste. Ráfaga de Sombras: Puedes usar tu Ráfaga de Golpes sin gastar ningún Punto de Concentración."
     }
   ],
   "ancients": [
     {
       "level": 3,
       "name": "Ira de la Naturaleza",
-      "description": "Como acción Mágica, puedes gastar un uso de tu Canalizar Divinidad para convocar zarcillos espectrales alrededor de las criaturas cercanas. Cada criatura que elijas que puedas ver a 15 pies de ti debe superar una tirada de salvación de Fuerza o quedar con la condición Restringida durante 1 minuto. Una criatura Restringida repite la tirada de salvación al final de cada uno de sus turnos, poniendo fin al efecto sobre ella misma si tiene éxito."
+      "description": "Como acción mágica, puedes gastar un uso de tu Canalizar Divinidad para convocar zarcillos espectrales alrededor de las criaturas cercanas. Cada criatura que elijas que puedas ver a 4,5 metros de ti debe superar una tirada de salvación de Fuerza o quedar con la condición restringida durante 1 minuto. Una criatura restringida repite la tirada de salvación al final de cada uno de sus turnos, poniendo fin al efecto sobre ella misma si tiene éxito."
     },
     {
       "level": 7,
       "name": "Aura de Protección Arcana",
-      "description": "La antigua magia pesa tan fuertemente sobre ti que forma un escudo arcano que amortigua la energía proveniente de más allá del Plano Material; tú y tus aliados tenéis Resistencia al daño Necrótico, Psíquico y Radiante mientras estéis en tu Aura de Protección."
+      "description": "La antigua magia pesa tan fuertemente sobre ti que forma un escudo arcano que amortigua la energía proveniente de más allá del Plano Material; tú y tus aliados tenéis resistencia al daño necrótico, Psíquico y Radiante mientras estéis en tu Aura de Protección."
     },
     {
       "level": 15,
@@ -771,14 +771,14 @@
     {
       "level": 20,
       "name": "Campeón Ancestral",
-      "description": "Como acción adicional, asumes la forma de un campeón inmortal de la naturaleza durante 1 minuto. Puedes restaurar tu uso de esta característica gastando un espacio de conjuro de nivel 5 (sin acción requerida). Obtienes los siguientes beneficios mientras dura la transformación. Menoscabar la Resistencia: Los enemigos en el aura tienen Desventaja en las tiradas de salvación contra tus conjuros y opciones de Canalizar Divinidad. Regeneración: Al inicio de cada uno de tus turnos, recuperas 10 puntos de golpe. Conjuros Veloces: Siempre que lances un conjuro que tenga un tiempo de lanzamiento de una acción, puedes lanzarlo usando una acción adicional en su lugar."
+      "description": "Como acción adicional, asumes la forma de un campeón inmortal de la naturaleza durante 1 minuto. Puedes restaurar tu uso de esta característica gastando un espacio de conjuro de nivel 5 (sin acción requerida). Obtienes los siguientes beneficios mientras dura la transformación. Menoscabar la Resistencia: Los enemigos en el aura tienen desventaja en las tiradas de salvación contra tus conjuros y opciones de Canalizar Divinidad. Regeneración: Al inicio de cada uno de tus turnos, recuperas 10 puntos de golpe. Conjuros Veloces: Siempre que lances un conjuro que tenga un tiempo de lanzamiento de una acción, puedes lanzarlo usando una acción adicional en su lugar."
     }
   ],
   "devotion": [
     {
       "level": 3,
       "name": "Arma Sagrada",
-      "description": "Cuando realizas la acción Atacar, puedes gastar un uso de tu Canalizar Divinidad para imbuir un arma cuerpo a cuerpo que sostienes con energía positiva. Durante 10 minutos o hasta que uses esta característica de nuevo, añades tu modificador de Carisma a las tiradas de ataque que hagas con esa arma (mínimo +1), y cada vez que impactes con ella, puedes hacer que inflija su tipo de daño normal o daño Radiante. El arma también emite luz brillante en un radio de 20 pies y luz tenue 20 pies más allá de esa. Puedes terminar este efecto antes de tiempo (sin acción requerida). Este efecto también termina si dejas de llevar el arma."
+      "description": "Cuando realizas la acción Atacar, puedes gastar un uso de tu Canalizar Divinidad para imbuir un arma cuerpo a cuerpo que sostienes con energía positiva. Durante 10 minutos o hasta que uses esta característica de nuevo, añades tu modificador de Carisma a las tiradas de ataque que hagas con esa arma (mínimo +1), y cada vez que impactes con ella, puedes hacer que inflija su tipo de daño normal o daño radiante. El arma también emite luz brillante en un radio de 6 metros y luz tenue 6 metros más allá de esa. Puedes terminar este efecto antes de tiempo (sin acción requerida). Este efecto también termina si dejas de llevar el arma."
     },
     {
       "level": 7,
@@ -793,41 +793,41 @@
     {
       "level": 20,
       "name": "Nimbo Sagrado",
-      "description": "Como acción adicional, emanas un aura de luz sagrada durante 1 minuto. Puedes restaurar tu uso de esta característica gastando un espacio de conjuro de nivel 5 (sin acción requerida). Obtienes los siguientes beneficios mientras el aura está activa. Escudo Sagrado: Tienes Ventaja en las tiradas de salvación que te veas obligado a hacer por un Demonio o un No Muerto. Daño Radiante: Siempre que un enemigo empiece su turno en el aura, esa criatura recibe daño Radiante igual a tu modificador de Carisma más tu Bonificador de Competencia. Luz Solar: El aura está llena de Luz Brillante que es luz solar."
+      "description": "Como acción adicional, emanas un aura de luz sagrada durante 1 minuto. Puedes restaurar tu uso de esta característica gastando un espacio de conjuro de nivel 5 (sin acción requerida). Obtienes los siguientes beneficios mientras el aura está activa. Escudo Sagrado: Tienes ventaja en las tiradas de salvación que te veas obligado a hacer por un Demonio o un No Muerto. daño radiante: Siempre que un enemigo empiece su turno en el aura, esa criatura recibe daño radiante igual a tu modificador de Carisma más tu bonificador de competencia. Luz Solar: El aura está llena de luz brillante que es luz solar."
     }
   ],
   "glory": [
     {
       "level": 3,
       "name": "Golpe Inspirador",
-      "description": "Inmediatamente después de lanzar Golpe Divino, puedes gastar un uso de tu Canalizar Divinidad y distribuir Puntos de Golpe Temporales iguales a 2d8 más tu nivel de Paladín entre las criaturas elegidas, repartiéndolos como prefieras."
+      "description": "Inmediatamente después de lanzar Golpe Divino, puedes gastar un uso de tu Canalizar Divinidad y distribuir puntos de golpe Temporales iguales a 2d8 más tu nivel de Paladín entre las criaturas elegidas, repartiéndolos como prefieras."
     },
     {
       "level": 3,
       "name": "Atleta Sin Par",
-      "description": "Como acción adicional, tienes Ventaja en las pruebas de Fuerza (Atletismo) y Destreza (Acrobacias), y la distancia de tus Saltos en Largo y Saltos en Alto aumenta en 10 pies (esta distancia extra cuesta movimiento con normalidad)."
+      "description": "Como acción adicional, tienes ventaja en las pruebas de Fuerza (Atletismo) y Destreza (Acrobacias), y la distancia de tus Saltos en Largo y Saltos en Alto aumenta en 3 metros (esta distancia extra cuesta movimiento con normalidad)."
     },
     {
       "level": 7,
       "name": "Aura de Prontitud",
-      "description": "Tu Velocidad aumenta en 10 pies. Además, siempre que un aliado entre en tu Aura de Protección por primera vez en un turno o empiece su turno allí, la Velocidad del aliado aumenta en 10 pies hasta el final de su siguiente turno."
+      "description": "Tu Velocidad aumenta en 3 metros. Además, siempre que un aliado entre en tu Aura de Protección por primera vez en un turno o empiece su turno allí, la Velocidad del aliado aumenta en 3 metros hasta el final de su siguiente turno."
     },
     {
       "level": 15,
       "name": "Defensa Gloriosa",
-      "description": "Puedes convertir la defensa en un ataque repentino. Cuando tú u otra criatura que puedas ver a 10 pies de ti es impactada por una tirada de ataque, puedes tomar una Reacción para añadir tu modificador de Carisma a la CA del objetivo contra ese ataque, lo que podría hacer que el ataque fallase; si el ataque falla, puedes realizar un ataque con tu arma contra el atacante si está dentro del alcance de tu arma. Puedes usar esta característica un número de veces igual a tu modificador de Carisma (mínimo una vez), y recuperas todos los usos gastados cuando terminas un Descanso Largo."
+      "description": "Puedes convertir la defensa en un ataque repentino. Cuando tú u otra criatura que puedas ver a 3 metros de ti es impactada por una tirada de ataque, puedes tomar una reacción para añadir tu modificador de Carisma a la CA del objetivo contra ese ataque, lo que podría hacer que el ataque fallase; si el ataque falla, puedes realizar un ataque con tu arma contra el atacante si está dentro del alcance de tu arma. Puedes usar esta característica un número de veces igual a tu modificador de Carisma (mínimo una vez), y recuperas todos los usos gastados cuando terminas un descanso largo."
     },
     {
       "level": 20,
       "name": "Leyenda Viviente",
-      "description": "Puedes imbuirte con las leyendas —verdaderas o exageradas— de tus grandes hazañas. Como acción adicional, te conviertes en un canal de poder durante 1 minuto. Puedes restaurar tu uso de esta característica gastando un espacio de conjuro de nivel 5 (sin acción requerida). Obtienes los siguientes beneficios mientras dura el efecto. Carismático: Estás bendecido con una presencia de otro mundo y tienes Ventaja en todas las pruebas de Carisma. Repetición de Tirada de Salvación: Si fallas una tirada de salvación, puedes tomar una Reacción para repetirla. Debes usar el nuevo resultado. Golpe Infalible: Una vez en cada uno de tus turnos, cuando hagas una tirada de ataque con un arma y falles, puedes hacer que ese ataque impacte en su lugar."
+      "description": "Puedes imbuirte con las leyendas —verdaderas o exageradas— de tus grandes hazañas. Como acción adicional, te conviertes en un canal de poder durante 1 minuto. Puedes restaurar tu uso de esta característica gastando un espacio de conjuro de nivel 5 (sin acción requerida). Obtienes los siguientes beneficios mientras dura el efecto. Carismático: Estás bendecido con una presencia de otro mundo y tienes ventaja en todas las pruebas de Carisma. Repetición de Tirada de Salvación: Si fallas una tirada de salvación, puedes tomar una reacción para repetirla. Debes usar el nuevo resultado. Golpe Infalible: Una vez en cada uno de tus turnos, cuando hagas una tirada de ataque con un arma y falles, puedes hacer que ese ataque impacte en su lugar."
     }
   ],
   "vengeance": [
     {
       "level": 3,
       "name": "Voto de Enemistad",
-      "description": "Cuando realizas la acción Atacar, puedes gastar un uso de tu Canalizar Divinidad para pronunciar un voto de enemistad contra una criatura que puedas ver a 30 pies de ti. Tienes Ventaja en las tiradas de ataque contra esa criatura durante 1 minuto o hasta que uses esta característica de nuevo. Si la criatura cae a 0 puntos de golpe antes de que el voto termine, puedes transferir el voto a una criatura diferente a 30 pies de ti (sin acción requerida)."
+      "description": "Cuando realizas la acción Atacar, puedes gastar un uso de tu Canalizar Divinidad para pronunciar un voto de enemistad contra una criatura que puedas ver a 9 metros de ti. Tienes ventaja en las tiradas de ataque contra esa criatura durante 1 minuto o hasta que uses esta característica de nuevo. Si la criatura cae a 0 puntos de golpe antes de que el voto termine, puedes transferir el voto a una criatura diferente a 9 metros de ti (sin acción requerida)."
     },
     {
       "level": 7,
@@ -837,12 +837,12 @@
     {
       "level": 15,
       "name": "Alma de Venganza",
-      "description": "Inmediatamente después de que una criatura bajo el efecto de tu Voto de Enemistad impacte o falle con una tirada de ataque, puedes tomar una Reacción para realizar un ataque cuerpo a cuerpo contra esa criatura si está dentro de tu alcance."
+      "description": "Inmediatamente después de que una criatura bajo el efecto de tu Voto de Enemistad impacte o falle con una tirada de ataque, puedes tomar una reacción para realizar un ataque cuerpo a cuerpo contra esa criatura si está dentro de tu alcance."
     },
     {
       "level": 20,
       "name": "Ángel Vengador",
-      "description": "Como acción adicional, te transformas en un espíritu de justicia divina durante 1 minuto. Puedes restaurar tu uso de esta característica gastando un espacio de conjuro de nivel 5 (sin acción requerida). Obtienes los siguientes beneficios mientras dura la transformación. Vuelo: Brotan alas espectrales en tu espalda, tienes una Velocidad de Vuelo de 60 pies y puedes planear. Aura Aterradora: Siempre que un enemigo empiece su turno en tu Aura de Protección, esa criatura debe superar una tirada de salvación de Sabiduría o quedar con la condición Asustada durante 1 minuto o hasta que reciba algún daño. Las tiradas de ataque contra la criatura Asustada tienen Ventaja."
+      "description": "Como acción adicional, te transformas en un espíritu de justicia divina durante 1 minuto. Puedes restaurar tu uso de esta característica gastando un espacio de conjuro de nivel 5 (sin acción requerida). Obtienes los siguientes beneficios mientras dura la transformación. Vuelo: Brotan alas espectrales en tu espalda, tienes una Velocidad de Vuelo de 18 metros y puedes planear. Aura Aterradora: Siempre que un enemigo empiece su turno en tu Aura de Protección, esa criatura debe superar una tirada de salvación de Sabiduría o quedar con la condición Asustada durante 1 minuto o hasta que reciba algún daño. Las tiradas de ataque contra la criatura Asustada tienen ventaja."
     }
   ],
   "beast-master": [
@@ -854,22 +854,22 @@
     {
       "level": 3,
       "name": "Compañero Primordial",
-      "description": "Invocas mágicamente una bestia primordial que obtiene su fuerza de tu vínculo con la naturaleza. Elige su bloque de estadísticas: Bestia Terrestre, Bestia Marina o Bestia del Cielo. También determinas el tipo de animal que es, eligiendo uno apropiado para el bloque de estadísticas. Sea cual sea la bestia que elijas, lleva marcas primordiales que indican su origen sobrenatural. La bestia es Amistosa contigo y con tus aliados y obedece tus órdenes. Desaparece si mueres. La Bestia en Combate: En combate, la bestia actúa durante tu turno. Puede moverse y usar la acción Esquivar a menos que tomes una acción adicional para ordenar a la bestia que realice la acción Golpe de Bestia. Si tienes la condición Incapacitado, la bestia actúa por su cuenta y no está limitada a la acción Esquivar. Restaurar o Reemplazar la Bestia: Si la bestia ha muerto en la última hora, puedes tomar una acción Mágica para tocarla y gastar un espacio de conjuro. La bestia regresa a la vida después de 1 minuto con todos sus puntos de golpe restaurados. Siempre que termines un Descanso Largo, puedes invocar una bestia primordial diferente, que aparece en un espacio desocupado a 5 pies de ti. Eliges su bloque de estadísticas y apariencia. Si ya tienes una bestia de esta característica, la antigua desaparece cuando aparece la nueva."
+      "description": "Invocas mágicamente una bestia primordial que obtiene su fuerza de tu vínculo con la naturaleza. Elige su bloque de estadísticas: Bestia Terrestre, Bestia Marina o Bestia del Cielo. También determinas el tipo de animal que es, eligiendo uno apropiado para el bloque de estadísticas. Sea cual sea la bestia que elijas, lleva marcas primordiales que indican su origen sobrenatural. La bestia es Amistosa contigo y con tus aliados y obedece tus órdenes. Desaparece si mueres. La Bestia en Combate: En combate, la bestia actúa durante tu turno. Puede moverse y usar la acción Esquivar a menos que tomes una acción adicional para ordenar a la bestia que realice la acción Golpe de Bestia. Si tienes la condición Incapacitado, la bestia actúa por su cuenta y no está limitada a la acción Esquivar. Restaurar o Reemplazar la Bestia: Si la bestia ha muerto en la última hora, puedes tomar una acción mágica para tocarla y gastar un espacio de conjuro. La bestia regresa a la vida después de 1 minuto con todos sus puntos de golpe restaurados. Siempre que termines un descanso largo, puedes invocar una bestia primordial diferente, que aparece en un espacio desocupado a 1,5 metros de ti. Eliges su bloque de estadísticas y apariencia. Si ya tienes una bestia de esta característica, la antigua desaparece cuando aparece la nueva."
     },
     {
       "level": 7,
       "name": "Entrenamiento Excepcional",
-      "description": "Cuando realizas la acción Atacar en tu turno, puedes ordenar a tu Compañero Primordial que realice la acción Separarse, Esquivar o Ayudar usando su Acción Adicional. Además, siempre que impacte con una tirada de ataque e inflija daño, puede elegir infligir daño de Fuerza o su tipo de daño normal."
+      "description": "Cuando realizas la acción Atacar en tu turno, puedes ordenar a tu Compañero Primordial que realice la acción Separarse, Esquivar o Ayudar usando su acción adicional. Además, siempre que impacte con una tirada de ataque e inflija daño, puede elegir infligir daño de fuerza o su tipo de daño normal."
     },
     {
       "level": 11,
       "name": "Furia Bestial",
-      "description": "Cuando ordenas a tu bestia Compañero Primordial que realice la acción Golpe de Bestia, la bestia puede usarla dos veces. Además, la primera vez en cada turno que impacte a una criatura bajo el efecto de tu conjuro Marca del Cazador, la bestia inflige daño de Fuerza adicional igual al daño extra de ese conjuro."
+      "description": "Cuando ordenas a tu bestia Compañero Primordial que realice la acción Golpe de Bestia, la bestia puede usarla dos veces. Además, la primera vez en cada turno que impacte a una criatura bajo el efecto de tu conjuro Marca del Cazador, la bestia inflige daño de fuerza adicional igual al daño extra de ese conjuro."
     },
     {
       "level": 15,
       "name": "Compartir Conjuros",
-      "description": "Cuando lanzas un conjuro que te tiene como objetivo, también puedes afectar a tu bestia Compañero Primordial con el conjuro si la bestia está a 30 pies de ti."
+      "description": "Cuando lanzas un conjuro que te tiene como objetivo, también puedes afectar a tu bestia Compañero Primordial con el conjuro si la bestia está a 9 metros de ti."
     }
   ],
   "fey-wanderer": [
@@ -896,24 +896,24 @@
     {
       "level": 7,
       "name": "Giro Seductor",
-      "description": "La magia del Feywild protege tu mente. Tienes Ventaja en las tiradas de salvación para evitar o poner fin a las condiciones Encantado o Asustado. Además, siempre que tú o una criatura que puedas ver a 120 pies de ti tenga éxito en una tirada de salvación para evitar o poner fin a la condición Encantado o Asustado, puedes tomar una Reacción para intentar someter a otra criatura a uno de esos efectos: elige una criatura diferente que puedas ver a 30 pies del objetivo. Esa criatura debe superar una tirada de salvación de Sabiduría contra tu CD de conjuro o tener la condición Encantado o Asustado (a tu elección) durante 1 minuto. El objetivo repite la tirada de salvación al final de cada uno de sus turnos, poniendo fin al efecto sobre sí mismo si tiene éxito."
+      "description": "La magia del Feywild protege tu mente. Tienes ventaja en las tiradas de salvación para evitar o poner fin a las condiciones Encantado o Asustado. Además, siempre que tú o una criatura que puedas ver a 36 metros de ti tenga éxito en una tirada de salvación para evitar o poner fin a la condición Encantado o Asustado, puedes tomar una reacción para intentar someter a otra criatura a uno de esos efectos: elige una criatura diferente que puedas ver a 9 metros del objetivo. Esa criatura debe superar una tirada de salvación de Sabiduría contra tu CD de conjuro o tener la condición Encantado o Asustado (a tu elección) durante 1 minuto. El objetivo repite la tirada de salvación al final de cada uno de sus turnos, poniendo fin al efecto sobre sí mismo si tiene éxito."
     },
     {
       "level": 11,
       "name": "Refuerzos Feéricos",
-      "description": "Puedes lanzar Invocar Hada sin componente Material. También puedes lanzarlo una vez sin gastar un espacio de conjuro, y recuperas la capacidad de lanzarlo de este modo cuando terminas un Descanso Largo. Siempre que comiences a lanzar el conjuro, puedes modificarlo para que no requiera Concentración. Si lo haces, la duración del conjuro se convierte en 1 minuto para ese lanzamiento."
+      "description": "Puedes lanzar Invocar Hada sin componente Material. También puedes lanzarlo una vez sin gastar un espacio de conjuro, y recuperas la capacidad de lanzarlo de este modo cuando terminas un descanso largo. Siempre que comiences a lanzar el conjuro, puedes modificarlo para que no requiera Concentración. Si lo haces, la duración del conjuro se convierte en 1 minuto para ese lanzamiento."
     },
     {
       "level": 15,
       "name": "Errante de la Niebla",
-      "description": "Puedes lanzar Paso Brumoso sin gastar un espacio de conjuro. Puedes hacerlo un número de veces igual a tu modificador de Sabiduría (mínimo una vez), y recuperas todos los usos gastados cuando terminas un Descanso Largo. Además, siempre que lances Paso Brumoso, puedes llevar contigo a una criatura voluntaria que puedas ver a 5 pies de ti. Esa criatura se teletransporta a un espacio desocupado de tu elección a 5 pies de tu espacio de destino."
+      "description": "Puedes lanzar Paso Brumoso sin gastar un espacio de conjuro. Puedes hacerlo un número de veces igual a tu modificador de Sabiduría (mínimo una vez), y recuperas todos los usos gastados cuando terminas un descanso largo. Además, siempre que lances Paso Brumoso, puedes llevar contigo a una criatura voluntaria que puedas ver a 1,5 metros de ti. Esa criatura se teletransporta a un espacio desocupado de tu elección a 1,5 metros de tu espacio de destino."
     }
   ],
   "gloom-stalker": [
     {
       "level": 3,
       "name": "Emboscador Temible",
-      "description": "Has dominado el arte de crear emboscadas aterradoras, otorgándote los siguientes beneficios. Salto del Emboscador: Al inicio de tu primer turno en cada combate, tu Velocidad aumenta en 10 pies hasta el final de ese turno. Golpe Terrible: Cuando atacas a una criatura y la impactas con un arma, puedes infligir 2d6 puntos de daño Psíquico adicionales. Solo puedes usar este beneficio una vez por turno, puedes usarlo un número de veces igual a tu modificador de Sabiduría (mínimo una vez), y recuperas todos los usos gastados cuando terminas un Descanso Largo. Bonificador de Iniciativa: Cuando tiras Iniciativa, puedes añadir tu modificador de Sabiduría a la tirada."
+      "description": "Has dominado el arte de crear emboscadas aterradoras, otorgándote los siguientes beneficios. Salto del Emboscador: Al inicio de tu primer turno en cada combate, tu Velocidad aumenta en 3 metros hasta el final de ese turno. Golpe Terrible: Cuando atacas a una criatura y la impactas con un arma, puedes infligir 2d6 puntos de daño Psíquico adicionales. Solo puedes usar este beneficio una vez por turno, puedes usarlo un número de veces igual a tu modificador de Sabiduría (mínimo una vez), y recuperas todos los usos gastados cuando terminas un descanso largo. Bonificador de Iniciativa: Cuando tiras Iniciativa, puedes añadir tu modificador de Sabiduría a la tirada."
     },
     {
       "level": 3,
@@ -928,7 +928,7 @@
     {
       "level": 3,
       "name": "Visión Umbral",
-      "description": "Obtienes Visión Oscura con un alcance de 60 pies. Si ya tienes Visión Oscura cuando obtienes esta característica, su alcance aumenta en 60 pies. También eres hábil para evadir criaturas que dependen de la Visión Oscura. Mientras estés completamente en Oscuridad, tienes la condición Invisible para cualquier criatura que dependa de la Visión Oscura para verte en esa Oscuridad."
+      "description": "Obtienes visión en la oscuridad con un alcance de 18 metros. Si ya tienes visión en la oscuridad cuando obtienes esta característica, su alcance aumenta en 18 metros. También eres hábil para evadir criaturas que dependen de la visión en la oscuridad. Mientras estés completamente en Oscuridad, tienes la condición Invisible para cualquier criatura que dependa de la visión en la oscuridad para verte en esa Oscuridad."
     },
     {
       "level": 7,
@@ -938,12 +938,12 @@
     {
       "level": 11,
       "name": "Ráfaga del Acechador",
-      "description": "El daño Psíquico de tu Golpe Terrible se convierte en 2d8. Además, cuando usas el efecto Golpe Terrible de tu característica Emboscador Temible, puedes causar uno de los siguientes efectos adicionales. Ataque Súbito: Puedes realizar otro ataque con el mismo arma contra una criatura diferente que esté a 5 pies del objetivo original y dentro del alcance del arma. Miedo Masivo: El objetivo y cada criatura a 10 pies de él deben hacer una tirada de salvación de Sabiduría contra tu CD de conjuro. Si falla la tirada de salvación, la criatura tiene la condición Asustada hasta el inicio de tu siguiente turno."
+      "description": "El daño Psíquico de tu Golpe Terrible se convierte en 2d8. Además, cuando usas el efecto Golpe Terrible de tu característica Emboscador Temible, puedes causar uno de los siguientes efectos adicionales. Ataque Súbito: Puedes realizar otro ataque con el mismo arma contra una criatura diferente que esté a 1,5 metros del objetivo original y dentro del alcance del arma. Miedo Masivo: El objetivo y cada criatura a 3 metros de él deben hacer una tirada de salvación de Sabiduría contra tu CD de conjuro. Si falla la tirada de salvación, la criatura tiene la condición Asustada hasta el inicio de tu siguiente turno."
     },
     {
       "level": 15,
       "name": "Esquiva Sombría",
-      "description": "Cuando una criatura realiza una tirada de ataque contra ti, puedes tomar una Reacción para imponer Desventaja en esa tirada. Tanto si el ataque impacta como si no, puedes teletransportarte hasta 30 pies a un espacio desocupado que puedas ver."
+      "description": "Cuando una criatura realiza una tirada de ataque contra ti, puedes tomar una reacción para imponer desventaja en esa tirada. Tanto si el ataque impacta como si no, puedes teletransportarte hasta 9 metros a un espacio desocupado que puedas ver."
     }
   ],
   "hunter": [
@@ -992,22 +992,22 @@
     {
       "level": 3,
       "name": "Lanzamiento de Conjuros",
-      "description": "Has aprendido a lanzar conjuros. La información a continuación detalla cómo usas esas reglas como Tramposo Arcano. Trucos: Conoces tres trucos: Mano de Mago y otros dos trucos de tu elección de la lista de conjuros de Mago. Se recomiendan Fragmento Mental e Ilusión Menor. Siempre que ganes un nivel de Pícaro, puedes reemplazar uno de tus trucos, excepto Mano de Mago, por otro truco de Mago de tu elección. Cuando alcanzas el nivel 10 de Pícaro, aprendes otro truco de Mago de tu elección. Espacios de Conjuro: La tabla Lanzamiento de Conjuros de Tramposo Arcano muestra cuántos espacios tienes. Recuperas todos los gastados cuando terminas un Descanso Largo. Conjuros Preparados de Nivel 1 o Superior: Para empezar, elige tres conjuros de Mago de nivel 1. Se recomiendan Encantar Persona, Disfrazarse y Nube de Niebla. El número de conjuros en tu lista aumenta a medida que ganas niveles de Pícaro, como se muestra en la columna Conjuros Preparados de la tabla. Los conjuros elegidos deben ser de un nivel para el que tengas espacios. Cambiar tus Conjuros Preparados: Siempre que ganes un nivel de Pícaro, puedes reemplazar un conjuro de tu lista por otro conjuro de Mago para el que tengas espacios. Habilidad de Lanzamiento de Conjuros: La Inteligencia es tu habilidad de lanzamiento de conjuros para tus conjuros de Mago. Foco de Lanzamiento de Conjuros: Puedes usar un Foco Arcano como Foco de Lanzamiento de Conjuros para tus conjuros de Mago."
+      "description": "Has aprendido a lanzar conjuros. La información a continuación detalla cómo usas esas reglas como Tramposo Arcano. Trucos: Conoces tres trucos: Mano de Mago y otros dos trucos de tu elección de la lista de conjuros de Mago. Se recomiendan Fragmento Mental e Ilusión Menor. Siempre que ganes un nivel de Pícaro, puedes reemplazar uno de tus trucos, excepto Mano de Mago, por otro truco de Mago de tu elección. Cuando alcanzas el nivel 10 de Pícaro, aprendes otro truco de Mago de tu elección. Espacios de Conjuro: La tabla Lanzamiento de Conjuros de Tramposo Arcano muestra cuántos espacios tienes. Recuperas todos los gastados cuando terminas un descanso largo. Conjuros Preparados de Nivel 1 o Superior: Para empezar, elige tres conjuros de Mago de nivel 1. Se recomiendan Encantar Persona, Disfrazarse y Nube de Niebla. El número de conjuros en tu lista aumenta a medida que ganas niveles de Pícaro, como se muestra en la columna Conjuros Preparados de la tabla. Los conjuros elegidos deben ser de un nivel para el que tengas espacios. Cambiar tus Conjuros Preparados: Siempre que ganes un nivel de Pícaro, puedes reemplazar un conjuro de tu lista por otro conjuro de Mago para el que tengas espacios. Habilidad de Lanzamiento de Conjuros: La Inteligencia es tu habilidad de lanzamiento de conjuros para tus conjuros de Mago. Foco de Lanzamiento de Conjuros: Puedes usar un Foco Arcano como Foco de Lanzamiento de Conjuros para tus conjuros de Mago."
     },
     {
       "level": 9,
       "name": "Emboscada Mágica",
-      "description": "Si tienes la condición Invisible cuando lanzas un conjuro sobre una criatura, esta tiene Desventaja en cualquier tirada de salvación que haga contra el conjuro en el mismo turno."
+      "description": "Si tienes la condición Invisible cuando lanzas un conjuro sobre una criatura, esta tiene desventaja en cualquier tirada de salvación que haga contra el conjuro en el mismo turno."
     },
     {
       "level": 13,
       "name": "Tramposo Versátil",
-      "description": "Obtienes la capacidad de distraer objetivos con tu Mano de Mago. Cuando usas la opción Derribar de tu Golpe Astuto sobre una criatura, también puedes usar esa opción sobre otra criatura a 5 pies de la mano espectral."
+      "description": "Obtienes la capacidad de distraer objetivos con tu Mano de Mago. Cuando usas la opción Derribar de tu Golpe Astuto sobre una criatura, también puedes usar esa opción sobre otra criatura a 1,5 metros de la mano espectral."
     },
     {
       "level": 17,
       "name": "Ladrón de Conjuros",
-      "description": "Obtienes la capacidad de robar mágicamente el conocimiento de cómo lanzar un conjuro de otro lanzador de conjuros. Inmediatamente después de que una criatura lance un conjuro que te tenga como objetivo o te incluya en su área de efecto, puedes tomar una Reacción para obligar a esa criatura a hacer una tirada de salvación de Inteligencia. La CD es igual a tu CD de conjuro. Si la tirada falla, niegas el efecto del conjuro contra ti y robas el conocimiento del conjuro si es de nivel 1 o superior y de un nivel que puedas lanzar (no necesita ser un conjuro de Mago). Durante las próximas 8 horas, tienes el conjuro preparado. La criatura no puede lanzarlo hasta que hayan pasado las 8 horas. Una vez que robas un conjuro con esta característica, no puedes volver a usarla hasta que termines un Descanso Largo."
+      "description": "Obtienes la capacidad de robar mágicamente el conocimiento de cómo lanzar un conjuro de otro lanzador de conjuros. Inmediatamente después de que una criatura lance un conjuro que te tenga como objetivo o te incluya en su área de efecto, puedes tomar una reacción para obligar a esa criatura a hacer una tirada de salvación de Inteligencia. La CD es igual a tu CD de conjuro. Si la tirada falla, niegas el efecto del conjuro contra ti y robas el conocimiento del conjuro si es de nivel 1 o superior y de un nivel que puedas lanzar (no necesita ser un conjuro de Mago). Durante las próximas 8 horas, tienes el conjuro preparado. La criatura no puede lanzarlo hasta que hayan pasado las 8 horas. Una vez que robas un conjuro con esta característica, no puedes volver a usarla hasta que termines un descanso largo."
     }
   ],
   "assassin": [
@@ -1024,7 +1024,7 @@
     {
       "level": 3,
       "name": "Asesinar",
-      "description": "Eres hábil para tender una emboscada a un objetivo, otorgándote los siguientes beneficios. Iniciativa: Tienes Ventaja en las tiradas de Iniciativa. Golpes Sorpresivos: Durante el primer asalto de cada combate, tienes Ventaja en las tiradas de ataque contra cualquier criatura que no haya tomado aún un turno. Si tu Ataque Furtivo impacta a cualquier objetivo durante ese asalto, el objetivo recibe daño extra del tipo del arma igual a tu nivel de Pícaro."
+      "description": "Eres hábil para tender una emboscada a un objetivo, otorgándote los siguientes beneficios. Iniciativa: Tienes ventaja en las tiradas de Iniciativa. Golpes Sorpresivos: Durante el primer asalto de cada combate, tienes ventaja en las tiradas de ataque contra cualquier criatura que no haya tomado aún un turno. Si tu Ataque Furtivo impacta a cualquier objetivo durante ese asalto, el objetivo recibe daño extra del tipo del arma igual a tu nivel de Pícaro."
     },
     {
       "level": 9,
@@ -1034,12 +1034,12 @@
     {
       "level": 13,
       "name": "Envenenar Armas",
-      "description": "Cuando usas la opción Veneno de tu Golpe Astuto, el objetivo también recibe 2d6 puntos de daño por Veneno siempre que falle la tirada de salvación. Este daño ignora la Resistencia al daño por Veneno."
+      "description": "Cuando usas la opción Veneno de tu Golpe Astuto, el objetivo también recibe 2d6 puntos de daño por Veneno siempre que falle la tirada de salvación. Este daño ignora la resistencia al daño por Veneno."
     },
     {
       "level": 17,
       "name": "Golpe Mortal",
-      "description": "Cuando impactas con tu Ataque Furtivo en el primer asalto de un combate, el objetivo debe superar una tirada de salvación de Constitución (CD 8 más tu modificador de Destreza y Bonificador de Competencia), o el daño del ataque se duplica contra el objetivo."
+      "description": "Cuando impactas con tu Ataque Furtivo en el primer asalto de un combate, el objetivo debe superar una tirada de salvación de Constitución (CD 8 más tu modificador de Destreza y bonificador de competencia), o el daño del ataque se duplica contra el objetivo."
     }
   ],
   "soulknife": [
@@ -1051,22 +1051,22 @@
     {
       "level": 3,
       "name": "Poder Psiónico",
-      "description": "Albergas un manantial de energía psiónica en tu interior. Está representado por tus Dados de Energía Psiónica, que alimentan ciertos poderes que tienes de esta subclase. La tabla Dados de Energía de Cuchillo del Alma muestra el número de estos dados que tienes cuando alcanzas ciertos niveles de Pícaro y el tamaño del dado. Cualquier característica de esta subclase que use un Dado de Energía Psiónica solo usa los dados de esta subclase. Algunos de tus poderes gastan un Dado de Energía Psiónica, como se especifica en la descripción del poder, y no puedes usar un poder si requiere un dado cuando todos tus Dados de Energía Psiónica están gastados. Recuperas uno de tus Dados de Energía Psiónica gastados cuando terminas un Descanso Corto o Largo. La primera vez que uses este poder después de cada Descanso Largo, no gastas el Dado de Energía Psiónica. Todas las demás veces que uses el poder, gastas el dado."
+      "description": "Albergas un manantial de energía psiónica en tu interior. Está representado por tus Dados de Energía Psiónica, que alimentan ciertos poderes que tienes de esta subclase. La tabla Dados de Energía de Cuchillo del Alma muestra el número de estos dados que tienes cuando alcanzas ciertos niveles de Pícaro y el tamaño del dado. Cualquier característica de esta subclase que use un Dado de Energía Psiónica solo usa los dados de esta subclase. Algunos de tus poderes gastan un Dado de Energía Psiónica, como se especifica en la descripción del poder, y no puedes usar un poder si requiere un dado cuando todos tus Dados de Energía Psiónica están gastados. Recuperas uno de tus Dados de Energía Psiónica gastados cuando terminas un descanso corto o Largo. La primera vez que uses este poder después de cada descanso largo, no gastas el Dado de Energía Psiónica. Todas las demás veces que uses el poder, gastas el dado."
     },
     {
       "level": 3,
       "name": "Hojas Psíquicas",
-      "description": "Puedes manifestar centellantes hojas de energía psíquica. Siempre que realices la acción Atacar o un Ataque de Oportunidad, puedes manifestar una Hoja Psíquica en tu mano libre y realizar el ataque con esa hoja. La hoja mágica tiene las siguientes características: Hoja Psíquica: La hoja desaparece inmediatamente después de impactar o fallar a su objetivo, y no deja marca si inflige daño. Después de atacar con la hoja en tu turno, puedes realizar un ataque cuerpo a cuerpo o a distancia con una segunda hoja psíquica como Acción Adicional en el mismo turno si tu otra mano está libre para crearla. El dado de daño de este ataque adicional es 1d4 en lugar de 1d6."
+      "description": "Puedes manifestar centellantes hojas de energía psíquica. Siempre que realices la acción Atacar o un Ataque de Oportunidad, puedes manifestar una Hoja Psíquica en tu mano libre y realizar el ataque con esa hoja. La hoja mágica tiene las siguientes características: Hoja Psíquica: La hoja desaparece inmediatamente después de impactar o fallar a su objetivo, y no deja marca si inflige daño. Después de atacar con la hoja en tu turno, puedes realizar un ataque cuerpo a cuerpo o a distancia con una segunda hoja psíquica como acción adicional en el mismo turno si tu otra mano está libre para crearla. El dado de daño de este ataque adicional es 1d4 en lugar de 1d6."
     },
     {
       "level": 3,
       "name": "Habilidad Reforzada por Psi",
-      "description": "Si fallas una prueba de habilidad usando una habilidad o herramienta con la que tengas competencia, puedes tirar un Dado de Energía Psiónica y añadir el número obtenido a la prueba, convirtiendo potencialmente el fracaso en éxito. El dado solo se gasta si la tirada entonces tiene éxito."
+      "description": "Si fallas una prueba de característica usando una habilidad o herramienta con la que tengas competencia, puedes tirar un Dado de Energía Psiónica y añadir el número obtenido a la prueba, convirtiendo potencialmente el fracaso en éxito. El dado solo se gasta si la tirada entonces tiene éxito."
     },
     {
       "level": 3,
       "name": "Susurros Psíquicos",
-      "description": "Puedes establecer comunicación telepática entre ti mismo y otros. Como acción Mágica, elige una o más criaturas que puedas ver, hasta un número de criaturas igual a tu Bonificador de Competencia, y luego tira un Dado de Energía Psiónica. Durante un número de horas igual al número obtenido, las criaturas elegidas pueden hablar telepáticamente contigo, y tú puedes hablar telepáticamente con ellas. Para enviar o recibir un mensaje (sin acción requerida), tú y la otra criatura debéis estar a 1 milla el uno del otro. Una criatura puede poner fin a la conexión telepática en cualquier momento (sin acción requerida)."
+      "description": "Puedes establecer comunicación telepática entre ti mismo y otros. Como acción mágica, elige una o más criaturas que puedas ver, hasta un número de criaturas igual a tu bonificador de competencia, y luego tira un Dado de Energía Psiónica. Durante un número de horas igual al número obtenido, las criaturas elegidas pueden hablar telepáticamente contigo, y tú puedes hablar telepáticamente con ellas. Para enviar o recibir un mensaje (sin acción requerida), tú y la otra criatura debéis estar a 1 milla el uno del otro. Una criatura puede poner fin a la conexión telepática en cualquier momento (sin acción requerida)."
     },
     {
       "level": 9,
@@ -1076,7 +1076,7 @@
     {
       "level": 9,
       "name": "Teletransportación Psíquica",
-      "description": "Como Acción Adicional, puedes manifestar tu Hoja Psíquica, gastar un Dado de Energía Psiónica y tirarlo, y lanzar la hoja hacia un espacio desocupado que puedas ver a un número de pies igual a 10 veces el número obtenido. Luego te teletransportas a ese espacio y la hoja desaparece."
+      "description": "Como acción adicional, puedes manifestar tu Hoja Psíquica, gastar un Dado de Energía Psiónica y tirarlo, y lanzar la hoja hacia un espacio desocupado que puedas ver a un número de pies igual a 10 veces el número obtenido. Luego te teletransportas a ese espacio y la hoja desaparece."
     },
     {
       "level": 9,
@@ -1086,12 +1086,12 @@
     {
       "level": 13,
       "name": "Velo Psíquico",
-      "description": "Puedes tejer un velo de estática psíquica para enmascararte. Como acción Mágica, obtienes la condición Invisible durante 1 hora o hasta que desactives este efecto (sin acción requerida). Esta invisibilidad termina antes de tiempo inmediatamente después de que inflijas daño a una criatura o la obligues a hacer una tirada de salvación. Una vez que uses esta característica, no puedes hacerlo de nuevo hasta que termines un Descanso Largo, a menos que gastes un Dado de Energía Psiónica (sin acción requerida) para restaurar tu uso de ella."
+      "description": "Puedes tejer un velo de estática psíquica para enmascararte. Como acción mágica, obtienes la condición Invisible durante 1 hora o hasta que desactives este efecto (sin acción requerida). Esta invisibilidad termina antes de tiempo inmediatamente después de que inflijas daño a una criatura o la obligues a hacer una tirada de salvación. Una vez que uses esta característica, no puedes hacerlo de nuevo hasta que termines un descanso largo, a menos que gastes un Dado de Energía Psiónica (sin acción requerida) para restaurar tu uso de ella."
     },
     {
       "level": 17,
       "name": "Desgarrar la Mente",
-      "description": "Puedes barrer tus Hojas Psíquicas a través de la mente de una criatura. Cuando usas tus Hojas Psíquicas para infligir daño de Ataque Furtivo a una criatura, puedes obligar a ese objetivo a hacer una tirada de salvación de Sabiduría (CD 8 más tu modificador de Destreza y Bonificador de Competencia). Si la tirada de salvación falla, el objetivo tiene la condición Aturdido durante 1 minuto. El objetivo Aturdido repite la tirada de salvación al final de cada uno de sus turnos, poniendo fin al efecto sobre sí mismo si tiene éxito. Una vez que uses esta característica, no puedes hacerlo de nuevo hasta que termines un Descanso Largo, a menos que gastes tres Dados de Energía Psiónica (sin acción requerida) para restaurar tu uso de ella."
+      "description": "Puedes barrer tus Hojas Psíquicas a través de la mente de una criatura. Cuando usas tus Hojas Psíquicas para infligir daño de Ataque Furtivo a una criatura, puedes obligar a ese objetivo a hacer una tirada de salvación de Sabiduría (CD 8 más tu modificador de Destreza y bonificador de competencia). Si la tirada de salvación falla, el objetivo tiene la condición Aturdido durante 1 minuto. El objetivo Aturdido repite la tirada de salvación al final de cada uno de sus turnos, poniendo fin al efecto sobre sí mismo si tiene éxito. Una vez que uses esta característica, no puedes hacerlo de nuevo hasta que termines un descanso largo, a menos que gastes tres Dados de Energía Psiónica (sin acción requerida) para restaurar tu uso de ella."
     }
   ],
   "thief": [
@@ -1490,7 +1490,7 @@
     {
       "level": 14,
       "name": "Sobrecargar",
-      "description": "Puedes aumentar el poder de tus conjuros. Cuando lanzas un conjuro de Mago con un espacio de conjuro de nivel 1–5 que inflige daño, puedes infligir el daño máximo con ese conjuro en el turno en que lo lanzas. La primera vez que lo haces, no sufres ningún efecto adverso. Si vuelves a usar este rasgo antes de terminar un descanso corto o largo, recibes 2d12 de daño necrótico por nivel de conjuro inmediatamente después de lanzarlo y ese daño ignora Resistencia e Inmunidad. Cada vez que usas este rasgo de nuevo antes de terminar un descanso largo, el daño necrótico por nivel de conjuro aumenta en 1d12."
+      "description": "Puedes aumentar el poder de tus conjuros. Cuando lanzas un conjuro de Mago con un espacio de conjuro de nivel 1–5 que inflige daño, puedes infligir el daño máximo con ese conjuro en el turno en que lo lanzas. La primera vez que lo haces, no sufres ningún efecto adverso. Si vuelves a usar este rasgo antes de terminar un descanso corto o largo, recibes 2d12 de daño necrótico por nivel de conjuro inmediatamente después de lanzarlo y ese daño ignora Resistencia e inmunidad. Cada vez que usas este rasgo de nuevo antes de terminar un descanso largo, el daño necrótico por nivel de conjuro aumenta en 1d12."
     }
   ],
   "illusionist": [

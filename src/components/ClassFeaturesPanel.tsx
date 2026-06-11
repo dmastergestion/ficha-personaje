@@ -1,4 +1,5 @@
 import type { ClassLevel } from "@/schemas/character";
+import { pulirTextoReglasEs } from "@/lib/rules-text-polish";
 import { rasgosHastaNivel } from "@/rules/class-features";
 import { useCatalogStore } from "@/stores/catalog-store";
 
@@ -23,7 +24,7 @@ export function ClassFeaturesPanel({ classes }: { classes: ClassLevel[] }) {
                     <span className="font-semibold">
                       Niv {f.level}: {f.name}
                     </span>
-                    <p className="mt-0.5 text-muted">{f.description}</p>
+                    <p className="mt-0.5 text-muted">{pulirTextoReglasEs(f.description)}</p>
                   </li>
                 ))}
               </ul>

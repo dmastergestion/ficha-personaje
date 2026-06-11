@@ -25,7 +25,8 @@
     "build:content-pack": "tsx scripts/convert-5etools.ts",
     "copy:content-pack": "tsx scripts/copy-content-pack.ts",
     "build:pack": "npm run build:content-pack && npm run build:phb-i18n && npm run copy:content-pack",
-    "patch:content-pack-es": "tsx scripts/patch-content-pack-es.ts"
+    "patch:content-pack-es": "tsx scripts/patch-content-pack-es.ts",
+    "normalize:manual-i18n": "tsx scripts/normalize-manual-i18n.ts"
   },
   "dependencies": {
     "clsx": "^2.1.1",

@@ -1,6 +1,6 @@
 import featDescriptionsEs from "@/data/i18n/feat-descriptions-es.json";
 import featMetaJson from "@/data/srd/feat-meta.json";
-import { limpiarTextoFoundry } from "@/lib/foundry-text-clean";
+import { pulirTextoReglasEs } from "@/lib/rules-text-polish";
 
 type FeatMetaEntry = { description?: string; descriptionEs?: string };
 
@@ -27,7 +27,7 @@ export function nombreDote(id: string): string {
 
 /** Limpia marcadores 5etools/Foundry para lectura en ficha. */
 export function limpiarTextoDote(text: string): string {
-  return limpiarTextoFoundry(text);
+  return pulirTextoReglasEs(text);
 }
 
 export function descripcionDote(id: string, notes?: string): string | undefined {

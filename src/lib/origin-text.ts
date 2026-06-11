@@ -1,11 +1,11 @@
-import { limpiarTextoFoundry } from "./foundry-text-clean";
+import { pulirTextoReglasEs } from "./rules-text-polish";
 
 
 
 /** Limpia marcadores 5etools/Foundry en rasgos de especie y trasfondo. */
 
 export function limpiarTextoOrigen(text: string): string {
-  return pulirDescripcionEspecie(limpiarTextoFoundry(text));
+  return pulirDescripcionEspecie(pulirTextoReglasEs(text));
 }
 
 /** Corrige tablas y formato roto al importar descripciones de especies desde Foundry. */
