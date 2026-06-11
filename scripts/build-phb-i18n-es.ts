@@ -98,7 +98,8 @@ function buildSpellDescriptions(): Record<string, string> {
 
     const fromFoundry = foundryDescription(foundry);
     if (fromFoundry) {
-      const text = limpiarTextoConjuro(fromFoundry);
+      const enRef = spell.description ? cleanFiveText(spell.description) : undefined;
+      const text = limpiarTextoConjuro(fromFoundry, enRef);
       if (out[spell.id] !== text) {
         out[spell.id] = text;
         added++;
@@ -116,7 +117,8 @@ function buildSpellDescriptions(): Record<string, string> {
     }
 
     if (spell.description) {
-      const text = limpiarTextoConjuro(traducirTextoDnD(cleanFiveText(spell.description)));
+      const enRef = cleanFiveText(spell.description);
+      const text = limpiarTextoConjuro(traducirTextoDnD(enRef), enRef);
       out[spell.id] = text;
       added++;
     }
@@ -134,8 +136,11 @@ function buildSpellDescriptions(): Record<string, string> {
     }
   }
 
+  const packById = new Map(pack.spells.map((s) => [s.id, s]));
   for (const id of Object.keys(out)) {
-    out[id] = pulirTextoReglasEs(out[id]!);
+    const enDesc = packById.get(id)?.description;
+    const enRef = enDesc ? cleanFiveText(enDesc) : undefined;
+    out[id] = limpiarTextoConjuro(out[id]!, enRef);
   }
 
   writeJson(path.join(root, "src/data/i18n/spell-descriptions-es.json"), out);

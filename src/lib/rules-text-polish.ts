@@ -110,6 +110,9 @@ const DAMAGE_LOWER: [RegExp, string][] = [
   [/daño de Psíquico/gi, "daño de psíquico"],
   [/daño de Necrótico/gi, "daño de necrótico"],
   [/daño de Radiante/gi, "daño de radiante"],
+  [/inmunidad al daño de veneno y Psíquico/gi, "inmunidad al daño de veneno y psíquico"],
+  [/Veneno y Psíquico/gi, "veneno y psíquico"],
+  [/Ácido, Frío, Fuego, Relámpago, Veneno, Psíquico o Trueno/g, "ácido, frío, fuego, relámpago, veneno, psíquico o trueno"],
   [/infligís 1d4 de daño Radiante/gi, "infligís 1d4 de daño radiante"],
   [/infligís 2d6 de daño Radiante/gi, "infligís 2d6 de daño radiante"],
   [/Resistencia al daño Radiante/gi, "resistencia al daño radiante"],
@@ -206,7 +209,28 @@ export function pulirTextoReglasEs(text: string): string {
     .replace(/\bVulnerabilidad\b/g, "vulnerabilidad")
     .replace(/\bBonificador de Competencia\b/gi, "bonificador de competencia")
     .replace(/\bPuntos de Golpe\b/g, "puntos de golpe")
+    .replace(/\bPunto de Golpe\b/gi, "punto de golpe")
     .replace(/\bPV\b/g, "puntos de golpe")
+    .replace(/\bGreater Restoration\b/g, "Restablecimiento mayor")
+    .replace(/\bExhaustion\b/g, "agotamiento")
+    .replace(/\bLa Velocidad\b/g, "la velocidad")
+    .replace(/\bsu Velocidad\b/g, "su velocidad")
+    .replace(/\btu Velocidad\b/g, "tu velocidad")
+    .replace(/\bel doble de tu Velocidad\b/g, "el doble de tu velocidad")
+    .replace(/\bvelocidad de Nado\b/g, "velocidad de nado")
+    .replace(/\bPruebas de d20\b/g, "pruebas de d20")
+    .replace(/\bHumanoide\b/g, "humanoide")
+    .replace(/\bNo Muert[oa]\b/gi, "no muerto")
+    .replace(/\bHostil\b/g, "hostil")
+    .replace(/\bUtilizar\b/g, "Usar")
+    .replace(/\bcomponente Material\b/g, "componente material")
+    .replace(/\bmarca Invisible\b/g, "marca invisible")
+    .replace(/\bmuro Invisible\b/g, "muro invisible")
+    .replace(/\bInvisible\b/g, "invisible")
+    .replace(/\bsensor Invisible\b/g, "sensor invisible")
+    .replace(/\bcondición Invisible\b/g, "condición invisible")
+    .replace(/\bdaño Psíquico\b/g, "daño psíquico")
+    .replace(/\bConcedes a hasta diez criaturas que puedas ver Resistencia\b/g, "Concedes a hasta diez criaturas que puedas ver resistencia")
     .replace(/\bVisión Oscura\b/gi, "visión en la oscuridad")
     .replace(/\bLuz Brillante\b/g, "luz brillante")
     .replace(/\bLuz Tenue\b/g, "luz tenue")

@@ -103,6 +103,7 @@ function polishFeatureMeta(pathRel: string): number {
 }
 
 const flatFiles = [
+  "data/i18n/species-curated-es.json",
   "data/i18n/phb-spell-descriptions-manual.json",
   "data/i18n/feat-descriptions-es.json",
   "data/i18n/background-descriptions-manual.json",

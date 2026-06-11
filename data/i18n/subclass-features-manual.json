@@ -930,5 +930,9 @@
   "illusionist::14::Illusory Reality": {
     "description": "Has aprendido a tejer magia de sombras en tus ilusiones para dotarlas de una semirealidad. Cuando lanzas un conjuro de Ilusión con un espacio de conjuro, puedes elegir un objeto inanimado y no mágico que forme parte de la ilusión y hacer que ese objeto sea real. Puedes hacerlo en tu turno como acción adicional mientras el conjuro está activo. El objeto permanece real durante 1 minuto, tiempo durante el cual no puede infligir daño ni imponer condiciones. Por ejemplo, puedes crear la ilusión de un puente sobre un abismo y luego hacerlo real para cruzarlo.",
     "name": "Realidad ilusoria"
+  },
+  "thief::13::Use Magic Device": {
+    "description": "Has aprendido a maximizar el uso de objetos mágicos, lo que te otorga los siguientes beneficios.\n\nVinculación. Puedes vincularte a hasta cuatro objetos mágicos a la vez.\n\nCargas. Siempre que uses una propiedad de un objeto mágico que gaste cargas, tira 1d6. Si obtienes un 6, usas la propiedad sin gastar las cargas.\n\nPergaminos. Puedes usar cualquier pergamino de conjuro, usando Inteligencia como tu característica de lanzamiento de conjuros para ese conjuro. Si el conjuro es un truco o un conjuro de nivel 1, puedes lanzarlo de forma fiable. Si el pergamino contiene un conjuro de nivel superior, primero debes superar una prueba de Inteligencia (Arcanos) (CD 10 + el nivel del conjuro). Si tienes éxito, lanzas el conjuro del pergamino. Si fallas, el pergamino se desintegra.",
+    "name": "Usar objeto mágico"
   }
 }

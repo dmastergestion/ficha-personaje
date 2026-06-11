@@ -497,7 +497,7 @@
     {
       "level": 3,
       "name": "Atleta notable",
-      "description": "Gracias a tu atletismo, tienes ventaja en las tiradas de Iniciativa y en las pruebas de Fuerza (Atletismo).\n\nAdemás, inmediatamente después de obtener un impacto crítico, puedes moverte hasta la mitad de tu Velocidad sin provocar ataques de oportunidad."
+      "description": "Gracias a tu atletismo, tienes ventaja en las tiradas de Iniciativa y en las pruebas de Fuerza (Atletismo).\n\nAdemás, inmediatamente después de obtener un impacto crítico, puedes moverte hasta la mitad de tu velocidad sin provocar ataques de oportunidad."
     },
     {
       "level": 7,
@@ -517,7 +517,7 @@
     {
       "level": 18,
       "name": "Superviviente",
-      "description": "Alcanzas la cima de la resiliencia en batalla, lo que te otorga los siguientes beneficios.\n\nDesafiar a la muerte. Tienes ventaja en las tiradas de salvación contra la muerte. Además, cuando sacas 18–20 en una tirada de salvación contra la muerte, obtienes el beneficio de sacar un 20 en ella.\n\nReunión heroica. Al inicio de cada uno de tus turnos, recuperas puntos de golpe iguales a 5 más tu modificador de Constitución si estás Bloodied y tienes al menos 1 Punto de Golpe."
+      "description": "Alcanzas la cima de la resiliencia en batalla, lo que te otorga los siguientes beneficios.\n\nDesafiar a la muerte. Tienes ventaja en las tiradas de salvación contra la muerte. Además, cuando sacas 18–20 en una tirada de salvación contra la muerte, obtienes el beneficio de sacar un 20 en ella.\n\nReunión heroica. Al inicio de cada uno de tus turnos, recuperas puntos de golpe iguales a 5 más tu modificador de Constitución si estás Bloodied y tienes al menos 1 punto de golpe."
     }
   ],
   "eldritch-knight": [
@@ -601,7 +601,7 @@
     {
       "level": 10,
       "name": "Mente Protegida",
-      "description": "Tienes resistencia al daño Psíquico. Además, si comienzas tu turno con la condición de hechizado o asustado, puedes gastar un Dado de Energía Psiónica (sin acción requerida) y terminar todos los efectos sobre ti que te otorguen esas condiciones."
+      "description": "Tienes resistencia al daño psíquico. Además, si comienzas tu turno con la condición de hechizado o asustado, puedes gastar un Dado de Energía Psiónica (sin acción requerida) y terminar todos los efectos sobre ti que te otorguen esas condiciones."
     },
     {
       "level": 15,
@@ -697,7 +697,7 @@
     {
       "level": 6,
       "name": "Plenitud del cuerpo",
-      "description": "Obtienes la capacidad de curarte a ti mismo. Como acción adicional, puedes tirar tu dado de Artes marciales. Recuperas una cantidad de puntos de golpe igual al resultado obtenido + tu modificador de Sabiduría (mínimo de 1 Punto de golpe recuperado).\n\nPuedes usar este rasgo un número de veces igual a tu modificador de Sabiduría (mínimo una vez), y recuperas todos los usos gastados cuando terminas un descanso largo."
+      "description": "Obtienes la capacidad de curarte a ti mismo. Como acción adicional, puedes tirar tu dado de Artes marciales. Recuperas una cantidad de puntos de golpe igual al resultado obtenido + tu modificador de Sabiduría (mínimo de 1 punto de golpe recuperado).\n\nPuedes usar este rasgo un número de veces igual a tu modificador de Sabiduría (mínimo una vez), y recuperas todos los usos gastados cuando terminas un descanso largo."
     },
     {
       "level": 11,
@@ -749,7 +749,7 @@
     {
       "level": 17,
       "name": "Capa de Sombras",
-      "description": "Como acción mágica mientras estás completamente dentro de luz tenue u Oscuridad, puedes gastar 3 Puntos de Concentración para cubrirte de sombras durante 1 minuto, hasta que tengas la condición de Incapacitado, o hasta que termines tu turno en luz brillante. Mientras estás cubierto por estas sombras, obtienes los siguientes beneficios. Invisibilidad: Tienes la condición de Invisible. Parcialmente Incorpóreo: Puedes moverte a través de espacios ocupados como si fueran Terreno Difícil. Si terminas tu turno en ese espacio, eres desplazado al último espacio desocupado en el que estuviste. Ráfaga de Sombras: Puedes usar tu Ráfaga de Golpes sin gastar ningún Punto de Concentración."
+      "description": "Como acción mágica mientras estás completamente dentro de luz tenue u Oscuridad, puedes gastar 3 Puntos de Concentración para cubrirte de sombras durante 1 minuto, hasta que tengas la condición de Incapacitado, o hasta que termines tu turno en luz brillante. Mientras estás cubierto por estas sombras, obtienes los siguientes beneficios. Invisibilidad: Tienes la condición de invisible. Parcialmente Incorpóreo: Puedes moverte a través de espacios ocupados como si fueran Terreno Difícil. Si terminas tu turno en ese espacio, eres desplazado al último espacio desocupado en el que estuviste. Ráfaga de Sombras: Puedes usar tu Ráfaga de Golpes sin gastar ningún Punto de Concentración."
     }
   ],
   "ancients": [
@@ -793,7 +793,7 @@
     {
       "level": 20,
       "name": "Nimbo Sagrado",
-      "description": "Como acción adicional, emanas un aura de luz sagrada durante 1 minuto. Puedes restaurar tu uso de esta característica gastando un espacio de conjuro de nivel 5 (sin acción requerida). Obtienes los siguientes beneficios mientras el aura está activa. Escudo Sagrado: Tienes ventaja en las tiradas de salvación que te veas obligado a hacer por un Demonio o un No Muerto. daño radiante: Siempre que un enemigo empiece su turno en el aura, esa criatura recibe daño radiante igual a tu modificador de Carisma más tu bonificador de competencia. Luz Solar: El aura está llena de luz brillante que es luz solar."
+      "description": "Como acción adicional, emanas un aura de luz sagrada durante 1 minuto. Puedes restaurar tu uso de esta característica gastando un espacio de conjuro de nivel 5 (sin acción requerida). Obtienes los siguientes beneficios mientras el aura está activa. Escudo Sagrado: Tienes ventaja en las tiradas de salvación que te veas obligado a hacer por un Demonio o un no muerto. daño radiante: Siempre que un enemigo empiece su turno en el aura, esa criatura recibe daño radiante igual a tu modificador de Carisma más tu bonificador de competencia. Luz Solar: El aura está llena de luz brillante que es luz solar."
     }
   ],
   "glory": [
@@ -881,7 +881,7 @@
     {
       "level": 3,
       "name": "Golpes Terribles",
-      "description": "Puedes aumentar tus golpes de arma con magia que lacera la mente, extraída de los oscuros rincones del Feywild. Cuando impactas a una criatura con un arma, puedes infligir 1d4 puntos de daño Psíquico adicionales al objetivo, que solo puede recibir este daño extra una vez por turno. El daño extra aumenta a 1d6 cuando alcanzas el nivel 11 de Explorador."
+      "description": "Puedes aumentar tus golpes de arma con magia que lacera la mente, extraída de los oscuros rincones del Feywild. Cuando impactas a una criatura con un arma, puedes infligir 1d4 puntos de daño psíquico adicionales al objetivo, que solo puede recibir este daño extra una vez por turno. El daño extra aumenta a 1d6 cuando alcanzas el nivel 11 de Explorador."
     },
     {
       "level": 3,
@@ -901,7 +901,7 @@
     {
       "level": 11,
       "name": "Refuerzos Feéricos",
-      "description": "Puedes lanzar Invocar Hada sin componente Material. También puedes lanzarlo una vez sin gastar un espacio de conjuro, y recuperas la capacidad de lanzarlo de este modo cuando terminas un descanso largo. Siempre que comiences a lanzar el conjuro, puedes modificarlo para que no requiera Concentración. Si lo haces, la duración del conjuro se convierte en 1 minuto para ese lanzamiento."
+      "description": "Puedes lanzar Invocar Hada sin componente material. También puedes lanzarlo una vez sin gastar un espacio de conjuro, y recuperas la capacidad de lanzarlo de este modo cuando terminas un descanso largo. Siempre que comiences a lanzar el conjuro, puedes modificarlo para que no requiera Concentración. Si lo haces, la duración del conjuro se convierte en 1 minuto para ese lanzamiento."
     },
     {
       "level": 15,
@@ -913,7 +913,7 @@
     {
       "level": 3,
       "name": "Emboscador Temible",
-      "description": "Has dominado el arte de crear emboscadas aterradoras, otorgándote los siguientes beneficios. Salto del Emboscador: Al inicio de tu primer turno en cada combate, tu Velocidad aumenta en 10 pies (3 m) hasta el final de ese turno. Golpe Terrible: Cuando atacas a una criatura y la impactas con un arma, puedes infligir 2d6 puntos de daño Psíquico adicionales. Solo puedes usar este beneficio una vez por turno, puedes usarlo un número de veces igual a tu modificador de Sabiduría (mínimo una vez), y recuperas todos los usos gastados cuando terminas un descanso largo. Bonificador de Iniciativa: Cuando tiras Iniciativa, puedes añadir tu modificador de Sabiduría a la tirada."
+      "description": "Has dominado el arte de crear emboscadas aterradoras, otorgándote los siguientes beneficios. Salto del Emboscador: Al inicio de tu primer turno en cada combate, tu velocidad aumenta en 10 pies (3 m) hasta el final de ese turno. Golpe Terrible: Cuando atacas a una criatura y la impactas con un arma, puedes infligir 2d6 puntos de daño psíquico adicionales. Solo puedes usar este beneficio una vez por turno, puedes usarlo un número de veces igual a tu modificador de Sabiduría (mínimo una vez), y recuperas todos los usos gastados cuando terminas un descanso largo. Bonificador de Iniciativa: Cuando tiras Iniciativa, puedes añadir tu modificador de Sabiduría a la tirada."
     },
     {
       "level": 3,
@@ -928,7 +928,7 @@
     {
       "level": 3,
       "name": "Visión Umbral",
-      "description": "Obtienes visión en la oscuridad con un alcance de 60 pies (18 m). Si ya tienes visión en la oscuridad cuando obtienes esta característica, su alcance aumenta en 60 pies (18 m). También eres hábil para evadir criaturas que dependen de la visión en la oscuridad. Mientras estés completamente en Oscuridad, tienes la condición Invisible para cualquier criatura que dependa de la visión en la oscuridad para verte en esa Oscuridad."
+      "description": "Obtienes visión en la oscuridad con un alcance de 60 pies (18 m). Si ya tienes visión en la oscuridad cuando obtienes esta característica, su alcance aumenta en 60 pies (18 m). También eres hábil para evadir criaturas que dependen de la visión en la oscuridad. Mientras estés completamente en Oscuridad, tienes la condición invisible para cualquier criatura que dependa de la visión en la oscuridad para verte en esa Oscuridad."
     },
     {
       "level": 7,
@@ -938,7 +938,7 @@
     {
       "level": 11,
       "name": "Ráfaga del Acechador",
-      "description": "El daño Psíquico de tu Golpe Terrible se convierte en 2d8. Además, cuando usas el efecto Golpe Terrible de tu característica Emboscador Temible, puedes causar uno de los siguientes efectos adicionales. Ataque Súbito: Puedes realizar otro ataque con el mismo arma contra una criatura diferente que esté a 5 pies (1,5 m) del objetivo original y dentro del alcance del arma. Miedo Masivo: El objetivo y cada criatura a 10 pies (3 m) de él deben hacer una tirada de salvación de Sabiduría contra tu CD de conjuro. Si falla la tirada de salvación, la criatura tiene la condición asustada hasta el inicio de tu siguiente turno."
+      "description": "El daño psíquico de tu Golpe Terrible se convierte en 2d8. Además, cuando usas el efecto Golpe Terrible de tu característica Emboscador Temible, puedes causar uno de los siguientes efectos adicionales. Ataque Súbito: Puedes realizar otro ataque con el mismo arma contra una criatura diferente que esté a 5 pies (1,5 m) del objetivo original y dentro del alcance del arma. Miedo Masivo: El objetivo y cada criatura a 10 pies (3 m) de él deben hacer una tirada de salvación de Sabiduría contra tu CD de conjuro. Si falla la tirada de salvación, la criatura tiene la condición asustada hasta el inicio de tu siguiente turno."
     },
     {
       "level": 15,
@@ -997,7 +997,7 @@
     {
       "level": 9,
       "name": "Emboscada Mágica",
-      "description": "Si tienes la condición Invisible cuando lanzas un conjuro sobre una criatura, esta tiene desventaja en cualquier tirada de salvación que haga contra el conjuro en el mismo turno."
+      "description": "Si tienes la condición invisible cuando lanzas un conjuro sobre una criatura, esta tiene desventaja en cualquier tirada de salvación que haga contra el conjuro en el mismo turno."
     },
     {
       "level": 13,
@@ -1086,7 +1086,7 @@
     {
       "level": 13,
       "name": "Velo Psíquico",
-      "description": "Puedes tejer un velo de estática psíquica para enmascararte. Como acción mágica, obtienes la condición Invisible durante 1 hora o hasta que desactives este efecto (sin acción requerida). Esta invisibilidad termina antes de tiempo inmediatamente después de que inflijas daño a una criatura o la obligues a hacer una tirada de salvación. Una vez que uses esta característica, no puedes hacerlo de nuevo hasta que termines un descanso largo, a menos que gastes un Dado de Energía Psiónica (sin acción requerida) para restaurar tu uso de ella."
+      "description": "Puedes tejer un velo de estática psíquica para enmascararte. Como acción mágica, obtienes la condición invisible durante 1 hora o hasta que desactives este efecto (sin acción requerida). Esta invisibilidad termina antes de tiempo inmediatamente después de que inflijas daño a una criatura o la obligues a hacer una tirada de salvación. Una vez que uses esta característica, no puedes hacerlo de nuevo hasta que termines un descanso largo, a menos que gastes un Dado de Energía Psiónica (sin acción requerida) para restaurar tu uso de ella."
     },
     {
       "level": 17,
@@ -1098,12 +1098,12 @@
     {
       "level": 3,
       "name": "Manos rápidas",
-      "description": "Como acción adicional, puedes hacer una de las siguientes cosas.\n\nJuego de manos. Haz una prueba de Destreza (Juego de manos) para forzar una cerradura o desactivar una trampa con Herramientas de ladrón, o para robar un objeto del bolsillo.\n\nUsar un objeto. Realiza la acción de Utilizar, o realiza la acción mágica para usar un objeto mágico que requiera esa acción."
+      "description": "Como acción adicional, puedes hacer una de las siguientes cosas.\n\nJuego de manos. Haz una prueba de Destreza (Juego de manos) para forzar una cerradura o desactivar una trampa con Herramientas de ladrón, o para robar un objeto del bolsillo.\n\nUsar un objeto. Realiza la acción de Usar, o realiza la acción mágica para usar un objeto mágico que requiera esa acción."
     },
     {
       "level": 3,
       "name": "Trabajo de segunda planta",
-      "description": "Te has entrenado para acceder a lugares especialmente difíciles de alcanzar, lo que te otorga los siguientes beneficios.\n\nEscalador. Obtienes una velocidad de trepar igual a tu Velocidad.\n\nSaltador. Puedes determinar tu distancia de Jumping{salto} usando tu Destreza en lugar de tu Fuerza."
+      "description": "Te has entrenado para acceder a lugares especialmente difíciles de alcanzar, lo que te otorga los siguientes beneficios.\n\nEscalador. Obtienes una velocidad de trepar igual a tu velocidad.\n\nSaltador. Puedes determinar tu distancia de Jumping{salto} usando tu Destreza en lugar de tu Fuerza."
     },
     {
       "level": 3,
@@ -1113,12 +1113,12 @@
     {
       "level": 9,
       "name": "Sigilo supremo",
-      "description": "Obtienes la siguiente opción de Golpe astuto.\n\nAtaque sigiloso (Coste: 1d6). Si tienes la condición Invisible de la acción de Hide, este ataque no termina esa condición sobre ti si terminas el turno detrás de Three-Quarters Cover o Total Cover."
+      "description": "Obtienes la siguiente opción de Golpe astuto.\n\nAtaque sigiloso (Coste: 1d6). Si tienes la condición invisible de la acción de Hide, este ataque no termina esa condición sobre ti si terminas el turno detrás de Three-Quarters Cover o Total Cover."
     },
     {
       "level": 13,
       "name": "Usar objeto mágico",
-      "description": "Has aprendido a maximizar el uso de objetos mágicos, lo que te otorga los siguientes beneficios.\n\nVinculación. Puedes vincularte a hasta cuatro objetos mágicos a la vez.\n\nCargas. Siempre que uses una propiedad de un objeto mágico que gaste cargas, tira . Si obtienes un 6, usas la propiedad sin gastar las cargas.\n\nPergaminos. Puedes usar cualquier pergamino de conjuro, usando Inteligencia como tu característica para lanzar conjuros de ese conjuro. Si el conjuro es un truco o un conjuro de nivel 1, puedes lanzarlo de forma fiable. Si el pergamino contiene un conjuro de nivel superior, primero debes superar una prueba de  (CD 10 + el nivel del conjuro). Si tienes éxito, lanzas el conjuro del pergamino. Si fallas, el pergamino se desintegra."
+      "description": "Has aprendido a maximizar el uso de objetos mágicos, lo que te otorga los siguientes beneficios.\n\nVinculación. Puedes vincularte a hasta cuatro objetos mágicos a la vez.\n\nCargas. Siempre que uses una propiedad de un objeto mágico que gaste cargas, tira 1d6. Si obtienes un 6, usas la propiedad sin gastar las cargas.\n\nPergaminos. Puedes usar cualquier pergamino de conjuro, usando Inteligencia como tu característica de lanzamiento de conjuros para ese conjuro. Si el conjuro es un truco o un conjuro de nivel 1, puedes lanzarlo de forma fiable. Si el pergamino contiene un conjuro de nivel superior, primero debes superar una prueba de Inteligencia (Arcanos) (CD 10 + el nivel del conjuro). Si tienes éxito, lanzas el conjuro del pergamino. Si fallas, el pergamino se desintegra."
     },
     {
       "level": 17,
@@ -1224,7 +1224,7 @@
     {
       "level": 18,
       "name": "Compañero dracónico",
-      "description": "Puedes lanzar Invocar dragón sin componente Material. También puedes lanzar el conjuro una vez sin gastar un espacio de conjuro, y recuperas la capacidad de hacerlo cuando terminas un descanso largo.\n\nSiempre que empieces a lanzar el conjuro, puedes modificarlo para que no requiera Concentración. Si lo haces, la duración del conjuro pasa a ser 1 minuto para ese lanzamiento."
+      "description": "Puedes lanzar Invocar dragón sin componente material. También puedes lanzar el conjuro una vez sin gastar un espacio de conjuro, y recuperas la capacidad de hacerlo cuando terminas un descanso largo.\n\nSiempre que empieces a lanzar el conjuro, puedes modificarlo para que no requiera Concentración. Si lo haces, la duración del conjuro pasa a ser 1 minuto para ese lanzamiento."
     }
   ],
   "wild-magic": [
@@ -1332,7 +1332,7 @@
     {
       "level": 3,
       "name": "Bendición del Oscuro",
-      "description": "Cuando reduces a un enemigo a 0 puntos de golpe, obtienes puntos de golpe temporales iguales a tu modificador de Carisma + tu nivel de brujo (mínimo de 1 Punto de golpe temporal). También obtienes este beneficio si otra persona reduce a 0 puntos de golpe a un enemigo que esté a 10 pies (3 m) o menos de ti."
+      "description": "Cuando reduces a un enemigo a 0 puntos de golpe, obtienes puntos de golpe temporales iguales a tu modificador de Carisma + tu nivel de brujo (mínimo de 1 punto de golpe temporal). También obtienes este beneficio si otra persona reduce a 0 puntos de golpe a un enemigo que esté a 10 pies (3 m) o menos de ti."
     },
     {
       "level": 3,
@@ -1352,7 +1352,7 @@
     {
       "level": 14,
       "name": "Arrojar a través del Infierno",
-      "description": "Una vez por turno, cuando impactas a una criatura con una tirada de ataque, puedes intentar transportar instantáneamente al objetivo a través de los Planos Inferiores. El objetivo debe superar una tirada de salvación de Carisma contra la CD de salvación de tus conjuros o desaparece y sale despedido a través de un paisaje de pesadilla. El objetivo sufre 8d10 de daño psíquico si no es un infernal, y tiene la condición Incapacitado hasta el final de tu siguiente turno; entonces regresa al espacio que ocupaba antes o al espacio desocupado más cercano.\n\nUna vez uses este rasgo, no puedes volver a usarlo hasta que termines un descanso largo, a menos que gastes un espacio de conjuro de Magia de pacto (no requiere acción) para recuperar su uso."
+      "description": "Una vez por turno, cuando impactas a una criatura con una tirada de ataque, puedes intentar transportar instantáneamente al objetivo a través de los Planos Inferiores. El objetivo debe superar una tirada de salvación de Carisma contra la CD de salvación de tus conjuros o desaparece y sale despedido a través de un paisaje de pesadilla. El objetivo sufre 8d10 de daño psíquico si no es un infernal, y tiene la condición incapacitado hasta el final de tu siguiente turno; entonces regresa al espacio que ocupaba antes o al espacio desocupado más cercano.\n\nUna vez uses este rasgo, no puedes volver a usarlo hasta que termines un descanso largo, a menos que gastes un espacio de conjuro de Magia de pacto (no requiere acción) para recuperar su uso."
     }
   ],
   "great-old-one": [

@@ -1,19 +1,34 @@
 const CONDITION_ES: Record<string, string> = {
-  blinded: "Cegado",
-  charmed: "Hechizado",
-  deafened: "Ensordecido",
-  frightened: "Asustado",
-  grappled: "Agarrado",
-  incapacitated: "Incapacitado",
-  invisible: "Invisible",
-  paralyzed: "Paralizado",
-  petrified: "Petrificado",
-  poisoned: "Envenenado",
-  prone: "Derribado",
-  restrained: "Apresado",
-  stunned: "Aturdido",
-  unconscious: "Inconsciente",
+  blinded: "cegado",
+  charmed: "hechizado",
+  deafened: "ensordecido",
+  frightened: "asustado",
+  grappled: "agarrado",
+  incapacitated: "incapacitado",
+  invisible: "invisible",
+  paralyzed: "paralizado",
+  petrified: "petrificado",
+  poisoned: "envenenado",
+  prone: "derribado",
+  restrained: "apresado",
+  stunned: "aturdido",
+  unconscious: "inconsciente",
 };
+
+const ACTION_ES: Record<string, string> = {
+  search: "Buscar",
+  utilize: "Usar",
+  attack: "Atacar",
+  dash: "Correr",
+  disengage: "Retirarse",
+  hide: "Esconderse",
+  magic: "mágica",
+};
+
+function extraerDadoMarcador(raw: string): string {
+  const m = raw.trim().match(/\d+d\d+(?:\s*\+\s*\d+)?/i);
+  return m?.[0] ?? raw.trim().split(/\s+/)[0] ?? "";
+}
 
 /** @UUID[...]{etiqueta} o @UUID[...]{etiqueta sin cierre */
 export function reemplazarUuidFoundry(text: string): string {
@@ -56,8 +71,16 @@ export function limpiarTextoFoundry(text: string): string {
   return reemplazarEmbedFoundry(
     reemplazarUuidFoundry(
       reemplazarReferenciasFoundry(text)
-        .replace(/\{@(?:damage|dice|scaledamage|scaledice|hit|dc)\s+[^}]+\}/gi, "")
-        .replace(/\{@(?:spell|item|action|filter|condition|chance|feat|skill|sense|hazard|table|itemProperty|variantrule)[^}]+\}/gi, "")
+        .replace(/\{@action\s+([^}|]+)(?:\|[^}]*)?\}/gi, (_, a: string) => ACTION_ES[a.trim().toLowerCase()] ?? a.trim())
+        .replace(
+          /\{@(?:damage|dice|scaledamage|scaledice|hit)\s+([^}|]+)(?:\|[^}]*)?\}/gi,
+          (_, body: string) => extraerDadoMarcador(body),
+        )
+        .replace(/\{@dc\s+([^}|]+)(?:\|[^}]*)?\}/gi, "CD $1")
+        .replace(/damageresistencia\{([^}]+)\}/gi, "$1")
+        .replace(/damagevulnerability\{([^}]+)\}/gi, "$1")
+        .replace(/Reaction\{Reactions\}/gi, "reacciones")
+        .replace(/\{@(?:spell|item|filter|condition|chance|feat|skill|sense|hazard|table|itemProperty|variantrule)[^}]+\}/gi, "")
         .replace(/\[\[\/r[^\]]*\]\]\{([^}]*)\}/gi, "$1")
         .replace(/\[\[[^\]]+\]\]/g, "")
         .replace(/\|XPHB/gi, "")

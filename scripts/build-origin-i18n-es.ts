@@ -5,12 +5,16 @@ import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { htmlFoundryAPlano } from "../src/lib/foundry-text-clean.ts";
-import { pulirDescripcionEspecie } from "../src/lib/origin-text.js";
+import {
+  limpiarTextoOrigen,
+  personalizarEspeciePorId,
+} from "../src/lib/origin-text.js";
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const srdDir = path.join(root, "src", "data", "srd");
 const outPath = path.join(root, "src", "data", "i18n", "origin-descriptions-es.json");
 const manualPath = path.join(root, "data", "i18n", "origin-descriptions-manual.json");
+const curatedSpeciesPath = path.join(root, "data", "i18n", "species-curated-es.json");
 
 function translateCompendiumDir(): string | null {
   for (const dir of ["translate-dnd5e-sdr2-es", "translate-dnd5e-sdr2-es-tmp"]) {
@@ -35,8 +39,12 @@ function main() {
         manualPath,
       )
     : { species: {}, backgrounds: {} };
+  const curatedSpecies = fs.existsSync(curatedSpeciesPath)
+    ? loadJson<Record<string, string>>(curatedSpeciesPath)
+    : {};
 
-  const speciesOut: Record<string, string> = { ...manual.species };
+  const manualSpecies = { ...curatedSpecies, ...manual.species };
+  const speciesOut: Record<string, string> = { ...manualSpecies };
   const backgroundsOut: Record<string, string> = { ...manual.backgrounds };
 
   if (compDir) {
@@ -88,9 +96,21 @@ function main() {
   }
 
   for (const [id, text] of Object.entries(speciesOut)) {
-    if (!manual.species?.[id]) speciesOut[id] = pulirDescripcionEspecie(text);
+    if (!manualSpecies[id]) {
+      speciesOut[id] = personalizarEspeciePorId(id, limpiarTextoOrigen(text));
+    }
   }
-  Object.assign(speciesOut, manual.species ?? {});
+  Object.assign(speciesOut, manualSpecies);
+
+  for (const id of Object.keys(speciesOut)) {
+    if (id.startsWith("dragonborn-") && manualSpecies.dragonborn && !manualSpecies[id]) {
+      speciesOut[id] = personalizarEspeciePorId(id, manualSpecies.dragonborn);
+    }
+    if (id.startsWith("goliath-") && manualSpecies.goliath && !manualSpecies[id]) {
+      speciesOut[id] = personalizarEspeciePorId(id, manualSpecies.goliath);
+    }
+  }
+
   Object.assign(backgroundsOut, manual.backgrounds ?? {});
 
   fs.mkdirSync(path.dirname(outPath), { recursive: true });

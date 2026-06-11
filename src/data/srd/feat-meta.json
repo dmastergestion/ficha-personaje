@@ -29,7 +29,7 @@
     "description": "You gain the following benefits.\n\nInitiative Proficiency: When you roll XPHB|Proficiency Bonus to the roll.\n\nInitiative Swap: Immediately after you roll XPHB with the XPHB condition.",
     "repeatable": false,
     "srd52": true,
-    "descriptionEs": "Obtienes los siguientes beneficios.\n\nCompetencia con Iniciativa. Cuando tiras Iniciativa, puedes añadir tu bonificador de competencia a la tirada.\n\nIntercambio de iniciativa. Inmediatamente después de tirar Iniciativa, puedes intercambiar tu Iniciativa con la Iniciativa de un aliado dispuesto en el mismo combate. No puedes hacer este intercambio si tú o el aliado tenéis la condición Incapacitado."
+    "descriptionEs": "Obtienes los siguientes beneficios.\n\nCompetencia con Iniciativa. Cuando tiras Iniciativa, puedes añadir tu bonificador de competencia a la tirada.\n\nIntercambio de iniciativa. Inmediatamente después de tirar Iniciativa, puedes intercambiar tu Iniciativa con la Iniciativa de un aliado dispuesto en el mismo combate. No puedes hacer este intercambio si tú o el aliado tenéis la condición incapacitado."
   },
   "archery": {
     "name": "Archery",
@@ -191,7 +191,7 @@
     "prerequisite": "Nivel 19+",
     "repeatable": false,
     "srd52": true,
-    "descriptionEs": "Obtienes los siguientes beneficios.\n\nMejora de puntuación de característica. Aumenta en 1 una puntuación de característica de tu elección, hasta un máximo de 30.\n\nFundirse con las sombras. Mientras estés en luz tenue u Oscuridad, puedes aplicarte la condición Invisible como una acción adicional. La condición termina en ti inmediatamente después de que realices una Acción, una acción adicional o una reacción.\n\nForma sombría. Mientras estés en luz tenue u Oscuridad, tienes Resistencia a todo el daño excepto Psíquico y Radiante."
+    "descriptionEs": "Obtienes los siguientes beneficios.\n\nMejora de puntuación de característica. Aumenta en 1 una puntuación de característica de tu elección, hasta un máximo de 30.\n\nFundirse con las sombras. Mientras estés en luz tenue u Oscuridad, puedes aplicarte la condición invisible como una acción adicional. La condición termina en ti inmediatamente después de que realices una Acción, una acción adicional o una reacción.\n\nForma sombría. Mientras estés en luz tenue u Oscuridad, tienes Resistencia a todo el daño excepto Psíquico y Radiante."
   },
   "boon-of-truesight": {
     "name": "Boon of Truesight",
@@ -352,7 +352,7 @@
     "prerequisite": "Nivel 4+ · Nivel 4+",
     "repeatable": false,
     "srd52": true,
-    "descriptionEs": "Obtienes los siguientes beneficios.\n\nMejora de puntuación de característica. Aumenta en 1 tu puntuación de fuerza o destreza, hasta un máximo de 20.\n\nPuñetazo y agarre. Cuando impactas a una criatura con un Golpe sin armas como parte de la Acción de Ataque en tu turno, puedes usar tanto la opción de daño como la de Agarre. Solo puedes usar este beneficio una vez por turno.\n\nventaja en el ataque. Tienes ventaja en las tiradas de ataque contra una criatura Agarrado por ti.\n\nLuchador veloz. No tienes que gastar Movimiento adicional para mover contigo a una criatura si la criatura es de tu tamaño o más pequeña."
+    "descriptionEs": "Obtienes los siguientes beneficios.\n\nMejora de puntuación de característica. Aumenta en 1 tu puntuación de fuerza o destreza, hasta un máximo de 20.\n\nPuñetazo y agarre. Cuando impactas a una criatura con un Golpe sin armas como parte de la Acción de Ataque en tu turno, puedes usar tanto la opción de daño como la de Agarre. Solo puedes usar este beneficio una vez por turno.\n\nventaja en el ataque. Tienes ventaja en las tiradas de ataque contra una criatura agarrado por ti.\n\nLuchador veloz. No tienes que gastar Movimiento adicional para mover contigo a una criatura si la criatura es de tu tamaño o más pequeña."
   },
   "great-weapon-fighting": {
     "name": "Great Weapon Fighting",
