@@ -7,6 +7,7 @@ import path from "node:path";
 import { limpiarTextoConjuro } from "../src/lib/spell-text-clean.js";
 import { traducirTextoDnD, PHB_SPELL_NAMES_ES } from "../src/lib/dnd-translate-en-es.js";
 import { htmlFoundryAPlano } from "../src/lib/foundry-text-clean.js";
+import { pulirTextoReglasEs } from "../src/lib/rules-text-polish.js";
 import { cleanFiveText, flattenEntries } from "./five-etools-utils.js";
 import {
   foundryDescription,
@@ -126,10 +127,15 @@ function buildSpellDescriptions(): Record<string, string> {
     path.join(root, "data/i18n/srd-spell-descriptions-manual.json"),
   );
   for (const [id, text] of Object.entries(srdSpellManual)) {
-    if (out[id] !== text) {
-      out[id] = text;
+    const polished = pulirTextoReglasEs(text);
+    if (out[id] !== polished) {
+      out[id] = polished;
       added++;
     }
+  }
+
+  for (const id of Object.keys(out)) {
+    out[id] = pulirTextoReglasEs(out[id]!);
   }
 
   writeJson(path.join(root, "src/data/i18n/spell-descriptions-es.json"), out);
@@ -263,6 +269,13 @@ function buildFeatDescriptions(): void {
       feat.descriptionEs = text;
       addedManual++;
     }
+  }
+
+  for (const feat of Object.values(featMeta)) {
+    if (feat.descriptionEs) feat.descriptionEs = pulirTextoReglasEs(feat.descriptionEs);
+  }
+  for (const id of Object.keys(manual)) {
+    manual[id] = pulirTextoReglasEs(manual[id]!);
   }
 
   writeJson(featMetaPath, featMeta);
@@ -466,7 +479,7 @@ function buildSubclassFeatures(): void {
             : traducirTextoDnD(descEn)),
       );
 
-      list.push({ level: feat.level, name: nameEs, description });
+      list.push({ level: feat.level, name: nameEs, description: pulirTextoReglasEs(description) });
       featuresBySubclass[subclassId] = list;
     }
   }

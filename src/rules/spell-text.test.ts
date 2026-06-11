@@ -11,7 +11,7 @@ describe("limpiarTextoConjuro", () => {
     const text = limpiarTextoConjuro(
       "Efecto con &amp;Reference[frightened apply=false] y @UUID[Compendium.x]{Desplazamiento entre planos}.",
     );
-    expect(text).toContain("Asustado");
+    expect(text).toContain("asustado");
     expect(text).toContain("Desplazamiento entre planos");
     expect(text).not.toMatch(/Reference|@UUID/);
   });

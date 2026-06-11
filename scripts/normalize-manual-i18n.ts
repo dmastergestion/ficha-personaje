@@ -1,5 +1,5 @@
 /**
- * Aplica pulido editorial a los JSON manuales PHB en data/i18n/.
+ * Aplica pulido editorial a JSON manuales (data/i18n/) y catálogos generados (src/data/).
  */
 import fs from "node:fs";
 import path from "node:path";
@@ -62,11 +62,33 @@ function polishOriginDescriptions(): number {
   return changed;
 }
 
+function polishFeatureMeta(pathRel: string): number {
+  const full = path.join(root, pathRel);
+  const data = JSON.parse(fs.readFileSync(full, "utf8")) as Record<
+    string,
+    { level: number; name: string; description: string }[]
+  >;
+  let changed = 0;
+  for (const list of Object.values(data)) {
+    for (const entry of list) {
+      if (!entry.description) continue;
+      const next = pulirTextoReglasEs(entry.description);
+      if (next !== entry.description) {
+        entry.description = next;
+        changed++;
+      }
+    }
+  }
+  writeJson(full, data);
+  return changed;
+}
+
 const flatFiles = [
   "data/i18n/phb-spell-descriptions-manual.json",
   "data/i18n/feat-descriptions-es.json",
   "data/i18n/background-descriptions-manual.json",
   "data/i18n/srd-spell-descriptions-manual.json",
+  "src/data/i18n/spell-descriptions-es.json",
 ];
 
 let total = 0;
@@ -83,5 +105,14 @@ total += sub;
 const origin = polishOriginDescriptions();
 console.log(`origin-descriptions-manual.json: ${origin} entradas pulidas`);
 total += origin;
+
+for (const rel of [
+  "src/data/srd/subclass-feature-meta.json",
+  "src/data/srd/class-feature-meta.json",
+]) {
+  const n = polishFeatureMeta(rel);
+  console.log(`${rel}: ${n} entradas pulidas`);
+  total += n;
+}
 
 console.log(`Total: ${total} textos actualizados.`);

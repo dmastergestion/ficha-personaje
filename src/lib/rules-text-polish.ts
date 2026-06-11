@@ -14,6 +14,22 @@ function convertirPiesAMetros(text: string): string {
   });
 }
 
+const CONDITION_APPLY_FALSE: Record<string, string> = {
+  blinded: "cegado",
+  charmed: "hechizado",
+  frightened: "asustado",
+  grappled: "agarrado",
+  incapacitated: "incapacitado",
+  invisible: "invisible",
+  paralyzed: "paralizado",
+  poisoned: "envenenado",
+  prone: "derribado",
+  restrained: "apresado",
+  stunned: "aturdido",
+};
+
+const AREA_TERMS = ["Emanación", "Cubo", "Cono", "Cilindro", "Esfera", "Línea", "Cuadrado"];
+
 const DAMAGE_LOWER: [RegExp, string][] = [
   [/daño de Frío/gi, "daño de frío"],
   [/daño de Fuerza/gi, "daño de fuerza"],
@@ -33,11 +49,84 @@ const DAMAGE_LOWER: [RegExp, string][] = [
   [/infligís 1d4 de daño Radiante/gi, "infligís 1d4 de daño radiante"],
   [/infligís 2d6 de daño Radiante/gi, "infligís 2d6 de daño radiante"],
   [/Resistencia al daño Radiante/gi, "resistencia al daño radiante"],
+  [/daño adicional\s+al objetivo/gi, "daño adicional de 1d6 al objetivo"],
 ];
+
+function reemplazarCondicionApplyFalse(text: string): string {
+  return text.replace(/\b(\w+)\s+apply=false\b/gi, (_, cond: string) => {
+    const key = cond.toLowerCase();
+    return CONDITION_APPLY_FALSE[key] ?? key;
+  });
+}
+
+const TRADUCCION_ROTA: [RegExp, string][] = [
+  [/\bdifficultterrain\b/gi, "terreno difícil"],
+  [/\bDifficultTerrain\b/g, "terreno difícil"],
+  [/\blightlyobscured\b/gi, "ligeramente oscurecido"],
+  [/\bLightlyObscured\b/g, "ligeramente oscurecido"],
+  [/\bheavilyobscured\b/gi, "gravemente oscurecido"],
+  [/\bHeavilyObscured\b/g, "gravemente oscurecido"],
+  [/Study\{Estudiar\}/g, "Estudiar"],
+  [/pruebas de\s+y no dejáis huellas/g, "pruebas de Destreza (Sigilo) y no dejáis huellas"],
+  [
+    /prueba\s+o\s+que hagas para encontrarlo/g,
+    "prueba de Sabiduría (Perspicacia o Percepción) que hagas para encontrarlo",
+  ],
+  [
+    /hacer una prueba\s+contra tu CD de salvación de conjuros para no creerla/g,
+    "hacer una prueba de Inteligencia (Investigación) contra tu CD de salvación de conjuros para no creerla",
+  ],
+  [
+    /con una prueba\s+contra la CD de salvación de tu conjuro/g,
+    "con una prueba de Inteligencia (Investigación) contra la CD de salvación de tu conjuro",
+  ],
+  [
+    /hacer una prueba\s+contra tu CD de salvación de conjuros/g,
+    "hacer una prueba de Fuerza (Atletismo) contra tu CD de salvación de conjuros",
+  ],
+  [
+    /prueba\s+como acción para escapar/g,
+    "prueba de Fuerza (Atletismo) como acción para escapar",
+  ],
+  [/salvación de \./g, "salvación de Carisma"],
+  [/\bTerreno difícil\b/g, "terreno difícil"],
+  [/\bRestringid([oa])\b/gi, "apresad$1"],
+  [/\bAmistosa\b/g, "amistosa"],
+  [/\bHechizad([oa])\b/gi, "hechizad$1"],
+  [/\bAsustad([oa])\b/gi, "asustad$1"],
+  [/\bDerribad([oa])\b/gi, "derribad$1"],
+  [/\bCegad([oa])\b/gi, "cegad$1"],
+  [/\bInmune\b/g, "inmune"],
+  [/\bVelocidad de\b/g, "velocidad de"],
+  [/\bAcción adicional\b/g, "acción adicional"],
+  [/\bacción Mágica\b/g, "acción mágica"],
+  [/\bacción Atacar\b/g, "acción Atacar"],
+  [/\bacción dash\b/gi, "acción Correr"],
+  [/\bacción Study\b/gi, "acción Estudiar"],
+  [
+    /\bcada pie de movimiento cuesta un pie adicional\b/gi,
+    "cada metro de movimiento cuesta un metro adicional",
+  ],
+  [/número de pies que te han movido/g, "número de metros que te han movido"],
+];
+
+function pulirAreasEfecto(text: string): string {
+  let out = text;
+  for (const term of AREA_TERMS) {
+    out = out.replace(new RegExp(`\\b${term}\\b`, "g"), term.toLowerCase());
+  }
+  return out;
+}
 
 /** Pulido editorial PHB 2024 ES: términos de juego en minúsculas y distancias en metros. */
 export function pulirTextoReglasEs(text: string): string {
   let out = limpiarTextoFoundry(text);
+
+  out = reemplazarCondicionApplyFalse(out);
+
+  for (const [pattern, replacement] of TRADUCCION_ROTA) {
+    out = out.replace(pattern, replacement);
+  }
 
   out = out
     .replace(/\bDescanso Largo\b/g, "descanso largo")
@@ -71,6 +160,7 @@ export function pulirTextoReglasEs(text: string): string {
     .replace(/\bes Grande o más pequeñ[oa]\b/gi, (m) => m.toLowerCase())
     .replace(/\bes Enorme o más pequeñ[oa]\b/gi, (m) => m.toLowerCase());
 
+  out = pulirAreasEfecto(out);
   out = convertirPiesAMetros(out);
 
   return out.trim();

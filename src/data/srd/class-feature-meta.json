@@ -23,7 +23,7 @@
     {
       "level": 2,
       "name": "Sentido del peligro",
-      "description": "Ventaja en salvaciones de Destreza salvo que estés incapacitado."
+      "description": "ventaja en salvaciones de Destreza salvo que estés incapacitado."
     },
     {
       "level": 3,
@@ -43,7 +43,7 @@
     {
       "level": 5,
       "name": "Movimiento rápido",
-      "description": "+10 pies de velocidad si no llevas armadura pesada."
+      "description": "+3 metros de velocidad si no llevas armadura pesada."
     },
     {
       "level": 6,
@@ -58,7 +58,7 @@
     {
       "level": 7,
       "name": "Instinto feral",
-      "description": "Ventaja en tiradas de iniciativa."
+      "description": "ventaja en tiradas de iniciativa."
     },
     {
       "level": 9,
@@ -145,7 +145,7 @@
     {
       "level": 7,
       "name": "Contraencanto",
-      "description": "Reacción: si tú o un aliado a 9 m falla salvación contra Encantado/Asustado, repites la tirada con ventaja."
+      "description": "reacción: si tú o un aliado a 9 m falla salvación contra Encantado/asustado, repites la tirada con ventaja."
     },
     {
       "level": 9,
@@ -217,7 +217,7 @@
     {
       "level": 10,
       "name": "Intervención divina",
-      "description": "Acción mágica: lanzas un conjuro de clérigo de nivel 5 o menor sin espacio ni componentes. 1/descanso largo."
+      "description": "acción mágica: lanzas un conjuro de clérigo de nivel 5 o menor sin espacio ni componentes. 1/descanso largo."
     },
     {
       "level": 12,
@@ -259,12 +259,12 @@
     {
       "level": 2,
       "name": "Compañero salvaje",
-      "description": "Acción mágica: gastas Forma salvaje o espacio para lanzar Encontrar familiar sin componentes (familiar feérico)."
+      "description": "acción mágica: gastas Forma salvaje o espacio para lanzar Encontrar familiar sin componentes (familiar feérico)."
     },
     {
       "level": 2,
       "name": "Forma salvaje",
-      "description": "Acción adicional: te transformas en bestia conocida (usos en tabla; recuperas 1 en descanso corto). PG temporales = nivel de druida."
+      "description": "acción adicional: te transformas en bestia conocida (usos en tabla; recuperas 1 en descanso corto). PG temporales = nivel de druida."
     },
     {
       "level": 3,
@@ -326,12 +326,12 @@
     {
       "level": 1,
       "name": "Segundo aliento",
-      "description": "Acción adicional: recuperas 1d10 + nivel de guerrero PG (2 usos; recuperas 1 en descanso corto)."
+      "description": "acción adicional: recuperas 1d10 + nivel de guerrero PG (2 usos; recuperas 1 en descanso corto)."
     },
     {
       "level": 2,
       "name": "Mente táctica",
-      "description": "Si fallas una prueba de habilidad, puedes gastar Segundo aliento para sumar 1d10 en lugar de curarte."
+      "description": "Si fallas una prueba de característica, puedes gastar Segundo aliento para sumar 1d10 en lugar de curarte."
     },
     {
       "level": 2,
@@ -423,12 +423,12 @@
     {
       "level": 2,
       "name": "Movimiento sin armadura",
-      "description": "+10 pies de velocidad sin armadura/escudo (escala con nivel)."
+      "description": "+3 metros de velocidad sin armadura/escudo (escala con nivel)."
     },
     {
       "level": 3,
       "name": "Desviar ataques",
-      "description": "Reacción: reduces daño contundente/perforante/cortante en 1d10 + DES + nivel; a 0 PG puedes redirigir daño gastando enfoque."
+      "description": "reacción: reduces daño contundente/perforante/cortante en 1d10 + DES + nivel; a 0 PG puedes redirigir daño gastando enfoque."
     },
     {
       "level": 3,
@@ -438,7 +438,7 @@
     {
       "level": 4,
       "name": "Caída lenta",
-      "description": "Reacción al caer: reduces el daño de caída en 5 × nivel de monje."
+      "description": "reacción al caer: reduces el daño de caída en 5 × nivel de monje."
     },
     {
       "level": 5,
@@ -473,7 +473,7 @@
     {
       "level": 10,
       "name": "Autorrestauración",
-      "description": "Al final de tu turno eliminas Encantado, Asustado o Envenenado. No sufres agotamiento por ayuno."
+      "description": "Al final de tu turno eliminas Encantado, asustado o Envenenado. No sufres agotamiento por ayuno."
     },
     {
       "level": 10,
@@ -520,7 +520,7 @@
     {
       "level": 1,
       "name": "Imposición de manos",
-      "description": "Reserva de curación = 5 × nivel de paladín; acción adicional para curar o gastar 5 PV para quitar Envenenado."
+      "description": "Reserva de curación = 5 × nivel de paladín; acción adicional para curar o gastar 5 puntos de golpe para quitar Envenenado."
     },
     {
       "level": 1,
@@ -580,7 +580,7 @@
     {
       "level": 10,
       "name": "Aura de coraje",
-      "description": "Aliados en tu aura tienen inmunidad a Asustado."
+      "description": "Aliados en tu aura tienen inmunidad a asustado."
     },
     {
       "level": 11,
@@ -590,7 +590,7 @@
     {
       "level": 14,
       "name": "Toque restaurador",
-      "description": "Con Imposición de manos puedes quitar condiciones (5 PV cada una): Cegado, Encantado, Sordo, Asustado, Paralizado, Aturdido."
+      "description": "Con Imposición de manos puedes quitar condiciones (5 puntos de golpe cada una): cegado, Encantado, Sordo, asustado, Paralizado, Aturdido."
     },
     {
       "level": 15,
@@ -647,7 +647,7 @@
     {
       "level": 6,
       "name": "Movilidad errante",
-      "description": "+10 pies sin armadura pesada; velocidad de trepar y nadar = velocidad."
+      "description": "+3 metros sin armadura pesada; velocidad de trepar y nadar = velocidad."
     },
     {
       "level": 7,
@@ -662,7 +662,7 @@
     {
       "level": 10,
       "name": "Incansable",
-      "description": "Acción mágica: PG temporales 1d8 + mod. SAB (usos = mod. SAB/descanso largo). Tras descanso corto reduces agotamiento en 1."
+      "description": "acción mágica: PG temporales 1d8 + mod. SAB (usos = mod. SAB/descanso largo). Tras descanso corto reduces agotamiento en 1."
     },
     {
       "level": 11,
@@ -677,7 +677,7 @@
     {
       "level": 14,
       "name": "Velo de la naturaleza",
-      "description": "Acción adicional: Invisible hasta fin de tu siguiente turno (usos = mod. SAB/descanso largo)."
+      "description": "acción adicional: Invisible hasta fin de tu siguiente turno (usos = mod. SAB/descanso largo)."
     },
     {
       "level": 15,
@@ -687,7 +687,7 @@
     {
       "level": 17,
       "name": "Cazador preciso",
-      "description": "Ventaja en ataques contra la criatura marcada por Marca del cazador."
+      "description": "ventaja en ataques contra la criatura marcada por Marca del cazador."
     },
     {
       "level": 18,
@@ -724,12 +724,12 @@
     {
       "level": 2,
       "name": "Acción astuta",
-      "description": "Acción adicional: Correr, Desenganchar o Esconderse."
+      "description": "acción adicional: Correr, Desenganchar o Esconderse."
     },
     {
       "level": 3,
       "name": "Puntería firme",
-      "description": "Acción adicional: ventaja en tu próximo ataque este turno si no te moviste; velocidad 0 hasta fin del turno."
+      "description": "acción adicional: ventaja en tu próximo ataque este turno si no te moviste; velocidad 0 hasta fin del turno."
     },
     {
       "level": 3,
@@ -739,7 +739,7 @@
     {
       "level": 5,
       "name": "Esquiva asombrosa",
-      "description": "Reacción: reduces a la mitad el daño de un ataque que puedes ver."
+      "description": "reacción: reduces a la mitad el daño de un ataque que puedes ver."
     },
     {
       "level": 5,
@@ -806,7 +806,7 @@
     {
       "level": 1,
       "name": "Hechicería innata",
-      "description": "Acción adicional 1 min: +1 CD de conjuros y ventaja en ataques de hechicero. 2/descanso largo."
+      "description": "acción adicional 1 min: +1 CD de conjuros y ventaja en ataques de hechicero. 2/descanso largo."
     },
     {
       "level": 1,

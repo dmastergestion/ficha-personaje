@@ -8,17 +8,17 @@
     {
       "level": 6,
       "name": "Furia irracional",
-      "description": "Tienes Inmunidad a las condiciones Hechizado y Asustado mientras tu Furia esté activa. Si estás Hechizado o Asustado cuando entras en tu Furia, la condición termina en ti."
+      "description": "Tienes inmunidad a las condiciones hechizado y asustado mientras tu Furia esté activa. Si estás hechizado o asustado cuando entras en tu Furia, la condición termina en ti."
     },
     {
       "level": 10,
       "name": "Represalia",
-      "description": "Cuando recibes daño de una criatura que está a 5 pies o menos de ti, puedes usar una Reacción para hacer un ataque cuerpo a cuerpo contra esa criatura, usando un arma o un Golpe sin armas."
+      "description": "Cuando recibes daño de una criatura que está a 1,5 metros o menos de ti, puedes usar una reacción para hacer un ataque cuerpo a cuerpo contra esa criatura, usando un arma o un Golpe sin armas."
     },
     {
       "level": 14,
       "name": "Presencia intimidante",
-      "description": "Como una acción adicional, puedes sembrar el terror en otros con tu presencia amenazadora y tu poder primordial. Cuando lo haces, cada criatura de tu elección en una emanación de 30 pies que se origina en ti debe hacer una tirada de salvación de Sabiduría (CD 8 + tu modificador de Fuerza + tu bonificador de competencia). Con una salvación fallida, una criatura tiene la condición Asustado durante 1 minuto. Al final de cada uno de los turnos de la criatura Asustado, la criatura repite la salvación, terminando el efecto sobre sí misma con un éxito.\n\nUna vez que uses este rasgo, no puedes volver a usarlo hasta que termines un descanso largo, a menos que gastes un uso de tu Furia (no requiere acción) para recuperar su uso."
+      "description": "Como una acción adicional, puedes sembrar el terror en otros con tu presencia amenazadora y tu poder primordial. Cuando lo haces, cada criatura de tu elección en una emanación de 9 metros que se origina en ti debe hacer una tirada de salvación de Sabiduría (CD 8 + tu modificador de Fuerza + tu bonificador de competencia). Con una salvación fallida, una criatura tiene la condición asustado durante 1 minuto. Al final de cada uno de los turnos de la criatura asustado, la criatura repite la salvación, terminando el efecto sobre sí misma con un éxito.\n\nUna vez que uses este rasgo, no puedes volver a usarlo hasta que termines un descanso largo, a menos que gastes un uso de tu Furia (no requiere acción) para recuperar su uso."
     }
   ],
   "wild-heart": [
@@ -170,7 +170,7 @@
     {
       "level": 3,
       "name": "Palabras hirientes",
-      "description": "Aprendes a usar tu ingenio para distraer, confundir y, en general, minar sobrenaturalmente la confianza y la competencia de otros. Cuando una criatura que puedas ver a 60 pies de ti hace una tirada de daño o tiene éxito en una prueba de característica o una tirada de ataque, puedes usar una Reacción para gastar un uso de tu Inspiración bárdica; tira tu dado de Inspiración bárdica y resta el resultado de la tirada de la criatura, reduciendo el daño o pudiendo convertir el éxito en un fallo."
+      "description": "Aprendes a usar tu ingenio para distraer, confundir y, en general, minar sobrenaturalmente la confianza y la competencia de otros. Cuando una criatura que puedas ver a 18 metros de ti hace una tirada de daño o tiene éxito en una prueba de característica o una tirada de ataque, puedes usar una reacción para gastar un uso de tu Inspiración bárdica; tira tu dado de Inspiración bárdica y resta el resultado de la tirada de la criatura, reduciendo el daño o pudiendo convertir el éxito en un fallo."
     },
     {
       "level": 6,
@@ -224,7 +224,7 @@
     {
       "level": 3,
       "name": "Preservar vida",
-      "description": "Como una acción de Magia, presentas tu Símbolo sagrado y gastas un uso de tu Canalizar divinidad para evocar energía curativa que puede restaurar un número de puntos de golpe igual a cinco veces tu nivel de clérigo. Elige criaturas Bloodied a 30 pies de ti (lo que puede incluirte) y reparte esos puntos de golpe entre ellas. Este rasgo no puede restaurar a una criatura por encima de la mitad de su máximo de puntos de golpe."
+      "description": "Como una acción de Magia, presentas tu Símbolo sagrado y gastas un uso de tu Canalizar divinidad para evocar energía curativa que puede restaurar un número de puntos de golpe igual a cinco veces tu nivel de clérigo. Elige criaturas Bloodied a 9 metros de ti (lo que puede incluirte) y reparte esos puntos de golpe entre ellas. Este rasgo no puede restaurar a una criatura por encima de la mitad de su máximo de puntos de golpe."
     },
     {
       "level": 6,
@@ -251,7 +251,7 @@
     {
       "level": 3,
       "name": "Resplandor del Amanecer",
-      "description": "Como acción mágica, presentas tu Símbolo Sagrado y gastas un uso de tu Canal de Divinidad para emitir un destello de luz en una Emanación de 9 metros originada desde ti mismo. Se disipa cualquier oscuridad mágica —creada por un conjuro— que haya en esa área. Además, cada criatura que tú elijas en esa área debe realizar una tirada de salvación de Constitución, sufriendo daño radiante igual a 2d10 más tu nivel de Clérigo si falla, o la mitad de ese daño si tiene éxito."
+      "description": "Como acción mágica, presentas tu Símbolo Sagrado y gastas un uso de tu Canal de Divinidad para emitir un destello de luz en una emanación de 9 metros originada desde ti mismo. Se disipa cualquier oscuridad mágica —creada por un conjuro— que haya en esa área. Además, cada criatura que tú elijas en esa área debe realizar una tirada de salvación de Constitución, sufriendo daño radiante igual a 2d10 más tu nivel de Clérigo si falla, o la mitad de ese daño si tiene éxito."
     },
     {
       "level": 3,
@@ -337,7 +337,7 @@
     {
       "level": 3,
       "name": "Ayuda de la tierra",
-      "description": "Como una acción de Magia, puedes gastar un uso de tu Forma salvaje y elegir un punto a 60 pies de ti. Durante un instante aparecen flores que dan vitalidad y espinas que drenan la vida en una esfera de 10 pies de radio centrada en ese punto. Cada criatura a tu elección en la esfera debe hacer una tirada de salvación de Constitución contra tu CD de salvación de conjuros; sufre 2d6 de daño necrótico si falla, o la mitad si tiene éxito. Una criatura a tu elección en esa zona recupera { puntos de golpe}.\n\nEl daño y la curación aumentan en 1d6 cuando alcanzas los niveles 10 (3d6) y 14 (4d6) de druida."
+      "description": "Como una acción de Magia, puedes gastar un uso de tu Forma salvaje y elegir un punto a 18 metros de ti. Durante un instante aparecen flores que dan vitalidad y espinas que drenan la vida en una esfera de 3 metros de radio centrada en ese punto. Cada criatura a tu elección en la esfera debe hacer una tirada de salvación de Constitución contra tu CD de salvación de conjuros; sufre 2d6 de daño necrótico si falla, o la mitad si tiene éxito. Una criatura a tu elección en esa zona recupera { puntos de golpe}.\n\nEl daño y la curación aumentan en 1d6 cuando alcanzas los niveles 10 (3d6) y 14 (4d6) de druida."
     },
     {
       "level": 6,
@@ -352,7 +352,7 @@
     {
       "level": 14,
       "name": "Santuario de la naturaleza",
-      "description": "Como una acción de Magia, puedes gastar un uso de tu Forma salvaje y hacer que aparezcan árboles y enredaderas espectrales en un cubo de 15 pies apoyado en el suelo dentro de 120 pies de ti. Permanecen allí durante 1 minuto o hasta que tengas la condición de Incapacitado o mueras. Tú y tus aliados tenéis Cobertura media mientras estéis en esa zona, y tus aliados obtienen la Resistencia actual de tu Guardián de la naturaleza mientras permanezcan allí.\n\nComo acción adicional, puedes mover el cubo hasta 60 pies a un punto del suelo dentro de 120 pies de ti."
+      "description": "Como una acción de Magia, puedes gastar un uso de tu Forma salvaje y hacer que aparezcan árboles y enredaderas espectrales en un cubo de 4,5 metros apoyado en el suelo dentro de 36 metros de ti. Permanecen allí durante 1 minuto o hasta que tengas la condición de Incapacitado o mueras. Tú y tus aliados tenéis Cobertura media mientras estéis en esa zona, y tus aliados obtienen la Resistencia actual de tu Guardián de la naturaleza mientras permanezcan allí.\n\nComo acción adicional, puedes mover el cubo hasta 18 metros a un punto del suelo dentro de 36 metros de ti."
     }
   ],
   "moon": [
@@ -381,12 +381,12 @@
     {
       "level": 3,
       "name": "Ira del Mar",
-      "description": "Como acción adicional, manifiestas una Emanación de spray del océano que te rodea durante 10 minutos. Termina antes si la disiparas (sin acción requerida), la manifiestas de nuevo, o tienes la condición de Incapacitado. Cuando manifiestas la Emanación y como acción adicional al inicio de tus turnos posteriores mientras dura, puedes hacer que golpee a una criatura de tu elección a 3 metros de ti dentro de la Emanación. La criatura debe superar una tirada de salvación de Constitución contra tu CD de conjuro o sufrir daño de frío y, si la criatura es Grande o menor, ser empujada hasta 4,5 metros lejos de ti. Para determinar este daño, lanza un número de d6 igual a tu modificador de Sabiduría (mínimo un dado)."
+      "description": "Como acción adicional, manifiestas una emanación de spray del océano que te rodea durante 10 minutos. Termina antes si la disiparas (sin acción requerida), la manifiestas de nuevo, o tienes la condición de Incapacitado. Cuando manifiestas la emanación y como acción adicional al inicio de tus turnos posteriores mientras dura, puedes hacer que golpee a una criatura de tu elección a 3 metros de ti dentro de la emanación. La criatura debe superar una tirada de salvación de Constitución contra tu CD de conjuro o sufrir daño de frío y, si la criatura es Grande o menor, ser empujada hasta 4,5 metros lejos de ti. Para determinar este daño, lanza un número de d6 igual a tu modificador de Sabiduría (mínimo un dado)."
     },
     {
       "level": 6,
       "name": "Afinidad Acuática",
-      "description": "El tamaño de la Emanación creada por tu Ira del Mar aumenta a 3 metros. Además, obtienes una velocidad de natación igual a tu velocidad."
+      "description": "El tamaño de la emanación creada por tu Ira del Mar aumenta a 3 metros. Además, obtienes una velocidad de natación igual a tu velocidad."
     },
     {
       "level": 10,
@@ -396,7 +396,7 @@
     {
       "level": 14,
       "name": "Don Oceánico",
-      "description": "En lugar de manifestar la Emanación de la Ira del Mar alrededor de ti mismo, puedes manifestarla alrededor de una criatura voluntaria a 18 metros de ti. Esa criatura obtiene todos los beneficios de la Emanación y usa tu CD de conjuro y tu modificador de Sabiduría para ella. Además, puedes manifestar la Emanación alrededor tanto de la otra criatura como de ti mismo si gastas dos usos de tu Forma Salvaje en lugar de uno al manifestarla."
+      "description": "En lugar de manifestar la emanación de la Ira del Mar alrededor de ti mismo, puedes manifestarla alrededor de una criatura voluntaria a 18 metros de ti. Esa criatura obtiene todos los beneficios de la emanación y usa tu CD de conjuro y tu modificador de Sabiduría para ella. Además, puedes manifestar la emanación alrededor tanto de la otra criatura como de ti mismo si gastas dos usos de tu Forma Salvaje en lugar de uno al manifestarla."
     }
   ],
   "stars": [
@@ -433,7 +433,7 @@
     {
       "level": 10,
       "name": "Constelaciones Titilantes",
-      "description": "Las constelaciones de tu Forma Estrellada mejoran. El 1d8 del Arquero y del Cáliz pasa a ser 2d8, y mientras el Dragón está activo, tienes una Velocidad de Vuelo de 6 metros y puedes levitar. Además, al inicio de cada uno de tus turnos mientras estás en tu Forma Estrellada, puedes cambiar qué constelación brilla en tu cuerpo."
+      "description": "Las constelaciones de tu Forma Estrellada mejoran. El 1d8 del Arquero y del Cáliz pasa a ser 2d8, y mientras el Dragón está activo, tienes una velocidad de Vuelo de 6 metros y puedes levitar. Además, al inicio de cada uno de tus turnos mientras estás en tu Forma Estrellada, puedes cambiar qué constelación brilla en tu cuerpo."
     },
     {
       "level": 14,
@@ -596,12 +596,12 @@
     {
       "level": 7,
       "name": "Empuje Telequinético",
-      "description": "Cuando infliges daño a un objetivo con tu Golpe Psiónico, puedes obligar al objetivo a realizar una tirada de salvación de Fuerza (CD 8 más tu modificador de Inteligencia y bonificador de competencia). Si falla la tirada, puedes otorgar al objetivo la condición de Derribado o transportarlo hasta 3 metros horizontalmente."
+      "description": "Cuando infliges daño a un objetivo con tu Golpe Psiónico, puedes obligar al objetivo a realizar una tirada de salvación de Fuerza (CD 8 más tu modificador de Inteligencia y bonificador de competencia). Si falla la tirada, puedes otorgar al objetivo la condición de derribado o transportarlo hasta 3 metros horizontalmente."
     },
     {
       "level": 10,
       "name": "Mente Protegida",
-      "description": "Tienes resistencia al daño Psíquico. Además, si comienzas tu turno con la condición de Hechizado o Asustado, puedes gastar un Dado de Energía Psiónica (sin acción requerida) y terminar todos los efectos sobre ti que te otorguen esas condiciones."
+      "description": "Tienes resistencia al daño Psíquico. Además, si comienzas tu turno con la condición de hechizado o asustado, puedes gastar un Dado de Energía Psiónica (sin acción requerida) y terminar todos los efectos sobre ti que te otorguen esas condiciones."
     },
     {
       "level": 15,
@@ -633,7 +633,7 @@
     {
       "level": 6,
       "name": "Explosión Elemental",
-      "description": "Como acción mágica, puedes gastar 2 Puntos de Concentración para hacer que la energía elemental estalle en una Esfera de 6 metros de radio centrada en un punto a 36 metros de ti. Elige un tipo de daño: Ácido, Frío, Fuego, Relámpago o Trueno. Cada criatura en la Esfera debe realizar una tirada de salvación de Destreza. Si falla, una criatura sufre daño del tipo elegido igual a tres lanzamientos de tu dado de Artes Marciales. Si tiene éxito, una criatura sufre la mitad de ese daño."
+      "description": "Como acción mágica, puedes gastar 2 Puntos de Concentración para hacer que la energía elemental estalle en una esfera de 6 metros de radio centrada en un punto a 36 metros de ti. Elige un tipo de daño: Ácido, Frío, Fuego, Relámpago o Trueno. Cada criatura en la esfera debe realizar una tirada de salvación de Destreza. Si falla, una criatura sufre daño del tipo elegido igual a tres lanzamientos de tu dado de Artes Marciales. Si tiene éxito, una criatura sufre la mitad de ese daño."
     },
     {
       "level": 11,
@@ -670,7 +670,7 @@
     {
       "level": 6,
       "name": "Toque del Médico",
-      "description": "Tu Mano del Daño y tu Mano de la Curación mejoran, como se detalla a continuación. Mano del Daño: Cuando usas la Mano del Daño en una criatura, también puedes otorgar a esa criatura la condición de Envenenado hasta el final de tu siguiente turno. Mano de la Curación: Cuando usas la Mano de la Curación, también puedes terminar una de las siguientes condiciones en la criatura que curas: Cegado, Ensordecido, Paralizado, Envenenado o Aturdido."
+      "description": "Tu Mano del Daño y tu Mano de la Curación mejoran, como se detalla a continuación. Mano del Daño: Cuando usas la Mano del Daño en una criatura, también puedes otorgar a esa criatura la condición de Envenenado hasta el final de tu siguiente turno. Mano de la Curación: Cuando usas la Mano de la Curación, también puedes terminar una de las siguientes condiciones en la criatura que curas: cegado, Ensordecido, Paralizado, Envenenado o Aturdido."
     },
     {
       "level": 11,
@@ -680,14 +680,14 @@
     {
       "level": 17,
       "name": "Mano de la Misericordia Suprema",
-      "description": "Tu dominio de la energía vital abre la puerta a la misericordia suprema. Como acción mágica, puedes tocar el cadáver de una criatura que murió en las últimas 24 horas y gastar 5 Puntos de Concentración. La criatura vuelve entonces a la vida con un número de puntos de golpe igual a 4d10 más tu modificador de Sabiduría, libre de las condiciones de Cegado, Ensordecido, Paralizado, Envenenado y Aturdido. Una vez que uses esta característica, no puedes usarla de nuevo hasta que finalices un descanso largo."
+      "description": "Tu dominio de la energía vital abre la puerta a la misericordia suprema. Como acción mágica, puedes tocar el cadáver de una criatura que murió en las últimas 24 horas y gastar 5 Puntos de Concentración. La criatura vuelve entonces a la vida con un número de puntos de golpe igual a 4d10 más tu modificador de Sabiduría, libre de las condiciones de cegado, Ensordecido, Paralizado, Envenenado y Aturdido. Una vez que uses esta característica, no puedes usarla de nuevo hasta que finalices un descanso largo."
     }
   ],
   "open-hand": [
     {
       "level": 3,
       "name": "Técnica de la mano abierta",
-      "description": "Siempre que golpeas a una criatura con un ataque concedido por tu Ráfaga de golpes, puedes imponer uno de los siguientes efectos a ese objetivo.\n\nAturdir. El objetivo no puede hacer Ataques de oportunidad hasta el inicio de su siguiente turno.\n\nEmpujar. El objetivo debe superar una tirada de salvación de Fuerza o ser empujado hasta 15 pies lejos de ti.\n\nDerribar. El objetivo debe superar una tirada de salvación de Destreza o tener la condición de Derribado."
+      "description": "Siempre que golpeas a una criatura con un ataque concedido por tu Ráfaga de golpes, puedes imponer uno de los siguientes efectos a ese objetivo.\n\nAturdir. El objetivo no puede hacer Ataques de oportunidad hasta el inicio de su siguiente turno.\n\nEmpujar. El objetivo debe superar una tirada de salvación de Fuerza o ser empujado hasta 4,5 metros lejos de ti.\n\nDerribar. El objetivo debe superar una tirada de salvación de Destreza o tener la condición de derribado."
     },
     {
       "level": 3,
@@ -707,7 +707,7 @@
     {
       "level": 17,
       "name": "Palma vibrante",
-      "description": "Obtienes la capacidad de provocar vibraciones letales en el cuerpo de alguien. Cuando golpeas a una criatura con un Golpe sin armas, puedes gastar 4 Puntos de Concentración para iniciar estas vibraciones imperceptibles, que duran un número de días igual a tu nivel de monje. Las vibraciones son inofensivas a menos que uses una acción para terminarlas. Alternativamente, cuando realizas la acción de Atacar en tu turno, puedes renunciar a uno de los ataques para terminar las vibraciones. Para terminarlas, tú y el objetivo debéis estar en el mismo plano de existencia. Cuando las terminas, el objetivo debe hacer una tirada de salvación de Constitución, recibiendo 10d12 de daño de Fuerza si falla la salvación, o la mitad si la supera.\n\nSolo puedes tener a una criatura bajo el efecto de este rasgo a la vez. Puedes terminar las vibraciones de forma inofensiva (no requiere acción)."
+      "description": "Obtienes la capacidad de provocar vibraciones letales en el cuerpo de alguien. Cuando golpeas a una criatura con un Golpe sin armas, puedes gastar 4 Puntos de Concentración para iniciar estas vibraciones imperceptibles, que duran un número de días igual a tu nivel de monje. Las vibraciones son inofensivas a menos que uses una acción para terminarlas. Alternativamente, cuando realizas la acción de Atacar en tu turno, puedes renunciar a uno de los ataques para terminar las vibraciones. Para terminarlas, tú y el objetivo debéis estar en el mismo plano de existencia. Cuando las terminas, el objetivo debe hacer una tirada de salvación de Constitución, recibiendo 10d12 de daño de fuerza si falla la salvación, o la mitad si la supera.\n\nSolo puedes tener a una criatura bajo el efecto de este rasgo a la vez. Puedes terminar las vibraciones de forma inofensiva (no requiere acción)."
     }
   ],
   "shadow": [
@@ -756,7 +756,7 @@
     {
       "level": 3,
       "name": "Ira de la Naturaleza",
-      "description": "Como acción mágica, puedes gastar un uso de tu Canalizar Divinidad para convocar zarcillos espectrales alrededor de las criaturas cercanas. Cada criatura que elijas que puedas ver a 4,5 metros de ti debe superar una tirada de salvación de Fuerza o quedar con la condición restringida durante 1 minuto. Una criatura restringida repite la tirada de salvación al final de cada uno de sus turnos, poniendo fin al efecto sobre ella misma si tiene éxito."
+      "description": "Como acción mágica, puedes gastar un uso de tu Canalizar Divinidad para convocar zarcillos espectrales alrededor de las criaturas cercanas. Cada criatura que elijas que puedas ver a 4,5 metros de ti debe superar una tirada de salvación de Fuerza o quedar con la condición apresada durante 1 minuto. Una criatura apresada repite la tirada de salvación al final de cada uno de sus turnos, poniendo fin al efecto sobre ella misma si tiene éxito."
     },
     {
       "level": 7,
@@ -832,7 +832,7 @@
     {
       "level": 7,
       "name": "Vengador Implacable",
-      "description": "Tu enfoque sobrenatural te ayuda a cortar la retirada de un enemigo. Cuando impactas a una criatura con un Ataque de Oportunidad, puedes reducir la Velocidad de esa criatura a 0 hasta el final del turno en curso como parte del mismo Ataque de Oportunidad."
+      "description": "Tu enfoque sobrenatural te ayuda a cortar la retirada de un enemigo. Cuando impactas a una criatura con un Ataque de Oportunidad, puedes reducir la velocidad de esa criatura a 0 hasta el final del turno en curso como parte del mismo Ataque de Oportunidad."
     },
     {
       "level": 15,
@@ -842,7 +842,7 @@
     {
       "level": 20,
       "name": "Ángel Vengador",
-      "description": "Como acción adicional, te transformas en un espíritu de justicia divina durante 1 minuto. Puedes restaurar tu uso de esta característica gastando un espacio de conjuro de nivel 5 (sin acción requerida). Obtienes los siguientes beneficios mientras dura la transformación. Vuelo: Brotan alas espectrales en tu espalda, tienes una Velocidad de Vuelo de 18 metros y puedes planear. Aura Aterradora: Siempre que un enemigo empiece su turno en tu Aura de Protección, esa criatura debe superar una tirada de salvación de Sabiduría o quedar con la condición Asustada durante 1 minuto o hasta que reciba algún daño. Las tiradas de ataque contra la criatura Asustada tienen ventaja."
+      "description": "Como acción adicional, te transformas en un espíritu de justicia divina durante 1 minuto. Puedes restaurar tu uso de esta característica gastando un espacio de conjuro de nivel 5 (sin acción requerida). Obtienes los siguientes beneficios mientras dura la transformación. Vuelo: Brotan alas espectrales en tu espalda, tienes una velocidad de Vuelo de 18 metros y puedes planear. Aura Aterradora: Siempre que un enemigo empiece su turno en tu Aura de Protección, esa criatura debe superar una tirada de salvación de Sabiduría o quedar con la condición asustada durante 1 minuto o hasta que reciba algún daño. Las tiradas de ataque contra la criatura asustada tienen ventaja."
     }
   ],
   "beast-master": [
@@ -854,7 +854,7 @@
     {
       "level": 3,
       "name": "Compañero Primordial",
-      "description": "Invocas mágicamente una bestia primordial que obtiene su fuerza de tu vínculo con la naturaleza. Elige su bloque de estadísticas: Bestia Terrestre, Bestia Marina o Bestia del Cielo. También determinas el tipo de animal que es, eligiendo uno apropiado para el bloque de estadísticas. Sea cual sea la bestia que elijas, lleva marcas primordiales que indican su origen sobrenatural. La bestia es Amistosa contigo y con tus aliados y obedece tus órdenes. Desaparece si mueres. La Bestia en Combate: En combate, la bestia actúa durante tu turno. Puede moverse y usar la acción Esquivar a menos que tomes una acción adicional para ordenar a la bestia que realice la acción Golpe de Bestia. Si tienes la condición Incapacitado, la bestia actúa por su cuenta y no está limitada a la acción Esquivar. Restaurar o Reemplazar la Bestia: Si la bestia ha muerto en la última hora, puedes tomar una acción mágica para tocarla y gastar un espacio de conjuro. La bestia regresa a la vida después de 1 minuto con todos sus puntos de golpe restaurados. Siempre que termines un descanso largo, puedes invocar una bestia primordial diferente, que aparece en un espacio desocupado a 1,5 metros de ti. Eliges su bloque de estadísticas y apariencia. Si ya tienes una bestia de esta característica, la antigua desaparece cuando aparece la nueva."
+      "description": "Invocas mágicamente una bestia primordial que obtiene su fuerza de tu vínculo con la naturaleza. Elige su bloque de estadísticas: Bestia Terrestre, Bestia Marina o Bestia del Cielo. También determinas el tipo de animal que es, eligiendo uno apropiado para el bloque de estadísticas. Sea cual sea la bestia que elijas, lleva marcas primordiales que indican su origen sobrenatural. La bestia es amistosa contigo y con tus aliados y obedece tus órdenes. Desaparece si mueres. La Bestia en Combate: En combate, la bestia actúa durante tu turno. Puede moverse y usar la acción Esquivar a menos que tomes una acción adicional para ordenar a la bestia que realice la acción Golpe de Bestia. Si tienes la condición Incapacitado, la bestia actúa por su cuenta y no está limitada a la acción Esquivar. Restaurar o Reemplazar la Bestia: Si la bestia ha muerto en la última hora, puedes tomar una acción mágica para tocarla y gastar un espacio de conjuro. La bestia regresa a la vida después de 1 minuto con todos sus puntos de golpe restaurados. Siempre que termines un descanso largo, puedes invocar una bestia primordial diferente, que aparece en un espacio desocupado a 1,5 metros de ti. Eliges su bloque de estadísticas y apariencia. Si ya tienes una bestia de esta característica, la antigua desaparece cuando aparece la nueva."
     },
     {
       "level": 7,
@@ -896,7 +896,7 @@
     {
       "level": 7,
       "name": "Giro Seductor",
-      "description": "La magia del Feywild protege tu mente. Tienes ventaja en las tiradas de salvación para evitar o poner fin a las condiciones Encantado o Asustado. Además, siempre que tú o una criatura que puedas ver a 36 metros de ti tenga éxito en una tirada de salvación para evitar o poner fin a la condición Encantado o Asustado, puedes tomar una reacción para intentar someter a otra criatura a uno de esos efectos: elige una criatura diferente que puedas ver a 9 metros del objetivo. Esa criatura debe superar una tirada de salvación de Sabiduría contra tu CD de conjuro o tener la condición Encantado o Asustado (a tu elección) durante 1 minuto. El objetivo repite la tirada de salvación al final de cada uno de sus turnos, poniendo fin al efecto sobre sí mismo si tiene éxito."
+      "description": "La magia del Feywild protege tu mente. Tienes ventaja en las tiradas de salvación para evitar o poner fin a las condiciones Encantado o asustado. Además, siempre que tú o una criatura que puedas ver a 36 metros de ti tenga éxito en una tirada de salvación para evitar o poner fin a la condición Encantado o asustado, puedes tomar una reacción para intentar someter a otra criatura a uno de esos efectos: elige una criatura diferente que puedas ver a 9 metros del objetivo. Esa criatura debe superar una tirada de salvación de Sabiduría contra tu CD de conjuro o tener la condición Encantado o asustado (a tu elección) durante 1 minuto. El objetivo repite la tirada de salvación al final de cada uno de sus turnos, poniendo fin al efecto sobre sí mismo si tiene éxito."
     },
     {
       "level": 11,
@@ -938,7 +938,7 @@
     {
       "level": 11,
       "name": "Ráfaga del Acechador",
-      "description": "El daño Psíquico de tu Golpe Terrible se convierte en 2d8. Además, cuando usas el efecto Golpe Terrible de tu característica Emboscador Temible, puedes causar uno de los siguientes efectos adicionales. Ataque Súbito: Puedes realizar otro ataque con el mismo arma contra una criatura diferente que esté a 1,5 metros del objetivo original y dentro del alcance del arma. Miedo Masivo: El objetivo y cada criatura a 3 metros de él deben hacer una tirada de salvación de Sabiduría contra tu CD de conjuro. Si falla la tirada de salvación, la criatura tiene la condición Asustada hasta el inicio de tu siguiente turno."
+      "description": "El daño Psíquico de tu Golpe Terrible se convierte en 2d8. Además, cuando usas el efecto Golpe Terrible de tu característica Emboscador Temible, puedes causar uno de los siguientes efectos adicionales. Ataque Súbito: Puedes realizar otro ataque con el mismo arma contra una criatura diferente que esté a 1,5 metros del objetivo original y dentro del alcance del arma. Miedo Masivo: El objetivo y cada criatura a 3 metros de él deben hacer una tirada de salvación de Sabiduría contra tu CD de conjuro. Si falla la tirada de salvación, la criatura tiene la condición asustada hasta el inicio de tu siguiente turno."
     },
     {
       "level": 15,
@@ -960,22 +960,22 @@
     {
       "level": 3,
       "name": "Presa del cazador",
-      "description": "Obtienes una de las siguientes opciones de rasgo a tu elección. Siempre que termines un Descanso corto o largo, puedes reemplazar la opción elegida por la otra.\n\nMatacolosos. Tu tenacidad puede desgastar incluso a los enemigos más resistentes. Cuando impactas a una criatura con un arma, el arma inflige 1d8 de daño adicional al objetivo si le falta cualquier punto de golpe. Solo puedes infligir este daño adicional una vez por turno.\n\nRompehordas. Una vez en cada uno de tus turnos cuando haces un ataque con un arma, puedes hacer otro ataque con la misma arma contra una criatura diferente que esté a 5 pies o menos del objetivo original, que esté dentro del alcance del arma y a la que no hayas atacado este turno."
+      "description": "Obtienes una de las siguientes opciones de rasgo a tu elección. Siempre que termines un Descanso corto o largo, puedes reemplazar la opción elegida por la otra.\n\nMatacolosos. Tu tenacidad puede desgastar incluso a los enemigos más resistentes. Cuando impactas a una criatura con un arma, el arma inflige 1d8 de daño adicional de 1d6 al objetivo si le falta cualquier punto de golpe. Solo puedes infligir este daño adicional una vez por turno.\n\nRompehordas. Una vez en cada uno de tus turnos cuando haces un ataque con un arma, puedes hacer otro ataque con la misma arma contra una criatura diferente que esté a 1,5 metros o menos del objetivo original, que esté dentro del alcance del arma y a la que no hayas atacado este turno."
     },
     {
       "level": 7,
       "name": "Tácticas defensivas",
-      "description": "Obtienes una de las siguientes opciones de rasgo a tu elección. Siempre que termines un Descanso corto o largo, puedes reemplazar la opción elegida por la otra.\n\nEscapar de la horda. Los Ataques de oportunidad tienen Desventaja contra ti.\n\nDefensa contra múltiples ataques. Cuando una criatura te impacta con una tirada de ataque, esa criatura tiene Desventaja en todas las demás tiradas de ataque contra ti este turno."
+      "description": "Obtienes una de las siguientes opciones de rasgo a tu elección. Siempre que termines un Descanso corto o largo, puedes reemplazar la opción elegida por la otra.\n\nEscapar de la horda. Los Ataques de oportunidad tienen desventaja contra ti.\n\nDefensa contra múltiples ataques. Cuando una criatura te impacta con una tirada de ataque, esa criatura tiene desventaja en todas las demás tiradas de ataque contra ti este turno."
     },
     {
       "level": 11,
       "name": "Presa del cazador",
-      "description": "Obtienes una de las siguientes opciones de rasgo a tu elección. Siempre que termines un Descanso corto o largo, puedes reemplazar la opción elegida por la otra.\n\nMatacolosos. Tu tenacidad puede desgastar incluso a los enemigos más resistentes. Cuando impactas a una criatura con un arma, el arma inflige 1d8 de daño adicional al objetivo si le falta cualquier punto de golpe. Solo puedes infligir este daño adicional una vez por turno.\n\nRompehordas. Una vez en cada uno de tus turnos cuando haces un ataque con un arma, puedes hacer otro ataque con la misma arma contra una criatura diferente que esté a 5 pies o menos del objetivo original, que esté dentro del alcance del arma y a la que no hayas atacado este turno."
+      "description": "Obtienes una de las siguientes opciones de rasgo a tu elección. Siempre que termines un Descanso corto o largo, puedes reemplazar la opción elegida por la otra.\n\nMatacolosos. Tu tenacidad puede desgastar incluso a los enemigos más resistentes. Cuando impactas a una criatura con un arma, el arma inflige 1d8 de daño adicional de 1d6 al objetivo si le falta cualquier punto de golpe. Solo puedes infligir este daño adicional una vez por turno.\n\nRompehordas. Una vez en cada uno de tus turnos cuando haces un ataque con un arma, puedes hacer otro ataque con la misma arma contra una criatura diferente que esté a 1,5 metros o menos del objetivo original, que esté dentro del alcance del arma y a la que no hayas atacado este turno."
     },
     {
       "level": 15,
       "name": "Presa superior del cazador",
-      "description": "Una vez por turno, cuando infliges daño a una criatura marcada por tu Hunter's Mark, también puedes infligir el daño adicional de ese conjuro a una criatura diferente que puedas ver a 30 pies o menos de la primera criatura."
+      "description": "Una vez por turno, cuando infliges daño a una criatura marcada por tu Hunter's Mark, también puedes infligir el daño adicional de ese conjuro a una criatura diferente que puedas ver a 9 metros o menos de la primera criatura."
     }
   ],
   "arcane-trickster": [
@@ -1103,7 +1103,7 @@
     {
       "level": 3,
       "name": "Trabajo de segunda planta",
-      "description": "Te has entrenado para acceder a lugares especialmente difíciles de alcanzar, lo que te otorga los siguientes beneficios.\n\nEscalador. Obtienes una Velocidad de trepar igual a tu Velocidad.\n\nSaltador. Puedes determinar tu distancia de Jumping{salto} usando tu Destreza en lugar de tu Fuerza."
+      "description": "Te has entrenado para acceder a lugares especialmente difíciles de alcanzar, lo que te otorga los siguientes beneficios.\n\nEscalador. Obtienes una velocidad de trepar igual a tu Velocidad.\n\nSaltador. Puedes determinar tu distancia de Jumping{salto} usando tu Destreza en lugar de tu Fuerza."
     },
     {
       "level": 3,
@@ -1219,7 +1219,7 @@
     {
       "level": 14,
       "name": "Alas de dragón",
-      "description": "Como acción adicional, puedes hacer que aparezcan alas dracónicas en tu espalda. Las alas duran 1 hora o hasta que las descartes (no requiere acción). Mientras duren, tienes una Velocidad de vuelo de 60 pies.\n\nUna vez uses este rasgo, no puedes volver a usarlo hasta que termines un descanso largo, a menos que gastes 3 Puntos de hechicería (no requiere acción) para recuperar su uso."
+      "description": "Como acción adicional, puedes hacer que aparezcan alas dracónicas en tu espalda. Las alas duran 1 hora o hasta que las descartes (no requiere acción). Mientras duren, tienes una velocidad de vuelo de 18 metros.\n\nUna vez uses este rasgo, no puedes volver a usarlo hasta que termines un descanso largo, a menos que gastes 3 Puntos de hechicería (no requiere acción) para recuperar su uso."
     },
     {
       "level": 18,
@@ -1332,7 +1332,7 @@
     {
       "level": 3,
       "name": "Bendición del Oscuro",
-      "description": "Cuando reduces a un enemigo a 0 puntos de golpe, obtienes puntos de golpe temporales iguales a tu modificador de Carisma + tu nivel de brujo (mínimo de 1 Punto de golpe temporal). También obtienes este beneficio si otra persona reduce a 0 puntos de golpe a un enemigo que esté a 10 pies o menos de ti."
+      "description": "Cuando reduces a un enemigo a 0 puntos de golpe, obtienes puntos de golpe temporales iguales a tu modificador de Carisma + tu nivel de brujo (mínimo de 1 Punto de golpe temporal). También obtienes este beneficio si otra persona reduce a 0 puntos de golpe a un enemigo que esté a 3 metros o menos de ti."
     },
     {
       "level": 3,

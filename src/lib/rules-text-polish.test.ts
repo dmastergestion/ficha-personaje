@@ -33,4 +33,14 @@ describe("pulirTextoReglasEs", () => {
   it("no convierte metros ya presentes", () => {
     expect(pulirTextoReglasEs("Alcance de 18 metros.")).toBe("Alcance de 18 metros.");
   });
+
+  it("normaliza áreas de efecto y artefactos Foundry", () => {
+    const text = pulirTextoReglasEs(
+      "Cada criatura en un Cubo de 10 pies con charmed apply=false y difficultterrain. Emanación de 30 pies.",
+    );
+    expect(text).toContain("cubo de 3 metros");
+    expect(text).toContain("hechizado");
+    expect(text).toContain("terreno difícil");
+    expect(text).toContain("emanación de 9 metros");
+  });
 });

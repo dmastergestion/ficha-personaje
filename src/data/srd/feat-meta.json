@@ -50,7 +50,7 @@
     "prerequisite": "Nivel 4+ · Nivel 4+",
     "repeatable": false,
     "srd52": false,
-    "descriptionEs": "Obtienes los siguientes beneficios.\n\nVelocidad de escalada: ganas una velocidad de escalada igual a tu velocidad.\n\nLevantarse: cuando tengas la condición derribado, puedes enderezarte usando solo 1,5 metros de movimiento.\n\nSalto: puedes hacer un salto en longitud o en alto con carrera después de moverte solo 1,5 metros."
+    "descriptionEs": "Obtienes los siguientes beneficios.\n\nvelocidad de escalada: ganas una velocidad de escalada igual a tu velocidad.\n\nLevantarse: cuando tengas la condición derribado, puedes enderezarte usando solo 1,5 metros de movimiento.\n\nSalto: puedes hacer un salto en longitud o en alto con carrera después de moverte solo 1,5 metros."
   },
   "blessed-warrior": {
     "name": "Blessed Warrior",
@@ -92,7 +92,7 @@
     "prerequisite": "Nivel 19+",
     "repeatable": false,
     "srd52": true,
-    "descriptionEs": "Obtienes los siguientes beneficios.\n\nMejora de puntuación de característica. Aumenta en 1 una puntuación de característica de tu elección, hasta un máximo de 30.\n\nPasos centelleantes. Inmediatamente después de realizar la Acción de Ataque o la acción mágica, puedes teletransportarte hasta 30 pies a un espacio desocupado que puedas ver."
+    "descriptionEs": "Obtienes los siguientes beneficios.\n\nMejora de puntuación de característica. Aumenta en 1 una puntuación de característica de tu elección, hasta un máximo de 30.\n\nPasos centelleantes. Inmediatamente después de realizar la Acción de Ataque o la acción mágica, puedes teletransportarte hasta 9 metros a un espacio desocupado que puedas ver."
   },
   "boon-of-energy-resistance": {
     "name": "Boon of Energy Resistance",
@@ -114,7 +114,7 @@
     "prerequisite": "Nivel 19+",
     "repeatable": false,
     "srd52": true,
-    "descriptionEs": "Obtienes los siguientes beneficios.\n\nMejora de puntuación de característica. Aumenta en 1 una puntuación de característica de tu elección, hasta un máximo de 30.\n\nMejorar el destino. Cuando tú u otra criatura a 60 pies o menos de ti tenga éxito o fracase en una prueba de d20, puedes tirar 2d4 y aplicar el total obtenido como bonificador o penalizador a la tirada de d20. Una vez que uses este beneficio, no puedes volver a usarlo hasta que tires Iniciativa o finalices un Descanso corto o un descanso largo."
+    "descriptionEs": "Obtienes los siguientes beneficios.\n\nMejora de puntuación de característica. Aumenta en 1 una puntuación de característica de tu elección, hasta un máximo de 30.\n\nMejorar el destino. Cuando tú u otra criatura a 18 metros o menos de ti tenga éxito o fracase en una prueba de d20, puedes tirar 2d4 y aplicar el total obtenido como bonificador o penalizador a la tirada de d20. Una vez que uses este beneficio, no puedes volver a usarlo hasta que tires Iniciativa o finalices un Descanso corto o un descanso largo."
   },
   "boon-of-fortitude": {
     "name": "Boon of Fortitude",
@@ -136,7 +136,7 @@
     "prerequisite": "Nivel 19+",
     "repeatable": false,
     "srd52": true,
-    "descriptionEs": "Obtienes los siguientes beneficios.\n\nMejora de puntuación de característica. Aumenta en 1 tu puntuación de fuerza o destreza, hasta un máximo de 30.\n\nSuperar defensas. El daño Contundente, Perforante y Cortante que infliges siempre ignora la Resistencia.\n\nGolpe abrumador. Cuando sacas un 20 en el d20 para una tirada de ataque, puedes infligir daño adicional al objetivo igual a la puntuación de característica aumentada por esta dote. El tipo de daño adicional es el mismo que el del ataque."
+    "descriptionEs": "Obtienes los siguientes beneficios.\n\nMejora de puntuación de característica. Aumenta en 1 tu puntuación de fuerza o destreza, hasta un máximo de 30.\n\nSuperar defensas. El daño contundente, Perforante y Cortante que infliges siempre ignora la Resistencia.\n\nGolpe abrumador. Cuando sacas un 20 en el d20 para una tirada de ataque, puedes infligir daño adicional de 1d6 al objetivo igual a la puntuación de característica aumentada por esta dote. El tipo de daño adicional es el mismo que el del ataque."
   },
   "boon-of-recovery": {
     "name": "Boon of Recovery",
@@ -191,7 +191,7 @@
     "prerequisite": "Nivel 19+",
     "repeatable": false,
     "srd52": true,
-    "descriptionEs": "Obtienes los siguientes beneficios.\n\nMejora de puntuación de característica. Aumenta en 1 una puntuación de característica de tu elección, hasta un máximo de 30.\n\nFundirse con las sombras. Mientras estés en Luz tenue u Oscuridad, puedes aplicarte la condición Invisible como una acción adicional. La condición termina en ti inmediatamente después de que realices una Acción, una acción adicional o una Reacción.\n\nForma sombría. Mientras estés en Luz tenue u Oscuridad, tienes Resistencia a todo el daño excepto Psíquico y Radiante."
+    "descriptionEs": "Obtienes los siguientes beneficios.\n\nMejora de puntuación de característica. Aumenta en 1 una puntuación de característica de tu elección, hasta un máximo de 30.\n\nFundirse con las sombras. Mientras estés en luz tenue u Oscuridad, puedes aplicarte la condición Invisible como una acción adicional. La condición termina en ti inmediatamente después de que realices una Acción, una acción adicional o una reacción.\n\nForma sombría. Mientras estés en luz tenue u Oscuridad, tienes Resistencia a todo el daño excepto Psíquico y Radiante."
   },
   "boon-of-truesight": {
     "name": "Boon of Truesight",
@@ -202,7 +202,7 @@
     "prerequisite": "Nivel 19+",
     "repeatable": false,
     "srd52": true,
-    "descriptionEs": "Obtienes los siguientes beneficios.\n\nMejora de puntuación de característica. Aumenta en 1 una puntuación de característica de tu elección, hasta un máximo de 30.\n\nVisión veraz. Tienes Visión veraz con un alcance de 60 pies."
+    "descriptionEs": "Obtienes los siguientes beneficios.\n\nMejora de puntuación de característica. Aumenta en 1 una puntuación de característica de tu elección, hasta un máximo de 30.\n\nVisión veraz. Tienes Visión veraz con un alcance de 18 metros."
   },
   "charger": {
     "name": "Charger",
