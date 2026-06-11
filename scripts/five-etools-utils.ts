@@ -1,4 +1,5 @@
 /** Utilidades compartidas para extraer datos legibles desde JSON de 5etools. */
+import { piesAMetrosTexto } from "../src/lib/rules-text-polish.js";
 
 export interface FiveSpellLike {
   name?: string;
@@ -134,12 +135,9 @@ export function formatCastingTime(
 export function formatRange(range: FiveSpellLike["range"]): string | undefined {
   if (!range) return undefined;
   const type = range.type ?? "";
-  if (type === "point" && range.distance?.type === "feet") {
-    return `${range.distance.amount ?? 0} pies`;
-  }
-  if (type === "point" && range.distance?.type === "mile") {
-    return `${range.distance.amount ?? 0} milla(s)`;
-  }
+  const distType = range.distance?.type ?? "";
+  const amount = range.distance?.amount;
+
   const labels: Record<string, string> = {
     touch: "Toque",
     self: "Personal",
@@ -147,11 +145,28 @@ export function formatRange(range: FiveSpellLike["range"]): string | undefined {
     special: "Especial",
     unlimited: "Ilimitado",
   };
+
   if (labels[type]) return labels[type];
-  if (range.distance?.amount) {
-    return `${range.distance.amount} ${range.distance.type ?? ""}`.trim();
+  if (distType && labels[distType]) return labels[distType];
+
+  if (distType === "mile" && amount != null) {
+    return amount === 1 ? "1 milla" : `${amount} millas`;
   }
-  return type || undefined;
+
+  if (distType === "feet" && amount != null) {
+    return `${piesAMetrosTexto(amount)} metros`;
+  }
+
+  if (type === "point" && amount != null && distType === "feet") {
+    return `${piesAMetrosTexto(amount)} metros`;
+  }
+
+  if (amount != null && distType) {
+    if (distType === "feet") return `${piesAMetrosTexto(amount)} metros`;
+    return `${amount} ${distType}`.trim();
+  }
+
+  return undefined;
 }
 
 export function formatComponents(

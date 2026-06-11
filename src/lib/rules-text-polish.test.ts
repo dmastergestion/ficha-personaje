@@ -1,11 +1,24 @@
 import { describe, expect, it } from "vitest";
-import { piesAMetrosTexto, pulirTextoReglasEs } from "@/lib/rules-text-polish";
+import {
+  piesAMetrosTexto,
+  pulirTextoReglasEs,
+  traducirAlcanceConjuro,
+} from "@/lib/rules-text-polish";
 
 describe("piesAMetrosTexto", () => {
   it("convierte múltiplos de 5 pies", () => {
     expect(piesAMetrosTexto(5)).toBe("1,5");
     expect(piesAMetrosTexto(10)).toBe("3");
     expect(piesAMetrosTexto(60)).toBe("18");
+  });
+});
+
+describe("traducirAlcanceConjuro", () => {
+  it("convierte pies y etiquetas inglesas", () => {
+    expect(traducirAlcanceConjuro("30 pies")).toBe("9 metros");
+    expect(traducirAlcanceConjuro("15 feet")).toBe("4,5 metros");
+    expect(traducirAlcanceConjuro("touch")).toBe("Toque");
+    expect(traducirAlcanceConjuro("point")).toBeUndefined();
   });
 });
 

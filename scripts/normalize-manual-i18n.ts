@@ -3,7 +3,7 @@
  */
 import fs from "node:fs";
 import path from "node:path";
-import { pulirTextoReglasEs } from "../src/lib/rules-text-polish.js";
+import { pulirTextoReglasEs, traducirAlcanceConjuro } from "../src/lib/rules-text-polish.js";
 import { projectRoot, writeJson } from "./i18n-shared.js";
 
 const root = projectRoot();
@@ -62,6 +62,25 @@ function polishOriginDescriptions(): number {
   return changed;
 }
 
+function polishSpellMetaRanges(): number {
+  const full = path.join(root, "src/data/srd/spell-meta.json");
+  const data = JSON.parse(fs.readFileSync(full, "utf8")) as Record<
+    string,
+    { range?: string; description?: string }
+  >;
+  let changed = 0;
+  for (const entry of Object.values(data)) {
+    if (!entry.range) continue;
+    const next = traducirAlcanceConjuro(entry.range);
+    if (next && next !== entry.range) {
+      entry.range = next;
+      changed++;
+    }
+  }
+  writeJson(full, data);
+  return changed;
+}
+
 function polishFeatureMeta(pathRel: string): number {
   const full = path.join(root, pathRel);
   const data = JSON.parse(fs.readFileSync(full, "utf8")) as Record<
@@ -105,6 +124,10 @@ total += sub;
 const origin = polishOriginDescriptions();
 console.log(`origin-descriptions-manual.json: ${origin} entradas pulidas`);
 total += origin;
+
+const spellMetaRanges = polishSpellMetaRanges();
+console.log(`spell-meta.json (alcances): ${spellMetaRanges} entradas pulidas`);
+total += spellMetaRanges;
 
 for (const rel of [
   "src/data/srd/subclass-feature-meta.json",

@@ -664,7 +664,7 @@
     "name": "Golpes Certeros"
   },
   "soulknife::9::Psychic Teleportation": {
-    "description": "Como acción adicional, puedes manifestar tu Hoja Psíquica, gastar un Dado de Energía Psiónica y tirarlo, y lanzar la hoja hacia un espacio desocupado que puedas ver a un número de pies igual a 10 veces el número obtenido. Luego te teletransportas a ese espacio y la hoja desaparece.",
+    "description": "Como acción adicional, puedes manifestar tu Hoja Psíquica, gastar un Dado de Energía Psiónica y tirarlo, y lanzar la hoja hacia un espacio desocupado que puedas ver a un número de metros igual a 3 veces el número obtenido. Luego te teletransportas a ese espacio y la hoja desaparece.",
     "name": "Teletransportación Psíquica"
   },
   "soulknife::9::Soul Blades": {

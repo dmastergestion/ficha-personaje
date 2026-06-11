@@ -1,6 +1,7 @@
 import spellComponentsEs from "@/data/i18n/spell-components-es.json";
 import spellDescriptionsEs from "@/data/i18n/spell-descriptions-es.json";
 import { limpiarTextoConjuro } from "@/lib/spell-text-clean";
+import { traducirAlcanceConjuro } from "@/lib/rules-text-polish";
 import type { SpellCastMeta } from "@/rules/spell-cast-meta";
 
 export { limpiarTextoConjuro } from "@/lib/spell-text-clean";
@@ -41,5 +42,6 @@ export function metaConjuroParaMostrar(
     ...meta,
     description: description ?? meta.description,
     components: components ?? meta.components,
+    range: meta.range ? traducirAlcanceConjuro(meta.range) : undefined,
   };
 }

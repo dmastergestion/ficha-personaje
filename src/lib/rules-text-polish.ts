@@ -7,11 +7,29 @@ export function piesAMetrosTexto(pies: number): string {
   return metros.toFixed(1).replace(".", ",");
 }
 
-function convertirPiesAMetros(text: string): string {
+export function convertirPiesAMetros(text: string): string {
   return text.replace(/\b(\d+(?:[.,]\d+)?)\s*(?:pies|feet)\b/gi, (_, raw: string) => {
     const pies = parseFloat(raw.replace(",", "."));
     return `${piesAMetrosTexto(pies)} metros`;
   });
+}
+
+const ALCANCE_ES: Record<string, string> = {
+  touch: "Toque",
+  self: "Personal",
+  sight: "Vista",
+  special: "Especial",
+  unlimited: "Ilimitado",
+};
+
+/** Normaliza la línea de alcance de un conjuro para la UI (metros, etiquetas ES). */
+export function traducirAlcanceConjuro(range?: string): string | undefined {
+  if (!range?.trim()) return undefined;
+  const raw = range.trim();
+  if (raw === "point" || raw === "feet") return undefined;
+  const lower = raw.toLowerCase();
+  if (ALCANCE_ES[lower]) return ALCANCE_ES[lower];
+  return convertirPiesAMetros(raw);
 }
 
 const CONDITION_APPLY_FALSE: Record<string, string> = {
@@ -108,6 +126,10 @@ const TRADUCCION_ROTA: [RegExp, string][] = [
     "cada metro de movimiento cuesta un metro adicional",
   ],
   [/número de pies que te han movido/g, "número de metros que te han movido"],
+  [
+    /número de pies igual a 10 veces el número obtenido/g,
+    "número de metros igual a 3 veces el número obtenido",
+  ],
 ];
 
 function pulirAreasEfecto(text: string): string {
