@@ -9,7 +9,6 @@ import {
   extractBackgroundDetails,
   extractFeatDetails,
   extractSpeciesDetails,
-  stripHtml,
 } from "./five-etools-utils.js";
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");

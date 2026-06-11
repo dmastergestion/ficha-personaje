@@ -45,7 +45,7 @@ function buildSpellDescriptions(): Record<string, string> {
   const pack = packEn;
   const spellsTr = loadTranslate("dnd5e.spells24.json");
   const foundryByKey = spellsTr.entries ?? {};
-  const srdSpells = loadJson<{ id: string; srdId?: string }[]>(
+  const srdSpells = loadJson<{ id: string; srdId?: string; nameEn?: string }[]>(
     path.join(root, "src/data/srd/spells.json"),
   );
   const srdById = new Map(srdSpells.map((s) => [s.id, s]));
@@ -63,7 +63,7 @@ function buildSpellDescriptions(): Record<string, string> {
     if (desc) spellDescByEnName.set(norm(aliasEn), desc);
   }
 
-  const spellManual = mergeManual(
+  const spellManual = mergeManual<Record<string, string>>(
     {},
     path.join(root, "data/i18n/phb-spell-descriptions-manual.json"),
   );
@@ -121,7 +121,7 @@ function buildSpellDescriptions(): Record<string, string> {
     }
   }
 
-  const srdSpellManual = mergeManual(
+  const srdSpellManual = mergeManual<Record<string, string>>(
     {},
     path.join(root, "data/i18n/srd-spell-descriptions-manual.json"),
   );
@@ -221,8 +221,8 @@ function buildFeatDescriptions(): void {
   >(featMetaPath);
   const manualPath = path.join(root, "data/i18n/feat-descriptions-es.json");
   const outManualPath = path.join(root, "src/data/i18n/feat-descriptions-es.json");
-  const manual = mergeManual(
-    fs.existsSync(outManualPath) ? loadJson(outManualPath) : {},
+  const manual = mergeManual<Record<string, string>>(
+    fs.existsSync(outManualPath) ? loadJson<Record<string, string>>(outManualPath) : {},
     manualPath,
   );
 

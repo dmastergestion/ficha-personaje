@@ -215,9 +215,9 @@ export function calcularBeneficiosOrigen(
   const backgroundSkills = periciasDesdeLista(background?.skillProficiencies);
 
   const keen =
-    elecciones?.species ? periciaDesdeEleccion("keen-senses", elecciones) : null;
+    elecciones?.species ? periciaDesdeEleccion(elecciones, "keen-senses") : null;
   const skillful =
-    elecciones?.species ? periciaDesdeEleccion("skillful", elecciones) : null;
+    elecciones?.species ? periciaDesdeEleccion(elecciones, "skillful") : null;
   if (keen) speciesSkills.push(keen);
   if (skillful) speciesSkills.push(skillful);
 

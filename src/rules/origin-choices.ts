@@ -1,5 +1,4 @@
 import type { AbilityKey, SkillKey } from "@/lib/constants";
-import { ABILITY_KEYS } from "@/lib/constants";
 import { ABILITY_LABELS_ES, SKILL_LABELS_ES } from "@/rules/character";
 import { etiquetaHerramienta } from "@/lib/origin-text";
 import type { OrigenCatalogo } from "@/rules/origin-benefits";
@@ -177,7 +176,7 @@ function opcionesHerramientaTrasfondo(raw?: string): OriginChoiceOption[] | null
 }
 
 function eleccionHerramientaTrasfondo(
-  backgroundId: string | null,
+  _backgroundId: string | null,
   catalogo?: OrigenCatalogo,
 ): OriginChoiceDefinition | null {
   const tools = catalogo?.background?.toolProficiencies ?? [];
@@ -197,7 +196,7 @@ function eleccionHerramientaTrasfondo(
 }
 
 function eleccionesAtributosTrasfondo(
-  backgroundId: string | null,
+  _backgroundId: string | null,
   catalogo?: OrigenCatalogo,
 ): OriginChoiceDefinition[] {
   const traits = catalogo?.background?.traits;
