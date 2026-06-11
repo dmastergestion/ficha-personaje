@@ -26,7 +26,7 @@ Proyecto **independiente** de [herramientas-dm](https://github.com/dmastergestio
 | Tests | Vitest (`src/rules/` + migraciones Dexie) |
 | Despliegue | GitHub Pages |
 | Idioma UI | Español |
-| PDF | Plantilla oficial editable + `pdf-lib` (solo build local; no en GitHub Pages) |
+| PDF | Plantilla oficial editable + `pdf-lib` (local y GitHub Pages) |
 
 **Roles de capas:** Zod valida *qué se guarda*; `rules/` calcula *derivados*; React solo renderiza y delega.
 
@@ -67,7 +67,7 @@ Tracker de iniciativa de grupo, mapas, multijugador, vista DM/party, VTT, backen
 | Catálogo SRD + pack PHB opcional (local) | [x] |
 | PWA: banner actualización, offline, shortcuts | [x] |
 | Export JSON backup + tracker mínimo | [x] |
-| PDF oficial AcroForm (`pdf-lib`) — **solo local** (`npm run prepare:pdf-template`) | [x] |
+| PDF oficial AcroForm (`pdf-lib`) en local y Pages | [x] |
 | Schema personaje **v6** + migraciones Dexie v1→v6 | [x] |
 
 ---
@@ -157,7 +157,7 @@ flowchart TB
 
 - IDs internos: `snake_case` en inglés (estables).
 - Texto visible: `i18n/es.json` (nombres) + descripciones/componentes de conjuros en JSON dedicados.
-- Build-time only; **cero fetch** en la app (salvo HEAD a plantilla PDF en local).
+- Build-time only; **cero fetch** en runtime salvo plantilla PDF (`HEAD` + `GET` al exportar).
 
 ---
 
@@ -219,7 +219,7 @@ Modificadores de atributo, bonificador de competencia, CA calculada, modificador
 |---------|---------|-----|
 | Backup completo | `ficha-{name}-{date}.json` | `CharacterSchema` completo |
 | Tracker mínimo | `tracker-{name}.json` | `{ nombre, jugador, nivel, hp_max, hp_actual, ca, iniciativa }` |
-| PDF oficial | `ficha-{name}.pdf` | AcroForm local; deshabilitado si `BASE_URL !== "/"` |
+| PDF oficial | `ficha-{name}.pdf` | AcroForm con plantilla en `public/pdf/` |
 
 Import: validar con Zod + `migrateCharacter`; rechazar con mensaje en español si falla.
 
@@ -304,7 +304,7 @@ Barra fija inferior (móvil): acceso rápido Combate + tirada d20.
 ## Testing
 
 - Vitest: `src/rules/*`, migraciones Dexie, `db/repository`, `pdf/buildOfficialPdfValues`, `spell-text`.
-- CI: `npm test` + `npm run build` (sin plantilla PDF; `GITHUB_ACTIONS` omite aviso).
+- CI: `npm test` + `npm run build` (requiere `public/pdf/pj2024-template.pdf`).
 
 ---
 

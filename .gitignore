@@ -4,7 +4,6 @@ dev-dist/
 .vite/
 vendor/
 public/content-pack/
-public/pdf/pj2024-template.pdf
 tmp-filled.pdf
 tmp-pdf-fields.json
 tmp-materials.txt

@@ -27,7 +27,7 @@ import { TabNotas } from "@/pages/character-sheet/TabNotas";
 
 import type { SheetTab } from "@/pages/character-sheet/types";
 
-import { exportPdfHabilitado, plantillaPdfDisponible } from "@/pdf/pdfTemplate";
+import { plantillaPdfDisponible } from "@/pdf/pdfTemplate";
 
 import { descripcionClases } from "@/rules/multiclass";
 
@@ -84,8 +84,6 @@ export function CharacterSheetPage() {
 
 
   useEffect(() => {
-
-    if (!exportPdfHabilitado) return;
 
     void plantillaPdfDisponible().then(setPdfDisponible);
 
@@ -315,23 +313,19 @@ export function CharacterSheetPage() {
 
         <>
 
-          {exportPdfHabilitado && (
+          <Button
 
-            <Button
+            disabled={exportandoPdf || pdfDisponible === false}
 
-              disabled={exportandoPdf || pdfDisponible === false}
+            title={pdfTitle}
 
-              title={pdfTitle}
+            onClick={() => void onExportPdf()}
 
-              onClick={() => void onExportPdf()}
+          >
 
-            >
+            {exportandoPdf ? "PDF…" : "PDF"}
 
-              {exportandoPdf ? "PDF…" : "PDF"}
-
-            </Button>
-
-          )}
+          </Button>
 
           <Link to="/">
 
@@ -369,7 +363,7 @@ export function CharacterSheetPage() {
 
         )}
 
-        {exportPdfHabilitado && errorPdf && (
+        {errorPdf && (
 
           <p className="mb-3 rounded-lg border border-amber-500/40 bg-amber-500/10 px-3 py-2.5 text-sm text-amber-200">
 
@@ -379,7 +373,7 @@ export function CharacterSheetPage() {
 
         )}
 
-        {exportPdfHabilitado && pdfDisponible === false && !errorPdf && (
+        {pdfDisponible === false && !errorPdf && (
 
           <p className="mb-3 rounded-lg border border-white/10 bg-surface/50 px-3 py-2 text-xs text-muted">
 

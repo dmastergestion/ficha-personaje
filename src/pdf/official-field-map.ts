@@ -110,4 +110,4 @@ export function spellSlotCheckbox(level: number, index: number): string {
   return `Nivel ${level} - ${index}`;
 }
 
-export const PDF_TEMPLATE_URL = "/pdf/pj2024-template.pdf";
+export const PDF_TEMPLATE_URL = `${import.meta.env.BASE_URL}pdf/pj2024-template.pdf`;
