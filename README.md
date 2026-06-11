@@ -50,12 +50,27 @@ Los JSON generados en `src/data/` se versionan para que CI y usuarios no dependa
 | `npm run build:data` | Regenerar SRD + traducciones ES |
 | `npm run fetch:5etools` | Descargar JSON 5etools (solo `data/`) |
 | `npm run build:content-pack` | Generar pack XPHB local desde 5etools |
+| `npm run prepare:pdf-template` | Copiar plantilla oficial editable a `public/pdf/` |
+
+### Export PDF (solo local)
+
+La versión en **GitHub Pages no incluye export PDF** (la plantilla oficial pesa ~16 MB y no se despliega).
+
+En tu máquina, con el PDF editable de WoTC (`Pj2024Editable.pdf`):
+
+```powershell
+npm run prepare:pdf-template -- "C:\ruta\a\Pj2024Editable.pdf"
+# o: $env:PDF_TEMPLATE_SOURCE="C:\ruta\..." ; npm run prepare:pdf-template
+npm run dev
+```
+
+Sin plantilla local, el botón PDF aparece deshabilitado.
 
 ## Funcionalidades (v2)
 
 - Asistente de creación por pasos, multiclase SRD, condiciones con reglas automáticas
 - Inventario con peso y carga (STR × 15 lb)
-- Export JSON, tracker y **PDF** (carga bajo demanda)
+- Export JSON, tracker y **PDF local** (ficha oficial 2024 rellenable; no en GitHub Pages)
 - PWA offline con aviso de actualización
 
 ## Documentación

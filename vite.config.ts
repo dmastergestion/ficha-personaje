@@ -3,11 +3,15 @@ import tailwindcss from "@tailwindcss/vite";
 import react from "@vitejs/plugin-react";
 import { defineConfig } from "vite";
 import { VitePWA } from "vite-plugin-pwa";
+import pkg from "./package.json";
 
 const base = process.env.GITHUB_ACTIONS ? "/ficha-personaje/" : "/";
 
 export default defineConfig({
   base,
+  define: {
+    __APP_VERSION__: JSON.stringify(pkg.version),
+  },
   plugins: [
     react(),
     tailwindcss(),
@@ -58,6 +62,14 @@ export default defineConfig({
               networkTimeoutSeconds: 3,
             },
           },
+          {
+            urlPattern: ({ url }) => url.pathname.endsWith(".pdf"),
+            handler: "CacheFirst",
+            options: {
+              cacheName: "pdf-template-cache",
+              expiration: { maxEntries: 2, maxAgeSeconds: 60 * 60 * 24 * 365 },
+            },
+          },
         ],
       },
     }),
@@ -71,8 +83,8 @@ export default defineConfig({
     rollupOptions: {
       output: {
         manualChunks(id) {
-          if (id.includes("@react-pdf") || id.includes("yoga-layout") || id.includes("fontkit")) {
-            return "react-pdf";
+          if (id.includes("pdf-lib") || id.includes("@pdf-lib")) {
+            return "pdf-lib";
           }
         },
       },

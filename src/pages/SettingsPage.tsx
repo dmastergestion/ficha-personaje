@@ -1,5 +1,6 @@
 import { useRef, useState } from "react";
 import { Button, Layout } from "@/components/layout";
+import { SCHEMA_VERSION } from "@/lib/constants";
 import { guardarPersonaje, importarPersonaje } from "@/db/repository";
 import { useCatalogStore } from "@/stores/catalog-store";
 
@@ -101,7 +102,9 @@ export function SettingsPage() {
 
         <section className="rounded-xl border border-white/10 bg-panel p-4 text-sm text-muted">
           <h2 className="mb-2 text-lg font-semibold text-white">Acerca de</h2>
-          <p>Versión app: 0.3.0 · Schema personaje: v5</p>
+          <p>
+            Versión app: {__APP_VERSION__} · Schema personaje: v{SCHEMA_VERSION}
+          </p>
           <h2 className="mb-2 mt-4 text-lg font-semibold text-white">Licencias</h2>
           <p>
             Contenido de reglas derivado del SRD 5.2.1 © Wizards of the Coast / D&D Beyond —

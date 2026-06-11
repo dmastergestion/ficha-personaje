@@ -1,29 +1,39 @@
 import type { SpellCastMeta } from "@/rules/spell-cast-meta";
 import { etiquetaSalvacion, etiquetaTipoConjuro } from "@/rules/spell-cast-meta";
+import { metaConjuroParaMostrar } from "@/rules/spell-text";
 
-export function SpellInfoPanel({ meta, name }: { meta: SpellCastMeta; name: string }) {
+export function SpellInfoPanel({
+  meta,
+  name,
+  spellId,
+}: {
+  meta: SpellCastMeta;
+  name: string;
+  spellId?: string | null;
+}) {
+  const display = metaConjuroParaMostrar(spellId, meta);
   const rows: { label: string; value: string }[] = [];
 
-  if (meta.castingTime) rows.push({ label: "Tiempo", value: meta.castingTime });
-  if (meta.range) rows.push({ label: "Alcance", value: meta.range });
-  if (meta.components) rows.push({ label: "Componentes", value: meta.components });
-  if (meta.duration) rows.push({ label: "Duración", value: meta.duration });
+  if (display.castingTime) rows.push({ label: "Tiempo", value: display.castingTime });
+  if (display.range) rows.push({ label: "Alcance", value: display.range });
+  if (display.components) rows.push({ label: "Componentes", value: display.components });
+  if (display.duration) rows.push({ label: "Duración", value: display.duration });
   rows.push({
     label: "Tirada",
     value:
-      meta.tipo === "save" && meta.save
-        ? `Salvación ${etiquetaSalvacion(meta.save)}`
-        : etiquetaTipoConjuro(meta.tipo),
+      display.tipo === "save" && display.save
+        ? `Salvación ${etiquetaSalvacion(display.save)}`
+        : etiquetaTipoConjuro(display.tipo),
   });
-  if (meta.ritual) rows.push({ label: "Ritual", value: "Sí" });
-  if (meta.damage) {
-    const dmg = meta.damage.type
-      ? `${meta.damage.dice} (${meta.damage.type})`
-      : meta.damage.dice;
+  if (display.ritual) rows.push({ label: "Ritual", value: "Sí" });
+  if (display.damage) {
+    const dmg = display.damage.type
+      ? `${display.damage.dice} (${display.damage.type})`
+      : display.damage.dice;
     rows.push({ label: "Daño", value: dmg });
   }
-  if (meta.areaTags?.length) {
-    rows.push({ label: "Área", value: meta.areaTags.join(", ") });
+  if (display.areaTags?.length) {
+    rows.push({ label: "Área", value: display.areaTags.join(", ") });
   }
 
   return (
@@ -39,8 +49,8 @@ export function SpellInfoPanel({ meta, name }: { meta: SpellCastMeta; name: stri
           ))}
         </dl>
       )}
-      {meta.description && (
-        <p className="whitespace-pre-wrap text-xs leading-relaxed text-muted">{meta.description}</p>
+      {display.description && (
+        <p className="whitespace-pre-wrap text-xs leading-relaxed text-muted">{display.description}</p>
       )}
     </div>
   );

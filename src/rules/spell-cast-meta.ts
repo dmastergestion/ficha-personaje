@@ -1,5 +1,6 @@
 import type { AbilityKey } from "@/lib/constants";
 import spellMetaJson from "@/data/srd/spell-meta.json";
+import { conjuroEsRitual } from "@/rules/spell-meta";
 import type { SrdSpell } from "@/rules/srd";
 
 export type SpellCastType = "attack" | "save" | "none";
@@ -74,6 +75,8 @@ export function metaTiradaConjuro(
   spellId: string | null | undefined,
   spell?: SrdSpell | null,
 ): SpellCastMeta {
+  const ritual = conjuroEsRitual(spellId, spell);
+
   if (spell?.castType || spell?.damage || spell?.description) {
     const base = spellId && SPELL_META[spellId] ? rowToMeta(SPELL_META[spellId]!) : { tipo: "none" as const };
     const fromSpell = spellToMeta(spell);
@@ -85,14 +88,14 @@ export function metaTiradaConjuro(
       range: fromSpell.range ?? base.range,
       components: fromSpell.components ?? base.components,
       duration: fromSpell.duration ?? base.duration,
-      ritual: fromSpell.ritual ?? base.ritual,
+      ritual: ritual || fromSpell.ritual || base.ritual,
       description: fromSpell.description ?? base.description,
       areaTags: fromSpell.areaTags ?? base.areaTags,
     };
   }
 
   const base = spellId && SPELL_META[spellId] ? rowToMeta(SPELL_META[spellId]!) : { tipo: "none" as const };
-  return base;
+  return { ...base, ritual: ritual || base.ritual };
 }
 
 export interface TiradaDañoConjuro {

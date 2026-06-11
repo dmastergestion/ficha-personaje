@@ -5,7 +5,7 @@
     "range": "30 pies",
     "components": "V, S, M (a bell and silver wire)",
     "duration": "8 horas",
-    "ritual": false,
+    "ritual": true,
     "description": "You set an alarm against intrusion. Choose a door, a window, or an area within range that is no larger than a 20-foot Cube. Until the spell ends, an alarm alerts you whenever a creature touches or enters the warded area. When you cast the spell, you can designate creatures that won't set off the alarm. You also choose whether the alarm is audible or mental:\n\nAudible Alarm: The alarm produces the sound of a handbell for 10 seconds within 60 feet of the warded area. Mental Alarm: You are alerted by a mental ping if you are within 1 mile of the warded area. This ping awakens you if you're asleep.",
     "areaTags": [
       "Cilindro"
@@ -129,7 +129,7 @@
     "range": "point",
     "components": "V, S, M (a pinch of soot and salt)",
     "duration": "1 hora",
-    "ritual": false,
+    "ritual": true,
     "description": "For the duration, you understand the literal meaning of any language that you hear or see signed. You also understand any written language that you see, but you must be touching the surface on which the words are written. It takes about 1 minute to read one page of text. This spell doesn't decode symbols or secret messages."
   },
   "create-or-destroy-water": {
@@ -176,7 +176,7 @@
     "range": "30 feet",
     "components": "V, S",
     "duration": "Concentración, hasta 10 minutos",
-    "ritual": false,
+    "ritual": true,
     "description": "For the duration, you sense the presence of magical effects within 30 feet of yourself. If you sense such effects, you can take the {@action Magic|XPHB} action to see a faint aura around any visible creature or object in the area that bears the magic, and if an effect was created by a spell, you learn the spell's {@book school of magic|XPHB|7|Schools of Magic}.\n\nThe spell is blocked by 1 foot of stone, dirt, or wood; 1 inch of metal; or a thin sheet of lead."
   },
   "detect-poison-and-disease": {
@@ -185,7 +185,7 @@
     "range": "30 feet",
     "components": "V, S, M (a yew leaf)",
     "duration": "Concentración, hasta 10 minutos",
-    "ritual": false,
+    "ritual": true,
     "description": "For the duration, you sense the location of poisons, poisonous or venomous creatures, and magical contagions within 30 feet of yourself. You sense the kind of poison, creature, or contagion in each case.\n\nThe spell is blocked by 1 foot of stone, dirt, or wood; 1 inch of metal; or a thin sheet of lead."
   },
   "disguise-self": {
@@ -319,7 +319,7 @@
     "range": "10 pies",
     "components": "V, S, M (burning incense worth 10+ GP, which the spell consumes)",
     "duration": "Instantáneo",
-    "ritual": false,
+    "ritual": true,
     "description": "You gain the service of a familiar, a spirit that takes an animal form you choose: {@creature Bat|XMM}, {@creature Cat|XMM}, {@creature Frog|XMM}, {@creature Hawk|XMM}, {@creature Lizard|XMM}, {@creature Octopus|XMM}, {@creature Owl|XMM}, {@creature Rat|XMM}, {@creature Raven|XMM}, {@creature Spider|XMM}, {@creature Weasel|XMM}, or another Beast that has a . Appearing in an unoccupied space within range, the familiar has the statistics of the chosen form, though it is a Celestial, Fey, or Fiend (your choice) instead of a Beast. Your familiar acts independently of you, but it obeys your commands.\n\nTelepathic Connection: While your familiar is within 100 feet of you, you can communicate with it telepathically. Additionally, as a Bonus Action|XPHB, you can see through the familiar's eyes and hear what it hears until the start of your next turn, gaining the benefits of any special senses it has. Finally, when you cast a spell with a range of touch, your familiar can deliver the touch. Your familiar must be within 100 feet of you, and it must take a Reaction|XPHB to deliver the touch when you cast the spell.\n\nCombat: The familiar is an ally to you and your allies. It rolls its own Initiative|XPHB and acts on its own turn. A familiar can't attack, but it can take other actions as normal.\n\nDisappearance of the Familiar: When the familiar drops to 0 XPHB action, you can temporarily dismiss the familiar to a pocket dimension. Alternatively, you can dismiss it forever. As a {@action Magic|XPHB} action while it is temporarily dismissed, you can cause it to reappear in an unoccupied space within 30 feet of you. Whenever the familiar drops to 0 Hit Points|XPHB or disappears into the pocket dimension, it leaves behind in its space anything it was wearing or carrying.\n\nOne Familiar Only: You can't have more than one familiar at a time. If you cast this spell while you have a familiar, you instead cause it to adopt a new eligible form."
   },
   "tensers-floating-disk": {
@@ -328,7 +328,7 @@
     "range": "30 pies",
     "components": "V, S, M (a drop of mercury)",
     "duration": "1 hora",
-    "ritual": false,
+    "ritual": true,
     "description": "This spell creates a circular, horizontal plane of force, 3 feet in diameter and 1 inch thick, that floats 3 feet above the ground in an unoccupied space of your choice that you can see within range. The disk remains for the duration and can hold up to 500 pounds. If more weight is placed on it, the spell ends, and everything on the disk falls to the ground.\n\nThe disk is immobile while you are within 20 feet of it. If you move more than 20 feet away from it, the disk follows you so that it remains within 20 feet of you. It can move across uneven terrain, up or down stairs, slopes and the like, but it can't cross an elevation change of 10 feet or more. For example, the disk can't move across a 10-foot-deep pit, nor could it leave such a pit if it was created at the bottom.\n\nIf you move more than 100 feet from the disk (typically because it can't move around an obstacle to follow you), the spell ends."
   },
   "fog-cloud": {
@@ -497,7 +497,7 @@
     "range": "point",
     "components": "V, S, M (a pearl worth 100+ GP)",
     "duration": "Instantáneo",
-    "ritual": false,
+    "ritual": true,
     "description": "You touch an object throughout the spell's casting. If the object is a magic item or some other magical object, you learn its properties and how to use them, whether it requires Attunement|XPHB, and how many charges it has, if any. You learn whether any ongoing spells are affecting the item and what they are. If the item was created by a spell, you learn that spell's name.\n\nIf you instead touch a creature throughout the casting, you learn which ongoing spells, if any, are currently affecting it.",
     "areaTags": [
       "Un objetivo"
@@ -509,7 +509,7 @@
     "range": "point",
     "components": "S, M (ink worth 10+ GP, which the spell consumes)",
     "duration": "10 días",
-    "ritual": false,
+    "ritual": true,
     "description": "You write on parchment, paper, or another suitable material and imbue it with an illusion that lasts for the duration. To you and any creatures you designate when you cast the spell, the writing appears normal, seems to be written in your hand, and conveys whatever meaning you intended when you wrote the text. To all others, the writing appears as if it were written in an unknown or magical script that is unintelligible. Alternatively, the illusion can alter the meaning, handwriting, and language of the text, though the language must be one you know.\n\nIf the spell is dispelled, the original script and the illusion both disappear.\n\nA creature that has Truesight can read the hidden message."
   },
   "inflict-wounds": {
@@ -597,7 +597,7 @@
     "range": "10 pies",
     "components": "V, S",
     "duration": "Instantáneo",
-    "ritual": false,
+    "ritual": true,
     "description": "You remove poison and rot from nonmagical food and drink in a 5-foot-radius Sphere centered on a point within range.",
     "areaTags": [
       "Esfera"
@@ -697,7 +697,7 @@
     "range": "point",
     "components": "V, S",
     "duration": "10 minutos",
-    "ritual": false,
+    "ritual": true,
     "description": "For the duration, you can comprehend and verbally communicate with Beasts, and you can use any of the {@action Influence|XPHB} action's skill options with them.\n\nMost Beasts have little to say about topics that don't pertain to survival or companionship, but at minimum, a Beast can give you information about nearby locations and monsters, including whatever it has perceived within the past day."
   },
   "thunderwave": {
@@ -724,7 +724,7 @@
     "range": "60 pies",
     "components": "V, S, M (a bit of string and of wood)",
     "duration": "1 hora",
-    "ritual": false,
+    "ritual": true,
     "description": "This spell creates an Invisible, mindless, shapeless, Medium force that performs simple tasks at your command until the spell ends. The servant springs into existence in an unoccupied space on the ground within range. It has AC 10, 1 Hit Point, and a Strength of 2, and it can't attack. If it drops to 0 Hit Points|XPHB, the spell ends.\n\nOnce on each of your turns as a Bonus Action|XPHB, you can mentally command the servant to move up to 15 feet and interact with an object. The servant can perform simple tasks that a human could do, such as fetching things, cleaning, mending, folding clothes, lighting fires, serving food, and pouring drinks. Once you give the command, the servant performs the task to the best of its ability until it completes the task, then waits for your next command.\n\nIf you command the servant to perform a task that would move it more than 60 feet away from you, the spell ends."
   },
   "acid-arrow": {
@@ -776,7 +776,7 @@
     "range": "30 pies",
     "components": "V, S, M (a morsel of food)",
     "duration": "24 horas",
-    "ritual": false,
+    "ritual": true,
     "description": "A of your choice that you can see within range must succeed on a Charisma saving throw, or it attempts to deliver a message for you (if the target's Challenge Rating|XPHB isn't 0, it automatically succeeds). You specify a location you have visited and a recipient who matches a general description, such as \"a person dressed in the uniform of the town guard\" or \"a red-haired dwarf wearing a pointed hat.\" You also communicate a message of up to twenty-five words. The Beast travels for the duration toward the specified location, covering about 25 miles per 24 hours or 50 miles if the Beast can fly.\n\nWhen the Beast arrives, it delivers your message to the creature that you described, mimicking your communication. If the Beast doesn't reach its destination before the spell ends, the message is lost, and the Beast returns to where you cast the spell.\n\nUsing a Higher-Level Spell Slot: The spell's duration increases by 48 hours for each spell slot level above 2.",
     "areaTags": [
       "Un objetivo"
@@ -818,7 +818,7 @@
     "range": "point",
     "components": "V, S, M (specially marked sticks, bones, cards, or other divinatory tokens worth 25+ GP)",
     "duration": "Instantáneo",
-    "ritual": false,
+    "ritual": true,
     "description": "You receive an omen from an otherworldly entity about the results of a course of action that you plan to take within the next 30 minutes. The DM chooses the omen from the Omens table.\n\nThe spell doesn't account for circumstances, such as other spells, that might change the results.\n\nIf you cast the spell more than once before finishing a ||Random reading!|Regular reading chance for each casting after the first that you get no answer."
   },
   "barkskin": {
@@ -1027,7 +1027,7 @@
     "range": "point",
     "components": "V, S, M (2 Copper Pieces, which the spell consumes)",
     "duration": "10 días",
-    "ritual": false,
+    "ritual": true,
     "description": "You touch a corpse or other remains. For the duration, the target is protected from decay and can't become Undead.\n\nThe spell also effectively extends the time limit on raising the target from the dead, since days spent under the influence of this spell don't count against the time limit of spells such as Raise Dead."
   },
   "gust-of-wind": {
@@ -1126,7 +1126,7 @@
     "range": "point",
     "components": "V, S, M (fur from a bloodhound)",
     "duration": "Instantáneo",
-    "ritual": false,
+    "ritual": true,
     "description": "Describe or name a specific kind of Beast, Plant creature, or nonmagical plant. You learn the direction and distance to the closest creature or plant of that kind within 5 miles, if any are present."
   },
   "locate-object": {
@@ -1144,7 +1144,7 @@
     "range": "30 pies",
     "components": "V, S, M (jade dust worth 10+ GP, which the spell consumes)",
     "duration": "Permanente",
-    "ritual": false,
+    "ritual": true,
     "description": "You implant a message within an object in range—a message that is uttered when a trigger condition is met. Choose an object that you can see and that isn't being worn or carried by another creature. Then speak the message, which must be 25 words or fewer, though it can be delivered over as long as 10 minutes. Finally, determine the circumstance that will trigger the spell to deliver your message.\n\nWhen that trigger occurs, a magical mouth appears on the object and recites the message in your voice and at the same volume you spoke. If the object you chose has a mouth or something that looks like a mouth (for example, the mouth of a statue), the magical mouth appears there, so the words appear to come from the object's mouth. When you cast this spell, you can have the spell end after it delivers its message, or it can remain and repeat its message whenever the trigger occurs.\n\nThe trigger can be as general or as detailed as you like, though it must be based on visual or audible conditions that occur within 30 feet of the object. For example, you could instruct the mouth to speak when any creature moves within 30 feet of the object or when a silver bell rings within 30 feet of it."
   },
   "magic-weapon": {
@@ -1354,7 +1354,7 @@
     "range": "120 pies",
     "components": "V, S",
     "duration": "Concentración, hasta 10 minutos",
-    "ritual": false,
+    "ritual": true,
     "description": "For the duration, no sound can be created within or pass through a 20-foot-radius Sphere centered on a point you choose within range. Any creature or object entirely inside the Sphere has XPHB condition while entirely inside it. Casting a spell that includes a Verbal component is impossible there.",
     "areaTags": [
       "Esfera"
@@ -1750,7 +1750,7 @@
     "range": "point",
     "components": "V, S",
     "duration": "8 horas",
-    "ritual": false,
+    "ritual": true,
     "description": "You step into a stone object or surface large enough to fully contain your body, merging yourself and your equipment with the stone for the duration. You must touch the stone to do so. Nothing of your presence remains visible or otherwise detectable by nonmagical senses.\n\nWhile merged with the stone, you can't see what occurs outside it, and any Wisdom (Perception) checks you make to hear sounds outside it are made with Disadvantage|XPHB. You remain aware of the passage of time and can cast spells on yourself while merged in the stone. You can use 5 feet of movement to leave the stone where you entered it, which ends the spell. You otherwise can't move.\n\nMinor physical damage to the stone doesn't harm you, but its partial destruction or a change in its shape (to the extent that you no longer fit within it) expels you and deals 6d6 Force damage to you. The stone's complete destruction (or transmutation into a different substance) expels you and deals 50 Force damage to you. If expelled, you move into an unoccupied space closest to where you first entered and have the Prone condition.",
     "damage": {
       "dice": "6d6",
@@ -1775,7 +1775,7 @@
     "range": "30 pies",
     "components": "V, S",
     "duration": "1 hora",
-    "ritual": false,
+    "ritual": true,
     "description": "A Large, quasi-real, horselike creature appears on the ground in an unoccupied space of your choice within range. You decide the creature's appearance, and it is equipped with a saddle, bit, and bridle. Any of the equipment created by the spell vanishes in a puff of smoke if it is carried more than 10 feet away from the steed.\n\nFor the duration, you or a creature you choose can ride the steed. The steed uses the {@creature Riding Horse|XMM} stat block, except it has a Speed|XPHB of 100 feet and can travel 13 miles in an hour. When the spell ends, the steed gradually fades, giving the rider 1 minute to dismount. The spell ends early if the steed takes any damage."
   },
   "plant-growth": {
@@ -1914,7 +1914,7 @@
     "range": "10 feet",
     "components": "V, S, M (a crystal bead)",
     "duration": "8 horas",
-    "ritual": false,
+    "ritual": true,
     "description": "A 10-foot Emanation springs into existence around you and remains stationary for the duration. The spell fails when you cast it if the Emanation isn't big enough to fully encapsulate all creatures in its area.\n\nCreatures and objects within the Emanation when you cast the spell can move through it freely. All other creatures and objects are barred from passing through it. Spells of level 3 or lower can't be cast through it, and the effects of such spells can't extend into it.\n\nThe atmosphere inside the Emanation is comfortable and dry, regardless of the weather outside. Until the spell ends, you can command the interior to have XPHB (no action required). The Emanation is opaque from the outside and of any color you choose, but it's transparent from the inside.\n\nThe spell ends early if you leave the Emanation or if you cast it again.",
     "areaTags": [
       "Esfera"
@@ -1955,7 +1955,7 @@
     "range": "30 pies",
     "components": "V, S, M (a short reed)",
     "duration": "24 horas",
-    "ritual": false,
+    "ritual": true,
     "description": "This spell grants up to ten willing creatures of your choice within range the ability to breathe underwater until the spell ends. Affected creatures also retain their normal mode of respiration.",
     "areaTags": [
       "Varios objetivos"
@@ -1967,7 +1967,7 @@
     "range": "30 pies",
     "components": "V, S, M (a piece of cork)",
     "duration": "1 hora",
-    "ritual": false,
+    "ritual": true,
     "description": "This spell grants the ability to move across any liquid surface—such as water, acid, mud, snow, quicksand, or lava—as if it were harmless solid ground (creatures crossing molten lava can still take damage from the heat). Up to ten willing creatures of your choice within range gain this ability for the duration.\n\nAn affected target must take a Bonus Action|XPHB to pass from the liquid's surface into the liquid itself and vice versa, but if the target falls into the liquid, the target passes through the surface into the liquid below.",
     "areaTags": [
       "Varios objetivos"
@@ -2178,7 +2178,7 @@
     "range": "point",
     "components": "V, S, M (incense worth 25+ GP, which the spell consumes)",
     "duration": "Instantáneo",
-    "ritual": false,
+    "ritual": true,
     "description": "This spell puts you in contact with a god or a god's servants. You ask one question about a specific goal, event, or activity to occur within 7 days. The DM offers a truthful reply, which might be a short phrase or cryptic rhyme. The spell doesn't account for circumstances that might change the answer, such as the casting of other spells.\n\nIf you cast the spell more than once before finishing a ||Random reading!|Regular reading chance for each casting after the first that you get no answer."
   },
   "dominate-beast": {
@@ -2507,7 +2507,7 @@
     "range": "point",
     "components": "V, S",
     "duration": "1 minuto",
-    "ritual": false,
+    "ritual": true,
     "description": "You commune with nature spirits and gain knowledge of the surrounding area. In the outdoors, the spell gives you knowledge of the area within 3 miles of you. In caves and other natural underground settings, the radius is limited to 300 feet. The spell doesn't function where nature has been replaced by construction, such as in castles and settlements.\n\nChoose three of the following facts; you learn those facts as they pertain to the spell's area:\n\nLocations of settlements Locations of portals to other planes of existence Location of one Challenge Rating|XPHB 10+ creature (DM's choice) that is a Celestial, an Elemental, a Fey, a Fiend, or an Undead The most prevalent kind of plant, mineral, or Beast (you choose which to learn) Locations of bodies of water\n\nFor example, you could determine the location of a powerful monster in the area, the locations of bodies of water, and the locations of any towns."
   },
   "commune": {
@@ -2516,7 +2516,7 @@
     "range": "point",
     "components": "V, S, M (incense)",
     "duration": "1 minuto",
-    "ritual": false,
+    "ritual": true,
     "description": "You contact a deity or a divine proxy and ask up to three questions that can be answered with yes or no. You must ask your questions before the spell ends. You receive a correct answer for each question.\n\nDivine beings aren't necessarily omniscient, so you might receive \"unclear\" as an answer if a question pertains to information that lies beyond the deity's knowledge. In a case where a one-word answer could be misleading or contrary to the deity's interests, the DM might offer a short phrase as an answer instead.\n\nIf you cast the spell more than once before finishing a ||No answer!|Answer chance for each casting after the first that you get no answer."
   },
   "cone-of-cold": {
@@ -2559,7 +2559,7 @@
     "range": "point",
     "components": "V",
     "duration": "1 minuto",
-    "ritual": false,
+    "ritual": true,
     "description": "You mentally contact a demigod, the spirit of a long-dead sage, or some other knowledgeable entity from another plane. Contacting this otherworldly intelligence can break your mind. When you cast this spell, make a {@dc 15} Intelligence saving throw. On a successful save, you can ask the entity up to five questions. You must ask your questions before the spell ends. The DM answers each question with one word, such as \"yes,\" \"no,\" \"maybe,\" \"never,\" \"irrelevant,\" or \"unclear\" (if the entity doesn't know the answer to the question). If a one-word answer would be misleading, the DM might instead offer a short phrase as an answer.\n\nOn a failed save, you take 6d6 Psychic damage and have the Incapacitated condition until you finish a XPHB spell cast on you ends this effect.",
     "damage": {
       "dice": "6d6",
@@ -2862,7 +2862,7 @@
     "range": "30 pies",
     "components": "V, S, M (two eggs)",
     "duration": "1 hora",
-    "ritual": false,
+    "ritual": true,
     "description": "You forge a telepathic link among up to eight willing creatures of your choice within range, psychically linking each creature to all the others for the duration. Creatures that can't communicate in any languages aren't affected by this spell.\n\nUntil the spell ends, the targets can communicate telepathically through the bond whether or not they share a language. The communication is possible over any distance, though it can't extend to other planes of existence.",
     "areaTags": [
       "Varios objetivos"
@@ -3147,7 +3147,7 @@
     "range": "point",
     "components": "V, S, M (a sapphire worth 1,000+ GP)",
     "duration": "Permanente",
-    "ritual": false,
+    "ritual": true,
     "description": "You touch the sapphire used in the casting and an object weighing 10 pounds or less whose longest dimension is 6 feet or less. The spell leaves an Invisible mark on that object and invisibly inscribes the object's name on the sapphire. Each time you cast this spell, you must use a different sapphire.\n\nThereafter, you can take a {@action Magic|XPHB} action to speak the object's name and crush the sapphire. The object instantly appears in your hand regardless of physical or planar distances, and the spell ends.\n\nIf another creature is holding or carrying the object, crushing the sapphire doesn't transport it, but instead you learn who that creature is and where that creature is currently located."
   },
   "irresistible-dance": {

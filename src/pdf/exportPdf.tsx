@@ -1,12 +1,13 @@
-import { pdf } from "@react-pdf/renderer";
-import { calcularCaParaPdf, FichaPdfDocument } from "@/pdf/FichaPdfDocument";
+import { fillOfficialCharacterPdf } from "@/pdf/fillOfficialPdf";
+import type { GameCatalog } from "@/rules/catalog";
 import type { Character } from "@/schemas/character";
 
-export async function exportarFichaPdf(character: Character): Promise<void> {
-  const armorClass = calcularCaParaPdf(character);
-  const blob = await pdf(
-    <FichaPdfDocument character={character} armorClass={armorClass} />,
-  ).toBlob();
+export async function exportarFichaPdf(
+  character: Character,
+  catalog: GameCatalog,
+): Promise<void> {
+  const bytes = await fillOfficialCharacterPdf(character, catalog);
+  const blob = new Blob([bytes], { type: "application/pdf" });
   const url = URL.createObjectURL(blob);
   const anchor = document.createElement("a");
   const safe = character.identity.name.replace(/[^\w\s-]/g, "").trim() || "personaje";

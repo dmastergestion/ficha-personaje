@@ -18,6 +18,7 @@ interface SrdSpellRow {
   id: string;
   nameEn: string;
   level: number;
+  ritual?: boolean;
 }
 
 interface FiveSpell extends FiveSpellLike {}
@@ -257,7 +258,9 @@ function main() {
     }
 
     matched++;
-    meta[spell.id] = buildMeta(entry, spell.level);
+    const row = buildMeta(entry, spell.level);
+    if (spell.ritual === true) row.ritual = true;
+    meta[spell.id] = row;
   }
 
   fs.writeFileSync(outPath, `${JSON.stringify(meta, null, 2)}\n`, "utf8");

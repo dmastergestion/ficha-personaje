@@ -173,12 +173,15 @@ function buildSpells() {
     const doc = readYaml(path.join(dnd5eRoot, rel));
     if (doc.type !== "spell" || !doc._id) continue;
 
+    const properties: string[] = doc.system?.properties ?? [];
     spells.push({
       id: doc.system?.identifier ?? doc._id,
       srdId: doc._id,
       nameEn: doc.name,
       level: doc.system?.level ?? 0,
       school: doc.system?.school ?? "",
+      concentration: properties.includes("concentration"),
+      ritual: properties.includes("ritual"),
     });
   }
 

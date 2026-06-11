@@ -6,6 +6,7 @@ import backgroundMetaJson from "@/data/srd/background-meta.json";
 import phbManual from "@/data/i18n/phb-es-manual.json";
 import {
   mergeConjurosCatalogo,
+  conjuroEsRitual,
   conjuroRequiereConcentracion,
 } from "@/rules/spell-meta";
 import { inferSpeciesGroupId } from "@/rules/species-catalog";
@@ -163,6 +164,7 @@ export interface GameCatalog {
   armor: SrdArmor[];
   t: (category: TranslateCategory, id: string | null | undefined, fallback?: string) => string;
   requiereConcentracion: (spellId: string) => boolean;
+  esRitual: (spellId: string) => boolean;
   obtenerConjuro: (spellId: string) => SrdSpell | undefined;
   obtenerEspecie: (speciesId: string) => SrdSpecies | undefined;
   obtenerTrasfondo: (backgroundId: string) => SrdBackground | undefined;
@@ -247,6 +249,9 @@ export function buildCatalog(pack: ContentPack | null): GameCatalog {
     },
     requiereConcentracion(spellId) {
       return conjuroRequiereConcentracion(spellId, spells.find((s) => s.id === spellId));
+    },
+    esRitual(spellId) {
+      return conjuroEsRitual(spellId, spells.find((s) => s.id === spellId));
     },
     obtenerConjuro(spellId) {
       return spells.find((s) => s.id === spellId);

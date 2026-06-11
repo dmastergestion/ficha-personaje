@@ -4,6 +4,8 @@ const concentracionSrd = new Map(
   srdSpells.map((spell) => [spell.id, spell.concentration === true]),
 );
 
+const ritualSrd = new Map(srdSpells.map((spell) => [spell.id, spell.ritual === true]));
+
 export function conjuroRequiereConcentracion(
   spellId: string | null | undefined,
   spell?: SrdSpell | null,
@@ -11,6 +13,15 @@ export function conjuroRequiereConcentracion(
   if (!spellId) return false;
   if (spell?.concentration === true) return true;
   return concentracionSrd.get(spellId) ?? false;
+}
+
+export function conjuroEsRitual(
+  spellId: string | null | undefined,
+  spell?: SrdSpell | null,
+): boolean {
+  if (!spellId) return false;
+  if (spell?.ritual === true) return true;
+  return ritualSrd.get(spellId) ?? false;
 }
 
 export function mergeConjurosCatalogo(
@@ -34,7 +45,7 @@ export function mergeConjurosCatalogo(
       range: item.range ?? existing?.range,
       components: item.components ?? existing?.components,
       duration: item.duration ?? existing?.duration,
-      ritual: item.ritual ?? existing?.ritual,
+      ritual: item.ritual === true || existing?.ritual === true,
       description: item.description ?? existing?.description,
       areaTags: item.areaTags ?? existing?.areaTags,
     });

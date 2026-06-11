@@ -42,6 +42,7 @@ export function CharacterNewPage() {
   const catalog = useCatalogStore((s) => s.catalog);
   const [paso, setPaso] = useState(0);
   const [error, setError] = useState<string | null>(null);
+  const [creando, setCreando] = useState(false);
   const [tiradas4d6, setTiradas4d6] = useState<Tirada4d6[] | null>(null);
   const [asignacion4d6, setAsignacion4d6] = useState<Partial<Record<AbilityKey, number>>>({});
   const [asignacionArray, setAsignacionArray] = useState<Partial<Record<AbilityKey, number>>>({});
@@ -153,9 +154,20 @@ export function CharacterNewPage() {
       setError(msg);
       return;
     }
-    const character = crearPersonajeDesdeAsistente(datos);
-    await guardarPersonaje(character);
-    navigate(`/character/${character.id}`);
+    setCreando(true);
+    setError(null);
+    try {
+      const character = crearPersonajeDesdeAsistente(datos);
+      await guardarPersonaje(character);
+      navigate(`/character/${character.id}`);
+    } catch (err) {
+      console.error("No se pudo crear la ficha", err);
+      setError(
+        err instanceof Error ? err.message : "No se pudo guardar el personaje en este dispositivo.",
+      );
+    } finally {
+      setCreando(false);
+    }
   }
 
   const muestraPanelLateral = paso === 1 || paso === 2;
@@ -509,8 +521,13 @@ export function CharacterNewPage() {
               Siguiente
             </Button>
           ) : (
-            <Button type="button" variant="critical" onClick={() => void crear()}>
-              Crear ficha
+            <Button
+              type="button"
+              variant="critical"
+              disabled={creando}
+              onClick={() => void crear()}
+            >
+              {creando ? "Guardando…" : "Crear ficha"}
             </Button>
           )}
         </div>

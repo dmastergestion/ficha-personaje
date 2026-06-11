@@ -6,28 +6,51 @@ import {
   type TrackerExport,
 } from "@/schemas/character";
 import { normalizarPersonaje } from "@/schemas/migrate";
+import { iniciativa } from "@/rules/character";
+import { sincronizarIdentidadMulticlase } from "@/rules/multiclass";
 import { sanitizarRecursos, recursosCompletos } from "@/rules/resources";
 import { prepararPersonajeConjuro } from "@/rules/spell-cast";
-import { iniciativa } from "@/rules/character";
+
+function normalizarAntesDeGuardar(character: Character): Character {
+  const identitySync = sincronizarIdentidadMulticlase(character.identity.classes);
+  return prepararPersonajeConjuro(
+    sanitizarRecursos({
+      ...character,
+      identity: {
+        ...character.identity,
+        classId: identitySync.classId,
+        subclassId: identitySync.subclassId,
+        level: identitySync.level,
+        classes: identitySync.classes,
+      },
+    }),
+  );
+}
 
 export async function listarPersonajes(): Promise<Character[]> {
   const filas = await db.characters.orderBy("meta.updatedAt").reverse().toArray();
   return filas.flatMap((raw) => {
     const parsed = CharacterSchema.safeParse(raw);
-    if (!parsed.success) return [];
-    return [prepararPersonajeConjuro(sanitizarRecursos(parsed.data))];
+    if (!parsed.success) {
+      if (import.meta.env.DEV) {
+        const id = typeof raw === "object" && raw && "id" in raw ? String(raw.id) : "?";
+        console.warn("Ficha omitida en listado (schema inválido):", id, parsed.error.flatten());
+      }
+      return [];
+    }
+    return [normalizarAntesDeGuardar(parsed.data)];
   });
 }
 
 export async function obtenerPersonaje(id: string): Promise<Character | undefined> {
   const raw = await db.characters.get(id);
   if (!raw) return undefined;
-  return prepararPersonajeConjuro(sanitizarRecursos(CharacterSchema.parse(raw)));
+  return normalizarAntesDeGuardar(CharacterSchema.parse(raw));
 }
 
 export async function guardarPersonaje(character: Character): Promise<void> {
   const parsed = CharacterSchema.parse({
-    ...prepararPersonajeConjuro(sanitizarRecursos(character)),
+    ...normalizarAntesDeGuardar(character),
     meta: { ...character.meta, updatedAt: new Date().toISOString() },
   });
   await db.characters.put(parsed);

@@ -15,6 +15,35 @@ import {
 import { obtenerArma } from "@/rules/srd";
 import { sanitizarRecursos } from "@/rules/resources";
 
+type AtaqueLegacy = {
+  id: string;
+  name?: string;
+  weaponId?: string | null;
+  magicBonus?: number;
+  abilityKey?: string;
+  proficient?: boolean;
+  damage?: string;
+  notes?: string;
+};
+
+function ataquesAItemsInventario(attacks: AtaqueLegacy[]) {
+  return attacks.map((attack) => ({
+    id: attack.id,
+    name: attack.name ?? "",
+    qty: 1,
+    weightLb:
+      attack.weaponId && typeof attack.weaponId === "string"
+        ? (obtenerArma(attack.weaponId)?.weightLb ?? 0)
+        : 0,
+    weaponId: attack.weaponId ?? null,
+    magicBonus: attack.magicBonus ?? 0,
+    abilityKey: attack.abilityKey,
+    proficient: attack.proficient,
+    damage: attack.damage,
+    notes: attack.notes,
+  }));
+}
+
 /** Schema v1 para importar backups antiguos. */
 const CharacterSchemaV1 = z.object({
   id: z.string().uuid(),
@@ -233,18 +262,7 @@ export function migrarPersonajeV3(raw: unknown): Character {
 export function migrarPersonajeV4(raw: unknown): Character {
   const v4 = CharacterSchemaV4.parse(raw);
   const { attacks, ...combatRest } = v4.combat;
-  const attackItems = attacks.map((attack) => ({
-    id: attack.id,
-    name: attack.name,
-    qty: 1,
-    weightLb: attack.weaponId ? (obtenerArma(attack.weaponId)?.weightLb ?? 0) : 0,
-    weaponId: attack.weaponId ?? null,
-    magicBonus: attack.magicBonus ?? 0,
-    abilityKey: attack.abilityKey,
-    proficient: attack.proficient,
-    damage: attack.damage,
-    notes: attack.notes,
-  }));
+  const attackItems = ataquesAItemsInventario(attacks);
 
   return defaultsV6({
     ...v4,
@@ -348,27 +366,11 @@ export function migrarRegistroDexieV4(char: Record<string, unknown>): void {
   const combat = char.combat as Record<string, unknown> & {
     attacks?: Array<Record<string, unknown>>;
   };
-  const attacks = combat.attacks ?? [];
+  const attacks = (combat.attacks ?? []) as AtaqueLegacy[];
   delete combat.attacks;
 
   const equipment = char.equipment as { items?: Record<string, unknown>[] };
-  const attackItems = attacks.map((attack) => ({
-    id: attack.id,
-    name: attack.name ?? "",
-    qty: 1,
-    weightLb:
-      attack.weaponId && typeof attack.weaponId === "string"
-        ? (obtenerArma(attack.weaponId)?.weightLb ?? 0)
-        : 0,
-    weaponId: attack.weaponId ?? null,
-    magicBonus: attack.magicBonus ?? 0,
-    abilityKey: attack.abilityKey,
-    proficient: attack.proficient,
-    damage: attack.damage,
-    notes: attack.notes,
-  }));
-
-  equipment.items = [...(equipment.items ?? []), ...attackItems];
+  equipment.items = [...(equipment.items ?? []), ...ataquesAItemsInventario(attacks)];
   char.schemaVersion = 5;
 }
 

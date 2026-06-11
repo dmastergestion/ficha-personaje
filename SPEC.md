@@ -17,17 +17,16 @@ Proyecto **independiente** de [herramientas-dm](https://github.com/dmastergestio
 | Capa | Tecnología |
 |------|------------|
 | Lenguaje | TypeScript |
-| UI | React 18+, Tailwind CSS, shadcn/ui |
+| UI | React 19, Tailwind CSS 4, componentes propios |
 | Build | Vite |
 | Estado UI | Zustand (pestaña activa, modales, última tirada) |
-| Formularios | react-hook-form |
 | Validación / tipos | Zod (forma de datos persistidos) |
 | Persistencia | Dexie.js (IndexedDB, schema versionado) |
 | PWA | vite-plugin-pwa |
 | Tests | Vitest (`src/rules/` + migraciones Dexie) |
 | Despliegue | GitHub Pages |
 | Idioma UI | Español |
-| PDF | v2 — `@react-pdf/renderer` |
+| PDF | Plantilla oficial editable + `pdf-lib` (solo build local; no en GitHub Pages) |
 
 **Roles de capas:** Zod valida *qué se guarda*; `rules/` calcula *derivados*; React solo renderiza y delega.
 
@@ -47,47 +46,29 @@ Proyecto **independiente** de [herramientas-dm](https://github.com/dmastergestio
 
 ## Fuera de alcance (global)
 
-Tracker de iniciativa de grupo, mapas, multijugador, vista DM/party, VTT, backend/nube, multi-idioma, reglas 2014, bestiario, campañas/sesiones, multiclass (v1), PDF (v1), efectos automatizados (v1).
+Tracker de iniciativa de grupo, mapas, multijugador, vista DM/party, VTT, backend/nube, multi-idioma, reglas 2014, bestiario, campañas/sesiones, efectos automatizados avanzados (v1).
 
 ---
 
 ## Alcance por fase
 
-### v1 — Mesa jugable
+**Fase activa: v2** (v1 completada). Histórico v1 en commits anteriores.
 
-| Incluir | Excluir (v2) |
-|---------|----------------|
-| Lista de personajes, crear / editar / duplicar / eliminar | Multiclass |
-| Identidad: nombre, jugador, especie, clase, subclase, trasfondo, nivel 1–20 | PDF export |
-| Una sola clase por personaje | Efectos/condiciones con reglas automáticas |
-| 6 atributos + tiradas d20 (normal, ventaja, desventaja) | Peso/carga de inventario |
-| Pericias y salvaciones (proficiencias SRD + override manual) | Integración automática suite DM |
-| PV máx/actuales/temp, dados de golpe, CA (armadura SRD + escudo) | |
-| Iniciativa, velocidad, inspiración heroica (checkbox) | |
-| Catálogo SRD completo: 12 clases, subclases, hechizos, armaduras SRD | |
-| Hechizos: slots por clase, trucos, preparados/conocidos (según clase SRD) | |
-| Descanso corto/largo: PV, dados de golpe, slots de hechizo | |
-| Condiciones: lista manual (texto/checkboxes, sin motor de reglas) | |
-| Equipo: armadura + escudo SRD equipados; resto lista libre | |
-| Export/import JSON backup + export mínimo tracker | |
-| PWA instalable, offline | |
-| Atribución CC BY 4.0 en Ajustes | |
-
-### v2 — Posterior
-
-PDF inspirado en ficha WoTC (no réplica), multiclass, ~~efectos con reglas~~, ~~inventario avanzado~~, ~~mejoras PWA~~.
-
-#### v2.0 — Efectos, inventario, PWA+, multiclass y PDF
+### v2.0 — Estado actual
 
 | Feature | Estado |
 |---------|--------|
-| Condiciones SRD con reglas automáticas (ventaja/desventaja, autofallo, velocidad) | [x] |
-| Agotamiento nivel 0–6 | [x] |
-| Inventario con peso, qty, notas; carga STR×15 lb | [x] |
-| Schema v2 + migración Dexie/import v1 | [x] |
-| PWA: banner actualización, indicador offline, manifest shortcuts | [x] |
+| Lista, crear, editar, duplicar, eliminar personajes | [x] |
 | Multiclass (niveles por clase, slots SRD) | [x] |
-| PDF export (resumen, no réplica WoTC) | [x] |
+| Condiciones SRD con reglas automáticas + agotamiento 0–6 | [x] |
+| Inventario con peso, qty, sintonización; carga STR×15 lb | [x] |
+| Combate: ataques, daño tipado, salvaciones de muerte, concentración | [x] |
+| Hechizos: trucos, preparados/conocidos, ritual, descripciones ES | [x] |
+| Catálogo SRD + pack PHB opcional (local) | [x] |
+| PWA: banner actualización, offline, shortcuts | [x] |
+| Export JSON backup + tracker mínimo | [x] |
+| PDF oficial AcroForm (`pdf-lib`) — **solo local** (`npm run prepare:pdf-template`) | [x] |
+| Schema personaje **v6** + migraciones Dexie v1→v6 | [x] |
 
 ---
 
@@ -106,8 +87,12 @@ ficha-personaje/
 ├── .github/workflows/     # CI: test, build, deploy Pages
 ├── public/
 ├── scripts/
-│   ├── build-srd.ts       # Markdown EN → src/data/srd/*.json
-│   └── build-i18n-es.ts   # Traducciones → src/data/i18n/es.json
+│   ├── build-srd.ts              # Markdown EN → src/data/srd/*.json
+│   ├── build-i18n-es.ts          # Traducciones → src/data/i18n/es.json
+│   ├── build-spell-i18n-es.ts    # Descripciones conjuros ES
+│   ├── build-spell-components-es.ts
+│   ├── prepare-pdf-template.py   # Plantilla PDF local (gitignored)
+│   └── check-pdf-template.mjs    # Aviso solo en build local
 ├── data/i18n/
 │   └── overrides.es.json  # Correcciones manuales ES
 ├── src/
@@ -116,6 +101,7 @@ ficha-personaje/
 │   ├── db/                # Dexie schema, migraciones, repositorio
 │   ├── hooks/
 │   ├── pages/             # Pantallas (ver flujos)
+│   ├── pdf/               # Mapeo y relleno PDF oficial
 │   ├── rules/             # Motor puro (sin React)
 │   │   ├── dice.ts
 │   │   ├── ability.ts
@@ -142,15 +128,13 @@ ficha-personaje/
 flowchart TB
   UI[React pages/components]
   Store[Zustand UI state]
-  RHF[react-hook-form]
   Zod[Zod schemas]
   Rules[rules pure functions]
   Dexie[Dexie IndexedDB]
   SRD[src/data/srd JSON]
-  I18n[src/data/i18n/es.json]
+  I18n[src/data/i18n]
   UI --> Store
-  UI --> RHF
-  RHF --> Zod
+  UI --> Zod
   UI --> Rules
   Rules --> SRD
   UI --> I18n
@@ -169,10 +153,11 @@ flowchart TB
 | Parseo | [downfallx/dnd-5e-srd-markdown](https://github.com/downfallx/dnd-5e-srd-markdown) |
 | QA | [sycarion/5e-2024-SRD](https://github.com/sycarion/5e-2024-SRD) |
 | ES | Foundry `translate-dnd5e-sdr2-es` + glosario SRD 5.1 ES (Nosolorol) + `overrides.es.json` |
+| Conjuros ES | `spell-descriptions-es.json` + `spell-components-es.json` (build-time) |
 
 - IDs internos: `snake_case` en inglés (estables).
-- Texto visible: siempre desde `i18n/es.json` keyed por id.
-- Build-time only; **cero fetch** en la app.
+- Texto visible: `i18n/es.json` (nombres) + descripciones/componentes de conjuros en JSON dedicados.
+- Build-time only; **cero fetch** en la app (salvo HEAD a plantilla PDF en local).
 
 ---
 
@@ -180,26 +165,21 @@ flowchart TB
 
 ### Tabla `characters`
 
-Documento validado con `CharacterSchema` (Zod). Versión de esquema: `schemaVersion: 1`.
+Documento validado con `CharacterSchema` (Zod). Versión de esquema: **`schemaVersion: 6`** (`SCHEMA_VERSION` en `src/lib/constants.ts`).
 
 ```typescript
-// Referencia — implementación en src/schemas/character.ts
+// Referencia resumida — ver src/schemas/character.ts
 
 CharacterSchema = {
   id: string (uuid),
-  schemaVersion: 1,
-  meta: {
-    createdAt: ISO8601,
-    updatedAt: ISO8601,
-  },
+  schemaVersion: 6,
+  meta: { createdAt, updatedAt },
   identity: {
-    name: string,
-    playerName: string,
-    speciesId: string | null,      // id SRD
-    classId: string,               // una sola clase v1
-    subclassId: string | null,
-    backgroundId: string | null,
-    level: 1..20,
+    name, playerName,
+    speciesId, backgroundId,
+    classId, subclassId,       // clase principal (sincronizada con classes[])
+    level: 1..20,               // suma de classes[].level
+    classes: ClassLevel[],      // multiclass
   },
   abilities: {
     str, dex, con, int, wis, cha: 1..30,
@@ -210,31 +190,21 @@ CharacterSchema = {
     skillOverrides: Record<SkillKey, boolean>, // forzar prof/no prof
   },
   combat: {
-    hpMax: number,
-    hpCurrent: number,
-    hpTemp: number,
-    hitDiceTotal: number,
-    hitDiceUsed: number,
-    hitDie: string,                // ej. "d10" de clase SRD
-    armorClassOverride: number | null,
-    initiativeOverride: number | null,
-    speedOverride: number | null,
-    inspiration: boolean,
-    conditions: string[],          // texto libre v1
+    hpMax, hpCurrent, hpTemp, hitDiceTotal, hitDiceUsed, hitDie,
+    armorClassOverride, initiativeOverride, speedOverride,
+    inspiration, deathSaves, conditionIds, conditionsCustom,
+    damageResistances, damageImmunities, damageVulnerabilities,
   },
   equipment: {
-    armorId: string | null,        // id SRD armadura
-    shieldEquipped: boolean,
-    items: { id: string, name: string, qty: number, notes?: string }[],
+    armorId, shieldEquipped,
+    items: EquipmentItem[],
+    currency: { pp, gp, ep, sp, cp },
   },
   spells: {
-    abilityKey: AbilityKey | null,
-    cantripsKnown: string[],       // ids hechizo SRD
-    spellsKnown: string[],
-    spellsPrepared: string[],
-    spellSlotsUsed: Record<"1"|..|"9", number>,
-    pactMagicUsed: number | null,  // brujo si aplica
+    abilityKey, cantripsKnown, spellsKnown, spellsPrepared,
+    spellSlotsUsed, pactMagicUsed, concentratingOn,
   },
+  feats, roleplay, resources,
   notes: string,
 }
 ```
@@ -249,8 +219,9 @@ Modificadores de atributo, bonificador de competencia, CA calculada, modificador
 |---------|---------|-----|
 | Backup completo | `ficha-{name}-{date}.json` | `CharacterSchema` completo |
 | Tracker mínimo | `tracker-{name}.json` | `{ nombre, jugador, nivel, hp_max, hp_actual, ca, iniciativa }` |
+| PDF oficial | `ficha-{name}.pdf` | AcroForm local; deshabilitado si `BASE_URL !== "/"` |
 
-Import: validar con Zod; rechazar con mensaje en español si falla.
+Import: validar con Zod + `migrateCharacter`; rechazar con mensaje en español si falla.
 
 ---
 
@@ -299,7 +270,7 @@ Guardar → redirige a `/character/:id`.
 
 **Tab Combate:** PV (botones ±1, ±5, ±custom), temp HP, CA (calculada + override), iniciativa, velocidad, salvaciones con tirada, pericias con tirada, condiciones manuales, descanso corto/largo.
 
-**Tab Hechizos:** slots usados/máx, trucos, lista preparados/conocidos (filtro SRD), lanzar = tirada ataque/daño manual (v1: no automática completa).
+**Tab Hechizos:** slots, trucos, preparados/conocidos, ritual/concentración, panel info ES, lanzar con tiradas automáticas.
 
 **Tab Equipo:** select armadura SRD, toggle escudo, lista items libre.
 
@@ -330,11 +301,10 @@ Barra fija inferior (móvil): acceso rápido Combate + tirada d20.
 
 ---
 
-## Testing (v1)
+## Testing
 
-- Vitest: `rules/dice`, `rules/ability`, `rules/combat` (CA armadura + DEX + escudo), `rules/spells` (slots por nivel).
-- Test migración Dexie v1.
-- CI: `npm test` + `npm run build`.
+- Vitest: `src/rules/*`, migraciones Dexie, `db/repository`, `pdf/buildOfficialPdfValues`, `spell-text`.
+- CI: `npm test` + `npm run build` (sin plantilla PDF; `GITHUB_ACTIONS` omite aviso).
 
 ---
 

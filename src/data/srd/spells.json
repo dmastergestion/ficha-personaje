@@ -5,7 +5,8 @@
     "nameEn": "Alarm",
     "level": 1,
     "school": "abj",
-    "concentration": false
+    "concentration": false,
+    "ritual": true
   },
   {
     "id": "animal-friendship",
@@ -13,7 +14,8 @@
     "nameEn": "Animal Friendship",
     "level": 1,
     "school": "enc",
-    "concentration": false
+    "concentration": false,
+    "ritual": false
   },
   {
     "id": "bane",
@@ -21,7 +23,8 @@
     "nameEn": "Bane",
     "level": 1,
     "school": "enc",
-    "concentration": true
+    "concentration": true,
+    "ritual": false
   },
   {
     "id": "bless",
@@ -29,7 +32,8 @@
     "nameEn": "Bless",
     "level": 1,
     "school": "enc",
-    "concentration": true
+    "concentration": true,
+    "ritual": false
   },
   {
     "id": "burning-hands",
@@ -37,7 +41,8 @@
     "nameEn": "Burning Hands",
     "level": 1,
     "school": "evo",
-    "concentration": false
+    "concentration": false,
+    "ritual": false
   },
   {
     "id": "charm-person",
@@ -45,7 +50,8 @@
     "nameEn": "Charm Person",
     "level": 1,
     "school": "enc",
-    "concentration": false
+    "concentration": false,
+    "ritual": false
   },
   {
     "id": "chromatic-orb",
@@ -53,7 +59,8 @@
     "nameEn": "Chromatic Orb",
     "level": 1,
     "school": "evo",
-    "concentration": false
+    "concentration": false,
+    "ritual": false
   },
   {
     "id": "color-spray",
@@ -61,7 +68,8 @@
     "nameEn": "Color Spray",
     "level": 1,
     "school": "ill",
-    "concentration": false
+    "concentration": false,
+    "ritual": false
   },
   {
     "id": "command",
@@ -69,7 +77,8 @@
     "nameEn": "Command",
     "level": 1,
     "school": "enc",
-    "concentration": false
+    "concentration": false,
+    "ritual": false
   },
   {
     "id": "comprehend-languages",
@@ -77,7 +86,8 @@
     "nameEn": "Comprehend Languages",
     "level": 1,
     "school": "div",
-    "concentration": false
+    "concentration": false,
+    "ritual": true
   },
   {
     "id": "create-or-destroy-water",
@@ -85,7 +95,8 @@
     "nameEn": "Create or Destroy Water",
     "level": 1,
     "school": "trs",
-    "concentration": false
+    "concentration": false,
+    "ritual": false
   },
   {
     "id": "cure-wounds",
@@ -93,7 +104,8 @@
     "nameEn": "Cure Wounds",
     "level": 1,
     "school": "abj",
-    "concentration": false
+    "concentration": false,
+    "ritual": false
   },
   {
     "id": "detect-evil-and-good",
@@ -101,7 +113,8 @@
     "nameEn": "Detect Evil and Good",
     "level": 1,
     "school": "div",
-    "concentration": true
+    "concentration": true,
+    "ritual": false
   },
   {
     "id": "detect-magic",
@@ -109,7 +122,8 @@
     "nameEn": "Detect Magic",
     "level": 1,
     "school": "div",
-    "concentration": true
+    "concentration": true,
+    "ritual": true
   },
   {
     "id": "detect-poison-and-disease",
@@ -117,7 +131,8 @@
     "nameEn": "Detect Poison and Disease",
     "level": 1,
     "school": "div",
-    "concentration": true
+    "concentration": true,
+    "ritual": true
   },
   {
     "id": "disguise-self",
@@ -125,7 +140,8 @@
     "nameEn": "Disguise Self",
     "level": 1,
     "school": "ill",
-    "concentration": false
+    "concentration": false,
+    "ritual": false
   },
   {
     "id": "dissonant-whispers",
@@ -133,7 +149,8 @@
     "nameEn": "Dissonant Whispers",
     "level": 1,
     "school": "enc",
-    "concentration": false
+    "concentration": false,
+    "ritual": false
   },
   {
     "id": "divine-favor",
@@ -141,7 +158,8 @@
     "nameEn": "Divine Favor",
     "level": 1,
     "school": "trs",
-    "concentration": false
+    "concentration": false,
+    "ritual": false
   },
   {
     "id": "divine-smite",
@@ -149,7 +167,8 @@
     "nameEn": "Divine Smite",
     "level": 1,
     "school": "evo",
-    "concentration": false
+    "concentration": false,
+    "ritual": false
   },
   {
     "id": "ensnaring-strike",
@@ -157,7 +176,8 @@
     "nameEn": "Ensnaring Strike",
     "level": 1,
     "school": "con",
-    "concentration": true
+    "concentration": true,
+    "ritual": false
   },
   {
     "id": "entangle",
@@ -165,7 +185,8 @@
     "nameEn": "Entangle",
     "level": 1,
     "school": "con",
-    "concentration": true
+    "concentration": true,
+    "ritual": false
   },
   {
     "id": "expeditious-retreat",
@@ -173,7 +194,8 @@
     "nameEn": "Expeditious Retreat",
     "level": 1,
     "school": "trs",
-    "concentration": true
+    "concentration": true,
+    "ritual": false
   },
   {
     "id": "faerie-fire",
@@ -181,7 +203,8 @@
     "nameEn": "Faerie Fire",
     "level": 1,
     "school": "evo",
-    "concentration": true
+    "concentration": true,
+    "ritual": false
   },
   {
     "id": "false-life",
@@ -189,7 +212,8 @@
     "nameEn": "False Life",
     "level": 1,
     "school": "nec",
-    "concentration": false
+    "concentration": false,
+    "ritual": false
   },
   {
     "id": "feather-fall",
@@ -197,7 +221,8 @@
     "nameEn": "Feather Fall",
     "level": 1,
     "school": "trs",
-    "concentration": false
+    "concentration": false,
+    "ritual": false
   },
   {
     "id": "find-familiar",
@@ -205,7 +230,8 @@
     "nameEn": "Find Familiar",
     "level": 1,
     "school": "con",
-    "concentration": false
+    "concentration": false,
+    "ritual": true
   },
   {
     "id": "tensers-floating-disk",
@@ -213,7 +239,8 @@
     "nameEn": "Floating Disk",
     "level": 1,
     "school": "con",
-    "concentration": false
+    "concentration": false,
+    "ritual": true
   },
   {
     "id": "fog-cloud",
@@ -221,7 +248,8 @@
     "nameEn": "Fog Cloud",
     "level": 1,
     "school": "con",
-    "concentration": true
+    "concentration": true,
+    "ritual": false
   },
   {
     "id": "goodberry",
@@ -229,7 +257,8 @@
     "nameEn": "Goodberry",
     "level": 1,
     "school": "con",
-    "concentration": false
+    "concentration": false,
+    "ritual": false
   },
   {
     "id": "grease",
@@ -237,7 +266,8 @@
     "nameEn": "Grease",
     "level": 1,
     "school": "con",
-    "concentration": false
+    "concentration": false,
+    "ritual": false
   },
   {
     "id": "guiding-bolt",
@@ -245,7 +275,8 @@
     "nameEn": "Guiding Bolt",
     "level": 1,
     "school": "evo",
-    "concentration": false
+    "concentration": false,
+    "ritual": false
   },
   {
     "id": "healing-word",
@@ -253,7 +284,8 @@
     "nameEn": "Healing Word",
     "level": 1,
     "school": "abj",
-    "concentration": false
+    "concentration": false,
+    "ritual": false
   },
   {
     "id": "hellish-rebuke",
@@ -261,7 +293,8 @@
     "nameEn": "Hellish Rebuke",
     "level": 1,
     "school": "evo",
-    "concentration": false
+    "concentration": false,
+    "ritual": false
   },
   {
     "id": "heroism",
@@ -269,7 +302,8 @@
     "nameEn": "Heroism",
     "level": 1,
     "school": "enc",
-    "concentration": true
+    "concentration": true,
+    "ritual": false
   },
   {
     "id": "hex",
@@ -277,7 +311,8 @@
     "nameEn": "Hex",
     "level": 1,
     "school": "enc",
-    "concentration": true
+    "concentration": true,
+    "ritual": false
   },
   {
     "id": "hideous-laughter",
@@ -285,7 +320,8 @@
     "nameEn": "Hideous Laughter",
     "level": 1,
     "school": "enc",
-    "concentration": false
+    "concentration": true,
+    "ritual": false
   },
   {
     "id": "hunters-mark",
@@ -293,7 +329,8 @@
     "nameEn": "Hunter's Mark",
     "level": 1,
     "school": "div",
-    "concentration": true
+    "concentration": true,
+    "ritual": false
   },
   {
     "id": "ice-knife",
@@ -301,7 +338,8 @@
     "nameEn": "Ice Knife",
     "level": 1,
     "school": "con",
-    "concentration": false
+    "concentration": false,
+    "ritual": false
   },
   {
     "id": "identify",
@@ -309,7 +347,8 @@
     "nameEn": "Identify",
     "level": 1,
     "school": "div",
-    "concentration": false
+    "concentration": false,
+    "ritual": true
   },
   {
     "id": "illusory-script",
@@ -317,7 +356,8 @@
     "nameEn": "Illusory Script",
     "level": 1,
     "school": "ill",
-    "concentration": false
+    "concentration": false,
+    "ritual": true
   },
   {
     "id": "inflict-wounds",
@@ -325,7 +365,8 @@
     "nameEn": "Inflict Wounds",
     "level": 1,
     "school": "nec",
-    "concentration": false
+    "concentration": false,
+    "ritual": false
   },
   {
     "id": "jump",
@@ -333,7 +374,8 @@
     "nameEn": "Jump",
     "level": 1,
     "school": "trs",
-    "concentration": false
+    "concentration": false,
+    "ritual": false
   },
   {
     "id": "longstrider",
@@ -341,7 +383,8 @@
     "nameEn": "Longstrider",
     "level": 1,
     "school": "trs",
-    "concentration": false
+    "concentration": false,
+    "ritual": false
   },
   {
     "id": "mage-armor",
@@ -349,7 +392,8 @@
     "nameEn": "Mage Armor",
     "level": 1,
     "school": "abj",
-    "concentration": false
+    "concentration": false,
+    "ritual": false
   },
   {
     "id": "magic-missile",
@@ -357,7 +401,8 @@
     "nameEn": "Magic Missile",
     "level": 1,
     "school": "evo",
-    "concentration": false
+    "concentration": false,
+    "ritual": false
   },
   {
     "id": "protection-from-evil-and-good",
@@ -365,7 +410,8 @@
     "nameEn": "Protection from Evil and Good",
     "level": 1,
     "school": "abj",
-    "concentration": true
+    "concentration": true,
+    "ritual": false
   },
   {
     "id": "purify-food-and-drink",
@@ -373,7 +419,8 @@
     "nameEn": "Purify Food and Drink",
     "level": 1,
     "school": "trs",
-    "concentration": false
+    "concentration": false,
+    "ritual": true
   },
   {
     "id": "ray-of-sickness",
@@ -381,7 +428,8 @@
     "nameEn": "Ray of Sickness",
     "level": 1,
     "school": "nec",
-    "concentration": false
+    "concentration": false,
+    "ritual": false
   },
   {
     "id": "sanctuary",
@@ -389,7 +437,8 @@
     "nameEn": "Sanctuary",
     "level": 1,
     "school": "abj",
-    "concentration": false
+    "concentration": false,
+    "ritual": false
   },
   {
     "id": "searing-smite",
@@ -397,7 +446,8 @@
     "nameEn": "Searing Smite",
     "level": 1,
     "school": "evo",
-    "concentration": false
+    "concentration": false,
+    "ritual": false
   },
   {
     "id": "shield-of-faith",
@@ -405,7 +455,8 @@
     "nameEn": "Shield of Faith",
     "level": 1,
     "school": "abj",
-    "concentration": true
+    "concentration": true,
+    "ritual": false
   },
   {
     "id": "shield",
@@ -413,7 +464,8 @@
     "nameEn": "Shield",
     "level": 1,
     "school": "abj",
-    "concentration": false
+    "concentration": false,
+    "ritual": false
   },
   {
     "id": "silent-image",
@@ -421,7 +473,8 @@
     "nameEn": "Silent Image",
     "level": 1,
     "school": "ill",
-    "concentration": true
+    "concentration": true,
+    "ritual": false
   },
   {
     "id": "sleep",
@@ -429,7 +482,8 @@
     "nameEn": "Sleep",
     "level": 1,
     "school": "enc",
-    "concentration": true
+    "concentration": true,
+    "ritual": false
   },
   {
     "id": "speak-with-animals",
@@ -437,7 +491,8 @@
     "nameEn": "Speak with Animals",
     "level": 1,
     "school": "div",
-    "concentration": false
+    "concentration": false,
+    "ritual": true
   },
   {
     "id": "thunderwave",
@@ -445,7 +500,8 @@
     "nameEn": "Thunderwave",
     "level": 1,
     "school": "evo",
-    "concentration": false
+    "concentration": false,
+    "ritual": false
   },
   {
     "id": "unseen-servant",
@@ -453,7 +509,8 @@
     "nameEn": "Unseen Servant",
     "level": 1,
     "school": "con",
-    "concentration": false
+    "concentration": false,
+    "ritual": true
   },
   {
     "id": "acid-arrow",
@@ -461,7 +518,8 @@
     "nameEn": "Acid Arrow",
     "level": 2,
     "school": "evo",
-    "concentration": false
+    "concentration": false,
+    "ritual": false
   },
   {
     "id": "aid",
@@ -469,7 +527,8 @@
     "nameEn": "Aid",
     "level": 2,
     "school": "abj",
-    "concentration": false
+    "concentration": false,
+    "ritual": false
   },
   {
     "id": "alter-self",
@@ -477,7 +536,8 @@
     "nameEn": "Alter Self",
     "level": 2,
     "school": "trs",
-    "concentration": true
+    "concentration": true,
+    "ritual": false
   },
   {
     "id": "animal-messenger",
@@ -485,7 +545,8 @@
     "nameEn": "Animal Messenger",
     "level": 2,
     "school": "enc",
-    "concentration": false
+    "concentration": false,
+    "ritual": true
   },
   {
     "id": "arcane-lock",
@@ -493,7 +554,8 @@
     "nameEn": "Arcane Lock",
     "level": 2,
     "school": "abj",
-    "concentration": false
+    "concentration": false,
+    "ritual": false
   },
   {
     "id": "arcane-vigor",
@@ -501,7 +563,8 @@
     "nameEn": "Arcane Vigor",
     "level": 2,
     "school": "abj",
-    "concentration": false
+    "concentration": false,
+    "ritual": false
   },
   {
     "id": "arcanists-magic-aura",
@@ -509,7 +572,8 @@
     "nameEn": "Arcanist's Magic Aura",
     "level": 2,
     "school": "ill",
-    "concentration": false
+    "concentration": false,
+    "ritual": false
   },
   {
     "id": "augury",
@@ -517,7 +581,8 @@
     "nameEn": "Augury",
     "level": 2,
     "school": "div",
-    "concentration": false
+    "concentration": false,
+    "ritual": true
   },
   {
     "id": "barkskin",
@@ -525,7 +590,8 @@
     "nameEn": "Barkskin",
     "level": 2,
     "school": "trs",
-    "concentration": false
+    "concentration": false,
+    "ritual": false
   },
   {
     "id": "blindness-deafness",
@@ -533,7 +599,8 @@
     "nameEn": "Blindness/Deafness",
     "level": 2,
     "school": "trs",
-    "concentration": false
+    "concentration": false,
+    "ritual": false
   },
   {
     "id": "blur",
@@ -541,7 +608,8 @@
     "nameEn": "Blur",
     "level": 2,
     "school": "ill",
-    "concentration": true
+    "concentration": true,
+    "ritual": false
   },
   {
     "id": "calm-emotions",
@@ -549,7 +617,8 @@
     "nameEn": "Calm Emotions",
     "level": 2,
     "school": "enc",
-    "concentration": true
+    "concentration": true,
+    "ritual": false
   },
   {
     "id": "continual-flame",
@@ -557,7 +626,8 @@
     "nameEn": "Continual Flame",
     "level": 2,
     "school": "evo",
-    "concentration": false
+    "concentration": false,
+    "ritual": false
   },
   {
     "id": "darkness",
@@ -565,7 +635,8 @@
     "nameEn": "Darkness",
     "level": 2,
     "school": "evo",
-    "concentration": true
+    "concentration": true,
+    "ritual": false
   },
   {
     "id": "darkvision",
@@ -573,7 +644,8 @@
     "nameEn": "Darkvision",
     "level": 2,
     "school": "trs",
-    "concentration": false
+    "concentration": false,
+    "ritual": false
   },
   {
     "id": "detect-thoughts",
@@ -581,7 +653,8 @@
     "nameEn": "Detect Thoughts",
     "level": 2,
     "school": "div",
-    "concentration": true
+    "concentration": true,
+    "ritual": false
   },
   {
     "id": "dragons-breath",
@@ -589,7 +662,8 @@
     "nameEn": "Dragon's Breath",
     "level": 2,
     "school": "trs",
-    "concentration": true
+    "concentration": true,
+    "ritual": false
   },
   {
     "id": "enhance-ability",
@@ -597,7 +671,8 @@
     "nameEn": "Enhance Ability",
     "level": 2,
     "school": "trs",
-    "concentration": true
+    "concentration": true,
+    "ritual": false
   },
   {
     "id": "enlarge-reduce",
@@ -605,7 +680,8 @@
     "nameEn": "Enlarge/Reduce",
     "level": 2,
     "school": "trs",
-    "concentration": true
+    "concentration": true,
+    "ritual": false
   },
   {
     "id": "enthrall",
@@ -613,7 +689,8 @@
     "nameEn": "Enthrall",
     "level": 2,
     "school": "enc",
-    "concentration": false
+    "concentration": true,
+    "ritual": false
   },
   {
     "id": "find-steed",
@@ -621,7 +698,8 @@
     "nameEn": "Find Steed",
     "level": 2,
     "school": "con",
-    "concentration": false
+    "concentration": false,
+    "ritual": false
   },
   {
     "id": "find-traps",
@@ -629,7 +707,8 @@
     "nameEn": "Find Traps",
     "level": 2,
     "school": "div",
-    "concentration": false
+    "concentration": false,
+    "ritual": false
   },
   {
     "id": "flame-blade",
@@ -637,7 +716,8 @@
     "nameEn": "Flame Blade",
     "level": 2,
     "school": "evo",
-    "concentration": true
+    "concentration": true,
+    "ritual": false
   },
   {
     "id": "flaming-sphere",
@@ -645,7 +725,8 @@
     "nameEn": "Flaming Sphere",
     "level": 2,
     "school": "con",
-    "concentration": true
+    "concentration": true,
+    "ritual": false
   },
   {
     "id": "gentle-repose",
@@ -653,7 +734,8 @@
     "nameEn": "Gentle Repose",
     "level": 2,
     "school": "nec",
-    "concentration": false
+    "concentration": false,
+    "ritual": true
   },
   {
     "id": "gust-of-wind",
@@ -661,7 +743,8 @@
     "nameEn": "Gust of Wind",
     "level": 2,
     "school": "evo",
-    "concentration": true
+    "concentration": true,
+    "ritual": false
   },
   {
     "id": "heat-metal",
@@ -669,7 +752,8 @@
     "nameEn": "Heat Metal",
     "level": 2,
     "school": "trs",
-    "concentration": true
+    "concentration": true,
+    "ritual": false
   },
   {
     "id": "hold-person",
@@ -677,7 +761,8 @@
     "nameEn": "Hold Person",
     "level": 2,
     "school": "enc",
-    "concentration": true
+    "concentration": true,
+    "ritual": false
   },
   {
     "id": "invisibility",
@@ -685,7 +770,8 @@
     "nameEn": "Invisibility",
     "level": 2,
     "school": "ill",
-    "concentration": true
+    "concentration": true,
+    "ritual": false
   },
   {
     "id": "knock",
@@ -693,7 +779,8 @@
     "nameEn": "Knock",
     "level": 2,
     "school": "trs",
-    "concentration": false
+    "concentration": false,
+    "ritual": false
   },
   {
     "id": "lesser-restoration",
@@ -701,7 +788,8 @@
     "nameEn": "Lesser Restoration",
     "level": 2,
     "school": "abj",
-    "concentration": false
+    "concentration": false,
+    "ritual": false
   },
   {
     "id": "levitate",
@@ -709,7 +797,8 @@
     "nameEn": "Levitate",
     "level": 2,
     "school": "trs",
-    "concentration": true
+    "concentration": true,
+    "ritual": false
   },
   {
     "id": "locate-animals-or-plants",
@@ -717,7 +806,8 @@
     "nameEn": "Locate Animals or Plants",
     "level": 2,
     "school": "div",
-    "concentration": false
+    "concentration": false,
+    "ritual": true
   },
   {
     "id": "locate-object",
@@ -725,7 +815,8 @@
     "nameEn": "Locate Object",
     "level": 2,
     "school": "div",
-    "concentration": true
+    "concentration": true,
+    "ritual": false
   },
   {
     "id": "magic-mouth",
@@ -733,7 +824,8 @@
     "nameEn": "Magic Mouth",
     "level": 2,
     "school": "ill",
-    "concentration": false
+    "concentration": false,
+    "ritual": true
   },
   {
     "id": "magic-weapon",
@@ -741,7 +833,8 @@
     "nameEn": "Magic Weapon",
     "level": 2,
     "school": "trs",
-    "concentration": false
+    "concentration": false,
+    "ritual": false
   },
   {
     "id": "mind-spike",
@@ -749,7 +842,8 @@
     "nameEn": "Mind Spike",
     "level": 2,
     "school": "div",
-    "concentration": true
+    "concentration": true,
+    "ritual": false
   },
   {
     "id": "mirror-image",
@@ -757,7 +851,8 @@
     "nameEn": "Mirror Image",
     "level": 2,
     "school": "ill",
-    "concentration": false
+    "concentration": false,
+    "ritual": false
   },
   {
     "id": "misty-step",
@@ -765,7 +860,8 @@
     "nameEn": "Misty Step",
     "level": 2,
     "school": "con",
-    "concentration": false
+    "concentration": false,
+    "ritual": false
   },
   {
     "id": "moonbeam",
@@ -773,7 +869,8 @@
     "nameEn": "Moonbeam",
     "level": 2,
     "school": "evo",
-    "concentration": true
+    "concentration": true,
+    "ritual": false
   },
   {
     "id": "pass-without-trace",
@@ -781,7 +878,8 @@
     "nameEn": "Pass without Trace",
     "level": 2,
     "school": "abj",
-    "concentration": true
+    "concentration": true,
+    "ritual": false
   },
   {
     "id": "phantasmal-force",
@@ -789,7 +887,8 @@
     "nameEn": "Phantasmal Force",
     "level": 2,
     "school": "ill",
-    "concentration": true
+    "concentration": true,
+    "ritual": false
   },
   {
     "id": "prayer-of-healing",
@@ -797,7 +896,8 @@
     "nameEn": "Prayer of Healing",
     "level": 2,
     "school": "abj",
-    "concentration": false
+    "concentration": false,
+    "ritual": false
   },
   {
     "id": "protection-from-poison",
@@ -805,7 +905,8 @@
     "nameEn": "Protection from Poison",
     "level": 2,
     "school": "abj",
-    "concentration": false
+    "concentration": false,
+    "ritual": false
   },
   {
     "id": "ray-of-enfeeblement",
@@ -813,7 +914,8 @@
     "nameEn": "Ray of Enfeeblement",
     "level": 2,
     "school": "nec",
-    "concentration": true
+    "concentration": true,
+    "ritual": false
   },
   {
     "id": "rope-trick",
@@ -821,7 +923,8 @@
     "nameEn": "Rope Trick",
     "level": 2,
     "school": "trs",
-    "concentration": false
+    "concentration": false,
+    "ritual": false
   },
   {
     "id": "scorching-ray",
@@ -829,7 +932,8 @@
     "nameEn": "Scorching Ray",
     "level": 2,
     "school": "evo",
-    "concentration": false
+    "concentration": false,
+    "ritual": false
   },
   {
     "id": "see-invisibility",
@@ -837,7 +941,8 @@
     "nameEn": "See Invisibility",
     "level": 2,
     "school": "div",
-    "concentration": false
+    "concentration": false,
+    "ritual": false
   },
   {
     "id": "shatter",
@@ -845,7 +950,8 @@
     "nameEn": "Shatter",
     "level": 2,
     "school": "evo",
-    "concentration": false
+    "concentration": false,
+    "ritual": false
   },
   {
     "id": "shining-smite",
@@ -853,7 +959,8 @@
     "nameEn": "Shining Smite",
     "level": 2,
     "school": "trs",
-    "concentration": true
+    "concentration": true,
+    "ritual": false
   },
   {
     "id": "silence",
@@ -861,7 +968,8 @@
     "nameEn": "Silence",
     "level": 2,
     "school": "ill",
-    "concentration": true
+    "concentration": true,
+    "ritual": true
   },
   {
     "id": "spider-climb",
@@ -869,7 +977,8 @@
     "nameEn": "Spider Climb",
     "level": 2,
     "school": "trs",
-    "concentration": true
+    "concentration": true,
+    "ritual": false
   },
   {
     "id": "spike-growth",
@@ -877,7 +986,8 @@
     "nameEn": "Spike Growth",
     "level": 2,
     "school": "trs",
-    "concentration": true
+    "concentration": true,
+    "ritual": false
   },
   {
     "id": "spiritual-weapon",
@@ -885,7 +995,8 @@
     "nameEn": "Spiritual Weapon",
     "level": 2,
     "school": "evo",
-    "concentration": true
+    "concentration": true,
+    "ritual": false
   },
   {
     "id": "suggestion",
@@ -893,7 +1004,8 @@
     "nameEn": "Suggestion",
     "level": 2,
     "school": "enc",
-    "concentration": true
+    "concentration": true,
+    "ritual": false
   },
   {
     "id": "warding-bond",
@@ -901,7 +1013,8 @@
     "nameEn": "Warding Bond",
     "level": 2,
     "school": "abj",
-    "concentration": false
+    "concentration": false,
+    "ritual": false
   },
   {
     "id": "web",
@@ -909,7 +1022,8 @@
     "nameEn": "Web",
     "level": 2,
     "school": "con",
-    "concentration": true
+    "concentration": true,
+    "ritual": false
   },
   {
     "id": "zone-of-truth",
@@ -917,7 +1031,8 @@
     "nameEn": "Zone of Truth",
     "level": 2,
     "school": "enc",
-    "concentration": false
+    "concentration": false,
+    "ritual": false
   },
   {
     "id": "animate-dead",
@@ -925,7 +1040,8 @@
     "nameEn": "Animate Dead",
     "level": 3,
     "school": "nec",
-    "concentration": false
+    "concentration": false,
+    "ritual": false
   },
   {
     "id": "beacon-of-hope",
@@ -933,7 +1049,8 @@
     "nameEn": "Beacon of Hope",
     "level": 3,
     "school": "abj",
-    "concentration": true
+    "concentration": true,
+    "ritual": false
   },
   {
     "id": "bestow-curse",
@@ -941,7 +1058,8 @@
     "nameEn": "Bestow Curse",
     "level": 3,
     "school": "nec",
-    "concentration": true
+    "concentration": true,
+    "ritual": false
   },
   {
     "id": "blink",
@@ -949,7 +1067,8 @@
     "nameEn": "Blink",
     "level": 3,
     "school": "trs",
-    "concentration": false
+    "concentration": false,
+    "ritual": false
   },
   {
     "id": "call-lightning",
@@ -957,7 +1076,8 @@
     "nameEn": "Call Lightning",
     "level": 3,
     "school": "con",
-    "concentration": true
+    "concentration": true,
+    "ritual": false
   },
   {
     "id": "clairvoyance",
@@ -965,7 +1085,8 @@
     "nameEn": "Clairvoyance",
     "level": 3,
     "school": "div",
-    "concentration": true
+    "concentration": true,
+    "ritual": false
   },
   {
     "id": "conjure-animals",
@@ -973,7 +1094,8 @@
     "nameEn": "Conjure Animals",
     "level": 3,
     "school": "con",
-    "concentration": true
+    "concentration": true,
+    "ritual": false
   },
   {
     "id": "counterspell",
@@ -981,7 +1103,8 @@
     "nameEn": "Counterspell",
     "level": 3,
     "school": "abj",
-    "concentration": false
+    "concentration": false,
+    "ritual": false
   },
   {
     "id": "create-food-and-water",
@@ -989,7 +1112,8 @@
     "nameEn": "Create Food and Water",
     "level": 3,
     "school": "con",
-    "concentration": false
+    "concentration": false,
+    "ritual": false
   },
   {
     "id": "daylight",
@@ -997,7 +1121,8 @@
     "nameEn": "Daylight",
     "level": 3,
     "school": "evo",
-    "concentration": false
+    "concentration": false,
+    "ritual": false
   },
   {
     "id": "dispel-magic",
@@ -1005,7 +1130,8 @@
     "nameEn": "Dispel Magic",
     "level": 3,
     "school": "abj",
-    "concentration": false
+    "concentration": false,
+    "ritual": false
   },
   {
     "id": "fear",
@@ -1013,7 +1139,8 @@
     "nameEn": "Fear",
     "level": 3,
     "school": "ill",
-    "concentration": true
+    "concentration": true,
+    "ritual": false
   },
   {
     "id": "fireball",
@@ -1021,7 +1148,8 @@
     "nameEn": "Fireball",
     "level": 3,
     "school": "evo",
-    "concentration": false
+    "concentration": false,
+    "ritual": false
   },
   {
     "id": "fly",
@@ -1029,7 +1157,8 @@
     "nameEn": "Fly",
     "level": 3,
     "school": "trs",
-    "concentration": true
+    "concentration": true,
+    "ritual": false
   },
   {
     "id": "gaseous-form",
@@ -1037,7 +1166,8 @@
     "nameEn": "Gaseous Form",
     "level": 3,
     "school": "trs",
-    "concentration": true
+    "concentration": true,
+    "ritual": false
   },
   {
     "id": "glyph-of-warding",
@@ -1045,7 +1175,8 @@
     "nameEn": "Glyph of Warding",
     "level": 3,
     "school": "abj",
-    "concentration": false
+    "concentration": false,
+    "ritual": false
   },
   {
     "id": "haste",
@@ -1053,7 +1184,8 @@
     "nameEn": "Haste",
     "level": 3,
     "school": "trs",
-    "concentration": true
+    "concentration": true,
+    "ritual": false
   },
   {
     "id": "hypnotic-pattern",
@@ -1061,7 +1193,8 @@
     "nameEn": "Hypnotic Pattern",
     "level": 3,
     "school": "ill",
-    "concentration": true
+    "concentration": false,
+    "ritual": false
   },
   {
     "id": "lightning-bolt",
@@ -1069,7 +1202,8 @@
     "nameEn": "Lightning Bolt",
     "level": 3,
     "school": "evo",
-    "concentration": false
+    "concentration": false,
+    "ritual": false
   },
   {
     "id": "magic-circle",
@@ -1077,7 +1211,8 @@
     "nameEn": "Magic Circle",
     "level": 3,
     "school": "abj",
-    "concentration": false
+    "concentration": false,
+    "ritual": false
   },
   {
     "id": "major-image",
@@ -1085,7 +1220,8 @@
     "nameEn": "Major Image",
     "level": 3,
     "school": "ill",
-    "concentration": true
+    "concentration": true,
+    "ritual": false
   },
   {
     "id": "mass-healing-word",
@@ -1093,7 +1229,8 @@
     "nameEn": "Mass Healing Word",
     "level": 3,
     "school": "abj",
-    "concentration": false
+    "concentration": false,
+    "ritual": false
   },
   {
     "id": "meld-into-stone",
@@ -1101,7 +1238,8 @@
     "nameEn": "Meld into Stone",
     "level": 3,
     "school": "trs",
-    "concentration": false
+    "concentration": false,
+    "ritual": true
   },
   {
     "id": "nondetection",
@@ -1109,7 +1247,8 @@
     "nameEn": "Nondetection",
     "level": 3,
     "school": "abj",
-    "concentration": false
+    "concentration": false,
+    "ritual": false
   },
   {
     "id": "phantom-steed",
@@ -1117,7 +1256,8 @@
     "nameEn": "Phantom Steed",
     "level": 3,
     "school": "ill",
-    "concentration": false
+    "concentration": false,
+    "ritual": true
   },
   {
     "id": "plant-growth",
@@ -1125,7 +1265,8 @@
     "nameEn": "Plant Growth",
     "level": 3,
     "school": "trs",
-    "concentration": false
+    "concentration": false,
+    "ritual": false
   },
   {
     "id": "protection-from-energy",
@@ -1133,7 +1274,8 @@
     "nameEn": "Protection from Energy",
     "level": 3,
     "school": "abj",
-    "concentration": true
+    "concentration": true,
+    "ritual": false
   },
   {
     "id": "remove-curse",
@@ -1141,7 +1283,8 @@
     "nameEn": "Remove Curse",
     "level": 3,
     "school": "abj",
-    "concentration": false
+    "concentration": false,
+    "ritual": false
   },
   {
     "id": "revivify",
@@ -1149,7 +1292,8 @@
     "nameEn": "Revivify",
     "level": 3,
     "school": "nec",
-    "concentration": false
+    "concentration": false,
+    "ritual": false
   },
   {
     "id": "sending",
@@ -1157,7 +1301,8 @@
     "nameEn": "Sending",
     "level": 3,
     "school": "div",
-    "concentration": false
+    "concentration": false,
+    "ritual": false
   },
   {
     "id": "sleet-storm",
@@ -1165,7 +1310,8 @@
     "nameEn": "Sleet Storm",
     "level": 3,
     "school": "con",
-    "concentration": true
+    "concentration": true,
+    "ritual": false
   },
   {
     "id": "slow",
@@ -1173,7 +1319,8 @@
     "nameEn": "Slow",
     "level": 3,
     "school": "trs",
-    "concentration": true
+    "concentration": true,
+    "ritual": false
   },
   {
     "id": "speak-with-dead",
@@ -1181,7 +1328,8 @@
     "nameEn": "Speak with Dead",
     "level": 3,
     "school": "nec",
-    "concentration": false
+    "concentration": false,
+    "ritual": false
   },
   {
     "id": "speak-with-plants",
@@ -1189,7 +1337,8 @@
     "nameEn": "Speak with Plants",
     "level": 3,
     "school": "trs",
-    "concentration": false
+    "concentration": false,
+    "ritual": false
   },
   {
     "id": "spirit-guardians",
@@ -1197,7 +1346,8 @@
     "nameEn": "Spirit Guardians",
     "level": 3,
     "school": "con",
-    "concentration": true
+    "concentration": true,
+    "ritual": false
   },
   {
     "id": "stinking-cloud",
@@ -1205,7 +1355,8 @@
     "nameEn": "Stinking Cloud",
     "level": 3,
     "school": "con",
-    "concentration": true
+    "concentration": true,
+    "ritual": false
   },
   {
     "id": "tiny-hut",
@@ -1213,7 +1364,8 @@
     "nameEn": "Tiny Hut",
     "level": 3,
     "school": "evo",
-    "concentration": false
+    "concentration": false,
+    "ritual": true
   },
   {
     "id": "tongues",
@@ -1221,7 +1373,8 @@
     "nameEn": "Tongues",
     "level": 3,
     "school": "div",
-    "concentration": false
+    "concentration": false,
+    "ritual": false
   },
   {
     "id": "vampiric-touch",
@@ -1229,7 +1382,8 @@
     "nameEn": "Vampiric Touch",
     "level": 3,
     "school": "nec",
-    "concentration": true
+    "concentration": true,
+    "ritual": false
   },
   {
     "id": "water-breathing",
@@ -1237,7 +1391,8 @@
     "nameEn": "Water Breathing",
     "level": 3,
     "school": "trs",
-    "concentration": false
+    "concentration": false,
+    "ritual": true
   },
   {
     "id": "water-walk",
@@ -1245,7 +1400,8 @@
     "nameEn": "Water Walk",
     "level": 3,
     "school": "trs",
-    "concentration": false
+    "concentration": false,
+    "ritual": true
   },
   {
     "id": "wind-wall",
@@ -1253,7 +1409,8 @@
     "nameEn": "Wind Wall",
     "level": 3,
     "school": "evo",
-    "concentration": true
+    "concentration": true,
+    "ritual": false
   },
   {
     "id": "arcane-eye",
@@ -1261,7 +1418,8 @@
     "nameEn": "Arcane Eye",
     "level": 4,
     "school": "div",
-    "concentration": true
+    "concentration": true,
+    "ritual": false
   },
   {
     "id": "aura-of-life",
@@ -1269,7 +1427,8 @@
     "nameEn": "Aura of Life",
     "level": 4,
     "school": "abj",
-    "concentration": true
+    "concentration": true,
+    "ritual": false
   },
   {
     "id": "banishment",
@@ -1277,7 +1436,8 @@
     "nameEn": "Banishment",
     "level": 4,
     "school": "abj",
-    "concentration": true
+    "concentration": true,
+    "ritual": false
   },
   {
     "id": "black-tentacles",
@@ -1285,7 +1445,8 @@
     "nameEn": "Black Tentacles",
     "level": 4,
     "school": "con",
-    "concentration": false
+    "concentration": true,
+    "ritual": false
   },
   {
     "id": "blight",
@@ -1293,7 +1454,8 @@
     "nameEn": "Blight",
     "level": 4,
     "school": "nec",
-    "concentration": false
+    "concentration": false,
+    "ritual": false
   },
   {
     "id": "charm-monster",
@@ -1301,7 +1463,8 @@
     "nameEn": "Charm Monster",
     "level": 4,
     "school": "enc",
-    "concentration": false
+    "concentration": false,
+    "ritual": false
   },
   {
     "id": "compulsion",
@@ -1309,7 +1472,8 @@
     "nameEn": "Compulsion",
     "level": 4,
     "school": "enc",
-    "concentration": true
+    "concentration": true,
+    "ritual": false
   },
   {
     "id": "confusion",
@@ -1317,7 +1481,8 @@
     "nameEn": "Confusion",
     "level": 4,
     "school": "enc",
-    "concentration": true
+    "concentration": true,
+    "ritual": false
   },
   {
     "id": "conjure-minor-elementals",
@@ -1325,7 +1490,8 @@
     "nameEn": "Conjure Minor Elementals",
     "level": 4,
     "school": "con",
-    "concentration": true
+    "concentration": true,
+    "ritual": false
   },
   {
     "id": "conjure-woodland-beings",
@@ -1333,7 +1499,8 @@
     "nameEn": "Conjure Woodland Beings",
     "level": 4,
     "school": "con",
-    "concentration": true
+    "concentration": true,
+    "ritual": false
   },
   {
     "id": "control-water",
@@ -1341,7 +1508,8 @@
     "nameEn": "Control Water",
     "level": 4,
     "school": "trs",
-    "concentration": true
+    "concentration": true,
+    "ritual": false
   },
   {
     "id": "death-ward",
@@ -1349,7 +1517,8 @@
     "nameEn": "Death Ward",
     "level": 4,
     "school": "abj",
-    "concentration": false
+    "concentration": false,
+    "ritual": false
   },
   {
     "id": "dimension-door",
@@ -1357,7 +1526,8 @@
     "nameEn": "Dimension Door",
     "level": 4,
     "school": "con",
-    "concentration": false
+    "concentration": false,
+    "ritual": false
   },
   {
     "id": "divination",
@@ -1365,7 +1535,8 @@
     "nameEn": "Divination",
     "level": 4,
     "school": "div",
-    "concentration": false
+    "concentration": false,
+    "ritual": true
   },
   {
     "id": "dominate-beast",
@@ -1373,7 +1544,8 @@
     "nameEn": "Dominate Beast",
     "level": 4,
     "school": "enc",
-    "concentration": true
+    "concentration": true,
+    "ritual": false
   },
   {
     "id": "fabricate",
@@ -1381,7 +1553,8 @@
     "nameEn": "Fabricate",
     "level": 4,
     "school": "trs",
-    "concentration": false
+    "concentration": false,
+    "ritual": false
   },
   {
     "id": "faithful-hound",
@@ -1389,7 +1562,8 @@
     "nameEn": "Faithful Hound",
     "level": 4,
     "school": "con",
-    "concentration": false
+    "concentration": false,
+    "ritual": false
   },
   {
     "id": "fire-shield",
@@ -1397,7 +1571,8 @@
     "nameEn": "Fire Shield",
     "level": 4,
     "school": "evo",
-    "concentration": false
+    "concentration": false,
+    "ritual": false
   },
   {
     "id": "freedom-of-movement",
@@ -1405,7 +1580,8 @@
     "nameEn": "Freedom of Movement",
     "level": 4,
     "school": "abj",
-    "concentration": false
+    "concentration": false,
+    "ritual": false
   },
   {
     "id": "giant-insect",
@@ -1413,7 +1589,8 @@
     "nameEn": "Giant Insect",
     "level": 4,
     "school": "con",
-    "concentration": true
+    "concentration": true,
+    "ritual": false
   },
   {
     "id": "greater-invisibility",
@@ -1421,7 +1598,8 @@
     "nameEn": "Greater Invisibility",
     "level": 4,
     "school": "ill",
-    "concentration": true
+    "concentration": true,
+    "ritual": false
   },
   {
     "id": "guardian-of-faith",
@@ -1429,7 +1607,8 @@
     "nameEn": "Guardian of Faith",
     "level": 4,
     "school": "con",
-    "concentration": false
+    "concentration": false,
+    "ritual": false
   },
   {
     "id": "hallucinatory-terrain",
@@ -1437,7 +1616,8 @@
     "nameEn": "Hallucinatory Terrain",
     "level": 4,
     "school": "ill",
-    "concentration": false
+    "concentration": false,
+    "ritual": false
   },
   {
     "id": "ice-storm",
@@ -1445,7 +1625,8 @@
     "nameEn": "Ice Storm",
     "level": 4,
     "school": "evo",
-    "concentration": false
+    "concentration": false,
+    "ritual": false
   },
   {
     "id": "locate-creature",
@@ -1453,7 +1634,8 @@
     "nameEn": "Locate Creature",
     "level": 4,
     "school": "div",
-    "concentration": true
+    "concentration": true,
+    "ritual": false
   },
   {
     "id": "phantasmal-killer",
@@ -1461,7 +1643,8 @@
     "nameEn": "Phantasmal Killer",
     "level": 4,
     "school": "ill",
-    "concentration": true
+    "concentration": true,
+    "ritual": false
   },
   {
     "id": "polymorph",
@@ -1469,7 +1652,8 @@
     "nameEn": "Polymorph",
     "level": 4,
     "school": "trs",
-    "concentration": true
+    "concentration": true,
+    "ritual": false
   },
   {
     "id": "private-sanctum",
@@ -1477,7 +1661,8 @@
     "nameEn": "Private Sanctum",
     "level": 4,
     "school": "abj",
-    "concentration": false
+    "concentration": false,
+    "ritual": false
   },
   {
     "id": "resilient-sphere",
@@ -1485,7 +1670,8 @@
     "nameEn": "Resilient Sphere",
     "level": 4,
     "school": "abj",
-    "concentration": false
+    "concentration": false,
+    "ritual": false
   },
   {
     "id": "secret-chest",
@@ -1493,7 +1679,8 @@
     "nameEn": "Secret Chest",
     "level": 4,
     "school": "con",
-    "concentration": false
+    "concentration": false,
+    "ritual": false
   },
   {
     "id": "stone-shape",
@@ -1501,7 +1688,8 @@
     "nameEn": "Stone Shape",
     "level": 4,
     "school": "trs",
-    "concentration": false
+    "concentration": false,
+    "ritual": false
   },
   {
     "id": "stoneskin",
@@ -1509,7 +1697,8 @@
     "nameEn": "Stoneskin",
     "level": 4,
     "school": "trs",
-    "concentration": true
+    "concentration": true,
+    "ritual": false
   },
   {
     "id": "vitriolic-sphere",
@@ -1517,7 +1706,8 @@
     "nameEn": "Vitriolic Sphere",
     "level": 4,
     "school": "evo",
-    "concentration": false
+    "concentration": false,
+    "ritual": false
   },
   {
     "id": "wall-of-fire",
@@ -1525,7 +1715,8 @@
     "nameEn": "Wall of Fire",
     "level": 4,
     "school": "evo",
-    "concentration": true
+    "concentration": true,
+    "ritual": false
   },
   {
     "id": "animate-objects",
@@ -1533,7 +1724,8 @@
     "nameEn": "Animate Objects",
     "level": 5,
     "school": "trs",
-    "concentration": true
+    "concentration": true,
+    "ritual": false
   },
   {
     "id": "antilife-shell",
@@ -1541,7 +1733,8 @@
     "nameEn": "Antilife Shell",
     "level": 5,
     "school": "abj",
-    "concentration": true
+    "concentration": true,
+    "ritual": false
   },
   {
     "id": "arcane-hand",
@@ -1549,7 +1742,8 @@
     "nameEn": "Arcane Hand",
     "level": 5,
     "school": "evo",
-    "concentration": false
+    "concentration": true,
+    "ritual": false
   },
   {
     "id": "awaken",
@@ -1557,7 +1751,8 @@
     "nameEn": "Awaken",
     "level": 5,
     "school": "trs",
-    "concentration": false
+    "concentration": false,
+    "ritual": false
   },
   {
     "id": "cloudkill",
@@ -1565,7 +1760,8 @@
     "nameEn": "Cloudkill",
     "level": 5,
     "school": "con",
-    "concentration": true
+    "concentration": true,
+    "ritual": false
   },
   {
     "id": "commune-with-nature",
@@ -1573,7 +1769,8 @@
     "nameEn": "Commune with Nature",
     "level": 5,
     "school": "div",
-    "concentration": false
+    "concentration": false,
+    "ritual": true
   },
   {
     "id": "commune",
@@ -1581,7 +1778,8 @@
     "nameEn": "Commune",
     "level": 5,
     "school": "div",
-    "concentration": false
+    "concentration": false,
+    "ritual": true
   },
   {
     "id": "cone-of-cold",
@@ -1589,7 +1787,8 @@
     "nameEn": "Cone of Cold",
     "level": 5,
     "school": "evo",
-    "concentration": false
+    "concentration": false,
+    "ritual": false
   },
   {
     "id": "conjure-elemental",
@@ -1597,7 +1796,8 @@
     "nameEn": "Conjure Elemental",
     "level": 5,
     "school": "con",
-    "concentration": true
+    "concentration": true,
+    "ritual": false
   },
   {
     "id": "contact-other-plane",
@@ -1605,7 +1805,8 @@
     "nameEn": "Contact Other Plane",
     "level": 5,
     "school": "div",
-    "concentration": false
+    "concentration": false,
+    "ritual": true
   },
   {
     "id": "contagion",
@@ -1613,7 +1814,8 @@
     "nameEn": "Contagion",
     "level": 5,
     "school": "nec",
-    "concentration": false
+    "concentration": false,
+    "ritual": false
   },
   {
     "id": "creation",
@@ -1621,7 +1823,8 @@
     "nameEn": "Creation",
     "level": 5,
     "school": "ill",
-    "concentration": false
+    "concentration": false,
+    "ritual": false
   },
   {
     "id": "dispel-evil-and-good",
@@ -1629,7 +1832,8 @@
     "nameEn": "Dispel Evil and Good",
     "level": 5,
     "school": "abj",
-    "concentration": true
+    "concentration": true,
+    "ritual": false
   },
   {
     "id": "dominate-person",
@@ -1637,7 +1841,8 @@
     "nameEn": "Dominate Person",
     "level": 5,
     "school": "enc",
-    "concentration": true
+    "concentration": true,
+    "ritual": false
   },
   {
     "id": "dream",
@@ -1645,7 +1850,8 @@
     "nameEn": "Dream",
     "level": 5,
     "school": "ill",
-    "concentration": false
+    "concentration": false,
+    "ritual": false
   },
   {
     "id": "flame-strike",
@@ -1653,7 +1859,8 @@
     "nameEn": "Flame Strike",
     "level": 5,
     "school": "evo",
-    "concentration": false
+    "concentration": false,
+    "ritual": false
   },
   {
     "id": "geas",
@@ -1661,7 +1868,8 @@
     "nameEn": "Geas",
     "level": 5,
     "school": "enc",
-    "concentration": false
+    "concentration": false,
+    "ritual": false
   },
   {
     "id": "greater-restoration",
@@ -1669,7 +1877,8 @@
     "nameEn": "Greater Restoration",
     "level": 5,
     "school": "abj",
-    "concentration": false
+    "concentration": false,
+    "ritual": false
   },
   {
     "id": "hallow",
@@ -1677,7 +1886,8 @@
     "nameEn": "Hallow",
     "level": 5,
     "school": "abj",
-    "concentration": false
+    "concentration": false,
+    "ritual": false
   },
   {
     "id": "hold-monster",
@@ -1685,7 +1895,8 @@
     "nameEn": "Hold Monster",
     "level": 5,
     "school": "enc",
-    "concentration": true
+    "concentration": true,
+    "ritual": false
   },
   {
     "id": "insect-plague",
@@ -1693,7 +1904,8 @@
     "nameEn": "Insect Plague",
     "level": 5,
     "school": "con",
-    "concentration": true
+    "concentration": true,
+    "ritual": false
   },
   {
     "id": "legend-lore",
@@ -1701,7 +1913,8 @@
     "nameEn": "Legend Lore",
     "level": 5,
     "school": "div",
-    "concentration": false
+    "concentration": false,
+    "ritual": false
   },
   {
     "id": "mass-cure-wounds",
@@ -1709,7 +1922,8 @@
     "nameEn": "Mass Cure Wounds",
     "level": 5,
     "school": "abj",
-    "concentration": false
+    "concentration": false,
+    "ritual": false
   },
   {
     "id": "mislead",
@@ -1717,7 +1931,8 @@
     "nameEn": "Mislead",
     "level": 5,
     "school": "ill",
-    "concentration": true
+    "concentration": true,
+    "ritual": false
   },
   {
     "id": "modify-memory",
@@ -1725,7 +1940,8 @@
     "nameEn": "Modify Memory",
     "level": 5,
     "school": "enc",
-    "concentration": true
+    "concentration": true,
+    "ritual": false
   },
   {
     "id": "passwall",
@@ -1733,7 +1949,8 @@
     "nameEn": "Passwall",
     "level": 5,
     "school": "trs",
-    "concentration": false
+    "concentration": false,
+    "ritual": false
   },
   {
     "id": "planar-binding",
@@ -1741,7 +1958,8 @@
     "nameEn": "Planar Binding",
     "level": 5,
     "school": "abj",
-    "concentration": false
+    "concentration": false,
+    "ritual": false
   },
   {
     "id": "raise-dead",
@@ -1749,7 +1967,8 @@
     "nameEn": "Raise Dead",
     "level": 5,
     "school": "nec",
-    "concentration": false
+    "concentration": false,
+    "ritual": false
   },
   {
     "id": "reincarnate",
@@ -1757,7 +1976,8 @@
     "nameEn": "Reincarnate",
     "level": 5,
     "school": "nec",
-    "concentration": false
+    "concentration": false,
+    "ritual": false
   },
   {
     "id": "scrying",
@@ -1765,7 +1985,8 @@
     "nameEn": "Scrying",
     "level": 5,
     "school": "div",
-    "concentration": true
+    "concentration": true,
+    "ritual": false
   },
   {
     "id": "seeming",
@@ -1773,7 +1994,8 @@
     "nameEn": "Seeming",
     "level": 5,
     "school": "ill",
-    "concentration": false
+    "concentration": false,
+    "ritual": false
   },
   {
     "id": "summon-dragon",
@@ -1781,7 +2003,8 @@
     "nameEn": "Summon Dragon",
     "level": 5,
     "school": "con",
-    "concentration": true
+    "concentration": true,
+    "ritual": false
   },
   {
     "id": "telekinesis",
@@ -1789,7 +2012,8 @@
     "nameEn": "Telekinesis",
     "level": 5,
     "school": "trs",
-    "concentration": true
+    "concentration": true,
+    "ritual": false
   },
   {
     "id": "telepathic-bond",
@@ -1797,7 +2021,8 @@
     "nameEn": "Telepathic Bond",
     "level": 5,
     "school": "div",
-    "concentration": false
+    "concentration": false,
+    "ritual": true
   },
   {
     "id": "teleportation-circle",
@@ -1805,7 +2030,8 @@
     "nameEn": "Teleportation Circle",
     "level": 5,
     "school": "con",
-    "concentration": false
+    "concentration": false,
+    "ritual": false
   },
   {
     "id": "tree-stride",
@@ -1813,7 +2039,8 @@
     "nameEn": "Tree Stride",
     "level": 5,
     "school": "con",
-    "concentration": true
+    "concentration": true,
+    "ritual": false
   },
   {
     "id": "wall-of-force",
@@ -1821,7 +2048,8 @@
     "nameEn": "Wall of Force",
     "level": 5,
     "school": "evo",
-    "concentration": true
+    "concentration": true,
+    "ritual": false
   },
   {
     "id": "wall-of-stone",
@@ -1829,7 +2057,8 @@
     "nameEn": "Wall of Stone",
     "level": 5,
     "school": "evo",
-    "concentration": true
+    "concentration": true,
+    "ritual": false
   },
   {
     "id": "blade-barrier",
@@ -1837,7 +2066,8 @@
     "nameEn": "Blade Barrier",
     "level": 6,
     "school": "evo",
-    "concentration": true
+    "concentration": true,
+    "ritual": false
   },
   {
     "id": "chain-lightning",
@@ -1845,7 +2075,8 @@
     "nameEn": "Chain Lightning",
     "level": 6,
     "school": "evo",
-    "concentration": false
+    "concentration": false,
+    "ritual": false
   },
   {
     "id": "circle-of-death",
@@ -1853,7 +2084,8 @@
     "nameEn": "Circle of Death",
     "level": 6,
     "school": "nec",
-    "concentration": false
+    "concentration": false,
+    "ritual": false
   },
   {
     "id": "conjure-fey",
@@ -1861,7 +2093,8 @@
     "nameEn": "Conjure Fey",
     "level": 6,
     "school": "con",
-    "concentration": true
+    "concentration": true,
+    "ritual": false
   },
   {
     "id": "contingency",
@@ -1869,7 +2102,8 @@
     "nameEn": "Contingency",
     "level": 6,
     "school": "abj",
-    "concentration": false
+    "concentration": false,
+    "ritual": false
   },
   {
     "id": "create-undead",
@@ -1877,7 +2111,8 @@
     "nameEn": "Create Undead",
     "level": 6,
     "school": "nec",
-    "concentration": false
+    "concentration": false,
+    "ritual": false
   },
   {
     "id": "disintegrate",
@@ -1885,7 +2120,8 @@
     "nameEn": "Disintegrate",
     "level": 6,
     "school": "trs",
-    "concentration": false
+    "concentration": false,
+    "ritual": false
   },
   {
     "id": "eyebite",
@@ -1893,7 +2129,8 @@
     "nameEn": "Eyebite",
     "level": 6,
     "school": "nec",
-    "concentration": true
+    "concentration": true,
+    "ritual": false
   },
   {
     "id": "find-the-path",
@@ -1901,7 +2138,8 @@
     "nameEn": "Find the Path",
     "level": 6,
     "school": "div",
-    "concentration": true
+    "concentration": true,
+    "ritual": false
   },
   {
     "id": "flesh-to-stone",
@@ -1909,7 +2147,8 @@
     "nameEn": "Flesh to Stone",
     "level": 6,
     "school": "trs",
-    "concentration": true
+    "concentration": true,
+    "ritual": false
   },
   {
     "id": "forbiddance",
@@ -1917,7 +2156,8 @@
     "nameEn": "Forbiddance",
     "level": 6,
     "school": "abj",
-    "concentration": false
+    "concentration": false,
+    "ritual": false
   },
   {
     "id": "freezing-sphere",
@@ -1925,7 +2165,8 @@
     "nameEn": "Freezing Sphere",
     "level": 6,
     "school": "evo",
-    "concentration": false
+    "concentration": false,
+    "ritual": false
   },
   {
     "id": "globe-of-invulnerability",
@@ -1933,7 +2174,8 @@
     "nameEn": "Globe of Invulnerability",
     "level": 6,
     "school": "abj",
-    "concentration": true
+    "concentration": true,
+    "ritual": false
   },
   {
     "id": "guards-and-wards",
@@ -1941,7 +2183,8 @@
     "nameEn": "Guards and Wards",
     "level": 6,
     "school": "abj",
-    "concentration": false
+    "concentration": false,
+    "ritual": false
   },
   {
     "id": "harm",
@@ -1949,7 +2192,8 @@
     "nameEn": "Harm",
     "level": 6,
     "school": "nec",
-    "concentration": false
+    "concentration": false,
+    "ritual": false
   },
   {
     "id": "heal",
@@ -1957,7 +2201,8 @@
     "nameEn": "Heal",
     "level": 6,
     "school": "abj",
-    "concentration": false
+    "concentration": false,
+    "ritual": false
   },
   {
     "id": "heroes-feast",
@@ -1965,7 +2210,8 @@
     "nameEn": "Heroes' Feast",
     "level": 6,
     "school": "con",
-    "concentration": false
+    "concentration": false,
+    "ritual": false
   },
   {
     "id": "instant-summons",
@@ -1973,7 +2219,8 @@
     "nameEn": "Instant Summons",
     "level": 6,
     "school": "con",
-    "concentration": false
+    "concentration": false,
+    "ritual": true
   },
   {
     "id": "irresistible-dance",
@@ -1981,7 +2228,8 @@
     "nameEn": "Irresistible Dance",
     "level": 6,
     "school": "enc",
-    "concentration": false
+    "concentration": true,
+    "ritual": false
   },
   {
     "id": "magic-jar",
@@ -1989,7 +2237,8 @@
     "nameEn": "Magic Jar",
     "level": 6,
     "school": "nec",
-    "concentration": false
+    "concentration": false,
+    "ritual": false
   },
   {
     "id": "mass-suggestion",
@@ -1997,7 +2246,8 @@
     "nameEn": "Mass Suggestion",
     "level": 6,
     "school": "enc",
-    "concentration": false
+    "concentration": false,
+    "ritual": false
   },
   {
     "id": "move-earth",
@@ -2005,7 +2255,8 @@
     "nameEn": "Move Earth",
     "level": 6,
     "school": "trs",
-    "concentration": true
+    "concentration": true,
+    "ritual": false
   },
   {
     "id": "planar-ally",
@@ -2013,7 +2264,8 @@
     "nameEn": "Planar Ally",
     "level": 6,
     "school": "con",
-    "concentration": false
+    "concentration": false,
+    "ritual": false
   },
   {
     "id": "programmed-illusion",
@@ -2021,7 +2273,8 @@
     "nameEn": "Programmed Illusion",
     "level": 6,
     "school": "ill",
-    "concentration": false
+    "concentration": false,
+    "ritual": false
   },
   {
     "id": "sunbeam",
@@ -2029,7 +2282,8 @@
     "nameEn": "Sunbeam",
     "level": 6,
     "school": "evo",
-    "concentration": true
+    "concentration": true,
+    "ritual": false
   },
   {
     "id": "transport-via-plants",
@@ -2037,7 +2291,8 @@
     "nameEn": "Transport via Plants",
     "level": 6,
     "school": "con",
-    "concentration": false
+    "concentration": false,
+    "ritual": false
   },
   {
     "id": "true-seeing",
@@ -2045,7 +2300,8 @@
     "nameEn": "True Seeing",
     "level": 6,
     "school": "div",
-    "concentration": false
+    "concentration": false,
+    "ritual": false
   },
   {
     "id": "wall-of-ice",
@@ -2053,7 +2309,8 @@
     "nameEn": "Wall of Ice",
     "level": 6,
     "school": "evo",
-    "concentration": true
+    "concentration": true,
+    "ritual": false
   },
   {
     "id": "wall-of-thorns",
@@ -2061,7 +2318,8 @@
     "nameEn": "Wall of Thorns",
     "level": 6,
     "school": "con",
-    "concentration": true
+    "concentration": true,
+    "ritual": false
   },
   {
     "id": "wind-walk",
@@ -2069,7 +2327,8 @@
     "nameEn": "Wind Walk",
     "level": 6,
     "school": "trs",
-    "concentration": false
+    "concentration": false,
+    "ritual": false
   },
   {
     "id": "word-of-recall",
@@ -2077,7 +2336,8 @@
     "nameEn": "Word of Recall",
     "level": 6,
     "school": "con",
-    "concentration": false
+    "concentration": false,
+    "ritual": false
   },
   {
     "id": "arcane-sword",
@@ -2085,7 +2345,8 @@
     "nameEn": "Arcane Sword",
     "level": 7,
     "school": "evo",
-    "concentration": false
+    "concentration": true,
+    "ritual": false
   },
   {
     "id": "conjure-celestial",
@@ -2093,7 +2354,8 @@
     "nameEn": "Conjure Celestial",
     "level": 7,
     "school": "con",
-    "concentration": true
+    "concentration": true,
+    "ritual": false
   },
   {
     "id": "delayed-blast-fireball",
@@ -2101,7 +2363,8 @@
     "nameEn": "Delayed Blast Fireball",
     "level": 7,
     "school": "evo",
-    "concentration": true
+    "concentration": true,
+    "ritual": false
   },
   {
     "id": "divine-word",
@@ -2109,7 +2372,8 @@
     "nameEn": "Divine Word",
     "level": 7,
     "school": "evo",
-    "concentration": false
+    "concentration": false,
+    "ritual": false
   },
   {
     "id": "etherealness",
@@ -2117,7 +2381,8 @@
     "nameEn": "Etherealness",
     "level": 7,
     "school": "con",
-    "concentration": false
+    "concentration": false,
+    "ritual": false
   },
   {
     "id": "finger-of-death",
@@ -2125,7 +2390,8 @@
     "nameEn": "Finger of Death",
     "level": 7,
     "school": "nec",
-    "concentration": false
+    "concentration": false,
+    "ritual": false
   },
   {
     "id": "fire-storm",
@@ -2133,7 +2399,8 @@
     "nameEn": "Fire Storm",
     "level": 7,
     "school": "evo",
-    "concentration": false
+    "concentration": false,
+    "ritual": false
   },
   {
     "id": "forcecage",
@@ -2141,7 +2408,8 @@
     "nameEn": "Forcecage",
     "level": 7,
     "school": "evo",
-    "concentration": true
+    "concentration": true,
+    "ritual": false
   },
   {
     "id": "magnificent-mansion",
@@ -2149,7 +2417,8 @@
     "nameEn": "Magnificent Mansion",
     "level": 7,
     "school": "con",
-    "concentration": false
+    "concentration": false,
+    "ritual": false
   },
   {
     "id": "mirage-arcane",
@@ -2157,7 +2426,8 @@
     "nameEn": "Mirage Arcane",
     "level": 7,
     "school": "ill",
-    "concentration": false
+    "concentration": false,
+    "ritual": false
   },
   {
     "id": "plane-shift",
@@ -2165,7 +2435,8 @@
     "nameEn": "Plane Shift",
     "level": 7,
     "school": "con",
-    "concentration": false
+    "concentration": false,
+    "ritual": false
   },
   {
     "id": "prismatic-spray",
@@ -2173,7 +2444,8 @@
     "nameEn": "Prismatic Spray",
     "level": 7,
     "school": "evo",
-    "concentration": false
+    "concentration": false,
+    "ritual": false
   },
   {
     "id": "project-image",
@@ -2181,7 +2453,8 @@
     "nameEn": "Project Image",
     "level": 7,
     "school": "ill",
-    "concentration": true
+    "concentration": true,
+    "ritual": false
   },
   {
     "id": "regenerate",
@@ -2189,7 +2462,8 @@
     "nameEn": "Regenerate",
     "level": 7,
     "school": "trs",
-    "concentration": false
+    "concentration": false,
+    "ritual": false
   },
   {
     "id": "resurrection",
@@ -2197,7 +2471,8 @@
     "nameEn": "Resurrection",
     "level": 7,
     "school": "nec",
-    "concentration": false
+    "concentration": false,
+    "ritual": false
   },
   {
     "id": "reverse-gravity",
@@ -2205,7 +2480,8 @@
     "nameEn": "Reverse Gravity",
     "level": 7,
     "school": "trs",
-    "concentration": true
+    "concentration": true,
+    "ritual": false
   },
   {
     "id": "sequester",
@@ -2213,7 +2489,8 @@
     "nameEn": "Sequester",
     "level": 7,
     "school": "trs",
-    "concentration": false
+    "concentration": false,
+    "ritual": false
   },
   {
     "id": "simulacrum",
@@ -2221,7 +2498,8 @@
     "nameEn": "Simulacrum",
     "level": 7,
     "school": "ill",
-    "concentration": false
+    "concentration": false,
+    "ritual": false
   },
   {
     "id": "symbol",
@@ -2229,7 +2507,8 @@
     "nameEn": "Symbol",
     "level": 7,
     "school": "abj",
-    "concentration": false
+    "concentration": false,
+    "ritual": false
   },
   {
     "id": "teleport",
@@ -2237,7 +2516,8 @@
     "nameEn": "Teleport",
     "level": 7,
     "school": "con",
-    "concentration": false
+    "concentration": false,
+    "ritual": false
   },
   {
     "id": "animal-shapes",
@@ -2245,7 +2525,8 @@
     "nameEn": "Animal Shapes",
     "level": 8,
     "school": "trs",
-    "concentration": false
+    "concentration": false,
+    "ritual": false
   },
   {
     "id": "antimagic-field",
@@ -2253,7 +2534,8 @@
     "nameEn": "Antimagic Field",
     "level": 8,
     "school": "abj",
-    "concentration": true
+    "concentration": true,
+    "ritual": false
   },
   {
     "id": "antipathy-sympathy",
@@ -2261,7 +2543,8 @@
     "nameEn": "Antipathy/Sympathy",
     "level": 8,
     "school": "enc",
-    "concentration": false
+    "concentration": false,
+    "ritual": false
   },
   {
     "id": "befuddlement",
@@ -2269,7 +2552,8 @@
     "nameEn": "Befuddlement",
     "level": 8,
     "school": "enc",
-    "concentration": false
+    "concentration": false,
+    "ritual": false
   },
   {
     "id": "clone",
@@ -2277,7 +2561,8 @@
     "nameEn": "Clone",
     "level": 8,
     "school": "nec",
-    "concentration": false
+    "concentration": false,
+    "ritual": false
   },
   {
     "id": "control-weather",
@@ -2285,7 +2570,8 @@
     "nameEn": "Control Weather",
     "level": 8,
     "school": "trs",
-    "concentration": true
+    "concentration": true,
+    "ritual": false
   },
   {
     "id": "demiplane",
@@ -2293,7 +2579,8 @@
     "nameEn": "Demiplane",
     "level": 8,
     "school": "con",
-    "concentration": false
+    "concentration": false,
+    "ritual": false
   },
   {
     "id": "dominate-monster",
@@ -2301,7 +2588,8 @@
     "nameEn": "Dominate Monster",
     "level": 8,
     "school": "enc",
-    "concentration": true
+    "concentration": true,
+    "ritual": false
   },
   {
     "id": "earthquake",
@@ -2309,7 +2597,8 @@
     "nameEn": "Earthquake",
     "level": 8,
     "school": "trs",
-    "concentration": true
+    "concentration": true,
+    "ritual": false
   },
   {
     "id": "glibness",
@@ -2317,7 +2606,8 @@
     "nameEn": "Glibness",
     "level": 8,
     "school": "enc",
-    "concentration": false
+    "concentration": false,
+    "ritual": false
   },
   {
     "id": "holy-aura",
@@ -2325,7 +2615,8 @@
     "nameEn": "Holy Aura",
     "level": 8,
     "school": "abj",
-    "concentration": true
+    "concentration": true,
+    "ritual": false
   },
   {
     "id": "incendiary-cloud",
@@ -2333,7 +2624,8 @@
     "nameEn": "Incendiary Cloud",
     "level": 8,
     "school": "con",
-    "concentration": true
+    "concentration": true,
+    "ritual": false
   },
   {
     "id": "maze",
@@ -2341,7 +2633,8 @@
     "nameEn": "Maze",
     "level": 8,
     "school": "con",
-    "concentration": true
+    "concentration": true,
+    "ritual": false
   },
   {
     "id": "mind-blank",
@@ -2349,7 +2642,8 @@
     "nameEn": "Mind Blank",
     "level": 8,
     "school": "abj",
-    "concentration": false
+    "concentration": false,
+    "ritual": false
   },
   {
     "id": "power-word-stun",
@@ -2357,7 +2651,8 @@
     "nameEn": "Power Word Stun",
     "level": 8,
     "school": "enc",
-    "concentration": false
+    "concentration": false,
+    "ritual": false
   },
   {
     "id": "sunburst",
@@ -2365,7 +2660,8 @@
     "nameEn": "Sunburst",
     "level": 8,
     "school": "evo",
-    "concentration": false
+    "concentration": false,
+    "ritual": false
   },
   {
     "id": "tsunami",
@@ -2373,7 +2669,8 @@
     "nameEn": "Tsunami",
     "level": 8,
     "school": "con",
-    "concentration": true
+    "concentration": true,
+    "ritual": false
   },
   {
     "id": "astral-projection",
@@ -2381,7 +2678,8 @@
     "nameEn": "Astral Projection",
     "level": 9,
     "school": "nec",
-    "concentration": false
+    "concentration": false,
+    "ritual": false
   },
   {
     "id": "foresight",
@@ -2389,7 +2687,8 @@
     "nameEn": "Foresight",
     "level": 9,
     "school": "div",
-    "concentration": false
+    "concentration": false,
+    "ritual": false
   },
   {
     "id": "gate",
@@ -2397,7 +2696,8 @@
     "nameEn": "Gate",
     "level": 9,
     "school": "con",
-    "concentration": true
+    "concentration": true,
+    "ritual": false
   },
   {
     "id": "imprisonment",
@@ -2405,7 +2705,8 @@
     "nameEn": "Imprisonment",
     "level": 9,
     "school": "abj",
-    "concentration": false
+    "concentration": false,
+    "ritual": false
   },
   {
     "id": "mass-heal",
@@ -2413,7 +2714,8 @@
     "nameEn": "Mass Heal",
     "level": 9,
     "school": "abj",
-    "concentration": false
+    "concentration": false,
+    "ritual": false
   },
   {
     "id": "meteor-swarm",
@@ -2421,7 +2723,8 @@
     "nameEn": "Meteor Swarm",
     "level": 9,
     "school": "evo",
-    "concentration": false
+    "concentration": false,
+    "ritual": false
   },
   {
     "id": "power-word-heal",
@@ -2429,7 +2732,8 @@
     "nameEn": "Power Word Heal",
     "level": 9,
     "school": "enc",
-    "concentration": false
+    "concentration": false,
+    "ritual": false
   },
   {
     "id": "power-word-kill",
@@ -2437,7 +2741,8 @@
     "nameEn": "Power Word Kill",
     "level": 9,
     "school": "enc",
-    "concentration": false
+    "concentration": false,
+    "ritual": false
   },
   {
     "id": "prismatic-wall",
@@ -2445,7 +2750,8 @@
     "nameEn": "Prismatic Wall",
     "level": 9,
     "school": "abj",
-    "concentration": false
+    "concentration": false,
+    "ritual": false
   },
   {
     "id": "shapechange",
@@ -2453,7 +2759,8 @@
     "nameEn": "Shapechange",
     "level": 9,
     "school": "trs",
-    "concentration": true
+    "concentration": true,
+    "ritual": false
   },
   {
     "id": "storm-of-vengeance",
@@ -2461,7 +2768,8 @@
     "nameEn": "Storm of Vengeance",
     "level": 9,
     "school": "con",
-    "concentration": true
+    "concentration": true,
+    "ritual": false
   },
   {
     "id": "time-stop",
@@ -2469,7 +2777,8 @@
     "nameEn": "Time Stop",
     "level": 9,
     "school": "trs",
-    "concentration": false
+    "concentration": false,
+    "ritual": false
   },
   {
     "id": "true-polymorph",
@@ -2477,7 +2786,8 @@
     "nameEn": "True Polymorph",
     "level": 9,
     "school": "trs",
-    "concentration": true
+    "concentration": true,
+    "ritual": false
   },
   {
     "id": "true-resurrection",
@@ -2485,7 +2795,8 @@
     "nameEn": "True Resurrection",
     "level": 9,
     "school": "nec",
-    "concentration": false
+    "concentration": false,
+    "ritual": false
   },
   {
     "id": "weird",
@@ -2493,7 +2804,8 @@
     "nameEn": "Weird",
     "level": 9,
     "school": "ill",
-    "concentration": true
+    "concentration": true,
+    "ritual": false
   },
   {
     "id": "wish",
@@ -2501,7 +2813,8 @@
     "nameEn": "Wish",
     "level": 9,
     "school": "con",
-    "concentration": false
+    "concentration": false,
+    "ritual": false
   },
   {
     "id": "acid-splash",
@@ -2509,7 +2822,8 @@
     "nameEn": "Acid Splash",
     "level": 0,
     "school": "evo",
-    "concentration": false
+    "concentration": false,
+    "ritual": false
   },
   {
     "id": "chill-touch",
@@ -2517,7 +2831,8 @@
     "nameEn": "Chill Touch",
     "level": 0,
     "school": "nec",
-    "concentration": false
+    "concentration": false,
+    "ritual": false
   },
   {
     "id": "dancing-lights",
@@ -2525,7 +2840,8 @@
     "nameEn": "Dancing Lights",
     "level": 0,
     "school": "ill",
-    "concentration": true
+    "concentration": true,
+    "ritual": false
   },
   {
     "id": "druidcraft",
@@ -2533,7 +2849,8 @@
     "nameEn": "Druidcraft",
     "level": 0,
     "school": "trs",
-    "concentration": false
+    "concentration": false,
+    "ritual": false
   },
   {
     "id": "eldritch-blast",
@@ -2541,7 +2858,8 @@
     "nameEn": "Eldritch Blast",
     "level": 0,
     "school": "evo",
-    "concentration": false
+    "concentration": false,
+    "ritual": false
   },
   {
     "id": "elementalism",
@@ -2549,7 +2867,8 @@
     "nameEn": "Elementalism",
     "level": 0,
     "school": "trs",
-    "concentration": false
+    "concentration": false,
+    "ritual": false
   },
   {
     "id": "fire-bolt",
@@ -2557,7 +2876,8 @@
     "nameEn": "Fire Bolt",
     "level": 0,
     "school": "evo",
-    "concentration": false
+    "concentration": false,
+    "ritual": false
   },
   {
     "id": "guidance",
@@ -2565,7 +2885,8 @@
     "nameEn": "Guidance",
     "level": 0,
     "school": "div",
-    "concentration": true
+    "concentration": true,
+    "ritual": false
   },
   {
     "id": "light",
@@ -2573,7 +2894,8 @@
     "nameEn": "Light",
     "level": 0,
     "school": "evo",
-    "concentration": false
+    "concentration": false,
+    "ritual": false
   },
   {
     "id": "mage-hand",
@@ -2581,7 +2903,8 @@
     "nameEn": "Mage Hand",
     "level": 0,
     "school": "con",
-    "concentration": false
+    "concentration": false,
+    "ritual": false
   },
   {
     "id": "mending",
@@ -2589,7 +2912,8 @@
     "nameEn": "Mending",
     "level": 0,
     "school": "trs",
-    "concentration": false
+    "concentration": false,
+    "ritual": false
   },
   {
     "id": "message",
@@ -2597,7 +2921,8 @@
     "nameEn": "Message",
     "level": 0,
     "school": "trs",
-    "concentration": false
+    "concentration": false,
+    "ritual": false
   },
   {
     "id": "minor-illusion",
@@ -2605,7 +2930,8 @@
     "nameEn": "Minor Illusion",
     "level": 0,
     "school": "ill",
-    "concentration": false
+    "concentration": false,
+    "ritual": false
   },
   {
     "id": "poison-spray",
@@ -2613,7 +2939,8 @@
     "nameEn": "Poison Spray",
     "level": 0,
     "school": "nec",
-    "concentration": false
+    "concentration": false,
+    "ritual": false
   },
   {
     "id": "prestidigitation",
@@ -2621,7 +2948,8 @@
     "nameEn": "Prestidigitation",
     "level": 0,
     "school": "trs",
-    "concentration": false
+    "concentration": false,
+    "ritual": false
   },
   {
     "id": "produce-flame",
@@ -2629,7 +2957,8 @@
     "nameEn": "Produce Flame",
     "level": 0,
     "school": "con",
-    "concentration": false
+    "concentration": false,
+    "ritual": false
   },
   {
     "id": "ray-of-frost",
@@ -2637,7 +2966,8 @@
     "nameEn": "Ray of Frost",
     "level": 0,
     "school": "evo",
-    "concentration": false
+    "concentration": false,
+    "ritual": false
   },
   {
     "id": "resistance",
@@ -2645,7 +2975,8 @@
     "nameEn": "Resistance",
     "level": 0,
     "school": "abj",
-    "concentration": true
+    "concentration": true,
+    "ritual": false
   },
   {
     "id": "sacred-flame",
@@ -2653,7 +2984,8 @@
     "nameEn": "Sacred Flame",
     "level": 0,
     "school": "evo",
-    "concentration": false
+    "concentration": false,
+    "ritual": false
   },
   {
     "id": "shillelagh",
@@ -2661,7 +2993,8 @@
     "nameEn": "Shillelagh",
     "level": 0,
     "school": "trs",
-    "concentration": false
+    "concentration": false,
+    "ritual": false
   },
   {
     "id": "shocking-grasp",
@@ -2669,7 +3002,8 @@
     "nameEn": "Shocking Grasp",
     "level": 0,
     "school": "evo",
-    "concentration": false
+    "concentration": false,
+    "ritual": false
   },
   {
     "id": "sorcerous-burst",
@@ -2677,7 +3011,8 @@
     "nameEn": "Sorcerous Burst",
     "level": 0,
     "school": "evo",
-    "concentration": false
+    "concentration": false,
+    "ritual": false
   },
   {
     "id": "spare-the-dying",
@@ -2685,7 +3020,8 @@
     "nameEn": "Spare the Dying",
     "level": 0,
     "school": "nec",
-    "concentration": false
+    "concentration": false,
+    "ritual": false
   },
   {
     "id": "starry-wisp",
@@ -2693,7 +3029,8 @@
     "nameEn": "Starry Wisp",
     "level": 0,
     "school": "evo",
-    "concentration": false
+    "concentration": false,
+    "ritual": false
   },
   {
     "id": "thaumaturgy",
@@ -2701,7 +3038,8 @@
     "nameEn": "Thaumaturgy",
     "level": 0,
     "school": "trs",
-    "concentration": false
+    "concentration": false,
+    "ritual": false
   },
   {
     "id": "true-strike",
@@ -2709,7 +3047,8 @@
     "nameEn": "True Strike",
     "level": 0,
     "school": "div",
-    "concentration": false
+    "concentration": false,
+    "ritual": false
   },
   {
     "id": "vicious-mockery",
@@ -2717,6 +3056,7 @@
     "nameEn": "Vicious Mockery",
     "level": 0,
     "school": "enc",
-    "concentration": false
+    "concentration": false,
+    "ritual": false
   }
 ]
