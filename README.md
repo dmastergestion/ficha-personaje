@@ -73,7 +73,7 @@ Flujo habitual al editar textos en español:
 
 **Rasgos de subclase PHB:** las traducciones curadas viven en `data/i18n/subclass-features-manual.json`. El script `generate:subclass-features-manual` solo sirve para **reconstruir un borrador** desde `data/i18n/_subclass-features-en-extract.json` y los fragmentos en `scripts/subclass-features-manual-data*.ts`; no lo uses en CI ni en el flujo normal si ya tienes el manual revisado.
 
-**Alcances y metadatos de conjuro:** `npm run build:spell-meta` (requiere `vendor/5etools-src`) regenera `src/data/srd/spell-meta.json` con alcances en metros.
+**Alcances y metadatos de conjuro:** `npm run build:spell-meta` (requiere `vendor/5etools-src`) regenera `src/data/srd/spell-meta.json` con alcances en formato **pies (m)**.
 
 ### Export PDF
 

@@ -125,6 +125,30 @@ const origin = polishOriginDescriptions();
 console.log(`origin-descriptions-manual.json: ${origin} entradas pulidas`);
 total += origin;
 
+function polishOriginDescriptionsEs(): number {
+  const full = path.join(root, "src/data/i18n/origin-descriptions-es.json");
+  const data = JSON.parse(fs.readFileSync(full, "utf8")) as {
+    species: Record<string, string>;
+    backgrounds: Record<string, string>;
+  };
+  let changed = 0;
+  for (const map of [data.species, data.backgrounds]) {
+    for (const [key, value] of Object.entries(map)) {
+      const next = pulirTextoReglasEs(value);
+      if (next !== value) {
+        map[key] = next;
+        changed++;
+      }
+    }
+  }
+  writeJson(full, data);
+  return changed;
+}
+
+const originEs = polishOriginDescriptionsEs();
+console.log(`origin-descriptions-es.json: ${originEs} entradas pulidas`);
+total += originEs;
+
 const spellMetaRanges = polishSpellMetaRanges();
 console.log(`spell-meta.json (alcances): ${spellMetaRanges} entradas pulidas`);
 total += spellMetaRanges;

@@ -50,7 +50,7 @@
     "prerequisite": "Nivel 4+ · Nivel 4+",
     "repeatable": false,
     "srd52": false,
-    "descriptionEs": "Obtienes los siguientes beneficios.\n\nvelocidad de escalada: ganas una velocidad de escalada igual a tu velocidad.\n\nLevantarse: cuando tengas la condición derribado, puedes enderezarte usando solo 1,5 metros de movimiento.\n\nSalto: puedes hacer un salto en longitud o en alto con carrera después de moverte solo 1,5 metros."
+    "descriptionEs": "Obtienes los siguientes beneficios.\n\nvelocidad de escalada: ganas una velocidad de escalada igual a tu velocidad.\n\nLevantarse: cuando tengas la condición derribado, puedes enderezarte usando solo 5 pies (1,5 m) de movimiento.\n\nSalto: puedes hacer un salto en longitud o en alto con carrera después de moverte solo 5 pies (1,5 m)."
   },
   "blessed-warrior": {
     "name": "Blessed Warrior",
@@ -70,7 +70,7 @@
     "description": "You have Blindsight with a range of 10 feet.",
     "repeatable": false,
     "srd52": false,
-    "descriptionEs": "Tienes sentido ciego con un alcance de 3 metros."
+    "descriptionEs": "Tienes sentido ciego con un alcance de 10 pies (3 m)."
   },
   "boon-of-combat-prowess": {
     "name": "Boon of Combat Prowess",
@@ -92,7 +92,7 @@
     "prerequisite": "Nivel 19+",
     "repeatable": false,
     "srd52": true,
-    "descriptionEs": "Obtienes los siguientes beneficios.\n\nMejora de puntuación de característica. Aumenta en 1 una puntuación de característica de tu elección, hasta un máximo de 30.\n\nPasos centelleantes. Inmediatamente después de realizar la Acción de Ataque o la acción mágica, puedes teletransportarte hasta 9 metros a un espacio desocupado que puedas ver."
+    "descriptionEs": "Obtienes los siguientes beneficios.\n\nMejora de puntuación de característica. Aumenta en 1 una puntuación de característica de tu elección, hasta un máximo de 30.\n\nPasos centelleantes. Inmediatamente después de realizar la Acción de Ataque o la acción mágica, puedes teletransportarte hasta 30 pies (9 m) a un espacio desocupado que puedas ver."
   },
   "boon-of-energy-resistance": {
     "name": "Boon of Energy Resistance",
@@ -103,7 +103,7 @@
     "prerequisite": "Nivel 19+",
     "repeatable": false,
     "srd52": false,
-    "descriptionEs": "Obtienes los siguientes beneficios.\n\nResistencias elementales: ganas resistencia a dos de los siguientes tipos de daño de tu elección: ácido, frío, fuego, relámpago, necrótico, veneno, psíquico, radiante o trueno. Siempre que termines un descanso largo, puedes cambiar tus elecciones.\n\nRedirección de energía: cuando recibes daño de uno de los tipos elegidos para el beneficio Resistencias elementales, puedes usar una reacción para dirigir daño del mismo tipo hacia otra criatura que puedas ver a 18 metros o menos de ti y que no esté tras cobertura total. Si lo haces, esa criatura debe tener éxito en una tirada de salvación de Destreza (CD 8 + tu modificador de Constitución + bonificador de competencia) o recibir daño igual a 2d12 + tu modificador de Constitución."
+    "descriptionEs": "Obtienes los siguientes beneficios.\n\nResistencias elementales: ganas resistencia a dos de los siguientes tipos de daño de tu elección: ácido, frío, fuego, relámpago, necrótico, veneno, psíquico, radiante o trueno. Siempre que termines un descanso largo, puedes cambiar tus elecciones.\n\nRedirección de energía: cuando recibes daño de uno de los tipos elegidos para el beneficio Resistencias elementales, puedes usar una reacción para dirigir daño del mismo tipo hacia otra criatura que puedas ver a 60 pies (18 m) o menos de ti y que no esté tras cobertura total. Si lo haces, esa criatura debe tener éxito en una tirada de salvación de Destreza (CD 8 + tu modificador de Constitución + bonificador de competencia) o recibir daño igual a 2d12 + tu modificador de Constitución."
   },
   "boon-of-fate": {
     "name": "Boon of Fate",
@@ -114,7 +114,7 @@
     "prerequisite": "Nivel 19+",
     "repeatable": false,
     "srd52": true,
-    "descriptionEs": "Obtienes los siguientes beneficios.\n\nMejora de puntuación de característica. Aumenta en 1 una puntuación de característica de tu elección, hasta un máximo de 30.\n\nMejorar el destino. Cuando tú u otra criatura a 18 metros o menos de ti tenga éxito o fracase en una prueba de d20, puedes tirar 2d4 y aplicar el total obtenido como bonificador o penalizador a la tirada de d20. Una vez que uses este beneficio, no puedes volver a usarlo hasta que tires Iniciativa o finalices un Descanso corto o un descanso largo."
+    "descriptionEs": "Obtienes los siguientes beneficios.\n\nMejora de puntuación de característica. Aumenta en 1 una puntuación de característica de tu elección, hasta un máximo de 30.\n\nMejorar el destino. Cuando tú u otra criatura a 60 pies (18 m) o menos de ti tenga éxito o fracase en una prueba de d20, puedes tirar 2d4 y aplicar el total obtenido como bonificador o penalizador a la tirada de d20. Una vez que uses este beneficio, no puedes volver a usarlo hasta que tires Iniciativa o finalices un Descanso corto o un descanso largo."
   },
   "boon-of-fortitude": {
     "name": "Boon of Fortitude",
@@ -169,7 +169,7 @@
     "prerequisite": "Nivel 19+",
     "repeatable": false,
     "srd52": false,
-    "descriptionEs": "Obtienes los siguientes beneficios.\n\nArtista del escape: como acción adicional, puedes realizar la acción Retirada, lo que además termina la condición agarrado sobre ti.\n\nRapidez: tu velocidad aumenta en 9 metros."
+    "descriptionEs": "Obtienes los siguientes beneficios.\n\nArtista del escape: como acción adicional, puedes realizar la acción Retirada, lo que además termina la condición agarrado sobre ti.\n\nRapidez: tu velocidad aumenta en 30 pies (9 m)."
   },
   "boon-of-spell-recall": {
     "name": "Boon of Spell Recall",
@@ -202,7 +202,7 @@
     "prerequisite": "Nivel 19+",
     "repeatable": false,
     "srd52": true,
-    "descriptionEs": "Obtienes los siguientes beneficios.\n\nMejora de puntuación de característica. Aumenta en 1 una puntuación de característica de tu elección, hasta un máximo de 30.\n\nVisión veraz. Tienes Visión veraz con un alcance de 18 metros."
+    "descriptionEs": "Obtienes los siguientes beneficios.\n\nMejora de puntuación de característica. Aumenta en 1 una puntuación de característica de tu elección, hasta un máximo de 30.\n\nVisión veraz. Tienes Visión veraz con un alcance de 60 pies (18 m)."
   },
   "charger": {
     "name": "Charger",
@@ -213,7 +213,7 @@
     "prerequisite": "Nivel 4+ · Nivel 4+",
     "repeatable": false,
     "srd52": false,
-    "descriptionEs": "Obtienes los siguientes beneficios.\n\nCorrer mejorado: cuando realizas la acción Correr, tu velocidad aumenta en 3 metros durante esa acción.\n\nAtaque de carga: si te mueves al menos 3 metros en línea recta hacia un objetivo inmediatamente antes de impactarlo con una tirada de ataque cuerpo a cuerpo como parte de la acción de Ataque, elige uno de los siguientes efectos: ganas un bonificador de 1d8 a la tirada de daño del ataque, o empujas al objetivo hasta 3 metros si no es más de un tamaño mayor que tú. Solo puedes usar este beneficio una vez en cada uno de tus turnos."
+    "descriptionEs": "Obtienes los siguientes beneficios.\n\nCorrer mejorado: cuando realizas la acción Correr, tu velocidad aumenta en 10 pies (3 m) durante esa acción.\n\nAtaque de carga: si te mueves al menos 10 pies (3 m) en línea recta hacia un objetivo inmediatamente antes de impactarlo con una tirada de ataque cuerpo a cuerpo como parte de la acción de Ataque, elige uno de los siguientes efectos: ganas un bonificador de 1d8 a la tirada de daño del ataque, o empujas al objetivo hasta 10 pies (3 m) si no es más de un tamaño mayor que tú. Solo puedes usar este beneficio una vez en cada uno de tus turnos."
   },
   "chef": {
     "name": "Chef",
@@ -245,7 +245,7 @@
     "prerequisite": "Nivel 4+",
     "repeatable": false,
     "srd52": false,
-    "descriptionEs": "Obtienes los siguientes beneficios.\n\nIgnorar recarga: ignoras la propiedad Recarga de la ballesta de mano, la ballesta pesada y la ballesta ligera (en el resto de esta dote se llaman ballestas). Si sostienes una de ellas, puedes cargar munición aunque no tengas una mano libre.\n\nDisparo cuerpo a cuerpo: estar a 1,5 metros o menos de un enemigo no impone desventaja en tus tiradas de ataque con ballestas.\n\nCombate con dos armas: cuando realizas el ataque extra de la propiedad Ligera, puedes sumar tu modificador de característica al daño del ataque extra si ese ataque es con una ballesta que tenga la propiedad Ligera y aún no estás sumando ese modificador al daño."
+    "descriptionEs": "Obtienes los siguientes beneficios.\n\nIgnorar recarga: ignoras la propiedad Recarga de la ballesta de mano, la ballesta pesada y la ballesta ligera (en el resto de esta dote se llaman ballestas). Si sostienes una de ellas, puedes cargar munición aunque no tengas una mano libre.\n\nDisparo cuerpo a cuerpo: estar a 5 pies (1,5 m) o menos de un enemigo no impone desventaja en tus tiradas de ataque con ballestas.\n\nCombate con dos armas: cuando realizas el ataque extra de la propiedad Ligera, puedes sumar tu modificador de característica al daño del ataque extra si ese ataque es con una ballesta que tenga la propiedad Ligera y aún no estás sumando ese modificador al daño."
   },
   "crusher": {
     "name": "Crusher",
@@ -256,7 +256,7 @@
     "prerequisite": "Nivel 4+",
     "repeatable": false,
     "srd52": false,
-    "descriptionEs": "Obtienes los siguientes beneficios.\n\nEmpujar: una vez por turno, cuando impactas a una criatura con un ataque que inflige daño contundente, puedes moverla 1,5 metros a un espacio desocupado si el objetivo no es más de un tamaño mayor que tú.\n\nCrítico mejorado: cuando obtienes un impacto crítico que inflige daño contundente a una criatura, las tiradas de ataque contra esa criatura tienen ventaja hasta el inicio de tu siguiente turno."
+    "descriptionEs": "Obtienes los siguientes beneficios.\n\nEmpujar: una vez por turno, cuando impactas a una criatura con un ataque que inflige daño contundente, puedes moverla 5 pies (1,5 m) a un espacio desocupado si el objetivo no es más de un tamaño mayor que tú.\n\nCrítico mejorado: cuando obtienes un impacto crítico que inflige daño contundente a una criatura, las tiradas de ataque contra esa criatura tienen ventaja hasta el inicio de tu siguiente turno."
   },
   "defense": {
     "name": "Defense",
@@ -416,7 +416,7 @@
     "prerequisite": "Nivel 4+ · Nivel 4+",
     "repeatable": false,
     "srd52": false,
-    "descriptionEs": "Obtienes los siguientes beneficios.\n\nActuación estimulante: cuando terminas un descanso corto o un descanso largo, puedes ofrecer una actuación inspiradora: un discurso, una canción o un baile. Al hacerlo, elige hasta seis aliados (puedes incluirte) a 9 metros o menos de ti que presencien la actuación. Cada criatura elegida gana puntos de golpe temporales igual a tu nivel de personaje más el modificador de la característica que aumentaste con esta dote."
+    "descriptionEs": "Obtienes los siguientes beneficios.\n\nActuación estimulante: cuando terminas un descanso corto o un descanso largo, puedes ofrecer una actuación inspiradora: un discurso, una canción o un baile. Al hacerlo, elige hasta seis aliados (puedes incluirte) a 30 pies (9 m) o menos de ti que presencien la actuación. Cada criatura elegida gana puntos de golpe temporales igual a tu nivel de personaje más el modificador de la característica que aumentaste con esta dote."
   },
   "interception": {
     "name": "Interception",
@@ -426,7 +426,7 @@
     "description": "When a creature you can see hits another creature within 5 feet of you with an attack roll, you can take a XPHB|Proficiency Bonus. You must be holding a Shield or a Simple or Martial weapon to use this Reaction|XPHB.",
     "repeatable": false,
     "srd52": false,
-    "descriptionEs": "Cuando una criatura que puedes ver impacta a otra criatura a 1,5 metros o menos de ti con una tirada de ataque, puedes usar una reacción para reducir el daño infligido al objetivo en 1d10 + tu bonificador de competencia. Debes sostener un escudo o un arma simple o marcial para usar esta reacción."
+    "descriptionEs": "Cuando una criatura que puedes ver impacta a otra criatura a 5 pies (1,5 m) o menos de ti con una tirada de ataque, puedes usar una reacción para reducir el daño infligido al objetivo en 1d10 + tu bonificador de competencia. Debes sostener un escudo o un arma simple o marcial para usar esta reacción."
   },
   "keen-mind": {
     "name": "Keen Mind",
@@ -523,7 +523,7 @@
     "prerequisite": "Nivel 4+",
     "repeatable": false,
     "srd52": false,
-    "descriptionEs": "Obtienes los siguientes beneficios.\n\nGolpe montado: mientras estás montado, tienes ventaja en las tiradas de ataque contra cualquier criatura no montada a 1,5 metros o menos de tu montura que sea al menos un tamaño menor que la montura.\n\nSalto lateral: si tu montura es sometida a un efecto que le permite hacer una tirada de salvación de Destreza para recibir solo la mitad del daño, en su lugar no recibe daño si tiene éxito en la tirada de salvación y solo la mitad si falla. Para que tu montura obtenga este beneficio, debes ir montado en ella y ninguno de los dos puede tener la condición incapacitado.\n\nDesviar: mientras estás montado, puedes hacer que un ataque que impacta a tu montura te impacte a ti en su lugar si no tienes la condición incapacitado."
+    "descriptionEs": "Obtienes los siguientes beneficios.\n\nGolpe montado: mientras estás montado, tienes ventaja en las tiradas de ataque contra cualquier criatura no montada a 5 pies (1,5 m) o menos de tu montura que sea al menos un tamaño menor que la montura.\n\nSalto lateral: si tu montura es sometida a un efecto que le permite hacer una tirada de salvación de Destreza para recibir solo la mitad del daño, en su lugar no recibe daño si tiene éxito en la tirada de salvación y solo la mitad si falla. Para que tu montura obtenga este beneficio, debes ir montado en ella y ninguno de los dos puede tener la condición incapacitado.\n\nDesviar: mientras estás montado, puedes hacer que un ataque que impacta a tu montura te impacte a ti en su lugar si no tienes la condición incapacitado."
   },
   "musician": {
     "name": "Musician",
@@ -587,7 +587,7 @@
     "description": "When a creature you can see attacks a target other than you that is within 5 feet of you, you can take a XPHB if you're holding one. You impose Disadvantage|XPHB on the triggering attack roll and all other attack rolls against the target until the start of your next turn if you remain within 5 feet of the target.",
     "repeatable": false,
     "srd52": false,
-    "descriptionEs": "Cuando una criatura que puedes ver ataca a un objetivo distinto de ti que está a 1,5 metros o menos de ti, puedes usar una reacción para interponer tu escudo si lo sostienes. Impones desventaja en la tirada de ataque desencadenante y en todas las demás tiradas de ataque contra el objetivo hasta el inicio de tu siguiente turno si permaneces a 1,5 metros o menos del objetivo."
+    "descriptionEs": "Cuando una criatura que puedes ver ataca a un objetivo distinto de ti que está a 5 pies (1,5 m) o menos de ti, puedes usar una reacción para interponer tu escudo si lo sostienes. Impones desventaja en la tirada de ataque desencadenante y en todas las demás tiradas de ataque contra el objetivo hasta el inicio de tu siguiente turno si permaneces a 5 pies (1,5 m) o menos del objetivo."
   },
   "resilient": {
     "name": "Resilient",
@@ -630,7 +630,7 @@
     "prerequisite": "Nivel 4+ · Nivel 4+",
     "repeatable": false,
     "srd52": false,
-    "descriptionEs": "Obtienes los siguientes beneficios.\n\nGuardián: inmediatamente después de que una criatura a 1,5 metros o menos de ti realice la acción Retirada o impacte a un objetivo distinto de ti con un ataque, puedes hacer un ataque de oportunidad contra esa criatura.\n\nDetener: cuando impactas a una criatura con un ataque de oportunidad, la velocidad de esa criatura pasa a ser 0 durante el resto del turno actual."
+    "descriptionEs": "Obtienes los siguientes beneficios.\n\nGuardián: inmediatamente después de que una criatura a 5 pies (1,5 m) o menos de ti realice la acción Retirada o impacte a un objetivo distinto de ti con un ataque, puedes hacer un ataque de oportunidad contra esa criatura.\n\nDetener: cuando impactas a una criatura con un ataque de oportunidad, la velocidad de esa criatura pasa a ser 0 durante el resto del turno actual."
   },
   "shadow-touched": {
     "name": "Shadow-Touched",
@@ -652,7 +652,7 @@
     "prerequisite": "Nivel 4+",
     "repeatable": false,
     "srd52": false,
-    "descriptionEs": "Obtienes los siguientes beneficios.\n\nIgnorar cobertura: tus ataques a distancia con armas ignoran cobertura de media y tres cuartos.\n\nDisparo cuerpo a cuerpo: estar a 1,5 metros o menos de un enemigo no impone desventaja en tus tiradas de ataque con armas a distancia.\n\nTiros lejanos: atacar a alcance largo no impone desventaja en tus tiradas de ataque con armas a distancia."
+    "descriptionEs": "Obtienes los siguientes beneficios.\n\nIgnorar cobertura: tus ataques a distancia con armas ignoran cobertura de media y tres cuartos.\n\nDisparo cuerpo a cuerpo: estar a 5 pies (1,5 m) o menos de un enemigo no impone desventaja en tus tiradas de ataque con armas a distancia.\n\nTiros lejanos: atacar a alcance largo no impone desventaja en tus tiradas de ataque con armas a distancia."
   },
   "shield-master": {
     "name": "Shield Master",
@@ -663,7 +663,7 @@
     "prerequisite": "Nivel 4+",
     "repeatable": false,
     "srd52": false,
-    "descriptionEs": "Obtienes los siguientes beneficios.\n\nGolpe con escudo: si atacas a una criatura a 1,5 metros o menos de ti como parte de la acción de Ataque e impactas con un arma cuerpo a cuerpo, puedes golpear de inmediato al objetivo con tu escudo si lo llevas equipado, obligándolo a hacer una tirada de salvación de Fuerza (CD 8 + tu modificador de Fuerza + bonificador de competencia). Si falla la salvación, empujas al objetivo 1,5 metros o le aplicas la condición derribado (a tu elección). Solo puedes usar este beneficio una vez en cada uno de tus turnos.\n\nInterpone escudo: si eres sometido a un efecto que te permite hacer una tirada de salvación de Destreza para recibir solo la mitad del daño, puedes usar una reacción para no recibir daño si tienes éxito en la tirada de salvación y sostienes un escudo."
+    "descriptionEs": "Obtienes los siguientes beneficios.\n\nGolpe con escudo: si atacas a una criatura a 5 pies (1,5 m) o menos de ti como parte de la acción de Ataque e impactas con un arma cuerpo a cuerpo, puedes golpear de inmediato al objetivo con tu escudo si lo llevas equipado, obligándolo a hacer una tirada de salvación de Fuerza (CD 8 + tu modificador de Fuerza + bonificador de competencia). Si falla la salvación, empujas al objetivo 5 pies (1,5 m) o le aplicas la condición derribado (a tu elección). Solo puedes usar este beneficio una vez en cada uno de tus turnos.\n\nInterpone escudo: si eres sometido a un efecto que te permite hacer una tirada de salvación de Destreza para recibir solo la mitad del daño, puedes usar una reacción para no recibir daño si tienes éxito en la tirada de salvación y sostienes un escudo."
   },
   "skill-expert": {
     "name": "Skill Expert",
@@ -695,7 +695,7 @@
     "prerequisite": "Nivel 4+",
     "repeatable": false,
     "srd52": false,
-    "descriptionEs": "Obtienes los siguientes beneficios.\n\nSentido ciego: tienes sentido ciego con un alcance de 3 metros.\n\nNiebla de guerra: aprovechas las distracciones de la batalla y tienes ventaja en cualquier prueba de Destreza (Sigilo) que hagas como parte de la acción Esconderse durante el combate.\n\nFrancotirador: si haces una tirada de ataque estando oculto y fallas, hacer la tirada de ataque no revela tu ubicación."
+    "descriptionEs": "Obtienes los siguientes beneficios.\n\nSentido ciego: tienes sentido ciego con un alcance de 10 pies (3 m).\n\nNiebla de guerra: aprovechas las distracciones de la batalla y tienes ventaja en cualquier prueba de Destreza (Sigilo) que hagas como parte de la acción Esconderse durante el combate.\n\nFrancotirador: si haces una tirada de ataque estando oculto y fallas, hacer la tirada de ataque no revela tu ubicación."
   },
   "slasher": {
     "name": "Slasher",
@@ -706,7 +706,7 @@
     "prerequisite": "Nivel 4+",
     "repeatable": false,
     "srd52": false,
-    "descriptionEs": "Obtienes los siguientes beneficios.\n\nCortar tendones: una vez por turno cuando impactas a una criatura con un ataque que inflige daño cortante, puedes reducir la velocidad de esa criatura en 3 metros hasta el inicio de tu siguiente turno.\n\nCrítico mejorado: cuando obtienes un impacto crítico que inflige daño cortante a una criatura, tiene desventaja en las tiradas de ataque hasta el inicio de tu siguiente turno."
+    "descriptionEs": "Obtienes los siguientes beneficios.\n\nCortar tendones: una vez por turno cuando impactas a una criatura con un ataque que inflige daño cortante, puedes reducir la velocidad de esa criatura en 10 pies (3 m) hasta el inicio de tu siguiente turno.\n\nCrítico mejorado: cuando obtienes un impacto crítico que inflige daño cortante a una criatura, tiene desventaja en las tiradas de ataque hasta el inicio de tu siguiente turno."
   },
   "speedy": {
     "name": "Speedy",
@@ -717,7 +717,7 @@
     "prerequisite": "Nivel 4+ · Nivel 4+",
     "repeatable": false,
     "srd52": false,
-    "descriptionEs": "Obtienes los siguientes beneficios.\n\nAumento de velocidad: tu velocidad aumenta en 3 metros.\n\nCorrer en terreno difícil: cuando realizas la acción Correr en tu turno, el terreno difícil no te cuesta movimiento adicional durante el resto de ese turno.\n\nMovimiento ágil: los ataques de oportunidad tienen desventaja contra ti."
+    "descriptionEs": "Obtienes los siguientes beneficios.\n\nAumento de velocidad: tu velocidad aumenta en 10 pies (3 m).\n\nCorrer en terreno difícil: cuando realizas la acción Correr en tu turno, el terreno difícil no te cuesta movimiento adicional durante el resto de ese turno.\n\nMovimiento ágil: los ataques de oportunidad tienen desventaja contra ti."
   },
   "spell-sniper": {
     "name": "Spell Sniper",
@@ -728,7 +728,7 @@
     "prerequisite": "Nivel 4+",
     "repeatable": false,
     "srd52": false,
-    "descriptionEs": "Obtienes los siguientes beneficios.\n\nIgnorar cobertura: tus tiradas de ataque con conjuros ignoran cobertura de media y tres cuartos.\n\nConjuro cuerpo a cuerpo: estar a 1,5 metros o menos de un enemigo no impone desventaja en tus tiradas de ataque con conjuros.\n\nAlcance aumentado: cuando lanzas un conjuro con alcance de al menos 3 metros que requiere que hagas una tirada de ataque, puedes aumentar el alcance del conjuro en 18 metros."
+    "descriptionEs": "Obtienes los siguientes beneficios.\n\nIgnorar cobertura: tus tiradas de ataque con conjuros ignoran cobertura de media y tres cuartos.\n\nConjuro cuerpo a cuerpo: estar a 5 pies (1,5 m) o menos de un enemigo no impone desventaja en tus tiradas de ataque con conjuros.\n\nAlcance aumentado: cuando lanzas un conjuro con alcance de al menos 10 pies (3 m) que requiere que hagas una tirada de ataque, puedes aumentar el alcance del conjuro en 60 pies (18 m)."
   },
   "tavern-brawler": {
     "name": "Tavern Brawler",
@@ -749,7 +749,7 @@
     "prerequisite": "Nivel 4+",
     "repeatable": false,
     "srd52": false,
-    "descriptionEs": "Obtienes los siguientes beneficios.\n\nTelequinesis menor: aprendes el conjuro Mano de mago. Puedes lanzarlo sin componentes verbales ni somáticos, puedes hacer que la mano espectral sea invisible y su alcance y la distancia a la que puede estar de ti aumentan en 9 metros cuando lo lanzas. La característica de lanzamiento de ese conjuro es la característica aumentada por esta dote.\n\nEmpuje telequinético: como acción adicional, puedes empujar telequinéticamente a una criatura que veas a 9 metros o menos de ti. Al hacerlo, el objetivo debe tener éxito en una tirada de salvación de Fuerza (CD 8 + el modificador de la puntuación aumentada por esta dote + tu bonificador de competencia) o ser movido 1,5 metros hacia ti o alejándose de ti."
+    "descriptionEs": "Obtienes los siguientes beneficios.\n\nTelequinesis menor: aprendes el conjuro Mano de mago. Puedes lanzarlo sin componentes verbales ni somáticos, puedes hacer que la mano espectral sea invisible y su alcance y la distancia a la que puede estar de ti aumentan en 30 pies (9 m) cuando lo lanzas. La característica de lanzamiento de ese conjuro es la característica aumentada por esta dote.\n\nEmpuje telequinético: como acción adicional, puedes empujar telequinéticamente a una criatura que veas a 30 pies (9 m) o menos de ti. Al hacerlo, el objetivo debe tener éxito en una tirada de salvación de Fuerza (CD 8 + el modificador de la puntuación aumentada por esta dote + tu bonificador de competencia) o ser movido 5 pies (1,5 m) hacia ti o alejándose de ti."
   },
   "telepathic": {
     "name": "Telepathic",
@@ -760,7 +760,7 @@
     "prerequisite": "Nivel 4+",
     "repeatable": false,
     "srd52": false,
-    "descriptionEs": "Obtienes los siguientes beneficios.\n\nEnunciado telepático: puedes hablar telepáticamente con cualquier criatura que veas a 18 metros o menos de ti. Tus enunciados telepáticos están en un idioma que conoces y la criatura te entiende solo si conoce ese idioma. Tu comunicación no le da a la criatura la capacidad de responderte telepáticamente.\n\nDetectar pensamientos: siempre tienes el conjuro Detectar pensamientos preparado. Puedes lanzarlo sin espacio de conjuro ni componentes de conjuro, y debes terminar un descanso largo antes de poder lanzarlo de esta forma de nuevo. También puedes lanzarlo con espacios de conjuro que tengas del nivel apropiado. Tu característica de lanzamiento para ese conjuro es la característica aumentada por esta dote."
+    "descriptionEs": "Obtienes los siguientes beneficios.\n\nEnunciado telepático: puedes hablar telepáticamente con cualquier criatura que veas a 60 pies (18 m) o menos de ti. Tus enunciados telepáticos están en un idioma que conoces y la criatura te entiende solo si conoce ese idioma. Tu comunicación no le da a la criatura la capacidad de responderte telepáticamente.\n\nDetectar pensamientos: siempre tienes el conjuro Detectar pensamientos preparado. Puedes lanzarlo sin espacio de conjuro ni componentes de conjuro, y debes terminar un descanso largo antes de poder lanzarlo de esta forma de nuevo. También puedes lanzarlo con espacios de conjuro que tengas del nivel apropiado. Tu característica de lanzamiento para ese conjuro es la característica aumentada por esta dote."
   },
   "thrown-weapon-fighting": {
     "name": "Thrown Weapon Fighting",

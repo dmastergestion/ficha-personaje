@@ -1,9 +1,18 @@
 import { describe, expect, it } from "vitest";
 import {
+  formatoDistanciaDual,
   piesAMetrosTexto,
   pulirTextoReglasEs,
   traducirAlcanceConjuro,
+  unificarDistanciasEnTexto,
 } from "@/lib/rules-text-polish";
+
+describe("formatoDistanciaDual", () => {
+  it("muestra pies y metros", () => {
+    expect(formatoDistanciaDual(30)).toBe("30 pies (9 m)");
+    expect(formatoDistanciaDual(5)).toBe("5 pies (1,5 m)");
+  });
+});
 
 describe("piesAMetrosTexto", () => {
   it("convierte múltiplos de 5 pies", () => {
@@ -14,27 +23,35 @@ describe("piesAMetrosTexto", () => {
 });
 
 describe("traducirAlcanceConjuro", () => {
-  it("convierte pies y etiquetas inglesas", () => {
-    expect(traducirAlcanceConjuro("30 pies")).toBe("9 metros");
-    expect(traducirAlcanceConjuro("15 feet")).toBe("4,5 metros");
+  it("convierte pies, metros y armas a distancia dual", () => {
+    expect(traducirAlcanceConjuro("30 pies")).toBe("30 pies (9 m)");
+    expect(traducirAlcanceConjuro("9 metros")).toBe("30 pies (9 m)");
+    expect(traducirAlcanceConjuro("15 feet")).toBe("15 pies (4,5 m)");
+    expect(traducirAlcanceConjuro("20/60")).toBe("20/60 pies (6/18 m)");
     expect(traducirAlcanceConjuro("touch")).toBe("Toque");
     expect(traducirAlcanceConjuro("point")).toBeUndefined();
   });
 });
 
+describe("unificarDistanciasEnTexto", () => {
+  it("es idempotente con formato dual", () => {
+    const dual = "Radio de 30 pies (9 m).";
+    expect(unificarDistanciasEnTexto(dual)).toBe(dual);
+  });
+});
+
 describe("pulirTextoReglasEs", () => {
-  it("normaliza términos de juego y distancias", () => {
+  it("normaliza términos de juego y distancias dual", () => {
     const text = pulirTextoReglasEs(
       "Tras un Descanso Largo, ganas Ventaja y Reacción a 30 pies. Daño Radiante y 5 PV.",
     );
     expect(text).toContain("descanso largo");
     expect(text).toContain("ventaja");
     expect(text).toContain("reacción");
-    expect(text).toContain("9 metros");
+    expect(text).toContain("30 pies (9 m)");
     expect(text).toContain("daño radiante");
     expect(text).toContain("puntos de golpe");
     expect(text).not.toMatch(/\bDescanso Largo\b/);
-    expect(text).not.toMatch(/\b30 pies\b/i);
   });
 
   it("unifica encabezado de nivel superior en conjuros", () => {
@@ -43,17 +60,17 @@ describe("pulirTextoReglasEs", () => {
     );
   });
 
-  it("no convierte metros ya presentes", () => {
-    expect(pulirTextoReglasEs("Alcance de 18 metros.")).toBe("Alcance de 18 metros.");
+  it("convierte metros sueltos a dual", () => {
+    expect(pulirTextoReglasEs("Alcance de 18 metros.")).toBe("Alcance de 60 pies (18 m).");
   });
 
   it("normaliza áreas de efecto y artefactos Foundry", () => {
     const text = pulirTextoReglasEs(
       "Cada criatura en un Cubo de 10 pies con charmed apply=false y difficultterrain. Emanación de 30 pies.",
     );
-    expect(text).toContain("cubo de 3 metros");
+    expect(text).toContain("cubo de 10 pies (3 m)");
     expect(text).toContain("hechizado");
     expect(text).toContain("terreno difícil");
-    expect(text).toContain("emanación de 9 metros");
+    expect(text).toContain("emanación de 30 pies (9 m)");
   });
 });

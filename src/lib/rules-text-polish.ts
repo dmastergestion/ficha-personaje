@@ -7,11 +7,37 @@ export function piesAMetrosTexto(pies: number): string {
   return metros.toFixed(1).replace(".", ",");
 }
 
-export function convertirPiesAMetros(text: string): string {
-  return text.replace(/\b(\d+(?:[.,]\d+)?)\s*(?:pies|feet)\b/gi, (_, raw: string) => {
-    const pies = parseFloat(raw.replace(",", "."));
-    return `${piesAMetrosTexto(pies)} metros`;
+function parseNumeroEs(raw: string): number {
+  return parseFloat(raw.replace(",", "."));
+}
+
+function formatearPies(pies: number): string {
+  return Number.isInteger(pies) ? String(pies) : pies.toFixed(1).replace(".", ",");
+}
+
+/** Distancia en pies y metros: «30 pies (9 m)». */
+export function formatoDistanciaDual(pies: number): string {
+  return `${formatearPies(pies)} pies (${piesAMetrosTexto(pies)} m)`;
+}
+
+/** Unifica distancias sueltas en texto a formato dual pies (m). Idempotente. */
+export function unificarDistanciasEnTexto(text: string): string {
+  let out = text.replace(
+    /\b(\d+(?:[.,]\d+)?)\s*pies\s*\(\s*(\d+(?:[.,]\d+)?)\s*m\s*\)/gi,
+    (_, piesRaw: string) => formatoDistanciaDual(parseNumeroEs(piesRaw)),
+  );
+
+  out = out.replace(/\b(\d+(?:[.,]\d+)?)\s*metros\b/gi, (_, raw: string) => {
+    const metros = parseNumeroEs(raw);
+    return formatoDistanciaDual(metros / 0.3);
   });
+
+  out = out.replace(
+    /\b(\d+(?:[.,]\d+)?)\s*(?:pies|feet)\b(?!\s*\()/gi,
+    (_, raw: string) => formatoDistanciaDual(parseNumeroEs(raw)),
+  );
+
+  return out;
 }
 
 const ALCANCE_ES: Record<string, string> = {
@@ -22,14 +48,34 @@ const ALCANCE_ES: Record<string, string> = {
   unlimited: "Ilimitado",
 };
 
-/** Normaliza la línea de alcance de un conjuro para la UI (metros, etiquetas ES). */
+/** Normaliza alcance de conjuro o arma para la UI (pies + metros, etiquetas ES). */
 export function traducirAlcanceConjuro(range?: string): string | undefined {
   if (!range?.trim()) return undefined;
   const raw = range.trim();
   if (raw === "point" || raw === "feet") return undefined;
   const lower = raw.toLowerCase();
   if (ALCANCE_ES[lower]) return ALCANCE_ES[lower];
-  return convertirPiesAMetros(raw);
+
+  const slash = /^(\d+)\/(\d+)$/.exec(raw);
+  if (slash) {
+    const corto = parseInt(slash[1]!, 10);
+    const largo = parseInt(slash[2]!, 10);
+    return `${corto}/${largo} pies (${piesAMetrosTexto(corto)}/${piesAMetrosTexto(largo)} m)`;
+  }
+
+  if (/^\d+(?:[.,]\d+)?\s*metros$/i.test(raw)) {
+    return formatoDistanciaDual(parseNumeroEs(raw) / 0.3);
+  }
+
+  if (/^\d+(?:[.,]\d+)?\s*(?:pies|feet)$/i.test(raw)) {
+    return formatoDistanciaDual(parseNumeroEs(raw));
+  }
+
+  if (/^\d+(?:[.,]\d+)?\s*pies\s*\(/i.test(raw)) {
+    return unificarDistanciasEnTexto(raw);
+  }
+
+  return unificarDistanciasEnTexto(raw);
 }
 
 const CONDITION_APPLY_FALSE: Record<string, string> = {
@@ -122,13 +168,13 @@ const TRADUCCION_ROTA: [RegExp, string][] = [
   [/\bacción dash\b/gi, "acción Correr"],
   [/\bacción Study\b/gi, "acción Estudiar"],
   [
-    /\bcada pie de movimiento cuesta un pie adicional\b/gi,
-    "cada metro de movimiento cuesta un metro adicional",
+    /cada metro de movimiento cuesta un metro adicional/gi,
+    "cada pie de movimiento cuesta un pie adicional (0,3 m)",
   ],
-  [/número de pies que te han movido/g, "número de metros que te han movido"],
+  [/número de metros que te han movido/g, "número de pies que te han movido"],
   [
-    /número de pies igual a 10 veces el número obtenido/g,
-    "número de metros igual a 3 veces el número obtenido",
+    /número de metros igual a 3 veces el número obtenido/g,
+    "número de pies igual a 10 veces el número obtenido (3 m por punto)",
   ],
 ];
 
@@ -140,7 +186,7 @@ function pulirAreasEfecto(text: string): string {
   return out;
 }
 
-/** Pulido editorial PHB 2024 ES: términos de juego en minúsculas y distancias en metros. */
+/** Pulido editorial PHB 2024 ES: términos de juego en minúsculas y distancias pies (m). */
 export function pulirTextoReglasEs(text: string): string {
   let out = limpiarTextoFoundry(text);
 
@@ -183,7 +229,7 @@ export function pulirTextoReglasEs(text: string): string {
     .replace(/\bes Enorme o más pequeñ[oa]\b/gi, (m) => m.toLowerCase());
 
   out = pulirAreasEfecto(out);
-  out = convertirPiesAMetros(out);
+  out = unificarDistanciasEnTexto(out);
 
   return out.trim();
 }

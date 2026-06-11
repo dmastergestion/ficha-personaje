@@ -1,5 +1,5 @@
 /** Utilidades compartidas para extraer datos legibles desde JSON de 5etools. */
-import { piesAMetrosTexto } from "../src/lib/rules-text-polish.js";
+import { formatoDistanciaDual } from "../src/lib/rules-text-polish.js";
 
 export interface FiveSpellLike {
   name?: string;
@@ -154,15 +154,15 @@ export function formatRange(range: FiveSpellLike["range"]): string | undefined {
   }
 
   if (distType === "feet" && amount != null) {
-    return `${piesAMetrosTexto(amount)} metros`;
+    return formatoDistanciaDual(amount);
   }
 
   if (type === "point" && amount != null && distType === "feet") {
-    return `${piesAMetrosTexto(amount)} metros`;
+    return formatoDistanciaDual(amount);
   }
 
   if (amount != null && distType) {
-    if (distType === "feet") return `${piesAMetrosTexto(amount)} metros`;
+    if (distType === "feet") return formatoDistanciaDual(amount);
     return `${amount} ${distType}`.trim();
   }
 

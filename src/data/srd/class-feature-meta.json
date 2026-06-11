@@ -43,7 +43,7 @@
     {
       "level": 5,
       "name": "Movimiento rápido",
-      "description": "+3 metros de velocidad si no llevas armadura pesada."
+      "description": "+10 pies (3 m) de velocidad si no llevas armadura pesada."
     },
     {
       "level": 6,
@@ -423,7 +423,7 @@
     {
       "level": 2,
       "name": "Movimiento sin armadura",
-      "description": "+3 metros de velocidad sin armadura/escudo (escala con nivel)."
+      "description": "+10 pies (3 m) de velocidad sin armadura/escudo (escala con nivel)."
     },
     {
       "level": 3,
@@ -647,7 +647,7 @@
     {
       "level": 6,
       "name": "Movilidad errante",
-      "description": "+3 metros sin armadura pesada; velocidad de trepar y nadar = velocidad."
+      "description": "+10 pies (3 m) sin armadura pesada; velocidad de trepar y nadar = velocidad."
     },
     {
       "level": 7,

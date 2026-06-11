@@ -1,4 +1,5 @@
 import type { AbilityKey } from "@/lib/constants";
+import { traducirAlcanceConjuro } from "@/lib/rules-text-polish";
 import { bonificadorCompetencia, modificadorAtributo } from "@/rules/ability";
 import { obtenerArma, t, type SrdWeapon } from "@/rules/srd";
 import { esCompetenteConArma } from "@/rules/proficiencies";
@@ -55,7 +56,10 @@ export function formulaDañoArma(
 
 export function notasArma(weapon: SrdWeapon): string | undefined {
   const parts: string[] = [];
-  if (weapon.range) parts.push(`Alcance ${weapon.range}`);
+  if (weapon.range) {
+    const alcance = traducirAlcanceConjuro(weapon.range) ?? weapon.range;
+    parts.push(`Alcance ${alcance}`);
+  }
   if (weapon.versatileDamageDie) parts.push(`Versátil ${weapon.versatileDamageDie}`);
   return parts.length ? parts.join(" · ") : undefined;
 }
