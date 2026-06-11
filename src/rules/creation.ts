@@ -3,10 +3,17 @@ import { ABILITY_KEYS } from "@/lib/constants";
 import { poblarRecursosSugeridos } from "@/rules/resources-tracker";
 import { pvMaximoPersonaje, recursosCompletos } from "@/rules/resources";
 import type { Tirada4d6 } from "@/rules/dice";
+import {
+  aplicarBonificadoresAtributo,
+  calcularBeneficiosOrigen,
+  type OrigenCatalogo,
+} from "@/rules/origin-benefits";
 import { proficienciasIniciales } from "@/rules/proficiencies";
 import { atributoConjuroPredeterminado } from "@/rules/spell-lists";
 import { esLanzador } from "@/rules/spells";
 import { obtenerClase } from "@/rules/srd";
+import type { OriginChoices } from "@/rules/origin-choices";
+import { fusionarEleccionesOrigen } from "@/rules/origin-choices";
 import { crearPersonajeVacio, type Character } from "@/schemas/character";
 
 export const ARRAY_ESTANDAR = [15, 14, 13, 12, 10, 8] as const;
@@ -20,6 +27,7 @@ export interface DatosAsistente {
   subclassId: string | null;
   level: number;
   abilities: Record<AbilityKey, number>;
+  originChoices?: OriginChoices;
 }
 
 /** Asigna manualmente los seis valores del array estándar a atributos. */
@@ -82,10 +90,28 @@ export function pvMaximoNivel1(hitDie: string, conScore: number): number {
   return pvMaximoPersonaje(hitDie, conScore, 1);
 }
 
-export function crearPersonajeDesdeAsistente(datos: DatosAsistente): Character {
+export function crearPersonajeDesdeAsistente(
+  datos: DatosAsistente,
+  catalogo?: OrigenCatalogo,
+): Character {
   const clase = obtenerClase(datos.classId);
   const hitDie = clase?.hitDie ?? "d8";
-  const hpMax = pvMaximoPersonaje(hitDie, datos.abilities.con, datos.level);
+  const originChoices = fusionarEleccionesOrigen(
+    datos.speciesId,
+    datos.backgroundId,
+    datos.originChoices,
+    catalogo,
+  );
+  const origen = calcularBeneficiosOrigen(
+    datos.speciesId,
+    datos.backgroundId,
+    datos.level,
+    catalogo,
+    originChoices,
+  );
+  const abilities = aplicarBonificadoresAtributo(datos.abilities, origen.abilityBonuses);
+  const hpMax =
+    pvMaximoPersonaje(hitDie, abilities.con, datos.level) + origen.hpBonusTotal;
   const draft = crearPersonajeVacio({
     name: datos.name.trim(),
     playerName: datos.playerName.trim(),
@@ -96,6 +122,7 @@ export function crearPersonajeDesdeAsistente(datos: DatosAsistente): Character {
   const spellAbility = esLanzador(datos.classId)
     ? atributoConjuroPredeterminado({
         ...draft,
+        abilities,
         identity: {
           ...draft.identity,
           subclassId: datos.subclassId,
@@ -104,7 +131,14 @@ export function crearPersonajeDesdeAsistente(datos: DatosAsistente): Character {
       })
     : null;
 
-  const proficiencies = proficienciasIniciales(datos.classId, datos.backgroundId);
+  const proficiencies = proficienciasIniciales(
+    datos.classId,
+    origen.skills,
+    origen.toolProficiencies,
+  );
+
+  const languages = [...draft.proficiencies.languages, ...origen.languages];
+  const feats = origen.feat ? [origen.feat] : [];
 
   return poblarRecursosSugeridos(
     recursosCompletos({
@@ -121,16 +155,18 @@ export function crearPersonajeDesdeAsistente(datos: DatosAsistente): Character {
         },
       ],
     },
-    abilities: { ...datos.abilities },
+    abilities,
     proficiencies: {
       savingThrows: proficiencies.savingThrows,
       skills: proficiencies.skills,
       skillOverrides: {},
-      languages: draft.proficiencies.languages,
+      languages: [...new Set(languages)],
       armorProficiencies: proficiencies.armorProficiencies,
       weaponProficiencies: proficiencies.weaponProficiencies,
       toolProficiencies: proficiencies.toolProficiencies,
     },
+    feats,
+    originChoices,
     combat: {
       ...draft.combat,
       hitDie,

@@ -10,7 +10,7 @@ export function ClassFeaturesPanel({ classes }: { classes: ClassLevel[] }) {
       <h3 className="sheet-section-title">Rasgos de clase</h3>
       <div className="space-y-3">
         {classes.map((cl) => {
-          const list = rasgosHastaNivel(cl.classId, cl.level);
+          const list = rasgosHastaNivel(cl.classId, cl.level, cl.subclassId);
           if (list.length === 0) return null;
           return (
             <div key={cl.classId}>

@@ -8,7 +8,7 @@ PWA offline-first para fichas de personaje **D&D 5e (SRD 5.2.1 / reglas 2024)**.
 2. En Chrome/Edge: menú → **Instalar aplicación** / **Añadir a pantalla de inicio**
 3. Listo: funciona **offline** con tus personajes guardados en el dispositivo
 
-No hace falta Python, Node ni Flet en el dispositivo donde juegas.
+Incluye **SRD + PHB 2024 en español** (conjuros, clases, subclases, especies, trasfondos, dotes). No hace falta importar ningún archivo ni instalar Node en el dispositivo donde juegas.
 
 ## Desarrollo (solo mantenedores)
 
@@ -29,14 +29,22 @@ git clone --depth 1 https://github.com/foundryvtt-sinregistrar/translate-dnd5e-s
 npm run build:data
 ```
 
-**Contenido PHB 2024 (local, no se sube a GitHub):** descarga datos 5etools y genera un pack importable:
+Traducciones PHB completas en español (conjuros, dotes, trasfondos, rasgos de subclase; requiere pack local):
 
 ```powershell
-npm run fetch:5etools      # vendor/5etools-src/data/ (gitignored)
-npm run build:content-pack # vendor/content-pack/xphb-pack.json
+npm run fetch:5etools
+npm run build:content-pack
+npm run build:phb-i18n
 ```
 
-Requiere tener el PHB; el pack queda solo en tu máquina (`vendor/` está en `.gitignore`).
+Los JSON en `src/data/i18n/` y `src/data/srd/subclass-feature-meta.json` se versionan: GitHub Pages incluye el español PHB sin importar el pack.
+
+**Contenido PHB 2024:** se genera en CI y se empaqueta en la PWA (`public/content-pack/`, gitignored en local). Para regenerar en tu máquina:
+
+```powershell
+npm run fetch:5etools
+npm run build:pack   # content-pack + traducciones ES + public/content-pack/
+```
 
 Los JSON generados en `src/data/` se versionan para que CI y usuarios no dependan de `vendor/`.
 

@@ -406,6 +406,26 @@ function buildEquipment() {
   return { weapons, armor };
 }
 
+function loadEsNames(): Record<string, Record<string, string>> {
+  const esPath = path.join(root, "src", "data", "i18n", "es.json");
+  const manualPath = path.join(root, "src", "data", "i18n", "phb-es-manual.json");
+  const es = fs.existsSync(esPath)
+    ? (JSON.parse(fs.readFileSync(esPath, "utf8")) as Record<string, Record<string, string>>)
+    : {};
+  const manual = fs.existsSync(manualPath)
+    ? (JSON.parse(fs.readFileSync(manualPath, "utf8")) as Record<string, Record<string, string>>)
+    : {};
+  return {
+    spells: { ...es.spells, ...manual.spells },
+    classes: { ...es.classes, ...manual.classes },
+    subclasses: { ...es.subclasses, ...manual.subclasses },
+    species: { ...es.species, ...manual.species },
+    backgrounds: { ...es.backgrounds, ...manual.backgrounds },
+    weapons: { ...es.weapons, ...manual.weapons },
+    armor: { ...es.armor, ...manual.armor },
+  };
+}
+
 function buildI18nEs(
   spells: { id: string; nameEn: string }[],
   classes: { id: string; nameEn: string }[],
@@ -415,16 +435,19 @@ function buildI18nEs(
   weapons: { id: string; nameEn: string }[],
   armor: { id: string; nameEn: string }[],
 ) {
-  const map = (items: { id: string; nameEn: string }[]) =>
-    Object.fromEntries(items.map((i) => [i.id, i.nameEn]));
+  const names = loadEsNames();
+  const map = (items: { id: string; nameEn: string }[], cat: keyof ReturnType<typeof loadEsNames>) =>
+    Object.fromEntries(
+      items.map((i) => [i.id, names[cat]?.[i.id] ?? i.nameEn]),
+    );
   return {
-    spells: map(spells),
-    classes: map(classes),
-    subclasses: map(subclasses),
-    species: map(species),
-    backgrounds: map(backgrounds),
-    weapons: map(weapons),
-    armor: map(armor),
+    spells: map(spells, "spells"),
+    classes: map(classes, "classes"),
+    subclasses: map(subclasses, "subclasses"),
+    species: map(species, "species"),
+    backgrounds: map(backgrounds, "backgrounds"),
+    weapons: map(weapons, "weapons"),
+    armor: map(armor, "armor"),
   };
 }
 

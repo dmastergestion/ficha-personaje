@@ -34,6 +34,19 @@ jobs:
           node-version: 22
           cache: npm
       - run: npm ci
+      - name: Datos 5etools (PHB)
+        run: |
+          git clone --depth 1 --filter=blob:none --sparse \
+            https://github.com/5etools-mirror-3/5etools-src.git vendor/5etools-src
+          cd vendor/5etools-src && git sparse-checkout set data
+      - name: Traducción Foundry ES
+        run: |
+          git clone --depth 1 \
+            https://github.com/foundryvtt-sinregistrar/translate-dnd5e-sdr2-es.git \
+            vendor/translate-dnd5e-sdr2-es
+      - run: npm run build:content-pack
+      - run: npm run build:phb-i18n
+      - run: npm run copy:content-pack
       - run: npm run build
         env:
           GITHUB_ACTIONS: true

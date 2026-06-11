@@ -4,6 +4,7 @@
 import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath, pathToFileURL } from "node:url";
+import { htmlFoundryAPlano } from "../src/lib/foundry-text-clean.ts";
 import {
   extractBackgroundDetails,
   extractFeatDetails,
@@ -62,30 +63,45 @@ function buildWeaponMeta() {
   return meta;
 }
 
-function buildSpeciesMeta() {
-  const species = JSON.parse(
-    fs.readFileSync(path.join(srdDir, "species.json"), "utf8"),
-  ) as { id: string; nameEn: string }[];
-  const races = JSON.parse(
-    fs.readFileSync(path.join(dataRoot, "races.json"), "utf8"),
-  ) as {
-    race?: {
-      name?: string;
-      source?: string;
-      entries?: unknown;
-      size?: string[];
-      speed?: number;
-      skillProficiencies?: unknown;
-      _versions?: {
-        name?: string;
-        source?: string;
-        entries?: unknown;
-      }[];
-    }[];
-  };
+type FiveRace = {
+  name?: string;
+  source?: string;
+  entries?: unknown;
+  size?: string[];
+  speed?: number;
+  skillProficiencies?: unknown;
+  _versions?: {
+    name?: string;
+    source?: string;
+    entries?: unknown;
+    _abstract?: boolean;
+    _implementations?: { _variables?: { color?: string } }[];
+  }[];
+};
 
-  const xphb = (races.race ?? []).filter((r) => r.source === "XPHB");
-  const byName = new Map(xphb.map((r) => [(r.name ?? "").toLowerCase(), r]));
+function speciesIdFromVersion(versionName: string, parentName: string): string {
+  const part = versionName.includes("; ") ? versionName.split("; ")[1]! : versionName;
+  const lower = part.toLowerCase();
+  const parent = toId(parentName);
+
+  if (lower.includes("drow")) return "elf-drow";
+  if (lower.includes("high elf")) return "elf-high";
+  if (lower.includes("wood elf")) return "elf-wood";
+  if (lower.includes("forest gnome")) return "gnome-forest";
+  if (lower.includes("rock gnome")) return "gnome-rock";
+  if (lower.includes("abyssal")) return "tiefling-abyssal";
+  if (lower.includes("chthonic")) return "tiefling-chthonic";
+  if (lower.includes("infernal")) return "tiefling-infernal";
+  if (parent === "goliath") {
+    return `goliath-${toId(part.replace(/\s+(ancestry|legacy|lineage)$/i, ""))}`;
+  }
+  return `${parent}-${toId(part.replace(/\s+(ancestry|legacy|lineage)$/i, ""))}`;
+}
+
+function buildSpeciesMeta() {
+  const races = JSON.parse(fs.readFileSync(path.join(dataRoot, "races.json"), "utf8")) as {
+    race?: FiveRace[];
+  };
 
   const meta: Record<
     string,
@@ -97,32 +113,53 @@ function buildSpeciesMeta() {
     }
   > = {};
 
-  for (const sp of species) {
-    const parentName = SPECIES_ALIASES[sp.id] ?? sp.id;
-    const race = byName.get(parentName) ?? byName.get(sp.nameEn.split(",")[0]?.trim().toLowerCase() ?? "");
-    if (!race) continue;
+  for (const race of (races.race ?? []).filter((r) => r.source === "XPHB" && r.name)) {
+    const versions = (race._versions ?? []).filter(
+      (v) => v.source === "XPHB" || (v._abstract && v._implementations?.length),
+    );
 
-    let entries = race.entries;
-    const variantSuffix = sp.nameEn.includes(",") ? sp.nameEn.split(",")[1]?.trim() : null;
-    if (variantSuffix && race._versions) {
-      const ver = race._versions.find((v) =>
-        v.name?.toLowerCase().includes(variantSuffix.toLowerCase()),
-      );
-      if (ver?.entries) entries = ver.entries;
+    if (versions.length === 0) {
+      const id = toId(race.name!);
+      meta[id] = extractSpeciesDetails(race);
+      continue;
     }
 
-    const details = extractSpeciesDetails({ ...race, entries });
-    if (details.traits || details.size || details.speed) {
-      meta[sp.id] = details;
+    for (const version of versions) {
+      if (version._abstract && version._implementations) {
+        for (const impl of version._implementations) {
+          const color = impl._variables?.color;
+          if (!color) continue;
+          const id = `dragonborn-${toId(color)}`;
+          meta[id] = extractSpeciesDetails({
+            ...race,
+            entries: version.entries ?? race.entries,
+          });
+        }
+        continue;
+      }
+
+      if (!version.name) continue;
+      const id = speciesIdFromVersion(version.name, race.name!);
+      meta[id] = extractSpeciesDetails({
+        ...race,
+        entries: version.entries ?? race.entries,
+      });
+    }
+
+    const baseId = toId(race.name!);
+    if (!meta[baseId]) {
+      meta[baseId] = extractSpeciesDetails(race);
     }
   }
+
+  for (const [alias, groupId] of Object.entries(SPECIES_ALIASES)) {
+    if (!meta[alias] && meta[groupId]) meta[alias] = meta[groupId];
+  }
+
   return meta;
 }
 
 function buildBackgroundMeta() {
-  const backgrounds = JSON.parse(
-    fs.readFileSync(path.join(srdDir, "backgrounds.json"), "utf8"),
-  ) as { id: string; nameEn: string }[];
   const data = JSON.parse(
     fs.readFileSync(path.join(dataRoot, "backgrounds.json"), "utf8"),
   ) as {
@@ -136,12 +173,6 @@ function buildBackgroundMeta() {
     }[];
   };
 
-  const byId = new Map(
-    (data.background ?? [])
-      .filter((b) => b.source === "XPHB" && b.name)
-      .map((b) => [toId(b.name!), b]),
-  );
-
   const meta: Record<
     string,
     {
@@ -152,10 +183,8 @@ function buildBackgroundMeta() {
     }
   > = {};
 
-  for (const bg of backgrounds) {
-    const entry = byId.get(bg.id);
-    if (!entry) continue;
-    meta[bg.id] = extractBackgroundDetails(entry);
+  for (const entry of (data.background ?? []).filter((b) => b.source === "XPHB" && b.name)) {
+    meta[toId(entry.name!)] = extractBackgroundDetails(entry);
   }
   return meta;
 }
@@ -240,7 +269,7 @@ function buildFeatMeta() {
     if (!entry.name || !entry.description) continue;
     const id = esNameToId.get(entry.name.toLowerCase());
     if (!id || !meta[id]) continue;
-    meta[id].descriptionEs = stripHtml(entry.description);
+    meta[id].descriptionEs = htmlFoundryAPlano(entry.description);
   }
 
   return { meta, srdList, i18n: Object.fromEntries(srdList.map((f) => [f.id, namesEs[f.id] ?? f.nameEn])) };

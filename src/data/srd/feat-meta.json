@@ -8,7 +8,7 @@
     "prerequisite": "Nivel 4+",
     "repeatable": true,
     "srd52": true,
-    "descriptionEs": "Dote general (Prerrequisito: Nivel 4+)\nAumenta en 2 una puntuación de característica de tu elección, o aumenta en 1 dos puntuaciones de característica de tu elección. Esta dote no puede aumentar una puntuación de característica por encima de 20.\nRepetible. Puedes escoger esta dote más de una vez."
+    "descriptionEs": "Dote general (Prerrequisito: Nivel 4+)\n\nAumenta en 2 una puntuación de característica de tu elección, o aumenta en 1 dos puntuaciones de característica de tu elección. Esta dote no puede aumentar una puntuación de característica por encima de 20.\n\nRepetible. Puedes escoger esta dote más de una vez."
   },
   "actor": {
     "name": "Actor",
@@ -18,7 +18,8 @@
     "description": "You gain the following benefits.\n\nImpersonation: While you're disguised as a real or fictional person, you have XPHB or Performance) checks to convince others that you are that person.\n\nMimicry: You can mimic the sounds of other creatures, including speech. A creature that hears the mimicry must succeed on a Wisdom (Insight) check to determine the effect is faked ({@dc 8} plus your Charisma modifier and Proficiency Bonus).",
     "prerequisite": "Nivel 4+",
     "repeatable": false,
-    "srd52": false
+    "srd52": false,
+    "descriptionEs": "Obtienes los siguientes beneficios.\n\nImitación: mientras estés disfrazado como una persona real o ficticia, tienes ventaja en las pruebas de Carisma (Engaño o Interpretación) para convencer a otros de que eres esa persona.\n\nMimetismo: puedes imitar los sonidos de otras criaturas, incluido el habla. Una criatura que oiga el mimetismo debe tener éxito en una prueba de Sabiduría (Perspicacia) para determinar que el efecto es falso (CD 8 + tu modificador de Carisma + bonificador de competencia)."
   },
   "alert": {
     "name": "Alert",
@@ -28,7 +29,7 @@
     "description": "You gain the following benefits.\n\nInitiative Proficiency: When you roll XPHB|Proficiency Bonus to the roll.\n\nInitiative Swap: Immediately after you roll XPHB with the XPHB condition.",
     "repeatable": false,
     "srd52": true,
-    "descriptionEs": "Obtienes los siguientes beneficios.\nCompetencia con Iniciativa. Cuando tiras Iniciativa, puedes añadir tu Bonificador por competencia a la tirada.\nIntercambio de iniciativa. Inmediatamente después de tirar Iniciativa, puedes intercambiar tu Iniciativa con la Iniciativa de un aliado dispuesto en el mismo combate. No puedes hacer este intercambio si tú o el aliado tenéis la condición &amp;Reference[Incapacitated].\nNota de Foundry\nEste rasgo incluye automáticamente el bonificador a tu Iniciativa."
+    "descriptionEs": "Obtienes los siguientes beneficios.\n\nCompetencia con Iniciativa. Cuando tiras Iniciativa, puedes añadir tu bonificador de competencia a la tirada.\n\nIntercambio de iniciativa. Inmediatamente después de tirar Iniciativa, puedes intercambiar tu Iniciativa con la Iniciativa de un aliado dispuesto en el mismo combate. No puedes hacer este intercambio si tú o el aliado tenéis la condición Incapacitado."
   },
   "archery": {
     "name": "Archery",
@@ -38,7 +39,7 @@
     "description": "You gain a +2 bonus to attack rolls you make with Ranged weapons.",
     "repeatable": false,
     "srd52": true,
-    "descriptionEs": "(Prerrequisito: Rasgo de Estilo de combate)\nObtienes un bonificador de +2 a las tiradas de ataque que realices con armas a distancia.\nNota de Foundry\nEste rasgo incluye un Efecto Activo que añade el bonificador a las tiradas de ataque con armas a distancia."
+    "descriptionEs": "(Prerrequisito: Rasgo de Estilo de combate)\n\nObtienes un bonificador de +2 a las tiradas de ataque que realices con armas a distancia."
   },
   "athlete": {
     "name": "Athlete",
@@ -48,7 +49,8 @@
     "description": "You gain the following benefits.\n\nClimb Speed: You gain a XPHB.\n\nHop Up: When you have the Prone condition, you can right yourself with only 5 feet of movement.\n\nJumping: You can make a running Long or High Jump|XPHB after moving only 5 feet.",
     "prerequisite": "Nivel 4+ · Nivel 4+",
     "repeatable": false,
-    "srd52": false
+    "srd52": false,
+    "descriptionEs": "Obtienes los siguientes beneficios.\n\nVelocidad de escalada: ganas una velocidad de escalada igual a tu velocidad.\n\nLevantarse: cuando tengas la condición derribado, puedes enderezarte usando solo 5 pies de movimiento.\n\nSalto: puedes hacer un salto en longitud o en alto con carrera después de moverte solo 5 pies."
   },
   "blessed-warrior": {
     "name": "Blessed Warrior",
@@ -57,7 +59,8 @@
     "categoryLabel": "Estilo de combate",
     "description": "You learn two of your choice. Guidance and Sacred Flame are recommended. The chosen cantrips count as Paladin spells for you, and Charisma is your spellcasting ability for them. Whenever you gain a Paladin level, you can replace one of these cantrips with another Cleric cantrip.",
     "repeatable": false,
-    "srd52": false
+    "srd52": false,
+    "descriptionEs": "Aprendes dos trucos de clérigo de tu elección. Guía y Llama sagrada se recomiendan. Los trucos elegidos cuentan como conjuros de paladín para ti, y Carisma es tu característica de lanzamiento de conjuros para ellos. Siempre que ganes un nivel de paladín, puedes reemplazar uno de estos trucos por otro truco de clérigo."
   },
   "blind-fighting": {
     "name": "Blind Fighting",
@@ -66,7 +69,8 @@
     "categoryLabel": "Estilo de combate",
     "description": "You have Blindsight with a range of 10 feet.",
     "repeatable": false,
-    "srd52": false
+    "srd52": false,
+    "descriptionEs": "Tienes sentido ciego con un alcance de 10 pies."
   },
   "boon-of-combat-prowess": {
     "name": "Boon of Combat Prowess",
@@ -77,7 +81,7 @@
     "prerequisite": "Nivel 19+",
     "repeatable": false,
     "srd52": true,
-    "descriptionEs": "Obtienes los siguientes beneficios.\nMejora de puntuación de característica. Aumenta en 1 una puntuación de característica de tu elección, hasta un máximo de 30.\nPuntería sin igual. Cuando fallas con una tirada de ataque, puedes impactar en su lugar. Una vez que uses este beneficio, no puedes volver a usarlo hasta el inicio de tu siguiente turno."
+    "descriptionEs": "Obtienes los siguientes beneficios.\n\nMejora de puntuación de característica. Aumenta en 1 una puntuación de característica de tu elección, hasta un máximo de 30.\n\nPuntería sin igual. Cuando fallas con una tirada de ataque, puedes impactar en su lugar. Una vez que uses este beneficio, no puedes volver a usarlo hasta el inicio de tu siguiente turno."
   },
   "boon-of-dimensional-travel": {
     "name": "Boon of Dimensional Travel",
@@ -88,7 +92,7 @@
     "prerequisite": "Nivel 19+",
     "repeatable": false,
     "srd52": true,
-    "descriptionEs": "Obtienes los siguientes beneficios.\nMejora de puntuación de característica. Aumenta en 1 una puntuación de característica de tu elección, hasta un máximo de 30.\nPasos centelleantes. Inmediatamente después de realizar la Acción de Ataque o la Acción Mágica, puedes teletransportarte hasta 30 pies a un espacio desocupado que puedas ver."
+    "descriptionEs": "Obtienes los siguientes beneficios.\n\nMejora de puntuación de característica. Aumenta en 1 una puntuación de característica de tu elección, hasta un máximo de 30.\n\nPasos centelleantes. Inmediatamente después de realizar la Acción de Ataque o la acción mágica, puedes teletransportarte hasta 30 pies a un espacio desocupado que puedas ver."
   },
   "boon-of-energy-resistance": {
     "name": "Boon of Energy Resistance",
@@ -98,7 +102,8 @@
     "description": "You gain the following benefits.\n\nEnergy Resistances: You gain XPHB, you can change your choices.\n\nEnergy Redirection: When you take damage of one of the types chosen for the Energy Resistances benefit, you can take a XPHB|Total Cover. If you do so, that creature must succeed on a Dexterity saving throw ({@dc 8} plus your Constitution modifier and Proficiency Bonus) or take damage equal to 2d12 plus your Constitution modifier.",
     "prerequisite": "Nivel 19+",
     "repeatable": false,
-    "srd52": false
+    "srd52": false,
+    "descriptionEs": "Obtienes los siguientes beneficios.\n\nResistencias elementales: ganas resistencia a dos de los siguientes tipos de daño de tu elección: ácido, frío, fuego, relámpago, necrótico, veneno, psíquico, radiante o trueno. Siempre que termines un descanso largo, puedes cambiar tus elecciones.\n\nRedirección de energía: cuando recibes daño de uno de los tipos elegidos para el beneficio Resistencias elementales, puedes usar una reacción para dirigir daño del mismo tipo hacia otra criatura que puedas ver a 60 pies o menos de ti y que no esté tras cobertura total. Si lo haces, esa criatura debe tener éxito en una tirada de salvación de Destreza (CD 8 + tu modificador de Constitución + bonificador de competencia) o recibir daño igual a 2d12 + tu modificador de Constitución."
   },
   "boon-of-fate": {
     "name": "Boon of Fate",
@@ -109,7 +114,7 @@
     "prerequisite": "Nivel 19+",
     "repeatable": false,
     "srd52": true,
-    "descriptionEs": "Obtienes los siguientes beneficios.\nMejora de puntuación de característica. Aumenta en 1 una puntuación de característica de tu elección, hasta un máximo de 30.\nMejorar el destino. Cuando tú u otra criatura a 60 pies o menos de ti tenga éxito o fracase en una prueba de d20, puedes tirar 2d4 y aplicar el total obtenido como bonificador o penalizador a la tirada de d20. Una vez que uses este beneficio, no puedes volver a usarlo hasta que tires Iniciativa o finalices un Descanso corto o un Descanso largo."
+    "descriptionEs": "Obtienes los siguientes beneficios.\n\nMejora de puntuación de característica. Aumenta en 1 una puntuación de característica de tu elección, hasta un máximo de 30.\n\nMejorar el destino. Cuando tú u otra criatura a 60 pies o menos de ti tenga éxito o fracase en una prueba de d20, puedes tirar 2d4 y aplicar el total obtenido como bonificador o penalizador a la tirada de d20. Una vez que uses este beneficio, no puedes volver a usarlo hasta que tires Iniciativa o finalices un Descanso corto o un descanso largo."
   },
   "boon-of-fortitude": {
     "name": "Boon of Fortitude",
@@ -119,7 +124,8 @@
     "description": "You gain the following benefits.\n\nFortified Health: Your Hit Point maximum increases by 40. In addition, whenever you regain XPHB equal to your Constitution modifier. Once you've regained these additional Hit Points|XPHB, you can't do so again until the start of your next turn.",
     "prerequisite": "Nivel 19+",
     "repeatable": false,
-    "srd52": false
+    "srd52": false,
+    "descriptionEs": "Obtienes los siguientes beneficios.\n\nSalud fortificada: tu máximo de puntos de golpe aumenta en 40. Además, siempre que recuperes puntos de golpe, puedes recuperar puntos de golpe adicionales igual a tu modificador de Constitución. Una vez que hayas recuperado estos puntos de golpe adicionales, no puedes volver a hacerlo hasta el inicio de tu siguiente turno."
   },
   "boon-of-irresistible-offense": {
     "name": "Boon of Irresistible Offense",
@@ -130,7 +136,7 @@
     "prerequisite": "Nivel 19+",
     "repeatable": false,
     "srd52": true,
-    "descriptionEs": "Obtienes los siguientes beneficios.\nMejora de puntuación de característica. Aumenta en 1 tu puntuación de fuerza o destreza, hasta un máximo de 30.\nSuperar defensas. El daño Contundente, Perforante y Cortante que infliges siempre ignora la Resistencia.\nGolpe abrumador. Cuando sacas un 20 en el d20 para una tirada de ataque, puedes infligir daño adicional al objetivo igual a la puntuación de característica aumentada por esta dote. El tipo de daño adicional es el mismo que el del ataque.\nNota de Foundry\nLos efectos de esta dote no están automatizados. El daño adicional puede añadirse en el campo de Bonificador situacional del cuadro de diálogo de la tirada de daño."
+    "descriptionEs": "Obtienes los siguientes beneficios.\n\nMejora de puntuación de característica. Aumenta en 1 tu puntuación de fuerza o destreza, hasta un máximo de 30.\n\nSuperar defensas. El daño Contundente, Perforante y Cortante que infliges siempre ignora la Resistencia.\n\nGolpe abrumador. Cuando sacas un 20 en el d20 para una tirada de ataque, puedes infligir daño adicional al objetivo igual a la puntuación de característica aumentada por esta dote. El tipo de daño adicional es el mismo que el del ataque."
   },
   "boon-of-recovery": {
     "name": "Boon of Recovery",
@@ -140,7 +146,8 @@
     "description": "You gain the following benefits.\n\nLast Stand: When you would be reduced to 0 XPHB|Hit Point instead and regain a number of XPHB|Hit Point maximum. Once you use this benefit, you can't use it again until you finish a Long Rest|XPHB.\n\nRecover Vitality: You have a pool of ten d10s. As a XPHB equal to the roll's total. You regain all the expended dice when you finish a Long Rest|XPHB.",
     "prerequisite": "Nivel 19+",
     "repeatable": false,
-    "srd52": false
+    "srd52": false,
+    "descriptionEs": "Obtienes los siguientes beneficios.\n\nÚltima resistencia: cuando fueras a quedar reducido a 0 puntos de golpe, puedes quedar con 1 punto de golpe en su lugar y recuperar una cantidad de puntos de golpe igual a la mitad de tu máximo de puntos de golpe. Una vez que uses este beneficio, no puedes volver a usarlo hasta que termines un descanso largo.\n\nRecuperar vitalidad: tienes un grupo de diez d10. Como acción adicional, puedes gastar dados del grupo, tirarlos y recuperar una cantidad de puntos de golpe igual al total de la tirada. Recuperas todos los dados gastados cuando terminas un descanso largo."
   },
   "boon-of-skill": {
     "name": "Boon of Skill",
@@ -150,7 +157,8 @@
     "description": "You gain the following benefits.\n\nAll-Around Adept: You gain proficiency in all skills.\n\nExpertise: Choose one skill in which you lack XPHB in that skill.",
     "prerequisite": "Nivel 19+",
     "repeatable": false,
-    "srd52": false
+    "srd52": false,
+    "descriptionEs": "Obtienes los siguientes beneficios.\n\nAdaptabilidad total: ganas competencia en todas las pericias.\n\nPericia: elige una pericia en la que no tengas pericia. Ganas pericia en esa pericia."
   },
   "boon-of-speed": {
     "name": "Boon of Speed",
@@ -160,7 +168,8 @@
     "description": "You gain the following benefits.\n\nEscape Artist: As a XPHB action, which also ends the Grappled condition on you.\n\nQuickness: Your Speed|XPHB increases by 30 feet.",
     "prerequisite": "Nivel 19+",
     "repeatable": false,
-    "srd52": false
+    "srd52": false,
+    "descriptionEs": "Obtienes los siguientes beneficios.\n\nArtista del escape: como acción adicional, puedes realizar la acción Retirada, lo que además termina la condición agarrado sobre ti.\n\nRapidez: tu velocidad aumenta en 30 pies."
   },
   "boon-of-spell-recall": {
     "name": "Boon of Spell Recall",
@@ -171,7 +180,7 @@
     "prerequisite": "Nivel 19+",
     "repeatable": false,
     "srd52": true,
-    "descriptionEs": "Obtienes los siguientes beneficios.\nMejora de puntuación de característica. Aumenta en 1 tu puntuación de inteligencia, sabiduría o carisma, hasta un máximo de 30.\nLanzamiento gratuito. Siempre que lances un conjuro usando un espacio de conjuro de nivel 1–4, tira [[/r 1d4]]. Si el número obtenido coincide con el nivel del espacio, el espacio no se gasta.\nNota de Foundry\nSi el número coincide, desmarca la opción de Consumo al usar el conjuro."
+    "descriptionEs": "Obtienes los siguientes beneficios.\n\nMejora de puntuación de característica. Aumenta en 1 tu puntuación de inteligencia, sabiduría o carisma, hasta un máximo de 30.\n\nLanzamiento gratuito. Siempre que lances un conjuro usando un espacio de conjuro de nivel 1–4, tira . Si el número obtenido coincide con el nivel del espacio, el espacio no se gasta."
   },
   "boon-of-the-night-spirit": {
     "name": "Boon of the Night Spirit",
@@ -182,7 +191,7 @@
     "prerequisite": "Nivel 19+",
     "repeatable": false,
     "srd52": true,
-    "descriptionEs": "Obtienes los siguientes beneficios.\nMejora de puntuación de característica. Aumenta en 1 una puntuación de característica de tu elección, hasta un máximo de 30.\nFundirse con las sombras. Mientras estés en Luz tenue u Oscuridad, puedes aplicarte la condición &amp;Reference[Invisible] como una Acción adicional. La condición termina en ti inmediatamente después de que realices una Acción, una Acción adicional o una Reacción.\nForma sombría. Mientras estés en Luz tenue u Oscuridad, tienes Resistencia a todo el daño excepto Psíquico y Radiante.\nNota de Foundry\nEl Efecto Activo de Don del espíritu nocturno incluye las Resistencias, pero debes activarlo/desactivarlo en la pestaña de Efectos de tu ficha.\nLa actividad Fundirse con las sombras incluye un Efecto Activo que aplica la condición invisible."
+    "descriptionEs": "Obtienes los siguientes beneficios.\n\nMejora de puntuación de característica. Aumenta en 1 una puntuación de característica de tu elección, hasta un máximo de 30.\n\nFundirse con las sombras. Mientras estés en Luz tenue u Oscuridad, puedes aplicarte la condición Invisible como una acción adicional. La condición termina en ti inmediatamente después de que realices una Acción, una acción adicional o una Reacción.\n\nForma sombría. Mientras estés en Luz tenue u Oscuridad, tienes Resistencia a todo el daño excepto Psíquico y Radiante."
   },
   "boon-of-truesight": {
     "name": "Boon of Truesight",
@@ -193,7 +202,7 @@
     "prerequisite": "Nivel 19+",
     "repeatable": false,
     "srd52": true,
-    "descriptionEs": "Obtienes los siguientes beneficios.\nMejora de puntuación de característica. Aumenta en 1 una puntuación de característica de tu elección, hasta un máximo de 30.\nVisión veraz. Tienes Visión veraz con un alcance de 60 pies.\nNota de Foundry\nEste rasgo incluye un Efecto Activo que te otorga Visión veraz con un alcance de 60 pies."
+    "descriptionEs": "Obtienes los siguientes beneficios.\n\nMejora de puntuación de característica. Aumenta en 1 una puntuación de característica de tu elección, hasta un máximo de 30.\n\nVisión veraz. Tienes Visión veraz con un alcance de 60 pies."
   },
   "charger": {
     "name": "Charger",
@@ -203,7 +212,8 @@
     "description": "You gain the following benefits.\n\nImproved Dash: When you take the {@action Dash|XPHB} action, your Speed|XPHB increases by 10 feet for that action.\n\nCharge Attack: If you move at least 10 feet in a straight line toward a target immediately before hitting it with a melee attack roll as part of the {@action Attack|XPHB} action, choose one of the following effects: gain a 1d8 bonus to the attack's damage roll, or push the target up to 10 feet away if it is no more than one size larger than you. You can use this benefit only once on each of your turns.",
     "prerequisite": "Nivel 4+ · Nivel 4+",
     "repeatable": false,
-    "srd52": false
+    "srd52": false,
+    "descriptionEs": "Obtienes los siguientes beneficios.\n\nCorrer mejorado: cuando realizas la acción Correr, tu velocidad aumenta en 10 pies durante esa acción.\n\nAtaque de carga: si te mueves al menos 10 pies en línea recta hacia un objetivo inmediatamente antes de impactarlo con una tirada de ataque cuerpo a cuerpo como parte de la acción de Ataque, elige uno de los siguientes efectos: ganas un bonificador de 1d8 a la tirada de daño del ataque, o empujas al objetivo hasta 10 pies si no es más de un tamaño mayor que tú. Solo puedes usar este beneficio una vez en cada uno de tus turnos."
   },
   "chef": {
     "name": "Chef",
@@ -213,7 +223,8 @@
     "description": "You gain the following benefits.\n\nCook's Utensils: You gain proficiency with Cook's Utensils if you don't already have it.\n\nReplenishing Meal: As part of a XPHB on hand. You can prepare enough of this food for a number of creatures equal to 4 plus your Proficiency Bonus. At the end of the XPHB regains an extra 1d8 Hit Points|XPHB.\n\nBolstering Treats: With 1 hour of work or when you finish a XPHB|Proficiency Bonus if you have ingredients and Cook's Utensils on hand. These special treats last 8 hours after being made. A creature can use a XPHB equal to your Proficiency Bonus.",
     "prerequisite": "Nivel 4+",
     "repeatable": false,
-    "srd52": false
+    "srd52": false,
+    "descriptionEs": "Obtienes los siguientes beneficios.\n\nUtensilios de cocinero: ganas competencia con utensilios de cocinero si no la tienes.\n\nComida reconstituyente: como parte de un descanso corto, puedes cocinar comida especial si tienes ingredientes y utensilios de cocinero a mano. Puedes preparar suficiente comida para un número de criaturas igual a 4 + tu bonificador de competencia. Al final del descanso corto, cualquier criatura que coma la comida y gaste uno o más dados de golpe para recuperar PV recupera 1d8 PV adicionales.\n\nGolosinas estimulantes: con 1 hora de trabajo o cuando terminas un descanso largo, puedes cocinar un número de golosinas igual a tu bonificador de competencia si tienes ingredientes y utensilios de cocinero a mano. Estas golosinas especiales duran 8 horas tras prepararlas. Una criatura puede usar una acción adicional para comer una de esas golosinas y ganar una cantidad de puntos de golpe temporales igual a tu bonificador de competencia."
   },
   "crafter": {
     "name": "Crafter",
@@ -222,7 +233,8 @@
     "categoryLabel": "Origen",
     "description": "You gain the following benefits.\n\nTool Proficiency: You gain proficiency with three different Artisan's Tools of your choice from the Fast Crafting table.\n\nDiscount: Whenever you buy a nonmagical item, you receive a 20 percent discount on it.\n\nFast Crafting: When you finish a XPHB associated with that item and have proficiency with those tools. The item lasts until you finish another Long Rest|XPHB, at which point the item falls apart.",
     "repeatable": false,
-    "srd52": false
+    "srd52": false,
+    "descriptionEs": "Obtienes los siguientes beneficios.\n\nCompetencia con herramientas: ganas competencia con tres herramientas de artesano de tu elección.\n\nDescuento: al comprar un objeto no mágico, recibes un 20 % de descuento.\n\nFabricación rápida: al terminar un descanso largo, puedes fabricar un objeto de artesano de nivel de rareza 1 usando herramientas con las que tengas competencia. El objeto dura hasta tu próximo descanso largo, cuando se deshace."
   },
   "crossbow-expert": {
     "name": "Crossbow Expert",
@@ -232,7 +244,8 @@
     "description": "You gain the following benefits.\n\nIgnore Loading: You ignore the {@itemProperty LD|XPHB|Loading} property of the Hand Crossbow, Heavy Crossbow, and Light Crossbow (all called crossbows elsewhere in this feat). If you're holding one of them, you can load a piece of ammunition into it even if you lack a free hand.\n\nFiring in Melee: Being within 5 feet of an enemy doesn't impose Disadvantage|XPHB on your attack rolls with crossbows.\n\nDual Wielding: When you make the extra attack of the {@itemProperty L|XPHB|Light} property, you can add your ability modifier to the damage of the extra attack if that attack is with a crossbow that has the {@itemProperty L|XPHB|Light} property and you aren't already adding that modifier to the damage.",
     "prerequisite": "Nivel 4+",
     "repeatable": false,
-    "srd52": false
+    "srd52": false,
+    "descriptionEs": "Obtienes los siguientes beneficios.\n\nIgnorar recarga: ignoras la propiedad Recarga de la ballesta de mano, la ballesta pesada y la ballesta ligera (en el resto de esta dote se llaman ballestas). Si sostienes una de ellas, puedes cargar munición aunque no tengas una mano libre.\n\nDisparo cuerpo a cuerpo: estar a 5 pies o menos de un enemigo no impone desventaja en tus tiradas de ataque con ballestas.\n\nCombate con dos armas: cuando realizas el ataque extra de la propiedad Ligera, puedes sumar tu modificador de característica al daño del ataque extra si ese ataque es con una ballesta que tenga la propiedad Ligera y aún no estás sumando ese modificador al daño."
   },
   "crusher": {
     "name": "Crusher",
@@ -242,7 +255,8 @@
     "description": "You gain the following benefits.\n\nPush: Once per turn, when you hit a creature with an attack that deals Bludgeoning damage, you can move it 5 feet to an unoccupied space if the target is no more than one size larger than you.\n\nEnhanced Critical: When you score a XPHB until the start of your next turn.",
     "prerequisite": "Nivel 4+",
     "repeatable": false,
-    "srd52": false
+    "srd52": false,
+    "descriptionEs": "Obtienes los siguientes beneficios.\n\nEmpujar: una vez por turno, cuando impactas a una criatura con un ataque que inflige daño contundente, puedes moverla 5 pies a un espacio desocupado si el objetivo no es más de un tamaño mayor que tú.\n\nCrítico mejorado: cuando obtienes un impacto crítico que inflige daño contundente a una criatura, las tiradas de ataque contra esa criatura tienen ventaja hasta el inicio de tu siguiente turno."
   },
   "defense": {
     "name": "Defense",
@@ -252,7 +266,7 @@
     "description": "While you're wearing Light, Medium, or Heavy armor, you gain a +1 bonus to Armor Class|XPHB.",
     "repeatable": false,
     "srd52": true,
-    "descriptionEs": "(Prerrequisito: Rasgo de Estilo de combate)\nMientras lleves Armadura ligera, media o pesada, obtienes un bonificador de +1 a la Clase de Armadura.\nNota de Foundry\nEste rasgo incluye un Efecto Activo que proporciona el bonificador a la Clase de Armadura. Desactívalo cuando no lleves armadura."
+    "descriptionEs": "(Prerrequisito: Rasgo de Estilo de combate)\n\nMientras lleves Armadura ligera, media o pesada, obtienes un bonificador de +1 a la Clase de Armadura."
   },
   "defensive-duelist": {
     "name": "Defensive Duelist",
@@ -262,7 +276,8 @@
     "description": "You gain the following benefits.\n\nParry: If you're holding a Finesse weapon and another creature hits you with a melee attack, you can take a XPHB|Proficiency Bonus to your Armor Class|XPHB, potentially causing the attack to miss you. You gain this bonus to your AC against melee attacks until the start of your next turn.",
     "prerequisite": "Nivel 4+",
     "repeatable": false,
-    "srd52": false
+    "srd52": false,
+    "descriptionEs": "Obtienes los siguientes beneficios.\n\nParada: si sostienes un arma con la propiedad Sutil y otra criatura te impacta con un ataque cuerpo a cuerpo, puedes usar una reacción para sumar tu bonificador de competencia a tu CA, lo que potencialmente hace que el ataque falle. Mantienes este bonificador a tu CA contra ataques cuerpo a cuerpo hasta el inicio de tu siguiente turno."
   },
   "druidic-warrior": {
     "name": "Druidic Warrior",
@@ -271,7 +286,8 @@
     "categoryLabel": "Estilo de combate",
     "description": "You learn two of your choice. Guidance and Starry Wisp are recommended. The chosen cantrips count as Ranger spells for you, and Wisdom is your spellcasting ability for them. Whenever you gain a Ranger level, you can replace one of these cantrips with another Druid cantrip.",
     "repeatable": false,
-    "srd52": false
+    "srd52": false,
+    "descriptionEs": "Aprendes dos trucos de druida de tu elección. Guía y Voluta estelar se recomiendan. Los trucos elegidos cuentan como conjuros de explorador para ti, y Sabiduría es tu característica de lanzamiento de conjuros para ellos. Siempre que ganes un nivel de explorador, puedes reemplazar uno de estos trucos por otro truco de druida."
   },
   "dual-wielder": {
     "name": "Dual Wielder",
@@ -281,7 +297,8 @@
     "description": "You gain the following benefits.\n\nEnhanced Dual Wielding: When you take the {@action Attack|XPHB} action on your turn and attack with a weapon that has the {@itemProperty L|XPHB|Light} property, you can make one extra attack as a XPHB|Two-Handed property. You don't add your ability modifier to the extra attack's damage unless that modifier is negative.\n\nQuick Draw: You can draw or stow two weapons that lack the {@itemProperty 2H|XPHB|Two-Handed} property when you would normally be able to draw or stow only one.",
     "prerequisite": "Nivel 4+ · Nivel 4+",
     "repeatable": false,
-    "srd52": false
+    "srd52": false,
+    "descriptionEs": "Obtienes los siguientes beneficios.\n\nCombate con dos armas mejorado: cuando realizas la acción de Ataque en tu turno e impactas con un arma con la propiedad Ligera, puedes hacer un ataque extra como acción adicional más tarde en el mismo turno con un arma distinta, que debe ser un arma cuerpo a cuerpo sin la propiedad a dos manos. No sumas tu modificador de característica al daño del ataque extra a menos que ese modificador sea negativo.\n\nSacar rápido: puedes desenvainar o guardar dos armas sin la propiedad a dos manos cuando normalmente solo podrías desenvainar o guardar una."
   },
   "dueling": {
     "name": "Dueling",
@@ -290,7 +307,8 @@
     "categoryLabel": "Estilo de combate",
     "description": "When you're holding a Melee weapon in one hand and no other weapons, you gain a +2 bonus to damage rolls with that weapon.",
     "repeatable": false,
-    "srd52": false
+    "srd52": false,
+    "descriptionEs": "Cuando sostienes un arma cuerpo a cuerpo en una mano y ninguna otra arma, ganas un bonificador de +2 a las tiradas de daño con esa arma."
   },
   "durable": {
     "name": "Durable",
@@ -300,7 +318,8 @@
     "description": "You gain the following benefits.\n\nDefy Death: You have XPHB|Death Saving Throws.\n\nSpeedy Recovery: As a XPHB, roll the die, and regain a number of Hit Points|XPHB equal to the roll.",
     "prerequisite": "Nivel 4+",
     "repeatable": false,
-    "srd52": false
+    "srd52": false,
+    "descriptionEs": "Obtienes los siguientes beneficios.\n\nDesafiar a la muerte: tienes ventaja en las tiradas de salvación contra muerte.\n\nRecuperación veloz: como acción adicional, puedes gastar uno de tus dados de golpe, tirar el dado y recuperar una cantidad de PV igual al resultado."
   },
   "elemental-adept": {
     "name": "Elemental Adept",
@@ -310,7 +329,8 @@
     "description": "You gain the following benefits.\n\nEnergy Mastery: Choose one of the following damage types: Acid, Cold, Fire, Lightning, or Thunder. Spells you cast ignore Resistance|XPHB to damage of the chosen type. In addition, when you roll damage for a spell you cast that deals damage of that type, you can treat any 1 on a damage die as a 2.\n\nRepeatable: You can take this feat more than once, but you must choose a different damage type each time for Energy Mastery.",
     "prerequisite": "Nivel 4+",
     "repeatable": true,
-    "srd52": false
+    "srd52": false,
+    "descriptionEs": "Obtienes los siguientes beneficios.\n\nMaestría elemental: elige uno de los siguientes tipos de daño: ácido, frío, fuego, relámpago o trueno. Los conjuros que lanzas ignoran la resistencia al daño del tipo elegido. Además, cuando tiras daño por un conjuro que lanzas y que inflige daño de ese tipo, puedes tratar cualquier 1 en un dado de daño como un 2.\n\nRepetible: puedes escoger esta dote más de una vez, pero debes elegir un tipo de daño distinto cada vez para Maestría elemental."
   },
   "fey-touched": {
     "name": "Fey-Touched",
@@ -320,7 +340,8 @@
     "description": "Your exposure to the Feywild's magic grants you the following benefits.\n\nFey Magic: Choose one school of magic. You always have that spell and the Misty Step spell prepared. You can cast each of these spells without expending a spell slot. Once you cast either spell in this way, you can't cast that spell in this way again until you finish a Long Rest|XPHB. You can also cast these spells using spell slots you have of the appropriate level. The spells' spellcasting ability is the ability increased by this feat.",
     "prerequisite": "Nivel 4+",
     "repeatable": false,
-    "srd52": false
+    "srd52": false,
+    "descriptionEs": "Tu exposición a la magia del Plano Feérico te otorga los siguientes beneficios.\n\nMagia feérica: elige un conjuro de nivel 1 de la escuela de Adivinación o Encantamiento. Siempre tienes ese conjuro y el conjuro Paso brumoso preparados. Puedes lanzar cada uno de estos conjuros sin gastar un espacio de conjuro. Una vez que lances cualquiera de estos conjuros de esta forma, no puedes volver a lanzarlo así hasta que termines un descanso largo. También puedes lanzarlos con espacios de conjuro que tengas del nivel apropiado. La característica de lanzamiento de estos conjuros es la característica aumentada por esta dote."
   },
   "grappler": {
     "name": "Grappler",
@@ -331,7 +352,7 @@
     "prerequisite": "Nivel 4+ · Nivel 4+",
     "repeatable": false,
     "srd52": true,
-    "descriptionEs": "Obtienes los siguientes beneficios.\nMejora de puntuación de característica. Aumenta en 1 tu puntuación de fuerza o destreza, hasta un máximo de 20.\nPuñetazo y agarre. Cuando impactas a una criatura con un Golpe sin armas como parte de la Acción de Ataque en tu turno, puedes usar tanto la opción de daño como la de Agarre. Solo puedes usar este beneficio una vez por turno.\nVentaja en el ataque. Tienes Ventaja en las tiradas de ataque contra una criatura &amp;Reference[Grappled] por ti.\nLuchador veloz. No tienes que gastar Movimiento adicional para mover contigo a una criatura si la criatura es de tu tamaño o más pequeña.\nNota de Foundry\nLa Ventaja no está automatizada."
+    "descriptionEs": "Obtienes los siguientes beneficios.\n\nMejora de puntuación de característica. Aumenta en 1 tu puntuación de fuerza o destreza, hasta un máximo de 20.\n\nPuñetazo y agarre. Cuando impactas a una criatura con un Golpe sin armas como parte de la Acción de Ataque en tu turno, puedes usar tanto la opción de daño como la de Agarre. Solo puedes usar este beneficio una vez por turno.\n\nventaja en el ataque. Tienes ventaja en las tiradas de ataque contra una criatura Agarrado por ti.\n\nLuchador veloz. No tienes que gastar Movimiento adicional para mover contigo a una criatura si la criatura es de tu tamaño o más pequeña."
   },
   "great-weapon-fighting": {
     "name": "Great Weapon Fighting",
@@ -341,7 +362,7 @@
     "description": "When you roll damage for an attack you make with a Melee weapon that you are holding with two hands, you can treat any 1 or 2 on a damage die as a 3. The weapon must have the {@itemProperty 2h|XPHB|Two-Handed} or {@itemProperty V|XPHB|Versatile} property to gain this benefit.",
     "repeatable": false,
     "srd52": true,
-    "descriptionEs": "(Prerrequisito: Rasgo de Estilo de combate)\nCuando tiras el daño de un ataque que realizas con un arma cuerpo a cuerpo que empuñas con dos manos, puedes tratar cualquier 1 o 2 en un dado de daño como un 3. El arma debe tener la propiedad A dos manos o Versátil para obtener este beneficio.\nNota de Foundry\nEste efecto no está automatizado."
+    "descriptionEs": "(Prerrequisito: Rasgo de Estilo de combate)\n\nCuando tiras el daño de un ataque que realizas con un arma cuerpo a cuerpo que empuñas con dos manos, puedes tratar cualquier 1 o 2 en un dado de daño como un 3. El arma debe tener la propiedad A dos manos o Versátil para obtener este beneficio."
   },
   "great-weapon-master": {
     "name": "Great Weapon Master",
@@ -351,7 +372,8 @@
     "description": "You gain the following benefits.\n\nHeavy Weapon Mastery: When you hit a creature with a weapon that has the {@itemProperty H|XPHB|Heavy} property as part of the {@action Attack|XPHB} action on your turn, you can cause the weapon to deal extra damage to the target. The extra damage equals your Proficiency Bonus.\n\nHew: Immediately after you score a XPHB with one, you can make one attack with the same weapon as a Bonus Action|XPHB.",
     "prerequisite": "Nivel 4+",
     "repeatable": false,
-    "srd52": false
+    "srd52": false,
+    "descriptionEs": "Obtienes los siguientes beneficios.\n\nMaestría con armas pesadas: cuando impactas a una criatura con un arma con la propiedad Pesada como parte de la acción de Ataque en tu turno, puedes hacer que el arma inflija daño extra al objetivo. El daño extra equivale a tu bonificador de competencia.\n\nHendir: inmediatamente después de obtener un impacto crítico con un arma cuerpo a cuerpo o reducir una criatura a 0 PV con una, puedes hacer un ataque con la misma arma como acción adicional."
   },
   "healer": {
     "name": "Healer",
@@ -360,7 +382,8 @@
     "categoryLabel": "Origen",
     "description": "You gain the following benefits.\n\nBattle Medic: If you have a Healer's Kit, you can expend one use of it and tend to a creature within 5 feet of yourself as a {@action Utilize|XPHB} action. That creature can expend one of its XPHB equal to the roll plus your Proficiency Bonus.\n\nHealing Rerolls: Whenever you roll a die to determine the number of Hit Points|XPHB you restore with a spell or with this feat's Battle Medic benefit, you can reroll the die if it rolls a 1, and you must use the new roll.",
     "repeatable": false,
-    "srd52": false
+    "srd52": false,
+    "descriptionEs": "Obtienes los siguientes beneficios.\n\nKit de sanador: ganas competencia con kit de sanador si no la tienes.\n\nReanimación: como acción, puedes gastar un uso de kit de sanador para estabilizar a una criatura a 0 PV sin necesidad de tirada.\n\nCuración rápida: como acción, puedes gastar un uso de kit de sanador para que una criatura recupere 1d6 + 4 + su número de dados de golpe máximos PV. Una criatura solo puede beneficiarse de esta curación una vez entre descansos cortos o largos."
   },
   "heavily-armored": {
     "name": "Heavily Armored",
@@ -370,7 +393,8 @@
     "description": "You gain the following benefits.\n\nArmor Training: You gain training with Heavy armor.",
     "prerequisite": "Nivel 4+",
     "repeatable": false,
-    "srd52": false
+    "srd52": false,
+    "descriptionEs": "Obtienes los siguientes beneficios.\n\nEntrenamiento en armadura: ganas entrenamiento con armadura pesada."
   },
   "heavy-armor-master": {
     "name": "Heavy Armor Master",
@@ -380,7 +404,8 @@
     "description": "You gain the following benefits.\n\nDamage Reduction: When you're hit by an attack while you're wearing Heavy armor, any Bludgeoning, Piercing, and Slashing damage dealt to you by that attack is reduced by an amount equal to your Proficiency Bonus.",
     "prerequisite": "Nivel 4+",
     "repeatable": false,
-    "srd52": false
+    "srd52": false,
+    "descriptionEs": "Obtienes los siguientes beneficios.\n\nReducción de daño: cuando te impacta un ataque mientras llevas armadura pesada, cualquier daño contundente, perforante y cortante que te inflija ese ataque se reduce en una cantidad igual a tu bonificador de competencia."
   },
   "inspiring-leader": {
     "name": "Inspiring Leader",
@@ -390,7 +415,8 @@
     "description": "You gain the following benefits.\n\nBolstering Performance: When you finish a Short or XPHB equal to your character level plus the modifier of the ability you increased with this feat.",
     "prerequisite": "Nivel 4+ · Nivel 4+",
     "repeatable": false,
-    "srd52": false
+    "srd52": false,
+    "descriptionEs": "Obtienes los siguientes beneficios.\n\nActuación estimulante: cuando terminas un descanso corto o un descanso largo, puedes ofrecer una actuación inspiradora: un discurso, una canción o un baile. Al hacerlo, elige hasta seis aliados (puedes incluirte) a 30 pies o menos de ti que presencien la actuación. Cada criatura elegida gana puntos de golpe temporales igual a tu nivel de personaje más el modificador de la característica que aumentaste con esta dote."
   },
   "interception": {
     "name": "Interception",
@@ -399,7 +425,8 @@
     "categoryLabel": "Estilo de combate",
     "description": "When a creature you can see hits another creature within 5 feet of you with an attack roll, you can take a XPHB|Proficiency Bonus. You must be holding a Shield or a Simple or Martial weapon to use this Reaction|XPHB.",
     "repeatable": false,
-    "srd52": false
+    "srd52": false,
+    "descriptionEs": "Cuando una criatura que puedes ver impacta a otra criatura a 5 pies o menos de ti con una tirada de ataque, puedes usar una reacción para reducir el daño infligido al objetivo en 1d10 + tu bonificador de competencia. Debes sostener un escudo o un arma simple o marcial para usar esta reacción."
   },
   "keen-mind": {
     "name": "Keen Mind",
@@ -409,7 +436,8 @@
     "description": "You gain the following benefits.\n\nLore Knowledge: Choose one of the following skills: Arcana, History, Investigation, Nature, or Religion. If you lack proficiency in the chosen skill, you gain proficiency in it, and if you already have proficiency in it, you gain Expertise|XPHB in it.\n\nQuick Study: You can take the {@action Study|XPHB} action as a Bonus Action|XPHB.",
     "prerequisite": "Nivel 4+",
     "repeatable": false,
-    "srd52": false
+    "srd52": false,
+    "descriptionEs": "Obtienes los siguientes beneficios.\n\nConocimiento erudito: elige una de las siguientes pericias: Arcanos, Historia, Investigación, Naturaleza o Religión. Si no tienes competencia en la pericia elegida, ganas competencia en ella; si ya la tienes, ganas pericia en ella.\n\nEstudio veloz: puedes realizar la acción Estudiar como acción adicional."
   },
   "lightly-armored": {
     "name": "Lightly Armored",
@@ -419,7 +447,8 @@
     "description": "You gain the following benefits.\n\nArmor Training: You gain training with Light armor and Shields.",
     "prerequisite": "Nivel 4+",
     "repeatable": false,
-    "srd52": false
+    "srd52": false,
+    "descriptionEs": "Obtienes los siguientes beneficios.\n\nEntrenamiento en armadura: ganas entrenamiento con armadura ligera y escudos."
   },
   "lucky": {
     "name": "Lucky",
@@ -428,7 +457,8 @@
     "categoryLabel": "Origen",
     "description": "You gain the following benefits.\n\nLuck Points: You have a number of Luck Points equal to your Proficiency Bonus and can spend the points on the benefits below. You regain your expended Luck Points when you finish a Long Rest|XPHB.\n\nAdvantage: When you roll a d20 for a XPHB on the roll.\n\nDisadvantage: When a creature rolls a d20 for an attack roll against you, you can spend 1 Luck Point to impose Disadvantage|XPHB on that roll.",
     "repeatable": false,
-    "srd52": false
+    "srd52": false,
+    "descriptionEs": "Obtienes los siguientes beneficios.\n\nPuntos de suerte: tienes un número de puntos de suerte igual a tu bonificador de competencia. Puedes gastar un punto para tirar un d20 adicional cuando hagas una tirada d20 para ti mismo. Puedes gastar el punto después de ver el d20 pero antes de que se resuelva el efecto.\n\nRecuperas todos los puntos gastados al terminar un descanso largo."
   },
   "mage-slayer": {
     "name": "Mage Slayer",
@@ -438,7 +468,8 @@
     "description": "You gain the following benefits.\n\nConcentration Breaker: When you damage a creature that is {@status Concentration|XPHB|Concentrating}, it has XPHB.\n\nGuarded Mind: If you fail an Intelligence, a Wisdom, or a Charisma saving throw, you can cause yourself to succeed instead. Once you use this benefit, you can't use it again until you finish a Short or Long Rest|XPHB.",
     "prerequisite": "Nivel 4+",
     "repeatable": false,
-    "srd52": false
+    "srd52": false,
+    "descriptionEs": "Obtienes los siguientes beneficios.\n\nRomper concentración: cuando dañas a una criatura que está concentrándose, tiene desventaja en la tirada de salvación que hace para mantener la concentración.\n\nMente protegida: si fallas una tirada de salvación de Inteligencia, Sabiduría o Carisma, puedes hacer que tengas éxito en su lugar. Una vez que uses este beneficio, no puedes volver a usarlo hasta que termines un descanso corto o un descanso largo."
   },
   "magic-initiate": {
     "name": "Magic Initiate",
@@ -448,17 +479,7 @@
     "description": "You gain the following benefits.\n\nTwo Cantrips: You learn two cantrips of your choice from the , , or spell list. Intelligence, Wisdom, or Charisma is your spellcasting ability for this feat's spells (choose when you select this feat).\n\nLevel 1 Spell: Choose a level 1 spell from the same list you selected for this feat's cantrips. You always have that spell prepared. You can cast it once without a spell slot, and you regain the ability to cast it in that way when you finish a Long Rest|XPHB. You can also cast the spell using any spell slots you have.\n\nSpell Change: Whenever you gain a new level, you can replace one of the spells you chose for this feat with a different spell of the same level from the chosen spell list.\n\nRepeatable: You can take this feat more than once, but you must choose a different spell list each time.",
     "repeatable": true,
     "srd52": true,
-    "descriptionEs": "Obtienes los siguientes beneficios.\nDos trucos. Aprendes dos trucos de tu elección de la lista de conjuros de @UUID[Compendium.dnd5e.content24.JournalEntry.phbSpells0000000.JournalEntryPage.SkHptN2PTzFGDaEj]{Lista de conjuros de clérigo}, @UUID[Compendium.dnd5e.content24.JournalEntry.phbSpells0000000.JournalEntryPage.LhvuDQEyrCdg5EfU]{Lista de conjuros de druida} o @UUID[Compendium.dnd5e.content24.JournalEntry.phbSpells0000000.JournalEntryPage.6AnqLUowgdsqMFvz]{Lista de conjuros de mago}. inteligencia, sabiduría o carisma es tu característica de lanzamiento de conjuros para los conjuros de esta dote (elígela cuando selecciones esta dote).\nConjuro de nivel 1. Elige un conjuro de nivel 1 de la misma lista que seleccionaste para los trucos de esta dote. Siempre tienes ese conjuro preparado. Puedes lanzarlo una vez sin un espacio de conjuro, y recuperas la capacidad de lanzarlo de ese modo cuando terminas un Descanso largo. También puedes lanzar el conjuro usando cualquier espacio de conjuro que tengas.\nCambio de conjuro. Siempre que subas de nivel, puedes reemplazar uno de los conjuros que elegiste para esta dote por un conjuro diferente del mismo nivel de la lista elegida.\nRepetible. Puedes escoger esta dote más de una vez, pero debes elegir una lista de conjuros diferente cada vez."
-  },
-  "merchant": {
-    "name": "Merchant",
-    "nameEs": "Mercader",
-    "category": "origin",
-    "categoryLabel": "Origen",
-    "description": "You gain the following benefits.\n\nMercantile Persuasion: You have Advantage on Charisma (Persuasion) checks when negotiating a sale, purchase, or trade.\n\nWell-Connected: You gain proficiency in one of the following skills of your choice: Deception, Insight, or Persuasion.",
-    "repeatable": false,
-    "srd52": false,
-    "descriptionEs": "Obtienes los siguientes beneficios.\n\nPersuasión mercantil: tienes ventaja en las tiradas de Carisma (Persuasión) al negociar una venta, compra o trueque.\n\nBien conectado: ganas competencia en una de estas pericias: Persuasión, Engaño o Perspicacia."
+    "descriptionEs": "Obtienes los siguientes beneficios.\n\nDos trucos: aprendes dos trucos de la lista de conjuros de clérigo, druida o mago.\n\nConjuro de nivel 1: aprendes un conjuro de nivel 1 de la misma lista. Siempre lo tienes preparado. Puedes lanzarlo una vez sin espacio de conjuro y recuperas ese uso al terminar un descanso largo. También puedes lanzarlo con espacios que tengas.\n\nCaracterística de lanzamiento: Inteligencia, Sabiduría o Carisma (elige al tomar la dote)."
   },
   "martial-weapon-training": {
     "name": "Martial Weapon Training",
@@ -468,7 +489,8 @@
     "description": "You gain the following benefits.\n\nWeapon Proficiency: You gain proficiency with .",
     "prerequisite": "Nivel 4+",
     "repeatable": false,
-    "srd52": false
+    "srd52": false,
+    "descriptionEs": "Obtienes los siguientes beneficios.\n\nCompetencia con armas: ganas competencia con armas marciales."
   },
   "medium-armor-master": {
     "name": "Medium Armor Master",
@@ -478,7 +500,8 @@
     "description": "You gain the following benefits.\n\nDexterous Wearer: While you're wearing Medium armor, you can add 3, rather than 2 to your AC if you have a Dexterity score of 16 or higher.",
     "prerequisite": "Nivel 4+",
     "repeatable": false,
-    "srd52": false
+    "srd52": false,
+    "descriptionEs": "Obtienes los siguientes beneficios.\n\nPortador ágil: mientras llevas armadura media, puedes sumar 3 en lugar de 2 a tu CA si tu puntuación de Destreza es 16 o superior."
   },
   "moderately-armored": {
     "name": "Moderately Armored",
@@ -488,7 +511,8 @@
     "description": "You gain the following benefits.\n\nArmor Training: You gain training with Medium armor.",
     "prerequisite": "Nivel 4+",
     "repeatable": false,
-    "srd52": false
+    "srd52": false,
+    "descriptionEs": "Obtienes los siguientes beneficios.\n\nEntrenamiento en armadura: ganas entrenamiento con armadura media."
   },
   "mounted-combatant": {
     "name": "Mounted Combatant",
@@ -498,7 +522,8 @@
     "description": "You gain the following benefits.\n\nMounted Strike: While {@book mounted|XPHB|1|Mounted Combat}, you have Advantage|XPHB on attack rolls against any unmounted creature within 5 feet of your mount that is at least one size smaller than the mount.\n\nLeap Aside: If your mount is subjected to an effect that allows it to make a Dexterity saving throw to take only half damage, it instead takes no damage if it succeeds on the saving throw and only half damage if it fails. For your mount to gain this benefit, you must be riding it, and neither of you can have the Incapacitated condition.\n\nVeer: While {@book mounted|XPHB|1|Mounted Combat}, you can force an attack that hits your mount to hit you instead if you don't have the Incapacitated condition.",
     "prerequisite": "Nivel 4+",
     "repeatable": false,
-    "srd52": false
+    "srd52": false,
+    "descriptionEs": "Obtienes los siguientes beneficios.\n\nGolpe montado: mientras estás montado, tienes ventaja en las tiradas de ataque contra cualquier criatura no montada a 5 pies o menos de tu montura que sea al menos un tamaño menor que la montura.\n\nSalto lateral: si tu montura es sometida a un efecto que le permite hacer una tirada de salvación de Destreza para recibir solo la mitad del daño, en su lugar no recibe daño si tiene éxito en la tirada de salvación y solo la mitad si falla. Para que tu montura obtenga este beneficio, debes ir montado en ella y ninguno de los dos puede tener la condición incapacitado.\n\nDesviar: mientras estás montado, puedes hacer que un ataque que impacta a tu montura te impacte a ti en su lugar si no tienes la condición incapacitado."
   },
   "musician": {
     "name": "Musician",
@@ -507,7 +532,8 @@
     "categoryLabel": "Origen",
     "description": "You gain the following benefits.\n\nInstrument Training: You gain proficiency with three Musical Instruments of your choice.\n\nEncouraging Song: As you finish a Short or XPHB with which you have proficiency and give XPHB|Proficiency Bonus.",
     "repeatable": false,
-    "srd52": false
+    "srd52": false,
+    "descriptionEs": "Obtienes los siguientes beneficios.\n\nCompetencia con instrumentos: ganas competencia con tres instrumentos musicales de tu elección.\n\nCanción alentadora: al terminar un descanso corto o largo, puedes tocar un instrumento y elegir aliados que oigan la música (hasta tu bonificador de competencia). Cada uno gana un dado de aliento (d6). Una vez en las próximas 8 horas, el aliado puede tirar el dado y sumarlo a una tirada d20 que haga."
   },
   "observant": {
     "name": "Observant",
@@ -517,7 +543,8 @@
     "description": "You gain the following benefits.\n\nKeen Observer: Choose one of the following skills: Insight, Investigation, or Perception. If you lack proficiency with the chosen skill, you gain proficiency in it, and if you already have proficiency in it, you gain Expertise|XPHB in it.\n\nQuick Search: You can take the {@action Search|XPHB} action as a Bonus Action|XPHB.",
     "prerequisite": "Nivel 4+ · Nivel 4+",
     "repeatable": false,
-    "srd52": false
+    "srd52": false,
+    "descriptionEs": "Obtienes los siguientes beneficios.\n\nObservador agudo: elige una de las siguientes pericias: Perspicacia, Investigación o Percepción. Si no tienes competencia en la pericia elegida, ganas competencia en ella; si ya la tienes, ganas pericia en ella.\n\nBúsqueda veloz: puedes realizar la acción Buscar como acción adicional."
   },
   "piercer": {
     "name": "Piercer",
@@ -527,7 +554,8 @@
     "description": "You gain the following benefits.\n\nPuncture: Once per turn, when you hit a creature with an attack that deals Piercing damage, you can reroll one of the attack's damage dice, and you must use the new roll.\n\nEnhanced Critical: When you score a Critical Hit|XPHB that deals Piercing damage to a creature, you can roll one additional damage die when determining the extra Piercing damage the target takes.",
     "prerequisite": "Nivel 4+",
     "repeatable": false,
-    "srd52": false
+    "srd52": false,
+    "descriptionEs": "Obtienes los siguientes beneficios.\n\nPerforar: una vez por turno, cuando impactas a una criatura con un ataque que inflige daño perforante, puedes volver a tirar uno de los dados de daño del ataque y debes usar el nuevo resultado.\n\nCrítico mejorado: cuando obtienes un impacto crítico que inflige daño perforante a una criatura, puedes tirar un dado de daño adicional al determinar el daño perforante extra que recibe el objetivo."
   },
   "poisoner": {
     "name": "Poisoner",
@@ -537,7 +565,8 @@
     "description": "You gain the following benefits.\n\nPotent Poison: When you make a damage roll that deals Poison damage, it ignores Resistance|XPHB to Poison damage.\n\nBrew Poison: You gain proficiency with the Poisoner's Kit. With 1 hour of work using such a kit and expending 50 GP worth of materials, you can create a number of poison doses equal to your Proficiency Bonus. As a XPHB|Proficiency Bonus) or take 2d8 Poison damage and have the Poisoned condition until the end of your next turn.",
     "prerequisite": "Nivel 4+",
     "repeatable": false,
-    "srd52": false
+    "srd52": false,
+    "descriptionEs": "Obtienes los siguientes beneficios.\n\nVeneno potente: cuando haces una tirada de daño que inflige daño de veneno, ignora la resistencia al daño de veneno.\n\nPreparar veneno: ganas competencia con el kit de envenenador. Con 1 hora de trabajo usando dicho kit y gastando materiales por valor de 50 po, puedes crear un número de dosis de veneno igual a tu bonificador de competencia. Como acción adicional, puedes aplicar una dosis a un arma o munición. Una vez aplicada, el veneno mantiene su potencia durante 1 minuto o hasta que inflijas daño con el objeto envenenado, lo que ocurra antes. Cuando una criatura recibe daño del objeto envenenado, debe tener éxito en una tirada de salvación de Constitución (CD 8 + el modificador de la característica aumentada por esta dote + tu bonificador de competencia) o recibir 2d8 de daño de veneno y tener la condición envenenado hasta el final de tu siguiente turno."
   },
   "polearm-master": {
     "name": "Polearm Master",
@@ -547,7 +576,8 @@
     "description": "You gain the following benefits.\n\nPole Strike: Immediately after you take the {@action Attack|XPHB} action and attack with a Quarterstaff, a Spear, or a , you can use a Bonus Action|XPHB to make a melee attack with the opposite end of the weapon. The weapon deals Bludgeoning damage, and the weapon's damage die for this attack is a d4.\n\nReactive Strike: While you're holding a Quarterstaff, a Spear, or a , you can take a Reaction|XPHB to make one melee attack against a creature that enters the reach you have with that weapon.",
     "prerequisite": "Nivel 4+ · Nivel 4+",
     "repeatable": false,
-    "srd52": false
+    "srd52": false,
+    "descriptionEs": "Obtienes los siguientes beneficios.\n\nGolpe de asta: inmediatamente después de realizar la acción de Ataque e impactar con un bastón, una lanza o un arma con las propiedades Pesada y Alcance, puedes usar una acción adicional para hacer un ataque cuerpo a cuerpo con el extremo opuesto del arma. El arma inflige daño contundente y su dado de daño para este ataque es un d4.\n\nGolpe reactivo: mientras sostienes un bastón, una lanza o un arma con las propiedades Pesada y Alcance, puedes usar una reacción para hacer un ataque cuerpo a cuerpo contra una criatura que entre en el alcance que tienes con ese arma."
   },
   "protection": {
     "name": "Protection",
@@ -556,7 +586,8 @@
     "categoryLabel": "Estilo de combate",
     "description": "When a creature you can see attacks a target other than you that is within 5 feet of you, you can take a XPHB if you're holding one. You impose Disadvantage|XPHB on the triggering attack roll and all other attack rolls against the target until the start of your next turn if you remain within 5 feet of the target.",
     "repeatable": false,
-    "srd52": false
+    "srd52": false,
+    "descriptionEs": "Cuando una criatura que puedes ver ataca a un objetivo distinto de ti que está a 5 pies o menos de ti, puedes usar una reacción para interponer tu escudo si lo sostienes. Impones desventaja en la tirada de ataque desencadenante y en todas las demás tiradas de ataque contra el objetivo hasta el inicio de tu siguiente turno si permaneces a 5 pies o menos del objetivo."
   },
   "resilient": {
     "name": "Resilient",
@@ -566,7 +597,8 @@
     "description": "You gain the following benefits.\n\nSaving Throw Proficiency: You gain saving throw proficiency with the chosen ability.",
     "prerequisite": "Nivel 4+",
     "repeatable": false,
-    "srd52": false
+    "srd52": false,
+    "descriptionEs": "Obtienes los siguientes beneficios.\n\nCompetencia en tiradas de salvación: ganas competencia en tiradas de salvación con la característica elegida."
   },
   "ritual-caster": {
     "name": "Ritual Caster",
@@ -576,7 +608,8 @@
     "description": "You gain the following benefits.\n\nRitual Spells: Choose a number of level 1 spells equal to your Proficiency Bonus that have the . You always have those spells prepared, and you can cast them with any spell slots you have. The spells' spellcasting ability is the ability increased by this feat. Whenever your Proficiency Bonus increases thereafter, you can add an additional level 1 spell with the Ritual|XPHB tag to the spells always prepared with this feature.\n\nQuick Ritual: With this benefit, you can cast a XPHB. Doing so doesn't require a spell slot. Once you cast the spell in this way, you can't use this benefit again until you finish a Long Rest|XPHB.",
     "prerequisite": "Nivel 4+ · Nivel 4+ · Nivel 4+",
     "repeatable": false,
-    "srd52": false
+    "srd52": false,
+    "descriptionEs": "Obtienes los siguientes beneficios.\n\nConjuros de ritual: elige un número de conjuros de nivel 1 igual a tu bonificador de competencia que tengan la etiqueta ritual. Siempre los tienes preparados y puedes lanzarlos con los espacios de conjuro que tengas. La característica de lanzamiento de esos conjuros es la característica aumentada por esta dote. Siempre que tu bonificador de competencia aumente después, puedes añadir un conjuro de nivel 1 adicional con la etiqueta ritual a los conjuros siempre preparados con esta característica.\n\nRitual veloz: con este beneficio, puedes lanzar un conjuro de ritual que tengas preparado usando su tiempo de lanzamiento normal en lugar del tiempo extendido para un ritual. Hacerlo no requiere un espacio de conjuro. Una vez que lances el conjuro de esta forma, no puedes volver a usar este beneficio hasta que termines un descanso largo."
   },
   "savage-attacker": {
     "name": "Savage Attacker",
@@ -586,7 +619,7 @@
     "description": "You've trained to deal particularly damaging strikes. Once per turn when you hit a target with a weapon, you can roll the weapon's damage dice twice and use either roll against the target.",
     "repeatable": false,
     "srd52": true,
-    "descriptionEs": "Te has entrenado para asestar golpes especialmente dañinos. Una vez por turno, cuando impactas a un objetivo con un arma, puedes tirar dos veces los dados de daño del arma y usar cualquiera de las dos tiradas contra el objetivo."
+    "descriptionEs": "Obtienes los siguientes beneficios.\n\nAtacante salvaje: una vez por turno cuando impactas con un ataque cuerpo a cuerpo con arma, puedes volver a tirar los dados de daño del arma y usar cualquiera de los dos resultados."
   },
   "sentinel": {
     "name": "Sentinel",
@@ -596,7 +629,8 @@
     "description": "You gain the following benefits.\n\nGuardian: Immediately after a creature within 5 feet of you takes the {@action Disengage|XPHB} action or hits a target other than you with an attack, you can make an {@action Opportunity Attack|XPHB} against that creature.\n\nHalt: When you hit a creature with an {@action Opportunity Attack|XPHB}, the creature's Speed|XPHB becomes 0 for the rest of the current turn.",
     "prerequisite": "Nivel 4+ · Nivel 4+",
     "repeatable": false,
-    "srd52": false
+    "srd52": false,
+    "descriptionEs": "Obtienes los siguientes beneficios.\n\nGuardián: inmediatamente después de que una criatura a 5 pies o menos de ti realice la acción Retirada o impacte a un objetivo distinto de ti con un ataque, puedes hacer un ataque de oportunidad contra esa criatura.\n\nDetener: cuando impactas a una criatura con un ataque de oportunidad, la velocidad de esa criatura pasa a ser 0 durante el resto del turno actual."
   },
   "shadow-touched": {
     "name": "Shadow-Touched",
@@ -606,7 +640,8 @@
     "description": "Your exposure to the Shadowfell's magic grants you the following benefits.\n\nShadow Magic: Choose one school of magic. You always have that spell and the Invisibility spell prepared. You can cast each of these spells without expending a spell slot. Once you cast either spell in this way, you can't cast that spell in this way again until you finish a Long Rest|XPHB. You can also cast these spells using spell slots you have of the appropriate level. The spells' spellcasting ability is the ability increased by this feat.",
     "prerequisite": "Nivel 4+",
     "repeatable": false,
-    "srd52": false
+    "srd52": false,
+    "descriptionEs": "Tu exposición a la magia del Plano Sombrío te otorga los siguientes beneficios.\n\nMagia sombría: elige un conjuro de nivel 1 de la escuela de Ilusión o Necromancia. Siempre tienes ese conjuro y el conjuro Invisibilidad preparados. Puedes lanzar cada uno de estos conjuros sin gastar un espacio de conjuro. Una vez que lances cualquiera de estos conjuros de esta forma, no puedes volver a lanzarlo así hasta que termines un descanso largo. También puedes lanzarlos con espacios de conjuro que tengas del nivel apropiado. La característica de lanzamiento de estos conjuros es la característica aumentada por esta dote."
   },
   "sharpshooter": {
     "name": "Sharpshooter",
@@ -616,7 +651,8 @@
     "description": "You gain the following benefits.\n\nBypass Cover: Your ranged attacks with weapons ignore Half Cover and Three-Quarters Cover.\n\nFiring in Melee: Being within 5 feet of an enemy doesn't impose Disadvantage|XPHB on your attack rolls with Ranged weapons.\n\nLong Shots: Attacking at long range doesn't impose Disadvantage|XPHB on your attack rolls with Ranged weapons.",
     "prerequisite": "Nivel 4+",
     "repeatable": false,
-    "srd52": false
+    "srd52": false,
+    "descriptionEs": "Obtienes los siguientes beneficios.\n\nIgnorar cobertura: tus ataques a distancia con armas ignoran cobertura de media y tres cuartos.\n\nDisparo cuerpo a cuerpo: estar a 5 pies o menos de un enemigo no impone desventaja en tus tiradas de ataque con armas a distancia.\n\nTiros lejanos: atacar a alcance largo no impone desventaja en tus tiradas de ataque con armas a distancia."
   },
   "shield-master": {
     "name": "Shield Master",
@@ -626,7 +662,8 @@
     "description": "You gain the following benefits.\n\nShield Bash: If you attack a creature within 5 feet of you as part of the {@action Attack|XPHB} action and hit with a Melee weapon, you can immediately bash the target with your Shield if it's equipped, forcing the target to make a Strength saving throw ({@dc 8} plus your Strength modifier and Proficiency Bonus). On a failed save, you either push the target 5 feet from you or cause it to have the Prone condition (your choice). You can use this benefit only once on each of your turns.\n\nInterpose Shield: If you're subjected to an effect that allows you to make a Dexterity saving throw to take only half damage, you can take a XPHB.",
     "prerequisite": "Nivel 4+",
     "repeatable": false,
-    "srd52": false
+    "srd52": false,
+    "descriptionEs": "Obtienes los siguientes beneficios.\n\nGolpe con escudo: si atacas a una criatura a 5 pies o menos de ti como parte de la acción de Ataque e impactas con un arma cuerpo a cuerpo, puedes golpear de inmediato al objetivo con tu escudo si lo llevas equipado, obligándolo a hacer una tirada de salvación de Fuerza (CD 8 + tu modificador de Fuerza + bonificador de competencia). Si falla la salvación, empujas al objetivo 5 pies o le aplicas la condición derribado (a tu elección). Solo puedes usar este beneficio una vez en cada uno de tus turnos.\n\nInterpone escudo: si eres sometido a un efecto que te permite hacer una tirada de salvación de Destreza para recibir solo la mitad del daño, puedes usar una reacción para no recibir daño si tienes éxito en la tirada de salvación y sostienes un escudo."
   },
   "skill-expert": {
     "name": "Skill Expert",
@@ -636,7 +673,8 @@
     "description": "You gain the following benefits.\n\nSkill Proficiency: You gain proficiency in one skill of your choice.\n\nExpertise: Choose one skill in which you have proficiency but lack XPHB with that skill.",
     "prerequisite": "Nivel 4+",
     "repeatable": false,
-    "srd52": false
+    "srd52": false,
+    "descriptionEs": "Obtienes los siguientes beneficios.\n\nCompetencia en pericias: ganas competencia en una pericia de tu elección.\n\nPericia: elige una pericia en la que tengas competencia pero no pericia. Ganas pericia con esa pericia."
   },
   "skilled": {
     "name": "Skilled",
@@ -646,7 +684,7 @@
     "description": "You gain proficiency in any combination of three {@table Skill List; Skills|XPHB|skills} or of your choice.\n\nRepeatable: You can take this feat more than once.",
     "repeatable": true,
     "srd52": true,
-    "descriptionEs": "Ganas competencia en cualquier combinación de tres habilidades o herramientas de tu elección.\nRepetible. Puedes escoger esta dote más de una vez."
+    "descriptionEs": "Ganas competencia en cualquier combinación de tres habilidades o herramientas de tu elección.\n\nRepetible. Puedes escoger esta dote más de una vez."
   },
   "skulker": {
     "name": "Skulker",
@@ -656,7 +694,8 @@
     "description": "You gain the following benefits.\n\nBlindsight: You have Blindsight with a range of 10 feet.\n\nFog of War: You exploit the distractions of battle, gaining XPHB) check you make as part of the {@action Hide|XPHB} action during combat.\n\nSniper: If you make an attack roll while hidden and the roll misses, making the attack roll doesn't reveal your location.",
     "prerequisite": "Nivel 4+",
     "repeatable": false,
-    "srd52": false
+    "srd52": false,
+    "descriptionEs": "Obtienes los siguientes beneficios.\n\nSentido ciego: tienes sentido ciego con un alcance de 10 pies.\n\nNiebla de guerra: aprovechas las distracciones de la batalla y tienes ventaja en cualquier prueba de Destreza (Sigilo) que hagas como parte de la acción Esconderse durante el combate.\n\nFrancotirador: si haces una tirada de ataque estando oculto y fallas, hacer la tirada de ataque no revela tu ubicación."
   },
   "slasher": {
     "name": "Slasher",
@@ -666,7 +705,8 @@
     "description": "You gain the following benefits.\n\nHamstring: Once per turn when you hit a creature with an attack that deals Slashing damage, you can reduce the Speed|XPHB of that creature by 10 feet until the start of your next turn.\n\nEnhanced Critical: When you score a XPHB on attack rolls until the start of your next turn.",
     "prerequisite": "Nivel 4+",
     "repeatable": false,
-    "srd52": false
+    "srd52": false,
+    "descriptionEs": "Obtienes los siguientes beneficios.\n\nCortar tendones: una vez por turno cuando impactas a una criatura con un ataque que inflige daño cortante, puedes reducir la velocidad de esa criatura en 10 pies hasta el inicio de tu siguiente turno.\n\nCrítico mejorado: cuando obtienes un impacto crítico que inflige daño cortante a una criatura, tiene desventaja en las tiradas de ataque hasta el inicio de tu siguiente turno."
   },
   "speedy": {
     "name": "Speedy",
@@ -676,7 +716,8 @@
     "description": "You gain the following benefits.\n\nSpeed Increase: Your Speed|XPHB increases by 10 feet.\n\nDash over Difficult Terrain: When you take the {@action Dash|XPHB} action on your turn, Difficult Terrain|XPHB doesn't cost you extra movement for the rest of that turn.\n\nAgile Movement: {@action Opportunity Attack|XPHB|Opportunity Attacks} have Disadvantage|XPHB against you.",
     "prerequisite": "Nivel 4+ · Nivel 4+",
     "repeatable": false,
-    "srd52": false
+    "srd52": false,
+    "descriptionEs": "Obtienes los siguientes beneficios.\n\nAumento de velocidad: tu velocidad aumenta en 10 pies.\n\nCorrer en terreno difícil: cuando realizas la acción Correr en tu turno, el terreno difícil no te cuesta movimiento adicional durante el resto de ese turno.\n\nMovimiento ágil: los ataques de oportunidad tienen desventaja contra ti."
   },
   "spell-sniper": {
     "name": "Spell Sniper",
@@ -686,7 +727,8 @@
     "description": "You gain the following benefits.\n\nBypass Cover: Your attack rolls for spells ignore Half Cover and Three-Quarters Cover.\n\nCasting in Melee: Being within 5 feet of an enemy doesn't impose Disadvantage|XPHB on your attack rolls with spells.\n\nIncreased Range: When you cast a spell that has a range of at least 10 feet and requires you to make an attack roll, you can increase the spell's range by 60 feet.",
     "prerequisite": "Nivel 4+",
     "repeatable": false,
-    "srd52": false
+    "srd52": false,
+    "descriptionEs": "Obtienes los siguientes beneficios.\n\nIgnorar cobertura: tus tiradas de ataque con conjuros ignoran cobertura de media y tres cuartos.\n\nConjuro cuerpo a cuerpo: estar a 5 pies o menos de un enemigo no impone desventaja en tus tiradas de ataque con conjuros.\n\nAlcance aumentado: cuando lanzas un conjuro con alcance de al menos 10 pies que requiere que hagas una tirada de ataque, puedes aumentar el alcance del conjuro en 60 pies."
   },
   "tavern-brawler": {
     "name": "Tavern Brawler",
@@ -695,7 +737,8 @@
     "categoryLabel": "Origen",
     "description": "You gain the following benefits.\n\nEnhanced Unarmed Strike: When you hit with your XPHB.\n\nDamage Rerolls: Whenever you roll a damage die for your Unarmed Strike|XPHB, you can reroll the die if it rolls a 1, and you must use the new roll.\n\nImprovised Weaponry: You have proficiency with improvised weapons.\n\nPush: When you hit a creature with an XPHB action on your turn, you can deal damage to the target and also push it 5 feet away from you. You can use this benefit only once per turn.",
     "repeatable": false,
-    "srd52": false
+    "srd52": false,
+    "descriptionEs": "Obtienes los siguientes beneficios.\n\nCompetencia con armas improvisadas y sin armas: ganas competencia con armas improvisadas y sin armas.\n\nGolpe mejorado: el daño de tus ataques sin armas pasa a ser 1d4 + tu modificador de Fuerza.\n\nAgarrón tras golpe: cuando impactas con un ataque sin armas o improvisado en tu turno, puedes hacer una de las acciones Agarrar como acción adicional."
   },
   "telekinetic": {
     "name": "Telekinetic",
@@ -705,7 +748,8 @@
     "description": "You gain the following benefits.\n\nMinor Telekinesis: You learn the Mage Hand spell. You can cast it without Verbal or Somatic components, you can make the spectral hand Invisible, and its range and the distance it can be away from you both increase by 30 feet when you cast it. The spell's spellcasting ability is the ability increased by this feat.\n\nTelekinetic Shove: As a XPHB|Proficiency Bonus) or be moved 5 feet toward or away from you.",
     "prerequisite": "Nivel 4+",
     "repeatable": false,
-    "srd52": false
+    "srd52": false,
+    "descriptionEs": "Obtienes los siguientes beneficios.\n\nTelequinesis menor: aprendes el conjuro Mano de mago. Puedes lanzarlo sin componentes verbales ni somáticos, puedes hacer que la mano espectral sea invisible y su alcance y la distancia a la que puede estar de ti aumentan en 30 pies cuando lo lanzas. La característica de lanzamiento de ese conjuro es la característica aumentada por esta dote.\n\nEmpuje telequinético: como acción adicional, puedes empujar telequinéticamente a una criatura que veas a 30 pies o menos de ti. Al hacerlo, el objetivo debe tener éxito en una tirada de salvación de Fuerza (CD 8 + el modificador de la puntuación aumentada por esta dote + tu bonificador de competencia) o ser movido 5 pies hacia ti o alejándose de ti."
   },
   "telepathic": {
     "name": "Telepathic",
@@ -715,7 +759,8 @@
     "description": "You gain the following benefits.\n\nTelepathic Utterance: You can speak telepathically to any creature you can see within 60 feet of yourself. Your telepathic utterances are in a language you know, and the creature understands you only if it knows that language. Your communication doesn't give the creature the ability to respond to you telepathically.\n\nDetect Thoughts: You always have the Detect Thoughts spell prepared. You can cast it without a spell slot or spell components, and you must finish a Long Rest|XPHB before you can cast it in this way again. You can also cast it using spell slots you have of the appropriate level. Your spellcasting ability for the spell is the ability increased by this feat.",
     "prerequisite": "Nivel 4+",
     "repeatable": false,
-    "srd52": false
+    "srd52": false,
+    "descriptionEs": "Obtienes los siguientes beneficios.\n\nEnunciado telepático: puedes hablar telepáticamente con cualquier criatura que veas a 60 pies o menos de ti. Tus enunciados telepáticos están en un idioma que conoces y la criatura te entiende solo si conoce ese idioma. Tu comunicación no le da a la criatura la capacidad de responderte telepáticamente.\n\nDetectar pensamientos: siempre tienes el conjuro Detectar pensamientos preparado. Puedes lanzarlo sin espacio de conjuro ni componentes de conjuro, y debes terminar un descanso largo antes de poder lanzarlo de esta forma de nuevo. También puedes lanzarlo con espacios de conjuro que tengas del nivel apropiado. Tu característica de lanzamiento para ese conjuro es la característica aumentada por esta dote."
   },
   "thrown-weapon-fighting": {
     "name": "Thrown Weapon Fighting",
@@ -724,7 +769,8 @@
     "categoryLabel": "Estilo de combate",
     "description": "When you hit with a ranged attack roll using a weapon that has the {@itemProperty T|XPHB|Thrown} property, you gain a +2 bonus to the damage roll.",
     "repeatable": false,
-    "srd52": false
+    "srd52": false,
+    "descriptionEs": "Cuando impactas con una tirada de ataque a distancia usando un arma con la propiedad Arrojadiza, ganas un bonificador de +2 a la tirada de daño."
   },
   "tough": {
     "name": "Tough",
@@ -733,7 +779,8 @@
     "categoryLabel": "Origen",
     "description": "Your Hit Point maximum increases by an amount equal to twice your character level when you gain this feat. Whenever you gain a character level thereafter, your Hit Point maximum increases by an additional 2 Hit Points|XPHB.",
     "repeatable": false,
-    "srd52": false
+    "srd52": false,
+    "descriptionEs": "Obtienes los siguientes beneficios.\n\nDuro: tus puntos de golpe máximos aumentan en el doble de tu nivel de personaje cuando tomas esta dote. Cada vez que ganas un nivel de personaje, tus PV máximos aumentan en 2 adicionales."
   },
   "two-weapon-fighting": {
     "name": "Two-Weapon Fighting",
@@ -743,7 +790,7 @@
     "description": "When you make an extra attack as a result of using a weapon that has the {@itemProperty L|XPHB|Light} property, you can add your ability modifier to the damage of that attack if you aren't already adding it to the damage.",
     "repeatable": false,
     "srd52": true,
-    "descriptionEs": "(Prerrequisito: Rasgo de Estilo de combate)\nCuando realizas un ataque adicional como resultado de usar un arma que tiene la propiedad Ligera, puedes añadir tu modificador de característica al daño de ese ataque si no lo estabas añadiendo ya al daño.\nNota de Foundry\nEste rasgo no está automatizado. Puedes añadir tu modificador en el campo de Bonificador situacional de la tirada de daño."
+    "descriptionEs": "(Prerrequisito: Rasgo de Estilo de combate)\n\nCuando realizas un ataque adicional como resultado de usar un arma que tiene la propiedad Ligera, puedes añadir tu modificador de característica al daño de ese ataque si no lo estabas añadiendo ya al daño."
   },
   "unarmed-fighting": {
     "name": "Unarmed Fighting",
@@ -752,7 +799,8 @@
     "categoryLabel": "Estilo de combate",
     "description": "When you hit with your XPHB. If you aren't holding any weapons or a Shield when you make the attack roll, the d6 becomes a d8.\n\nAt the start of each of your turns, you can deal 1d4 Bludgeoning damage to one creature Grappled by you.",
     "repeatable": false,
-    "srd52": false
+    "srd52": false,
+    "descriptionEs": "Cuando impactas con tu golpe sin armas e infliges daño, puedes infligir daño contundente igual a 1d6 + tu modificador de Fuerza en lugar del daño normal de un golpe sin armas. Si no sostienes armas ni un escudo cuando haces la tirada de ataque, el d6 pasa a ser un d8.\n\nAl inicio de cada uno de tus turnos, puedes infligir 1d4 de daño contundente a una criatura agarrada por ti."
   },
   "war-caster": {
     "name": "War Caster",
@@ -762,7 +810,8 @@
     "description": "You gain the following benefits.\n\nConcentration: You have XPHB.\n\nReactive Spell: When a creature provokes an {@action Opportunity Attack|XPHB} from you by leaving your reach, you can take a XPHB. The spell must have a casting time of one action and must target only that creature.\n\nSomatic Components: You can perform the Somatic components of spells even when you have weapons or a Shield in one or both hands.",
     "prerequisite": "Nivel 4+",
     "repeatable": false,
-    "srd52": false
+    "srd52": false,
+    "descriptionEs": "Obtienes los siguientes beneficios.\n\nConcentración: tienes ventaja en las tiradas de salvación de Constitución que hagas para mantener la concentración.\n\nConjuro reactivo: cuando una criatura provoca un ataque de oportunidad al salir de tu alcance, puedes usar una reacción para lanzar un conjuro contra esa criatura en lugar de hacer un ataque de oportunidad. El conjuro debe tener un tiempo de lanzamiento de una acción y debe apuntar solo a esa criatura.\n\nComponentes somáticos: puedes realizar los componentes somáticos de conjuros aunque tengas armas o un escudo en una o ambas manos."
   },
   "weapon-master": {
     "name": "Weapon Master",
@@ -772,6 +821,7 @@
     "description": "You gain the following benefits.\n\nMastery Property: Your training with weapons allows you to use the mastery property of one kind of Simple or Martial weapon of your choice, provided you have proficiency with it. Whenever you finish a Long Rest|XPHB, you can change the kind of weapon to another eligible kind.",
     "prerequisite": "Nivel 4+",
     "repeatable": false,
-    "srd52": false
+    "srd52": false,
+    "descriptionEs": "Obtienes los siguientes beneficios.\n\nPropiedad de maestría: tu entrenamiento con armas te permite usar la propiedad de maestría de un tipo de arma simple o marcial de tu elección, siempre que tengas competencia con ella. Siempre que termines un descanso largo, puedes cambiar el tipo de arma por otro tipo elegible."
   }
 }

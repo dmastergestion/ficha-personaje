@@ -12,7 +12,6 @@ import {
   velocidad,
 } from "@/rules/character";
 import { modificadorAtributo } from "@/rules/ability";
-import { calcularClaseArmadura } from "@/rules/combat";
 import { aplicarCambioPv } from "@/rules/combat-hp";
 import {
   registrarFalloSalvacionMuerte,
@@ -21,14 +20,13 @@ import {
 } from "@/rules/death-saves";
 import { tiradaConcentracionPorDanio } from "@/rules/concentration";
 import { tiradaSalvacion } from "@/rules/effects";
-import { parseTargetAc, tirarAtaqueCompleto } from "@/rules/attack-roll";
+import { tirarAtaqueCompleto } from "@/rules/attack-roll";
 import { ataqueDesdeItem, esItemAtacable, GOLPE_DESARMADO } from "@/rules/attacks";
 import {
   aplicarDescansoCorto,
   aplicarDescansoLargo,
   gastarDadoGolpe,
 } from "@/rules/rests";
-import { srdArmor } from "@/rules/srd";
 import { dadosGolpeDisponibles } from "@/rules/hit-dice";
 import { dadosDeGolpePorClase } from "@/rules/multiclass";
 import type { SheetTabProps } from "@/pages/character-sheet/types";
@@ -49,7 +47,6 @@ function toggleSalvacion(character: SheetTabProps["character"], key: AbilityKey)
 export function TabCombate({ character, onChange }: SheetTabProps) {
   const [customDelta, setCustomDelta] = useState("5");
   const [tipoDanio, setTipoDanio] = useState("");
-  const [caObjetivo, setCaObjetivo] = useState("10");
   const [armaSeleccionada, setArmaSeleccionada] = useState("desarmado");
   const catalog = useCatalogStore((s) => s.catalog);
   const rollMode = useUiStore((s) => s.rollMode);
@@ -59,15 +56,6 @@ export function TabCombate({ character, onChange }: SheetTabProps) {
     : undefined;
   const setUltimaTirada = useUiStore((s) => s.setUltimaTirada);
   const setUltimoAtaque = useUiStore((s) => s.setUltimoAtaque);
-  const shield = srdArmor.find((item) => item.category === "shield");
-  const armor = srdArmor.find((item) => item.id === character.equipment.armorId) ?? null;
-  const ca = calcularClaseArmadura(
-    character.abilities.dex,
-    armor,
-    character.equipment.shieldEquipped,
-    shield,
-    character.combat.armorClassOverride,
-  );
   const armasInventario = character.equipment.items.filter(esItemAtacable);
 
   function cambiarPv(delta: number) {
@@ -165,7 +153,6 @@ export function TabCombate({ character, onChange }: SheetTabProps) {
       setUltimaTirada(null, diceRoll.error);
       return;
     }
-    const ac = parseTargetAc(caObjetivo);
     const attack =
       armaSeleccionada === "desarmado"
         ? GOLPE_DESARMADO
@@ -181,7 +168,7 @@ export function TabCombate({ character, onChange }: SheetTabProps) {
       rollMode,
       character.combat.conditionIds,
       character.combat.exhaustionLevel,
-      ac,
+      null,
       diceRoll.options,
     );
     if ("error" in result) {
@@ -351,7 +338,7 @@ export function TabCombate({ character, onChange }: SheetTabProps) {
         </div>
 
         <p className="mb-2 text-sm">
-          CA <strong>{ca}</strong> · Ini {iniciativa(character) >= 0 ? "+" : ""}
+          Ini {iniciativa(character) >= 0 ? "+" : ""}
           {iniciativa(character)} · {velocidad(character, speciesSpeed ?? 30)} ft
         </p>
 
@@ -485,16 +472,6 @@ export function TabCombate({ character, onChange }: SheetTabProps) {
         <h3 className="sheet-section-title">Ataques</h3>
         <p className="mb-3 text-sm text-muted">Armas en Equipo · el resultado aparece en el panel de tiradas</p>
         <div className="flex flex-wrap items-end gap-2">
-          <label className="text-sm">
-            <span className="text-xs text-muted">CA</span>
-            <input
-              type="number"
-              min={0}
-              className="mt-0.5 block w-16 rounded border border-white/10 bg-surface px-2 py-1"
-              value={caObjetivo}
-              onChange={(e) => setCaObjetivo(e.target.value)}
-            />
-          </label>
           <label className="min-w-0 flex-1 text-sm">
             <span className="text-xs text-muted">Arma</span>
             <select
@@ -520,14 +497,22 @@ export function TabCombate({ character, onChange }: SheetTabProps) {
         )}
       </section>
 
-      <div className="grid gap-4 lg:col-span-12 lg:grid-cols-2">
+      <div className="lg:col-span-12">
         <ResourcesPanel character={character} onChange={onChange} />
-        <DamageTypesEditor character={character} onChange={onChange} />
       </div>
 
       <div className="lg:col-span-12">
         <ConditionPanel character={character} onChange={onChange} />
       </div>
+
+      <details className="sheet-card lg:col-span-12">
+        <summary className="cursor-pointer text-sm font-medium text-muted">
+          Resistencias, vulnerabilidades e inmunidades
+        </summary>
+        <div className="mt-3">
+          <DamageTypesEditor character={character} onChange={onChange} />
+        </div>
+      </details>
     </div>
   );
 }

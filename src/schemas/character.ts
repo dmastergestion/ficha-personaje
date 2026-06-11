@@ -166,6 +166,10 @@ export const CharacterSchema = z.object({
   resources: z.array(resourceSchema),
   feats: z.array(featSchema),
   roleplay: roleplaySchema,
+  originChoices: z.object({
+    species: z.record(z.string(), z.string()),
+    background: z.record(z.string(), z.string()),
+  }),
   notes: z.string(),
 });
 
@@ -278,6 +282,7 @@ export function crearPersonajeVacio(input: {
     resources: [],
     feats: [],
     roleplay: roleplayVacio(),
+    originChoices: { species: {}, background: {} },
     notes: "",
   };
 }

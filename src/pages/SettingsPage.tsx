@@ -37,30 +37,32 @@ export function SettingsPage() {
 
   async function onRemovePack() {
     await removePack();
-    setMensaje("Pack de contenido eliminado. Solo queda el SRD.");
+    setMensaje(
+      "Pack importado eliminado. Al recargar la página se restaurará el PHB incluido en la app.",
+    );
   }
 
   return (
     <Layout title="Ajustes">
       <div className="space-y-6">
         <section className="rounded-xl border border-white/10 bg-panel p-4">
-          <h2 className="mb-2 text-lg font-semibold">Contenido PHB (pack local)</h2>
+          <h2 className="mb-2 text-lg font-semibold">Contenido PHB 2024</h2>
           <p className="mb-3 text-sm text-muted">
-            La app incluye el SRD (4 trasfondos, 14 especies). Para ver el PHB 2024 completo,
-            importa el pack generado en tu PC con{" "}
-            <code className="text-xs">npm run build:content-pack</code> (
-            <code className="text-xs">vendor/content-pack/xphb-pack.json</code>).
+            La app incluye el PHB 2024 completo en español al instalarse (sin descargas extra). Solo
+            importa un pack manualmente si quieres sustituir el incluido.
           </p>
           {pack ? (
             <div className="mb-3 rounded-lg bg-surface px-3 py-2 text-sm">
               <p>
                 Activo: <strong>{pack.source}</strong> · {pack.counts.backgrounds} trasfondos ·{" "}
                 {pack.counts.species} especies · {pack.counts.subclasses} subclases ·{" "}
-                {pack.counts.spells} conjuros
+                {pack.counts.spells} conjuros (textos en español)
               </p>
             </div>
           ) : (
-            <p className="mb-3 text-sm text-accent">Sin pack importado — solo SRD visible.</p>
+            <p className="mb-3 text-sm text-accent">
+              Cargando catálogo… Si persiste, recarga la página.
+            </p>
           )}
           <input
             ref={packRef}

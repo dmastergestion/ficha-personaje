@@ -1,9 +1,11 @@
 import classFeatureMeta from "@/data/srd/class-feature-meta.json";
+import subclassFeatureMeta from "@/data/srd/subclass-feature-meta.json";
 
 export type ClassFeatureEntry = { level: number; name: string; description: string };
 type FeatureMetaFile = Record<string, ClassFeatureEntry[]>;
 
 const features = classFeatureMeta as FeatureMetaFile;
+const subclassFeatures = subclassFeatureMeta as FeatureMetaFile;
 
 /** Nivel en el que se elige subclase (2024 PHB). */
 const SUBCLASS_LEVEL: Record<string, number> = {
@@ -57,12 +59,23 @@ export function rasgosDeClase(classId: string): ClassFeatureEntry[] {
   return features[classId] ?? [];
 }
 
+export function rasgosDeSubclase(subclassId: string): ClassFeatureEntry[] {
+  return subclassFeatures[subclassId] ?? [];
+}
+
 export function rasgosEnNivel(classId: string, level: number): ClassFeatureEntry[] {
   return rasgosDeClase(classId).filter((f) => f.level === level);
 }
 
-export function rasgosHastaNivel(classId: string, level: number): ClassFeatureEntry[] {
-  return rasgosDeClase(classId).filter((f) => f.level <= level);
+export function rasgosHastaNivel(
+  classId: string,
+  level: number,
+  subclassId?: string | null,
+): ClassFeatureEntry[] {
+  const base = rasgosDeClase(classId).filter((f) => f.level <= level);
+  if (!subclassId) return base;
+  const sub = rasgosDeSubclase(subclassId).filter((f) => f.level <= level);
+  return [...base, ...sub].sort((a, b) => a.level - b.level || a.name.localeCompare(b.name, "es"));
 }
 
 export function nivelSubclase(classId: string): number {

@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { ClassFeaturesPanel } from "@/components/ClassFeaturesPanel";
 import { LevelUpModal } from "@/components/LevelUpModal";
+import { OriginChoicesForm } from "@/components/OriginChoicesForm";
 import { BackgroundInfoPanel, SpeciesInfoPanel } from "@/components/OriginInfoPanel";
 import { ClassPicker } from "@/components/ClassPicker";
 import { SpeciesPicker } from "@/components/SpeciesPicker";
@@ -41,6 +42,8 @@ import {
   type LevelUpPreview,
 } from "@/rules/level-up";
 import { poblarRecursosSugeridos } from "@/rules/resources-tracker";
+import { origenCatalogoDesdeIds } from "@/rules/origin-benefits";
+import { fusionarEleccionesOrigen } from "@/rules/origin-choices";
 import type { ClassLevel } from "@/schemas/character";
 
 function NivelStepper({
@@ -97,6 +100,18 @@ export function TabResumen({ character, onChange }: SheetTabProps) {
   const [levelUpPreview, setLevelUpPreview] = useState<LevelUpPreview | null>(null);
   const [pendingClasses, setPendingClasses] = useState<ClassLevel[] | null>(null);
   const catalog = useCatalogStore((s) => s.catalog);
+  const catalogoOrigen = origenCatalogoDesdeIds(
+    character.identity.speciesId,
+    character.identity.backgroundId,
+    catalog.obtenerEspecie.bind(catalog),
+    catalog.obtenerTrasfondo.bind(catalog),
+  );
+  const originChoices = fusionarEleccionesOrigen(
+    character.identity.speciesId,
+    character.identity.backgroundId,
+    character.originChoices,
+    catalogoOrigen,
+  );
   const pb = bonificadorCompetencia(character.identity.level);
   const rollMode = useUiStore((s) => s.rollMode);
   const diceRoll = useDiceRollOptions();
@@ -412,10 +427,33 @@ export function TabResumen({ character, onChange }: SheetTabProps) {
         Dados de golpe: {descripcionDadosGolpe(character.identity.classes)}
       </p>
 
+      <OriginChoicesForm
+        speciesId={character.identity.speciesId}
+        backgroundId={character.identity.backgroundId}
+        level={character.identity.level}
+        catalogo={catalogoOrigen}
+        choices={originChoices}
+        mode="sheet"
+        onChange={(next) =>
+          onChange({
+            ...character,
+            originChoices: next,
+          })
+        }
+      />
+
       {character.identity.speciesId && catalog.obtenerEspecie(character.identity.speciesId) && (
         <SpeciesInfoPanel
           species={catalog.obtenerEspecie(character.identity.speciesId)!}
           name={catalog.t("species", character.identity.speciesId, character.identity.speciesId)}
+          speciesId={character.identity.speciesId}
+          level={character.identity.level}
+          catalogo={{
+            species: catalog.obtenerEspecie(character.identity.speciesId),
+            background: character.identity.backgroundId
+              ? catalog.obtenerTrasfondo(character.identity.backgroundId)
+              : undefined,
+          }}
         />
       )}
       {character.identity.backgroundId &&
@@ -427,6 +465,14 @@ export function TabResumen({ character, onChange }: SheetTabProps) {
               character.identity.backgroundId,
               character.identity.backgroundId,
             )}
+            backgroundId={character.identity.backgroundId}
+            level={character.identity.level}
+            catalogo={{
+              species: character.identity.speciesId
+                ? catalog.obtenerEspecie(character.identity.speciesId)
+                : undefined,
+              background: catalog.obtenerTrasfondo(character.identity.backgroundId),
+            }}
           />
         )}
 

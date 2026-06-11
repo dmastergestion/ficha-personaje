@@ -26,7 +26,7 @@ export type SkillKey = (typeof SKILL_KEYS)[number];
 export const SPELL_SLOT_LEVELS = ["1", "2", "3", "4", "5", "6", "7", "8", "9"] as const;
 export type SpellSlotLevel = (typeof SPELL_SLOT_LEVELS)[number];
 
-export const SCHEMA_VERSION = 6 as const;
+export const SCHEMA_VERSION = 7 as const;
 
 export const DAMAGE_TYPES = [
   "ácido",

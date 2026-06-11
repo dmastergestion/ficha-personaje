@@ -212,7 +212,7 @@ export function evaluarImpacto(
   targetAc: number | null,
 ): { impacta: boolean | null; explicacion: string } {
   if (targetAc === null || Number.isNaN(targetAc)) {
-    return { impacta: null, explicacion: "Indica CA objetivo para saber si impacta." };
+    return { impacta: null, explicacion: "" };
   }
   if (toHit.isFumble) {
     return { impacta: false, explicacion: `Pifia (1). Fallo automático vs CA ${targetAc}.` };

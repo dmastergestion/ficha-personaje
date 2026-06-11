@@ -5,6 +5,7 @@ import {
   migrarRegistroDexieV3,
   migrarRegistroDexieV4,
   migrarRegistroDexieV5,
+  migrarRegistroDexieV6,
 } from "@/schemas/migrate";
 import type { Character } from "@/schemas/character";
 import type { ContentPack } from "@/schemas/content-pack";
@@ -88,6 +89,19 @@ export class FichaDatabase extends Dexie {
           .toCollection()
           .modify((char: Record<string, unknown>) => {
             migrarRegistroDexieV5(char);
+          });
+      });
+    this.version(8)
+      .stores({
+        characters: "id, identity.name, identity.classId, meta.updatedAt",
+        contentPacks: "id",
+      })
+      .upgrade(async (tx) => {
+        await tx
+          .table("characters")
+          .toCollection()
+          .modify((char: Record<string, unknown>) => {
+            migrarRegistroDexieV6(char);
           });
       });
   }

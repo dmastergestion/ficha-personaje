@@ -19,14 +19,6 @@ export const SALVACIONES_CLASE: Record<string, AbilityKey[]> = {
   wizard: ["int", "wis"],
 };
 
-/** Dos pericias por trasfondo SRD v1 (asignación fija simplificada). */
-export const PERICIAS_TRASFONDO: Record<string, SkillKey[]> = {
-  acolyte: ["insight", "religion"],
-  criminal: ["sleightOfHand", "stealth"],
-  sage: ["arcana", "history"],
-  soldier: ["athletics", "intimidation"],
-};
-
 type ClassProfMeta = Record<
   string,
   { armor: string[]; weapons: string[]; tools: string[] }
@@ -53,8 +45,8 @@ export function competenciasClase(classId: string): {
 
 export function proficienciasIniciales(
   classId: string,
-  backgroundId: string | null,
-  backgroundTools: string[] = [],
+  originSkills: SkillKey[] = [],
+  originTools: string[] = [],
 ): {
   savingThrows: AbilityKey[];
   skills: SkillKey[];
@@ -63,14 +55,13 @@ export function proficienciasIniciales(
   toolProficiencies: string[];
 } {
   const savingThrows = [...(SALVACIONES_CLASE[classId] ?? [])];
-  const skills = backgroundId ? [...(PERICIAS_TRASFONDO[backgroundId] ?? [])] : [];
   const classProf = competenciasClase(classId);
   return {
     savingThrows,
-    skills,
+    skills: [...originSkills],
     armorProficiencies: [...classProf.armorProficiencies],
     weaponProficiencies: [...classProf.weaponProficiencies],
-    toolProficiencies: uniq([...classProf.toolProficiencies, ...backgroundTools]),
+    toolProficiencies: uniq([...classProf.toolProficiencies, ...originTools]),
   };
 }
 

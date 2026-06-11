@@ -193,7 +193,7 @@ export function defaultsV6(char: z.infer<typeof CharacterSchemaV5>): Character {
 
   return CharacterSchema.parse({
     ...char,
-    schemaVersion: 6,
+    schemaVersion: 7,
     proficiencies: {
       ...prof,
       languages: prof.languages ?? ["Común"],
@@ -226,6 +226,26 @@ export function defaultsV6(char: z.infer<typeof CharacterSchemaV5>): Character {
     resources: extra.resources ?? [],
     feats: extra.feats ?? [],
     roleplay: extra.roleplay ?? roleplayVacio(),
+    originChoices: { species: {}, background: {} },
+  });
+}
+
+const CharacterSchemaV6 = CharacterSchema.omit({ originChoices: true }).extend({
+  schemaVersion: z.literal(6),
+  originChoices: z
+    .object({
+      species: z.record(z.string(), z.string()),
+      background: z.record(z.string(), z.string()),
+    })
+    .optional(),
+});
+
+export function migrarPersonajeV6(raw: unknown): Character {
+  const v6 = CharacterSchemaV6.parse(raw);
+  return CharacterSchema.parse({
+    ...v6,
+    schemaVersion: 7,
+    originChoices: v6.originChoices ?? { species: {}, background: {} },
   });
 }
 
@@ -304,10 +324,11 @@ export function migrarPersonajeV1(raw: unknown): Character {
 }
 
 export function normalizarPersonaje(raw: unknown): Character {
-  const v6 = CharacterSchema.safeParse(raw);
-  if (v6.success) return sanitizarRecursos(v6.data);
+  const v7 = CharacterSchema.safeParse(raw);
+  if (v7.success) return sanitizarRecursos(v7.data);
 
   const asRecord = raw as { schemaVersion?: number } | null;
+  if (asRecord?.schemaVersion === 6) return sanitizarRecursos(migrarPersonajeV6(raw));
   if (asRecord?.schemaVersion === 5) return sanitizarRecursos(migrarPersonajeV5(raw));
   if (asRecord?.schemaVersion === 4) return sanitizarRecursos(migrarPersonajeV4(raw));
   if (asRecord?.schemaVersion === 3) return sanitizarRecursos(migrarPersonajeV3(raw));
@@ -411,4 +432,10 @@ export function migrarRegistroDexieV5(char: Record<string, unknown>): void {
   };
 
   char.schemaVersion = 6;
+}
+
+export function migrarRegistroDexieV6(char: Record<string, unknown>): void {
+  if (char.schemaVersion !== 6) return;
+  char.originChoices = char.originChoices ?? { species: {}, background: {} };
+  char.schemaVersion = 7;
 }

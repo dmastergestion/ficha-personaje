@@ -85,6 +85,9 @@ describe("crearPersonajeDesdeAsistente", () => {
     });
     expect(character.proficiencies.savingThrows).toEqual(["int", "wis"]);
     expect(character.proficiencies.skills).toEqual(["arcana", "history"]);
+    expect(character.proficiencies.toolProficiencies).toContain("calligrapher's supplies");
+    expect(character.feats.some((f) => f.id === "magic-initiate")).toBe(true);
+    expect(character.abilities.int).toBeGreaterThan(15);
     expect(character.identity.classes).toEqual([
       { classId: "wizard", subclassId: null, level: 1 },
     ]);

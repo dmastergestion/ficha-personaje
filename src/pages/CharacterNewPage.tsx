@@ -1,5 +1,6 @@
 import { useMemo, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { OriginChoicesForm } from "@/components/OriginChoicesForm";
 import { OriginSidePanel } from "@/components/OriginSidePanel";
 import { SpeciesPicker } from "@/components/SpeciesPicker";
 import { Button, Layout } from "@/components/layout";
@@ -7,7 +8,7 @@ import { cn } from "@/lib/utils";
 import type { AbilityKey } from "@/lib/constants";
 import { ABILITY_KEYS } from "@/lib/constants";
 import { guardarPersonaje } from "@/db/repository";
-import { ABILITY_LABELS_ES } from "@/rules/character";
+import { ABILITY_LABELS_ES, SKILL_LABELS_ES } from "@/rules/character";
 import {
   ARRAY_ESTANDAR,
   asignarArrayEstandar,
@@ -16,6 +17,16 @@ import {
   crearPersonajeDesdeAsistente,
   type DatosAsistente,
 } from "@/rules/creation";
+import {
+  aplicarBonificadoresAtributo,
+  calcularBeneficiosOrigen,
+  origenCatalogoDesdeIds,
+} from "@/rules/origin-benefits";
+import {
+  eleccionesOrigenCompletas,
+  fusionarEleccionesOrigen,
+  resumenEleccionesOrigen,
+} from "@/rules/origin-choices";
 import { pvMaximoPersonaje } from "@/rules/resources";
 import { modificadorAtributo } from "@/rules/ability";
 import type { Tirada4d6 } from "@/rules/dice";
@@ -61,6 +72,45 @@ export function CharacterNewPage() {
   const subclasesFiltradas = useMemo(
     () => catalog.subclasses.filter((sc) => sc.classId === datos.classId),
     [catalog.subclasses, datos.classId],
+  );
+
+  const catalogoOrigen = useMemo(
+    () =>
+      origenCatalogoDesdeIds(
+        datos.speciesId,
+        datos.backgroundId,
+        catalog.obtenerEspecie.bind(catalog),
+        catalog.obtenerTrasfondo.bind(catalog),
+      ),
+    [catalog, datos.speciesId, datos.backgroundId],
+  );
+
+  const originChoices = useMemo(
+    () =>
+      fusionarEleccionesOrigen(
+        datos.speciesId,
+        datos.backgroundId,
+        datos.originChoices,
+        catalogoOrigen,
+      ),
+    [datos.speciesId, datos.backgroundId, datos.originChoices, catalogoOrigen],
+  );
+
+  const beneficiosOrigen = useMemo(
+    () =>
+      calcularBeneficiosOrigen(
+        datos.speciesId,
+        datos.backgroundId,
+        datos.level,
+        catalogoOrigen,
+        originChoices,
+      ),
+    [datos.speciesId, datos.backgroundId, datos.level, catalogoOrigen, originChoices],
+  );
+
+  const atributosFinales = useMemo(
+    () => aplicarBonificadoresAtributo(datos.abilities, beneficiosOrigen.abilityBonuses),
+    [datos.abilities, beneficiosOrigen.abilityBonuses],
   );
 
   function actualizar(partial: Partial<DatosAsistente>) {
@@ -129,6 +179,17 @@ export function CharacterNewPage() {
   function validarPasoActual(): string | null {
     if (paso === 0 && !datos.name.trim()) return "El nombre del personaje es obligatorio.";
     if (paso === 1 && !datos.speciesId) return "Elige una especie.";
+    if (
+      paso === 1 &&
+      !eleccionesOrigenCompletas(
+        datos.speciesId,
+        datos.backgroundId,
+        originChoices,
+        catalogoOrigen,
+      )
+    ) {
+      return "Completa las elecciones de especie y trasfondo.";
+    }
     if (paso === 2 && !datos.classId) return "Elige una clase.";
     return null;
   }
@@ -157,7 +218,10 @@ export function CharacterNewPage() {
     setCreando(true);
     setError(null);
     try {
-      const character = crearPersonajeDesdeAsistente(datos);
+      const character = crearPersonajeDesdeAsistente(
+        { ...datos, originChoices },
+        catalogoOrigen,
+      );
       await guardarPersonaje(character);
       navigate(`/character/${character.id}`);
     } catch (err) {
@@ -224,16 +288,6 @@ export function CharacterNewPage() {
         {paso === 1 && (
           <div className="space-y-4">
             <h2 className="text-lg font-semibold">Origen</h2>
-            {!catalog.pack && (
-              <p className="rounded-lg border border-accent/40 bg-accent/10 px-3 py-2 text-sm">
-                Solo SRD ({catalog.backgrounds.length} trasfondos). Importa el pack PHB en{" "}
-                <a className="text-gold underline" href={`${import.meta.env.BASE_URL}settings`}>
-                  Ajustes
-                </a>{" "}
-                o ejecuta <code className="text-xs">npm run build:content-pack</code> y reinicia el
-                servidor.
-              </p>
-            )}
             <SpeciesPicker
               catalog={catalog}
               speciesId={datos.speciesId}
@@ -254,6 +308,16 @@ export function CharacterNewPage() {
                 ))}
               </select>
             </label>
+
+            <OriginChoicesForm
+              speciesId={datos.speciesId}
+              backgroundId={datos.backgroundId}
+              level={datos.level}
+              catalogo={catalogoOrigen}
+              choices={originChoices}
+              onChange={(next) => actualizar({ originChoices: next })}
+              mode="create"
+            />
           </div>
         )}
 
@@ -496,16 +560,44 @@ export function CharacterNewPage() {
               PV estimados:{" "}
               {pvMaximoPersonaje(
                 obtenerClase(datos.classId)?.hitDie ?? "d8",
-                datos.abilities.con,
+                atributosFinales.con,
                 datos.level,
-              )}
+              ) + beneficiosOrigen.hpBonusTotal}
             </p>
+            {beneficiosOrigen.skills.length > 0 && (
+              <p className="text-muted">
+                Pericias de origen:{" "}
+                {beneficiosOrigen.skills.map((s) => SKILL_LABELS_ES[s]).join(", ")}
+              </p>
+            )}
+            {beneficiosOrigen.toolProficiencies.length > 0 && (
+              <p className="text-muted">
+                Herramientas: {beneficiosOrigen.toolProficiencies.join(", ")}
+              </p>
+            )}
+            {beneficiosOrigen.feat && (
+              <p className="text-muted">Dote de trasfondo: {beneficiosOrigen.feat.name}</p>
+            )}
+            {resumenEleccionesOrigen(
+              datos.speciesId,
+              datos.backgroundId,
+              originChoices,
+              catalogoOrigen,
+            ).map((linea) => (
+              <p key={linea} className="text-muted">
+                {linea}
+              </p>
+            ))}
             <div className="flex flex-wrap gap-2 pt-2">
-              {ABILITY_KEYS.map((key) => (
-                <span key={key} className="rounded bg-surface px-2 py-1">
-                  {ABILITY_LABELS_ES[key].slice(0, 3).toUpperCase()} {datos.abilities[key]}
-                </span>
-              ))}
+              {ABILITY_KEYS.map((key) => {
+                const bonus = beneficiosOrigen.abilityBonuses[key] ?? 0;
+                return (
+                  <span key={key} className="rounded bg-surface px-2 py-1">
+                    {ABILITY_LABELS_ES[key].slice(0, 3).toUpperCase()} {atributosFinales[key]}
+                    {bonus > 0 && <span className="text-gold"> (+{bonus})</span>}
+                  </span>
+                );
+              })}
             </div>
           </div>
         )}
@@ -538,6 +630,7 @@ export function CharacterNewPage() {
             catalog={catalog}
             speciesId={datos.speciesId}
             backgroundId={datos.backgroundId}
+            level={datos.level}
             classId={paso >= 2 ? datos.classId : undefined}
             subclassId={paso >= 2 ? datos.subclassId : undefined}
             classes={

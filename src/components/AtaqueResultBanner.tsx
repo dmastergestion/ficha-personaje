@@ -23,16 +23,18 @@ export function AtaqueResultBanner({ result }: { result: ResultadoAtaque | null 
         {result.toHit.isFumble && " · ¡Pifia!"}
       </p>
       <p className="text-xs text-muted">{result.explicacionToHit}</p>
-      <p className="mt-1">
-        {result.targetAc !== null ? (
-          <>
-            <span className="text-muted">vs CA {result.targetAc}: </span>
-            {result.explicacionImpacto}
-          </>
-        ) : (
-          result.explicacionImpacto
-        )}
-      </p>
+      {result.explicacionImpacto && (
+        <p className="mt-1">
+          {result.targetAc !== null ? (
+            <>
+              <span className="text-muted">vs CA {result.targetAc}: </span>
+              {result.explicacionImpacto}
+            </>
+          ) : (
+            result.explicacionImpacto
+          )}
+        </p>
+      )}
       {result.explicacionDaño && (
         <p className="mt-1">
           <span className="text-muted">Daño: </span>

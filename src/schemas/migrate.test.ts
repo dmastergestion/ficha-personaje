@@ -24,7 +24,7 @@ describe("migrarPersonajeV1", () => {
     };
 
     const v6 = migrarPersonajeV1(v1);
-    expect(v6.schemaVersion).toBe(6);
+    expect(v6.schemaVersion).toBe(7);
     expect(v6.combat.deathSaves).toEqual({ successes: 0, failures: 0 });
     expect(v6.combat.conditionsCustom).toEqual(["Herido", "Maldito"]);
     expect(v6.identity.classes).toHaveLength(1);

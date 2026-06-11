@@ -1,5 +1,6 @@
 import featDescriptionsEs from "@/data/i18n/feat-descriptions-es.json";
 import featMetaJson from "@/data/srd/feat-meta.json";
+import { limpiarTextoFoundry } from "@/lib/foundry-text-clean";
 
 type FeatMetaEntry = { description?: string; descriptionEs?: string };
 
@@ -26,21 +27,7 @@ export function nombreDote(id: string): string {
 
 /** Limpia marcadores 5etools/Foundry para lectura en ficha. */
 export function limpiarTextoDote(text: string): string {
-  return text
-    .replace(/\{@(?:feat|action|item|itemProperty|filter|skill|table)[^}]+\}/gi, "")
-    .replace(/\|XPHB/gi, "")
-    .replace(/XPHB\|/gi, "")
-    .replace(/&amp;Reference\[([^\]]+)\]/gi, "$1")
-    .replace(/&nbsp;/g, " ")
-    .replace(/Proficiency Bonus/gi, "bonificador de competencia")
-    .replace(/Hit Points/gi, "puntos de golpe")
-    .replace(/Long Rest/gi, "descanso largo")
-    .replace(/Short Rest/gi, "descanso corto")
-    .replace(/Bonus Action/gi, "acción adicional")
-    .replace(/Advantage/gi, "ventaja")
-    .replace(/Disadvantage/gi, "desventaja")
-    .replace(/\n{3,}/g, "\n\n")
-    .trim();
+  return limpiarTextoFoundry(text);
 }
 
 export function descripcionDote(id: string, notes?: string): string | undefined {

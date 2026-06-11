@@ -253,8 +253,10 @@ export function parseProficiencyBlocks(blocks: unknown): string[] {
 
 export function formatSize(size: string[] | string | undefined): string | undefined {
   if (!size) return undefined;
-  const code = Array.isArray(size) ? size[0] : size;
-  return code ? (SIZE_ES[code] ?? code) : undefined;
+  const codes = Array.isArray(size) ? size : [size];
+  const labels = [...new Set(codes.map((code) => (code ? (SIZE_ES[code] ?? code) : "")).filter(Boolean))];
+  if (!labels.length) return undefined;
+  return labels.join(" o ");
 }
 
 export function extractSpeciesDetails(entry: {

@@ -1,3 +1,4 @@
+import { execSync } from "node:child_process";
 import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
@@ -13,5 +14,8 @@ if (!fs.existsSync(src)) {
 }
 
 fs.mkdirSync(destDir, { recursive: true });
-fs.copyFileSync(src, dest);
-console.log(`Pack copiado → public/content-pack/xphb-pack.json`);
+execSync(`npx tsx scripts/patch-content-pack-es.ts "${src}" "${dest}"`, {
+  cwd: root,
+  stdio: "inherit",
+});
+console.log(`Pack ES listo → public/content-pack/xphb-pack.json`);
