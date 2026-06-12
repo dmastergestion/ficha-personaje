@@ -28,9 +28,9 @@ export function ConditionPanel({ character, onChange }: ConditionPanelProps) {
   );
 
   return (
-    <section className="rounded-xl border border-white/10 bg-panel p-4">
-      <h3 className="mb-2 font-semibold">Condiciones SRD</h3>
-      <div className="mb-3 grid grid-cols-2 gap-1 sm:grid-cols-3">
+    <section className="sheet-card h-full">
+      <h3 className="sheet-section-title">Condiciones SRD</h3>
+      <div className="mb-2 grid grid-cols-2 gap-1 sm:grid-cols-3 lg:grid-cols-2 xl:grid-cols-3">
         {CONDITION_IDS.map((id) => (
           <label key={id} className="flex items-center gap-2 text-sm">
             <input
@@ -43,7 +43,7 @@ export function ConditionPanel({ character, onChange }: ConditionPanelProps) {
         ))}
       </div>
 
-      <label className="mb-3 block text-sm">
+      <label className="mb-2 block text-sm">
         <span className="text-muted">Agotamiento (0–6)</span>
         <input
           type="number"
@@ -64,7 +64,7 @@ export function ConditionPanel({ character, onChange }: ConditionPanelProps) {
       </label>
 
       {resumen.length > 0 && (
-        <ul className="mb-3 list-inside list-disc text-xs text-gold">
+        <ul className="mb-2 list-inside list-disc text-xs text-gold">
           {resumen.map((line) => (
             <li key={line}>{line}</li>
           ))}

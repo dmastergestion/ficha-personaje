@@ -1,7 +1,9 @@
 import { useMemo, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { OriginAbilityBonusForm } from "@/components/OriginAbilityBonusForm";
 import { OriginChoicesForm } from "@/components/OriginChoicesForm";
 import { OriginSidePanel } from "@/components/OriginSidePanel";
+import { SpellChoicesForm } from "@/components/SpellChoicesForm";
 import { SpeciesPicker } from "@/components/SpeciesPicker";
 import { Button, Layout } from "@/components/layout";
 import { cn } from "@/lib/utils";
@@ -11,7 +13,6 @@ import { guardarPersonaje } from "@/db/repository";
 import { ABILITY_LABELS_ES, SKILL_LABELS_ES } from "@/rules/character";
 import {
   ARRAY_ESTANDAR,
-  asignarArrayEstandar,
   asignarArrayEstandarManual,
   asignarTiradas4d6,
   crearPersonajeDesdeAsistente,
@@ -23,6 +24,13 @@ import {
   origenCatalogoDesdeIds,
 } from "@/rules/origin-benefits";
 import {
+  eleccionClaseCompleta,
+  eleccionesClase,
+  fusionarEleccionesClase,
+  resumenEquipoClase,
+} from "@/rules/class-equipment";
+import {
+  bonificacionAtributosCompleta,
   eleccionesOrigenCompletas,
   fusionarEleccionesOrigen,
   resumenEleccionesOrigen,
@@ -32,17 +40,42 @@ import { modificadorAtributo } from "@/rules/ability";
 import type { Tirada4d6 } from "@/rules/dice";
 import { tirarSeisAtributos4d6 } from "@/rules/dice";
 import {
-  obtenerClase,
-} from "@/rules/srd";
+  clasesParaEleccionConjuros,
+  necesitaPasoConjuros,
+  validarSeleccionConjuros,
+  type SeleccionConjuros,
+} from "@/rules/spell-choices";
+import { obtenerClase } from "@/rules/srd";
+import { WeaponMasteryPanel } from "@/components/WeaponMasteryPanel";
+import { proficienciasIniciales } from "@/rules/proficiencies";
+import { crearPersonajeVacio } from "@/schemas/character";
+import {
+  claseTieneMaestriaArmas,
+  maestriasArmasCompletas,
+} from "@/rules/weapon-mastery";
 import { useCatalogStore } from "@/stores/catalog-store";
 
-const PASOS = [
-  { id: 0, titulo: "Identidad" },
-  { id: 1, titulo: "Origen" },
-  { id: 2, titulo: "Clase" },
-  { id: 3, titulo: "Atributos" },
-  { id: 4, titulo: "Resumen" },
-] as const;
+type PasoAsistenteId = "identidad" | "origen" | "clase" | "atributos" | "conjuros" | "resumen";
+
+function pasosAsistente(classId: string, level: number): { id: PasoAsistenteId; titulo: string }[] {
+  const base: { id: PasoAsistenteId; titulo: string }[] = [
+    { id: "identidad", titulo: "Identidad" },
+    { id: "origen", titulo: "Origen" },
+    { id: "clase", titulo: "Clase" },
+    { id: "atributos", titulo: "Atributos" },
+  ];
+  if (necesitaPasoConjuros(classId, level)) {
+    base.push({ id: "conjuros", titulo: "Conjuros" });
+  }
+  base.push({ id: "resumen", titulo: "Resumen" });
+  return base;
+}
+
+const SELECCION_CONJUROS_VACIA: SeleccionConjuros = {
+  cantripsKnown: [],
+  spellsKnown: [],
+  spellsPrepared: [],
+};
 
 const ABILITIES_DEFAULT = Object.fromEntries(
   ABILITY_KEYS.map((k) => [k, 10]),
@@ -58,6 +91,7 @@ export function CharacterNewPage() {
   const [asignacion4d6, setAsignacion4d6] = useState<Partial<Record<AbilityKey, number>>>({});
   const [asignacionArray, setAsignacionArray] = useState<Partial<Record<AbilityKey, number>>>({});
   const [modoAtributos, setModoAtributos] = useState<"manual" | "4d6" | "array">("manual");
+  const [spellSelection, setSpellSelection] = useState<SeleccionConjuros>(SELECCION_CONJUROS_VACIA);
   const [datos, setDatos] = useState<DatosAsistente>(() => ({
     name: "",
     playerName: "",
@@ -67,7 +101,19 @@ export function CharacterNewPage() {
     subclassId: null,
     level: 1,
     abilities: { ...ABILITIES_DEFAULT },
+    weaponMasteries: [],
   }));
+
+  const pasos = useMemo(
+    () => pasosAsistente(datos.classId, datos.level),
+    [datos.classId, datos.level],
+  );
+  const pasoActual = pasos[paso]?.id ?? "identidad";
+
+  const clasesConjuro = useMemo(
+    () => clasesParaEleccionConjuros(datos.classId, datos.subclassId, datos.level),
+    [datos.classId, datos.subclassId, datos.level],
+  );
 
   const subclasesFiltradas = useMemo(
     () => catalog.subclasses.filter((sc) => sc.classId === datos.classId),
@@ -87,14 +133,25 @@ export function CharacterNewPage() {
 
   const originChoices = useMemo(
     () =>
-      fusionarEleccionesOrigen(
-        datos.speciesId,
-        datos.backgroundId,
-        datos.originChoices,
-        catalogoOrigen,
+      fusionarEleccionesClase(
+        datos.classId,
+        fusionarEleccionesOrigen(
+          datos.speciesId,
+          datos.backgroundId,
+          datos.originChoices,
+          catalogoOrigen,
+        ),
       ),
-    [datos.speciesId, datos.backgroundId, datos.originChoices, catalogoOrigen],
+    [datos.speciesId, datos.backgroundId, datos.classId, datos.originChoices, catalogoOrigen],
   );
+
+  const defsEquipoClase = useMemo(() => eleccionesClase(datos.classId), [datos.classId]);
+  const eleccionEquipoClase = defsEquipoClase[0];
+  const resumenEquipoClaseActual = useMemo(() => {
+    const choice = originChoices.class.equipment as "A" | "B" | "C" | undefined;
+    if (!choice || !datos.classId) return [];
+    return resumenEquipoClase(datos.classId, choice, originChoices);
+  }, [datos.classId, originChoices]);
 
   const beneficiosOrigen = useMemo(
     () =>
@@ -113,8 +170,61 @@ export function CharacterNewPage() {
     [datos.abilities, beneficiosOrigen.abilityBonuses],
   );
 
+  const borradorMaestrias = useMemo(() => {
+    const profs = proficienciasIniciales(
+      datos.classId,
+      beneficiosOrigen.skills,
+      beneficiosOrigen.toolProficiencies,
+    );
+    const draft = crearPersonajeVacio({
+      name: datos.name || "Borrador",
+      playerName: datos.playerName,
+      classId: datos.classId,
+      level: datos.level,
+    });
+    return {
+      ...draft,
+      identity: {
+        ...draft.identity,
+        classes: [
+          { classId: datos.classId, subclassId: datos.subclassId, level: datos.level },
+        ],
+      },
+      proficiencies: {
+        ...draft.proficiencies,
+        savingThrows: profs.savingThrows,
+        skills: profs.skills,
+        armorProficiencies: profs.armorProficiencies,
+        weaponProficiencies: profs.weaponProficiencies,
+        toolProficiencies: profs.toolProficiencies,
+      },
+      weaponMasteries: datos.weaponMasteries ?? [],
+    };
+  }, [datos, beneficiosOrigen]);
+
+  function textoAtributo(key: AbilityKey): string {
+    const base = datos.abilities[key];
+    const bonus = beneficiosOrigen.abilityBonuses[key] ?? 0;
+    const final = atributosFinales[key];
+    const mod = modificadorAtributo(final);
+    const modStr = mod >= 0 ? `+${mod}` : String(mod);
+    if (bonus > 0) {
+      return `Base ${base} +${bonus} origen → ${final} · Mod ${modStr}`;
+    }
+    return `Valor ${base} · Mod ${modStr}`;
+  }
+
   function actualizar(partial: Partial<DatosAsistente>) {
-    setDatos((prev) => ({ ...prev, ...partial }));
+    setDatos((prev) => {
+      const next = { ...prev, ...partial };
+      if (partial.classId !== undefined || partial.level !== undefined) {
+        setSpellSelection(SELECCION_CONJUROS_VACIA);
+        if (partial.classId !== undefined && partial.classId !== prev.classId) {
+          partial.weaponMasteries = [];
+        }
+      }
+      return next;
+    });
   }
 
   function tirarAtributos4d6() {
@@ -168,30 +278,70 @@ export function CharacterNewPage() {
     if (abilities) actualizar({ abilities });
   }
 
-  function aplicarArrayAutomatico() {
-    setModoAtributos("array");
-    setTiradas4d6(null);
-    setAsignacion4d6({});
-    setAsignacionArray({});
-    actualizar({ abilities: asignarArrayEstandar(datos.classId) });
-  }
-
-  function validarPasoActual(): string | null {
-    if (paso === 0 && !datos.name.trim()) return "El nombre del personaje es obligatorio.";
-    if (paso === 1 && !datos.speciesId) return "Elige una especie.";
+  function validarPaso(stepId: PasoAsistenteId): string | null {
+    if (stepId === "identidad" && !datos.name.trim()) {
+      return "El nombre del personaje es obligatorio.";
+    }
+    if (stepId === "origen" && !datos.speciesId) return "Elige una especie.";
     if (
-      paso === 1 &&
+      stepId === "origen" &&
       !eleccionesOrigenCompletas(
         datos.speciesId,
         datos.backgroundId,
         originChoices,
         catalogoOrigen,
+        { incluirAtributosTrasfondo: false },
       )
     ) {
       return "Completa las elecciones de especie y trasfondo.";
     }
-    if (paso === 2 && !datos.classId) return "Elige una clase.";
+    if (
+      stepId === "atributos" &&
+      !bonificacionAtributosCompleta(datos.backgroundId, originChoices, catalogoOrigen)
+    ) {
+      return "Elige cómo repartes la bonificación de atributos del trasfondo.";
+    }
+    if (stepId === "clase" && !datos.classId) return "Elige una clase.";
+    if (stepId === "clase" && !eleccionClaseCompleta(datos.classId, originChoices)) {
+      return "Elige el equipo inicial de clase.";
+    }
+    if (
+      stepId === "clase" &&
+      claseTieneMaestriaArmas(datos.classId) &&
+      !maestriasArmasCompletas(borradorMaestrias)
+    ) {
+      return "Elige todas las maestrías de arma de tu clase.";
+    }
+    if (
+      stepId === "conjuros" ||
+      (stepId === "resumen" && necesitaPasoConjuros(datos.classId, datos.level))
+    ) {
+      return validarSeleccionConjuros(clasesConjuro, spellSelection);
+    }
     return null;
+  }
+
+  function validarPasoActual(): string | null {
+    return validarPaso(pasoActual);
+  }
+
+  function irAPaso(index: number) {
+    if (index === paso || index < 0 || index >= pasos.length) return;
+    if (index < paso) {
+      setError(null);
+      setPaso(index);
+      return;
+    }
+    for (let i = paso; i < index; i++) {
+      const msg = validarPaso(pasos[i]!.id);
+      if (msg) {
+        setError(msg);
+        setPaso(i);
+        return;
+      }
+    }
+    setError(null);
+    setPaso(index);
   }
 
   function siguiente() {
@@ -201,7 +351,7 @@ export function CharacterNewPage() {
       return;
     }
     setError(null);
-    setPaso((p) => Math.min(PASOS.length - 1, p + 1));
+    setPaso((p) => Math.min(pasos.length - 1, p + 1));
   }
 
   function anterior() {
@@ -219,7 +369,7 @@ export function CharacterNewPage() {
     setError(null);
     try {
       const character = crearPersonajeDesdeAsistente(
-        { ...datos, originChoices },
+        { ...datos, originChoices, spellSelection },
         catalogoOrigen,
       );
       await guardarPersonaje(character);
@@ -234,25 +384,38 @@ export function CharacterNewPage() {
     }
   }
 
-  const muestraPanelLateral = paso === 1 || paso === 2;
+  const muestraPanelLateral = pasoActual === "origen" || pasoActual === "clase";
 
   return (
     <Layout title="Nuevo personaje" wide={muestraPanelLateral}>
-      <nav className="mb-6 flex flex-wrap gap-2">
-        {PASOS.map((p, index) => (
-          <div
-            key={p.id}
-            className={cn(
-              "flex items-center gap-2 rounded-lg px-3 py-2 text-sm",
-              index === paso && "bg-gold font-semibold text-black",
-              index < paso && "border border-gold/40 text-gold",
-              index > paso && "border border-white/10 text-muted",
-            )}
-          >
-            <span>{index + 1}</span>
-            <span>{p.titulo}</span>
-          </div>
-        ))}
+      <p className="mb-2 text-sm text-muted">
+        Paso {paso + 1} de {pasos.length}: {pasos[paso]?.titulo}
+      </p>
+      <nav className="mb-6 flex flex-wrap gap-2" aria-label="Pasos del asistente">
+        {pasos.map((p, index) => {
+          const activo = index === paso;
+          const completado = index < paso;
+          return (
+            <button
+              key={p.id}
+              type="button"
+              aria-current={activo ? "step" : undefined}
+              className={cn(
+                "flex min-h-11 items-center gap-2 rounded-lg px-3 py-2 text-sm transition",
+                activo && "bg-gold font-semibold text-black",
+                completado &&
+                  "border border-gold/40 text-gold hover:bg-gold/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold/50",
+                !activo &&
+                  !completado &&
+                  "border border-white/10 text-muted hover:border-white/20 hover:text-white",
+              )}
+              onClick={() => irAPaso(index)}
+            >
+              <span className="tabular-nums">{index + 1}</span>
+              <span>{p.titulo}</span>
+            </button>
+          );
+        })}
       </nav>
 
       <div
@@ -262,7 +425,7 @@ export function CharacterNewPage() {
         )}
       >
         <div className="min-w-0">
-        {paso === 0 && (
+        {pasoActual === "identidad" && (
           <div className="space-y-4">
             <h2 className="text-lg font-semibold">¿Cómo se llama tu personaje?</h2>
             <label className="block space-y-1 text-sm">
@@ -285,7 +448,7 @@ export function CharacterNewPage() {
           </div>
         )}
 
-        {paso === 1 && (
+        {pasoActual === "origen" && (
           <div className="space-y-4">
             <h2 className="text-lg font-semibold">Origen</h2>
             <SpeciesPicker
@@ -317,11 +480,12 @@ export function CharacterNewPage() {
               choices={originChoices}
               onChange={(next) => actualizar({ originChoices: next })}
               mode="create"
+              omitirBonificacionAtributos
             />
           </div>
         )}
 
-        {paso === 2 && (
+        {pasoActual === "clase" && (
           <div className="space-y-4">
             <h2 className="text-lg font-semibold">Clase y nivel</h2>
             <label className="block space-y-1 text-sm">
@@ -333,7 +497,6 @@ export function CharacterNewPage() {
                   actualizar({
                     classId: e.target.value,
                     subclassId: null,
-                    abilities: asignarArrayEstandar(e.target.value),
                   })
                 }
               >
@@ -376,25 +539,72 @@ export function CharacterNewPage() {
                 }
               />
             </label>
+            {eleccionEquipoClase && (
+              <div className="space-y-2 rounded-lg border border-white/10 bg-surface/50 p-3">
+                <label className="block space-y-1 text-sm">
+                  <span className="text-muted">{eleccionEquipoClase.label}</span>
+                  <select
+                    className="w-full rounded-lg border border-white/10 bg-surface px-3 py-2"
+                    value={originChoices.class.equipment ?? "A"}
+                    onChange={(e) =>
+                      actualizar({
+                        originChoices: {
+                          species: datos.originChoices?.species ?? {},
+                          background: datos.originChoices?.background ?? {},
+                          class: {
+                            ...(datos.originChoices?.class ?? {}),
+                            equipment: e.target.value,
+                          },
+                        },
+                      })
+                    }
+                  >
+                    {eleccionEquipoClase.options.map((opt) => (
+                      <option key={opt.value} value={opt.value}>
+                        {opt.label}
+                      </option>
+                    ))}
+                  </select>
+                </label>
+                {resumenEquipoClaseActual.length > 0 && (
+                  <ul className="list-inside list-disc text-sm text-muted">
+                    {resumenEquipoClaseActual.map((line) => (
+                      <li key={line}>{line}</li>
+                    ))}
+                  </ul>
+                )}
+              </div>
+            )}
+            {claseTieneMaestriaArmas(datos.classId) && (
+              <WeaponMasteryPanel
+                character={borradorMaestrias}
+                compact
+                onChange={(next) => actualizar({ weaponMasteries: next.weaponMasteries })}
+              />
+            )}
           </div>
         )}
 
-        {paso === 3 && (
+        {pasoActual === "atributos" && (
           <div className="space-y-4">
             <div className="flex flex-wrap items-center justify-between gap-2">
               <h2 className="text-lg font-semibold">Atributos</h2>
               <div className="flex flex-wrap gap-2">
-                <Button type="button" variant="critical" onClick={tirarAtributos4d6}>
+                <Button type="button" variant="combat" onClick={tirarAtributos4d6}>
                   Tirar 4d6
                 </Button>
                 <Button type="button" onClick={usarArrayEstandar}>
                   Array estándar
                 </Button>
-                <Button type="button" variant="ghost" onClick={aplicarArrayAutomatico}>
-                  Auto por clase
-                </Button>
               </div>
             </div>
+
+            <OriginAbilityBonusForm
+              backgroundId={datos.backgroundId}
+              catalogo={catalogoOrigen}
+              choices={originChoices}
+              onChange={(next) => actualizar({ originChoices: next })}
+            />
 
             {modoAtributos === "array" ? (
               <>
@@ -420,9 +630,7 @@ export function CharacterNewPage() {
                   })}
                 </div>
                 <div className="grid grid-cols-2 gap-3">
-                  {ABILITY_KEYS.map((key) => {
-                    const mod = modificadorAtributo(datos.abilities[key]);
-                    return (
+                  {ABILITY_KEYS.map((key) => (
                       <label key={key} className="rounded-lg bg-surface px-3 py-2 text-sm">
                         <span className="text-muted">{ABILITY_LABELS_ES[key]}</span>
                         <select
@@ -442,12 +650,9 @@ export function CharacterNewPage() {
                             </option>
                           ))}
                         </select>
-                        <span className="text-xs text-muted">
-                          Valor {datos.abilities[key]} · Mod {mod >= 0 ? `+${mod}` : mod}
-                        </span>
+                        <span className="text-xs text-muted">{textoAtributo(key)}</span>
                       </label>
-                    );
-                  })}
+                    ))}
                 </div>
               </>
             ) : tiradas4d6 ? (
@@ -470,9 +675,7 @@ export function CharacterNewPage() {
                   ))}
                 </div>
                 <div className="grid grid-cols-2 gap-3">
-                  {ABILITY_KEYS.map((key) => {
-                    const mod = modificadorAtributo(datos.abilities[key]);
-                    return (
+                  {ABILITY_KEYS.map((key) => (
                       <label key={key} className="rounded-lg bg-surface px-3 py-2 text-sm">
                         <span className="text-muted">{ABILITY_LABELS_ES[key]}</span>
                         <select
@@ -492,12 +695,9 @@ export function CharacterNewPage() {
                             </option>
                           ))}
                         </select>
-                        <span className="text-xs text-muted">
-                          Valor {datos.abilities[key]} · Mod {mod >= 0 ? `+${mod}` : mod}
-                        </span>
+                        <span className="text-xs text-muted">{textoAtributo(key)}</span>
                       </label>
-                    );
-                  })}
+                    ))}
                 </div>
               </>
             ) : (
@@ -507,9 +707,7 @@ export function CharacterNewPage() {
                   8). También puedes ajustar manualmente.
                 </p>
                 <div className="grid grid-cols-2 gap-3">
-                  {ABILITY_KEYS.map((key) => {
-                    const mod = modificadorAtributo(datos.abilities[key]);
-                    return (
+                  {ABILITY_KEYS.map((key) => (
                       <label key={key} className="rounded-lg bg-surface px-3 py-2 text-sm">
                         <span className="text-muted">{ABILITY_LABELS_ES[key]}</span>
                         <input
@@ -528,19 +726,26 @@ export function CharacterNewPage() {
                             });
                           }}
                         />
-                        <span className="text-xs text-muted">
-                          Mod {mod >= 0 ? `+${mod}` : mod}
-                        </span>
+                        <span className="text-xs text-muted">{textoAtributo(key)}</span>
                       </label>
-                    );
-                  })}
+                    ))}
                 </div>
               </>
             )}
           </div>
         )}
 
-        {paso === 4 && (
+        {pasoActual === "conjuros" && (
+          <SpellChoicesForm
+            classes={clasesConjuro}
+            seleccion={spellSelection}
+            onChange={setSpellSelection}
+            catalog={catalog}
+            titulo="Conjuros iniciales"
+          />
+        )}
+
+        {pasoActual === "resumen" && (
           <div className="space-y-3 text-sm">
             <h2 className="text-lg font-semibold">Resumen</h2>
             <p>
@@ -608,14 +813,14 @@ export function CharacterNewPage() {
           <Button type="button" variant="ghost" disabled={paso === 0} onClick={anterior}>
             Anterior
           </Button>
-          {paso < PASOS.length - 1 ? (
-            <Button type="button" variant="critical" onClick={siguiente}>
+          {paso < pasos.length - 1 ? (
+            <Button type="button" variant="primary" onClick={siguiente}>
               Siguiente
             </Button>
           ) : (
             <Button
               type="button"
-              variant="critical"
+              variant="primary"
               disabled={creando}
               onClick={() => void crear()}
             >
@@ -631,10 +836,10 @@ export function CharacterNewPage() {
             speciesId={datos.speciesId}
             backgroundId={datos.backgroundId}
             level={datos.level}
-            classId={paso >= 2 ? datos.classId : undefined}
-            subclassId={paso >= 2 ? datos.subclassId : undefined}
+            classId={pasoActual === "clase" ? datos.classId : undefined}
+            subclassId={pasoActual === "clase" ? datos.subclassId : undefined}
             classes={
-              paso >= 2
+              pasoActual === "clase"
                 ? [{ classId: datos.classId, subclassId: datos.subclassId, level: datos.level }]
                 : undefined
             }

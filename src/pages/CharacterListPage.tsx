@@ -1,20 +1,16 @@
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
 import { InstallBanner } from "@/components/InstallBanner";
-import { Button, Layout } from "@/components/layout";
+import { Button, Layout, LinkButton } from "@/components/layout";
 import {
   descargarJson,
   duplicarPersonaje,
   eliminarPersonaje,
   exportarBackup,
-  exportarTracker,
   listarPersonajes,
   nombreArchivoExport,
 } from "@/db/repository";
 import type { Character } from "@/schemas/character";
-import { calcularClaseArmadura } from "@/rules/combat";
 import { descripcionClases } from "@/rules/multiclass";
-import { srdArmor } from "@/rules/srd";
 
 export function CharacterListPage() {
   const [characters, setCharacters] = useState<Character[]>([]);
@@ -45,9 +41,9 @@ export function CharacterListPage() {
     <Layout
       title="Mis personajes"
       actions={
-        <Link to="/new">
-          <Button variant="critical">Nuevo personaje</Button>
-        </Link>
+        <LinkButton to="/new" variant="primary" className="px-3 py-2">
+          Nuevo personaje
+        </LinkButton>
       }
     >
       <InstallBanner />
@@ -56,24 +52,13 @@ export function CharacterListPage() {
       ) : characters.length === 0 ? (
         <div className="rounded-xl border border-dashed border-white/15 bg-panel p-8 text-center">
           <p className="mb-4 text-muted">Aún no hay personajes guardados.</p>
-          <Link to="/new">
-            <Button variant="critical">Crear el primero</Button>
-          </Link>
+          <LinkButton to="/new" variant="primary">
+            Crear el primero
+          </LinkButton>
         </div>
       ) : (
         <ul className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
-          {characters.map((character) => {
-            const ca = calcularClaseArmadura(
-              character.abilities.dex,
-              character.equipment.armorId
-                ? srdArmor.find((a) => a.id === character.equipment.armorId)
-                : null,
-              character.equipment.shieldEquipped,
-              srdArmor.find((a) => a.category === "shield"),
-              character.combat.armorClassOverride,
-            );
-
-            return (
+          {characters.map((character) => (
               <li
                 key={character.id}
                 className="rounded-xl border border-white/10 bg-panel p-4"
@@ -86,12 +71,12 @@ export function CharacterListPage() {
                       {character.identity.level}
                     </p>
                     <p className="text-sm">
-                      PV {character.combat.hpCurrent}/{character.combat.hpMax} · CA {ca}
+                      PV {character.combat.hpCurrent}/{character.combat.hpMax}
                     </p>
                   </div>
-                  <Link to={`/character/${character.id}`}>
-                    <Button variant="critical">Abrir</Button>
-                  </Link>
+                  <LinkButton to={`/character/${character.id}`} variant="primary" className="shrink-0 px-3 py-1.5 text-sm">
+                    Abrir
+                  </LinkButton>
                 </div>
                 <div className="flex flex-wrap gap-2">
                   <Button
@@ -104,16 +89,6 @@ export function CharacterListPage() {
                   >
                     Exportar
                   </Button>
-                  <Button
-                    onClick={() =>
-                      descargarJson(
-                        nombreArchivoExport("tracker", character.identity.name),
-                        exportarTracker(character, ca),
-                      )
-                    }
-                  >
-                    Tracker
-                  </Button>
                   <Button onClick={() => void onDuplicate(character.id)}>Duplicar</Button>
                   <Button
                     variant="ghost"
@@ -123,8 +98,7 @@ export function CharacterListPage() {
                   </Button>
                 </div>
               </li>
-            );
-          })}
+          ))}
         </ul>
       )}
     </Layout>

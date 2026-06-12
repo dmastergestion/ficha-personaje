@@ -142,3 +142,52 @@ export const PRESETS_ATAQUE: Pick<
 export const MAGIC_BONUS_OPTIONS = [0, 1, 2, 3] as const;
 
 export const GOLPE_DESARMADO = crearAtaqueVacio(PRESETS_ATAQUE[0]!);
+
+export const ATAQUE_DESARMADO_ID = "desarmado";
+
+export function armaAtaqueValida(attackId: string, character: Character): boolean {
+  if (attackId === ATAQUE_DESARMADO_ID) return true;
+  const item = character.equipment.items.find((i) => i.id === attackId);
+  return !!item && esItemAtacable(item);
+}
+
+export function idAtaqueDefecto(character: Character): string {
+  const stored = character.equipment.defaultAttackId;
+  if (stored && armaAtaqueValida(stored, character)) return stored;
+  return ATAQUE_DESARMADO_ID;
+}
+
+export function ataquePorId(character: Character, attackId: string): CombatAttack | null {
+  if (attackId === ATAQUE_DESARMADO_ID) return GOLPE_DESARMADO;
+  const item = character.equipment.items.find((i) => i.id === attackId);
+  if (!item) return null;
+  return ataqueDesdeItem(item, character);
+}
+
+export function marcarAtaqueDefecto(character: Character, attackId: string | null): Character {
+  if (attackId !== null && !armaAtaqueValida(attackId, character)) return character;
+  return {
+    ...character,
+    equipment: { ...character.equipment, defaultAttackId: attackId },
+  };
+}
+
+export type AtaqueFicha = { id: string; attack: CombatAttack };
+
+/** Ataques en el mismo orden que la ficha PDF (desarmado + inventario, máx. 6). */
+export function listarAtaquesFicha(character: Character): AtaqueFicha[] {
+  const rows: AtaqueFicha[] = [{ id: ATAQUE_DESARMADO_ID, attack: GOLPE_DESARMADO }];
+  for (const item of character.equipment.items.filter(esItemAtacable)) {
+    const attack = ataqueDesdeItem(item, character);
+    if (attack) rows.push({ id: item.id, attack });
+  }
+  return rows.slice(0, 6);
+}
+
+export function etiquetaAtaqueId(character: Character, attackId: string): string {
+  if (attackId === ATAQUE_DESARMADO_ID) return "Golpe desarmado";
+  const item = character.equipment.items.find((i) => i.id === attackId);
+  if (!item) return attackId;
+  const attack = ataqueDesdeItem(item, character);
+  return attack?.name ?? item.name;
+}

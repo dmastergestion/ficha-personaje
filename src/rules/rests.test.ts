@@ -1,5 +1,5 @@
 import { describe, expect, it, vi, afterEach } from "vitest";
-import { aplicarDescansoLargo, gastarDadoGolpe } from "@/rules/rests";
+import { aplicarDescansoLargo, aplicarDescansoCorto, gastarDadoGolpe } from "@/rules/rests";
 import { crearPersonajeVacio } from "@/schemas/character";
 
 describe("aplicarDescansoLargo", () => {
@@ -12,6 +12,26 @@ describe("aplicarDescansoLargo", () => {
     const next = aplicarDescansoLargo(pj);
     expect(next.combat.hpCurrent).toBe(20);
     expect(next.spells.spellSlotsUsed["1"]).toBe(0);
+  });
+
+  it("otorga inspiración heroica al humano", () => {
+    const pj = crearPersonajeVacio({ name: "Humano", playerName: "J", classId: "fighter" });
+    pj.identity.speciesId = "human";
+    pj.combat.inspiration = false;
+
+    const next = aplicarDescansoLargo(pj);
+    expect(next.combat.inspiration).toBe(true);
+  });
+});
+
+describe("aplicarDescansoCorto", () => {
+  it("otorga inspiración al músico", () => {
+    const pj = crearPersonajeVacio({ name: "Músico", playerName: "J", classId: "bard" });
+    pj.feats = [{ id: "musician", name: "Músico" }];
+    pj.combat.inspiration = false;
+
+    const next = aplicarDescansoCorto(pj);
+    expect(next.combat.inspiration).toBe(true);
   });
 });
 

@@ -23,6 +23,18 @@ describe("calcularBeneficiosOrigen", () => {
     expect(b.skills).toEqual(["sleightOfHand", "stealth"]);
     expect(b.toolProficiencies).toContain("thieves' tools");
     expect(b.feat?.id).toBe("alert");
+    expect(b.speciesFeat).toBeNull();
+  });
+
+  it("aplica dote versátil del humano", () => {
+    const b = calcularBeneficiosOrigen(
+      "human",
+      "criminal",
+      1,
+      undefined,
+      { species: { "versatile-feat": "lucky", skillful: "perception" }, background: {}, class: {} },
+    );
+    expect(b.speciesFeat?.id).toBe("lucky");
   });
 
   it("aplica bonificadores de atributo del trasfondo sabio", () => {
@@ -59,7 +71,11 @@ describe("calcularBeneficiosOrigen", () => {
           traits,
         },
       },
-      { species: {}, background: { "ability-mode": "split", "ability-plus-2": "str", "ability-plus-1": "int" } },
+      {
+        species: {},
+        background: { "ability-mode": "split", "ability-plus-2": "str", "ability-plus-1": "int" },
+        class: {},
+      },
     );
     expect(b.skills).toEqual(["history", "persuasion"]);
     expect(b.feat?.id).toBe("skilled");

@@ -4,7 +4,9 @@ import { Link, useParams } from "react-router-dom";
 
 import { BottomCombatBar } from "@/components/BottomCombatBar";
 
+import { CharacterIdentityBar } from "@/components/CharacterIdentityBar";
 import { CharacterQuickStats } from "@/components/CharacterQuickStats";
+import { LevelUpModal } from "@/components/LevelUpModal";
 
 import { FloatingRollPanel } from "@/components/FloatingRollPanel";
 
@@ -12,7 +14,8 @@ import { RollResultsPanel } from "@/components/RollResultsPanel";
 
 import { RollSettingsBar } from "@/components/RollSettingsBar";
 
-import { Button, Layout } from "@/components/layout";
+import { SaveIndicator, type SaveStatus } from "@/components/SaveIndicator";
+import { Button, Layout, LinkButton } from "@/components/layout";
 
 import { guardarPersonaje, obtenerPersonaje } from "@/db/repository";
 
@@ -29,8 +32,7 @@ import type { SheetTab } from "@/pages/character-sheet/types";
 
 import { plantillaPdfDisponible } from "@/pdf/pdfTemplate";
 
-import { descripcionClases } from "@/rules/multiclass";
-
+import { useCharacterIdentityControls } from "@/hooks/useCharacterIdentityControls";
 import { useCatalogStore } from "@/stores/catalog-store";
 
 import { useUiStore } from "@/stores/ui-store";
@@ -72,6 +74,7 @@ export function CharacterSheetPage() {
   const [exportandoPdf, setExportandoPdf] = useState(false);
 
   const [pdfDisponible, setPdfDisponible] = useState<boolean | null>(null);
+  const [saveStatus, setSaveStatus] = useState<SaveStatus>("idle");
 
   const tab = useUiStore((s) => s.sheetTab);
 
@@ -80,6 +83,7 @@ export function CharacterSheetPage() {
   const catalog = useCatalogStore((s) => s.catalog);
 
   const saveQueueRef = useRef(Promise.resolve());
+  const saveFadeRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
 
 
@@ -146,39 +150,29 @@ export function CharacterSheetPage() {
 
 
   async function persist(next: Character) {
-
     setCharacter(next);
+    setSaveStatus("saving");
+    if (saveFadeRef.current) clearTimeout(saveFadeRef.current);
 
     const run = saveQueueRef.current.then(() => guardarPersonaje(next));
-
     saveQueueRef.current = run.catch(() => {});
 
     try {
-
       await run;
-
       setErrorGuardado(null);
-
+      setSaveStatus("saved");
+      saveFadeRef.current = setTimeout(() => setSaveStatus("idle"), 2000);
     } catch (err) {
-
       console.error("No se pudo guardar la ficha", err);
-
+      setSaveStatus("error");
       setErrorGuardado(
-
         err instanceof Error ? err.message : "No se pudieron guardar los cambios.",
-
       );
-
       if (id) {
-
         const fresh = await obtenerPersonaje(id);
-
         if (fresh) setCharacter(fresh);
-
       }
-
     }
-
   }
 
 
@@ -227,7 +221,12 @@ export function CharacterSheetPage() {
 
 
 
-  if (!character) {
+  const pdfTitle =
+    pdfDisponible === false
+      ? "Requiere plantilla PDF (npm run prepare:pdf-template)"
+      : undefined;
+
+  if (estado !== "listo" || !character) {
 
     if (estado === "no-encontrado") {
 
@@ -291,65 +290,116 @@ export function CharacterSheetPage() {
 
 
 
-  const pdfTitle =
+  return (
+    <CharacterSheetLoaded
+      character={character}
+      catalog={catalog}
+      tab={tab}
+      setTab={setTab}
+      persist={persist}
+      saveStatus={saveStatus}
+      errorGuardado={errorGuardado}
+      errorPdf={errorPdf}
+      pdfDisponible={pdfDisponible}
+      pdfTitle={pdfTitle}
+      exportandoPdf={exportandoPdf}
+      onExportPdf={() => void onExportPdf()}
+    />
+  );
+}
 
-    pdfDisponible === false
-
-      ? "Requiere plantilla PDF (npm run prepare:pdf-template)"
-
-      : undefined;
-
-
+function CharacterSheetLoaded({
+  character,
+  catalog,
+  tab,
+  setTab,
+  persist,
+  saveStatus,
+  errorGuardado,
+  errorPdf,
+  pdfDisponible,
+  pdfTitle,
+  exportandoPdf,
+  onExportPdf,
+}: {
+  character: Character;
+  catalog: ReturnType<typeof useCatalogStore.getState>["catalog"];
+  tab: SheetTab;
+  setTab: (tab: SheetTab) => void;
+  persist: (next: Character) => void;
+  saveStatus: SaveStatus;
+  errorGuardado: string | null;
+  errorPdf: string | null;
+  pdfDisponible: boolean | null;
+  pdfTitle: string | undefined;
+  exportandoPdf: boolean;
+  onExportPdf: () => void;
+}) {
+  const identity = useCharacterIdentityControls(character, persist);
 
   return (
-
+    <>
+      {identity.levelUpPreview && (
+        <LevelUpModal
+          preview={identity.levelUpPreview}
+          character={character}
+          pendingClasses={identity.pendingClasses ?? character.identity.classes}
+          onConfirm={identity.confirmarSubidaNivel}
+          onCancel={identity.cancelarSubidaNivel}
+        />
+      )}
     <Layout
-
       wide
-
-      title={character.identity.name}
-
-      actions={
-
-        <>
-
-          <Button
-
-            disabled={exportandoPdf || pdfDisponible === false}
-
-            title={pdfTitle}
-
-            onClick={() => void onExportPdf()}
-
-          >
-
-            {exportandoPdf ? "PDF…" : "PDF"}
-
-          </Button>
-
-          <Link to="/">
-
-            <Button>Volver</Button>
-
-          </Link>
-
-        </>
-
+      title={
+        <input
+          className="w-full min-w-0 truncate bg-transparent text-2xl font-bold outline-none placeholder:text-muted/60 focus:border-b focus:border-gold/40"
+          value={character.identity.name}
+          placeholder="Nombre del personaje"
+          aria-label="Nombre del personaje"
+          onChange={(e) =>
+            persist({
+              ...character,
+              identity: { ...character.identity, name: e.target.value },
+            })
+          }
+        />
       }
-
+      subtitle={
+        <>
+          <CharacterIdentityBar
+            character={character}
+            catalog={catalog}
+            onChange={persist}
+            onClassChange={identity.onClassChange}
+            onLevelChange={identity.onLevelChange}
+          />
+          {identity.errorClases && (
+            <p className="mt-1 text-sm text-red-300">{identity.errorClases}</p>
+          )}
+        </>
+      }
+      status={<SaveIndicator status={saveStatus} />}
+      actions={
+        <>
+          <Button
+            disabled={exportandoPdf || pdfDisponible === false}
+            title={pdfTitle}
+            onClick={onExportPdf}
+          >
+            {exportandoPdf ? "PDF…" : "PDF"}
+          </Button>
+          <LinkButton to="/" variant="default" className="px-3 py-2">
+            Volver
+          </LinkButton>
+        </>
+      }
     >
 
       <div className="pb-28 lg:pb-4">
 
-        <p className="mb-3 text-sm text-muted">
-
-          {descripcionClases(character.identity.classes)} · Nivel {character.identity.level}
-
-          {character.identity.playerName ? ` · ${character.identity.playerName}` : ""}
-
-        </p>
-
-        <CharacterQuickStats character={character} />
+        <div className="sheet-pdf-combat-stats">
+          <CharacterQuickStats character={character} onChange={(n) => void persist(n)} />
+        </div>
 
         <SheetTabBar active={tab} onSelect={(id) => setTab(id as SheetTab)} />
 
@@ -389,11 +439,11 @@ export function CharacterSheetPage() {
 
 
 
-        <div className="flex flex-col gap-4 lg:flex-row lg:items-start">
+        <div className="flex flex-col gap-3 lg:flex-row lg:items-start">
 
           <div className="min-w-0 flex-1">
 
-            <div className="mb-4 lg:hidden">
+            <div className="mb-3 lg:hidden">
 
               <RollSettingsBar compact />
 
@@ -450,9 +500,8 @@ export function CharacterSheetPage() {
       <BottomCombatBar character={character} onSelectTab={setTab} />
 
     </Layout>
-
+    </>
   );
-
 }
 
 

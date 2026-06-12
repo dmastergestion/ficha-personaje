@@ -1,17 +1,11 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { ConditionPanel } from "@/components/ConditionPanel";
 import { DamageTypesEditor } from "@/components/DamageTypesEditor";
 import { ResourcesPanel } from "@/components/ResourcesPanel";
 import { Button } from "@/components/layout";
 import { ABILITY_KEYS, DAMAGE_TYPES } from "@/lib/constants";
 import type { AbilityKey } from "@/lib/constants";
-import {
-  ABILITY_LABELS_ES,
-  iniciativa,
-  modificadorSalvacion,
-  velocidad,
-} from "@/rules/character";
-import { modificadorAtributo } from "@/rules/ability";
+import { ABILITY_LABELS_ES, modificadorSalvacion } from "@/rules/character";
 import { aplicarCambioPv } from "@/rules/combat-hp";
 import {
   registrarFalloSalvacionMuerte,
@@ -21,17 +15,18 @@ import {
 import { tiradaConcentracionPorDanio } from "@/rules/concentration";
 import { tiradaSalvacion } from "@/rules/effects";
 import { tirarAtaqueCompleto } from "@/rules/attack-roll";
-import { ataqueDesdeItem, esItemAtacable, GOLPE_DESARMADO } from "@/rules/attacks";
+import { ataquePorId, idAtaqueDefecto } from "@/rules/attacks";
 import {
   aplicarDescansoCorto,
   aplicarDescansoLargo,
-  gastarDadoGolpe,
 } from "@/rules/rests";
 import { dadosGolpeDisponibles } from "@/rules/hit-dice";
-import { dadosDeGolpePorClase } from "@/rules/multiclass";
+import { descripcionDadosGolpe } from "@/rules/multiclass";
+import { poblarRecursosSugeridos, recursosSugeridos } from "@/rules/resources-tracker";
+import { HitDiceSpendButtons } from "@/components/HitDiceSpendButtons";
+import { AttackTable } from "@/components/sheet/AttackTable";
 import type { SheetTabProps } from "@/pages/character-sheet/types";
 import { useDiceRollOptions } from "@/hooks/useDiceRollOptions";
-import { useCatalogStore } from "@/stores/catalog-store";
 import { useUiStore } from "@/stores/ui-store";
 
 function toggleSalvacion(character: SheetTabProps["character"], key: AbilityKey) {
@@ -47,16 +42,43 @@ function toggleSalvacion(character: SheetTabProps["character"], key: AbilityKey)
 export function TabCombate({ character, onChange }: SheetTabProps) {
   const [customDelta, setCustomDelta] = useState("5");
   const [tipoDanio, setTipoDanio] = useState("");
-  const [armaSeleccionada, setArmaSeleccionada] = useState("desarmado");
-  const catalog = useCatalogStore((s) => s.catalog);
+  const [armaSeleccionada, setArmaSeleccionada] = useState(() => idAtaqueDefecto(character));
+
+  useEffect(() => {
+    setArmaSeleccionada((prev) =>
+      ataquePorId(character, prev) ? prev : idAtaqueDefecto(character),
+    );
+  }, [character]);
+
+  const recursosSyncRef = useRef<string | null>(null);
+  useEffect(() => {
+    const sugeridos = recursosSugeridos(character);
+    const faltaAlguno = sugeridos.some((s) => !character.resources.some((r) => r.id === s.id));
+    if (!faltaAlguno) return;
+    const key = `${character.id}:${sugeridos.map((s) => s.id).join(",")}`;
+    if (recursosSyncRef.current === key) return;
+    recursosSyncRef.current = key;
+    onChange(poblarRecursosSugeridos(character));
+  }, [character, onChange]);
+
   const rollMode = useUiStore((s) => s.rollMode);
   const diceRoll = useDiceRollOptions();
-  const speciesSpeed = character.identity.speciesId
-    ? catalog.obtenerEspecie(character.identity.speciesId)?.speed
-    : undefined;
   const setUltimaTirada = useUiStore((s) => s.setUltimaTirada);
   const setUltimoAtaque = useUiStore((s) => s.setUltimoAtaque);
-  const armasInventario = character.equipment.items.filter(esItemAtacable);
+  function cantidadPv(): number {
+    const n = Number(customDelta);
+    return Number.isFinite(n) && n > 0 ? Math.floor(n) : 0;
+  }
+
+  function aplicarDanio() {
+    const n = cantidadPv();
+    if (n > 0) cambiarPv(-n);
+  }
+
+  function aplicarCuracion() {
+    const n = cantidadPv();
+    if (n > 0) cambiarPv(n);
+  }
 
   function cambiarPv(delta: number) {
     if (delta === 0) return;
@@ -148,18 +170,12 @@ export function TabCombate({ character, onChange }: SheetTabProps) {
     setUltimaTirada(result);
   }
 
-  function tirarAtaqueSeleccionado() {
+  function tirarAtaque(attackId: string) {
     if (!diceRoll.isReady) {
       setUltimaTirada(null, diceRoll.error);
       return;
     }
-    const attack =
-      armaSeleccionada === "desarmado"
-        ? GOLPE_DESARMADO
-        : ataqueDesdeItem(
-            armasInventario.find((i) => i.id === armaSeleccionada)!,
-            character,
-          );
+    const attack = ataquePorId(character, attackId);
     if (!attack) return;
 
     const result = tirarAtaqueCompleto(
@@ -179,55 +195,61 @@ export function TabCombate({ character, onChange }: SheetTabProps) {
   }
 
   return (
-    <div className="grid gap-4 lg:grid-cols-12">
-      <section className="sheet-card lg:col-span-5">
+    <div className="sheet-tab-grid lg:grid-cols-12">
+      <section className="sheet-card lg:col-span-4">
+        <h3 className="sheet-section-title">Ajustar puntos de golpe</h3>
+        <p className="mb-2 text-xs text-muted">
+          Total en la barra superior ({character.combat.hpCurrent}/{character.combat.hpMax}
+          {character.combat.hpTemp > 0 ? ` +${character.combat.hpTemp} temp` : ""}).
+        </p>
         <div className="mb-2 flex flex-wrap items-center gap-2">
-          <span className="text-2xl font-bold tabular-nums">
-            PV {character.combat.hpCurrent}/{character.combat.hpMax}
-            {character.combat.hpTemp > 0 && (
-              <span className="text-accent"> ({character.combat.hpTemp})</span>
-            )}
-          </span>
-          <div className="flex flex-wrap items-center gap-1">
+          <div className="inline-flex shrink-0 overflow-hidden rounded-lg border border-white/10">
             <Button
-              variant="critical"
-              className="px-2 py-1 text-xs"
+              variant="danger"
+              className="rounded-none border-0 px-3 py-1 text-sm"
               aria-label="Restar PV (daño)"
-              onClick={() => cambiarPv(-Math.abs(Number(customDelta) || 1))}
+              onClick={aplicarDanio}
             >
               −
             </Button>
-            <input
-              type="number"
-              aria-label="Cantidad de PV a sumar o restar"
-              className="w-12 rounded-lg border border-white/10 bg-surface px-1 py-1 text-xs"
-              value={customDelta}
-              onChange={(e) => setCustomDelta(e.target.value)}
-            />
             <Button
-              variant="critical"
-              className="px-2 py-1 text-xs"
+              variant="default"
+              className="rounded-none border-0 border-l border-white/10 px-3 py-1 text-sm"
               aria-label="Sumar PV (curación)"
-              onClick={() => cambiarPv(Math.abs(Number(customDelta) || 1))}
+              onClick={aplicarCuracion}
             >
               +
             </Button>
           </div>
-          <label className="mt-1 block text-xs">
-            <span className="text-muted">Tipo de daño (opcional)</span>
-            <select
-              className="mt-0.5 w-full rounded border border-white/10 bg-surface px-2 py-1"
-              value={tipoDanio}
-              onChange={(e) => setTipoDanio(e.target.value)}
-            >
-              <option value="">—</option>
+          <input
+            type="number"
+            min={1}
+            inputMode="numeric"
+            aria-label="Cantidad de PV a sumar o restar"
+            placeholder="Cantidad"
+            className="sheet-input-sm w-24"
+            value={customDelta}
+            onChange={(e) => setCustomDelta(e.target.value)}
+            onKeyDown={(e) => {
+              if (e.key === "Enter") {
+                e.preventDefault();
+                aplicarDanio();
+              }
+            }}
+          />
+          <select
+            className="sheet-input-sm max-w-[9rem] py-1 text-xs"
+            aria-label="Tipo de daño (opcional)"
+            value={tipoDanio}
+            onChange={(e) => setTipoDanio(e.target.value)}
+          >
+              <option value="">Sin tipo</option>
               {DAMAGE_TYPES.map((t) => (
                 <option key={t} value={t}>
                   {t}
                 </option>
               ))}
             </select>
-          </label>
         </div>
 
         {character.combat.hpCurrent === 0 && (
@@ -264,7 +286,7 @@ export function TabCombate({ character, onChange }: SheetTabProps) {
               </span>
             </div>
             <div className="flex flex-wrap gap-1">
-              <Button variant="critical" className="px-2 py-1 text-xs" onClick={tirarSalvacionMuerteRoll}>
+              <Button variant="combat" className="px-2 py-1 text-xs" onClick={tirarSalvacionMuerteRoll}>
                 Tirar salvación
               </Button>
               <Button
@@ -322,68 +344,6 @@ export function TabCombate({ character, onChange }: SheetTabProps) {
               }
             />
           </label>
-          <label className="flex items-end gap-2 pb-1 text-xs">
-            <input
-              type="checkbox"
-              checked={character.combat.inspiration}
-              onChange={(e) =>
-                onChange({
-                  ...character,
-                  combat: { ...character.combat, inspiration: e.target.checked },
-                })
-              }
-            />
-            Inspiración
-          </label>
-        </div>
-
-        <p className="mb-2 text-sm">
-          Ini {iniciativa(character) >= 0 ? "+" : ""}
-          {iniciativa(character)} · {velocidad(character, speciesSpeed ?? 30)} ft
-        </p>
-
-        <div className="mb-2 grid gap-2 text-sm sm:grid-cols-2">
-          <label>
-            <span className="sheet-field-label">Iniciativa fija (opcional)</span>
-            <input
-              type="number"
-              className="sheet-input"
-              placeholder={`Auto (DES ${modificadorAtributo(character.abilities.dex) >= 0 ? "+" : ""}${modificadorAtributo(character.abilities.dex)})`}
-              title="Si lo rellenas, sustituye al modificador de Destreza en la iniciativa mostrada (p. ej. por dotes o bonificadores fijos)."
-              value={character.combat.initiativeOverride ?? ""}
-              onChange={(e) =>
-                onChange({
-                  ...character,
-                  combat: {
-                    ...character.combat,
-                    initiativeOverride: e.target.value ? Number(e.target.value) : null,
-                  },
-                })
-              }
-            />
-            <p className="mt-1 text-xs text-muted">
-              Vacío = usa DES. Útil si tu iniciativa no es solo Destreza.
-            </p>
-          </label>
-          <label>
-            <span className="sheet-field-label">Velocidad fija (pies)</span>
-            <input
-              type="number"
-              className="sheet-input"
-              placeholder={`${velocidad(character, speciesSpeed ?? 30)}`}
-              title="Sustituye la velocidad de especie o armadura si necesitas un valor concreto."
-              value={character.combat.speedOverride ?? ""}
-              onChange={(e) =>
-                onChange({
-                  ...character,
-                  combat: {
-                    ...character.combat,
-                    speedOverride: e.target.value ? Number(e.target.value) : null,
-                  },
-                })
-              }
-            />
-          </label>
         </div>
 
         <div className="flex flex-wrap gap-1">
@@ -391,37 +351,16 @@ export function TabCombate({ character, onChange }: SheetTabProps) {
             Desc. corto
           </Button>
           <Button
-            variant="critical"
             className="px-2 py-1 text-xs"
             onClick={() => onChange(aplicarDescansoLargo(character))}
           >
             Desc. largo
           </Button>
-          {dadosDeGolpePorClase(character.identity.classes).map(({ die }, _idx, arr) => (
-            <Button
-              key={die}
-              className="px-2 py-1 text-xs"
-              aria-label={`Gastar dado de golpe ${die}`}
-              onClick={() => {
-                const result = gastarDadoGolpe(character, die);
-                if (result) {
-                  onChange(result.character);
-                  setUltimaTirada({
-                    mode: "normal",
-                    rolls: [result.tirada],
-                    used: result.tirada,
-                    modifier: 0,
-                    total: result.curacion,
-                    isCritical: false,
-                    isFumble: false,
-                    source: "virtual",
-                  });
-                }
-              }}
-            >
-              {arr.length > 1 ? `Dado ${die}` : "Dado de golpe"}
-            </Button>
-          ))}
+          <HitDiceSpendButtons
+            character={character}
+            onChange={onChange}
+            onRoll={(msg) => setUltimaTirada(null, msg)}
+          />
         </div>
         <p className="mt-1 text-sm text-muted">
           Dados disp.: {dadosGolpeDisponibles(character).disponibles}/
@@ -429,10 +368,7 @@ export function TabCombate({ character, onChange }: SheetTabProps) {
           {dadosGolpeDisponibles(character).gastados > 0 && (
             <span> ({dadosGolpeDisponibles(character).gastados} gastados)</span>
           )}{" "}
-          ·{" "}
-          {dadosDeGolpePorClase(character.identity.classes)
-            .map(({ die, total }) => `${total}${die}`)
-            .join(" + ")}
+          · {descripcionDadosGolpe(character.identity.classes)}
         </p>
       </section>
 
@@ -456,7 +392,7 @@ export function TabCombate({ character, onChange }: SheetTabProps) {
                   </span>
                 </label>
                 <Button
-                  variant="critical"
+                  variant="combat"
                   className="shrink-0 px-2 py-0.5 text-xs"
                   onClick={() => tirarSalvacionRoll(key)}
                 >
@@ -468,40 +404,19 @@ export function TabCombate({ character, onChange }: SheetTabProps) {
         </div>
       </section>
 
-      <section className="sheet-card lg:col-span-4">
+      <section className="sheet-card min-w-0 lg:col-span-5">
         <h3 className="sheet-section-title">Ataques</h3>
-        <p className="mb-3 text-sm text-muted">Armas en Equipo · el resultado aparece en el panel de tiradas</p>
-        <div className="flex flex-wrap items-end gap-2">
-          <label className="min-w-0 flex-1 text-sm">
-            <span className="text-xs text-muted">Arma</span>
-            <select
-              className="mt-0.5 block w-full rounded border border-white/10 bg-surface px-2 py-1"
-              value={armaSeleccionada}
-              onChange={(e) => setArmaSeleccionada(e.target.value)}
-            >
-              <option value="desarmado">Golpe desarmado</option>
-              {armasInventario.map((item) => (
-                <option key={item.id} value={item.id}>
-                  {item.name}
-                  {item.damage ? ` · ${item.damage}` : ""}
-                </option>
-              ))}
-            </select>
-          </label>
-          <Button variant="critical" onClick={tirarAtaqueSeleccionado}>
-            Atacar
-          </Button>
-        </div>
-        {armasInventario.length === 0 && (
-          <p className="mt-2 text-xs text-muted">Sin armas — añádelas en Equipo.</p>
-        )}
+        <AttackTable
+          character={character}
+          onChange={onChange}
+          selectedId={armaSeleccionada}
+          onSelect={setArmaSeleccionada}
+          onAttack={tirarAtaque}
+        />
       </section>
 
-      <div className="lg:col-span-12">
+      <div className="sheet-tab-grid lg:col-span-12 lg:grid-cols-2">
         <ResourcesPanel character={character} onChange={onChange} />
-      </div>
-
-      <div className="lg:col-span-12">
         <ConditionPanel character={character} onChange={onChange} />
       </div>
 

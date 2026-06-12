@@ -95,7 +95,7 @@
   },
   "elf-wood": {
     "size": "Mediano",
-    "speed": 30,
+    "speed": 35,
     "skillProficiencies": [
       "Elegir: insight, perception, survival"
     ],

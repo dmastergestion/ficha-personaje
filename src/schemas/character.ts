@@ -3,6 +3,7 @@ import { CONDITION_IDS } from "@/lib/conditions";
 import {
   ABILITY_KEYS,
   RESOURCE_RECHARGES,
+  RESOURCE_SOURCES,
   SCHEMA_VERSION,
   SKILL_KEYS,
   SPELL_SLOT_LEVELS,
@@ -38,12 +39,16 @@ const resourceSchema = z.object({
   max: z.number().int().min(0),
   used: z.number().int().min(0),
   recharge: z.enum(RESOURCE_RECHARGES),
+  source: z.enum(RESOURCE_SOURCES).default("class"),
+  sourceLabel: z.string().optional(),
 });
 
 const featSchema = z.object({
   id: z.string(),
+  instanceId: z.string().optional(),
   name: z.string(),
   notes: z.string().optional(),
+  choices: z.record(z.string(), z.string()).optional(),
 });
 
 const roleplaySchema = z.object({
@@ -135,6 +140,8 @@ export const CharacterSchema = z.object({
     hpTemp: z.number().int().min(0),
     hitDiceTotal: z.number().int().min(0),
     hitDiceUsed: z.number().int().min(0),
+    /** Gastos por denominación (d8, d10…). Si falta, se infiere de hitDiceUsed. */
+    hitDiceSpentByDie: z.record(z.string(), z.number().int().min(0)).default({}),
     hitDie: z.string(),
     armorClassOverride: z.number().int().nullable(),
     initiativeOverride: z.number().int().nullable(),
@@ -153,6 +160,8 @@ export const CharacterSchema = z.object({
     shieldEquipped: z.boolean(),
     currency: currencySchema,
     items: z.array(equipmentItemSchema),
+    /** Id de objeto del inventario o "desarmado". */
+    defaultAttackId: z.string().nullable().default(null),
   }),
   spells: z.object({
     abilityKey: abilityKeySchema.nullable(),
@@ -169,8 +178,13 @@ export const CharacterSchema = z.object({
   originChoices: z.object({
     species: z.record(z.string(), z.string()),
     background: z.record(z.string(), z.string()),
+    class: z.record(z.string(), z.string()).default({}),
   }),
   notes: z.string(),
+  /** Armas con maestría activa (ids SRD). */
+  weaponMasteries: z.array(z.string()).default([]),
+  /** Data URL (JPEG) del retrato del personaje. */
+  portraitImage: z.string().nullable().default(null),
 });
 
 export type Character = z.infer<typeof CharacterSchema>;
@@ -241,6 +255,7 @@ export function crearPersonajeVacio(input: {
       hpTemp: 0,
       hitDiceTotal: level,
       hitDiceUsed: 0,
+      hitDiceSpentByDie: {},
       hitDie: "d8",
       armorClassOverride: null,
       initiativeOverride: null,
@@ -259,6 +274,7 @@ export function crearPersonajeVacio(input: {
       shieldEquipped: false,
       currency: currencyVacia(),
       items: [],
+      defaultAttackId: null,
     },
     spells: {
       abilityKey: null,
@@ -282,7 +298,9 @@ export function crearPersonajeVacio(input: {
     resources: [],
     feats: [],
     roleplay: roleplayVacio(),
-    originChoices: { species: {}, background: {} },
+    originChoices: { species: {}, background: {}, class: {} },
     notes: "",
+    weaponMasteries: [],
+    portraitImage: null,
   };
 }

@@ -189,6 +189,23 @@ function pulirAreasEfecto(text: string): string {
   return out;
 }
 
+/** Niveles de luz y oscuridad (marcadores Foundry / 5etools 2024). */
+function traducirNivelesLuz(text: string): string {
+  return text
+    .replace(/\bBright Light\b/gi, "luz brillante")
+    .replace(/\bBrightLight\b/g, "luz brillante")
+    .replace(/\bbrightlight\b/gi, "luz brillante")
+    .replace(/\bDim Light\b/gi, "luz tenue")
+    .replace(/\bDimLight\b/g, "luz tenue")
+    .replace(/\bdimlight\b/gi, "luz tenue")
+    .replace(/\bdimlight o darkness\b/gi, "luz tenue u oscuridad")
+    .replace(/\bla darkness\b/gi, "la oscuridad")
+    .replace(/\bdarkness mágica\b/gi, "oscuridad mágica")
+    .replace(/\bcon darkness\b/gi, "con oscuridad")
+    .replace(/\bo darkness\b/gi, "u oscuridad")
+    .replace(/\bacción de Magia\b/g, "acción mágica");
+}
+
 /** Pulido editorial PHB 2024 ES: términos de juego en minúsculas y distancias pies (m). */
 export function pulirTextoReglasEs(text: string): string {
   let out = limpiarTextoFoundry(text);
@@ -253,6 +270,7 @@ export function pulirTextoReglasEs(text: string): string {
     .replace(/\bes Enorme o más pequeñ[oa]\b/gi, (m) => m.toLowerCase());
 
   out = pulirAreasEfecto(out);
+  out = traducirNivelesLuz(out);
   out = unificarDistanciasEnTexto(out);
 
   return out.trim();

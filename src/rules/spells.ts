@@ -1,6 +1,11 @@
-import type { AbilityKey, SpellSlotLevel } from "@/lib/constants";
+import type { SpellSlotLevel } from "@/lib/constants";
 import { SPELL_SLOT_LEVELS } from "@/lib/constants";
-import { modificadorAtributo } from "@/rules/ability";
+import { esSubclaseArcana } from "@/rules/spell-lists";
+import {
+  maxConjurosGrimorio,
+  maxPreparadosClase,
+  maxTrucosClase,
+} from "@/rules/spell-progression";
 import type { ClassLevel, Character } from "@/schemas/character";
 
 /** Clases usadas para conjuros; corrige desincronización en personajes de una sola clase. */
@@ -149,9 +154,9 @@ export function esLanzador(classId: string): boolean {
   return tipoLanzador(classId) !== "none";
 }
 
-/** Clérigo, druida y mago preparan conjuros; el resto usa lista conocida. */
+/** PHB 2024: las clases lanzadoras usan lista de conjuros preparados. */
 export function usaListaPreparados(classId: string): boolean {
-  return classId === "wizard" || classId === "cleric" || classId === "druid";
+  return tipoLanzador(classId) !== "none";
 }
 
 function slotsVacios(): Record<SpellSlotLevel, number> {
@@ -204,53 +209,46 @@ export function esLanzadorPersonaje(character: Character): boolean {
 }
 
 export function usaPreparadosMulticlase(classes: ClassLevel[]): boolean {
-  return classes.some((c) => usaListaPreparados(c.classId));
+  return classes.some(
+    (c) => usaListaPreparados(c.classId) || esSubclaseArcana(c.classId, c.subclassId),
+  );
 }
-
-function cantripsLanzadorCompleto(level: number): number {
-  if (level >= 10) return 5;
-  if (level >= 4) return 4;
-  return 3;
-}
-
-const CANTARIPS_POR_CLASE: Record<string, (level: number) => number> = {
-  bard: cantripsLanzadorCompleto,
-  cleric: cantripsLanzadorCompleto,
-  druid: cantripsLanzadorCompleto,
-  sorcerer: cantripsLanzadorCompleto,
-  wizard: cantripsLanzadorCompleto,
-  warlock: (level) => (level >= 10 ? 4 : level >= 4 ? 3 : 2),
-};
 
 export function maxTrucosConocidos(classes: ClassLevel[]): number {
   let total = 0;
-  for (const { classId, level } of classes) {
-    const fn = CANTARIPS_POR_CLASE[classId];
-    if (fn) total += fn(level);
+  for (const { classId, level, subclassId } of classes) {
+    total += maxTrucosClase(classId, level);
+    if (esSubclaseArcana(classId, subclassId)) {
+      total += classId === "fighter" ? 2 : 3;
+    }
   }
   return total;
 }
 
 export function maxConjurosPreparados(character: Character): number {
-  const classes = clasesParaConjuros(character).filter((c) =>
-    usaListaPreparados(c.classId),
+  const classes = clasesParaConjuros(character).filter(
+    (c) => usaListaPreparados(c.classId) || esSubclaseArcana(c.classId, c.subclassId),
   );
   if (classes.length === 0) return 0;
 
-  const key: AbilityKey =
-    character.spells.abilityKey ??
-    (classes[0]!.classId === "cleric" || classes[0]!.classId === "druid"
-      ? "wis"
-      : "int");
-  const mod = modificadorAtributo(character.abilities[key]);
+  return classes.reduce((sum, c) => {
+    if (esSubclaseArcana(c.classId, c.subclassId)) {
+      const ekPrepared = [3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12];
+      return sum + (ekPrepared[Math.min(Math.max(c.level, 1), 20) - 1] ?? 0);
+    }
+    return sum + maxPreparadosClase(c.classId, c.level);
+  }, 0);
+}
 
-  return classes.reduce((sum, c) => sum + Math.max(1, c.level + mod), 0);
+export function maxConjurosGrimorioPersonaje(character: Character): number {
+  const classes = clasesParaConjuros(character);
+  return classes.reduce((sum, c) => sum + maxConjurosGrimorio(c.classId, c.level), 0);
 }
 
 export function resumenConjuros(character: Character): {
   cantrips: { actual: number; max: number };
   prepared: { actual: number; max: number } | null;
-  known: { actual: number };
+  known: { actual: number; max?: number };
 } {
   const classes = clasesParaConjuros(character);
   const preparados = usaPreparadosMulticlase(classes);
@@ -266,6 +264,9 @@ export function resumenConjuros(character: Character): {
           max: maxConjurosPreparados(character),
         }
       : null,
-    known: { actual: character.spells.spellsKnown.length },
+    known: {
+      actual: character.spells.spellsKnown.length,
+      max: maxConjurosGrimorioPersonaje(character) || undefined,
+    },
   };
 }

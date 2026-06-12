@@ -4,6 +4,7 @@ import type { AbilityKey, SkillKey } from "@/lib/constants";
 import { ABILITY_KEYS, SKILL_KEYS } from "@/lib/constants";
 import { SKILL_LABELS_ES } from "@/rules/character";
 import { idDoteDesdeTexto, nombreDote } from "@/rules/feat-text";
+import { eleccionesPorDefectoDote } from "@/rules/feat-mechanics";
 import {
   bonificadoresDesdeElecciones,
   herramientasDesdeElecciones,
@@ -197,6 +198,7 @@ export interface BeneficiosOrigen {
   toolProficiencies: string[];
   languages: string[];
   feat: CharacterFeat | null;
+  speciesFeat: CharacterFeat | null;
   abilityBonuses: Partial<Record<AbilityKey, number>>;
   hpBonusTotal: number;
 }
@@ -221,6 +223,16 @@ export function calcularBeneficiosOrigen(
   if (keen) speciesSkills.push(keen);
   if (skillful) speciesSkills.push(skillful);
 
+  let speciesFeat: CharacterFeat | null = null;
+  const versatileId = elecciones?.species?.["versatile-feat"];
+  if (versatileId && speciesId && inferSpeciesGroupId(speciesId) === "human") {
+    speciesFeat = {
+      id: versatileId,
+      name: nombreDote(versatileId),
+      choices: eleccionesPorDefectoDote(versatileId),
+    };
+  }
+
   let feat: CharacterFeat | null = null;
   if (background?.feat) {
     const featId = idDoteDesdeTexto(background.feat);
@@ -234,14 +246,17 @@ export function calcularBeneficiosOrigen(
         id: featId,
         name: nombreDote(featId),
         notes: extra || undefined,
+        choices: eleccionesPorDefectoDote(featId, extra),
       };
     }
   }
 
   const abilityBonuses =
-    elecciones && Object.keys(elecciones.background).length > 0
-      ? bonificadoresDesdeElecciones(background?.traits, elecciones)
-      : bonificadoresAtributoTrasfondo(background?.traits);
+    atributosTrasfondoLista(background?.traits).length < 3
+      ? {}
+      : elecciones
+        ? bonificadoresDesdeElecciones(background?.traits, elecciones)
+        : bonificadoresAtributoTrasfondo(background?.traits);
 
   let hpBonusTotal = 0;
   if (speciesId === "dwarf" || speciesId?.startsWith("dwarf")) {
@@ -255,6 +270,7 @@ export function calcularBeneficiosOrigen(
       : (background?.toolProficiencies ?? []),
     languages: [],
     feat,
+    speciesFeat,
     abilityBonuses,
     hpBonusTotal,
   };

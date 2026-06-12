@@ -17,6 +17,10 @@ import { cdConjuro, modificadorAtaqueConjuro } from "@/rules/spell-cast";
 import { metaTiradaConjuro } from "@/rules/spell-cast-meta";
 import { metaConjuroParaMostrar } from "@/rules/spell-text";
 import {
+  etiquetaListaCompetenciasArmas,
+  etiquetaListaCompetenciasHerramientas,
+} from "@/rules/proficiencies";
+import {
   clasesParaConjuros,
   espaciosMaximosPersonaje,
   usaPreparadosMulticlase,
@@ -109,8 +113,10 @@ export function buildOfficialPdfValues(
   checks["Pesada"] = armorProf.has("heavy");
   checks["Escudos"] = armorProf.has("shield");
 
-  text["Armas"] = character.proficiencies.weaponProficiencies.join(", ");
-  text["Herramientas"] = character.proficiencies.toolProficiencies.join(", ");
+  text["Armas"] = etiquetaListaCompetenciasArmas(character.proficiencies.weaponProficiencies);
+  text["Herramientas"] = etiquetaListaCompetenciasHerramientas(
+    character.proficiencies.toolProficiencies,
+  );
   text["Idiomas"] = character.proficiencies.languages.join(", ");
 
   for (const key of ABILITY_KEYS) {

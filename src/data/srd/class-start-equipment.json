@@ -1,0 +1,51 @@
+{
+  "barbarian": {
+    "A": "Greataxe, 4 Handaxes, Explorer's Pack, 15 GP",
+    "B": "75 GP"
+  },
+  "bard": {
+    "A": "Leather Armor, 2 Daggers, Musical Instrument, Entertainer's Pack, 19 GP",
+    "B": "90 GP"
+  },
+  "cleric": {
+    "A": "Chain Shirt, Shield, Mace, Holy Symbol, Priest's Pack, 7 GP",
+    "B": "110 GP"
+  },
+  "druid": {
+    "A": "Leather Armor, Shield, Sickle, Druidic Focus (Quarterstaff), Explorer's Pack, Herbalism Kit, 9 GP",
+    "B": "50 GP"
+  },
+  "fighter": {
+    "A": "Chain Mail, Greatsword, Flail, 8 Javelins, Dungeoneer's Pack, 4 GP",
+    "B": "Studded Leather Armor, Scimitar, Shortsword, Longbow, 20 Arrows, Quiver, Dungeoneer's Pack, 11 GP",
+    "C": "155 GP"
+  },
+  "monk": {
+    "A": "Spear, 5 Daggers, Carpenter's Tools, Explorer's Pack, 11 GP",
+    "B": "50 GP"
+  },
+  "paladin": {
+    "A": "Chain Mail, Shield, Longsword, 6 Javelins, Holy Symbol, Priest's Pack, 9 GP",
+    "B": "150 GP"
+  },
+  "ranger": {
+    "A": "Studded Leather Armor, Scimitar, Shortsword, Longbow, 20 Arrows, Quiver, Druidic Focus (sprig of mistletoe), Explorer's Pack, 7 GP",
+    "B": "150 GP"
+  },
+  "rogue": {
+    "A": "Leather Armor, 2 Daggers, Shortsword, Shortbow, 20 Arrows, Quiver, Thieves' Tools, Burglar's Pack, 8 GP",
+    "B": "100 GP"
+  },
+  "sorcerer": {
+    "A": "Spear, 2 Daggers, Arcane Focus (crystal), Dungeoneer's Pack, 28 GP",
+    "B": "50 GP"
+  },
+  "warlock": {
+    "A": "Leather Armor, Sickle, 2 Daggers, Arcane Focus (orb), Book (occult lore), Scholar's Pack, 15 GP",
+    "B": "100 GP"
+  },
+  "wizard": {
+    "A": "2 Daggers, Arcane Focus (Quarterstaff), Robe, Spellbook, Scholar's Pack, 5 GP",
+    "B": "55 GP"
+  }
+}

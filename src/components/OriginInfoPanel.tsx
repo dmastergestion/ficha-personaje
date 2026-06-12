@@ -64,7 +64,7 @@ export function SpeciesInfoPanel({
     pericias.length > 0 || beneficios.hpBonusTotal > 0 || !!rasgos;
 
   return (
-    <div className="rounded-lg border border-white/10 bg-surface/50 p-3 text-sm">
+    <div className="rounded-lg border border-white/10 bg-surface/50 p-2.5 text-sm">
       <p className="mb-1 font-semibold">{name}</p>
       <div className="mb-2 flex flex-wrap gap-2 text-xs text-muted">
         {species.size && <span>Tamaño: {species.size}</span>}
@@ -126,7 +126,7 @@ export function BackgroundInfoPanel({
     Object.keys(beneficios.abilityBonuses).length > 0;
 
   return (
-    <div className="rounded-lg border border-white/10 bg-surface/50 p-3 text-sm">
+    <div className="rounded-lg border border-white/10 bg-surface/50 p-2.5 text-sm">
       <p className="mb-1 font-semibold">{name}</p>
 
       {tieneBloque ? (

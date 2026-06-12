@@ -1,5 +1,10 @@
 import { describe, expect, it } from "vitest";
-import { modificadorAtaque } from "@/rules/attacks";
+import {
+  ATAQUE_DESARMADO_ID,
+  idAtaqueDefecto,
+  marcarAtaqueDefecto,
+  modificadorAtaque,
+} from "@/rules/attacks";
 import { crearPersonajeVacio } from "@/schemas/character";
 
 describe("modificadorAtaque", () => {
@@ -31,6 +36,31 @@ describe("modificadorAtaque", () => {
         magicBonus: 2,
       }),
     ).toBe(7);
+  });
+
+  it("recuerda el ataque predeterminado", () => {
+    const character = crearPersonajeVacio({ name: "A", playerName: "B", classId: "fighter" });
+    expect(idAtaqueDefecto(character)).toBe(ATAQUE_DESARMADO_ID);
+
+    const conEspada = marcarAtaqueDefecto(
+      {
+        ...character,
+        equipment: {
+          ...character.equipment,
+          items: [
+            {
+              id: "espada-1",
+              name: "Espada larga",
+              qty: 1,
+              weightLb: 3,
+              weaponId: "longsword",
+            },
+          ],
+        },
+      },
+      "espada-1",
+    );
+    expect(idAtaqueDefecto(conEspada)).toBe("espada-1");
   });
 
   it("no suma competencia si no es proficiente", () => {

@@ -47,10 +47,15 @@ describe("límites de conjuros", () => {
     expect(maxTrucosConocidos([{ classId: "wizard", subclassId: null, level: 10 }])).toBe(5);
   });
 
-  it("calcula preparados del clérigo", () => {
+  it("calcula preparados del clérigo (tabla 2024)", () => {
     const character = crearPersonajeVacio({ name: "T", playerName: "J", classId: "cleric" });
     character.abilities.wis = 16;
     character.spells.abilityKey = "wis";
+    expect(maxConjurosPreparados(character)).toBe(4);
+  });
+
+  it("bardo usa lista preparada", () => {
+    const character = crearPersonajeVacio({ name: "T", playerName: "J", classId: "bard" });
     expect(maxConjurosPreparados(character)).toBe(4);
   });
 });

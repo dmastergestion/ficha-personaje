@@ -73,4 +73,14 @@ describe("pulirTextoReglasEs", () => {
     expect(text).toContain("terreno difícil");
     expect(text).toContain("emanación de 30 pies (9 m)");
   });
+
+  it("traduce niveles de luz Foundry (DimLight, BrightLight)", () => {
+    const text = pulirTextoReglasEs(
+      "emite DimLight en un radio de 10 pies. Ilumina con BrightLight y dimlight adicional. dimlight o darkness.",
+    );
+    expect(text).toContain("emite luz tenue");
+    expect(text).toContain("luz brillante");
+    expect(text).not.toMatch(/DimLight|BrightLight|dimlight|brightlight/i);
+    expect(text).toContain("luz tenue u oscuridad");
+  });
 });

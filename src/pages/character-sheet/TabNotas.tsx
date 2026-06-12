@@ -1,8 +1,6 @@
 import { FeatPicker } from "@/components/FeatPicker";
-import {
-  CharacterCompetenciesSection,
-  CharacterLanguagesSection,
-} from "@/components/CharacterProficienciesSection";
+import { CharacterPortraitField } from "@/components/CharacterPortraitField";
+import { ProficienciesPanel } from "@/components/sheet/ProficienciesPanel";
 import type { SheetTabProps } from "@/pages/character-sheet/types";
 
 const ROLEPLAY_FIELDS = [
@@ -15,11 +13,11 @@ const ROLEPLAY_FIELDS = [
 
 export function TabNotas({ character, onChange }: SheetTabProps) {
   return (
-    <div className="space-y-4">
-      <div className="grid gap-4 lg:grid-cols-2">
+    <div className="sheet-tab-stack">
+      <div className="sheet-tab-grid lg:grid-cols-2">
         <section className="sheet-card">
           <h3 className="sheet-section-title">Trasfondo y personalidad</h3>
-          <div className="space-y-3">
+          <div className="flex flex-col gap-2">
             {ROLEPLAY_FIELDS.map(({ key, label }) => (
               <label key={key} className="block space-y-1 text-sm">
                 <span className="text-muted">{label}</span>
@@ -35,18 +33,15 @@ export function TabNotas({ character, onChange }: SheetTabProps) {
                 />
               </label>
             ))}
+            <CharacterPortraitField
+              portraitImage={character.portraitImage}
+              onChange={(portraitImage) => onChange({ ...character, portraitImage })}
+            />
           </div>
         </section>
-        <div className="space-y-4">
-          <CharacterLanguagesSection character={character} onChange={onChange} />
-          <CharacterCompetenciesSection character={character} />
-          <FeatPicker
-            feats={character.feats}
-            onAdd={(feat) => onChange({ ...character, feats: [...character.feats, feat] })}
-            onRemove={(id) =>
-              onChange({ ...character, feats: character.feats.filter((f) => f.id !== id) })
-            }
-          />
+        <div className="sheet-tab-stack">
+          <ProficienciesPanel character={character} onChange={onChange} />
+          <FeatPicker character={character} onChange={onChange} />
         </div>
       </div>
       <section className="sheet-card">

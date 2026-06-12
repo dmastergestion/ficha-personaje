@@ -1,20 +1,77 @@
-import { useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
+import { SpellChoicesForm } from "@/components/SpellChoicesForm";
 import { Button } from "@/components/layout";
 import { tirarDadoDenominacion } from "@/rules/dice";
 import type { LevelUpPreview } from "@/rules/level-up";
+import {
+  deltaRequisitosSubida,
+  validarDeltaConjuros,
+  type SeleccionConjuros,
+} from "@/rules/spell-choices";
+import type { ClassLevel, Character } from "@/schemas/character";
+import { useCatalogStore } from "@/stores/catalog-store";
+
+const DELTA_VACIO: SeleccionConjuros = {
+  cantripsKnown: [],
+  spellsKnown: [],
+  spellsPrepared: [],
+};
 
 export function LevelUpModal({
   preview,
+  character,
+  pendingClasses,
   onConfirm,
   onCancel,
 }: {
   preview: LevelUpPreview;
-  onConfirm: (hpGain: number, addToCurrentHp: boolean) => void;
+  character: Character;
+  pendingClasses: ClassLevel[];
+  onConfirm: (hpGain: number, addToCurrentHp: boolean, spellDelta: SeleccionConjuros) => void;
   onCancel: () => void;
 }) {
+  const catalog = useCatalogStore((s) => s.catalog);
   const [hpGain, setHpGain] = useState(preview.hpGain.average);
   const [hpRolled, setHpRolled] = useState<number | null>(null);
   const [addToCurrentHp, setAddToCurrentHp] = useState(true);
+  const [spellDelta, setSpellDelta] = useState<SeleccionConjuros>(DELTA_VACIO);
+  const [spellError, setSpellError] = useState<string | null>(null);
+  const spellSectionRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    if (spellError && spellSectionRef.current) {
+      spellSectionRef.current.scrollIntoView({ behavior: "smooth", block: "nearest" });
+    }
+  }, [spellError]);
+
+  const deltaConjuros = useMemo(
+    () => deltaRequisitosSubida(character.identity.classes, pendingClasses),
+    [character.identity.classes, pendingClasses],
+  );
+
+  const claseSubida = useMemo(
+    () => pendingClasses.find((c) => c.classId === preview.classId) ?? pendingClasses[0]!,
+    [pendingClasses, preview.classId],
+  );
+
+  const requiereConjuros =
+    deltaConjuros.cantrips > 0 || deltaConjuros.grimorio > 0 || deltaConjuros.preparados > 0;
+
+  function confirmar() {
+    if (requiereConjuros) {
+      const msg = validarDeltaConjuros(
+        deltaConjuros,
+        spellDelta,
+        character.spells.spellsKnown,
+      );
+      if (msg) {
+        setSpellError(msg);
+        return;
+      }
+    }
+    setSpellError(null);
+    onConfirm(hpGain, addToCurrentHp, spellDelta);
+  }
 
   function tirarVida() {
     const match = /^d(\d+)$/i.exec(preview.hpGain.die.trim());
@@ -47,10 +104,30 @@ export function LevelUpModal({
         <div className="flex-1 space-y-4 overflow-y-auto px-4 py-3 text-sm">
           <section className="rounded-lg bg-surface p-3">
             <h3 className="mb-2 font-semibold">Puntos de golpe</h3>
-            <p className="text-muted">{preview.hpGain.formula}</p>
-            <p className="mt-1 text-lg font-bold tabular-nums">+{hpGain} PV máx.</p>
+            <p className="text-muted">
+              {preview.hpGain.die} + CON
+              {!preview.hpGain.isFirstLevelInClass &&
+                ` · promedio ${preview.hpGain.average}`}
+            </p>
+            <label className="mt-2 flex flex-wrap items-center gap-2">
+              <span className="text-muted">+</span>
+              <input
+                type="number"
+                min={1}
+                className="sheet-input-compact w-20 tabular-nums"
+                value={hpGain}
+                onChange={(e) => {
+                  const n = Number(e.target.value);
+                  if (Number.isFinite(n)) {
+                    setHpGain(Math.max(1, Math.floor(n)));
+                    setHpRolled(null);
+                  }
+                }}
+              />
+              <span className="text-muted">PV máx.</span>
+            </label>
             {hpRolled !== null && (
-              <p className="text-xs text-muted">
+              <p className="mt-1 text-xs text-muted">
                 Tirada: {hpRolled} en {preview.hpGain.die} + CON
               </p>
             )}
@@ -65,17 +142,7 @@ export function LevelUpModal({
               >
                 Promedio ({preview.hpGain.average})
               </Button>
-              <Button
-                variant="ghost"
-                className="text-xs"
-                onClick={() => {
-                  setHpGain(preview.hpGain.maximum);
-                  setHpRolled(null);
-                }}
-              >
-                Máximo ({preview.hpGain.maximum})
-              </Button>
-              <Button variant="critical" className="text-xs" onClick={tirarVida}>
+              <Button variant="combat" className="text-xs" onClick={tirarVida}>
                 Tirar {preview.hpGain.die}
               </Button>
             </div>
@@ -171,7 +238,7 @@ export function LevelUpModal({
 
           {preview.resources.length > 0 && (
             <section className="rounded-lg bg-surface p-3">
-              <h3 className="mb-2 font-semibold">Recursos de clase</h3>
+              <h3 className="mb-2 font-semibold">Recursos</h3>
               <ul className="space-y-1 text-xs">
                 {preview.resources.map((r) => (
                   <li key={r.name}>
@@ -181,13 +248,32 @@ export function LevelUpModal({
               </ul>
             </section>
           )}
+
+          {requiereConjuros && (
+            <section
+              ref={spellSectionRef}
+              className="scroll-mt-4 rounded-lg border border-gold/30 bg-gold/5 p-3"
+            >
+              <h3 className="mb-2 font-semibold text-gold">Nuevos conjuros</h3>
+              <SpellChoicesForm
+                classes={[claseSubida]}
+                seleccion={spellDelta}
+                onChange={setSpellDelta}
+                catalog={catalog}
+                titulo="Añade los conjuros que ganas con este nivel"
+                soloAnadir={deltaConjuros}
+                grimorioBase={character.spells.spellsKnown}
+              />
+              {spellError && <p className="mt-2 text-xs text-red-400">{spellError}</p>}
+            </section>
+          )}
         </div>
 
         <footer className="flex gap-2 border-t border-white/10 px-4 py-3">
           <Button variant="ghost" className="flex-1" onClick={onCancel}>
             Cancelar
           </Button>
-          <Button variant="critical" className="flex-1" onClick={() => onConfirm(hpGain, addToCurrentHp)}>
+          <Button variant="primary" className="flex-1" onClick={confirmar}>
             Aplicar nivel {preview.totalLevelAfter}
           </Button>
         </footer>

@@ -27,7 +27,7 @@ export function InstallBanner() {
       <p className="text-sm">{tu("installHint")}</p>
       <div className="flex gap-2">
         <Button
-          variant="critical"
+          variant="primary"
           onClick={() => {
             void deferred.prompt();
             setHidden(true);

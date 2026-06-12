@@ -4,7 +4,11 @@ import { bonificadorCompetencia, modificadorAtributo } from "@/rules/ability";
 import { hitosMecanicos, rasgosEnNivel } from "@/rules/class-features";
 import { sincronizarIdentidadMulticlase } from "@/rules/multiclass";
 import classResourceMeta from "@/data/srd/class-resource-meta.json";
-import { maxRecursoClase, poblarRecursosSugeridos, recursosSugeridos } from "@/rules/resources-tracker";
+import {
+  maxRecursoClase,
+  poblarRecursosSugeridos,
+  recursosSugeridosClase,
+} from "@/rules/resources-tracker";
 import {
   espaciosMaximosPersonaje,
   espaciosPactoMaximos,
@@ -133,8 +137,8 @@ function cambiosEspacios(
 }
 
 function cambiosRecursos(antes: ClassLevel[], despues: ClassLevel[]): ResourceChange[] {
-  const beforeMap = new Map(recursosSugeridos(antes).map((r) => [r.id, r.max]));
-  const afterList = recursosSugeridos(despues);
+  const beforeMap = new Map(recursosSugeridosClase(antes).map((r) => [r.id, r.max]));
+  const afterList = recursosSugeridosClase(despues);
   const changes: ResourceChange[] = [];
 
   for (const r of afterList) {

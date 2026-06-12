@@ -1,0 +1,27 @@
+{
+  "barbarian": {
+    "perLevel": { "1": 2, "4": 3, "10": 4 },
+    "meleeOnly": true,
+    "requiresProficiency": false
+  },
+  "fighter": {
+    "perLevel": { "1": 3, "4": 4, "10": 5, "16": 6 },
+    "meleeOnly": false,
+    "requiresProficiency": false
+  },
+  "paladin": {
+    "perLevel": { "1": 2 },
+    "meleeOnly": false,
+    "requiresProficiency": true
+  },
+  "ranger": {
+    "perLevel": { "1": 2 },
+    "meleeOnly": false,
+    "requiresProficiency": false
+  },
+  "rogue": {
+    "perLevel": { "1": 2 },
+    "meleeOnly": false,
+    "requiresProficiency": false
+  }
+}

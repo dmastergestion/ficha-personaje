@@ -43,6 +43,7 @@ export function recursosCompletos(character: Character): Character {
       hpCurrent: character.combat.hpMax,
       hpTemp: 0,
       hitDiceUsed: 0,
+      hitDiceSpentByDie: {},
       hitDiceTotal: character.identity.level,
       exhaustionLevel: 0,
       deathSaves: { successes: 0, failures: 0 },
@@ -85,6 +86,7 @@ export function sanitizarRecursos(character: Character): Character {
 
   const hitDiceTotal = Math.max(character.identity.level, character.combat.hitDiceTotal);
   let hitDiceUsed = Math.min(character.combat.hitDiceUsed, hitDiceTotal);
+  const hitDiceSpentByDie = character.combat.hitDiceSpentByDie ?? {};
 
   if (
     pareceIntactoSinCombate(character) &&
@@ -117,6 +119,7 @@ export function sanitizarRecursos(character: Character): Character {
       hpTemp: Math.max(0, character.combat.hpTemp),
       hitDiceTotal,
       hitDiceUsed,
+      hitDiceSpentByDie,
     },
     spells: {
       ...character.spells,

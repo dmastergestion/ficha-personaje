@@ -1,6 +1,7 @@
 import type { OrigenCatalogo } from "@/rules/origin-benefits";
 import {
   eleccionVisible,
+  esEleccionBonificacionAtributos,
   esEleccionEditable,
   etiquetaEleccionOrigen,
   todasEleccionesOrigen,
@@ -52,6 +53,7 @@ export function OriginChoicesForm({
   choices,
   onChange,
   mode = "create",
+  omitirBonificacionAtributos = false,
 }: {
   speciesId: string | null;
   backgroundId: string | null;
@@ -60,8 +62,12 @@ export function OriginChoicesForm({
   choices: OriginChoices;
   onChange: (next: OriginChoices) => void;
   mode?: "create" | "sheet";
+  /** En creación, la bonificación de atributos se elige en el paso Atributos. */
+  omitirBonificacionAtributos?: boolean;
 }) {
-  const defs = todasEleccionesOrigen(speciesId, backgroundId, catalogo);
+  const defs = todasEleccionesOrigen(speciesId, backgroundId, catalogo).filter(
+    (d) => !omitirBonificacionAtributos || !esEleccionBonificacionAtributos(d.id),
+  );
   if (!defs.length) return null;
 
   const speciesDefs = defs.filter((d) => d.scope === "species" && eleccionVisible(d, choices));
@@ -76,7 +82,7 @@ export function OriginChoicesForm({
   }
 
   return (
-    <div className="space-y-4 rounded-lg border border-white/10 bg-panel/40 p-3">
+    <div className="flex flex-col gap-3 rounded-lg border border-white/10 bg-panel/40 p-3">
       <p className="text-sm font-medium text-gold">Elecciones de origen</p>
 
       {speciesDefs.length > 0 && (

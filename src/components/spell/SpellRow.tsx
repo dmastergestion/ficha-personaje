@@ -79,14 +79,14 @@ export function SpellRow({
         <EtiquetaRitual spellId={id} />
         {spellLevel > 0 && <span className="text-muted"> (niv {spellLevel})</span>}
       </button>
-      <div className="flex gap-1">
-        <Button variant="ghost" onClick={onInfo}>
+      <div className="flex shrink-0 gap-0.5">
+        <Button variant="ghost" className="px-2 py-1" onClick={onInfo}>
           Info
         </Button>
-        <Button variant="critical" onClick={onCast}>
+        <Button variant="combat" className="px-2 py-1" onClick={onCast}>
           Lanzar
         </Button>
-        <Button variant="ghost" onClick={onRemove}>
+        <Button variant="ghost" className="px-2 py-1" onClick={onRemove}>
           Quitar
         </Button>
       </div>

@@ -2,6 +2,7 @@ import type { AbilityKey, SpellSlotLevel } from "@/lib/constants";
 import { SPELL_SLOT_LEVELS } from "@/lib/constants";
 import spellListsJson from "@/data/srd/spell-lists.json";
 import type { ClassLevel, Character } from "@/schemas/character";
+import { maxPreparadosClase } from "@/rules/spell-progression";
 import { clasesParaConjuros, esLanzador, espaciosMaximos } from "@/rules/spells";
 
 export type SpellListEntry = {
@@ -67,7 +68,11 @@ export function nivelMaximoConjuroClase(
     return nivelMaximoDesdeEspacios(espaciosMaximos("wizard", effective));
   }
   if (!esLanzador(classId)) return 0;
-  return nivelMaximoDesdeEspacios(espaciosMaximos(classId, classLevel));
+  const fromSlots = nivelMaximoDesdeEspacios(espaciosMaximos(classId, classLevel));
+  if (fromSlots > 0) return fromSlots;
+  // Paladín / explorador preparan conjuros de nivel 1 antes de tener espacios (nivel 1).
+  if (maxPreparadosClase(classId, classLevel) > 0) return 1;
+  return 0;
 }
 
 /** Listas de clase que cuenta al filtrar (p. ej. Secretos mágicos del bardo 10+). */

@@ -4,7 +4,11 @@ import { pulirTextoReglasEs } from "@/lib/rules-text-polish";
 
 type FeatMetaEntry = { description?: string; descriptionEs?: string };
 
-type FeatMetaFull = FeatMetaEntry & { name?: string; nameEs?: string };
+type FeatMetaFull = FeatMetaEntry & {
+  name?: string;
+  nameEs?: string;
+  category?: string;
+};
 
 const featMeta = featMetaJson as Record<string, FeatMetaFull>;
 const manualEs = featDescriptionsEs as Record<string, string>;
@@ -23,6 +27,14 @@ export function idDoteDesdeTexto(raw: string): string | undefined {
 export function nombreDote(id: string): string {
   const entry = featMeta[id];
   return entry?.nameEs || entry?.name || id;
+}
+
+/** Dotes de origen PHB 2024 (rasgo Versátil del humano, etc.). */
+export function dotesOrigenDisponibles(): { value: string; label: string }[] {
+  return Object.entries(featMeta)
+    .filter(([, meta]) => meta.category === "origin")
+    .sort((a, b) => nombreDote(a[0]).localeCompare(nombreDote(b[0]), "es"))
+    .map(([id]) => ({ value: id, label: nombreDote(id) }));
 }
 
 /** Limpia marcadores 5etools/Foundry para lectura en ficha. */

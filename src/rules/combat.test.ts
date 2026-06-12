@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { calcularClaseArmadura } from "@/rules/combat";
+import { calcularClaseArmadura, desgloseClaseArmadura } from "@/rules/combat";
 import type { SrdArmor } from "@/rules/srd";
 
 const leather: SrdArmor = {
@@ -47,5 +47,26 @@ describe("calcularClaseArmadura", () => {
 
   it("suma escudo", () => {
     expect(calcularClaseArmadura(16, chainMail, true, shield, null)).toBe(18);
+  });
+});
+
+describe("desgloseClaseArmadura", () => {
+  it("sin armadura muestra base y DES", () => {
+    const d = desgloseClaseArmadura(14, null, false, shield, null);
+    expect(d.total).toBe(12);
+    expect(d.resumen).toBe("Arm 10 + DES +2");
+  });
+
+  it("armadura pesada y escudo", () => {
+    const d = desgloseClaseArmadura(16, chainMail, true, shield, null, {
+      etiquetaArmadura: "Cota",
+    });
+    expect(d.total).toBe(18);
+    expect(d.resumen).toBe("Cota 16 + Esc 2");
+  });
+
+  it("override manual", () => {
+    const d = desgloseClaseArmadura(10, null, false, shield, 18);
+    expect(d.resumen).toBe("Manual 18");
   });
 });

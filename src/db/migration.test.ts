@@ -24,8 +24,9 @@ describe("Dexie v2", () => {
     await db.characters.put(CharacterSchema.parse(character));
     const loaded = await db.characters.get(character.id);
 
-    expect(loaded?.schemaVersion).toBe(7);
-    expect(loaded?.originChoices).toEqual({ species: {}, background: {} });
+    expect(loaded?.schemaVersion).toBe(8);
+    expect(loaded?.portraitImage).toBeNull();
+    expect(loaded?.originChoices).toEqual({ species: {}, background: {}, class: {} });
     expect(loaded?.combat.conditionIds).toEqual([]);
     expect(loaded?.combat.deathSaves).toEqual({ successes: 0, failures: 0 });
     await db.delete();
@@ -60,7 +61,8 @@ describe("Dexie v2", () => {
     const upgraded = new FichaDatabase(dbName);
     const loaded = await upgraded.characters.get(base.id);
 
-    expect(loaded?.schemaVersion).toBe(7);
+    expect(loaded?.schemaVersion).toBe(8);
+    expect(loaded?.portraitImage).toBeNull();
     expect(loaded?.combat.conditionsCustom).toEqual(["Cansado"]);
     await upgraded.delete();
   });

@@ -4,6 +4,7 @@ import { bonificadorCompetencia, modificadorAtributo } from "@/rules/ability";
 import type { RollMode, D20Roll, DiceRollOptions } from "@/rules/dice";
 import { tiradaAtaque } from "@/rules/effects";
 import { ajustarEspacioUsado, ajustarPactoUsado } from "@/rules/rests";
+import { ajustarRecurso } from "@/rules/resources-tracker";
 import {
   atributoConjuroPredeterminado,
 } from "@/rules/spell-lists";
@@ -66,6 +67,24 @@ export function prepararPersonajeConjuro(character: Character): Character {
       pactMagicUsed: character.spells.pactMagicUsed ?? 0,
     },
   };
+}
+
+export function cdConjuroParaAtributo(character: Character, abilityKey: AbilityKey): number {
+  return (
+    8 +
+    bonificadorCompetencia(character.identity.level) +
+    modificadorAtributo(character.abilities[abilityKey])
+  );
+}
+
+export function modificadorAtaqueConjuroParaAtributo(
+  character: Character,
+  abilityKey: AbilityKey,
+): number {
+  return (
+    modificadorAtributo(character.abilities[abilityKey]) +
+    bonificadorCompetencia(character.identity.level)
+  );
 }
 
 export function cdConjuro(character: Character): number | null {
@@ -141,11 +160,18 @@ export function lanzarConjuro(
   character: Character,
   spellLevel: number,
   rollMode: RollMode,
-  opts?: { spellId?: string | null; requiereConcentracion?: boolean; diceOptions?: DiceRollOptions },
+  opts?: {
+    spellId?: string | null;
+    requiereConcentracion?: boolean;
+    diceOptions?: DiceRollOptions;
+    abilityKeyOverride?: AbilityKey;
+    featResourceId?: string;
+  },
 ): LanzarConjuroResult {
   const preparado = prepararPersonajeConjuro(character);
-  const cd = cdConjuro(preparado);
-  const mod = modificadorAtaqueConjuro(preparado);
+  const abilityKey = opts?.abilityKeyOverride ?? inferirAtributoConjuro(preparado);
+  const cd = abilityKey ? cdConjuroParaAtributo(preparado, abilityKey) : cdConjuro(preparado);
+  const mod = abilityKey ? modificadorAtaqueConjuroParaAtributo(preparado, abilityKey) : modificadorAtaqueConjuro(preparado);
 
   const spell = opts?.spellId ? srdSpells.find((s) => s.id === opts.spellId) : undefined;
   const meta = metaTiradaConjuro(opts?.spellId, spell);
@@ -162,7 +188,7 @@ export function lanzarConjuro(
     if (mod === null) {
       return {
         ok: false,
-        error: "No hay atributo de conjuro. Añade una clase lanzadora en Resumen.",
+        error: "No hay atributo de conjuro. Configura la dote o añade una clase lanzadora.",
         cd,
       };
     }
@@ -189,6 +215,27 @@ export function lanzarConjuro(
       damage: dañoEn(0),
       cd,
     };
+  }
+
+  if (spellLevel > 0 && opts?.featResourceId) {
+    const resource = preparado.resources.find((r) => r.id === opts.featResourceId);
+    if (resource && resource.used < resource.max) {
+      const updated = activarConcentracion(
+        ajustarRecurso(preparado, opts.featResourceId, 1),
+        opts?.spellId,
+        opts?.requiereConcentracion,
+      );
+      return {
+        ok: true,
+        character: updated,
+        roll,
+        castType,
+        saveAbility,
+        damage: dañoEn(spellLevel),
+        slotGastado: `${resource.name} (dote)`,
+        cd,
+      };
+    }
   }
 
   const classes = clasesParaConjuros(preparado);

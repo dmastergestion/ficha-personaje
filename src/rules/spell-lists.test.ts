@@ -39,6 +39,10 @@ describe("filtro de listas", () => {
     ).toBe(false);
   });
 
+  it("paladín niv 1 puede preparar conjuros de nivel 1 sin espacios", () => {
+    expect(nivelMaximoConjuroClase("paladin", 1)).toBe(1);
+  });
+
   it("paladín niv 5 puede hasta niv 2", () => {
     expect(nivelMaximoConjuroClase("paladin", 5)).toBe(2);
   });

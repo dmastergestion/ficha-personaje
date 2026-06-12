@@ -1,10 +1,11 @@
 import type { AbilityKey, SkillKey } from "@/lib/constants";
 import { ABILITY_LABELS_ES, SKILL_LABELS_ES } from "@/rules/character";
 import { etiquetaHerramienta } from "@/lib/origin-text";
+import { dotesOrigenDisponibles } from "@/rules/feat-text";
 import type { OrigenCatalogo } from "@/rules/origin-benefits";
 import { inferSpeciesGroupId } from "@/rules/species-catalog";
 
-export type OriginChoiceScope = "species" | "background";
+export type OriginChoiceScope = "species" | "background" | "class";
 
 export type OriginChoiceEditable = "never" | "until-level-3" | "always";
 
@@ -26,9 +27,10 @@ export interface OriginChoiceDefinition {
 export interface OriginChoices {
   species: Record<string, string>;
   background: Record<string, string>;
+  class: Record<string, string>;
 }
 
-export const ORIGIN_CHOICES_EMPTY: OriginChoices = { species: {}, background: {} };
+export const ORIGIN_CHOICES_EMPTY: OriginChoices = { species: {}, background: {}, class: {} };
 
 const KEEN_SENSES_OPTIONS: OriginChoiceOption[] = (
   ["insight", "perception", "survival"] as SkillKey[]
@@ -163,6 +165,15 @@ const SPECIES_GROUP_CHOICES: Record<string, OriginChoiceDefinition[]> = {
       defaultValue: "perception",
       editable: "never",
     },
+    {
+      id: "versatile-feat",
+      scope: "species",
+      label: "Versátil (dote de origen)",
+      hint: "El rasgo Versátil del humano PHB 2024 otorga una dote de origen.",
+      options: dotesOrigenDisponibles(),
+      defaultValue: "alert",
+      editable: "never",
+    },
   ],
 };
 
@@ -195,7 +206,11 @@ function eleccionHerramientaTrasfondo(
   };
 }
 
-function eleccionesAtributosTrasfondo(
+export function esEleccionBonificacionAtributos(defId: string): boolean {
+  return defId === "ability-mode" || defId === "ability-plus-2" || defId === "ability-plus-1";
+}
+
+export function eleccionesAtributosTrasfondo(
   _backgroundId: string | null,
   catalogo?: OrigenCatalogo,
 ): OriginChoiceDefinition[] {
@@ -315,7 +330,7 @@ export function valoresPorDefectoElecciones(
     if (def.defaultValue) background[def.id] = def.defaultValue;
   }
 
-  return { species, background };
+  return { species, background, class: {} };
 }
 
 export function fusionarEleccionesOrigen(
@@ -341,7 +356,33 @@ export function fusionarEleccionesOrigen(
     }
   }
 
-  return { species, background };
+  for (const [key, value] of Object.entries(actual?.species ?? {})) {
+    if (!(key in species)) species[key] = value;
+  }
+  for (const [key, value] of Object.entries(actual?.background ?? {})) {
+    if (!(key in background)) background[key] = value;
+  }
+
+  return { species, background, class: actual?.class ?? {} };
+}
+
+export function bonificacionAtributosCompleta(
+  backgroundId: string | null,
+  choices: OriginChoices,
+  catalogo?: OrigenCatalogo,
+): boolean {
+  if (eleccionesAtributosTrasfondo(backgroundId, catalogo).length === 0) return true;
+
+  const mode = choices.background["ability-mode"];
+  if (!mode) return false;
+
+  if (mode === "split") {
+    const a = choices.background["ability-plus-2"];
+    const b = choices.background["ability-plus-1"];
+    if (!a || !b || a === b) return false;
+  }
+
+  return true;
 }
 
 export function eleccionesOrigenCompletas(
@@ -349,18 +390,20 @@ export function eleccionesOrigenCompletas(
   backgroundId: string | null,
   choices: OriginChoices,
   catalogo?: OrigenCatalogo,
+  opts?: { incluirAtributosTrasfondo?: boolean },
 ): boolean {
+  const incluirAtributos = opts?.incluirAtributosTrasfondo !== false;
+
   for (const def of todasEleccionesOrigen(speciesId, backgroundId, catalogo)) {
+    if (!incluirAtributos && esEleccionBonificacionAtributos(def.id)) continue;
     if (!eleccionVisible(def, choices)) continue;
     const value =
       def.scope === "species" ? choices.species[def.id] : choices.background[def.id];
     if (!value) return false;
   }
 
-  if (choices.background["ability-mode"] === "split") {
-    const a = choices.background["ability-plus-2"];
-    const b = choices.background["ability-plus-1"];
-    if (!a || !b || a === b) return false;
+  if (incluirAtributos && !bonificacionAtributosCompleta(backgroundId, choices, catalogo)) {
+    return false;
   }
 
   return true;

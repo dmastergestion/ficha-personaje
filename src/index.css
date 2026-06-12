@@ -2,11 +2,14 @@
 
 @theme {
   --color-gold: #ffd54f;
+  --color-accent: #7ec8e3;
   --color-surface: #141414;
   --color-panel: #1f1f1f;
   --color-elevated: #2a2a2a;
   --color-muted: #a8b0bd;
   --color-border: rgb(255 255 255 / 0.12);
+  --color-danger: #f87171;
+  --color-success: #4ade80;
 }
 
 body {
@@ -21,19 +24,31 @@ body {
 
 @layer components {
   .sheet-card {
-    @apply rounded-xl border border-white/10 bg-panel p-4;
+    @apply rounded-xl border border-white/10 bg-panel p-3;
   }
 
   .sheet-section-title {
-    @apply mb-3 text-base font-semibold tracking-tight text-white;
+    @apply mb-2 text-base font-semibold tracking-tight text-white;
   }
 
   .sheet-field-label {
-    @apply mb-1 block text-sm font-medium text-muted;
+    @apply mb-0.5 block text-sm font-medium text-muted;
+  }
+
+  .sheet-tab-stack {
+    @apply flex flex-col gap-3;
+  }
+
+  .sheet-tab-grid {
+    @apply grid gap-3;
   }
 
   .sheet-input {
     @apply w-full rounded-lg border border-white/15 bg-surface px-3 py-2.5 text-[15px] text-white transition-colors placeholder:text-muted/50 focus:border-gold/40 focus:outline-none focus:ring-2 focus:ring-gold/20;
+  }
+
+  .sheet-input-sm {
+    @apply w-full rounded-lg border border-white/15 bg-surface px-2 py-1 text-sm text-white tabular-nums transition-colors placeholder:text-muted/50 focus:border-gold/40 focus:outline-none focus:ring-2 focus:ring-gold/20;
   }
 
   .sheet-select {
@@ -42,31 +57,39 @@ body {
   }
 
   .sheet-quick-stats {
-    @apply mb-4 grid grid-cols-2 gap-2 sm:grid-cols-3 xl:grid-cols-6;
+    @apply mb-3 grid grid-cols-2 gap-px overflow-visible rounded-lg border border-white/10 bg-white/10 sm:grid-cols-4 lg:grid-cols-8;
   }
 
   .sheet-stat-pill {
-    @apply flex min-w-0 flex-col rounded-lg border border-white/10 bg-panel px-3 py-2.5;
+    @apply flex min-w-0 flex-col justify-center gap-0.5 overflow-visible bg-panel px-2.5 py-2;
   }
 
   .sheet-stat-pill-accent {
-    @apply border-gold/30 bg-gold/5;
+    @apply bg-gold/5;
   }
 
   .sheet-stat-pill-label {
     @apply text-xs font-medium uppercase tracking-wide text-muted;
   }
 
+  .sheet-stat-pill-body {
+    @apply flex min-w-0 flex-wrap items-center gap-x-1.5 gap-y-0.5;
+  }
+
   .sheet-stat-pill-value {
-    @apply mt-0.5 text-lg font-bold tabular-nums leading-tight;
+    @apply text-lg font-bold tabular-nums leading-tight;
   }
 
   .sheet-stat-pill-sub {
-    @apply mt-1 truncate text-xs text-muted;
+    @apply text-xs text-muted;
+  }
+
+  .sheet-stat-pill-input {
+    @apply w-16 shrink-0 rounded-lg border border-white/10 bg-surface px-2 py-1 text-sm text-white tabular-nums transition-colors placeholder:text-muted/50 focus:border-gold/40 focus:outline-none focus:ring-2 focus:ring-gold/20;
   }
 
   .sheet-tab-bar {
-    @apply mb-4 flex gap-1 overflow-x-auto rounded-xl border border-white/10 bg-panel p-1;
+    @apply mb-3 flex gap-1 overflow-x-auto rounded-xl border border-white/10 bg-panel p-1;
   }
 
   .sheet-tab {
@@ -78,10 +101,82 @@ body {
   }
 
   .sheet-sidebar {
-    @apply hidden w-72 shrink-0 flex-col gap-3 lg:sticky lg:top-4 lg:flex lg:self-start;
+    @apply hidden w-72 shrink-0 flex-col gap-2 lg:sticky lg:top-4 lg:flex lg:self-start;
   }
 
   .sheet-sidebar-panel {
-    @apply rounded-xl border border-white/10 bg-panel p-4;
+    @apply rounded-xl border border-white/10 bg-panel p-3;
+  }
+
+  /* Layout alineado con ficha PDF oficial 2024 */
+  .sheet-pdf-page {
+    @apply grid gap-3 xl:grid-cols-[minmax(0,1.4fr)_minmax(0,1fr)];
+  }
+
+  .sheet-pdf-identity {
+    @apply flex flex-wrap items-center gap-x-3 gap-y-1.5;
+  }
+
+  .sheet-select-compact {
+    @apply min-w-0 rounded-lg border border-white/15 bg-surface px-2 py-1 text-sm text-white transition-colors focus:border-gold/40 focus:outline-none focus:ring-2 focus:ring-gold/20;
+  }
+
+  .sheet-input-compact {
+    @apply min-w-0 rounded-lg border border-white/15 bg-surface px-2 py-1 text-sm text-white transition-colors placeholder:text-muted/50 focus:border-gold/40 focus:outline-none focus:ring-2 focus:ring-gold/20;
+  }
+
+  .sheet-ability-cluster {
+    @apply rounded-lg border border-white/10 bg-surface/60 p-2;
+  }
+
+  .sheet-ability-bubble {
+    @apply flex w-[4.5rem] shrink-0 flex-col items-center gap-0.5 rounded-lg border border-white/15 bg-panel px-1.5 py-1.5 text-center;
+  }
+
+  .sheet-ability-name {
+    @apply text-[10px] font-semibold uppercase leading-tight tracking-wide text-muted;
+  }
+
+  .sheet-ability-score {
+    @apply w-full bg-transparent text-center text-2xl font-bold tabular-nums leading-none outline-none;
+  }
+
+  .sheet-ability-mod-btn {
+    @apply w-full px-1 py-0.5 text-sm;
+  }
+
+  .sheet-save-row {
+    @apply flex items-center justify-between gap-2;
+  }
+
+  .sheet-skill-row {
+    @apply flex items-center justify-between gap-1 rounded px-0.5 hover:bg-white/5;
+  }
+
+  .sheet-pdf-proficiencies {
+    @apply rounded-lg border border-white/10 bg-surface/40 p-2;
+  }
+
+  .sheet-table-header {
+    @apply grid gap-2 border-b border-white/10 pb-1 text-xs font-semibold uppercase tracking-wide text-muted;
+  }
+
+  .sheet-table-row {
+    @apply grid gap-2 border-b border-white/5 py-1.5 text-sm last:border-0;
+  }
+
+  .sheet-attack-grid {
+    grid-template-columns: minmax(0, 1.25fr) auto minmax(0, 0.9fr) minmax(0, 0.75fr);
+    gap: 0.375rem;
+  }
+
+  .sheet-spell-grid {
+    grid-template-columns:
+      minmax(0, 1.2fr) 2.5rem 4rem 2.5rem 2.5rem minmax(0, 0.75fr) minmax(0, 0.75fr)
+      minmax(0, 1fr) 5.5rem;
+  }
+
+  .sheet-pdf-combat-stats .sheet-quick-stats {
+    @apply rounded-xl border-gold/20;
   }
 }

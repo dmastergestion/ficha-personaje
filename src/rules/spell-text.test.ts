@@ -37,6 +37,13 @@ describe("descripcionConjuro", () => {
     expect(text).toMatch(/alarma/i);
     expect(text).not.toMatch(/You set an alarm/);
   });
+
+  it("traduce DimLight en Voluta estelar", () => {
+    const text = descripcionConjuro("starry-wisp");
+    expect(text).toBeDefined();
+    expect(text).toContain("luz tenue");
+    expect(text).not.toMatch(/DimLight/i);
+  });
 });
 
 describe("metaConjuroParaMostrar", () => {

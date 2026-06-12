@@ -1,7 +1,17 @@
 import type { AbilityKey, SkillKey } from "@/lib/constants";
+import {
+  ABILITY_SHEET_COLUMNS,
+  SKILLS_BY_ABILITY,
+  etiquetaPericiaOficial,
+} from "@/lib/sheet-layout";
 import { bonificadorCompetencia, modificadorAtributo } from "@/rules/ability";
 import { calcularModificadoresCondiciones } from "@/rules/effects";
+import { bonificadorIniciativaDotes, periciasExtraDotes } from "@/rules/feat-mechanics";
 import type { Character } from "@/schemas/character";
+
+export { ABILITY_SHEET_COLUMNS, SKILLS_BY_ABILITY };
+/** @deprecated Usar ABILITY_SHEET_COLUMNS */
+export const SKILL_ABILITY_COLUMNS = ABILITY_SHEET_COLUMNS;
 
 export const SKILL_ABILITIES: Record<SkillKey, AbilityKey> = {
   acrobatics: "dex",
@@ -25,24 +35,24 @@ export const SKILL_ABILITIES: Record<SkillKey, AbilityKey> = {
 };
 
 export const SKILL_LABELS_ES: Record<SkillKey, string> = {
-  acrobatics: "Acrobacias",
-  animalHandling: "Trato con animales",
-  arcana: "Arcano",
-  athletics: "Atletismo",
-  deception: "Engaño",
-  history: "Historia",
-  insight: "Perspicacia",
-  intimidation: "Intimidación",
-  investigation: "Investigación",
-  medicine: "Medicina",
-  nature: "Naturaleza",
-  perception: "Percepción",
-  performance: "Interpretación",
-  persuasion: "Persuasión",
-  religion: "Religión",
-  sleightOfHand: "Juego de manos",
-  stealth: "Sigilo",
-  survival: "Supervivencia",
+  acrobatics: etiquetaPericiaOficial("acrobatics"),
+  animalHandling: etiquetaPericiaOficial("animalHandling"),
+  arcana: etiquetaPericiaOficial("arcana"),
+  athletics: etiquetaPericiaOficial("athletics"),
+  deception: etiquetaPericiaOficial("deception"),
+  history: etiquetaPericiaOficial("history"),
+  insight: etiquetaPericiaOficial("insight"),
+  intimidation: etiquetaPericiaOficial("intimidation"),
+  investigation: etiquetaPericiaOficial("investigation"),
+  medicine: etiquetaPericiaOficial("medicine"),
+  nature: etiquetaPericiaOficial("nature"),
+  perception: etiquetaPericiaOficial("perception"),
+  performance: etiquetaPericiaOficial("performance"),
+  persuasion: etiquetaPericiaOficial("persuasion"),
+  religion: etiquetaPericiaOficial("religion"),
+  sleightOfHand: etiquetaPericiaOficial("sleightOfHand"),
+  stealth: etiquetaPericiaOficial("stealth"),
+  survival: etiquetaPericiaOficial("survival"),
 };
 
 export const ABILITY_LABELS_ES: Record<AbilityKey, string> = {
@@ -58,6 +68,7 @@ function esProficiente(character: Character, skill: SkillKey): boolean {
   if (skill in character.proficiencies.skillOverrides) {
     return character.proficiencies.skillOverrides[skill] ?? false;
   }
+  if (periciasExtraDotes(character).includes(skill)) return true;
   return character.proficiencies.skills.includes(skill);
 }
 
@@ -79,9 +90,9 @@ export function modificadorSalvacion(character: Character, ability: AbilityKey):
 }
 
 export function iniciativa(character: Character): number {
-  return (
-    character.combat.initiativeOverride ?? modificadorAtributo(character.abilities.dex)
-  );
+  const base =
+    character.combat.initiativeOverride ?? modificadorAtributo(character.abilities.dex);
+  return base + bonificadorIniciativaDotes(character);
 }
 
 export function percepcionPasiva(character: Character): number {

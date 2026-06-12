@@ -1,8 +1,15 @@
+import {
+  gastadosPorDado,
+  poolDadosGolpe,
+  recuperarDadosDescansoLargo,
+  sincronizarGastosDados,
+} from "@/rules/hit-dice";
 import type { SpellSlotLevel } from "@/lib/constants";
 import { SPELL_SLOT_LEVELS } from "@/lib/constants";
 import { modificadorAtributo } from "@/rules/ability";
 import { tirarDadoDenominacion } from "@/rules/dice";
 import { aplicarRecargaRecursos } from "@/rules/resources-tracker";
+import { aplicarInspiracionHeroicaTrasDescanso } from "@/rules/heroic-inspiration";
 import { espaciosMaximosPersonaje, espaciosPactoMaximos, nivelBrujo } from "@/rules/spells";
 import type { Character } from "@/schemas/character";
 
@@ -27,16 +34,19 @@ export function espaciosUsadosSeguros(
 /** Descanso largo SRD 2024 simplificado: PV al máximo, espacios restaurados, recuperar mitad de dados de golpe gastados. */
 export function aplicarDescansoLargo(character: Character): Character {
   const recuperarDados = Math.max(1, Math.floor(character.combat.hitDiceTotal / 2));
-  const hitDiceUsed = Math.max(0, character.combat.hitDiceUsed - recuperarDados);
+  const spentByDie = recuperarDadosDescansoLargo(gastadosPorDado(character), recuperarDados);
+  const synced = sincronizarGastosDados(spentByDie, character.combat.hitDiceTotal);
 
   const rested = aplicarRecargaRecursos(character, "long");
+  const withInspiration = aplicarInspiracionHeroicaTrasDescanso(rested, "long");
   return {
-    ...rested,
+    ...withInspiration,
     combat: {
-      ...rested.combat,
+      ...withInspiration.combat,
       hpCurrent: rested.combat.hpMax,
       hpTemp: 0,
-      hitDiceUsed,
+      hitDiceUsed: synced.hitDiceUsed,
+      hitDiceSpentByDie: synced.hitDiceSpentByDie,
       exhaustionLevel: Math.max(0, rested.combat.exhaustionLevel - 1),
       deathSaves: { successes: 0, failures: 0 },
     },
@@ -52,6 +62,7 @@ export function aplicarDescansoLargo(character: Character): Character {
 /** Descanso corto: el brujo recupera sus espacios de pacto (los espacios normales NO se recuperan). */
 export function aplicarDescansoCorto(character: Character): Character {
   let next = aplicarRecargaRecursos(character, "short");
+  next = aplicarInspiracionHeroicaTrasDescanso(next, "short");
   if (nivelBrujo(character.identity.classes) > 0) {
     next = {
       ...next,
@@ -61,7 +72,7 @@ export function aplicarDescansoCorto(character: Character): Character {
   return next;
 }
 
-/** Gasta un dado de golpe y cura (dado + mod CON). Permite elegir el dado en multiclase. */
+/** Gasta un dado de golpe y cura (dado + mod CON) durante un descanso corto. */
 export function gastarDadoGolpe(
   character: Character,
   die?: string,
@@ -69,15 +80,23 @@ export function gastarDadoGolpe(
   character: Character;
   curacion: number;
   tirada: number;
+  conMod: number;
 } | null {
-  if (character.combat.hitDiceUsed >= character.combat.hitDiceTotal) return null;
+  const pool = poolDadosGolpe(character);
+  const dieToUse =
+    die ??
+    pool.find((row) => row.disponibles > 0)?.die ??
+    character.combat.hitDie;
+  const row = pool.find((r) => r.die === dieToUse);
+  if (!row || row.disponibles <= 0) return null;
 
-  const tirada = tirarDadoDenominacion(die ?? character.combat.hitDie);
-  const curacion = Math.max(1, tirada + modificadorAtributo(character.abilities.con));
-  const hpCurrent = Math.min(
-    character.combat.hpMax,
-    character.combat.hpCurrent + curacion,
-  );
+  const tirada = tirarDadoDenominacion(dieToUse);
+  const conMod = modificadorAtributo(character.abilities.con);
+  const curacion = Math.max(0, tirada + conMod);
+  const hpCurrent = Math.min(character.combat.hpMax, character.combat.hpCurrent + curacion);
+
+  const spentByDie = { ...gastadosPorDado(character), [dieToUse]: (gastadosPorDado(character)[dieToUse] ?? 0) + 1 };
+  const synced = sincronizarGastosDados(spentByDie, character.combat.hitDiceTotal);
 
   return {
     character: {
@@ -85,11 +104,13 @@ export function gastarDadoGolpe(
       combat: {
         ...character.combat,
         hpCurrent,
-        hitDiceUsed: character.combat.hitDiceUsed + 1,
+        hitDiceUsed: synced.hitDiceUsed,
+        hitDiceSpentByDie: synced.hitDiceSpentByDie,
       },
     },
     curacion,
     tirada,
+    conMod,
   };
 }
 

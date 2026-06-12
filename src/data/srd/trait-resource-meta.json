@@ -1,0 +1,93 @@
+{
+  "dwarf": [
+    {
+      "id": "stonecunning",
+      "name": "Conocimiento pétreo",
+      "recharge": "long",
+      "maxFormula": "pb"
+    }
+  ],
+  "dragonborn": [
+    {
+      "id": "breath-weapon",
+      "name": "Aliento dracónico",
+      "recharge": "long",
+      "maxFormula": "pb"
+    },
+    {
+      "id": "draconic-flight",
+      "name": "Vuelo dracónico",
+      "recharge": "long",
+      "maxFormula": "pb",
+      "minLevel": 5
+    }
+  ],
+  "aasimar": [
+    {
+      "id": "healing-hands",
+      "name": "Manos sanadoras",
+      "recharge": "long",
+      "maxFormula": "pb"
+    },
+    {
+      "id": "celestial-revelation",
+      "name": "Revelación celestial",
+      "recharge": "long",
+      "maxFormula": "pb",
+      "minLevel": 3
+    }
+  ],
+  "gnome-forest": [
+    {
+      "id": "speak-with-animals",
+      "name": "Hablar con animales (linaje)",
+      "recharge": "long",
+      "maxFormula": "pb"
+    }
+  ],
+  "gnome-rock": [
+    {
+      "id": "prestidigitation-device",
+      "name": "Dispositivo de prestidigitación",
+      "recharge": "long",
+      "maxFormula": "1"
+    }
+  ],
+  "goliath": [
+    {
+      "id": "giant-ancestry",
+      "name": "Ascendencia gigante",
+      "recharge": "long",
+      "maxFormula": "pb"
+    },
+    {
+      "id": "large-form",
+      "name": "Forma grande",
+      "recharge": "long",
+      "maxFormula": "pb",
+      "minLevel": 5
+    }
+  ],
+  "orc": [
+    {
+      "id": "relentless-endurance",
+      "name": "Perseverancia implacable",
+      "recharge": "long",
+      "maxFormula": "1"
+    },
+    {
+      "id": "adrenaline-rush",
+      "name": "Subidón de adrenalina",
+      "recharge": "short",
+      "maxFormula": "pb"
+    }
+  ],
+  "tiefling": [
+    {
+      "id": "otherworldly-presence",
+      "name": "Presencia de otro mundo",
+      "recharge": "long",
+      "maxFormula": "pb"
+    }
+  ]
+}

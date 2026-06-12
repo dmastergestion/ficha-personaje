@@ -26,22 +26,22 @@ export type SkillKey = (typeof SKILL_KEYS)[number];
 export const SPELL_SLOT_LEVELS = ["1", "2", "3", "4", "5", "6", "7", "8", "9"] as const;
 export type SpellSlotLevel = (typeof SPELL_SLOT_LEVELS)[number];
 
-export const SCHEMA_VERSION = 7 as const;
+export const SCHEMA_VERSION = 8 as const;
 
 export const DAMAGE_TYPES = [
-  "ácido",
   "contundente",
-  "frío",
-  "fuego",
-  "fuerza",
-  "eléctrico",
-  "necrótico",
-  "perforante",
-  "veneno",
-  "psíquico",
-  "radiante",
   "cortante",
+  "perforante",
+  "fuego",
+  "frío",
+  "eléctrico",
+  "ácido",
+  "veneno",
   "trueno",
+  "radiante",
+  "necrótico",
+  "psíquico",
+  "fuerza",
 ] as const;
 export type DamageType = (typeof DAMAGE_TYPES)[number];
 
@@ -65,3 +65,6 @@ export const COMMON_LANGUAGES = [
 
 export const RESOURCE_RECHARGES = ["short", "long", "none"] as const;
 export type ResourceRecharge = (typeof RESOURCE_RECHARGES)[number];
+
+export const RESOURCE_SOURCES = ["class", "species", "feat", "background", "subclass"] as const;
+export type ResourceSource = (typeof RESOURCE_SOURCES)[number];

@@ -193,7 +193,7 @@ export function defaultsV6(char: z.infer<typeof CharacterSchemaV5>): Character {
 
   return CharacterSchema.parse({
     ...char,
-    schemaVersion: 7,
+    schemaVersion: 8,
     proficiencies: {
       ...prof,
       languages: prof.languages ?? ["Común"],
@@ -211,6 +211,8 @@ export function defaultsV6(char: z.infer<typeof CharacterSchemaV5>): Character {
     equipment: {
       ...equipment,
       currency: equipment.currency ?? currencyVacia(),
+      defaultAttackId:
+        (equipment as { defaultAttackId?: string | null }).defaultAttackId ?? null,
       items: equipment.items.map((item) => {
         const extra = item as typeof item & {
           attuned?: boolean;
@@ -226,26 +228,45 @@ export function defaultsV6(char: z.infer<typeof CharacterSchemaV5>): Character {
     resources: extra.resources ?? [],
     feats: extra.feats ?? [],
     roleplay: extra.roleplay ?? roleplayVacio(),
-    originChoices: { species: {}, background: {} },
+    originChoices: { species: {}, background: {}, class: {} },
+    portraitImage: null,
   });
 }
 
-const CharacterSchemaV6 = CharacterSchema.omit({ originChoices: true }).extend({
+const CharacterSchemaV7 = CharacterSchema.omit({ portraitImage: true }).extend({
+  schemaVersion: z.literal(7),
+});
+
+export function migrarPersonajeV7(raw: unknown): Character {
+  const v7 = CharacterSchemaV7.parse(raw);
+  const extra = raw as { portraitImage?: string | null };
+  return CharacterSchema.parse({
+    ...v7,
+    schemaVersion: 8,
+    portraitImage: extra.portraitImage ?? null,
+  });
+}
+
+const CharacterSchemaV6 = CharacterSchema.omit({ originChoices: true, portraitImage: true }).extend({
   schemaVersion: z.literal(6),
   originChoices: z
     .object({
       species: z.record(z.string(), z.string()),
       background: z.record(z.string(), z.string()),
+      class: z.record(z.string(), z.string()).optional(),
     })
     .optional(),
 });
 
 export function migrarPersonajeV6(raw: unknown): Character {
   const v6 = CharacterSchemaV6.parse(raw);
-  return CharacterSchema.parse({
+  return migrarPersonajeV7({
     ...v6,
     schemaVersion: 7,
-    originChoices: v6.originChoices ?? { species: {}, background: {} },
+    originChoices: {
+      ...(v6.originChoices ?? { species: {}, background: {} }),
+      class: v6.originChoices?.class ?? {},
+    },
   });
 }
 
@@ -324,10 +345,11 @@ export function migrarPersonajeV1(raw: unknown): Character {
 }
 
 export function normalizarPersonaje(raw: unknown): Character {
-  const v7 = CharacterSchema.safeParse(raw);
-  if (v7.success) return sanitizarRecursos(v7.data);
+  const v8 = CharacterSchema.safeParse(raw);
+  if (v8.success) return sanitizarRecursos(v8.data);
 
   const asRecord = raw as { schemaVersion?: number } | null;
+  if (asRecord?.schemaVersion === 7) return sanitizarRecursos(migrarPersonajeV7(raw));
   if (asRecord?.schemaVersion === 6) return sanitizarRecursos(migrarPersonajeV6(raw));
   if (asRecord?.schemaVersion === 5) return sanitizarRecursos(migrarPersonajeV5(raw));
   if (asRecord?.schemaVersion === 4) return sanitizarRecursos(migrarPersonajeV4(raw));
@@ -436,6 +458,27 @@ export function migrarRegistroDexieV5(char: Record<string, unknown>): void {
 
 export function migrarRegistroDexieV6(char: Record<string, unknown>): void {
   if (char.schemaVersion !== 6) return;
-  char.originChoices = char.originChoices ?? { species: {}, background: {} };
+  char.originChoices = char.originChoices ?? { species: {}, background: {}, class: {} };
+  if (!(char.originChoices as { class?: Record<string, string> }).class) {
+    (char.originChoices as { class: Record<string, string> }).class = {};
+  }
   char.schemaVersion = 7;
+}
+
+export function migrarRegistroDexieV7(char: Record<string, unknown>): void {
+  if (char.schemaVersion !== 7) return;
+  char.portraitImage = char.portraitImage ?? null;
+  char.schemaVersion = 8;
+}
+
+export function migrarRegistroDexieV8(char: Record<string, unknown>): void {
+  if (char.schemaVersion !== 8) return;
+  char.weaponMasteries = char.weaponMasteries ?? [];
+  const resources = char.resources as Array<Record<string, unknown>> | undefined;
+  if (resources) {
+    char.resources = resources.map((r) => ({
+      ...r,
+      source: r.source ?? "class",
+    }));
+  }
 }

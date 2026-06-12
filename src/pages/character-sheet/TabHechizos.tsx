@@ -30,14 +30,17 @@ import {
 } from "@/rules/rests";
 import type { SheetTabProps } from "@/pages/character-sheet/types";
 import { SpellInfoPanel } from "@/components/SpellInfoPanel";
-import { EtiquetaConcentracion, EtiquetaRitual, SpellRow } from "@/components/spell/SpellRow";
+import { EtiquetaConcentracion, EtiquetaRitual } from "@/components/spell/SpellRow";
+import { SpellSheetTable } from "@/components/sheet/SpellSheetTable";
 import {
   agregarConjuro,
   quitarConjuro,
 } from "@/pages/character-sheet/spell-list-mutations";
 import { t as tSrd } from "@/rules/srd";
-import { useCatalogStore } from "@/stores/catalog-store";
+import { FeatSpellsPanel } from "@/components/FeatSpellsPanel";
+import { conjurosOtorgadosPorDotes } from "@/rules/feat-mechanics";
 import { useDiceRollOptions } from "@/hooks/useDiceRollOptions";
+import { useCatalogStore } from "@/stores/catalog-store";
 import { useUiStore } from "@/stores/ui-store";
 
 export function TabHechizos({ character, onChange }: SheetTabProps) {
@@ -55,13 +58,28 @@ export function TabHechizos({ character, onChange }: SheetTabProps) {
   const nivelMaxFiltro = claseFiltro
     ? nivelMaximoConjuroClase(claseFiltro.classId, claseFiltro.level, claseFiltro.subclassId)
     : 9;
-  const [filtroNivelMax, setFiltroNivelMax] = useState<number | "">("");
-  const nivelTope =
-    filtroNivelMax === "" ? nivelMaxFiltro : Math.min(filtroNivelMax, nivelMaxFiltro);
+  const [filtroNivel, setFiltroNivel] = useState(0);
+
+  useEffect(() => {
+    if (clasesLista.length === 0) return;
+    if (!clasesLista.some((c) => c.classId === filtroClaseId)) {
+      setFiltroClaseId(clasesLista[0]!.classId);
+    }
+  }, [clasesLista, filtroClaseId]);
+
+  useEffect(() => {
+    if (filtroNivel > nivelMaxFiltro) {
+      setFiltroNivel(nivelMaxFiltro);
+    }
+  }, [nivelMaxFiltro, filtroNivel]);
+
+  const etiquetaNivelFiltro =
+    filtroNivel === 0 ? "Trucos" : String(filtroNivel);
   const atributoFijo = atributoConjuroEsFijo(character);
   const maxSlots = espaciosMaximosPersonaje(character);
   const restantesSlots = espaciosRestantesPersonaje(character);
-  const lanzador = esLanzadorPersonaje(character);
+  const conjurosDote = conjurosOtorgadosPorDotes(character);
+  const lanzador = esLanzadorPersonaje(character) || conjurosDote.length > 0;
   const preparados = usaPreparadosMulticlase(classesConjuro);
   const pactMax = espaciosPactoMaximos(classesConjuro);
   const pactRestante = pactoRestante(character);
@@ -71,25 +89,18 @@ export function TabHechizos({ character, onChange }: SheetTabProps) {
   const cd = cdConjuro(character);
   const ataqueConjuro = modificadorAtaqueConjuro(character);
 
-  useEffect(() => {
-    if (clasesLista.length === 0) return;
-    if (!clasesLista.some((c) => c.classId === filtroClaseId)) {
-      setFiltroClaseId(clasesLista[0]!.classId);
-    }
-  }, [clasesLista, filtroClaseId]);
-
   const filtrados = useMemo(
     () =>
       catalog.spells
         .filter((s) => {
           const nombre = catalog.t("spells", s.id, s.nameEn).toLowerCase();
           if (busqueda && !nombre.includes(busqueda.toLowerCase())) return false;
-          if (s.level > nivelTope) return false;
+          if (s.level !== filtroNivel) return false;
           if (!claseFiltro) return true;
           return conjuroDisponibleParaPersonaje(s.id, s.level, claseFiltro);
         })
         .slice(0, 30),
-    [catalog, busqueda, nivelTope, claseFiltro],
+    [catalog, busqueda, filtroNivel, claseFiltro],
   );
 
   function nivelConjuro(spellId: string): number {
@@ -158,29 +169,131 @@ export function TabHechizos({ character, onChange }: SheetTabProps) {
     );
   }
 
+  if (!esLanzadorPersonaje(character) && conjurosDote.length > 0) {
+    return (
+      <div className="sheet-tab-stack">
+        <FeatSpellsPanel character={character} onChange={onChange} />
+        <p className="sheet-card text-sm text-muted">
+          Configura trucos y conjuro en Notas → Dotes → Iniciado en la magia. Los recursos sin espacio
+          aparecen en Combate → Recursos.
+        </p>
+      </div>
+    );
+  }
+
   const effectiveLevel = nivelEfectivoConjuro(classesConjuro);
   const resumen = resumenConjuros(character);
 
+  const slotsSection =
+    effectiveLevel > 0 ? (
+      <section className="sheet-card min-w-0 lg:max-w-sm">
+        <h3 className="sheet-section-title">
+          Espacios de conjuro (nivel efectivo {effectiveLevel})
+        </h3>
+        <p className="mb-2 text-xs text-muted">Formato: disponibles / total</p>
+        <div className="flex flex-wrap gap-1.5">
+          {SPELL_SLOT_LEVELS.map((level) => {
+            if (maxSlots[level] === 0) return null;
+            const restantes = restantesSlots[level];
+            return (
+              <div
+                key={level}
+                className="min-w-[4.5rem] flex-1 rounded-lg bg-surface px-1.5 py-1.5 text-center text-sm"
+              >
+                <div className="text-muted">Niv {level}</div>
+                <div className="text-lg font-bold">
+                  {restantes}/{maxSlots[level]}
+                </div>
+                <div className="mt-0.5 flex justify-center gap-0.5">
+                  <Button
+                    variant="danger"
+                    className="px-2 py-0.5"
+                    onClick={() => onChange(ajustarEspaciosRestantes(character, level, -1))}
+                  >
+                    −
+                  </Button>
+                  <Button
+                    className="px-2 py-0.5"
+                    onClick={() => onChange(ajustarEspaciosRestantes(character, level, 1))}
+                  >
+                    +
+                  </Button>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+        {pactMax > 0 && (
+          <div className="mt-2 flex flex-wrap items-center gap-3 border-t border-white/10 pt-2">
+            <span className="text-sm font-semibold">
+              Magia de pacto (brujo {nivelBrujo(classesConjuro)})
+            </span>
+            <span className="text-lg font-bold">
+              {pactRestante}/{pactMax}
+            </span>
+            <Button
+              variant="danger"
+              className="px-2 py-0.5"
+              onClick={() => onChange(ajustarPactoRestante(character, -1))}
+            >
+              −
+            </Button>
+            <Button className="px-2 py-0.5" onClick={() => onChange(ajustarPactoRestante(character, 1))}>
+              +
+            </Button>
+          </div>
+        )}
+      </section>
+    ) : effectiveLevel === 0 && pactMax > 0 ? (
+      <section className="sheet-card min-w-0 lg:max-w-xs">
+        <h3 className="sheet-section-title">
+          Magia de pacto (brujo {nivelBrujo(classesConjuro)})
+        </h3>
+        <div className="flex flex-wrap items-center gap-3">
+          <span className="text-lg font-bold">
+            {pactRestante}/{pactMax}
+          </span>
+          <Button
+            variant="danger"
+            className="px-2 py-0.5"
+            onClick={() => onChange(ajustarPactoRestante(character, -1))}
+          >
+            −
+          </Button>
+          <Button className="px-2 py-0.5" onClick={() => onChange(ajustarPactoRestante(character, 1))}>
+            +
+          </Button>
+        </div>
+      </section>
+    ) : null;
+
   return (
-    <div className="space-y-4">
-      <section className="sheet-card">
-        <p className="mb-2 text-sm text-muted">
-          Trucos {resumen.cantrips.actual}/{resumen.cantrips.max}
-          {resumen.prepared
-            ? ` · Preparados ${resumen.prepared.actual}/${resumen.prepared.max}`
-            : ` · Conocidos ${resumen.known.actual}`}
-          {resumen.cantrips.actual > resumen.cantrips.max && (
-            <span className="ml-1 text-amber-400">(sobre el límite)</span>
-          )}
-          {resumen.prepared && resumen.prepared.actual > resumen.prepared.max && (
-            <span className="ml-1 text-amber-400">(sobre el límite)</span>
-          )}
-        </p>
-        <div className="mb-3 flex flex-wrap items-end gap-3">
-          <label className="block text-sm">
-            <span className="text-muted">Atributo de conjuro</span>
+    <div className="sheet-tab-stack">
+      <FeatSpellsPanel character={character} onChange={onChange} />
+      <div className="sheet-tab-grid items-start lg:grid-cols-[minmax(0,1fr)_auto]">
+      <section className="sheet-card min-w-0">
+        <div className="mb-2 flex flex-wrap items-end gap-x-4 gap-y-2">
+          <p className="min-w-0 flex-1 text-sm text-muted">
+            Trucos {resumen.cantrips.actual}/{resumen.cantrips.max}
+            {resumen.known.max
+              ? ` · Grimorio ${resumen.known.actual}/${resumen.known.max}`
+              : null}
+            {resumen.prepared
+              ? ` · Preparados ${resumen.prepared.actual}/${resumen.prepared.max}`
+              : !resumen.known.max
+                ? ` · Conocidos ${resumen.known.actual}`
+                : null}
+            {resumen.cantrips.actual > resumen.cantrips.max && (
+              <span className="ml-1 text-amber-400">(sobre el límite)</span>
+            )}
+            {resumen.prepared && resumen.prepared.actual > resumen.prepared.max && (
+              <span className="ml-1 text-amber-400">(sobre el límite)</span>
+            )}
+          </p>
+          <label className="flex shrink-0 items-center gap-2 text-sm">
+            <span className="text-muted whitespace-nowrap">Atributo de conjuro</span>
             <select
-              className="mt-1 block rounded-lg border border-white/10 bg-surface px-2 py-1 disabled:opacity-70"
+              className="rounded-lg border border-white/10 bg-surface px-2 py-1 disabled:opacity-70"
               value={character.spells.abilityKey ?? atributoConjuroPredeterminado(character) ?? ""}
               disabled={atributoFijo}
               onChange={(e) =>
@@ -194,16 +307,11 @@ export function TabHechizos({ character, onChange }: SheetTabProps) {
                 </option>
               ))}
             </select>
-            {atributoFijo && (
-              <span className="mt-0.5 block text-xs text-muted">
-                Fijado por tu clase según las reglas.
-              </span>
-            )}
           </label>
-          <p className="text-sm">
+          <p className="shrink-0 text-sm">
             CD conjuros: <strong>{cd ?? "—"}</strong>
           </p>
-          <p className="text-sm">
+          <p className="shrink-0 text-sm">
             Ataque conjuro:{" "}
             <strong>
               {ataqueConjuro !== null ? (ataqueConjuro >= 0 ? `+${ataqueConjuro}` : ataqueConjuro) : "—"}
@@ -211,7 +319,7 @@ export function TabHechizos({ character, onChange }: SheetTabProps) {
           </p>
         </div>
         {character.spells.concentratingOn && (
-          <div className="mt-3 flex flex-wrap items-center gap-2 rounded-lg border border-gold/30 bg-gold/10 px-3 py-2 text-sm">
+          <div className="mt-2 flex flex-wrap items-center gap-2 rounded-lg border border-gold/30 bg-gold/10 px-3 py-2 text-sm">
             <span>
               Concentración:{" "}
               <strong>
@@ -232,100 +340,49 @@ export function TabHechizos({ character, onChange }: SheetTabProps) {
           </div>
         )}
       </section>
+      {slotsSection}
+      </div>
 
-      {effectiveLevel > 0 && (
-        <section className="sheet-card">
-          <h3 className="mb-3 font-semibold">
-            Espacios de conjuro (nivel efectivo {effectiveLevel})
-          </h3>
-          <p className="mb-2 text-xs text-muted">Formato: disponibles / total</p>
-          <div className="grid grid-cols-3 gap-2 sm:grid-cols-5">
-            {SPELL_SLOT_LEVELS.map((level) => {
-              if (maxSlots[level] === 0) return null;
-              const restantes = restantesSlots[level];
-              return (
-                <div key={level} className="rounded-lg bg-surface p-2 text-center text-sm">
-                  <div className="text-muted">Niv {level}</div>
-                  <div className="text-lg font-bold">
-                    {restantes}/{maxSlots[level]}
-                  </div>
-                  <div className="mt-1 flex justify-center gap-1">
-                    <Button
-                      variant="critical"
-                      onClick={() => onChange(ajustarEspaciosRestantes(character, level, -1))}
-                    >
-                      −
-                    </Button>
-                    <Button onClick={() => onChange(ajustarEspaciosRestantes(character, level, 1))}>
-                      +
-                    </Button>
-                  </div>
-                </div>
-              );
-            })}
-          </div>
-        </section>
-      )}
-
-      {pactMax > 0 && (
-        <section className="sheet-card">
-          <h3 className="mb-3 font-semibold">
-            Magia de pacto (brujo {nivelBrujo(classesConjuro)})
-          </h3>
-          <div className="flex items-center gap-3">
-            <span className="text-lg font-bold">
-              {pactRestante}/{pactMax}
-            </span>
-            <Button variant="critical" onClick={() => onChange(ajustarPactoRestante(character, -1))}>
-              −
-            </Button>
-            <Button onClick={() => onChange(ajustarPactoRestante(character, 1))}>+</Button>
-          </div>
-        </section>
-      )}
-
-      <section className="sheet-card">
-        <h3 className="mb-2 font-semibold">Trucos</h3>
-        <ul className="space-y-1">
-          {character.spells.cantripsKnown.map((id) => (
-            <SpellRow
-              key={id}
-              id={id}
-              spellLevel={0}
-              onRemove={() => onChange(quitarConjuro(character, id, "cantrips"))}
-              onCast={() => lanzar(id)}
-              onInfo={() => setInfoConjuroId(id)}
-            />
-          ))}
-          {character.spells.cantripsKnown.length === 0 && (
-            <li className="text-sm text-muted">Sin trucos añadidos.</li>
-          )}
-        </ul>
+      <div className="sheet-tab-grid lg:grid-cols-2">
+      <section className="sheet-card lg:col-span-2">
+        <h3 className="sheet-section-title">Trucos</h3>
+        <SpellSheetTable
+          spellIds={character.spells.cantripsKnown}
+          emptyMessage="Sin trucos añadidos."
+          onRemove={(id) => onChange(quitarConjuro(character, id, "cantrips"))}
+          onCast={lanzar}
+          onInfo={setInfoConjuroId}
+        />
       </section>
 
-      <section className="sheet-card">
-        <h3 className="mb-2 font-semibold">
+      {resumen.known.max ? (
+        <section className="sheet-card lg:col-span-2">
+          <h3 className="sheet-section-title">Grimorio</h3>
+          <SpellSheetTable
+            spellIds={character.spells.spellsKnown}
+            emptyMessage="Sin conjuros en el grimorio."
+            onRemove={(id) => onChange(quitarConjuro(character, id, "known"))}
+            onCast={lanzar}
+            onInfo={setInfoConjuroId}
+          />
+        </section>
+      ) : null}
+
+      <section className="sheet-card lg:col-span-2">
+        <h3 className="sheet-section-title">
           {preparados ? "Conjuros preparados" : "Conjuros conocidos"}
         </h3>
-        <ul className="space-y-1">
-          {(preparados ? character.spells.spellsPrepared : character.spells.spellsKnown).map(
-            (id) => (
-              <SpellRow
-                key={id}
-                id={id}
-                spellLevel={nivelConjuro(id)}
-                onRemove={() =>
-                  onChange(quitarConjuro(character, id, preparados ? "prepared" : "known"))
-                }
-                onCast={() => lanzar(id)}
-                onInfo={() => setInfoConjuroId(id)}
-              />
-            ),
-          )}
-          {(preparados ? character.spells.spellsPrepared : character.spells.spellsKnown)
-            .length === 0 && <li className="text-sm text-muted">Sin conjuros añadidos.</li>}
-        </ul>
+        <SpellSheetTable
+          spellIds={preparados ? character.spells.spellsPrepared : character.spells.spellsKnown}
+          emptyMessage="Sin conjuros añadidos."
+          onRemove={(id) =>
+            onChange(quitarConjuro(character, id, preparados ? "prepared" : "known"))
+          }
+          onCast={lanzar}
+          onInfo={setInfoConjuroId}
+        />
       </section>
+      </div>
 
       {infoConjuroId && (
         <section className="sheet-card">
@@ -341,7 +398,7 @@ export function TabHechizos({ character, onChange }: SheetTabProps) {
       )}
 
       <section className="sheet-card">
-        <h3 className="mb-2 font-semibold">Buscar conjuro SRD</h3>
+        <h3 className="sheet-section-title">Buscar conjuro SRD</h3>
         <div className="mb-2 flex flex-wrap gap-2">
           <label className="block min-w-[8rem] flex-1 text-sm">
             <span className="text-muted">Lista de clase</span>
@@ -350,7 +407,7 @@ export function TabHechizos({ character, onChange }: SheetTabProps) {
               value={claseFiltro?.classId ?? ""}
               onChange={(e) => {
                 setFiltroClaseId(e.target.value);
-                setFiltroNivelMax("");
+                setFiltroNivel(0);
               }}
             >
               {clasesLista.map((cl) => (
@@ -362,12 +419,13 @@ export function TabHechizos({ character, onChange }: SheetTabProps) {
               ))}
             </select>
           </label>
-          <label className="block w-28 text-sm">
-            <span className="text-muted">Hasta niv.</span>
+          <label className="block w-24 shrink-0 text-sm">
+            <span className="text-muted">{etiquetaNivelFiltro}</span>
             <select
               className="mt-1 w-full rounded-lg border border-white/10 bg-surface px-2 py-1 text-sm"
-              value={filtroNivelMax === "" ? nivelMaxFiltro : filtroNivelMax}
-              onChange={(e) => setFiltroNivelMax(Number(e.target.value))}
+              value={filtroNivel}
+              aria-label="Nivel de conjuro a buscar"
+              onChange={(e) => setFiltroNivel(Number(e.target.value))}
             >
               <option value={0}>Trucos</option>
               {Array.from({ length: nivelMaxFiltro }, (_, i) => i + 1).map((n) => (
@@ -381,7 +439,7 @@ export function TabHechizos({ character, onChange }: SheetTabProps) {
         <p className="mb-2 text-xs text-muted">
           Mostrando conjuros de la lista de {claseFiltro ? tSrd("classes", claseFiltro.classId, claseFiltro.classId) : "—"}
           {claseFiltro?.classId === "bard" && claseFiltro.level >= 10 ? " (+ clérigo, druida, mago por Secretos mágicos)" : ""}
-          {claseFiltro?.subclassId ? ` y subclase` : ""} · hasta nivel {nivelTope || "trucos"}
+          {claseFiltro?.subclassId ? ` y subclase` : ""} · {etiquetaNivelFiltro.toLowerCase()}
         </p>
         <input
           className="mb-2 w-full rounded-lg border border-white/10 bg-surface px-3 py-2 text-sm"

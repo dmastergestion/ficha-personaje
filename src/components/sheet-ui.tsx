@@ -37,20 +37,33 @@ export function SheetLabel({
 
 export function StatPill({
   label,
+  labelPrefix,
+  labelAddon,
   value,
   sub,
+  trailing,
   accent,
 }: {
   label: string;
+  labelPrefix?: React.ReactNode;
+  labelAddon?: React.ReactNode;
   value: React.ReactNode;
-  sub?: string;
+  sub?: React.ReactNode;
+  trailing?: React.ReactNode;
   accent?: boolean;
 }) {
   return (
     <div className={cn("sheet-stat-pill", accent && "sheet-stat-pill-accent")}>
-      <span className="sheet-stat-pill-label">{label}</span>
-      <span className="sheet-stat-pill-value">{value}</span>
-      {sub && <span className="sheet-stat-pill-sub">{sub}</span>}
+      <span className="sheet-stat-pill-label inline-flex items-center gap-1">
+        {labelPrefix}
+        {label}
+        {labelAddon}
+      </span>
+      <div className="sheet-stat-pill-body">
+        <span className="sheet-stat-pill-value">{value}</span>
+        {sub && <span className="sheet-stat-pill-sub">{sub}</span>}
+        {trailing}
+      </div>
     </div>
   );
 }

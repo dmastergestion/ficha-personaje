@@ -1,8 +1,16 @@
 import { useState } from "react";
 import featMetaJson from "@/data/srd/feat-meta.json";
 import { Button } from "@/components/layout";
+import { FeatChoicesForm } from "@/components/FeatChoicesForm";
+import {
+  eleccionesPorDefectoDote,
+  idInstanciaDote,
+  metaMecanicaDote,
+  sincronizarMecanicasDotes,
+} from "@/rules/feat-mechanics";
+import { poblarRecursosSugeridos } from "@/rules/resources-tracker";
 import { descripcionDote as textoDote, nombreDote as nombreDoteTexto } from "@/rules/feat-text";
-import type { CharacterFeat } from "@/schemas/character";
+import type { Character, CharacterFeat } from "@/schemas/character";
 
 export type FeatMetaEntry = {
   name: string;
@@ -33,15 +41,18 @@ export function descripcionDote(id: string): string | undefined {
   return textoDote(id);
 }
 
+function aplicarCambioDotes(_character: Character, next: Character): Character {
+  return poblarRecursosSugeridos(sincronizarMecanicasDotes(next));
+}
+
 export function FeatPicker({
-  feats,
-  onAdd,
-  onRemove,
+  character,
+  onChange,
 }: {
-  feats: CharacterFeat[];
-  onAdd: (feat: CharacterFeat) => void;
-  onRemove: (id: string) => void;
+  character: Character;
+  onChange: (next: Character) => void;
 }) {
+  const feats = character.feats;
   const byCategory = CATEGORY_ORDER.map((category) => ({
     category,
     label: featMeta[Object.keys(featMeta).find((k) => featMeta[k]?.category === category) ?? ""]
@@ -51,30 +62,50 @@ export function FeatPicker({
       .sort((a, b) => labelFeat(a[1]).localeCompare(labelFeat(b[1]), "es")),
   })).filter((g) => g.items.length > 0);
 
-  const knownIds = new Set(feats.map((f) => f.id));
   const [pendingId, setPendingId] = useState("");
 
+  function puedeAnadir(id: string): boolean {
+    const meta = featMeta[id];
+    if (!meta) return false;
+    if (meta.repeatable) return true;
+    return !feats.some((f) => f.id === id);
+  }
+
   function confirmarDote() {
-    if (!pendingId || knownIds.has(pendingId)) return;
+    if (!pendingId || !puedeAnadir(pendingId)) return;
     const meta = featMeta[pendingId];
     if (!meta) return;
-    onAdd({
+    const feat: CharacterFeat = {
       id: pendingId,
+      instanceId: crypto.randomUUID(),
       name: labelFeat(meta),
       notes: textoDote(pendingId),
-    });
+      choices: eleccionesPorDefectoDote(pendingId),
+    };
+    onChange(aplicarCambioDotes(character, { ...character, feats: [...feats, feat] }));
     setPendingId("");
+  }
+
+  function quitar(instanceId: string) {
+    onChange(
+      aplicarCambioDotes(character, {
+        ...character,
+        feats: feats.filter((f) => idInstanciaDote(f) !== instanceId),
+      }),
+    );
   }
 
   return (
     <section className="sheet-card">
       <h3 className="sheet-section-title">Dotes</h3>
-      <ul className="mb-3 space-y-3 text-sm">
+      <ul className="mb-2 space-y-2 text-sm">
         {feats.map((feat) => {
           const meta = featMeta[feat.id];
           const desc = textoDote(feat.id, feat.notes);
+          const instanceId = idInstanciaDote(feat);
+          const tieneMecanica = !!metaMecanicaDote(feat.id);
           return (
-            <li key={feat.id} className="rounded-lg border border-white/10 bg-surface p-3">
+            <li key={instanceId} className="rounded-lg border border-white/10 bg-surface p-3">
               <div className="flex items-start justify-between gap-2">
                 <div>
                   <span className="font-medium">{feat.name}</span>
@@ -86,11 +117,16 @@ export function FeatPicker({
                       Repetible
                     </span>
                   )}
+                  {tieneMecanica && (
+                    <span className="ml-1 rounded bg-gold/15 px-1 text-[10px] text-gold">
+                      Mecánica activa
+                    </span>
+                  )}
                   {!meta?.srd52 && (
                     <span className="ml-1 rounded bg-gold/20 px-1 text-[10px] text-gold">PHB</span>
                   )}
                 </div>
-                <Button variant="ghost" onClick={() => onRemove(feat.id)}>
+                <Button variant="ghost" onClick={() => quitar(instanceId)}>
                   Quitar
                 </Button>
               </div>
@@ -99,6 +135,11 @@ export function FeatPicker({
               ) : (
                 <p className="mt-2 text-sm text-muted">Sin descripción en el catálogo.</p>
               )}
+              <FeatChoicesForm
+                character={character}
+                feat={feat}
+                onChange={(next) => onChange(aplicarCambioDotes(character, next))}
+              />
             </li>
           );
         })}
@@ -116,7 +157,7 @@ export function FeatPicker({
             {byCategory.map((group) => (
               <optgroup key={group.category} label={group.label}>
                 {group.items.map(([id, meta]) => (
-                  <option key={id} value={id} disabled={knownIds.has(id)}>
+                  <option key={id} value={id} disabled={!puedeAnadir(id)}>
                     {labelFeat(meta)}
                     {meta.prerequisite ? ` · ${meta.prerequisite}` : ""}
                   </option>
@@ -132,16 +173,15 @@ export function FeatPicker({
           </div>
         )}
         <Button
-          variant="critical"
-          disabled={!pendingId || knownIds.has(pendingId)}
+          variant="primary"
+          disabled={!pendingId || !puedeAnadir(pendingId)}
           onClick={confirmarDote}
         >
           Añadir dote
         </Button>
       </div>
       <p className="mt-2 text-xs text-muted">
-        {Object.keys(featMeta).length} dotes PHB 2024 · {Object.values(featMeta).filter((f) => f.srd52).length}{" "}
-        en SRD
+        Las dotes con mecánica activa aparecen en Recursos, Conjuros o pericias según corresponda.
       </p>
     </section>
   );

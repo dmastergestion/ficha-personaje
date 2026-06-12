@@ -106,6 +106,7 @@ describe("sanitizarRecursos", () => {
           max: 2,
           used: 2,
           recharge: "short" as const,
+          source: "class" as const,
         },
       ],
     };

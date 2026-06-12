@@ -85,6 +85,12 @@
   ],
   "sorcerer": [
     {
+      "id": "innate-sorcery",
+      "name": "Hechicería innata",
+      "recharge": "long",
+      "perLevel": { "1": 2 }
+    },
+    {
       "id": "sorcery-points",
       "name": "Puntos de hechicería",
       "recharge": "long",

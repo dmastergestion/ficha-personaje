@@ -1,0 +1,39 @@
+{
+  "magic-initiate": {
+    "resources": [
+      {
+        "id": "free-cast-1",
+        "name": "Conjuro niv. 1 sin espacio",
+        "recharge": "long",
+        "maxFormula": "1"
+      }
+    ]
+  },
+  "lucky": {
+    "resources": [
+      {
+        "id": "luck-points",
+        "name": "Puntos de suerte",
+        "recharge": "long",
+        "maxFormula": "pb"
+      }
+    ]
+  },
+  "healer": {
+    "resources": [
+      {
+        "id": "fast-healing",
+        "name": "Curación rápida (por criatura)",
+        "recharge": "short",
+        "maxFormula": "1"
+      }
+    ],
+    "tools": ["healer's kit"]
+  },
+  "alert": {
+    "initiativeProficiency": true
+  },
+  "skilled": {
+    "skillChoices": 3
+  }
+}

@@ -14,6 +14,14 @@ describe("origin-choices", () => {
     expect(defs.some((d) => d.id === "size")).toBe(true);
   });
 
+  it("incluye dote versátil para humano", () => {
+    const defs = eleccionesEspecie("human");
+    const versatile = defs.find((d) => d.id === "versatile-feat")!;
+    expect(versatile).toBeDefined();
+    expect(versatile.options.some((o) => o.value === "alert")).toBe(true);
+    expect(versatile.options.some((o) => o.value === "skilled")).toBe(true);
+  });
+
   it("bloquea revelación celestial a partir de nivel 3", () => {
     const def = eleccionesEspecie("aasimar").find((d) => d.id === "celestial-revelation")!;
     expect(esEleccionEditable(def, 2)).toBe(true);
@@ -26,6 +34,7 @@ describe("origin-choices", () => {
     const bonuses = bonificadoresDesdeElecciones(traits, {
       species: {},
       background: { "ability-mode": "even" },
+      class: {},
     });
     expect(bonuses).toEqual({ str: 1, int: 1, cha: 1 });
   });

@@ -12,11 +12,13 @@ export function SpeciesPicker({
   speciesId,
   onChange,
   className = "w-full rounded-lg border border-white/10 bg-surface px-3 py-2",
+  compact = false,
 }: {
   catalog: GameCatalog;
   speciesId: string | null;
   onChange: (speciesId: string | null) => void;
   className?: string;
+  compact?: boolean;
 }) {
   const groups = useMemo(
     () =>
@@ -55,6 +57,41 @@ export function SpeciesPicker({
 
   if (groups.length === 0) {
     return <p className="text-sm text-muted">Sin especies en el catálogo.</p>;
+  }
+
+  if (compact) {
+    return (
+      <div className="flex min-w-0 flex-wrap items-center gap-x-2 gap-y-1 text-sm">
+        <label className="flex min-w-0 items-center gap-2">
+          <span className="shrink-0 text-muted whitespace-nowrap">Especie</span>
+          <select
+            className={className}
+            value={activeGroup?.id ?? ""}
+            onChange={(e) => onGroupChange(e.target.value)}
+          >
+            {groups.map((group) => (
+              <option key={group.id} value={group.id}>
+                {catalog.t("speciesGroups", group.id, group.id)}
+              </option>
+            ))}
+          </select>
+        </label>
+        {showVariants && activeGroup && (
+          <select
+            className={className}
+            value={variantId ?? activeGroup.variantIds[0] ?? ""}
+            onChange={(e) => onVariantChange(e.target.value)}
+            aria-label="Linaje o subespecie"
+          >
+            {activeGroup.variantIds.map((id) => (
+              <option key={id} value={id}>
+                {catalog.t("species", id, id)}
+              </option>
+            ))}
+          </select>
+        )}
+      </div>
+    );
   }
 
   return (

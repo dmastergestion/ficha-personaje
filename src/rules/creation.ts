@@ -10,10 +10,14 @@ import {
 } from "@/rules/origin-benefits";
 import { proficienciasIniciales } from "@/rules/proficiencies";
 import { atributoConjuroPredeterminado } from "@/rules/spell-lists";
+import type { SeleccionConjuros } from "@/rules/spell-choices";
 import { esLanzador } from "@/rules/spells";
 import { obtenerClase } from "@/rules/srd";
-import type { OriginChoices } from "@/rules/origin-choices";
-import { fusionarEleccionesOrigen } from "@/rules/origin-choices";
+import { fusionarEleccionesOrigen, type OriginChoices } from "@/rules/origin-choices";
+import { fusionarEleccionesClase, aplicarEquipoClase } from "@/rules/class-equipment";
+import { aplicarEquipoTrasfondo } from "@/rules/origin-equipment";
+import { sincronizarMecanicasDotes } from "@/rules/feat-mechanics";
+import { ajustarMaestriasArmas } from "@/rules/weapon-mastery";
 import { crearPersonajeVacio, type Character } from "@/schemas/character";
 
 export const ARRAY_ESTANDAR = [15, 14, 13, 12, 10, 8] as const;
@@ -28,6 +32,8 @@ export interface DatosAsistente {
   level: number;
   abilities: Record<AbilityKey, number>;
   originChoices?: OriginChoices;
+  weaponMasteries?: string[];
+  spellSelection?: SeleccionConjuros;
 }
 
 /** Asigna manualmente los seis valores del array estándar a atributos. */
@@ -96,11 +102,14 @@ export function crearPersonajeDesdeAsistente(
 ): Character {
   const clase = obtenerClase(datos.classId);
   const hitDie = clase?.hitDie ?? "d8";
-  const originChoices = fusionarEleccionesOrigen(
-    datos.speciesId,
-    datos.backgroundId,
-    datos.originChoices,
-    catalogo,
+  const originChoices = fusionarEleccionesClase(
+    datos.classId,
+    fusionarEleccionesOrigen(
+      datos.speciesId,
+      datos.backgroundId,
+      datos.originChoices,
+      catalogo,
+    ),
   );
   const origen = calcularBeneficiosOrigen(
     datos.speciesId,
@@ -138,9 +147,12 @@ export function crearPersonajeDesdeAsistente(
   );
 
   const languages = [...draft.proficiencies.languages, ...origen.languages];
-  const feats = origen.feat ? [origen.feat] : [];
+  const feats = [
+    ...(origen.speciesFeat ? [origen.speciesFeat] : []),
+    ...(origen.feat ? [origen.feat] : []),
+  ].map((f) => ({ ...f, instanceId: f.instanceId ?? crypto.randomUUID() }));
 
-  return poblarRecursosSugeridos(
+  const personaje = poblarRecursosSugeridos(
     recursosCompletos({
     ...draft,
     identity: {
@@ -167,6 +179,7 @@ export function crearPersonajeDesdeAsistente(
     },
     feats,
     originChoices,
+    weaponMasteries: datos.weaponMasteries ?? [],
     combat: {
       ...draft.combat,
       hitDie,
@@ -178,7 +191,15 @@ export function crearPersonajeDesdeAsistente(
     spells: {
       ...draft.spells,
       abilityKey: spellAbility,
+      cantripsKnown: datos.spellSelection?.cantripsKnown ?? [],
+      spellsKnown: datos.spellSelection?.spellsKnown ?? [],
+      spellsPrepared: datos.spellSelection?.spellsPrepared ?? [],
     },
     }),
+  );
+
+  return aplicarEquipoTrasfondo(
+    aplicarEquipoClase(ajustarMaestriasArmas(sincronizarMecanicasDotes(personaje))),
+    catalogo,
   );
 }

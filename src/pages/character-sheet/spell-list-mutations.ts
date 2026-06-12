@@ -1,5 +1,9 @@
 import type { Character } from "@/schemas/character";
-import { usaPreparadosMulticlase } from "@/rules/spells";
+import {
+  maxConjurosGrimorioPersonaje,
+  maxConjurosPreparados,
+  usaPreparadosMulticlase,
+} from "@/rules/spells";
 
 export function agregarConjuro(character: Character, spellId: string, level: number): Character {
   if (level === 0) {
@@ -13,8 +17,26 @@ export function agregarConjuro(character: Character, spellId: string, level: num
     };
   }
 
+  const grimorioMax = maxConjurosGrimorioPersonaje(character);
+  if (grimorioMax > 0 && !character.spells.spellsKnown.includes(spellId)) {
+    if (character.spells.spellsKnown.length >= grimorioMax) return character;
+    return {
+      ...character,
+      spells: {
+        ...character.spells,
+        spellsKnown: [...character.spells.spellsKnown, spellId],
+      },
+    };
+  }
+
   if (usaPreparadosMulticlase(character.identity.classes)) {
     if (character.spells.spellsPrepared.includes(spellId)) return character;
+    if (character.spells.spellsPrepared.length >= maxConjurosPreparados(character)) {
+      return character;
+    }
+    if (grimorioMax > 0 && !character.spells.spellsKnown.includes(spellId)) {
+      return character;
+    }
     return {
       ...character,
       spells: {
