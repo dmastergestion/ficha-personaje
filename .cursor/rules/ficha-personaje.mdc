@@ -29,3 +29,4 @@ Proyecto **aislado** de `suiteDM`. No aplicar `GEMINI.md` ni reglas del monorepo
 - Cambio mínimo; castellano en código y comentarios.
 - Sin APIs en runtime; sin imports desde otros repos.
 - Commits solo si el usuario lo pide.
+- **Notion nunca en git:** no versionar `notion-inventario/`, exportaciones ni datos MCP de Notion.

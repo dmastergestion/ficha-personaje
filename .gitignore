@@ -12,3 +12,10 @@ tmp-materials.txt
 .env.*
 .DS_Store
 coverage/
+
+# Notion (nunca versionar — ver proyectos/README.md)
+notion-inventario/
+**/notion-inventario/
+*.notion
+notion-export/
+.notion/
