@@ -1,0 +1,31 @@
+---
+description: Contrato ficha-personaje (SPEC.md) — Cursor agente principal
+alwaysApply: true
+---
+
+# Cursor — agente principal (ficha-personaje)
+
+Proyecto **aislado** de `suiteDM`. No aplicar `GEMINI.md` ni reglas del monorepo Python/Flet.
+
+## Contrato compartido (cualquier IA)
+
+| Prioridad | Archivo | Contenido |
+|-----------|---------|-----------|
+| 1 | **SPEC.md** | Alcance, fases, schema, reglas de desarrollo, pipeline SRD |
+| 2 | **PROMPT.md** | Resumen operativo para asistentes |
+| 3 | **README.md** | Scripts, despliegue, mantenimiento |
+
+## Roles
+
+- **Cursor (principal):** implementación, tests (`npm test`), builds, git.
+- **Gemini u otros (apoyo):** planes largos, revisión de SPEC, segunda opinión en reglas D&D.
+- Respeta trabajo ya commiteado; no reescribas sin justificación.
+
+## Reglas clave
+
+- **React sin lógica de reglas** → `src/rules/`.
+- **Zod** = forma persistida; **Dexie** = IndexedDB; derivados **no se persisten**.
+- Fase activa: **v2** (ver tabla en SPEC.md).
+- Cambio mínimo; castellano en código y comentarios.
+- Sin APIs en runtime; sin imports desde otros repos.
+- Commits solo si el usuario lo pide.

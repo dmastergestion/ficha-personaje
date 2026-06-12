@@ -95,8 +95,9 @@ npm run prepare:pdf-template -- "C:\ruta\a\Pj2024Editable.pdf"
 
 ## Documentación
 
-- [`SPEC.md`](SPEC.md) — contrato del proyecto
-- [`PROMPT.md`](PROMPT.md) — guía para IA
+- [`SPEC.md`](SPEC.md) — contrato del proyecto (cualquier IA)
+- [`PROMPT.md`](PROMPT.md) — resumen operativo para asistentes
+- [`.cursor/rules/ficha-personaje.mdc`](.cursor/rules/ficha-personaje.mdc) — regla Cursor (agente principal)
 
 ## Licencia SRD
 

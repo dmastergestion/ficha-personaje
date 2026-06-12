@@ -1,6 +1,8 @@
 # PROMPT — Ficha de personaje PWA
 
-Lee **`SPEC.md`** antes de cualquier cambio. Es la fuente de verdad del alcance.
+Lee **`SPEC.md`** antes de cualquier cambio. Es el contrato compartido para **cualquier** asistente IA.
+
+**Roles:** Cursor = implementación principal; Gemini u otros = apoyo (planes, revisión). No contradigas trabajo ya verificado en git.
 
 ## Resumen para IA
 
@@ -14,9 +16,9 @@ Lee **`SPEC.md`** antes de cualquier cambio. Es la fuente de verdad del alcance.
 - Cambio mínimo por iteración; una mejora visible por paso.
 - Código y comentarios en **castellano**.
 
-## No hacer (v2 pendiente)
+## Fuera de alcance (global — ver SPEC.md)
 
-- Tracker, multijugador, backend, APIs runtime, reglas 2014, integración automática suite DM, multiclass, PDF.
+- Tracker de iniciativa, multijugador, backend/nube, APIs en runtime, reglas 2014, integración automática con suite DM, VTT, campañas/sesiones.
 
 ## Archivos clave
 

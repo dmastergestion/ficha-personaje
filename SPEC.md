@@ -1,6 +1,8 @@
 # SPEC — Ficha de personaje D&D 2024 (PWA)
 
-Contrato del proyecto. Alcance congelado por **fase** (v1 / v2). Ante dudas no documentadas aquí: proponer en 3 líneas y esperar OK antes de codificar reglas D&D o nuevas librerías.
+Contrato del proyecto para **cualquier** asistente IA. **Cursor** = implementación principal; Gemini u otros = apoyo. Alcance congelado por **fase** (v1 / v2). Ante dudas no documentadas aquí: proponer en 3 líneas y esperar OK antes de codificar reglas D&D o nuevas librerías.
+
+Regla Cursor: `.cursor/rules/ficha-personaje.mdc` · Resumen operativo: `PROMPT.md`.
 
 ---
 
