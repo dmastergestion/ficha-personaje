@@ -13,6 +13,10 @@ tmp-materials.txt
 .DS_Store
 coverage/
 
+# Artefactos temporales de extracción i18n
+data/i18n/_*-extract.json
+data/i18n/_*.json
+
 # Notion (nunca versionar — ver proyectos/README.md)
 notion-inventario/
 **/notion-inventario/
