@@ -1,0 +1,9 @@
+{
+  // Hereda terminal/MCP global. Solo bloqueos propios del repo.
+  "autoRun": {
+    "block_instructions": [
+      "In ficha-personaje: do not import Python from suiteDM; follow SPEC.md scope and phase v2.",
+      "Tracker export must stay aligned with dnd-data-es/schemas/tracker-export-v1.json."
+    ]
+  }
+}
