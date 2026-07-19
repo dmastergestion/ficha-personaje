@@ -105,7 +105,7 @@
     "musket": "Mosquete",
     "pike": "Pica",
     "pistol": "Pistola",
-    "quarterstaff": "Bastón (Quarterstaff)",
+    "quarterstaff": "Bastón",
     "rapier": "Estoque",
     "scimitar": "Cimitarra",
     "shortbow": "Arco corto",
@@ -128,12 +128,12 @@
     "war-pick": "Pico de guerra",
     "warhammer": "Martillo de guerra",
     "whip": "Látigo",
-    "blowgun": "Blowgun"
+    "blowgun": "Cerbatana"
   },
   "spells": {
     "alarm": "Alarma",
     "animal-friendship": "Encantar animal",
-    "bane": "Perdicion",
+    "bane": "Perdición",
     "bless": "Bendición",
     "burning-hands": "Manos ardientes",
     "charm-person": "Hechizar persona",

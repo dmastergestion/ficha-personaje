@@ -206,6 +206,21 @@ function traducirNivelesLuz(text: string): string {
     .replace(/\bacción de Magia\b/g, "acción mágica");
 }
 
+/** Sentidos y descansos que quedan como tokens ingleses del compendio Foundry/5etools. */
+function traducirSentidosYDescansos(text: string): string {
+  return text
+    .replace(/\btruesight\b/gi, "visión verdadera")
+    .replace(/\bblindsight\b/gi, "visión ciega")
+    .replace(/\btremorsense\b/gi, "sentido sísmico")
+    .replace(/\bshort\s?rest\b/gi, "descanso corto")
+    .replace(/\blong\s?rest\b/gi, "descanso largo");
+}
+
+/** Elimina plantillas de escalado sin resolver, p. ej. «{Level  darts}». */
+function eliminarPlantillasRotas(text: string): string {
+  return text.replace(/\s*\{Level[^}]*\}/g, "");
+}
+
 /** Pulido editorial PHB 2024 ES: términos de juego en minúsculas y distancias pies (m). */
 export function pulirTextoReglasEs(text: string): string {
   let out = limpiarTextoFoundry(text);
@@ -228,6 +243,7 @@ export function pulirTextoReglasEs(text: string): string {
     .replace(/\bPuntos de Golpe\b/g, "puntos de golpe")
     .replace(/\bPunto de Golpe\b/gi, "punto de golpe")
     .replace(/\bPV\b/g, "puntos de golpe")
+    .replace(/\bPG\b/g, "puntos de golpe")
     .replace(/\bGreater Restoration\b/g, "Restablecimiento mayor")
     .replace(/\bExhaustion\b/g, "agotamiento")
     .replace(/\bLa Velocidad\b/g, "la velocidad")
@@ -256,6 +272,7 @@ export function pulirTextoReglasEs(text: string): string {
     .replace(/\bcondición Restringida\b/gi, "condición restringida")
     .replace(/\bcriatura Restringida\b/gi, "criatura restringida")
     .replace(/prueba de habilidad/gi, "prueba de característica")
+    .replace(/\bClase de Armadura\b/gi, "CA")
     .replace(/\bVentaja en salvaciones\b/g, "ventaja en tiradas de salvación")
     .replace(/Usando un espacio de conjuro de nivel superior/gi, "Usar un espacio de conjuro de nivel superior")
     .replace(/Si usas un espacio de conjuro de nivel/gi, "Si usas un espacio de conjuro de nivel");
@@ -271,6 +288,8 @@ export function pulirTextoReglasEs(text: string): string {
 
   out = pulirAreasEfecto(out);
   out = traducirNivelesLuz(out);
+  out = traducirSentidosYDescansos(out);
+  out = eliminarPlantillasRotas(out);
   out = unificarDistanciasEnTexto(out);
 
   return out.trim();

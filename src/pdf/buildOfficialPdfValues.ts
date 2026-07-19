@@ -16,6 +16,7 @@ import { ataqueDesdeItem, esItemAtacable, modificadorAtaque } from "@/rules/atta
 import { cdConjuro, modificadorAtaqueConjuro } from "@/rules/spell-cast";
 import { metaTiradaConjuro } from "@/rules/spell-cast-meta";
 import { metaConjuroParaMostrar } from "@/rules/spell-text";
+import { descripcionOrigenEs } from "@/rules/origin-description";
 import {
   etiquetaListaCompetenciasArmas,
   etiquetaListaCompetenciasHerramientas,
@@ -84,7 +85,10 @@ export function buildOfficialPdfValues(
     ? catalog.obtenerEspecie(character.identity.speciesId)
     : undefined;
   if (species?.size) text["Tamaño"] = SIZE_ES[species.size] ?? species.size;
-  if (species?.traits) text["Atributos de Especie"] = species.traits;
+  const rasgosEspecie = character.identity.speciesId
+    ? descripcionOrigenEs("species", character.identity.speciesId, species?.traits)
+    : undefined;
+  if (rasgosEspecie) text["Atributos de Especie"] = rasgosEspecie;
 
   text["Bonificador por Competencia"] = fmtMod(pb);
   text["Puntos de Golpe Actuales"] = String(character.combat.hpCurrent);

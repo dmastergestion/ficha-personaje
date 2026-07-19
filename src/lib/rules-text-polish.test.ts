@@ -83,4 +83,30 @@ describe("pulirTextoReglasEs", () => {
     expect(text).not.toMatch(/DimLight|BrightLight|dimlight|brightlight/i);
     expect(text).toContain("luz tenue u oscuridad");
   });
+
+  it("traduce sentidos y descansos en inglés del compendio", () => {
+    const text = pulirTextoReglasEs(
+      "Un atacante con truesight o blindsight te percibe. Obtienes los beneficios de un shortrest y de un longrest.",
+    );
+    expect(text).toContain("visión verdadera");
+    expect(text).toContain("visión ciega");
+    expect(text).toContain("descanso corto");
+    expect(text).toContain("descanso largo");
+    expect(text).not.toMatch(/truesight|blindsight|shortrest|longrest/i);
+  });
+
+  it("elimina plantillas de escalado sin resolver y expande PG", () => {
+    expect(pulirTextoReglasEs("El conjuro crea un dardo más.\n{Level  darts}")).toBe(
+      "El conjuro crea un dardo más.",
+    );
+    expect(pulirTextoReglasEs("Recuperas 5 PG.")).toContain("puntos de golpe");
+  });
+
+  it("unifica «Clase de Armadura» a «CA»", () => {
+    const text = pulirTextoReglasEs(
+      "Tienes una Clase de Armadura de 17 y un bonificador de +2 a la clase de armadura.",
+    );
+    expect(text).toBe("Tienes una CA de 17 y un bonificador de +2 a la CA.");
+    expect(text).not.toMatch(/clase de armadura/i);
+  });
 });

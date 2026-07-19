@@ -76,11 +76,11 @@ function main() {
   const payload = {
     classes: translateBySrdId(classes, classesTr.entries, classesTr.folders),
     subclasses: translateBySrdId(subclasses, classesTr.entries, classesTr.folders),
-    armor: translateBySrdId(armor, equipmentTr.entries, equipmentTr.folders),
-    weapons: translateBySrdId(weapons, equipmentTr.entries, equipmentTr.folders),
-    spells: translateBySrdId(spells, spellsTr.entries, spellsTr.folders),
-    species: translateBySrdId(species, originsTr.entries, originsTr.folders),
-    backgrounds: translateBySrdId(backgrounds, originsTr.entries, originsTr.folders),
+    armor: { ...translateBySrdId(armor, equipmentTr.entries, equipmentTr.folders), ...overrides.armor },
+    weapons: { ...translateBySrdId(weapons, equipmentTr.entries, equipmentTr.folders), ...overrides.weapons },
+    spells: { ...translateBySrdId(spells, spellsTr.entries, spellsTr.folders), ...overrides.spells },
+    species: { ...translateBySrdId(species, originsTr.entries, originsTr.folders), ...overrides.species },
+    backgrounds: { ...translateBySrdId(backgrounds, originsTr.entries, originsTr.folders), ...overrides.backgrounds },
     feats: {
       ...translateBySrdId(feats, featsTr.entries, featsTr.folders),
       ...featNamesEs,

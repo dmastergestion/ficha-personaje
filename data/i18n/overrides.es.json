@@ -6,5 +6,12 @@
     "int": "Inteligencia",
     "wis": "Sabiduría",
     "cha": "Carisma"
+  },
+  "weapons": {
+    "blowgun": "Cerbatana",
+    "quarterstaff": "Bastón"
+  },
+  "spells": {
+    "bane": "Perdición"
   }
 }
