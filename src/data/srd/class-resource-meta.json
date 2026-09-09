@@ -12,7 +12,8 @@
       "id": "bardic-inspiration",
       "name": "Inspiración bárdica",
       "recharge": "long",
-      "perLevel": { "1": 2, "5": 3, "10": 4, "15": 5 }
+      "maxFormula": "max(1,cha)",
+      "rechargeShortFromLevel": 5
     }
   ],
   "cleric": [
@@ -41,7 +42,7 @@
     {
       "id": "action-surge",
       "name": "Oleada de acción",
-      "recharge": "long",
+      "recharge": "short",
       "perLevel": { "2": 1, "17": 2 }
     }
   ],
@@ -50,7 +51,7 @@
       "id": "focus-points",
       "name": "Puntos de enfoque",
       "recharge": "short",
-      "perLevel": { "1": 1, "2": 2, "3": 3, "4": 4, "5": 5, "6": 6, "7": 7, "8": 8, "9": 9, "10": 10, "11": 11, "12": 12, "13": 13, "14": 14, "15": 15, "16": 16, "17": 17, "18": 18, "19": 19, "20": 20 }
+      "perLevel": { "2": 2, "3": 3, "4": 4, "5": 5, "6": 6, "7": 7, "8": 8, "9": 9, "10": 10, "11": 11, "12": 12, "13": 13, "14": 14, "15": 15, "16": 16, "17": 17, "18": 18, "19": 19, "20": 20 }
     }
   ],
   "paladin": [
@@ -75,14 +76,7 @@
       "perLevel": { "1": 2, "5": 3, "9": 4, "13": 5, "17": 6 }
     }
   ],
-  "rogue": [
-    {
-      "id": "sneak-attack",
-      "name": "Ataque furtivo (dados)",
-      "recharge": "none",
-      "perLevel": { "1": 1, "3": 2, "5": 3, "7": 4, "9": 5, "11": 6, "13": 7, "15": 8, "17": 9, "19": 10 }
-    }
-  ],
+  "rogue": [],
   "sorcerer": [
     {
       "id": "innate-sorcery",
@@ -97,14 +91,7 @@
       "perLevel": { "2": 2, "3": 3, "4": 4, "5": 5, "6": 6, "7": 7, "8": 8, "9": 9, "10": 10, "11": 11, "12": 12, "13": 13, "14": 14, "15": 15, "16": 16, "17": 17, "18": 18, "19": 19, "20": 20 }
     }
   ],
-  "warlock": [
-    {
-      "id": "invocations",
-      "name": "Invocaciones (referencia)",
-      "recharge": "none",
-      "perLevel": { "2": 2, "5": 3, "7": 4, "9": 5, "12": 6, "15": 7, "18": 8 }
-    }
-  ],
+  "warlock": [],
   "wizard": [
     {
       "id": "arcane-recovery",

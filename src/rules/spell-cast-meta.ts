@@ -105,7 +105,8 @@ export interface TiradaDañoConjuro {
   type?: string;
 }
 
-function parseDados(expr: string): { count: number; sides: number } | null {
+function parseDados(expr: string | null | undefined): { count: number; sides: number } | null {
+  if (typeof expr !== "string") return null;
   const m = /^(\d+)d(\d+)$/i.exec(expr.trim());
   if (!m) return null;
   return { count: Number(m[1]), sides: Number(m[2]) };
@@ -120,12 +121,13 @@ function escalonTruco(nivelPersonaje: number): number {
   );
 }
 
-export function tirarDañoConjuro(
+/** Dados de daño a un nivel de espacio (sin tirar). */
+export function dadosDañoConjuro(
   damage: SpellDamage,
   nivelBaseConjuro: number,
   nivelRanura: number,
   nivelPersonaje: number,
-): TiradaDañoConjuro | null {
+): { count: number; sides: number; formula: string } | null {
   const base = parseDados(damage.dice);
   if (!base) return null;
 
@@ -138,15 +140,36 @@ export function tirarDañoConjuro(
     if (escala) count += escala.count * nivelesExtra;
   }
 
+  return { count, sides: base.sides, formula: `${count}d${base.sides}` };
+}
+
+export function textoDadosDañoConjuro(
+  damage: SpellDamage,
+  nivelBaseConjuro: number,
+  nivelRanura: number,
+  nivelPersonaje: number,
+): string | null {
+  return dadosDañoConjuro(damage, nivelBaseConjuro, nivelRanura, nivelPersonaje)?.formula ?? null;
+}
+
+export function tirarDañoConjuro(
+  damage: SpellDamage,
+  nivelBaseConjuro: number,
+  nivelRanura: number,
+  nivelPersonaje: number,
+): TiradaDañoConjuro | null {
+  const dados = dadosDañoConjuro(damage, nivelBaseConjuro, nivelRanura, nivelPersonaje);
+  if (!dados) return null;
+
   const rolls: number[] = [];
   let total = 0;
-  for (let i = 0; i < count; i++) {
-    const r = Math.floor(Math.random() * base.sides) + 1;
+  for (let i = 0; i < dados.count; i++) {
+    const r = Math.floor(Math.random() * dados.sides) + 1;
     rolls.push(r);
     total += r;
   }
 
-  return { rolls, total, formula: `${count}d${base.sides}`, type: damage.type };
+  return { rolls, total, formula: dados.formula, type: damage.type };
 }
 
 const ETIQUETA: Record<SpellCastType, string> = {

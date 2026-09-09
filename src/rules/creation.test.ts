@@ -4,9 +4,16 @@ import {
   asignarArrayEstandarManual,
   asignarTiradas4d6,
   crearPersonajeDesdeAsistente,
+  indicesLibresAsignacion,
+  pointBuyValido,
+  puntosGastadosPointBuy,
+  abilitiesPointBuyInicial,
+  PRESUPUESTO_POINT_BUY,
   pvMaximoNivel1,
 } from "@/rules/creation";
 import type { Tirada4d6 } from "@/rules/dice";
+import { conjurosOtorgadosLanzables } from "@/rules/spell-grants";
+import { esProficientePericia } from "@/rules/character";
 describe("asignarArrayEstandar", () => {
   it("prioriza atributos principales de la clase", () => {
     const attrs = asignarArrayEstandar("wizard");
@@ -18,6 +25,22 @@ describe("asignarArrayEstandar", () => {
 describe("pvMaximoNivel1", () => {
   it("suma el máximo del dado de golpe y mod CON", () => {
     expect(pvMaximoNivel1("d10", 14)).toBe(12);
+  });
+});
+
+describe("point buy", () => {
+  it("gasta 27 puntos en el array 15/14/13/12/10/8", () => {
+    const abilities = {
+      str: 15,
+      dex: 14,
+      con: 13,
+      int: 12,
+      wis: 10,
+      cha: 8,
+    };
+    expect(puntosGastadosPointBuy(abilities)).toBe(PRESUPUESTO_POINT_BUY);
+    expect(pointBuyValido(abilities)).toBe(true);
+    expect(pointBuyValido(abilitiesPointBuyInicial())).toBe(false);
   });
 });
 
@@ -39,6 +62,12 @@ describe("asignarArrayEstandarManual", () => {
       wis: 10,
       cha: 8,
     });
+  });
+
+  it("oculta índices ya asignados a otro atributo", () => {
+    const asignacion = { str: 0, dex: 1 };
+    expect(indicesLibresAsignacion(asignacion, "con", 6)).toEqual([2, 3, 4, 5]);
+    expect(indicesLibresAsignacion(asignacion, "str", 6)).toEqual([0, 2, 3, 4, 5]);
   });
 });
 
@@ -96,5 +125,81 @@ describe("crearPersonajeDesdeAsistente", () => {
     expect(character.combat.hitDiceUsed).toBe(0);
     expect(character.resources.length).toBeGreaterThan(0);
     expect(character.resources.every((r) => r.used === 0)).toBe(true);
+  });
+
+  it("alto elfo brujo archifey recibe prestidigitación, paso brumoso y usos gratis", () => {
+    const character = crearPersonajeDesdeAsistente({
+      name: "Aelith",
+      playerName: "",
+      speciesId: "elf-high",
+      backgroundId: null,
+      classId: "warlock",
+      subclassId: "archfey",
+      level: 3,
+      abilities: asignarArrayEstandar("warlock"),
+      originChoices: {
+        species: { "lineage-casting-ability": "cha", "keen-senses": "perception" },
+        background: {},
+        class: { equipment: "A", "eldritch-invocations": "pact-of-the-tome,armor-of-shadows,eldritch-mind" },
+      },
+    });
+    const ids = conjurosOtorgadosLanzables(character).map((g) => g.spellId);
+    expect(ids).toContain("prestidigitation");
+    expect(ids).toContain("detect-magic");
+    expect(ids).toContain("misty-step");
+    expect(ids).toContain("faerie-fire");
+    expect(character.resources.some((r) => r.id === "species:elf-high:l3-free")).toBe(true);
+    expect(character.resources.some((r) => r.id === "subclass:archfey:misty-step-free")).toBe(true);
+  });
+
+  it("guerrero fusiona 2 pericias de clase con las de origen", () => {
+    const character = crearPersonajeDesdeAsistente({
+      name: "G",
+      playerName: "J",
+      speciesId: null,
+      backgroundId: "soldier",
+      classId: "fighter",
+      subclassId: null,
+      level: 1,
+      abilities: asignarArrayEstandar("fighter"),
+      originChoices: {
+        species: {},
+        background: {},
+        class: { "skill-1": "athletics", "skill-2": "insight", equipment: "A" },
+      },
+    });
+    expect(character.proficiencies.skills).toEqual(
+      expect.arrayContaining(["athletics", "insight"]),
+    );
+  });
+
+  it("aplica las pericias de Hábil elegidas en el asistente", () => {
+    const character = crearPersonajeDesdeAsistente({
+      name: "C",
+      playerName: "J",
+      speciesId: "human",
+      backgroundId: "charlatan",
+      classId: "rogue",
+      subclassId: null,
+      level: 1,
+      abilities: asignarArrayEstandar("rogue"),
+      originChoices: {
+        species: { "versatile-feat": "lucky", skillful: "perception" },
+        background: {},
+        class: { "skill-1": "stealth", "skill-2": "acrobatics", "skill-3": "investigation", "skill-4": "insight" },
+      },
+      featChoices: {
+        skilled: { "skill-1": "athletics", "skill-2": "survival", "skill-3": "medicine" },
+      },
+    });
+    expect(character.feats.some((f) => f.id === "skilled")).toBe(true);
+    expect(character.feats.find((f) => f.id === "skilled")?.choices).toEqual({
+      "skill-1": "athletics",
+      "skill-2": "survival",
+      "skill-3": "medicine",
+    });
+    expect(esProficientePericia(character, "athletics")).toBe(true);
+    expect(esProficientePericia(character, "survival")).toBe(true);
+    expect(esProficientePericia(character, "medicine")).toBe(true);
   });
 });

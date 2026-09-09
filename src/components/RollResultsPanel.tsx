@@ -2,14 +2,20 @@ import { AtaqueResultBanner } from "@/components/AtaqueResultBanner";
 import { UltimaTiradaBanner } from "@/components/UltimaTiradaBanner";
 import { useUiStore } from "@/stores/ui-store";
 
-export function RollResultsPanel({ className }: { className?: string }) {
+export function RollResultsPanel({
+  className,
+  hideTitle = false,
+}: {
+  className?: string;
+  hideTitle?: boolean;
+}) {
   const ultimaTirada = useUiStore((s) => s.ultimaTirada);
   const ultimoAtaque = useUiStore((s) => s.ultimoAtaque);
   const ultimaTiradaExtra = useUiStore((s) => s.ultimaTiradaExtra);
 
   return (
     <div className={className}>
-      <h3 className="mb-2 text-sm font-semibold">Última tirada</h3>
+      {!hideTitle && <h3 className="mb-2 text-sm font-semibold">Última tirada</h3>}
       {ultimoAtaque ? (
         <AtaqueResultBanner result={ultimoAtaque} />
       ) : ultimaTirada || ultimaTiradaExtra ? (

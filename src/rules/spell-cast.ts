@@ -12,12 +12,23 @@ import {
   clasesParaConjuros,
   espaciosMaximosPersonaje,
   espaciosPactoMaximos,
+  esSoloMagiaPacto,
   nivelEfectivoConjuro,
   nivelEspacioPacto,
 } from "@/rules/spells";
 import { srdSpells } from "@/rules/srd";
 import { conjuroRequiereConcentracion } from "@/rules/spell-meta";
-import { metaTiradaConjuro, tirarDañoConjuro, type SpellCastType, type TiradaDañoConjuro } from "@/rules/spell-cast-meta";
+import {
+  metaTiradaConjuro,
+  textoDadosDañoConjuro,
+  tirarDañoConjuro,
+  type SpellCastMeta,
+  type SpellCastType,
+  type TiradaDañoConjuro,
+} from "@/rules/spell-cast-meta";
+import { extraDañoAgonizante, textoDañoConjuroConInvocaciones } from "@/rules/invocations";
+import { llevaArmaduraSinAdiestramiento } from "@/rules/proficiencies";
+import { proyectilesConjuro } from "@/rules/spell-upcast-text";
 import type { Character } from "@/schemas/character";
 
 function activarConcentracion(
@@ -122,6 +133,97 @@ function encontrarEspacioParaConjuro(
   return null;
 }
 
+export type OpcionRanuraConjuro =
+  | { tipo: "slot"; level: SpellSlotLevel; restantes: number; max: number }
+  | { tipo: "pact"; level: number; restantes: number; max: number };
+
+/** Espacios (y pacto) con los que se puede lanzar un conjuro de ese nivel, incluido upcast. */
+export function opcionesRanuraConjuro(
+  character: Character,
+  spellLevel: number,
+): OpcionRanuraConjuro[] {
+  if (spellLevel <= 0) return [];
+  const preparado = prepararPersonajeConjuro(character);
+  const classes = clasesParaConjuros(preparado);
+  const pactMax = espaciosPactoMaximos(classes);
+  const pactUsed = Number(preparado.spells.pactMagicUsed ?? 0) || 0;
+  const pactSlotLevel = nivelEspacioPacto(classes);
+  const pacto =
+    pactMax > 0 && pactUsed < pactMax && spellLevel <= pactSlotLevel
+      ? ({
+          tipo: "pact" as const,
+          level: pactSlotLevel,
+          restantes: pactMax - pactUsed,
+          max: pactMax,
+        } satisfies OpcionRanuraConjuro)
+      : null;
+
+  // Magia de pacto: todos los espacios son del mismo nivel; no hay upcast a elegir.
+  if (esSoloMagiaPacto(preparado)) {
+    return pacto ? [pacto] : [];
+  }
+
+  const max = espaciosMaximosPersonaje(preparado);
+  const used = slotsUsadosNormalizados(preparado);
+  const opciones: OpcionRanuraConjuro[] = [];
+
+  for (const slotLevel of SPELL_SLOT_LEVELS) {
+    if (Number(slotLevel) < spellLevel) continue;
+    if (max[slotLevel] <= 0) continue;
+    const restantes = max[slotLevel] - used[slotLevel];
+    if (restantes > 0) {
+      opciones.push({ tipo: "slot", level: slotLevel, restantes, max: max[slotLevel] });
+    }
+  }
+
+  if (pacto) opciones.push(pacto);
+  return opciones;
+}
+
+/** Ranura a usar sin preguntar (brujo solo, o una sola opción). */
+export function ranuraAutomaticaConjuro(
+  character: Character,
+  spellLevel: number,
+): OpcionRanuraConjuro | undefined {
+  const opciones = opcionesRanuraConjuro(character, spellLevel);
+  if (esSoloMagiaPacto(character)) {
+    return opciones.find((o) => o.tipo === "pact") ?? opciones[0];
+  }
+  return opciones.length === 1 ? opciones[0] : undefined;
+}
+
+/** Dados de daño en ficha: el brujo muestra el upcast al nivel de pacto. */
+export function textoDañoMostradoConjuro(
+  character: Character,
+  spellId: string,
+  damage: NonNullable<SpellCastMeta["damage"]>,
+  nivelBaseConjuro?: number,
+): string {
+  const nivelBase = nivelBaseConjuro ?? srdSpells.find((s) => s.id === spellId)?.level ?? 0;
+  const classes = clasesParaConjuros(character);
+  const nivelRanura =
+    esSoloMagiaPacto(character) && nivelBase > 0 ? nivelEspacioPacto(classes) : nivelBase;
+  const dados =
+    textoDadosDañoConjuro(damage, nivelBase, nivelRanura, character.identity.level) ??
+    (typeof damage.dice === "string" ? damage.dice : "");
+  const conInv = textoDañoConjuroConInvocaciones(character, spellId, dados);
+  const proyectiles = proyectilesConjuro(
+    spellId,
+    nivelBase,
+    nivelRanura,
+    character.identity.level,
+  );
+  if (proyectiles > 1 && conInv) return `${proyectiles}×${conInv}`;
+  return conInv;
+}
+
+export function etiquetaOpcionRanura(opcion: OpcionRanuraConjuro): string {
+  if (opcion.tipo === "pact") {
+    return `Pacto ${opcion.level} (${opcion.restantes})`;
+  }
+  return `Niv. ${opcion.level} (${opcion.restantes})`;
+}
+
 function mensajeSinEspacios(character: Character, spellLevel: number): string {
   const max = espaciosMaximosPersonaje(character);
   const used = slotsUsadosNormalizados(character);
@@ -156,6 +258,18 @@ export type LanzarConjuroResult =
     }
   | { ok: false; error: string; cd: number | null };
 
+function aplicarDañoAgonizante(
+  character: Character,
+  spellId: string | null | undefined,
+  damage: TiradaDañoConjuro | null,
+): TiradaDañoConjuro | null {
+  if (!damage || !spellId) return damage;
+  const extra = extraDañoAgonizante(character, spellId);
+  if (extra === 0) return damage;
+  const signo = extra > 0 ? `+${extra}` : `${extra}`;
+  return { ...damage, total: damage.total + extra, formula: `${damage.formula}${signo}` };
+}
+
 export function lanzarConjuro(
   character: Character,
   spellLevel: number,
@@ -166,9 +280,21 @@ export function lanzarConjuro(
     diceOptions?: DiceRollOptions;
     abilityKeyOverride?: AbilityKey;
     featResourceId?: string;
+    /** Ranura concreta (upcast). Si falta, se usa la más baja disponible. */
+    slotLevel?: SpellSlotLevel;
+    usarPacto?: boolean;
   },
 ): LanzarConjuroResult {
   const preparado = prepararPersonajeConjuro(character);
+  if (llevaArmaduraSinAdiestramiento(preparado)) {
+    return {
+      ok: false,
+      error: "No puedes lanzar conjuros con armadura o escudo sin adiestramiento.",
+      cd: inferirAtributoConjuro(preparado)
+        ? cdConjuroParaAtributo(preparado, inferirAtributoConjuro(preparado)!)
+        : cdConjuro(preparado),
+    };
+  }
   const abilityKey = opts?.abilityKeyOverride ?? inferirAtributoConjuro(preparado);
   const cd = abilityKey ? cdConjuroParaAtributo(preparado, abilityKey) : cdConjuro(preparado);
   const mod = abilityKey ? modificadorAtaqueConjuroParaAtributo(preparado, abilityKey) : modificadorAtaqueConjuro(preparado);
@@ -179,8 +305,12 @@ export function lanzarConjuro(
   const saveAbility = castType === "save" ? (meta.save ?? null) : null;
   const nivelPersonaje = preparado.identity.level;
 
-  const dañoEn = (nivelRanura: number): TiradaDañoConjuro | null =>
-    meta.damage ? tirarDañoConjuro(meta.damage, spellLevel, nivelRanura, nivelPersonaje) : null;
+  const dañoEn = (nivelRanura: number): TiradaDañoConjuro | null => {
+    const base = meta.damage
+      ? tirarDañoConjuro(meta.damage, spellLevel, nivelRanura, nivelPersonaje)
+      : null;
+    return aplicarDañoAgonizante(preparado, opts?.spellId, base);
+  };
 
   // Solo los conjuros de ataque tiran un d20; el resto gasta el espacio sin tirada.
   let roll: D20Roll | null = null;
@@ -232,15 +362,52 @@ export function lanzarConjuro(
         castType,
         saveAbility,
         damage: dañoEn(spellLevel),
-        slotGastado: `${resource.name} (dote)`,
+        slotGastado: resource.name,
         cd,
       };
     }
   }
 
   const classes = clasesParaConjuros(preparado);
-  if (nivelEfectivoConjuro(classes) > 0) {
-    const slot = encontrarEspacioParaConjuro(preparado, spellLevel);
+  const pactMax = espaciosPactoMaximos(classes);
+  const pactUsed = Number(preparado.spells.pactMagicUsed ?? 0) || 0;
+  const pactSlotLevel = nivelEspacioPacto(classes);
+
+  if (opts?.usarPacto) {
+    if (pactMax > 0 && pactUsed < pactMax && spellLevel <= pactSlotLevel) {
+      const updated = activarConcentracion(
+        ajustarPactoUsado(preparado, 1),
+        opts?.spellId,
+        opts?.requiereConcentracion,
+      );
+      return {
+        ok: true,
+        character: updated,
+        roll,
+        castType,
+        saveAbility,
+        damage: dañoEn(pactSlotLevel),
+        slotGastado: `Pacto niv. ${pactSlotLevel}`,
+        cd,
+      };
+    }
+    return {
+      ok: false,
+      error: mensajeSinEspacios(preparado, spellLevel),
+      cd,
+    };
+  }
+
+  if (!esSoloMagiaPacto(preparado) && nivelEfectivoConjuro(classes) > 0) {
+    const slotPedido = opts?.slotLevel;
+    const slot =
+      slotPedido && Number(slotPedido) >= spellLevel
+        ? (() => {
+            const max = espaciosMaximosPersonaje(preparado);
+            const used = slotsUsadosNormalizados(preparado);
+            return used[slotPedido] < max[slotPedido] ? slotPedido : null;
+          })()
+        : encontrarEspacioParaConjuro(preparado, spellLevel);
     if (slot) {
       const updated = activarConcentracion(
         ajustarEspacioUsado(preparado, slot, 1),
@@ -258,11 +425,15 @@ export function lanzarConjuro(
         cd,
       };
     }
+    if (slotPedido) {
+      return {
+        ok: false,
+        error: `Sin espacios de nivel ${slotPedido}.`,
+        cd,
+      };
+    }
   }
 
-  const pactMax = espaciosPactoMaximos(classes);
-  const pactUsed = Number(preparado.spells.pactMagicUsed ?? 0) || 0;
-  const pactSlotLevel = nivelEspacioPacto(classes);
   if (pactMax > 0 && pactUsed < pactMax && spellLevel <= pactSlotLevel) {
     const updated = activarConcentracion(
       ajustarPactoUsado(preparado, 1),
@@ -276,7 +447,7 @@ export function lanzarConjuro(
       castType,
       saveAbility,
       damage: dañoEn(pactSlotLevel),
-      slotGastado: "Espacio de pacto",
+        slotGastado: `Pacto niv. ${pactSlotLevel}`,
       cd,
     };
   }

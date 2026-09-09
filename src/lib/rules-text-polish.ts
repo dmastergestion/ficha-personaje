@@ -222,7 +222,10 @@ function eliminarPlantillasRotas(text: string): string {
 }
 
 /** Pulido editorial PHB 2024 ES: términos de juego en minúsculas y distancias pies (m). */
-export function pulirTextoReglasEs(text: string): string {
+const POLISH_CACHE_MAX = 400;
+const polishCache = new Map<string, string>();
+
+function pulirTextoReglasEsSinCache(text: string): string {
   let out = limpiarTextoFoundry(text);
 
   out = reemplazarCondicionApplyFalse(out);
@@ -293,4 +296,16 @@ export function pulirTextoReglasEs(text: string): string {
   out = unificarDistanciasEnTexto(out);
 
   return out.trim();
+}
+
+export function pulirTextoReglasEs(text: string): string {
+  const cached = polishCache.get(text);
+  if (cached !== undefined) return cached;
+  const out = pulirTextoReglasEsSinCache(text);
+  if (polishCache.size >= POLISH_CACHE_MAX) {
+    const oldest = polishCache.keys().next().value;
+    if (oldest !== undefined) polishCache.delete(oldest);
+  }
+  polishCache.set(text, out);
+  return out;
 }

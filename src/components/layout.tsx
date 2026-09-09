@@ -14,28 +14,44 @@ interface LayoutProps {
 export function Layout({ title, subtitle, children, actions, wide = false, status }: LayoutProps) {
   return (
     <div
-      className={`mx-auto flex min-h-screen flex-col px-4 py-5 sm:px-6 ${wide ? "max-w-[90rem]" : "max-w-5xl"}`}
+      className={cn(
+        "mx-auto flex min-h-screen flex-col px-4 sm:px-6",
+        wide ? "max-w-[90rem] py-3" : "max-w-5xl py-5",
+      )}
     >
-      <header className="mb-6 flex flex-wrap items-center justify-between gap-3 border-b border-white/10 pb-4">
+      <header
+        className={cn(
+          "flex flex-wrap items-center justify-between border-b border-white/10",
+          wide ? "mb-3 gap-2 pb-2.5" : "mb-6 gap-3 pb-4",
+        )}
+      >
         <div className="min-w-0">
           <p className="flex flex-wrap items-center gap-2 text-sm text-muted">
             <span>D&D 2024 · SRD</span>
             <OfflineIndicator />
             {status}
           </p>
-          <h1 className="truncate text-2xl font-bold">{title}</h1>
-          {subtitle ? <div className="mt-2 min-w-0">{subtitle}</div> : null}
+          <h1 className={cn("truncate font-bold", wide ? "text-xl leading-tight" : "text-2xl")}>
+            {title}
+          </h1>
+          {subtitle ? <div className={cn("min-w-0", wide ? "mt-1.5" : "mt-2")}>{subtitle}</div> : null}
         </div>
         <nav className="flex flex-wrap items-center gap-2">
           <Link
             to="/"
-            className={buttonClassName("default", "inline-flex px-3 py-2")}
+            className={buttonClassName(
+              "default",
+              wide ? "inline-flex px-2.5 py-1.5 text-sm" : "inline-flex px-3 py-2",
+            )}
           >
             Personajes
           </Link>
           <Link
             to="/settings"
-            className={buttonClassName("default", "inline-flex px-3 py-2")}
+            className={buttonClassName(
+              "default",
+              wide ? "inline-flex px-2.5 py-1.5 text-sm" : "inline-flex px-3 py-2",
+            )}
           >
             Ajustes
           </Link>

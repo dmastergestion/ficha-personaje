@@ -1,8 +1,12 @@
 import { describe, expect, it } from "vitest";
 import { buildCatalog } from "@/rules/catalog";
 import { crearPersonajeVacio } from "@/schemas/character";
-import { buildOfficialPdfValues, calcularCaParaPdf } from "@/pdf/buildOfficialPdfValues";
-import { spellRowField } from "@/pdf/official-field-map";
+import {
+  buildOfficialPdfValues,
+  calcularCaParaPdf,
+  filasArmasYTrucosPdf,
+} from "@/pdf/buildOfficialPdfValues";
+import { attackRowField, spellRowField } from "@/pdf/official-field-map";
 
 describe("buildOfficialPdfValues", () => {
   it("rellena nombre y atributos en campos del PDF oficial", () => {
@@ -57,5 +61,53 @@ describe("buildOfficialPdfValues", () => {
     expect(text["Piezas de Oro"]).toBe("42");
     expect(text[spellRowField(0, "name")]).toMatch(/misil|missile|fuego|fire/i);
     expect(checks["Inspiración Heróica"]).toBe(false);
+  });
+
+  it("pone armas y trucos de ataque en Armas y trucos; hechizos en la lista de conjuros", () => {
+    const character = crearPersonajeVacio({
+      name: "Brujo",
+      playerName: "J",
+      classId: "warlock",
+      level: 5,
+    });
+    character.abilities.cha = 16;
+    character.spells.abilityKey = "cha";
+    character.spells.cantripsKnown = ["eldritch-blast", "prestidigitation"];
+    character.spells.spellsPrepared = ["hex", "guiding-bolt"];
+    character.equipment.items = [
+      {
+        id: "espada",
+        name: "Espada corta",
+        qty: 1,
+        weightLb: 2,
+        notes: "",
+        weaponId: "shortsword",
+        inCombat: true,
+      },
+    ];
+
+    const catalog = buildCatalog(null);
+    const filas = filasArmasYTrucosPdf(character, catalog);
+    expect(filas.some((f) => /espada|shortsword/i.test(f.name))).toBe(true);
+    expect(filas.some((f) => /descarga|eldritch/i.test(f.name))).toBe(true);
+    expect(filas.some((f) => /guía|guid|guiding/i.test(f.name))).toBe(true);
+    expect(filas.every((f) => !/prestidigit/i.test(f.name))).toBe(true);
+
+    const { text } = buildOfficialPdfValues(character, catalog, calcularCaParaPdf(character));
+    expect(text[attackRowField(0, "name")]).toBeTruthy();
+    const nombresHechizos = [0, 1, 2, 3]
+      .map((i) => text[spellRowField(i, "name")] ?? "")
+      .join(" ");
+    expect(nombresHechizos).toMatch(/descarga|eldritch|prestidigit|hex|guía|guid/i);
+    expect(nombresHechizos).not.toMatch(/espada/i);
+
+    const { text: textPdf, checks } = buildOfficialPdfValues(
+      character,
+      catalog,
+      calcularCaParaPdf(character),
+    );
+    const materiales = Object.keys(checks).filter((k) => k.startsWith("Material Necesario"));
+    expect(materiales.length).toBeGreaterThan(0);
+    expect(Object.keys(textPdf).some((k) => k.startsWith("Material Necesario"))).toBe(false);
   });
 });

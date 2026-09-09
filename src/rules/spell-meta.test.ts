@@ -24,6 +24,27 @@ describe("mergeConjurosCatalogo", () => {
     expect(levitate?.concentration).toBe(true);
     expect(conjuroRequiereConcentracion("levitate", levitate)).toBe(true);
   });
+
+  it("unifica Risa horrible SRD y PHB en un solo conjuro", () => {
+    const merged = mergeConjurosCatalogo(srdSpells, [
+      {
+        id: "tashas-hideous-laughter",
+        srdId: "tashas-hideous-laughter",
+        nameEn: "Tasha's Hideous Laughter",
+        level: 1,
+        school: "enc",
+        concentration: false,
+      },
+    ]);
+
+    const risa = merged.filter((s) =>
+      ["hideous-laughter", "tashas-hideous-laughter"].includes(s.id),
+    );
+    expect(risa).toHaveLength(1);
+    expect(risa[0]?.id).toBe("tashas-hideous-laughter");
+    expect(risa[0]?.concentration).toBe(true);
+    expect(conjuroRequiereConcentracion("hideous-laughter", risa[0])).toBe(true);
+  });
 });
 
 describe("buildCatalog.requiereConcentracion", () => {

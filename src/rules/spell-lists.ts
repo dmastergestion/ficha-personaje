@@ -1,3 +1,4 @@
+import { ID_CONJURO_SRD_A_PACK, idsEquivalentesConjuro } from "@/rules/spell-aliases";
 import type { AbilityKey, SpellSlotLevel } from "@/lib/constants";
 import { SPELL_SLOT_LEVELS } from "@/lib/constants";
 import spellListsJson from "@/data/srd/spell-lists.json";
@@ -10,7 +11,67 @@ export type SpellListEntry = {
   subclasses: { classId: string; subclassId: string }[];
 };
 
-const spellLists = spellListsJson as Record<string, SpellListEntry>;
+/** Subclases que toman lista de mago (datos 5etools XPHB). */
+const SUBCLASES_LISTA_MAGO: SpellListEntry["subclasses"] = [
+  { classId: "bard", subclassId: "lore" },
+  { classId: "fighter", subclassId: "eldritch-knight" },
+  { classId: "rogue", subclassId: "arcane-trickster" },
+];
+
+function listaMago(clasesExtra: string[] = []): SpellListEntry {
+  return {
+    classes: [...new Set(["wizard", ...clasesExtra])].sort(),
+    subclasses: SUBCLASES_LISTA_MAGO,
+  };
+}
+
+/**
+ * Conjuros SRD cuyo nameEn no coincide con 5etools (Risa horrible ≠ Tasha's…).
+ * Sin esta tabla `listaConjuro` devolvía undefined y el filtro los daba a todas las clases.
+ */
+const LISTAS_NOMBRE_PROPIO: Record<string, SpellListEntry> = {
+  "hideous-laughter": listaMago(["bard"]),
+  "acid-arrow": listaMago(),
+  "arcanists-magic-aura": listaMago(),
+  "tiny-hut": listaMago(["bard"]),
+  "black-tentacles": listaMago(),
+  "faithful-hound": listaMago(),
+  "private-sanctum": listaMago(),
+  "resilient-sphere": listaMago(),
+  "secret-chest": listaMago(),
+  "arcane-hand": listaMago(),
+  "telepathic-bond": listaMago(["bard"]),
+  "freezing-sphere": listaMago(),
+  "instant-summons": listaMago(),
+  "irresistible-dance": listaMago(["bard"]),
+  "arcane-sword": listaMago(),
+  "magnificent-mansion": listaMago(["bard"]),
+  "tensers-floating-disk": listaMago(),
+};
+
+function tablaListas(): Record<string, SpellListEntry> {
+  const raw = spellListsJson as Record<string, SpellListEntry>;
+  const cleaned: Record<string, SpellListEntry> = {};
+  for (const [id, entry] of Object.entries(raw)) {
+    cleaned[id] = {
+      ...entry,
+      classes: entry.classes.filter((c) => c !== "artificer"),
+    };
+  }
+  const map: Record<string, SpellListEntry> = {
+    ...cleaned,
+    ...LISTAS_NOMBRE_PROPIO,
+  };
+  for (const [srdId, packId] of Object.entries(ID_CONJURO_SRD_A_PACK)) {
+    const entry = map[srdId] ?? map[packId];
+    if (!entry) continue;
+    map[srdId] = entry;
+    map[packId] = entry;
+  }
+  return map;
+}
+
+const spellLists = tablaListas();
 
 /** Atributo de conjuro fijo por normas (PHB 2024). */
 export const ATRIBUTO_CONJURO_CLASE: Partial<Record<string, AbilityKey>> = {
@@ -45,7 +106,11 @@ export function clasesConListaConjuros(classes: ClassLevel[]): ClassLevel[] {
 }
 
 export function listaConjuro(spellId: string): SpellListEntry | undefined {
-  return spellLists[spellId];
+  for (const id of idsEquivalentesConjuro(spellId)) {
+    const entry = spellLists[id];
+    if (entry) return entry;
+  }
+  return undefined;
 }
 
 function nivelMaximoDesdeEspacios(slots: Record<SpellSlotLevel, number>): number {
@@ -94,7 +159,7 @@ export function conjuroDisponibleParaClase(
   subclassId: string | null,
 ): boolean {
   const entry = listaConjuro(spellId);
-  if (!entry) return true;
+  if (!entry) return false;
   if (entry.classes.includes(classId)) return true;
   return entry.subclasses.some(
     (s) => s.classId === classId && s.subclassId === (subclassId ?? ""),
@@ -111,6 +176,11 @@ export function conjuroDisponibleParaPersonaje(
   return listasFiltroClase(cl).some((ref) =>
     conjuroDisponibleParaClase(spellId, ref.classId, ref.subclassId),
   );
+}
+
+/** El conjuro no debe ofrecerse: ya está en ficha o es alias del mismo. */
+export function conjuroYaEnFicha(spellId: string, idsOcupados: ReadonlySet<string>): boolean {
+  return idsEquivalentesConjuro(spellId).some((id) => idsOcupados.has(id));
 }
 
 export function atributoConjuroClase(

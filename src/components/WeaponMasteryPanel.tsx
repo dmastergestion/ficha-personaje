@@ -37,16 +37,16 @@ export function WeaponMasteryPanel({
   return (
     <section className={compact ? "space-y-2" : "sheet-card"}>
       {!compact && <h3 className="sheet-section-title">Maestrías de arma</h3>}
-      <p className="text-xs text-muted">
+      <p className="text-sm text-muted">
         Elige {slots} tipo{slots > 1 ? "s" : ""} de arma. Puedes cambiar una tras descanso largo.
       </p>
-      <div className="space-y-2">
+      <div className="space-y-3">
         {Array.from({ length: slots }, (_, index) => (
           <label key={index} className="block space-y-1 text-sm">
             <span className="text-muted">Arma {index + 1}</span>
             {editable ? (
               <select
-                className="w-full rounded-lg border border-white/10 bg-surface px-3 py-2"
+                className="sheet-select"
                 value={picks[index] ?? ""}
                 onChange={(e) => setPick(index, e.target.value)}
               >
@@ -66,7 +66,7 @@ export function WeaponMasteryPanel({
         ))}
       </div>
       {editable && incomplete && (
-        <p className="text-xs text-amber-400/90">Completa todas las maestrías de arma.</p>
+        <p className="text-sm text-amber-400/90">Completa todas las maestrías de arma.</p>
       )}
       {editable && picks.length > 0 && !maestriasArmasValidas(character, picks).valid && (
         <p className="text-xs text-red-400">{maestriasArmasValidas(character, picks).message}</p>

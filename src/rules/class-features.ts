@@ -7,9 +7,15 @@ type FeatureMetaFile = Record<string, ClassFeatureEntry[]>;
 const features = classFeatureMeta as FeatureMetaFile;
 const subclassFeatures = subclassFeatureMeta as FeatureMetaFile;
 
+/** IDs equivalentes (SRD `hand` vs meta PHB `open-hand`). */
+const SUBCLASS_ID_ALIASES: Record<string, string[]> = {
+  hand: ["open-hand"],
+  "open-hand": ["hand"],
+};
+
 /** Nivel en el que se elige subclase (2024 PHB). */
 const SUBCLASS_LEVEL: Record<string, number> = {
-  warlock: 1,
+  warlock: 3,
   barbarian: 3,
   bard: 3,
   cleric: 3,
@@ -60,7 +66,13 @@ export function rasgosDeClase(classId: string): ClassFeatureEntry[] {
 }
 
 export function rasgosDeSubclase(subclassId: string): ClassFeatureEntry[] {
-  return subclassFeatures[subclassId] ?? [];
+  const direct = subclassFeatures[subclassId];
+  if (direct?.length) return direct;
+  for (const alt of SUBCLASS_ID_ALIASES[subclassId] ?? []) {
+    const rows = subclassFeatures[alt];
+    if (rows?.length) return rows;
+  }
+  return [];
 }
 
 export function rasgosEnNivel(classId: string, level: number): ClassFeatureEntry[] {
@@ -101,17 +113,73 @@ export function hitosMecanicos(classId: string, level: number): string[] {
     hitos.push("Nuevo rasgo de subclase.");
   }
 
-  if (level === 5 && ["barbarian", "fighter", "monk", "paladin", "ranger", "rogue"].includes(classId)) {
+  if (level === 5 && ["barbarian", "fighter", "monk", "paladin", "ranger"].includes(classId)) {
     hitos.push("Ataque adicional al usar la acción Atacar.");
   }
 
-  if (level === 11 && classId === "fighter") {
-    hitos.push("Dos usos de Oleada de acción por descanso largo.");
+  if (level === 17 && classId === "fighter") {
+    hitos.push("Dos usos de Oleada de acción por descanso corto o largo.");
   }
 
   if (level === 20) {
     hitos.push("Rasgo de nivel 20 de la clase.");
   }
 
+  if (classId === "rogue" && (level === 1 || level === 6)) {
+    hitos.push("Expertise: elige 2 pericias competentes (doble PB).");
+  }
+  if (classId === "bard" && (level === 2 || level === 9)) {
+    hitos.push("Expertise: elige 2 pericias competentes (doble PB).");
+  }
+  if (classId === "ranger" && level === 9) {
+    hitos.push("Expertise: elige 2 pericias competentes (doble PB).");
+  }
+
   return hitos;
+}
+
+const ETIQUETA_SUBCLASE: Record<string, string> = {
+  barbarian: "Senda",
+  bard: "Colegio",
+  cleric: "Dominio",
+  druid: "Círculo",
+  fighter: "Arquetipo",
+  monk: "Tradición",
+  paladin: "Juramento",
+  ranger: "Arquetipo",
+  rogue: "Arquetipo",
+  sorcerer: "Linaje",
+  warlock: "Patrón",
+  wizard: "Tradición",
+};
+
+export function etiquetaSelectorSubclase(classId: string): string {
+  return ETIQUETA_SUBCLASE[classId] ?? "Subclase";
+}
+
+/** Niveles con ASI / dote de la clase (para el asistente y la ficha). */
+export function nivelesMejoraAtributos(classId: string): number[] {
+  return ASI_LEVELS[classId] ?? [];
+}
+
+export function esNivelMejoraAtributos(classId: string, level: number): boolean {
+  return nivelesMejoraAtributos(classId).includes(level);
+}
+
+export function cantidadMejorasAtributosHastaNivel(classId: string, level: number): number {
+  return nivelesMejoraAtributos(classId).filter((n) => n <= level).length;
+}
+
+export function periciasExpertiseAlNivel(classId: string, level: number): number {
+  if (classId === "rogue" && (level === 1 || level === 6)) return 2;
+  if (classId === "bard" && (level === 2 || level === 9)) return 2;
+  if (classId === "ranger" && level === 9) return 2;
+  return 0;
+}
+
+/** Expertise acumulada hasta ese nivel de clase (creación y validación). */
+export function cantidadExpertiseHastaNivel(classId: string, level: number): number {
+  let total = 0;
+  for (let n = 1; n <= level; n++) total += periciasExpertiseAlNivel(classId, n);
+  return total;
 }

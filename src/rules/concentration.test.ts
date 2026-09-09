@@ -5,9 +5,10 @@ import { espaciosRestantesPersonaje } from "@/rules/rests";
 import { lanzarConjuro } from "@/rules/spell-cast";
 
 describe("cdConcentracion", () => {
-  it("usa CD 10 o la mitad del daño (redondeado arriba), la que sea mayor", () => {
+  it("usa CD 10 o la mitad del daño (redondeo hacia abajo), la que sea mayor", () => {
     expect(cdConcentracion(12)).toBe(10);
-    expect(cdConcentracion(25)).toBe(13);
+    expect(cdConcentracion(25)).toBe(12);
+    expect(cdConcentracion(21)).toBe(10);
   });
 });
 

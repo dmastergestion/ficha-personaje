@@ -24,6 +24,7 @@ export interface SrdArmor {
   baseAc: number;
   dexMax: number | null;
   strengthMin: number | null;
+  stealthDisadvantage?: boolean;
 }
 
 export interface SrdWeapon {
@@ -110,7 +111,9 @@ export const WEAPON_CATEGORY_LABELS: Record<string, string> = {
 export const srdClasses = classesData as SrdClass[];
 export const srdSubclasses = subclassesData as SrdSubclass[];
 export const srdArmor = armorData as SrdArmor[];
-export const srdWeapons = weaponsData as SrdWeapon[];
+export const srdWeapons = (weaponsData as SrdWeapon[]).filter(
+  (w) => !w.id.startsWith("staff-of-"),
+);
 export const srdSpells = spellsData as SrdSpell[];
 export const srdSpecies = speciesData as SrdSpecies[];
 export const srdBackgrounds = backgroundsData as SrdBackground[];

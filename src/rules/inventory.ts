@@ -26,7 +26,7 @@ export function objetosSintonizados(items: EquipmentItem[]): EquipmentItem[] {
 
 export function puedeSintonizar(items: EquipmentItem[], itemId: string): boolean {
   const item = items.find((i) => i.id === itemId);
-  if (!item?.requiresAttunement) return true;
+  if (!item) return false;
   if (item.attuned) return true;
   return objetosSintonizados(items).length < MAX_SINTONIZACION;
 }

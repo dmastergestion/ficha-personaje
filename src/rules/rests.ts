@@ -1,3 +1,4 @@
+import { dadosGolpeRecuperadosDescansoLargo } from "@/rules/edition";
 import {
   gastadosPorDado,
   poolDadosGolpe,
@@ -31,10 +32,12 @@ export function espaciosUsadosSeguros(
   ) as Character["spells"]["spellSlotsUsed"];
 }
 
-/** Descanso largo SRD 2024 simplificado: PV al máximo, espacios restaurados, recuperar mitad de dados de golpe gastados. */
+/** Descanso largo PHB 2024: PV al máximo, espacios restaurados, todos los dados de golpe. */
 export function aplicarDescansoLargo(character: Character): Character {
-  const recuperarDados = Math.max(1, Math.floor(character.combat.hitDiceTotal / 2));
-  const spentByDie = recuperarDadosDescansoLargo(gastadosPorDado(character), recuperarDados);
+  const spent = gastadosPorDado(character);
+  const totalGastados = Object.values(spent).reduce((sum, n) => sum + n, 0);
+  const recuperarDados = dadosGolpeRecuperadosDescansoLargo(totalGastados);
+  const spentByDie = recuperarDadosDescansoLargo(spent, recuperarDados);
   const synced = sincronizarGastosDados(spentByDie, character.combat.hitDiceTotal);
 
   const rested = aplicarRecargaRecursos(character, "long");

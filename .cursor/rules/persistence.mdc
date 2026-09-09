@@ -1,0 +1,14 @@
+---
+description: Schema Zod, migraciones y Dexie
+globs: src/schemas/**/*,src/db/**/*
+alwaysApply: false
+---
+
+# Persistencia (schemas + db)
+
+**Solo esta capa.** Sin lógica D&D (→ `src/rules/`); sin pipeline build (→ `srd-pipeline`).
+
+- Forma guardada: `CharacterSchema` en `src/schemas/character.ts`
+- Subir versión → actualizar `SCHEMA_VERSION` (`src/lib/constants.ts`) + `migrate.ts` + tests
+- Solo **hechos** del jugador; nunca mods, CA calculada, slots máx, prof bonus
+- Export/backup: seguir tipos en `src/schemas/` existentes

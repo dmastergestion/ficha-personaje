@@ -72,6 +72,8 @@ const equipmentItemSchema = z.object({
   damage: z.string().optional(),
   attuned: z.boolean().optional(),
   requiresAttunement: z.boolean().optional(),
+  /** Si false, no aparece en la tabla de ataques. Ausente = sí (compat). */
+  inCombat: z.boolean().optional(),
 });
 
 export const combatAttackSchema = z.object({
@@ -129,6 +131,7 @@ export const CharacterSchema = z.object({
     savingThrows: z.array(abilityKeySchema),
     skills: z.array(skillKeySchema),
     skillOverrides: z.record(skillKeySchema, z.boolean()),
+    expertise: z.array(skillKeySchema).default([]),
     languages: z.array(z.string()),
     armorProficiencies: z.array(z.string()),
     weaponProficiencies: z.array(z.string()),
@@ -147,6 +150,9 @@ export const CharacterSchema = z.object({
     initiativeOverride: z.number().int().nullable(),
     speedOverride: z.number().int().nullable(),
     inspiration: z.boolean(),
+    raging: z.boolean().default(false),
+    /** Ataque temerario (bárbaro): ventaja en ataques de FUE. */
+    reckless: z.boolean().default(false),
     conditionIds: z.array(conditionIdSchema),
     conditionsCustom: z.array(z.string()),
     exhaustionLevel: z.number().int().min(0).max(6),
@@ -244,6 +250,7 @@ export function crearPersonajeVacio(input: {
       savingThrows: [],
       skills: [],
       skillOverrides: {},
+      expertise: [],
       languages: ["Común"],
       armorProficiencies: [],
       weaponProficiencies: [],
@@ -261,6 +268,8 @@ export function crearPersonajeVacio(input: {
       initiativeOverride: null,
       speedOverride: null,
       inspiration: false,
+      raging: false,
+      reckless: false,
       conditionIds: [],
       conditionsCustom: [],
       exhaustionLevel: 0,

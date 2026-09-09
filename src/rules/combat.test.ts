@@ -1,6 +1,11 @@
 import { describe, expect, it } from "vitest";
-import { calcularClaseArmadura, desgloseClaseArmadura } from "@/rules/combat";
+import {
+  calcularClaseArmadura,
+  claseArmaduraPersonaje,
+  desgloseClaseArmadura,
+} from "@/rules/combat";
 import type { SrdArmor } from "@/rules/srd";
+import { crearPersonajeVacio } from "@/schemas/character";
 
 const leather: SrdArmor = {
   id: "leather-armor",
@@ -67,6 +72,32 @@ describe("desgloseClaseArmadura", () => {
 
   it("override manual", () => {
     const d = desgloseClaseArmadura(10, null, false, shield, 18);
-    expect(d.resumen).toBe("Manual 18");
+    expect(d.resumen).toBe("Manual 18 (ignora escudo y defensa)");
+  });
+});
+
+describe("defensa sin armadura y estilo", () => {
+  it("bárbaro 16 DES 16 CON sin armadura = CA 16", () => {
+    const pj = crearPersonajeVacio({ name: "B", playerName: "J", classId: "barbarian" });
+    pj.abilities.dex = 16;
+    pj.abilities.con = 16;
+    pj.equipment.armorId = null;
+    expect(claseArmaduraPersonaje(pj)).toBe(16);
+  });
+
+  it("monje suma SAB sin armadura ni escudo", () => {
+    const pj = crearPersonajeVacio({ name: "M", playerName: "J", classId: "monk" });
+    pj.abilities.dex = 16;
+    pj.abilities.wis = 16;
+    pj.equipment.armorId = null;
+    pj.equipment.shieldEquipped = false;
+    expect(claseArmaduraPersonaje(pj)).toBe(16);
+  });
+
+  it("dote Defensa +1 CA con armadura", () => {
+    const ac = calcularClaseArmadura(10, leather, false, shield, null, {
+      estiloDefensa: true,
+    });
+    expect(ac).toBe(12);
   });
 });

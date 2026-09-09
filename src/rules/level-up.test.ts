@@ -55,6 +55,31 @@ describe("prepararSubidaNivel", () => {
     expect(preview!.pbAfter).toBe(3);
     expect(preview!.milestones.some((m) => m.includes("Ataque adicional"))).toBe(true);
   });
+
+  it("el primer nivel de mago sobre guerrero 5 usa la media del d6", () => {
+    const base = crearPersonajeVacio({
+      name: "Test",
+      playerName: "P",
+      classId: "fighter",
+      level: 5,
+    });
+    const character = {
+      ...base,
+      identity: {
+        ...base.identity,
+        classes: [{ classId: "fighter", subclassId: null, level: 5 }],
+        level: 5,
+      },
+      abilities: { ...base.abilities, con: 14 },
+    };
+    const preview = prepararSubidaNivel(character, [
+      { classId: "fighter", subclassId: null, level: 5 },
+      { classId: "wizard", subclassId: null, level: 1 },
+    ]);
+    expect(preview).not.toBeNull();
+    expect(preview!.hpGain.average).toBe(6);
+    expect(preview!.hpGain.average).not.toBe(preview!.hpGain.maximum);
+  });
 });
 
 describe("aplicarSubidaNivel", () => {
@@ -118,9 +143,16 @@ describe("detectarBajadaNivel", () => {
 });
 
 describe("pvGanadoAlSubir", () => {
-  it("primer nivel en clase usa máximo del dado", () => {
+  it("nivel 1 de personaje usa máximo del dado", () => {
     const gain = pvGanadoAlSubir("fighter", 14, true);
     expect(gain.isFirstLevelInClass).toBe(true);
     expect(gain.average).toBe(gain.maximum);
+  });
+
+  it("primer nivel de una clase nueva en multiclase usa la media, no el máximo", () => {
+    const gain = pvGanadoAlSubir("wizard", 14, false);
+    expect(gain.isFirstLevelInClass).toBe(false);
+    expect(gain.average).toBe(6);
+    expect(gain.maximum).toBe(8);
   });
 });

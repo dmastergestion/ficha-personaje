@@ -1,5 +1,12 @@
 import type { ClassLevel } from "@/schemas/character";
-import { esSubclaseArcana } from "@/rules/spell-lists";
+import { extraTrucosOrdenDivino } from "@/rules/class-equipment";
+import type { OriginChoices } from "@/rules/origin-choices";
+import { idsEquivalentesConjuro } from "@/rules/spell-aliases";
+import {
+  conjuroDisponibleParaPersonaje,
+  conjuroYaEnFicha,
+  esSubclaseArcana,
+} from "@/rules/spell-lists";
 import {
   claseLanzaConjuros,
   maxConjurosGrimorio,
@@ -26,13 +33,16 @@ function clasesConjuro(classes: ClassLevel[]): ClassLevel[] {
   );
 }
 
-export function requisitosConjurosClases(classes: ClassLevel[]): RequisitoConjuros {
+export function requisitosConjurosClases(
+  classes: ClassLevel[],
+  originChoices?: OriginChoices,
+): RequisitoConjuros {
   let cantrips = 0;
   let grimorio = 0;
   let preparados = 0;
 
   for (const cl of clasesConjuro(classes)) {
-    cantrips += maxTrucosClase(cl.classId, cl.level);
+    cantrips += maxTrucosClase(cl.classId, cl.level) + extraTrucosOrdenDivino(cl.classId, originChoices);
     preparados += maxPreparadosClase(cl.classId, cl.level);
     grimorio += maxConjurosGrimorio(cl.classId, cl.level);
   }
@@ -43,8 +53,9 @@ export function requisitosConjurosClases(classes: ClassLevel[]): RequisitoConjur
 export function requisitosConjurosDesdeSeleccion(
   classes: ClassLevel[],
   seleccion: SeleccionConjuros,
+  originChoices?: OriginChoices,
 ): RequisitoConjuros {
-  const max = requisitosConjurosClases(classes);
+  const max = requisitosConjurosClases(classes, originChoices);
   return {
     cantrips: Math.max(0, max.cantrips - seleccion.cantripsKnown.length),
     grimorio: Math.max(0, max.grimorio - seleccion.spellsKnown.length),
@@ -72,16 +83,18 @@ export function necesitaPasoConjuros(classId: string, level: number): boolean {
 export function seleccionConjurosCompleta(
   classes: ClassLevel[],
   seleccion: SeleccionConjuros,
+  originChoices?: OriginChoices,
 ): boolean {
-  const pend = requisitosConjurosDesdeSeleccion(classes, seleccion);
+  const pend = requisitosConjurosDesdeSeleccion(classes, seleccion, originChoices);
   return pend.cantrips === 0 && pend.grimorio === 0 && pend.preparados === 0;
 }
 
 export function validarSeleccionConjuros(
   classes: ClassLevel[],
   seleccion: SeleccionConjuros,
+  originChoices?: OriginChoices,
 ): string | null {
-  const max = requisitosConjurosClases(classes);
+  const max = requisitosConjurosClases(classes, originChoices);
 
   if (seleccion.cantripsKnown.length > max.cantrips) {
     return `Demasiados trucos (máx. ${max.cantrips}).`;
@@ -93,7 +106,7 @@ export function validarSeleccionConjuros(
     return `Demasiados conjuros preparados (máx. ${max.preparados}).`;
   }
 
-  const pend = requisitosConjurosDesdeSeleccion(classes, seleccion);
+  const pend = requisitosConjurosDesdeSeleccion(classes, seleccion, originChoices);
   if (pend.cantrips > 0) {
     return `Elige ${pend.cantrips} truco${pend.cantrips > 1 ? "s" : ""} más.`;
   }
@@ -187,4 +200,40 @@ export function requisitosPendientesPersonaje(character: {
 }): RequisitoConjuros {
   const classes = clasesParaConjuros(character as Parameters<typeof clasesParaConjuros>[0]);
   return requisitosConjurosDesdeSeleccion(classes, character.spells);
+}
+
+export type ListaEleccionConjuro = "cantrips" | "grimorio" | "preparados";
+
+/** Ids que ya ocupan plaza en el selector (selección actual + rasgos), con alias SRD/PHB. */
+export function idsOcupadosSelectorConjuros(
+  seleccion: SeleccionConjuros,
+  extra: Iterable<string> = [],
+): Set<string> {
+  return new Set(
+    [
+      ...seleccion.cantripsKnown,
+      ...seleccion.spellsKnown,
+      ...seleccion.spellsPrepared,
+      ...extra,
+    ].flatMap((id) => idsEquivalentesConjuro(id)),
+  );
+}
+
+export function conjuroVisibleEnEleccion(opts: {
+  spellId: string;
+  spellLevel: number;
+  clase: ClassLevel;
+  lista: ListaEleccionConjuro;
+  idsOcupados: ReadonlySet<string>;
+  grimorio?: ReadonlySet<string>;
+  requiereGrimorioParaPreparar?: boolean;
+}): boolean {
+  if (opts.lista === "cantrips" ? opts.spellLevel !== 0 : opts.spellLevel < 1) return false;
+  if (conjuroYaEnFicha(opts.spellId, opts.idsOcupados)) return false;
+  if (!conjuroDisponibleParaPersonaje(opts.spellId, opts.spellLevel, opts.clase)) return false;
+  if (opts.lista === "preparados" && opts.requiereGrimorioParaPreparar) {
+    const grimorio = opts.grimorio ?? new Set();
+    return idsEquivalentesConjuro(opts.spellId).some((id) => grimorio.has(id));
+  }
+  return true;
 }

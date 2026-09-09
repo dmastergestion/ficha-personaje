@@ -2,7 +2,7 @@ import type { AbilityKey, SkillKey } from "@/lib/constants";
 import { etiquetaHerramienta } from "@/lib/origin-text";
 import classProfMeta from "@/data/srd/class-prof-meta.json";
 import type { Character } from "@/schemas/character";
-import { obtenerArma } from "@/rules/srd";
+import { obtenerArma, obtenerArmadura } from "@/rules/srd";
 
 /** Salvaciones proficientes por clase — SRD 2024 (12 clases). */
 export const SALVACIONES_CLASE: Record<string, AbilityKey[]> = {
@@ -48,6 +48,7 @@ export function proficienciasIniciales(
   classId: string,
   originSkills: SkillKey[] = [],
   originTools: string[] = [],
+  classSkills: SkillKey[] = [],
 ): {
   savingThrows: AbilityKey[];
   skills: SkillKey[];
@@ -59,7 +60,7 @@ export function proficienciasIniciales(
   const classProf = competenciasClase(classId);
   return {
     savingThrows,
-    skills: [...originSkills],
+    skills: uniq([...originSkills, ...classSkills]),
     armorProficiencies: [...classProf.armorProficiencies],
     weaponProficiencies: [...classProf.weaponProficiencies],
     toolProficiencies: uniq([...classProf.toolProficiencies, ...originTools]),
@@ -71,14 +72,79 @@ export function esCompetenteConArma(character: Character, weaponId: string | nul
   const weapon = obtenerArma(weaponId);
   if (!weapon) return true;
 
-  const profs = character.proficiencies.weaponProficiencies.map((p) => p.toLowerCase());
-  if (profs.length === 0) return true;
+  const profs = character.proficiencies.weaponProficiencies.map((p) => p.toLowerCase().trim());
+  if (profs.length === 0) return false;
 
   const category = weapon.category.toLowerCase();
-  if (profs.some((p) => p.includes("martial") && category === "martial")) return true;
-  if (profs.some((p) => p.includes("simple") && category === "simple")) return true;
-  if (profs.some((p) => p === category)) return true;
-  return profs.some((p) => p.includes("martial") || p.includes("simple"));
+  const isMartial = category.startsWith("martial");
+  const isSimple = category.startsWith("simple");
+  const props = new Set(weapon.properties.map((p) => p.toLowerCase()));
+  const hasLight = props.has("lgt") || props.has("light");
+  const hasFinesse = props.has("fin") || props.has("finesse");
+
+  for (const p of profs) {
+    if (p === weapon.id || p === weaponId.toLowerCase()) return true;
+
+    const martialVariant = p.match(/^martial\s*\((.+)\)$/);
+    if (martialVariant) {
+      if (!isMartial) continue;
+      const tokens = martialVariant[1]!.split(/[/,]/).map((part) => part.trim());
+      const wantsLight = tokens.includes("light") || tokens.includes("ligeras");
+      const wantsFinesse = tokens.includes("finesse") || tokens.includes("sutiles") || tokens.includes("sutil");
+      if (wantsLight && wantsFinesse) {
+        if (hasLight || hasFinesse) return true;
+        continue;
+      }
+      if (wantsLight && hasLight) return true;
+      if (wantsFinesse && hasFinesse) return true;
+      continue;
+    }
+
+    if (p === "martial" && isMartial) return true;
+    if (p === "simple" && isSimple) return true;
+    if (p === category) return true;
+  }
+
+  return false;
+}
+
+export function esCompetenteConArmadura(
+  character: Character,
+  category: string | null | undefined,
+): boolean {
+  if (!category) return true;
+  const cat = category.toLowerCase();
+  const profs = character.proficiencies.armorProficiencies.map((p) => p.toLowerCase().trim());
+  if (profs.includes(cat)) return true;
+  if (cat === "shield") return profs.includes("shield") || profs.includes("escudos");
+  return false;
+}
+
+/** Armadura o escudo puestos sin adiestramiento (2024: desventaja FUE/DES y no lanzar). */
+export function llevaArmaduraSinAdiestramiento(character: Character): boolean {
+  const armor = obtenerArmadura(character.equipment.armorId);
+  if (armor && armor.category !== "shield" && !esCompetenteConArmadura(character, armor.category)) {
+    return true;
+  }
+  if (character.equipment.shieldEquipped && !esCompetenteConArmadura(character, "shield")) {
+    return true;
+  }
+  return false;
+}
+
+export function desventajaPruebaCaracteristica(
+  character: Character,
+  ability: AbilityKey,
+  skill?: SkillKey,
+): boolean {
+  if (llevaArmaduraSinAdiestramiento(character) && (ability === "str" || ability === "dex")) {
+    return true;
+  }
+  if (skill === "stealth") {
+    const armor = obtenerArmadura(character.equipment.armorId);
+    if (armor?.stealthDisadvantage) return true;
+  }
+  return false;
 }
 
 const ARMOR_PROF_LABELS_ES: Record<string, string> = {

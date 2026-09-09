@@ -63,16 +63,20 @@ export const ATTACK_TABLE_HEADERS = [
   "Notas",
 ] as const;
 
-/** Cabecera de fila de conjuro en la ficha oficial. */
+/** Cabecera de fila de conjuro en mesa (la ficha PDF sigue usando el mapa oficial). */
 export const SPELL_TABLE_HEADERS = [
   "Nombre",
-  "Nivel",
+  "Niv.",
   "Tiempo",
-  "Conc.",
-  "Ritual",
-  "Material",
   "Alcance",
-  "Notas",
+] as const;
+
+/** Cabecera de inventario en mesa (referencia; la UI usa etiquetas por campo). */
+export const EQUIP_TABLE_HEADERS = [
+  "Objeto",
+  "Cantidad",
+  "Peso (lb)",
+  "Total",
 ] as const;
 
 /** Etiquetas de competencia en armadura (PDF). */

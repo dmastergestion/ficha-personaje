@@ -11,9 +11,36 @@ import {
   periciaDesdeEleccionEspecie as periciaDesdeEleccion,
   type OriginChoices,
 } from "@/rules/origin-choices";
+import { bonusPgEnano } from "@/rules/resources";
 import { inferSpeciesGroupId } from "@/rules/species-catalog";
+
+/** Idiomas fijos de especie (Común + racial). El extra de humano/elfo va en elecciones. */
+const IDIOMAS_POR_GRUPO: Record<string, string[]> = {
+  aasimar: ["Común", "Celestial"],
+  dragonborn: ["Común", "Dracónico"],
+  dwarf: ["Común", "Enano"],
+  elf: ["Común", "Élfico"],
+  gnome: ["Común", "Gnómico"],
+  goliath: ["Común", "Gigante"],
+  halfling: ["Común", "Mediano"],
+  human: ["Común"],
+  orc: ["Común", "Orco"],
+  tiefling: ["Común", "Infernal"],
+};
+
+export function idiomasEspecie(
+  speciesId: string | null,
+  elecciones?: OriginChoices,
+): string[] {
+  if (!speciesId) return ["Común"];
+  const group = inferSpeciesGroupId(speciesId);
+  const base = IDIOMAS_POR_GRUPO[group] ?? ["Común"];
+  const extra = elecciones?.species?.["extra-language"];
+  if (extra && !base.includes(extra)) return uniq([...base, extra]);
+  return [...base];
+}
 import type { SrdBackground, SrdSpecies } from "@/rules/srd";
-import type { CharacterFeat } from "@/schemas/character";
+import type { Character, CharacterFeat } from "@/schemas/character";
 
 type SpeciesMetaRow = {
   skillProficiencies?: string[];
@@ -258,20 +285,42 @@ export function calcularBeneficiosOrigen(
         ? bonificadoresDesdeElecciones(background?.traits, elecciones)
         : bonificadoresAtributoTrasfondo(background?.traits);
 
-  let hpBonusTotal = 0;
-  if (speciesId === "dwarf" || speciesId?.startsWith("dwarf")) {
-    hpBonusTotal = level;
-  }
+  const hpBonusTotal = bonusPgEnano(speciesId, level);
 
   return {
     skills: uniq([...speciesSkills, ...backgroundSkills]),
     toolProficiencies: elecciones
       ? herramientasDesdeElecciones(background?.toolProficiencies ?? [], elecciones)
       : (background?.toolProficiencies ?? []),
-    languages: [],
+    languages: idiomasEspecie(speciesId, elecciones),
     feat,
     speciesFeat,
     abilityBonuses,
     hpBonusTotal,
   };
+}
+
+export function dotesOrigenConcedidas(
+  speciesId: string | null,
+  backgroundId: string | null,
+  level: number,
+  catalogo?: OrigenCatalogo,
+  elecciones?: OriginChoices,
+): CharacterFeat[] {
+  const origen = calcularBeneficiosOrigen(speciesId, backgroundId, level, catalogo, elecciones);
+  return [origen.speciesFeat, origen.feat].filter(Boolean) as CharacterFeat[];
+}
+
+export function esDoteOrigenFijada(character: Character, feat: CharacterFeat): boolean {
+  const concedidas = dotesOrigenConcedidas(
+    character.identity.speciesId,
+    character.identity.backgroundId,
+    character.identity.level,
+    undefined,
+    character.originChoices,
+  ).map((f) => f.id);
+  if (!concedidas.includes(feat.id)) return false;
+  const primera = character.feats.find((f) => f.id === feat.id);
+  if (!primera) return false;
+  return (primera.instanceId ?? primera.id) === (feat.instanceId ?? feat.id);
 }

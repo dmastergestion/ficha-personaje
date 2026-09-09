@@ -193,13 +193,14 @@ export function defaultsV6(char: z.infer<typeof CharacterSchemaV5>): Character {
 
   return CharacterSchema.parse({
     ...char,
-    schemaVersion: 8,
+    schemaVersion: 9,
     proficiencies: {
       ...prof,
       languages: prof.languages ?? ["Común"],
       armorProficiencies: prof.armorProficiencies ?? [],
       weaponProficiencies: prof.weaponProficiencies ?? [],
       toolProficiencies: prof.toolProficiencies ?? [],
+      expertise: [],
     },
     combat: {
       ...combat,
@@ -233,14 +234,36 @@ export function defaultsV6(char: z.infer<typeof CharacterSchemaV5>): Character {
   });
 }
 
+const CharacterSchemaV8 = CharacterSchema.extend({
+  schemaVersion: z.literal(8),
+  proficiencies: CharacterSchema.shape.proficiencies.extend({
+    expertise: z.array(z.enum(SKILL_KEYS)).optional(),
+  }),
+});
+
+export function migrarPersonajeV8(raw: unknown): Character {
+  const v8 = CharacterSchemaV8.parse(raw);
+  return CharacterSchema.parse({
+    ...v8,
+    schemaVersion: 9,
+    proficiencies: {
+      ...v8.proficiencies,
+      expertise: v8.proficiencies.expertise ?? [],
+    },
+  });
+}
+
 const CharacterSchemaV7 = CharacterSchema.omit({ portraitImage: true }).extend({
   schemaVersion: z.literal(7),
+  proficiencies: CharacterSchema.shape.proficiencies.extend({
+    expertise: z.array(z.enum(SKILL_KEYS)).optional(),
+  }),
 });
 
 export function migrarPersonajeV7(raw: unknown): Character {
   const v7 = CharacterSchemaV7.parse(raw);
   const extra = raw as { portraitImage?: string | null };
-  return CharacterSchema.parse({
+  return migrarPersonajeV8({
     ...v7,
     schemaVersion: 8,
     portraitImage: extra.portraitImage ?? null,
@@ -345,10 +368,11 @@ export function migrarPersonajeV1(raw: unknown): Character {
 }
 
 export function normalizarPersonaje(raw: unknown): Character {
-  const v8 = CharacterSchema.safeParse(raw);
-  if (v8.success) return sanitizarRecursos(v8.data);
+  const v9 = CharacterSchema.safeParse(raw);
+  if (v9.success) return sanitizarRecursos(v9.data);
 
   const asRecord = raw as { schemaVersion?: number } | null;
+  if (asRecord?.schemaVersion === 8) return sanitizarRecursos(migrarPersonajeV8(raw));
   if (asRecord?.schemaVersion === 7) return sanitizarRecursos(migrarPersonajeV7(raw));
   if (asRecord?.schemaVersion === 6) return sanitizarRecursos(migrarPersonajeV6(raw));
   if (asRecord?.schemaVersion === 5) return sanitizarRecursos(migrarPersonajeV5(raw));
@@ -481,4 +505,16 @@ export function migrarRegistroDexieV8(char: Record<string, unknown>): void {
       source: r.source ?? "class",
     }));
   }
+}
+
+export function migrarRegistroDexieV9(char: Record<string, unknown>): void {
+  if (char.schemaVersion !== 8) return;
+  const proficiencies = char.proficiencies as Record<string, unknown> | undefined;
+  if (proficiencies) {
+    proficiencies.expertise = proficiencies.expertise ?? [];
+  }
+  const combat = char.combat as Record<string, unknown> | undefined;
+  if (combat && combat.raging === undefined) combat.raging = false;
+  if (combat && combat.reckless === undefined) combat.reckless = false;
+  char.schemaVersion = 9;
 }

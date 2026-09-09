@@ -4,6 +4,7 @@ import {
   etiquetaOrigenRecurso,
   poblarRecursosSugeridos,
 } from "@/rules/resources-tracker";
+import { otorgamientoPorRecursoLibre } from "@/rules/spell-grants";
 import type { Character } from "@/schemas/character";
 import { useCatalogStore } from "@/stores/catalog-store";
 
@@ -30,6 +31,9 @@ export function ResourcesPanel({
   onChange: (next: Character) => void;
 }) {
   const catalog = useCatalogStore((s) => s.catalog);
+  const visibles = character.resources.filter(
+    (r) => !otorgamientoPorRecursoLibre(character, r.id),
+  );
 
   return (
     <section className="sheet-card">
@@ -47,9 +51,13 @@ export function ResourcesPanel({
         <p className="text-xs text-muted">
           Pulsa Auto para cargar usos de clase, especie y rasgos limitados.
         </p>
+      ) : visibles.length === 0 ? (
+        <p className="text-sm text-muted">
+          Los usos de conjuros de rasgo (p. ej. Detectar magia) están en Hechizos, junto a Lanzar.
+        </p>
       ) : (
         <ul className="space-y-1.5">
-          {character.resources.map((r) => (
+          {visibles.map((r) => (
             <li key={r.id} className="flex items-center justify-between gap-2 text-sm">
               <span className="min-w-0 truncate">
                 {r.name}
@@ -67,21 +75,58 @@ export function ResourcesPanel({
                 <span className="text-xs tabular-nums">
                   {r.max - r.used}/{r.max}
                 </span>
-                <Button
-                  variant="danger"
-                  className="px-2 py-0.5 text-xs"
-                  disabled={r.recharge === "none"}
-                  onClick={() => onChange(ajustarRecurso(character, r.id, 1))}
-                >
-                  −
-                </Button>
-                <Button
-                  className="px-2 py-0.5 text-xs"
-                  disabled={r.recharge === "none" || r.used <= 0}
-                  onClick={() => onChange(ajustarRecurso(character, r.id, -1))}
-                >
-                  +
-                </Button>
+                {r.id.includes("lay-on-hands") ? (
+                  <label className="flex items-center gap-1 text-xs">
+                    <input
+                      type="number"
+                      min={1}
+                      max={r.max - r.used}
+                      defaultValue={1}
+                      className="sheet-input-compact w-12"
+                      aria-label="Puntos de imposición a gastar"
+                      onKeyDown={(e) => {
+                        if (e.key !== "Enter") return;
+                        const n = Number((e.target as HTMLInputElement).value);
+                        if (Number.isFinite(n) && n > 0) {
+                          onChange(ajustarRecurso(character, r.id, n));
+                        }
+                      }}
+                    />
+                    <Button
+                      variant="danger"
+                      className="px-2 py-0.5 text-xs"
+                      onClick={(e) => {
+                        const input = (e.currentTarget.parentElement?.querySelector(
+                          "input",
+                        ) as HTMLInputElement | null);
+                        const n = Number(input?.value ?? 1);
+                        if (Number.isFinite(n) && n > 0) {
+                          onChange(ajustarRecurso(character, r.id, n));
+                        }
+                      }}
+                    >
+                      Gastar
+                    </Button>
+                  </label>
+                ) : (
+                  <>
+                    <Button
+                      variant="danger"
+                      className="px-2 py-0.5 text-xs"
+                      disabled={r.recharge === "none"}
+                      onClick={() => onChange(ajustarRecurso(character, r.id, 1))}
+                    >
+                      −
+                    </Button>
+                    <Button
+                      className="px-2 py-0.5 text-xs"
+                      disabled={r.recharge === "none" || r.used <= 0}
+                      onClick={() => onChange(ajustarRecurso(character, r.id, -1))}
+                    >
+                      +
+                    </Button>
+                  </>
+                )}
               </div>
             </li>
           ))}

@@ -7,7 +7,9 @@ import {
   SKILLS_BY_ABILITY,
 } from "@/lib/sheet-layout";
 import { bonificadorCompetencia, modificadorAtributo } from "@/rules/ability";
-import { modificadorPericia, modificadorSalvacion } from "@/rules/character";
+import { modificadorPericia, modificadorSalvacion, tieneExpertisePericia, esProficientePericia } from "@/rules/character";
+import { periciasExtraDotes } from "@/rules/feat-mechanics";
+import { ajustarPgPorCambioCon } from "@/rules/resources";
 import type { Character } from "@/schemas/character";
 
 function fmtMod(n: number): string {
@@ -48,17 +50,33 @@ export function AbilitySkillPanel({
     const skills = proficient
       ? character.proficiencies.skills.filter((s) => s !== skill)
       : [...character.proficiencies.skills, skill];
+    const expertise = proficient
+      ? (character.proficiencies.expertise ?? []).filter((s) => s !== skill)
+      : (character.proficiencies.expertise ?? []);
     onChange({
       ...character,
-      proficiencies: { ...character.proficiencies, skills, skillOverrides: overrides },
+      proficiencies: { ...character.proficiencies, skills, skillOverrides: overrides, expertise },
+    });
+  }
+
+  function toggleExpertise(skill: SkillKey) {
+    if (!esProficiente(skill)) return;
+    const current = character.proficiencies.expertise ?? [];
+    const expertise = current.includes(skill)
+      ? current.filter((s) => s !== skill)
+      : [...current, skill];
+    onChange({
+      ...character,
+      proficiencies: { ...character.proficiencies, expertise },
     });
   }
 
   function esProficiente(skill: SkillKey): boolean {
-    if (skill in character.proficiencies.skillOverrides) {
-      return character.proficiencies.skillOverrides[skill] ?? false;
-    }
-    return character.proficiencies.skills.includes(skill);
+    return esProficientePericia(character, skill);
+  }
+
+  function periciaDeDote(skill: SkillKey): boolean {
+    return periciasExtraDotes(character).includes(skill);
   }
 
   return (
@@ -90,18 +108,24 @@ export function AbilitySkillPanel({
                           className="sheet-ability-score"
                           value={score}
                           aria-label={etiquetaAtributoOficial(ability)}
-                          onChange={(e) =>
-                            onChange({
+                          onChange={(e) => {
+                            const nextScore = Math.min(
+                              30,
+                              Math.max(1, Number(e.target.value) || 10),
+                            );
+                            const withScore = {
                               ...character,
                               abilities: {
                                 ...character.abilities,
-                                [ability]: Math.min(
-                                  30,
-                                  Math.max(1, Number(e.target.value) || 10),
-                                ),
+                                [ability]: nextScore,
                               },
-                            })
-                          }
+                            };
+                            onChange(
+                              ability === "con"
+                                ? ajustarPgPorCambioCon(withScore, score, nextScore)
+                                : withScore,
+                            );
+                          }}
                         />
                       ) : (
                         <span className="sheet-ability-score">{score}</span>
@@ -137,6 +161,7 @@ export function AbilitySkillPanel({
                         <ul className="mt-1 space-y-0.5">
                           {skills.map((skill) => {
                             const proficient = esProficiente(skill);
+                            const expertise = tieneExpertisePericia(character, skill);
                             const skillMod = modificadorPericia(character, skill);
                             return (
                               <li key={skill} className="sheet-skill-row">
@@ -144,12 +169,29 @@ export function AbilitySkillPanel({
                                   <input
                                     type="checkbox"
                                     checked={proficient}
+                                    disabled={periciaDeDote(skill)}
                                     onChange={() => toggleSkill(skill)}
+                                    aria-label={`Competencia en ${etiquetaPericiaOficial(skill)}`}
+                                    title={
+                                      periciaDeDote(skill)
+                                        ? "Competencia de la dote Hábil"
+                                        : undefined
+                                    }
+                                  />
+                                  <input
+                                    type="checkbox"
+                                    className="accent-gold"
+                                    checked={expertise}
+                                    disabled={!proficient}
+                                    onChange={() => toggleExpertise(skill)}
+                                    aria-label={`Expertise en ${etiquetaPericiaOficial(skill)}`}
+                                    title="Expertise (doble PB)"
                                   />
                                   <span
                                     className={`truncate text-sm ${proficient ? "font-medium" : "text-muted"}`}
                                   >
                                     {etiquetaPericiaOficial(skill)}
+                                    {expertise ? " ★" : ""}
                                   </span>
                                 </label>
                                 <Button

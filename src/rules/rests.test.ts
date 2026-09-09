@@ -14,6 +14,17 @@ describe("aplicarDescansoLargo", () => {
     expect(next.spells.spellSlotsUsed["1"]).toBe(0);
   });
 
+  it("recupera todos los dados de golpe gastados", () => {
+    const pj = crearPersonajeVacio({ name: "Mago", playerName: "J", classId: "wizard" });
+    pj.combat.hitDiceTotal = 4;
+    pj.combat.hitDiceUsed = 4;
+    pj.combat.hitDiceSpentByDie = { d6: 4 };
+
+    const next = aplicarDescansoLargo(pj);
+    expect(next.combat.hitDiceUsed).toBe(0);
+    expect(next.combat.hitDiceSpentByDie).toEqual({});
+  });
+
   it("otorga inspiración heroica al humano", () => {
     const pj = crearPersonajeVacio({ name: "Humano", playerName: "J", classId: "fighter" });
     pj.identity.speciesId = "human";

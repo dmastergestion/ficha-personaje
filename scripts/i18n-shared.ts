@@ -19,6 +19,7 @@ export const SPELL_SRD_ALIASES: Record<string, string> = {
   "resilient-sphere": "otiluke's resilient sphere",
   "secret-chest": "leomund's secret chest",
   "telekinetic-hand": "mage hand",
+  "unseen-servant": "unseen servant",
   "magic-mouth": "arcane mouth",
   "secret-door": "passwall",
   "globe-of-invulnerability": "globe of invulnerability",
@@ -28,6 +29,7 @@ export const SPELL_SRD_ALIASES: Record<string, string> = {
   "irresistible-dance": "otto's irresistible dance",
   "arcane-sword": "mordenkainen's sword",
   "magnificent-mansion": "mordenkainen's magnificent mansion",
+  "tensers-floating-disk": "tenser's floating disk",
 };
 
 export function projectRoot(): string {

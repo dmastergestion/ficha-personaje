@@ -18,13 +18,13 @@ export function ClassFeaturesPanel({ classes }: { classes: ClassLevel[] }) {
               <p className="mb-1 text-sm font-medium text-gold">
                 {catalog.t("classes", cl.classId, cl.classId)} (niv {cl.level})
               </p>
-              <ul className="space-y-1.5 text-xs">
+              <ul className="space-y-2 text-sm">
                 {list.map((f) => (
-                  <li key={`${f.level}-${f.name}`} className="rounded border border-white/5 px-2 py-1.5">
+                  <li key={`${f.level}-${f.name}`} className="rounded-lg border border-white/10 bg-surface/40 px-3 py-2">
                     <span className="font-semibold">
                       Niv {f.level}: {f.name}
                     </span>
-                    <p className="mt-0.5 text-muted">{pulirTextoReglasEs(f.description)}</p>
+                    <p className="sheet-prose mt-1">{pulirTextoReglasEs(f.description)}</p>
                   </li>
                 ))}
               </ul>

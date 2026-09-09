@@ -1,14 +1,31 @@
 import classStartEquipmentJson from "@/data/srd/class-start-equipment.json";
 import { parsearSegmentoEquipo } from "@/rules/equipment-parsing";
+import {
+  eleccionArmaPacto,
+  eleccionesInvocaciones,
+  eleccionesTrucoInvocacion,
+  fusionarInvocaciones,
+  invocacionesCompletas,
+  INVOCATIONS_KEY,
+  KEYS_SEGUIMIENTO_INVOCACION,
+  nivelBrujoClases,
+} from "@/rules/invocations";
+import { competenciasClase } from "@/rules/proficiencies";
 import { srdArmor, t } from "@/rules/srd";
 import type { OriginChoiceDefinition, OriginChoices } from "@/rules/origin-choices";
-import type { Character, EquipmentItem } from "@/schemas/character";
+import type { Character, ClassLevel, EquipmentItem } from "@/schemas/character";
 
 type ClassEquipmentRow = Partial<Record<"A" | "B" | "C", string>>;
 const classStartEquipment = classStartEquipmentJson as Record<string, ClassEquipmentRow>;
 
 export const ORIGIN_CLASS_EQUIPMENT_NOTE = "[origen:clase]";
 export const CLASS_EQUIP_GP_KEY = "_classEquipGp";
+export const DIVINE_ORDER_KEY = "divine-order";
+export type OrdenDivino = "protector" | "thaumaturge";
+
+function uniq<T>(items: T[]): T[] {
+  return [...new Set(items)];
+}
 
 export type ClassEquipmentChoice = "A" | "B" | "C";
 
@@ -28,40 +45,153 @@ function etiquetaOpcionEquipo(segment: string, letter: ClassEquipmentChoice): st
   return `Equipo ${letter} (paquete de clase)`;
 }
 
-export function eleccionesClase(classId: string | null): OriginChoiceDefinition[] {
+export type OpcionesEleccionClase = {
+  classes?: ClassLevel[];
+  classLevel?: number;
+  invocaciones?: string;
+  trucosConocidos?: string[];
+};
+
+function nivelParaEleccion(classId: string, opts?: OpcionesEleccionClase): number {
+  if (opts?.classLevel != null) return opts.classLevel;
+  if (opts?.classes) {
+    const fromClasses = opts.classes.find((c) => c.classId === classId)?.level;
+    if (fromClasses != null) return fromClasses;
+    return nivelBrujoClases(opts.classes);
+  }
+  return 1;
+}
+
+export function eleccionesClase(
+  classId: string | null,
+  opts?: OpcionesEleccionClase,
+): OriginChoiceDefinition[] {
   if (!classId) return [];
+  const defs: OriginChoiceDefinition[] = [];
   const row = classStartEquipment[classId];
-  if (!row) return [];
-  const options = opcionesEquipoClase(classId).map((key) => ({
-    value: key,
-    label: etiquetaOpcionEquipo(row[key]!, key),
-  }));
-  if (options.length === 0) return [];
-  return [
-    {
-      id: "equipment",
+  if (row) {
+    const options = opcionesEquipoClase(classId).map((key) => ({
+      value: key,
+      label: etiquetaOpcionEquipo(row[key]!, key),
+    }));
+    if (options.length > 0) {
+      defs.push({
+        id: "equipment",
+        scope: "class",
+        label: "Equipo inicial de clase",
+        options,
+        defaultValue: "A",
+        editable: "never",
+      });
+    }
+  }
+  if (classId === "cleric") {
+    defs.push({
+      id: DIVINE_ORDER_KEY,
       scope: "class",
-      label: "Equipo inicial de clase",
-      options,
-      defaultValue: "A",
+      label: "Orden divino",
+      hint: "Protector: armadura pesada y armas marciales. Taumaturgo: un truco extra de clérigo y bonus a Arcana y Religión.",
+      options: [
+        { value: "protector", label: "Protector (armadura pesada y armas marciales)" },
+        { value: "thaumaturge", label: "Taumaturgo (truco extra y bonus a Arcana/Religión)" },
+      ],
       editable: "never",
+    });
+  }
+  defs.push(...eleccionesInvocaciones(classId, nivelParaEleccion(classId, opts)));
+  defs.push(...eleccionArmaPacto(opts?.invocaciones));
+  defs.push(...eleccionesTrucoInvocacion(opts?.invocaciones, opts?.trucosConocidos));
+  return defs;
+}
+
+export function ordenDivinoElegido(choices?: OriginChoices | null): OrdenDivino | null {
+  const raw = choices?.class?.[DIVINE_ORDER_KEY];
+  if (raw === "protector" || raw === "thaumaturge") return raw;
+  return null;
+}
+
+export function extraTrucosOrdenDivino(
+  classId: string | null | undefined,
+  choices?: OriginChoices | null,
+): number {
+  if (classId !== "cleric") return 0;
+  return ordenDivinoElegido(choices) === "thaumaturge" ? 1 : 0;
+}
+
+export function aplicarCompetenciasOrdenDivino(
+  classId: string,
+  choices: OriginChoices | undefined,
+  armorProficiencies: string[],
+  weaponProficiencies: string[],
+): { armorProficiencies: string[]; weaponProficiencies: string[] } {
+  if (classId !== "cleric" || ordenDivinoElegido(choices) !== "protector") {
+    return { armorProficiencies, weaponProficiencies };
+  }
+  return {
+    armorProficiencies: uniq([...armorProficiencies, "heavy"]),
+    weaponProficiencies: uniq([...weaponProficiencies, "martial"]),
+  };
+}
+
+/** Recalcula armadura/armas de clase + Orden divino; conserva herramientas que no sean de clase. */
+export function sincronizarCompetenciasOrdenDivino(character: Character): Character {
+  const classIds = character.identity.classes.map((c) => c.classId);
+  const armor: string[] = [];
+  const weapons: string[] = [];
+  const classTools: string[] = [];
+  for (const id of classIds) {
+    const row = competenciasClase(id);
+    armor.push(...row.armorProficiencies);
+    weapons.push(...row.weaponProficiencies);
+    classTools.push(...row.toolProficiencies);
+  }
+  const withOrder = aplicarCompetenciasOrdenDivino(
+    character.identity.classId,
+    character.originChoices,
+    armor,
+    weapons,
+  );
+  const classToolSet = new Set(classTools);
+  const extraTools = character.proficiencies.toolProficiencies.filter((t) => !classToolSet.has(t));
+  return {
+    ...character,
+    proficiencies: {
+      ...character.proficiencies,
+      armorProficiencies: uniq(withOrder.armorProficiencies),
+      weaponProficiencies: uniq(withOrder.weaponProficiencies),
+      toolProficiencies: uniq([...classTools, ...extraTools]),
     },
-  ];
+  };
 }
 
 export function fusionarEleccionesClase(
   classId: string | null,
   actual: OriginChoices | undefined,
+  opts?: OpcionesEleccionClase,
 ): Pick<OriginChoices, "class"> & OriginChoices {
-  const defs = eleccionesClase(classId);
+  const classLevel = classId ? nivelParaEleccion(classId, opts) : 1;
+  const invocaciones =
+    classId === "warlock"
+      ? fusionarInvocaciones(classLevel, actual?.class?.[INVOCATIONS_KEY])
+      : (opts?.invocaciones ?? actual?.class?.[INVOCATIONS_KEY]);
+  const defs = eleccionesClase(classId, { ...opts, invocaciones });
   const classChoices: Record<string, string> = {};
   for (const def of defs) {
     const prev = actual?.class?.[def.id];
+    if (def.kind === "multi") {
+      classChoices[def.id] =
+        def.id === INVOCATIONS_KEY
+          ? fusionarInvocaciones(classLevel, prev)
+          : (prev ?? "");
+      continue;
+    }
     const valid = prev && def.options.some((o) => o.value === prev);
     classChoices[def.id] = valid ? prev : (def.defaultValue ?? def.options[0]?.value ?? "");
   }
   for (const [key, value] of Object.entries(actual?.class ?? {})) {
-    if (!(key in classChoices)) classChoices[key] = value;
+    if (key in classChoices) continue;
+    if (KEYS_SEGUIMIENTO_INVOCACION.has(key)) continue;
+    classChoices[key] = value;
   }
   return {
     species: actual?.species ?? {},
@@ -70,8 +200,20 @@ export function fusionarEleccionesClase(
   };
 }
 
-export function eleccionClaseCompleta(classId: string | null, choices: OriginChoices): boolean {
-  for (const def of eleccionesClase(classId)) {
+export function eleccionClaseCompleta(
+  classId: string | null,
+  choices: OriginChoices,
+  opts?: OpcionesEleccionClase,
+): boolean {
+  const classLevel = classId ? nivelParaEleccion(classId, opts) : 1;
+  const invocaciones = choices.class[INVOCATIONS_KEY] ?? opts?.invocaciones;
+  for (const def of eleccionesClase(classId, { ...opts, invocaciones })) {
+    if (def.kind === "multi") {
+      if (def.id === INVOCATIONS_KEY && !invocacionesCompletas(classLevel, choices.class[def.id])) {
+        return false;
+      }
+      continue;
+    }
     if (!choices.class[def.id]) return false;
   }
   return true;
@@ -117,7 +259,10 @@ export function aplicarEquipoClase(character: Character): Character {
   const classId = character.identity.classId;
   if (!classId) return character;
 
-  const originChoices = fusionarEleccionesClase(classId, character.originChoices);
+  const originChoices = fusionarEleccionesClase(classId, character.originChoices, {
+    classLevel: character.identity.classes.find((c) => c.classId === classId)?.level
+      ?? character.identity.level,
+  });
   const equipmentChoice = originChoices.class.equipment as ClassEquipmentChoice | undefined;
   if (!equipmentChoice || !opcionesEquipoClase(classId).includes(equipmentChoice)) {
     return character;

@@ -77,6 +77,11 @@ describe("formatearToHit", () => {
         abilityMod: 3,
         proficiencyMod: 2,
         magicMod: 0,
+        extraToHit: 0,
+        extraToHitLabel: null,
+        extraDamage: 0,
+        extraDamageLabel: null,
+        ventajaRabia: false,
         abilityLabel: "fuerza",
       },
     );

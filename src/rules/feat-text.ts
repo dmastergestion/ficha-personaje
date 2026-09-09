@@ -37,6 +37,21 @@ export function dotesOrigenDisponibles(): { value: string; label: string }[] {
     .map(([id]) => ({ value: id, label: nombreDote(id) }));
 }
 
+/** Estilos de combate (dotes category fighting-style). */
+export function dotesEstiloCombate(): { value: string; label: string }[] {
+  return Object.entries(featMeta)
+    .filter(([, meta]) => meta.category === "fighting-style")
+    .sort((a, b) => nombreDote(a[0]).localeCompare(nombreDote(b[0]), "es"))
+    .map(([id]) => ({ value: id, label: nombreDote(id) }));
+}
+
+export function dotesParaMejoraAtributos(): { value: string; label: string }[] {
+  return Object.entries(featMeta)
+    .filter(([, meta]) => meta.category === "general" || meta.category === "origin")
+    .sort((a, b) => nombreDote(a[0]).localeCompare(nombreDote(b[0]), "es"))
+    .map(([id]) => ({ value: id, label: nombreDote(id) }));
+}
+
 /** Limpia marcadores 5etools/Foundry para lectura en ficha. */
 export function limpiarTextoDote(text: string): string {
   return pulirTextoReglasEs(text);

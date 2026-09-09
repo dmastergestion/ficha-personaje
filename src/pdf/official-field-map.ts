@@ -64,6 +64,10 @@ export const SKILL_PDF: Record<SkillKey, { btn: string; val: string }> = {
   survival: { btn: "Supervivencia", val: "Valor - Supervivencia" },
 };
 
+/**
+ * Campos de la tabla «Armas y trucos de daño» (máx. 6 filas).
+ * En la plantilla oficial, Nombre/Notas van con UN espacio («Nombre - Fila N»).
+ */
 export function attackRowField(
   row: number,
   key: "name" | "bonus" | "damage" | "notes",
@@ -71,24 +75,30 @@ export function attackRowField(
   const n = row + 1;
   switch (key) {
     case "name":
-      return `Nombre -  Fila ${n}`;
+      return `Nombre - Fila ${n}`;
     case "bonus":
       return `Bonificacion Ataque/CD - Fila ${n}`;
     case "damage":
       return `Daño y Tipo - Fila ${n}`;
     case "notes":
-      return `Notas -  Fila ${n}`;
+      return `Notas - Fila ${n}`;
   }
 }
 
+/**
+ * Campos de «Trucos y conjuros preparados».
+ * Filas 1–6: Nombre/Notas con DOS espacios (conviven con la tabla de armas).
+ * Filas 7–30: un espacio (solo existen en la lista de conjuros).
+ */
 export function spellRowField(
   row: number,
   key: "name" | "level" | "time" | "concentration" | "ritual" | "material" | "range" | "notes",
 ): string {
   const n = row + 1;
+  const nombreNotasDosEspacios = n <= 6 || n === 18;
   switch (key) {
     case "name":
-      return `Nombre - Fila ${n}`;
+      return nombreNotasDosEspacios ? `Nombre -  Fila ${n}` : `Nombre - Fila ${n}`;
     case "level":
       return `Nivel - Fila ${n}`;
     case "time":
@@ -102,7 +112,7 @@ export function spellRowField(
     case "range":
       return `Alcance - Fila ${n}`;
     case "notes":
-      return `Notas - Fila ${n}`;
+      return nombreNotasDosEspacios ? `Notas -  Fila ${n}` : `Notas - Fila ${n}`;
   }
 }
 

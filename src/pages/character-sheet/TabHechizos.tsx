@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { Button } from "@/components/layout";
 import { ABILITY_KEYS, SPELL_SLOT_LEVELS } from "@/lib/constants";
 import type { AbilityKey } from "@/lib/constants";
@@ -10,16 +10,14 @@ import {
   esLanzadorPersonaje,
   nivelBrujo,
   nivelEfectivoConjuro,
+  nivelEspacioPacto,
   resumenConjuros,
   usaPreparadosMulticlase,
 } from "@/rules/spells";
-import { cdConjuro, lanzarConjuro, modificadorAtaqueConjuro } from "@/rules/spell-cast";
+import { cdConjuro, lanzarConjuro, modificadorAtaqueConjuro, type OpcionRanuraConjuro } from "@/rules/spell-cast";
 import {
   atributoConjuroEsFijo,
   atributoConjuroPredeterminado,
-  clasesConListaConjuros,
-  conjuroDisponibleParaPersonaje,
-  nivelMaximoConjuroClase,
 } from "@/rules/spell-lists";
 import { etiquetaSalvacion, metaTiradaConjuro } from "@/rules/spell-cast-meta";
 import {
@@ -30,56 +28,32 @@ import {
 } from "@/rules/rests";
 import type { SheetTabProps } from "@/pages/character-sheet/types";
 import { SpellInfoPanel } from "@/components/SpellInfoPanel";
-import { EtiquetaConcentracion, EtiquetaRitual } from "@/components/spell/SpellRow";
 import { SpellSheetTable } from "@/components/sheet/SpellSheetTable";
 import {
-  agregarConjuro,
-  quitarConjuro,
-} from "@/pages/character-sheet/spell-list-mutations";
-import { t as tSrd } from "@/rules/srd";
-import { FeatSpellsPanel } from "@/components/FeatSpellsPanel";
-import { conjurosOtorgadosPorDotes } from "@/rules/feat-mechanics";
+  conjurosOtorgadosLanzables,
+  filasConjurosFicha,
+  grantLanzableDeConjuro,
+  mejorRecursoLibreParaConjuro,
+  otorgamientoPorRecursoLibre,
+} from "@/rules/spell-grants";
+import { ajustarRecurso } from "@/rules/resources-tracker";
+import { quitarConjuro } from "@/pages/character-sheet/spell-list-mutations";
 import { useDiceRollOptions } from "@/hooks/useDiceRollOptions";
 import { useCatalogStore } from "@/stores/catalog-store";
 import { useUiStore } from "@/stores/ui-store";
+import { llevaArmaduraSinAdiestramiento } from "@/rules/proficiencies";
 
 export function TabHechizos({ character, onChange }: SheetTabProps) {
-  const [busqueda, setBusqueda] = useState("");
   const [infoConjuroId, setInfoConjuroId] = useState<string | null>(null);
+  const infoRef = useRef<HTMLElement>(null);
   const catalog = useCatalogStore((s) => s.catalog);
   const classesConjuro = clasesParaConjuros(character);
-  const clasesLista = useMemo(
-    () => clasesConListaConjuros(classesConjuro),
-    [classesConjuro],
-  );
-  const [filtroClaseId, setFiltroClaseId] = useState("");
-  const claseFiltro =
-    clasesLista.find((c) => c.classId === filtroClaseId) ?? clasesLista[0] ?? null;
-  const nivelMaxFiltro = claseFiltro
-    ? nivelMaximoConjuroClase(claseFiltro.classId, claseFiltro.level, claseFiltro.subclassId)
-    : 9;
-  const [filtroNivel, setFiltroNivel] = useState(0);
-
-  useEffect(() => {
-    if (clasesLista.length === 0) return;
-    if (!clasesLista.some((c) => c.classId === filtroClaseId)) {
-      setFiltroClaseId(clasesLista[0]!.classId);
-    }
-  }, [clasesLista, filtroClaseId]);
-
-  useEffect(() => {
-    if (filtroNivel > nivelMaxFiltro) {
-      setFiltroNivel(nivelMaxFiltro);
-    }
-  }, [nivelMaxFiltro, filtroNivel]);
-
-  const etiquetaNivelFiltro =
-    filtroNivel === 0 ? "Trucos" : String(filtroNivel);
   const atributoFijo = atributoConjuroEsFijo(character);
   const maxSlots = espaciosMaximosPersonaje(character);
   const restantesSlots = espaciosRestantesPersonaje(character);
-  const conjurosDote = conjurosOtorgadosPorDotes(character);
-  const lanzador = esLanzadorPersonaje(character) || conjurosDote.length > 0;
+  const conjurosOtorgados = conjurosOtorgadosLanzables(character);
+  const lanzador = esLanzadorPersonaje(character) || conjurosOtorgados.length > 0;
+
   const preparados = usaPreparadosMulticlase(classesConjuro);
   const pactMax = espaciosPactoMaximos(classesConjuro);
   const pactRestante = pactoRestante(character);
@@ -89,35 +63,45 @@ export function TabHechizos({ character, onChange }: SheetTabProps) {
   const cd = cdConjuro(character);
   const ataqueConjuro = modificadorAtaqueConjuro(character);
 
-  const filtrados = useMemo(
-    () =>
-      catalog.spells
-        .filter((s) => {
-          const nombre = catalog.t("spells", s.id, s.nameEn).toLowerCase();
-          if (busqueda && !nombre.includes(busqueda.toLowerCase())) return false;
-          if (s.level !== filtroNivel) return false;
-          if (!claseFiltro) return true;
-          return conjuroDisponibleParaPersonaje(s.id, s.level, claseFiltro);
-        })
-        .slice(0, 30),
-    [catalog, busqueda, filtroNivel, claseFiltro],
-  );
+  function mostrarInfoConjuro(spellId: string) {
+    setInfoConjuroId(spellId);
+  }
+
+  useEffect(() => {
+    if (!infoConjuroId || typeof window === "undefined") return;
+    // Solo en móvil: el panel está encima de la lista y conviene acercarlo.
+    if (window.matchMedia("(min-width: 1024px)").matches) return;
+    infoRef.current?.scrollIntoView({ behavior: "smooth", block: "nearest" });
+  }, [infoConjuroId]);
 
   function nivelConjuro(spellId: string): number {
     return catalog.spells.find((s) => s.id === spellId)?.level ?? 1;
   }
 
-  function lanzar(spellId: string) {
+  function reponerUso(resourceId: string) {
+    onChange(ajustarRecurso(character, resourceId, -1));
+  }
+
+  function lanzar(spellId: string, resourceId?: string, ranura?: OpcionRanuraConjuro) {
     if (!diceRoll.isReady) {
       setUltimaTirada(null, diceRoll.error);
       return;
     }
     const level = nivelConjuro(spellId);
     const concentracion = catalog.requiereConcentracion(spellId);
+    const featResourceId =
+      resourceId ?? (ranura ? undefined : mejorRecursoLibreParaConjuro(character, spellId));
+    const grant = featResourceId
+      ? otorgamientoPorRecursoLibre(character, featResourceId)
+      : grantLanzableDeConjuro(character, spellId);
     const result = lanzarConjuro(character, level, rollMode, {
       spellId,
       requiereConcentracion: concentracion,
       diceOptions: diceRoll.options,
+      abilityKeyOverride: grant?.abilityKey,
+      featResourceId,
+      slotLevel: ranura?.tipo === "slot" ? ranura.level : undefined,
+      usarPacto: ranura?.tipo === "pact",
     });
     if (result.ok) {
       onChange(result.character);
@@ -169,20 +153,22 @@ export function TabHechizos({ character, onChange }: SheetTabProps) {
     );
   }
 
-  if (!esLanzadorPersonaje(character) && conjurosDote.length > 0) {
-    return (
-      <div className="sheet-tab-stack">
-        <FeatSpellsPanel character={character} onChange={onChange} />
-        <p className="sheet-card text-sm text-muted">
-          Configura trucos y conjuro en Notas → Dotes → Iniciado en la magia. Los recursos sin espacio
-          aparecen en Combate → Recursos.
-        </p>
-      </div>
-    );
-  }
-
   const effectiveLevel = nivelEfectivoConjuro(classesConjuro);
   const resumen = resumenConjuros(character);
+  const sinAdiestramiento = llevaArmaduraSinAdiestramiento(character);
+  const filasTrucos = useMemo(
+    () => filasConjurosFicha(character, character.spells.cantripsKnown, "cantrip"),
+    [character],
+  );
+  const filasConjuros = useMemo(
+    () =>
+      filasConjurosFicha(
+        character,
+        preparados ? character.spells.spellsPrepared : character.spells.spellsKnown,
+        "leveled",
+      ),
+    [character, preparados],
+  );
 
   const slotsSection =
     effectiveLevel > 0 ? (
@@ -226,7 +212,11 @@ export function TabHechizos({ character, onChange }: SheetTabProps) {
         {pactMax > 0 && (
           <div className="mt-2 flex flex-wrap items-center gap-3 border-t border-white/10 pt-2">
             <span className="text-sm font-semibold">
-              Magia de pacto (brujo {nivelBrujo(classesConjuro)})
+              Magia de pacto (brujo {nivelBrujo(classesConjuro)}
+              {nivelEspacioPacto(classesConjuro) > 0
+                ? ` · niv. ${nivelEspacioPacto(classesConjuro)}`
+                : ""}
+              )
             </span>
             <span className="text-lg font-bold">
               {pactRestante}/{pactMax}
@@ -247,7 +237,11 @@ export function TabHechizos({ character, onChange }: SheetTabProps) {
     ) : effectiveLevel === 0 && pactMax > 0 ? (
       <section className="sheet-card min-w-0 lg:max-w-xs">
         <h3 className="sheet-section-title">
-          Magia de pacto (brujo {nivelBrujo(classesConjuro)})
+          Magia de pacto (brujo {nivelBrujo(classesConjuro)}
+          {nivelEspacioPacto(classesConjuro) > 0
+            ? ` · espacios niv. ${nivelEspacioPacto(classesConjuro)}`
+            : ""}
+          )
         </h3>
         <div className="flex flex-wrap items-center gap-3">
           <span className="text-lg font-bold">
@@ -267,9 +261,38 @@ export function TabHechizos({ character, onChange }: SheetTabProps) {
       </section>
     ) : null;
 
+  function panelInfo() {
+    if (!infoConjuroId) {
+      return (
+        <p className="text-sm leading-relaxed text-muted">
+          Pulsa el nombre de un conjuro para ver su descripción aquí.
+        </p>
+      );
+    }
+    return (
+      <>
+        <SpellInfoPanel
+          spellId={infoConjuroId}
+          name={catalog.t("spells", infoConjuroId, infoConjuroId)}
+          meta={metaTiradaConjuro(infoConjuroId, catalog.obtenerConjuro(infoConjuroId))}
+          character={character}
+        />
+        <Button variant="ghost" className="mt-2" onClick={() => setInfoConjuroId(null)}>
+          Cerrar
+        </Button>
+      </>
+    );
+  }
+
   return (
     <div className="sheet-tab-stack">
-      <FeatSpellsPanel character={character} onChange={onChange} />
+      {sinAdiestramiento && (
+        <p className="rounded-lg border border-amber-500/40 bg-amber-500/10 px-3 py-2 text-sm text-amber-200">
+          Llevas armadura o escudo sin adiestramiento: no puedes lanzar conjuros y tienes
+          desventaja en pruebas d20 de Fuerza y Destreza. La CA de la armadura se aplica igual.
+        </p>
+      )}
+
       <div className="sheet-tab-grid items-start lg:grid-cols-[minmax(0,1fr)_auto]">
       <section className="sheet-card min-w-0">
         <div className="mb-2 flex flex-wrap items-end gap-x-4 gap-y-2">
@@ -343,143 +366,83 @@ export function TabHechizos({ character, onChange }: SheetTabProps) {
       {slotsSection}
       </div>
 
-      <div className="sheet-tab-grid lg:grid-cols-2">
-      <section className="sheet-card lg:col-span-2">
-        <h3 className="sheet-section-title">Trucos</h3>
-        <SpellSheetTable
-          spellIds={character.spells.cantripsKnown}
-          emptyMessage="Sin trucos añadidos."
-          onRemove={(id) => onChange(quitarConjuro(character, id, "cantrips"))}
-          onCast={lanzar}
-          onInfo={setInfoConjuroId}
-        />
-      </section>
+      <div className="grid items-start gap-3 lg:grid-cols-[minmax(0,1fr)_minmax(18rem,26rem)]">
+        <div className="sheet-tab-stack min-w-0">
+          {infoConjuroId && (
+            <section ref={infoRef} className="sheet-card scroll-mt-3 lg:hidden">
+              {panelInfo()}
+            </section>
+          )}
 
-      {resumen.known.max ? (
-        <section className="sheet-card lg:col-span-2">
-          <h3 className="sheet-section-title">Grimorio</h3>
-          <SpellSheetTable
-            spellIds={character.spells.spellsKnown}
-            emptyMessage="Sin conjuros en el grimorio."
-            onRemove={(id) => onChange(quitarConjuro(character, id, "known"))}
-            onCast={lanzar}
-            onInfo={setInfoConjuroId}
-          />
-        </section>
-      ) : null}
+          <div className="sheet-tab-grid">
+            <details className="sheet-card sheet-details" open>
+              <summary>
+                Trucos
+                <span className="ml-2 font-normal text-muted">{filasTrucos.length}</span>
+              </summary>
+              <SpellSheetTable
+                rows={filasTrucos}
+                emptyMessage="Sin trucos. Añádelos en Información."
+                onRemove={(id) => onChange(quitarConjuro(character, id, "cantrips"))}
+                onCast={lanzar}
+                onReponerUso={reponerUso}
+                onInfo={mostrarInfoConjuro}
+                character={character}
+                selectedId={infoConjuroId}
+              />
+            </details>
 
-      <section className="sheet-card lg:col-span-2">
-        <h3 className="sheet-section-title">
-          {preparados ? "Conjuros preparados" : "Conjuros conocidos"}
-        </h3>
-        <SpellSheetTable
-          spellIds={preparados ? character.spells.spellsPrepared : character.spells.spellsKnown}
-          emptyMessage="Sin conjuros añadidos."
-          onRemove={(id) =>
-            onChange(quitarConjuro(character, id, preparados ? "prepared" : "known"))
-          }
-          onCast={lanzar}
-          onInfo={setInfoConjuroId}
-        />
-      </section>
-      </div>
-
-      {infoConjuroId && (
-        <section className="sheet-card">
-          <SpellInfoPanel
-            spellId={infoConjuroId}
-            name={catalog.t("spells", infoConjuroId, infoConjuroId)}
-            meta={metaTiradaConjuro(infoConjuroId, catalog.obtenerConjuro(infoConjuroId))}
-          />
-          <Button variant="ghost" className="mt-2" onClick={() => setInfoConjuroId(null)}>
-            Cerrar
-          </Button>
-        </section>
-      )}
-
-      <section className="sheet-card">
-        <h3 className="sheet-section-title">Buscar conjuro SRD</h3>
-        <div className="mb-2 flex flex-wrap gap-2">
-          <label className="block min-w-[8rem] flex-1 text-sm">
-            <span className="text-muted">Lista de clase</span>
-            <select
-              className="mt-1 w-full rounded-lg border border-white/10 bg-surface px-2 py-1 text-sm"
-              value={claseFiltro?.classId ?? ""}
-              onChange={(e) => {
-                setFiltroClaseId(e.target.value);
-                setFiltroNivel(0);
-              }}
-            >
-              {clasesLista.map((cl) => (
-                <option key={cl.classId} value={cl.classId}>
-                  {tSrd("classes", cl.classId, cl.classId)}
-                  {cl.subclassId ? ` · ${tSrd("subclasses", cl.subclassId, cl.subclassId)}` : ""}
-                  {` (niv. ${cl.level})`}
-                </option>
-              ))}
-            </select>
-          </label>
-          <label className="block w-24 shrink-0 text-sm">
-            <span className="text-muted">{etiquetaNivelFiltro}</span>
-            <select
-              className="mt-1 w-full rounded-lg border border-white/10 bg-surface px-2 py-1 text-sm"
-              value={filtroNivel}
-              aria-label="Nivel de conjuro a buscar"
-              onChange={(e) => setFiltroNivel(Number(e.target.value))}
-            >
-              <option value={0}>Trucos</option>
-              {Array.from({ length: nivelMaxFiltro }, (_, i) => i + 1).map((n) => (
-                <option key={n} value={n}>
-                  {n}
-                </option>
-              ))}
-            </select>
-          </label>
-        </div>
-        <p className="mb-2 text-xs text-muted">
-          Mostrando conjuros de la lista de {claseFiltro ? tSrd("classes", claseFiltro.classId, claseFiltro.classId) : "—"}
-          {claseFiltro?.classId === "bard" && claseFiltro.level >= 10 ? " (+ clérigo, druida, mago por Secretos mágicos)" : ""}
-          {claseFiltro?.subclassId ? ` y subclase` : ""} · {etiquetaNivelFiltro.toLowerCase()}
-        </p>
-        <input
-          className="mb-2 w-full rounded-lg border border-white/10 bg-surface px-3 py-2 text-sm"
-          placeholder="Filtrar por nombre…"
-          value={busqueda}
-          onChange={(e) => setBusqueda(e.target.value)}
-        />
-        {filtrados.length > 0 && (
-          <ul className="max-h-48 overflow-y-auto rounded-lg border border-white/10">
-            {filtrados.map((spell) => (
-              <li key={spell.id} className="flex items-center gap-1 border-b border-white/5 last:border-0">
-                <button
-                  type="button"
-                  className="min-w-0 flex-1 px-3 py-2 text-left text-sm hover:bg-white/5"
-                  onClick={() => setInfoConjuroId(spell.id)}
-                >
-                  {catalog.t("spells", spell.id, spell.nameEn)}
-                  <EtiquetaConcentracion spellId={spell.id} />
-                  <EtiquetaRitual spellId={spell.id} />{" "}
-                  <span className="text-muted">
-                    ({spell.level === 0 ? "truco" : `niv ${spell.level}`})
+            {resumen.known.max ? (
+              <details className="sheet-card sheet-details" open>
+                <summary>
+                  Grimorio
+                  <span className="ml-2 font-normal text-muted">
+                    {character.spells.spellsKnown.length}
                   </span>
-                </button>
-                <Button
-                  variant="ghost"
-                  onClick={() => {
-                    onChange(agregarConjuro(character, spell.id, spell.level));
-                    setBusqueda("");
-                  }}
-                >
-                  Añadir
-                </Button>
-              </li>
-            ))}
-          </ul>
-        )}
-        {filtrados.length === 0 && (
-          <p className="text-sm text-muted">Ningún conjuro coincide con los filtros.</p>
-        )}
-      </section>
+                </summary>
+                <SpellSheetTable
+                  rows={character.spells.spellsKnown.map((spellId) => ({
+                    spellId,
+                    sePuedeQuitar: true,
+                  }))}
+                  emptyMessage="Sin conjuros en el grimorio. Añádelos en Información."
+                  onRemove={(id) => onChange(quitarConjuro(character, id, "known"))}
+                  onCast={lanzar}
+                  onReponerUso={reponerUso}
+                  onInfo={mostrarInfoConjuro}
+                  character={character}
+                  selectedId={infoConjuroId}
+                />
+              </details>
+            ) : null}
+
+            <details className="sheet-card sheet-details" open>
+              <summary>
+                {preparados ? "Conjuros preparados" : "Conjuros conocidos"}
+                <span className="ml-2 font-normal text-muted">{filasConjuros.length}</span>
+              </summary>
+              <SpellSheetTable
+                rows={filasConjuros}
+                emptyMessage="Sin conjuros. Añádelos en Información."
+                onRemove={(id) =>
+                  onChange(quitarConjuro(character, id, preparados ? "prepared" : "known"))
+                }
+                onCast={lanzar}
+                onReponerUso={reponerUso}
+                onInfo={mostrarInfoConjuro}
+                character={character}
+                selectedId={infoConjuroId}
+              />
+            </details>
+          </div>
+        </div>
+
+        <aside className="hidden lg:sticky lg:top-3 lg:block" aria-label="Detalle del conjuro">
+          <section className="sheet-card max-h-[calc(100vh-6rem)] overflow-y-auto">
+            {panelInfo()}
+          </section>
+        </aside>
+      </div>
     </div>
   );
 }

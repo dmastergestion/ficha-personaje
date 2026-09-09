@@ -6,19 +6,24 @@ import {
   duplicarPersonaje,
   eliminarPersonaje,
   exportarBackup,
+  exportarTracker,
   listarPersonajes,
   nombreArchivoExport,
 } from "@/db/repository";
 import type { Character } from "@/schemas/character";
+import { claseArmaduraPersonaje } from "@/rules/combat";
 import { descripcionClases } from "@/rules/multiclass";
 
 export function CharacterListPage() {
   const [characters, setCharacters] = useState<Character[]>([]);
+  const [invalidos, setInvalidos] = useState(0);
   const [loading, setLoading] = useState(true);
 
   async function recargar() {
     setLoading(true);
-    setCharacters(await listarPersonajes());
+    const listado = await listarPersonajes();
+    setCharacters(listado.characters);
+    setInvalidos(listado.invalidos);
     setLoading(false);
   }
 
@@ -47,6 +52,11 @@ export function CharacterListPage() {
       }
     >
       <InstallBanner />
+      {invalidos > 0 && (
+        <p className="mb-3 rounded-lg border border-amber-500/40 bg-amber-500/10 px-3 py-2 text-sm text-amber-200">
+          {invalidos} ficha{invalidos === 1 ? "" : "s"} no se pudieron leer (JSON inválido).
+        </p>
+      )}
       {loading ? (
         <p className="text-muted">Cargando…</p>
       ) : characters.length === 0 ? (
@@ -88,6 +98,16 @@ export function CharacterListPage() {
                     }
                   >
                     Exportar
+                  </Button>
+                  <Button
+                    onClick={() =>
+                      descargarJson(
+                        nombreArchivoExport("tracker", character.identity.name),
+                        exportarTracker(character, claseArmaduraPersonaje(character)),
+                      )
+                    }
+                  >
+                    Tracker
                   </Button>
                   <Button onClick={() => void onDuplicate(character.id)}>Duplicar</Button>
                   <Button

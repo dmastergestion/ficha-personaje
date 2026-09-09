@@ -3,6 +3,9 @@ import spellDescriptionsEs from "@/data/i18n/spell-descriptions-es.json";
 import { limpiarTextoConjuro } from "@/lib/spell-text-clean";
 import { traducirAlcanceConjuro } from "@/lib/rules-text-polish";
 import type { SpellCastMeta } from "@/rules/spell-cast-meta";
+import { idsEquivalentesConjuro } from "@/rules/spell-aliases";
+import { descripcionConjuroMostrada } from "@/rules/spell-upcast-text";
+import type { Character } from "@/schemas/character";
 
 export { limpiarTextoConjuro } from "@/lib/spell-text-clean";
 
@@ -23,8 +26,10 @@ export function traducirComponentesConjuro(components?: string): string | undefi
 }
 
 export function descripcionConjuro(spellId: string, fallback?: string): string | undefined {
-  const fromEs = descriptionsEs[spellId];
-  if (fromEs) return limpiarTextoConjuro(fromEs);
+  for (const id of idsEquivalentesConjuro(spellId)) {
+    const fromEs = descriptionsEs[id];
+    if (fromEs) return limpiarTextoConjuro(fromEs);
+  }
   if (fallback) return limpiarTextoConjuro(fallback);
   return undefined;
 }
@@ -33,10 +38,14 @@ export function descripcionConjuro(spellId: string, fallback?: string): string |
 export function metaConjuroParaMostrar(
   spellId: string | null | undefined,
   meta: SpellCastMeta,
+  character?: Character,
 ): SpellCastMeta {
   if (!spellId) return meta;
 
-  const description = descripcionConjuro(spellId, meta.description);
+  let description = descripcionConjuro(spellId, meta.description);
+  if (character && description) {
+    description = descripcionConjuroMostrada(character, spellId, description, meta.damage);
+  }
   const components = traducirComponentesConjuro(meta.components);
   return {
     ...meta,

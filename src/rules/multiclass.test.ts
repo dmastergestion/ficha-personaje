@@ -3,8 +3,11 @@ import {
   agregarClase,
   ajustarNivelTotal,
   descripcionClases,
+  faltaElegirSubclase,
   nivelTotalClases,
+  puedeElegirSubclase,
   sincronizarIdentidadMulticlase,
+  subclaseValidaParaClase,
   validarClases,
 } from "@/rules/multiclass";
 
@@ -57,5 +60,15 @@ describe("multiclass", () => {
       { classId: "wizard", subclassId: null, level: 2 },
     ]);
     expect(ajustarNivelTotal([{ classId: "wizard", subclassId: null, level: 1 }], -1)).toBeNull();
+  });
+
+  it("exige subclase al alcanzar el nivel de rama", () => {
+    const bajo = { classId: "fighter", subclassId: null, level: 2 };
+    const alto = { classId: "fighter", subclassId: null, level: 3 };
+    expect(puedeElegirSubclase(bajo)).toBe(false);
+    expect(puedeElegirSubclase(alto)).toBe(true);
+    expect(faltaElegirSubclase(alto)).toBe(true);
+    expect(subclaseValidaParaClase("fighter", "champion")).toBe(true);
+    expect(subclaseValidaParaClase("wizard", "champion")).toBe(false);
   });
 });

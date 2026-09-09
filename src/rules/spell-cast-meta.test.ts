@@ -2,6 +2,7 @@ import { describe, expect, it } from "vitest";
 import {
   estadisticasMetaConjuros,
   metaTiradaConjuro,
+  textoDadosDañoConjuro,
   tirarDañoConjuro,
 } from "@/rules/spell-cast-meta";
 
@@ -68,5 +69,14 @@ describe("tirarDañoConjuro", () => {
     expect(tirarDañoConjuro(meta.damage!, 0, 0, 5)?.formula).toBe("2d10");
     expect(tirarDañoConjuro(meta.damage!, 0, 0, 11)?.formula).toBe("3d10");
     expect(tirarDañoConjuro(meta.damage!, 0, 0, 17)?.formula).toBe("4d10");
+  });
+
+  it("textoDadosDañoConjuro no tira, solo formula", () => {
+    const meta = metaTiradaConjuro("burning-hands");
+    expect(textoDadosDañoConjuro(meta.damage!, 1, 3, 5)).toBe("5d6");
+  });
+
+  it("no explota si el daño no trae dados", () => {
+    expect(textoDadosDañoConjuro({ dice: "", type: "fuego" }, 1, 3, 5)).toBeNull();
   });
 });

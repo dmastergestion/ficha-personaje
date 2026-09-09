@@ -1,6 +1,7 @@
-import type { SpellSlotLevel } from "@/lib/constants";
+import type { AbilityKey, SpellSlotLevel } from "@/lib/constants";
 import { SPELL_SLOT_LEVELS } from "@/lib/constants";
 import { bonificadorCompetencia, modificadorAtributo } from "@/rules/ability";
+import { bonusPgPorNivelesGanados } from "@/rules/resources";
 import { hitosMecanicos, rasgosEnNivel } from "@/rules/class-features";
 import { sincronizarIdentidadMulticlase } from "@/rules/multiclass";
 import classResourceMeta from "@/data/srd/class-resource-meta.json";
@@ -60,6 +61,23 @@ export interface LevelUpPreview {
   prepared: { before: number; after: number } | null;
   resources: ResourceChange[];
   hitDieAdded: string;
+}
+
+/** ASI PHB 2024: +2 a uno o +1 a dos, tope 20. */
+export function aplicarMejoraAtributos(
+  base: Character["abilities"],
+  a: AbilityKey,
+  b: AbilityKey,
+  split: boolean,
+): Character["abilities"] {
+  const next = { ...base };
+  if (split) {
+    next[a] = Math.min(20, next[a] + 1);
+    if (b !== a) next[b] = Math.min(20, next[b] + 1);
+  } else {
+    next[a] = Math.min(20, next[a] + 2);
+  }
+  return next;
 }
 
 export function pvGanadoAlSubir(
@@ -196,8 +214,11 @@ export function prepararSubidaNivel(
   const pactBefore = espaciosPactoMaximos(character.identity.classes);
   const pactAfter = espaciosPactoMaximos(newClasses);
 
-  const cantripsBefore = maxTrucosConocidos(character.identity.classes);
-  const cantripsAfter = maxTrucosConocidos(newClasses);
+  const cantripsBefore = maxTrucosConocidos(
+    character.identity.classes,
+    character.originChoices,
+  );
+  const cantripsAfter = maxTrucosConocidos(newClasses, character.originChoices);
 
   const preparedBefore = maxConjurosPreparados(charAntes);
   const preparedAfter = maxConjurosPreparados(charDespues);
@@ -215,7 +236,11 @@ export function prepararSubidaNivel(
     newClassLevel: newLevel,
     totalLevelBefore: character.identity.level,
     totalLevelAfter: sync.level,
-    hpGain: pvGanadoAlSubir(classId, character.abilities.con, isFirstLevelInClass),
+    hpGain: pvGanadoAlSubir(
+      classId,
+      character.abilities.con,
+      character.identity.level === 0,
+    ),
     pbBefore,
     pbAfter,
     features: rasgosEnNivel(classId, newLevel),
@@ -246,9 +271,14 @@ export function aplicarSubidaNivel(
   addToCurrentHp: boolean,
 ): Character {
   const sync = sincronizarIdentidadMulticlase(newClasses);
-  const hpMax = Math.max(1, character.combat.hpMax + hpGain);
+  const extraReglas = bonusPgPorNivelesGanados(
+    { ...character, identity: { ...character.identity, ...sync } },
+    sync.level - character.identity.level,
+  );
+  const ganancia = hpGain + extraReglas;
+  const hpMax = Math.max(1, character.combat.hpMax + ganancia);
   const hpCurrent = addToCurrentHp
-    ? Math.min(hpMax, character.combat.hpCurrent + hpGain)
+    ? Math.min(hpMax, character.combat.hpCurrent + ganancia)
     : Math.min(hpMax, character.combat.hpCurrent);
 
   const principal = sync.classId;
@@ -304,12 +334,8 @@ export function detectarBajadaNivel(
   return null;
 }
 
-function pvPerdidoAlBajar(
-  classId: string,
-  conScore: number,
-  classLevelLost: number,
-): number {
-  return pvGanadoAlSubir(classId, conScore, classLevelLost === 1).average;
+function pvPerdidoAlBajar(classId: string, conScore: number): number {
+  return pvGanadoAlSubir(classId, conScore, false).average;
 }
 
 /** Revierte PV, dados y recursos al bajar de nivel (promedio del dado perdido). */
@@ -322,13 +348,15 @@ export function aplicarBajadaNivel(character: Character, newClasses: ClassLevel[
   if (bajada) {
     if (bajada.removedFromMulticlass) {
       for (let lvl = bajada.oldLevel; lvl >= 1; lvl--) {
-        const loss = pvPerdidoAlBajar(bajada.classId, character.abilities.con, lvl);
+        const loss = pvPerdidoAlBajar(bajada.classId, character.abilities.con);
         hpMax = Math.max(1, hpMax - loss);
       }
     } else {
-      const loss = pvPerdidoAlBajar(bajada.classId, character.abilities.con, bajada.newLevel + 1);
+      const loss = pvPerdidoAlBajar(bajada.classId, character.abilities.con);
       hpMax = Math.max(1, hpMax - loss);
     }
+    const extraReglas = bonusPgPorNivelesGanados(character, sync.level - character.identity.level);
+    hpMax = Math.max(1, hpMax + extraReglas);
     hpCurrent = Math.min(hpMax, hpCurrent);
   }
 

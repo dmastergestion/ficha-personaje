@@ -9,8 +9,10 @@ interface UiState {
   setUltimaTirada: (roll: D20Roll | null, extra?: string | null) => void;
   ultimoAtaque: ResultadoAtaque | null;
   setUltimoAtaque: (result: ResultadoAtaque | null) => void;
-  sheetTab: SheetTab;
-  setSheetTab: (tab: SheetTab) => void;
+  sheetTabsById: Record<string, SheetTab>;
+  setSheetTab: (characterId: string, tab: SheetTab) => void;
+  rollPanelExpanded: boolean;
+  setRollPanelExpanded: (open: boolean) => void;
   rollMode: RollMode;
   setRollMode: (mode: RollMode) => void;
   diceSource: DiceSource;
@@ -29,6 +31,7 @@ export const useUiStore = create<UiState>((set) => ({
       ultimaTirada,
       ultimoAtaque: null,
       ultimaTiradaExtra: extra === undefined ? null : extra,
+      rollPanelExpanded: ultimaTirada != null || extra != null,
     }),
   ultimoAtaque: null,
   setUltimoAtaque: (ultimoAtaque) =>
@@ -36,9 +39,13 @@ export const useUiStore = create<UiState>((set) => ({
       ultimoAtaque,
       ultimaTirada: ultimoAtaque?.toHit ?? null,
       ultimaTiradaExtra: null,
+      rollPanelExpanded: ultimoAtaque != null,
     }),
-  sheetTab: "combate",
-  setSheetTab: (sheetTab) => set({ sheetTab }),
+  sheetTabsById: {},
+  setSheetTab: (characterId, sheetTab) =>
+    set((s) => ({ sheetTabsById: { ...s.sheetTabsById, [characterId]: sheetTab } })),
+  rollPanelExpanded: false,
+  setRollPanelExpanded: (rollPanelExpanded) => set({ rollPanelExpanded }),
   rollMode: "normal",
   setRollMode: (rollMode) => set({ rollMode }),
   diceSource: "virtual",

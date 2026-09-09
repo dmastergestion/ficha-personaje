@@ -1,5 +1,7 @@
 import type { SpellSlotLevel } from "@/lib/constants";
 import { SPELL_SLOT_LEVELS } from "@/lib/constants";
+import { extraTrucosOrdenDivino } from "@/rules/class-equipment";
+import type { OriginChoices } from "@/rules/origin-choices";
 import { esSubclaseArcana } from "@/rules/spell-lists";
 import {
   maxConjurosGrimorio,
@@ -71,28 +73,52 @@ const FULL_CASTER_SLOTS: number[][] = [
   [4, 3, 3, 3, 3, 2, 2, 1, 1],
 ];
 
-/** Lanzador medio (paladín, explorador). */
+/** Lanzador medio PHB 2024 (paladín, explorador): conjuros desde nivel 1. */
 const HALF_CASTER_SLOTS: number[][] = [
+  [2, 0, 0, 0, 0, 0, 0, 0, 0],
+  [3, 0, 0, 0, 0, 0, 0, 0, 0],
+  [4, 0, 0, 0, 0, 0, 0, 0, 0],
+  [4, 0, 0, 0, 0, 0, 0, 0, 0],
+  [4, 2, 0, 0, 0, 0, 0, 0, 0],
+  [4, 2, 0, 0, 0, 0, 0, 0, 0],
+  [4, 3, 0, 0, 0, 0, 0, 0, 0],
+  [4, 3, 0, 0, 0, 0, 0, 0, 0],
+  [4, 3, 2, 0, 0, 0, 0, 0, 0],
+  [4, 3, 2, 0, 0, 0, 0, 0, 0],
+  [4, 3, 3, 0, 0, 0, 0, 0, 0],
+  [4, 3, 3, 0, 0, 0, 0, 0, 0],
+  [4, 3, 3, 1, 0, 0, 0, 0, 0],
+  [4, 3, 3, 1, 0, 0, 0, 0, 0],
+  [4, 3, 3, 2, 0, 0, 0, 0, 0],
+  [4, 3, 3, 2, 0, 0, 0, 0, 0],
+  [4, 3, 3, 3, 1, 0, 0, 0, 0],
+  [4, 3, 3, 3, 1, 0, 0, 0, 0],
+  [4, 3, 3, 3, 2, 0, 0, 0, 0],
+  [4, 3, 3, 3, 2, 0, 0, 0, 0],
+];
+
+/** Tercera parte PHB 2024 (caballero élfico, embustero arcano). Filas = nivel de clase 1–20. */
+const THIRD_CASTER_SLOTS: number[][] = [
+  [0, 0, 0, 0, 0, 0, 0, 0, 0],
   [0, 0, 0, 0, 0, 0, 0, 0, 0],
   [2, 0, 0, 0, 0, 0, 0, 0, 0],
   [3, 0, 0, 0, 0, 0, 0, 0, 0],
   [3, 0, 0, 0, 0, 0, 0, 0, 0],
+  [3, 0, 0, 0, 0, 0, 0, 0, 0],
+  [4, 2, 0, 0, 0, 0, 0, 0, 0],
   [4, 2, 0, 0, 0, 0, 0, 0, 0],
   [4, 2, 0, 0, 0, 0, 0, 0, 0],
   [4, 3, 0, 0, 0, 0, 0, 0, 0],
   [4, 3, 0, 0, 0, 0, 0, 0, 0],
+  [4, 3, 0, 0, 0, 0, 0, 0, 0],
+  [4, 3, 2, 0, 0, 0, 0, 0, 0],
   [4, 3, 2, 0, 0, 0, 0, 0, 0],
   [4, 3, 2, 0, 0, 0, 0, 0, 0],
   [4, 3, 3, 0, 0, 0, 0, 0, 0],
   [4, 3, 3, 0, 0, 0, 0, 0, 0],
+  [4, 3, 3, 0, 0, 0, 0, 0, 0],
   [4, 3, 3, 1, 0, 0, 0, 0, 0],
   [4, 3, 3, 1, 0, 0, 0, 0, 0],
-  [4, 3, 3, 2, 0, 0, 0, 0, 0],
-  [4, 3, 3, 2, 0, 0, 0, 0, 0],
-  [4, 3, 3, 3, 1, 0, 0, 0, 0],
-  [4, 3, 3, 3, 1, 0, 0, 0, 0],
-  [4, 3, 3, 3, 2, 0, 0, 0, 0],
-  [4, 3, 3, 3, 2, 0, 0, 0, 0],
 ];
 
 /** Brujo — espacios de pacto (cantidad, nivel del espacio). */
@@ -123,31 +149,38 @@ export function tipoLanzador(classId: string): SpellcastingKind {
   return CLASS_SPELLCASTING[classId] ?? "none";
 }
 
+function filaAEspacios(row: number[] | undefined): Record<SpellSlotLevel, number> {
+  const empty = slotsVacios();
+  if (!row) return empty;
+  SPELL_SLOT_LEVELS.forEach((slotLevel, i) => {
+    empty[slotLevel] = row[i] ?? 0;
+  });
+  return empty;
+}
+
 export function espaciosMaximos(
   classId: string,
   level: number,
+  subclassId: string | null = null,
 ): Record<SpellSlotLevel, number> {
-  const empty = Object.fromEntries(SPELL_SLOT_LEVELS.map((n) => [n, 0])) as Record<
-    SpellSlotLevel,
-    number
-  >;
-
   const idx = Math.min(Math.max(level, 1), 20) - 1;
   const kind = tipoLanzador(classId);
 
-  if (kind === "none") return empty;
+  if (esSubclaseArcana(classId, subclassId)) {
+    return filaAEspacios(THIRD_CASTER_SLOTS[idx]);
+  }
+
+  if (kind === "none") return slotsVacios();
 
   if (kind === "pact") {
+    const empty = slotsVacios();
     const pact = PACT_SLOTS[idx];
     if (!pact) return empty;
     return { ...empty, [String(pact.level) as SpellSlotLevel]: pact.count };
   }
 
   const row = kind === "half" ? HALF_CASTER_SLOTS[idx] : FULL_CASTER_SLOTS[idx];
-  SPELL_SLOT_LEVELS.forEach((slotLevel, i) => {
-    empty[slotLevel] = row[i] ?? 0;
-  });
-  return empty;
+  return filaAEspacios(row);
 }
 
 export function esLanzador(classId: string): boolean {
@@ -169,10 +202,11 @@ function slotsVacios(): Record<SpellSlotLevel, number> {
 /** Nivel efectivo de conjuro multiclase SRD (sin brujo). */
 export function nivelEfectivoConjuro(classes: ClassLevel[]): number {
   let total = 0;
-  for (const { classId, level } of classes) {
+  for (const { classId, level, subclassId } of classes) {
     const kind = tipoLanzador(classId);
     if (kind === "full") total += level;
     else if (kind === "half") total += Math.floor(level / 2);
+    else if (esSubclaseArcana(classId, subclassId)) total += Math.floor(level / 3);
   }
   return Math.min(20, Math.max(0, total));
 }
@@ -181,8 +215,21 @@ export function nivelBrujo(classes: ClassLevel[]): number {
   return classes.find((c) => c.classId === "warlock")?.level ?? 0;
 }
 
+function clasesConEspaciosNormales(classes: ClassLevel[]): ClassLevel[] {
+  return classes.filter((c) => {
+    const kind = tipoLanzador(c.classId);
+    return kind === "full" || kind === "half" || esSubclaseArcana(c.classId, c.subclassId);
+  });
+}
+
 export function espaciosMaximosPersonaje(character: Character): Record<SpellSlotLevel, number> {
   const classes = clasesParaConjuros(character);
+  const lanzadoras = clasesConEspaciosNormales(classes);
+  if (lanzadoras.length === 0) return slotsVacios();
+  if (lanzadoras.length === 1) {
+    const only = lanzadoras[0]!;
+    return espaciosMaximos(only.classId, only.level, only.subclassId);
+  }
   const effective = nivelEfectivoConjuro(classes);
   if (effective === 0) return slotsVacios();
   return espaciosMaximos("wizard", effective);
@@ -203,9 +250,15 @@ export function nivelEspacioPacto(classes: ClassLevel[]): number {
   return PACT_SLOTS[idx]?.level ?? 0;
 }
 
+/** Brujo sin otras clases lanzadoras: solo magia de pacto (siempre al nivel del espacio). */
+export function esSoloMagiaPacto(character: Character): boolean {
+  const classes = clasesParaConjuros(character);
+  return nivelBrujo(classes) > 0 && nivelEfectivoConjuro(classes) === 0;
+}
+
 export function esLanzadorPersonaje(character: Character): boolean {
   const classes = clasesParaConjuros(character);
-  return nivelEfectivoConjuro(classes) > 0 || nivelBrujo(classes) > 0;
+  return clasesConEspaciosNormales(classes).length > 0 || nivelBrujo(classes) > 0;
 }
 
 export function usaPreparadosMulticlase(classes: ClassLevel[]): boolean {
@@ -214,13 +267,17 @@ export function usaPreparadosMulticlase(classes: ClassLevel[]): boolean {
   );
 }
 
-export function maxTrucosConocidos(classes: ClassLevel[]): number {
+export function maxTrucosConocidos(
+  classes: ClassLevel[],
+  originChoices?: OriginChoices,
+): number {
   let total = 0;
   for (const { classId, level, subclassId } of classes) {
     total += maxTrucosClase(classId, level);
     if (esSubclaseArcana(classId, subclassId)) {
       total += classId === "fighter" ? 2 : 3;
     }
+    total += extraTrucosOrdenDivino(classId, originChoices);
   }
   return total;
 }
@@ -256,7 +313,7 @@ export function resumenConjuros(character: Character): {
   return {
     cantrips: {
       actual: character.spells.cantripsKnown.length,
-      max: maxTrucosConocidos(classes),
+      max: maxTrucosConocidos(classes, character.originChoices),
     },
     prepared: preparados
       ? {
@@ -269,4 +326,41 @@ export function resumenConjuros(character: Character): {
       max: maxConjurosGrimorioPersonaje(character) || undefined,
     },
   };
+}
+
+export function compararConjurosPorNivel(
+  levelA: number,
+  nameA: string,
+  levelB: number,
+  nameB: string,
+): number {
+  if (levelA !== levelB) return levelA - levelB;
+  return nameA.localeCompare(nameB, "es", { sensitivity: "base" });
+}
+
+/** Ordena ids de conjuro por nivel y, a igualdad, por nombre. */
+export function ordenarIdsConjuro(
+  ids: readonly string[],
+  metaDe: (id: string) => { level: number; name: string },
+): string[] {
+  return [...ids].sort((a, b) => {
+    const ma = metaDe(a);
+    const mb = metaDe(b);
+    return compararConjurosPorNivel(ma.level, ma.name, mb.level, mb.name);
+  });
+}
+
+/** Agrupa ids ya ordenados por nivel de conjuro (para listas de preparados). */
+export function agruparIdsConjuroPorNivel(
+  ids: readonly string[],
+  metaDe: (id: string) => { level: number; name: string },
+): { level: number; ids: string[] }[] {
+  const grupos: { level: number; ids: string[] }[] = [];
+  for (const id of ordenarIdsConjuro(ids, metaDe)) {
+    const level = metaDe(id).level;
+    const ultimo = grupos[grupos.length - 1];
+    if (ultimo && ultimo.level === level) ultimo.ids.push(id);
+    else grupos.push({ level, ids: [id] });
+  }
+  return grupos;
 }

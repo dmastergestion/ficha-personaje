@@ -1,0 +1,16 @@
+---
+description: Motor de reglas D&D (funciones puras + tests)
+globs: src/rules/**/*
+alwaysApply: false
+---
+
+# src/rules/
+
+**Solo esta capa.** No edits en `src/schemas/`, `src/db/`, `scripts/` ni UI (otras reglas con `globs`).
+
+- Skill detallada: **`/dm-rules`** (`~/.cursor/skills/dm-rules/`)
+- Funciones **puras**: sin React, Dexie, `fetch`, DOM
+- Test colocado: `foo.ts` → `foo.test.ts` (Vitest)
+- Catálogo SRD vía `catalog.ts` / JSON en `src/data/srd/`; no inventar reglas
+- Regla D&D no documentada en SPEC: proponer en 3 líneas y esperar OK
+- Tras cambio: `npm test` (o al menos el test del módulo)

@@ -1,5 +1,6 @@
 import type { ClassLevel } from "@/schemas/character";
-import { obtenerClase, t } from "@/rules/srd";
+import { nivelSubclase } from "@/rules/class-features";
+import { srdSubclasses, obtenerClase, t } from "@/rules/srd";
 
 export function nivelTotalClases(classes: ClassLevel[]): number {
   return classes.reduce((sum, c) => sum + c.level, 0);
@@ -113,4 +114,17 @@ export function actualizarNivelClase(
     );
   }
   return next;
+}
+
+export function puedeElegirSubclase(classLevel: ClassLevel): boolean {
+  return classLevel.level >= nivelSubclase(classLevel.classId);
+}
+
+export function faltaElegirSubclase(classLevel: ClassLevel): boolean {
+  return puedeElegirSubclase(classLevel) && !classLevel.subclassId;
+}
+
+export function subclaseValidaParaClase(classId: string, subclassId: string | null): boolean {
+  if (!subclassId) return false;
+  return srdSubclasses.some((sc) => sc.id === subclassId && sc.classId === classId);
 }

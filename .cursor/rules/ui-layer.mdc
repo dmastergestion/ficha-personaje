@@ -1,0 +1,15 @@
+---
+description: React UI — sin lógica de reglas
+globs: src/components/**/*,src/pages/**/*,src/hooks/**/*
+alwaysApply: false
+---
+
+# UI (components, pages, hooks)
+
+**Solo presentación.** Reglas D&D → `src/rules/`; persistencia → schemas/db (otras reglas).
+
+- Cálculos y validación D&D → importar desde `src/rules/`
+- Zustand solo estado de UI (pestaña, modales, última tirada)
+- Hechos del personaje → leer/escribir vía Dexie + `CharacterSchema`
+- Mesa: acciones críticas `#ffd54f`; tirada d20 ≤1 clic; daño/curación PV ≤2 clics
+- Hooks: lógica de presentación o wiring; reglas siguen en `rules/`

@@ -1,5 +1,6 @@
 import type { RollMode, D20Roll, DiceRollOptions } from "@/rules/dice";
-import { construirTiradaD20 } from "@/rules/dice";
+import { tiradaSalvacion } from "@/rules/effects";
+import { aplicarAgotamientoAlRecuperarPg } from "@/rules/exhaustion";
 import type { Character } from "@/schemas/character";
 
 export type DeathSaveOutcome =
@@ -42,21 +43,35 @@ export function tirarSalvacionMuerte(
     return { error: "Las salvaciones de muerte solo aplican a 0 PV." };
   }
 
-  const built = construirTiradaD20(0, rollMode, options);
-  if (!built.ok) return { error: built.error };
-  const roll = built.roll;
+  const built = tiradaSalvacion(
+    0,
+    "wis",
+    rollMode,
+    character.combat.conditionIds,
+    character.combat.exhaustionLevel,
+    options,
+  );
+  if ("autoFallo" in built) {
+    return { error: built.razon };
+  }
+  const roll = built;
   const natural = roll.used;
 
   if (natural === 20) {
-    const hpCurrent = 1;
+    const despierto = resetearSalvacionesMuerte({
+      ...character.combat,
+      hpCurrent: 1,
+      conditionIds: character.combat.conditionIds.filter((id) => id !== "unconscious"),
+    });
+    const combat = aplicarAgotamientoAlRecuperarPg(despierto);
     return {
-      character: {
-        ...character,
-        combat: resetearSalvacionesMuerte({ ...character.combat, hpCurrent }),
-      },
+      character: { ...character, combat },
       roll,
       outcome: "critical_success",
-      message: "¡20 natural! Te levantas con 1 PV.",
+      message:
+        combat.exhaustionLevel >= 6
+          ? "¡20 natural! Te levantas… y mueres por agotamiento 6."
+          : "¡20 natural! Te levantas con 1 PV (ganas 1 nivel de agotamiento).",
     };
   }
 
@@ -85,7 +100,7 @@ export function tirarSalvacionMuerte(
         character: { ...character, combat },
         roll,
         outcome: "stable",
-        message: "Tres éxitos — quedas estable (0 PV, consciente).",
+        message: "Tres éxitos — quedas estable (0 PV, inconsciente).",
       };
     }
     return {

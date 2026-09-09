@@ -27,19 +27,29 @@ function normalizarAntesDeGuardar(character: Character): Character {
   );
 }
 
-export async function listarPersonajes(): Promise<Character[]> {
+export async function listarPersonajes(): Promise<{
+  characters: Character[];
+  invalidos: number;
+}> {
   const filas = await db.characters.orderBy("meta.updatedAt").reverse().toArray();
-  return filas.flatMap((raw) => {
+  const characters: Character[] = [];
+  let invalidos = 0;
+  for (const raw of filas) {
     const parsed = CharacterSchema.safeParse(raw);
-    if (!parsed.success) {
-      if (import.meta.env.DEV) {
-        const id = typeof raw === "object" && raw && "id" in raw ? String(raw.id) : "?";
-        console.warn("Ficha omitida en listado (schema inválido):", id, parsed.error.flatten());
-      }
-      return [];
+    if (parsed.success) {
+      characters.push(normalizarAntesDeGuardar(parsed.data));
+      continue;
     }
-    return [normalizarAntesDeGuardar(parsed.data)];
-  });
+    try {
+      const recovered = normalizarPersonaje(raw);
+      characters.push(normalizarAntesDeGuardar(recovered));
+    } catch {
+      invalidos += 1;
+      const id = typeof raw === "object" && raw && "id" in raw ? String(raw.id) : "?";
+      console.warn("Ficha omitida en listado (schema inválido):", id, parsed.error.flatten());
+    }
+  }
+  return { characters, invalidos };
 }
 
 export async function obtenerPersonaje(id: string): Promise<Character | undefined> {

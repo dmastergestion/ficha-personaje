@@ -109,4 +109,9 @@ describe("pulirTextoReglasEs", () => {
     expect(text).toBe("Tienes una CA de 17 y un bonificador de +2 a la CA.");
     expect(text).not.toMatch(/clase de armadura/i);
   });
+
+  it("devuelve el mismo resultado si se llama dos veces (cache)", () => {
+    const raw = "Tienes 30 pies de Velocidad y Puntos de Golpe.";
+    expect(pulirTextoReglasEs(raw)).toBe(pulirTextoReglasEs(raw));
+  });
 });

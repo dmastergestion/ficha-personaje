@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { ConditionPanel } from "@/components/ConditionPanel";
 import { DamageTypesEditor } from "@/components/DamageTypesEditor";
 import { ResourcesPanel } from "@/components/ResourcesPanel";
@@ -6,13 +6,11 @@ import { Button } from "@/components/layout";
 import { ABILITY_KEYS, DAMAGE_TYPES } from "@/lib/constants";
 import type { AbilityKey } from "@/lib/constants";
 import { ABILITY_LABELS_ES, modificadorSalvacion } from "@/rules/character";
-import { aplicarCambioPv } from "@/rules/combat-hp";
+import { aplicarCambioPvConConcentracion } from "@/rules/combat-hp";
 import {
-  registrarFalloSalvacionMuerte,
   resetearSalvacionesMuerte,
   tirarSalvacionMuerte,
 } from "@/rules/death-saves";
-import { tiradaConcentracionPorDanio } from "@/rules/concentration";
 import { tiradaSalvacion } from "@/rules/effects";
 import { tirarAtaqueCompleto } from "@/rules/attack-roll";
 import { ataquePorId, idAtaqueDefecto } from "@/rules/attacks";
@@ -22,9 +20,9 @@ import {
 } from "@/rules/rests";
 import { dadosGolpeDisponibles } from "@/rules/hit-dice";
 import { descripcionDadosGolpe } from "@/rules/multiclass";
-import { poblarRecursosSugeridos, recursosSugeridos } from "@/rules/resources-tracker";
 import { HitDiceSpendButtons } from "@/components/HitDiceSpendButtons";
 import { AttackTable } from "@/components/sheet/AttackTable";
+import { desventajaPruebaCaracteristica } from "@/rules/proficiencies";
 import type { SheetTabProps } from "@/pages/character-sheet/types";
 import { useDiceRollOptions } from "@/hooks/useDiceRollOptions";
 import { useUiStore } from "@/stores/ui-store";
@@ -49,17 +47,6 @@ export function TabCombate({ character, onChange }: SheetTabProps) {
       ataquePorId(character, prev) ? prev : idAtaqueDefecto(character),
     );
   }, [character]);
-
-  const recursosSyncRef = useRef<string | null>(null);
-  useEffect(() => {
-    const sugeridos = recursosSugeridos(character);
-    const faltaAlguno = sugeridos.some((s) => !character.resources.some((r) => r.id === s.id));
-    if (!faltaAlguno) return;
-    const key = `${character.id}:${sugeridos.map((s) => s.id).join(",")}`;
-    if (recursosSyncRef.current === key) return;
-    recursosSyncRef.current = key;
-    onChange(poblarRecursosSugeridos(character));
-  }, [character, onChange]);
 
   const rollMode = useUiStore((s) => s.rollMode);
   const diceRoll = useDiceRollOptions();
@@ -87,39 +74,26 @@ export function TabCombate({ character, onChange }: SheetTabProps) {
       return;
     }
 
-    const prevHp = character.combat.hpCurrent;
-    const combat = aplicarCambioPv(character.combat, delta, {
-      damageType: tipoDanio || undefined,
-    });
-    let next: SheetTabProps["character"] = { ...character, combat };
-
-    if (delta < 0 && prevHp === 0 && combat.hpCurrent === 0) {
-      const fail = registrarFalloSalvacionMuerte(combat, 1);
-      next = { ...next, combat: fail.combat };
-      if (fail.outcome === "dead") {
-        setUltimaTirada(null, "Tres fallos de salvación de muerte — personaje muerto.");
-      }
+    const aplicado = aplicarCambioPvConConcentracion(
+      character,
+      delta,
+      rollMode,
+      diceRoll.options,
+      { damageType: tipoDanio || undefined },
+    );
+    if (aplicado.deathMessage) {
+      setUltimaTirada(null, aplicado.deathMessage);
     }
-
-    if (delta < 0 && character.spells.concentratingOn) {
-      const conc = tiradaConcentracionPorDanio(
-        { ...character, combat },
-        Math.abs(delta),
-        rollMode,
-        diceRoll.options,
+    if (aplicado.concentration) {
+      const conc = aplicado.concentration;
+      setUltimaTirada(
+        conc.roll,
+        conc.maintained
+          ? `Concentración · CD ${conc.dc} · mantienes el conjuro`
+          : `Concentración · CD ${conc.dc} · pierdes el conjuro`,
       );
-      if (conc) {
-        next = conc.character;
-        setUltimaTirada(
-          conc.roll,
-          conc.maintained
-            ? `Concentración · CD ${conc.dc} · mantienes el conjuro`
-            : `Concentración · CD ${conc.dc} · pierdes el conjuro`,
-        );
-      }
     }
-
-    onChange(next);
+    onChange(aplicado.character);
   }
 
   function tirarSalvacionMuerteRoll() {
@@ -149,6 +123,7 @@ export function TabCombate({ character, onChange }: SheetTabProps) {
       character.combat.conditionIds,
       character.combat.exhaustionLevel,
       diceRoll.options,
+      { desventaja: desventajaPruebaCaracteristica(character, key), ventaja: character.combat.raging && key === "str" },
     );
     if ("autoFallo" in result) {
       if (result.razon.includes("dado")) {
@@ -197,10 +172,42 @@ export function TabCombate({ character, onChange }: SheetTabProps) {
   return (
     <div className="sheet-tab-grid lg:grid-cols-12">
       <section className="sheet-card lg:col-span-4">
-        <h3 className="sheet-section-title">Ajustar puntos de golpe</h3>
+        <h3 className="sheet-section-title">Ajustar PV</h3>
+        {character.identity.classes.some((c) => c.classId === "barbarian") && (
+          <label className="mb-2 flex items-center gap-2 text-sm">
+            <input
+              type="checkbox"
+              className="accent-gold"
+              checked={character.combat.raging}
+              onChange={(e) =>
+                onChange({
+                  ...character,
+                  combat: { ...character.combat, raging: e.target.checked },
+                })
+              }
+            />
+            Rabia activa (ventaja en pruebas y salvaciones de Fuerza; bonus de daño cuerpo a cuerpo)
+          </label>
+        )}
+        {character.identity.classes.some((c) => c.classId === "barbarian") && (
+          <label className="mb-2 flex items-center gap-2 text-sm">
+            <input
+              type="checkbox"
+              className="accent-gold"
+              checked={character.combat.reckless}
+              onChange={(e) =>
+                onChange({
+                  ...character,
+                  combat: { ...character.combat, reckless: e.target.checked },
+                })
+              }
+            />
+            Ataque temerario (ventaja en ataques de FUE; los ataques contra ti tienen ventaja)
+          </label>
+        )}
         <p className="mb-2 text-xs text-muted">
-          Total en la barra superior ({character.combat.hpCurrent}/{character.combat.hpMax}
-          {character.combat.hpTemp > 0 ? ` +${character.combat.hpTemp} temp` : ""}).
+          Actual: {character.combat.hpCurrent}/{character.combat.hpMax}
+          {character.combat.hpTemp > 0 ? ` (+${character.combat.hpTemp} temp)` : ""} · usa ± o la barra inferior
         </p>
         <div className="mb-2 flex flex-wrap items-center gap-2">
           <div className="inline-flex shrink-0 overflow-hidden rounded-lg border border-white/10">

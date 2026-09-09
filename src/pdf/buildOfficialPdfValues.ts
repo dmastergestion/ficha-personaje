@@ -2,18 +2,20 @@ import { ABILITY_KEYS, SKILL_KEYS, SPELL_SLOT_LEVELS } from "@/lib/constants";
 import { bonificadorCompetencia, modificadorAtributo } from "@/rules/ability";
 import {
   ABILITY_LABELS_ES,
+  esProficientePericia,
   iniciativa,
   modificadorPericia,
   modificadorSalvacion,
   percepcionPasiva,
   velocidad,
 } from "@/rules/character";
-import { calcularClaseArmadura } from "@/rules/combat";
+import { claseArmaduraPersonaje } from "@/rules/combat";
 import type { GameCatalog } from "@/rules/catalog";
 import { descripcionClases, clasePrincipal } from "@/rules/multiclass";
 import { nombreDote } from "@/rules/feat-text";
-import { ataqueDesdeItem, esItemAtacable, modificadorAtaque } from "@/rules/attacks";
-import { cdConjuro, modificadorAtaqueConjuro } from "@/rules/spell-cast";
+import { ATAQUE_DESARMADO_ID, listarAtaquesFicha, modificadorAtaque } from "@/rules/attacks";
+import { cdConjuro, modificadorAtaqueConjuro, textoDañoMostradoConjuro } from "@/rules/spell-cast";
+import { ETIQUETA_ORIGEN_CONJURO, filasConjurosFicha } from "@/rules/spell-grants";
 import { metaTiradaConjuro } from "@/rules/spell-cast-meta";
 import { metaConjuroParaMostrar } from "@/rules/spell-text";
 import { descripcionOrigenEs } from "@/rules/origin-description";
@@ -24,9 +26,9 @@ import {
 import {
   clasesParaConjuros,
   espaciosMaximosPersonaje,
+  ordenarIdsConjuro,
   usaPreparadosMulticlase,
 } from "@/rules/spells";
-import { srdArmor } from "@/rules/srd";
 import type { Character } from "@/schemas/character";
 import {
   ABILITY_PDF,
@@ -41,12 +43,77 @@ export interface OfficialPdfValues {
   checks: Record<string, boolean>;
 }
 
+export type FilaArmasYTrucosPdf = {
+  name: string;
+  bonus: string;
+  damage: string;
+  notes: string;
+};
+
 function fmtMod(n: number): string {
   return n >= 0 ? `+${n}` : String(n);
 }
 
 function joinLines(parts: string[]): string {
   return parts.filter(Boolean).join("\n");
+}
+
+/** Tabla «Armas y trucos»: armas en combate + trucos/hechizos de ataque (máx. 6). */
+export function filasArmasYTrucosPdf(
+  character: Character,
+  catalog: GameCatalog,
+): FilaArmasYTrucosPdf[] {
+  const filas: FilaArmasYTrucosPdf[] = [];
+
+  for (const { id, attack } of listarAtaquesFicha(character)) {
+    if (id === ATAQUE_DESARMADO_ID) continue;
+    filas.push({
+      name: attack.name,
+      bonus: fmtMod(modificadorAtaque(character, attack)),
+      damage: attack.damage ?? "",
+      notes: attack.notes ?? "",
+    });
+  }
+
+  const preparados = usaPreparadosMulticlase(clasesParaConjuros(character));
+  const idsConjuroAtaque = ordenarIdsConjuro(
+    [
+      ...filasConjurosFicha(character, character.spells.cantripsKnown, "cantrip"),
+      ...filasConjurosFicha(
+        character,
+        preparados ? character.spells.spellsPrepared : character.spells.spellsKnown,
+        "leveled",
+      ),
+    ].map((f) => f.spellId),
+    (spellId) => {
+      const spell = catalog.obtenerConjuro(spellId);
+      return {
+        level: spell?.level ?? 99,
+        name: catalog.t("spells", spellId, spell?.nameEn ?? spellId),
+      };
+    },
+  );
+
+  const spellAtk = modificadorAtaqueConjuro(character);
+  for (const spellId of idsConjuroAtaque) {
+    const spell = catalog.obtenerConjuro(spellId);
+    const meta = metaTiradaConjuro(spellId, spell);
+    if (meta.tipo !== "attack") continue;
+    const damage = meta.damage
+      ? (() => {
+          const dice = textoDañoMostradoConjuro(character, spellId, meta.damage, spell?.level);
+          return meta.damage.type ? `${dice} ${meta.damage.type}` : dice;
+        })()
+      : "";
+    filas.push({
+      name: catalog.t("spells", spellId, spell?.nameEn ?? spellId),
+      bonus: spellAtk !== null ? fmtMod(spellAtk) : "",
+      damage,
+      notes: (spell?.level ?? 0) === 0 ? "Truco" : `Conjuro niv. ${spell?.level}`,
+    });
+  }
+
+  return filas.slice(0, 6);
 }
 
 const SIZE_ES: Record<string, string> = {
@@ -134,25 +201,17 @@ export function buildOfficialPdfValues(
 
   for (const skill of SKILL_KEYS) {
     const map = SKILL_PDF[skill];
-    const proficient =
-      skill in character.proficiencies.skillOverrides
-        ? (character.proficiencies.skillOverrides[skill] ?? false)
-        : character.proficiencies.skills.includes(skill);
+    const proficient = esProficientePericia(character, skill);
     checks[map.btn] = proficient;
     text[map.val] = fmtMod(modificadorPericia(character, skill));
   }
 
-  const attacks = character.equipment.items
-    .filter(esItemAtacable)
-    .map((item) => ataqueDesdeItem(item, character))
-    .filter((a): a is NonNullable<typeof a> => a !== null)
-    .slice(0, 6);
-
-  attacks.forEach((attack, i) => {
-    text[attackRowField(i, "name")] = attack.name;
-    text[attackRowField(i, "bonus")] = fmtMod(modificadorAtaque(character, attack));
-    text[attackRowField(i, "damage")] = attack.damage ?? "";
-    text[attackRowField(i, "notes")] = attack.notes ?? "";
+  const ataquesPdf = filasArmasYTrucosPdf(character, catalog);
+  ataquesPdf.forEach((fila, i) => {
+    text[attackRowField(i, "name")] = fila.name;
+    text[attackRowField(i, "bonus")] = fila.bonus;
+    text[attackRowField(i, "damage")] = fila.damage;
+    text[attackRowField(i, "notes")] = fila.notes;
   });
 
   const spellKey = character.spells.abilityKey;
@@ -178,10 +237,25 @@ export function buildOfficialPdfValues(
   }
 
   const preparados = usaPreparadosMulticlase(clasesParaConjuros(character));
-  const spellIds = [
-    ...character.spells.cantripsKnown,
-    ...(preparados ? character.spells.spellsPrepared : character.spells.spellsKnown),
-  ].slice(0, 30);
+  const filasConjuro = [
+    ...filasConjurosFicha(character, character.spells.cantripsKnown, "cantrip"),
+    ...filasConjurosFicha(
+      character,
+      preparados ? character.spells.spellsPrepared : character.spells.spellsKnown,
+      "leveled",
+    ),
+  ];
+  const spellIds = ordenarIdsConjuro(
+    filasConjuro.map((f) => f.spellId),
+    (spellId) => {
+      const spell = catalog.obtenerConjuro(spellId);
+      return {
+        level: spell?.level ?? 99,
+        name: catalog.t("spells", spellId, spell?.nameEn ?? spellId),
+      };
+    },
+  ).slice(0, 30);
+  const filaPorId = new Map(filasConjuro.map((f) => [f.spellId, f]));
 
   spellIds.forEach((spellId, i) => {
     const spell = catalog.obtenerConjuro(spellId);
@@ -190,15 +264,22 @@ export function buildOfficialPdfValues(
     text[spellRowField(i, "name")] = catalog.t("spells", spellId, spell?.nameEn ?? spellId);
     text[spellRowField(i, "level")] = level === 0 ? "0" : String(level);
     if (meta.castingTime) text[spellRowField(i, "time")] = meta.castingTime;
-    if (meta.components) text[spellRowField(i, "material")] = meta.components;
     if (meta.range) text[spellRowField(i, "range")] = meta.range;
-    if (meta.description) {
-      const short =
-        meta.description.length > 120 ? `${meta.description.slice(0, 117)}…` : meta.description;
-      text[spellRowField(i, "notes")] = short;
-    }
+    const fila = filaPorId.get(spellId);
+    const usosTexto = fila?.usosPorOrigen?.length
+      ? fila.usosPorOrigen
+          .map((u) => `${ETIQUETA_ORIGEN_CONJURO[u.source]} ${u.restantes}/${u.max}`)
+          .join(" · ")
+      : fila?.usosLibres
+        ? `${fila.usosLibres.restantes}/${fila.usosLibres.max}`
+        : null;
+    const notaCorta = [fila?.anotacion, usosTexto].filter(Boolean).join(" · ");
+    if (notaCorta) text[spellRowField(i, "notes")] = notaCorta;
     if (meta.ritual) checks[spellRowField(i, "ritual")] = true;
     if (catalog.requiereConcentracion(spellId)) checks[spellRowField(i, "concentration")] = true;
+    // Casilla AcroForm (no texto): detectar M en componentes SRD o mostrados.
+    const componentes = spell?.components ?? meta.components ?? "";
+    if (/\bM\b/i.test(componentes)) checks[spellRowField(i, "material")] = true;
   });
 
   text["Piezas de Platino"] = String(character.equipment.currency.pp);
@@ -240,13 +321,5 @@ export function buildOfficialPdfValues(
 }
 
 export function calcularCaParaPdf(character: Character): number {
-  const shield = srdArmor.find((item) => item.category === "shield");
-  const armor = srdArmor.find((item) => item.id === character.equipment.armorId) ?? null;
-  return calcularClaseArmadura(
-    character.abilities.dex,
-    armor,
-    character.equipment.shieldEquipped,
-    shield,
-    character.combat.armorClassOverride,
-  );
+  return claseArmaduraPersonaje(character);
 }

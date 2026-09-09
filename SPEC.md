@@ -70,7 +70,7 @@ Tracker de iniciativa de grupo, mapas, multijugador, vista DM/party, VTT, backen
 | PWA: banner actualización, offline, shortcuts | [x] |
 | Export JSON backup + tracker mínimo | [x] |
 | PDF oficial AcroForm (`pdf-lib`) en local y Pages | [x] |
-| Schema personaje **v6** + migraciones Dexie v1→v6 | [x] |
+| Schema personaje **v9** + migraciones Dexie v11 | [x] |
 
 ---
 
@@ -95,8 +95,6 @@ ficha-personaje/
 │   ├── build-spell-components-es.ts
 │   ├── prepare-pdf-template.py   # Plantilla PDF local (gitignored)
 │   └── check-pdf-template.mjs    # Aviso solo en build local
-├── data/i18n/
-│   └── overrides.es.json  # Correcciones manuales ES
 ├── src/
 │   ├── app/               # Router, providers, layout
 │   ├── components/        # UI (shadcn + compuestos ficha)
@@ -154,7 +152,7 @@ flowchart TB
 | Legal | [SRD 5.2.1 PDF](https://media.dndbeyond.com/compendium-images/srd/5.2/SRD_CC_v5.2.pdf) — CC BY 4.0 |
 | Parseo | [downfallx/dnd-5e-srd-markdown](https://github.com/downfallx/dnd-5e-srd-markdown) |
 | QA | [sycarion/5e-2024-SRD](https://github.com/sycarion/5e-2024-SRD) |
-| ES | Foundry `translate-dnd5e-sdr2-es` + glosario SRD 5.1 ES (Nosolorol) + `overrides.es.json` |
+| ES | Foundry `translate-dnd5e-sdr2-es` + glosario SRD 5.1 ES (Nosolorol) + `src/data/i18n/` |
 | Conjuros ES | `spell-descriptions-es.json` + `spell-components-es.json` (build-time) |
 
 - IDs internos: `snake_case` en inglés (estables).
@@ -167,14 +165,14 @@ flowchart TB
 
 ### Tabla `characters`
 
-Documento validado con `CharacterSchema` (Zod). Versión de esquema: **`schemaVersion: 6`** (`SCHEMA_VERSION` en `src/lib/constants.ts`).
+Documento validado con `CharacterSchema` (Zod). Versión de esquema: **`schemaVersion: 9`** (`SCHEMA_VERSION` en `src/lib/constants.ts`). Dexie: **v11**.
 
 ```typescript
 // Referencia resumida — ver src/schemas/character.ts
 
 CharacterSchema = {
   id: string (uuid),
-  schemaVersion: 6,
+  schemaVersion: 9,
   meta: { createdAt, updatedAt },
   identity: {
     name, playerName,
@@ -189,12 +187,13 @@ CharacterSchema = {
   proficiencies: {
     savingThrows: AbilityKey[],    // override manual
     skills: SkillKey[],
-    skillOverrides: Record<SkillKey, boolean>, // forzar prof/no prof
+    skillOverrides: Record<SkillKey, boolean>,
+    expertise: SkillKey[],
   },
   combat: {
     hpMax, hpCurrent, hpTemp, hitDiceTotal, hitDiceUsed, hitDie,
     armorClassOverride, initiativeOverride, speedOverride,
-    inspiration, deathSaves, conditionIds, conditionsCustom,
+    inspiration, raging, deathSaves, conditionIds, conditionsCustom,
     damageResistances, damageImmunities, damageVulnerabilities,
   },
   equipment: {
@@ -252,23 +251,24 @@ flowchart LR
 ### `/` — Lista de personajes
 
 - Tarjetas: nombre, clase, nivel, PV actuales/máx.
-- Acciones: abrir, duplicar, exportar backup, export tracker, eliminar (confirmación).
+- Acciones: abrir, duplicar, exportar backup, **export tracker**, eliminar (confirmación).
 - FAB / botón: nuevo personaje.
 - Enlace a Ajustes.
 
-### `/new` — Asistente de creación (5 pasos)
+### `/new` — Asistente de creación (5–6 pasos)
 
 1. **Identidad** — nombre del personaje, jugador
-2. **Origen** — especie, trasfondo (opcional)
-3. **Clase** — clase, subclase opcional, nivel inicial
-4. **Atributos** — array estándar auto-asignado por clase o edición manual
-5. **Resumen** — confirmación; calcula PV nivel 1 y crea ficha
+2. **Origen** — especie, trasfondo (opcional; aviso si vacío)
+3. **Clase** — clase, pericias de clase, subclase si el nivel la exige, nivel inicial
+4. **Atributos** — array estándar, 4d6 o **compra de puntos 27**
+5. **Conjuros** — solo si la clase lanza (paso extra)
+6. **Resumen** — confirmación; PV con media del dado; hitos 2…N si se crea a nivel alto
 
 Guardar → redirige a `/character/:id`.
 
 ### `/character/:id` — Ficha (tabs)
 
-**Tab Resumen:** identidad, atributos con botón tirada, PB visible (derivado).
+**Tab Resumen:** identidad (clase, **subclase**, especie, trasfondo), atributos con botón tirada, PB visible (derivado), expertise.
 
 **Tab Combate:** PV (botones ±1, ±5, ±custom), temp HP, CA (calculada + override), iniciativa, velocidad, salvaciones con tirada, pericias con tirada, condiciones manuales, descanso corto/largo.
 
@@ -278,7 +278,9 @@ Guardar → redirige a `/character/:id`.
 
 **Tab Notas:** texto libre + homebrew (campos libres, sin validación SRD).
 
-Barra fija inferior (móvil): acceso rápido Combate + tirada d20.
+**Tab Añadir:** catálogo de dotes, conjuros y equipo a incorporar a la ficha.
+
+Barra fija inferior (solo móvil): acceso rápido Combate + ataque/lanzar. Hidden en `lg+`.
 
 ### `/settings` — Ajustes
 

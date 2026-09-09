@@ -4,6 +4,7 @@ import {
   esEleccionBonificacionAtributos,
   esEleccionEditable,
   etiquetaEleccionOrigen,
+  opcionesEleccionOrigen,
   todasEleccionesOrigen,
   type OriginChoiceDefinition,
   type OriginChoices,
@@ -13,11 +14,13 @@ function CampoEleccion({
   def,
   value,
   disabled,
+  options,
   onChange,
 }: {
   def: OriginChoiceDefinition;
   value: string;
   disabled: boolean;
+  options: OriginChoiceDefinition["options"];
   onChange: (value: string) => void;
 }) {
   return (
@@ -30,7 +33,7 @@ function CampoEleccion({
         disabled={disabled}
         onChange={(e) => onChange(e.target.value)}
       >
-        {def.options.map((opt) => (
+        {options.map((opt) => (
           <option key={opt.value} value={opt.value}>
             {opt.label}
           </option>
@@ -82,8 +85,8 @@ export function OriginChoicesForm({
   }
 
   return (
-    <div className="flex flex-col gap-3 rounded-lg border border-white/10 bg-panel/40 p-3">
-      <p className="text-sm font-medium text-gold">Elecciones de origen</p>
+    <div className="sheet-card flex flex-col gap-4">
+      <h3 className="sheet-section-title mb-0">Elecciones de origen</h3>
 
       {speciesDefs.length > 0 && (
         <div className="space-y-3">
@@ -93,6 +96,7 @@ export function OriginChoicesForm({
               def={def}
               value={choices.species[def.id] ?? def.defaultValue ?? def.options[0]?.value ?? ""}
               disabled={mode === "sheet" && !esEleccionEditable(def, level)}
+              options={opcionesEleccionOrigen(def, choices, backgroundId, catalogo)}
               onChange={(v) => setSpecies(def.id, v)}
             />
           ))}
@@ -107,6 +111,7 @@ export function OriginChoicesForm({
               def={def}
               value={choices.background[def.id] ?? def.defaultValue ?? def.options[0]?.value ?? ""}
               disabled={mode === "sheet" && !esEleccionEditable(def, level)}
+              options={opcionesEleccionOrigen(def, choices, backgroundId, catalogo)}
               onChange={(v) => setBackground(def.id, v)}
             />
           ))}

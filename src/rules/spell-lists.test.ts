@@ -3,8 +3,10 @@ import { crearPersonajeVacio } from "@/schemas/character";
 import {
   atributoConjuroPredeterminado,
   conjuroDisponibleParaPersonaje,
+  listaConjuro,
   nivelMaximoConjuroClase,
 } from "@/rules/spell-lists";
+import { srdSpells } from "@/rules/srd";
 
 describe("atributoConjuroPredeterminado", () => {
   it("asigna INT al mago", () => {
@@ -45,5 +47,29 @@ describe("filtro de listas", () => {
 
   it("paladín niv 5 puede hasta niv 2", () => {
     expect(nivelMaximoConjuroClase("paladin", 5)).toBe(2);
+  });
+
+  it("sin entrada en listas no está disponible para nadie", () => {
+    expect(
+      conjuroDisponibleParaPersonaje("conjuro-inventado-xyz", 1, {
+        classId: "wizard",
+        subclassId: null,
+        level: 5,
+      }),
+    ).toBe(false);
+  });
+
+  it("risa horrible está en lista de bardo y mago, no de explorador", () => {
+    const bard = { classId: "bard", subclassId: null, level: 1 };
+    const wizard = { classId: "wizard", subclassId: null, level: 1 };
+    const ranger = { classId: "ranger", subclassId: null, level: 3 };
+    expect(conjuroDisponibleParaPersonaje("hideous-laughter", 1, bard)).toBe(true);
+    expect(conjuroDisponibleParaPersonaje("tashas-hideous-laughter", 1, wizard)).toBe(true);
+    expect(conjuroDisponibleParaPersonaje("hideous-laughter", 1, ranger)).toBe(false);
+  });
+
+  it("todo conjuro SRD tiene lista de clase o subclase", () => {
+    const sinLista = srdSpells.filter((s) => !listaConjuro(s.id));
+    expect(sinLista.map((s) => s.id)).toEqual([]);
   });
 });

@@ -1,13 +1,13 @@
 @import "tailwindcss";
 
 @theme {
-  --color-gold: #ffd54f;
-  --color-accent: #7ec8e3;
-  --color-surface: #141414;
-  --color-panel: #1f1f1f;
-  --color-elevated: #2a2a2a;
-  --color-muted: #a8b0bd;
-  --color-border: rgb(255 255 255 / 0.12);
+  --color-gold: #e8b84b;
+  --color-accent: #8fbfa8;
+  --color-surface: #1a1613;
+  --color-panel: #252019;
+  --color-elevated: #332c23;
+  --color-muted: #d4c8b8;
+  --color-border: rgb(210 190 160 / 0.18);
   --color-danger: #f87171;
   --color-success: #4ade80;
 }
@@ -24,15 +24,41 @@ body {
 
 @layer components {
   .sheet-card {
-    @apply rounded-xl border border-white/10 bg-panel p-3;
+    @apply rounded-xl border border-white/10 bg-panel p-3 sm:p-4;
   }
 
   .sheet-section-title {
-    @apply mb-2 text-base font-semibold tracking-tight text-white;
+    @apply mb-1.5 text-[15px] font-semibold tracking-tight text-white;
+  }
+
+  .sheet-details > summary {
+    @apply mb-0 cursor-pointer list-none text-base font-semibold tracking-tight text-white;
+  }
+
+  .sheet-details > summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .sheet-details > summary::before {
+    content: "▸ ";
+    color: var(--color-muted);
+    font-weight: 500;
+  }
+
+  .sheet-details[open] > summary::before {
+    content: "▾ ";
+  }
+
+  .sheet-details[open] > summary {
+    @apply mb-3;
   }
 
   .sheet-field-label {
     @apply mb-0.5 block text-sm font-medium text-muted;
+  }
+
+  .sheet-prose {
+    @apply whitespace-pre-wrap text-[15px] leading-relaxed text-white/90;
   }
 
   .sheet-tab-stack {
@@ -44,11 +70,11 @@ body {
   }
 
   .sheet-input {
-    @apply w-full rounded-lg border border-white/15 bg-surface px-3 py-2.5 text-[15px] text-white transition-colors placeholder:text-muted/50 focus:border-gold/40 focus:outline-none focus:ring-2 focus:ring-gold/20;
+    @apply w-full rounded-lg border border-white/15 bg-surface px-3 py-2.5 text-[15px] text-white transition-colors placeholder:text-muted/60 focus:border-gold/40 focus:outline-none focus:ring-2 focus:ring-gold/20;
   }
 
   .sheet-input-sm {
-    @apply w-full rounded-lg border border-white/15 bg-surface px-2 py-1 text-sm text-white tabular-nums transition-colors placeholder:text-muted/50 focus:border-gold/40 focus:outline-none focus:ring-2 focus:ring-gold/20;
+    @apply w-full rounded-lg border border-white/15 bg-surface px-2 py-1 text-sm text-white tabular-nums transition-colors placeholder:text-muted/60 focus:border-gold/40 focus:outline-none focus:ring-2 focus:ring-gold/20;
   }
 
   .sheet-select {
@@ -57,15 +83,15 @@ body {
   }
 
   .sheet-quick-stats {
-    @apply mb-3 grid grid-cols-2 gap-px overflow-visible rounded-lg border border-white/10 bg-white/10 sm:grid-cols-4 lg:grid-cols-8;
+    @apply mb-2 grid grid-cols-2 gap-px overflow-visible rounded-lg border border-white/10 bg-white/10 sm:grid-cols-4 lg:grid-cols-8;
   }
 
   .sheet-stat-pill {
-    @apply flex min-w-0 flex-col justify-center gap-0.5 overflow-visible bg-panel px-2.5 py-2;
+    @apply flex min-w-0 flex-col justify-center gap-0.5 overflow-visible bg-panel px-2 py-1.5;
   }
 
   .sheet-stat-pill-accent {
-    @apply bg-gold/5;
+    @apply bg-gold/8;
   }
 
   .sheet-stat-pill-label {
@@ -77,31 +103,27 @@ body {
   }
 
   .sheet-stat-pill-value {
-    @apply text-lg font-bold tabular-nums leading-tight;
+    @apply text-base font-bold tabular-nums leading-tight sm:text-lg;
   }
 
   .sheet-stat-pill-sub {
-    @apply text-xs text-muted;
+    @apply text-xs text-muted sm:text-sm;
   }
 
   .sheet-stat-pill-input {
-    @apply w-16 shrink-0 rounded-lg border border-white/10 bg-surface px-2 py-1 text-sm text-white tabular-nums transition-colors placeholder:text-muted/50 focus:border-gold/40 focus:outline-none focus:ring-2 focus:ring-gold/20;
+    @apply w-14 shrink-0 rounded-lg border border-white/10 bg-surface px-1.5 py-0.5 text-sm text-white tabular-nums transition-colors placeholder:text-muted/60 focus:border-gold/40 focus:outline-none focus:ring-2 focus:ring-gold/20 sm:w-16 sm:px-2 sm:py-1;
   }
 
   .sheet-tab-bar {
-    @apply mb-3 flex gap-1 overflow-x-auto rounded-xl border border-white/10 bg-panel p-1;
+    @apply mb-3 flex gap-0.5 overflow-x-auto rounded-xl border border-white/10 bg-panel p-0.5;
   }
 
   .sheet-tab {
-    @apply shrink-0 rounded-lg px-4 py-2.5 text-sm font-medium text-muted transition-colors hover:text-white;
+    @apply min-w-fit flex-1 rounded-lg px-2.5 py-1.5 text-sm font-medium whitespace-nowrap text-muted transition-colors hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold/50;
   }
 
   .sheet-tab-active {
     @apply bg-gold font-semibold text-black shadow-sm hover:text-black;
-  }
-
-  .sheet-sidebar {
-    @apply hidden w-72 shrink-0 flex-col gap-2 lg:sticky lg:top-4 lg:flex lg:self-start;
   }
 
   .sheet-sidebar-panel {
@@ -122,7 +144,7 @@ body {
   }
 
   .sheet-input-compact {
-    @apply min-w-0 rounded-lg border border-white/15 bg-surface px-2 py-1 text-sm text-white transition-colors placeholder:text-muted/50 focus:border-gold/40 focus:outline-none focus:ring-2 focus:ring-gold/20;
+    @apply min-w-0 rounded-lg border border-white/15 bg-surface px-2 py-1 text-sm text-white transition-colors placeholder:text-muted/60 focus:border-gold/40 focus:outline-none focus:ring-2 focus:ring-gold/20;
   }
 
   .sheet-ability-cluster {
@@ -134,7 +156,7 @@ body {
   }
 
   .sheet-ability-name {
-    @apply text-[10px] font-semibold uppercase leading-tight tracking-wide text-muted;
+    @apply text-xs font-semibold uppercase leading-tight tracking-wide text-muted;
   }
 
   .sheet-ability-score {
@@ -158,7 +180,7 @@ body {
   }
 
   .sheet-table-header {
-    @apply grid gap-2 border-b border-white/10 pb-1 text-xs font-semibold uppercase tracking-wide text-muted;
+    @apply grid gap-2 border-b border-white/10 pb-1 text-sm font-semibold uppercase tracking-wide text-muted;
   }
 
   .sheet-table-row {
@@ -172,8 +194,39 @@ body {
 
   .sheet-spell-grid {
     grid-template-columns:
-      minmax(0, 1.2fr) 2.5rem 4rem 2.5rem 2.5rem minmax(0, 0.75fr) minmax(0, 0.75fr)
-      minmax(0, 1fr) 5.5rem;
+      minmax(0, 1.8fr) 2.5rem minmax(3.5rem, 0.55fr) minmax(4.5rem, 0.7fr) minmax(0, 1fr);
+  }
+
+  .sheet-equip-grid {
+    @apply grid gap-2 sm:grid-cols-2 lg:grid-cols-3;
+  }
+
+  .sheet-equip-item {
+    @apply flex flex-col gap-1.5 rounded-lg border border-white/10 bg-surface/60 p-2;
+  }
+
+  .sheet-equip-item-weapon {
+    @apply border-gold/25 bg-gold/[0.04];
+  }
+
+  .sheet-equip-item-attuned {
+    @apply border-accent/30 bg-accent/[0.05];
+  }
+
+  .sheet-equip-metrics {
+    @apply flex flex-wrap items-center gap-x-2 gap-y-1 text-xs text-muted;
+  }
+
+  .sheet-equip-metrics input {
+    @apply w-11 rounded border border-white/15 bg-surface px-1 py-0.5 text-xs text-white tabular-nums;
+  }
+
+  .sheet-equip-field {
+    @apply space-y-0.5;
+  }
+
+  .sheet-equip-field > span {
+    @apply block text-[10px] font-medium uppercase tracking-wide text-muted;
   }
 
   .sheet-pdf-combat-stats .sheet-quick-stats {

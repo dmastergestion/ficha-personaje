@@ -168,7 +168,7 @@ const CLASS_FEATURES: Record<string, ClassFeatureEntry[]> = {
   ],
   rogue: [
     { level: 1, name: "Pericia", description: "Expertise en dos pericias (otras dos en nivel 6)." },
-    { level: 1, name: "Ataque furtivo", description: "1/turno +d6 (escala) si ventaja o aliado adyacente al objetivo, con arma de filigrana o a distancia." },
+    { level: 1, name: "Ataque furtivo", description: "1/turno +d6 (escala) si ventaja o aliado adyacente al objetivo, con arma sutil o a distancia." },
     { level: 1, name: "Jerga de ladrones", description: "Conoces jerga de ladrones y un idioma adicional." },
     { level: 1, name: "Maestría con armas", description: "Maestría de dos armas; cambias tras descanso largo." },
     { level: 2, name: "Acción astuta", description: "Acción adicional: Correr, Desenganchar o Esconderse." },

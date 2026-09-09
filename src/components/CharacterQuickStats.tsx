@@ -4,7 +4,7 @@ import { percepcionPasiva, iniciativa, velocidad } from "@/rules/character";
 import { bonificadorIniciativaDotes } from "@/rules/feat-mechanics";
 import { alcanceVisionOscura, etiquetaVisionOscura } from "@/rules/sensory";
 
-import { desgloseClaseArmadura } from "@/rules/combat";
+import { desgloseClaseArmadura, opcionesCaPersonaje } from "@/rules/combat";
 import { abreviaturaArmadura } from "@/rules/armor-text";
 
 import { etiquetaDadosGolpe } from "@/rules/hit-dice";
@@ -54,14 +54,12 @@ export function CharacterQuickStats({
     character.equipment.shieldEquipped,
     shield,
     character.combat.armorClassOverride,
-    armor
-      ? {
-          etiquetaArmadura: abreviaturaArmadura(
-            armor,
-            catalog.t("armor", armor.id, armor.nameEn),
-          ),
-        }
-      : undefined,
+    {
+      ...opcionesCaPersonaje(character),
+      etiquetaArmadura: armor
+        ? abreviaturaArmadura(armor, catalog.t("armor", armor.id, armor.nameEn))
+        : undefined,
+    },
   );
 
   const speciesSpeed = character.identity.speciesId

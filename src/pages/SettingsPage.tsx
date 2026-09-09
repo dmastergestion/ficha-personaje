@@ -1,7 +1,7 @@
 import { useRef, useState } from "react";
 import { Button, Layout } from "@/components/layout";
 import { SCHEMA_VERSION } from "@/lib/constants";
-import { guardarPersonaje, importarPersonaje } from "@/db/repository";
+import { guardarPersonaje, importarPersonaje, obtenerPersonaje } from "@/db/repository";
 import { useCatalogStore } from "@/stores/catalog-store";
 
 export function SettingsPage() {
@@ -15,7 +15,23 @@ export function SettingsPage() {
   async function onImportBackup(file: File) {
     try {
       const text = await file.text();
-      const character = importarPersonaje(text);
+      let character = importarPersonaje(text);
+      const existing = await obtenerPersonaje(character.id);
+      if (existing) {
+        const overwrite = window.confirm(
+          `Ya existe un personaje con el mismo id (${existing.identity.name}). Aceptar sobrescribe; Cancelar genera un id nuevo.`,
+        );
+        if (!overwrite) {
+          character = {
+            ...character,
+            id: crypto.randomUUID(),
+            identity: {
+              ...character.identity,
+              name: `${character.identity.name} (importado)`,
+            },
+          };
+        }
+      }
       await guardarPersonaje(character);
       setMensaje(`Personaje importado: ${character.identity.name}`);
     } catch {
@@ -60,8 +76,8 @@ export function SettingsPage() {
               </p>
             </div>
           ) : (
-            <p className="mb-3 text-sm text-accent">
-              Cargando catálogo… Si persiste, recarga la página.
+            <p className="mb-3 text-sm text-muted">
+              Catálogo SRD activo. El pack PHB se carga en segundo plano al abrir la app.
             </p>
           )}
           <input
@@ -95,6 +111,7 @@ export function SettingsPage() {
             onChange={(event) => {
               const file = event.target.files?.[0];
               if (file) void onImportBackup(file);
+              event.target.value = "";
             }}
           />
           <Button onClick={() => backupRef.current?.click()}>Elegir archivo JSON</Button>

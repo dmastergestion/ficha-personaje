@@ -4,6 +4,7 @@ import weaponMetaJson from "@/data/srd/weapon-meta.json";
 import speciesMetaJson from "@/data/srd/species-meta.json";
 import backgroundMetaJson from "@/data/srd/background-meta.json";
 import phbManual from "@/data/i18n/phb-es-manual.json";
+import { idSrdConjuro, idsEquivalentesConjuro } from "@/rules/spell-aliases";
 import {
   mergeConjurosCatalogo,
   conjuroEsRitual,
@@ -28,6 +29,7 @@ import {
   type SrdSubclass,
   type SrdWeapon,
 } from "@/rules/srd";
+import { compararConjurosPorNivel } from "@/rules/spells";
 
 export type TranslateCategory = keyof Omit<I18nBundle, "ui"> | "speciesGroups" | "feats";
 
@@ -80,6 +82,8 @@ function translate(
 ): string {
   if (!id) return fallback;
 
+  const ids = category === "spells" ? idsEquivalentesConjuro(id) : [id];
+
   if (category === "speciesGroups") {
     const manual = phbManual.speciesGroups as Record<string, string> | undefined;
     return manual?.[id] ?? i18n.species[id] ?? fallback ?? id;
@@ -89,17 +93,20 @@ function translate(
     | Record<string, string>
     | undefined;
 
-  return (
-    i18n[category as keyof Omit<I18nBundle, "ui">]?.[id] ??
-    manualCat?.[id] ??
-    pack?.i18nEs?.[category as keyof ContentPack["i18nEs"]]?.[id] ??
-    fallback ??
-    id
-  );
+  for (const lookupId of ids) {
+    const translated =
+      i18n[category as keyof Omit<I18nBundle, "ui">]?.[lookupId] ??
+      manualCat?.[lookupId] ??
+      pack?.i18nEs?.[category as keyof ContentPack["i18nEs"]]?.[lookupId];
+    if (translated) return translated;
+  }
+
+  return fallback || id;
 }
 
 function enrichSpell(spell: SrdSpell): SrdSpell {
-  const meta = spellMeta[spell.id];
+  const srdId = idSrdConjuro(spell.id);
+  const meta = spellMeta[spell.id] ?? (srdId ? spellMeta[srdId] : undefined);
   if (!meta) return spell;
   return {
     ...spell,
@@ -248,13 +255,13 @@ export function buildCatalog(pack: ContentPack | null): GameCatalog {
       return translate(category, id, fallback, pack);
     },
     requiereConcentracion(spellId) {
-      return conjuroRequiereConcentracion(spellId, spells.find((s) => s.id === spellId));
+      return conjuroRequiereConcentracion(spellId, buscarConjuro(spells, spellId));
     },
     esRitual(spellId) {
-      return conjuroEsRitual(spellId, spells.find((s) => s.id === spellId));
+      return conjuroEsRitual(spellId, buscarConjuro(spells, spellId));
     },
     obtenerConjuro(spellId) {
-      return spells.find((s) => s.id === spellId);
+      return buscarConjuro(spells, spellId);
     },
     obtenerEspecie(speciesId) {
       const found = species.find((s) => s.id === speciesId);
@@ -278,8 +285,24 @@ export function buildCatalog(pack: ContentPack | null): GameCatalog {
       .t("backgrounds", a.id, a.nameEn)
       .localeCompare(catalog.t("backgrounds", b.id, b.nameEn), "es"),
   );
+  catalog.spells.sort((a, b) =>
+    compararConjurosPorNivel(
+      a.level,
+      catalog.t("spells", a.id, a.nameEn),
+      b.level,
+      catalog.t("spells", b.id, b.nameEn),
+    ),
+  );
 
   return catalog;
 }
 
 export const defaultCatalog = buildCatalog(null);
+
+function buscarConjuro(spells: SrdSpell[], spellId: string): SrdSpell | undefined {
+  for (const id of idsEquivalentesConjuro(spellId)) {
+    const found = spells.find((s) => s.id === id);
+    if (found) return found;
+  }
+  return undefined;
+}

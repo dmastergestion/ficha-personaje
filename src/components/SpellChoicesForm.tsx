@@ -1,18 +1,21 @@
 import { useMemo, useState } from "react";
 import { Button } from "@/components/layout";
 import { SpellInfoPanel } from "@/components/SpellInfoPanel";
-import { EtiquetaConcentracion, EtiquetaRitual, SpellRow } from "@/components/spell/SpellRow";
+import { SpellCatalogRow } from "@/components/spell/SpellCatalogRow";
+import { SpellRow } from "@/components/spell/SpellRow";
 import { metaTiradaConjuro } from "@/rules/spell-cast-meta";
-import {
-  conjuroDisponibleParaPersonaje,
-  nivelMaximoConjuroClase,
-} from "@/rules/spell-lists";
 import type { ClassLevel } from "@/schemas/character";
-import type { SeleccionConjuros } from "@/rules/spell-choices";
-import { requisitosConjurosClases } from "@/rules/spell-choices";
-import type { GameCatalog } from "@/rules/catalog";
+import {
+  conjuroVisibleEnEleccion,
+  idsOcupadosSelectorConjuros,
+  requisitosConjurosClases,
+  type ListaEleccionConjuro,
+  type SeleccionConjuros,
+} from "@/rules/spell-choices";
+import { compararConjurosPorNivel, ordenarIdsConjuro } from "@/rules/spells";
+import type { OriginChoices } from "@/rules/origin-choices";
 
-type ListaConjuro = "cantrips" | "grimorio" | "preparados";
+type ListaConjuro = ListaEleccionConjuro;
 
 function claveLista(lista: ListaConjuro): keyof SeleccionConjuros {
   if (lista === "cantrips") return "cantripsKnown";
@@ -28,6 +31,8 @@ export function SpellChoicesForm({
   titulo = "Elige tus conjuros",
   soloAnadir,
   grimorioBase = [],
+  idsExcluidos = [],
+  originChoices,
 }: {
   classes: ClassLevel[];
   seleccion: SeleccionConjuros;
@@ -37,13 +42,16 @@ export function SpellChoicesForm({
   /** Si se define, solo pide añadir esta cantidad (p. ej. al subir de nivel). */
   soloAnadir?: { cantrips: number; grimorio: number; preparados: number };
   grimorioBase?: string[];
+  /** Conjuros ya concedidos (especie, subclase, dote…) que no deben reaparecer. */
+  idsExcluidos?: string[];
+  originChoices?: OriginChoices;
 }) {
   const [busqueda, setBusqueda] = useState("");
   const [listaActiva, setListaActiva] = useState<ListaConjuro>("cantrips");
   const [infoConjuroId, setInfoConjuroId] = useState<string | null>(null);
 
   const claseRef = classes[0] ?? null;
-  const max = requisitosConjurosClases(classes);
+  const max = requisitosConjurosClases(classes, originChoices);
   const objetivo = soloAnadir ?? max;
 
   const pendiente = {
@@ -51,10 +59,6 @@ export function SpellChoicesForm({
     grimorio: Math.max(0, objetivo.grimorio - seleccion.spellsKnown.length),
     preparados: Math.max(0, objetivo.preparados - seleccion.spellsPrepared.length),
   };
-
-  const nivelMax = claseRef
-    ? nivelMaximoConjuroClase(claseRef.classId, claseRef.level, claseRef.subclassId)
-    : 9;
 
   const secciones: { id: ListaConjuro; label: string; count: number; max: number }[] = [];
   if (objetivo.cantrips > 0) {
@@ -90,22 +94,58 @@ export function SpellChoicesForm({
 
   const filtrados = useMemo(() => {
     if (!claseRef || secciones.length === 0) return [];
-    const soloTrucos = listaUi === "cantrips";
+    const ocupados = idsOcupadosSelectorConjuros(seleccion, idsExcluidos);
+    const grimorio = new Set([...grimorioBase, ...seleccion.spellsKnown]);
+    const busq = busqueda.trim().toLowerCase();
     return catalog.spells
       .filter((s) => {
-        if (soloTrucos ? s.level !== 0 : s.level < 1) return false;
-        if (!soloTrucos && s.level > nivelMax) return false;
-        const nombre = catalog.t("spells", s.id, s.nameEn).toLowerCase();
-        if (busqueda && !nombre.includes(busqueda.toLowerCase())) return false;
-        return conjuroDisponibleParaPersonaje(s.id, s.level, claseRef);
+        if (
+          !conjuroVisibleEnEleccion({
+            spellId: s.id,
+            spellLevel: s.level,
+            clase: claseRef,
+            lista: listaUi,
+            idsOcupados: ocupados,
+            grimorio,
+            requiereGrimorioParaPreparar: max.grimorio > 0,
+          })
+        ) {
+          return false;
+        }
+        if (!busq) return true;
+        return catalog.t("spells", s.id, s.nameEn).toLowerCase().includes(busq);
       })
+      .sort((a, b) =>
+        compararConjurosPorNivel(
+          a.level,
+          catalog.t("spells", a.id, a.nameEn),
+          b.level,
+          catalog.t("spells", b.id, b.nameEn),
+        ),
+      )
       .slice(0, 40);
-  }, [catalog, busqueda, claseRef, listaUi, nivelMax, secciones.length]);
+  }, [
+    catalog,
+    busqueda,
+    claseRef,
+    listaUi,
+    secciones.length,
+    seleccion,
+    idsExcluidos,
+    grimorioBase,
+    max.grimorio,
+  ]);
 
   if (secciones.length === 0) return null;
 
   function idsLista(lista: ListaConjuro): string[] {
-    return seleccion[claveLista(lista)];
+    return ordenarIdsConjuro(seleccion[claveLista(lista)], (id) => {
+      const spell = catalog.spells.find((s) => s.id === id);
+      return {
+        level: spell?.level ?? 99,
+        name: catalog.t("spells", id, spell?.nameEn ?? id),
+      };
+    });
   }
 
   function limiteLista(lista: ListaConjuro): number {
@@ -130,11 +170,15 @@ export function SpellChoicesForm({
   function quitar(spellId: string, lista: ListaConjuro) {
     const key = claveLista(lista);
     const next = seleccion[key].filter((id) => id !== spellId);
-    let preparados = seleccion.spellsPrepared;
     if (lista === "grimorio") {
-      preparados = preparados.filter((id) => id !== spellId);
+      onChange({
+        ...seleccion,
+        spellsKnown: next,
+        spellsPrepared: seleccion.spellsPrepared.filter((id) => id !== spellId),
+      });
+      return;
     }
-    onChange({ ...seleccion, [key]: next, spellsPrepared: preparados });
+    onChange({ ...seleccion, [key]: next });
   }
 
   return (
@@ -194,7 +238,7 @@ export function SpellChoicesForm({
                 <Button
                   key={s.id}
                   variant={listaUi === s.id ? "critical" : "ghost"}
-                  className="text-xs"
+                  className="text-sm"
                   onClick={() => setListaActiva(s.id)}
                 >
                   Añadir {s.label.toLowerCase()}
@@ -204,52 +248,31 @@ export function SpellChoicesForm({
           <input
             type="search"
             placeholder="Buscar en lista SRD…"
-            className="w-full rounded-lg border border-white/10 bg-surface px-3 py-2 text-sm"
+            className="sheet-input"
             value={busqueda}
             onChange={(e) => setBusqueda(e.target.value)}
           />
-          <ul className="max-h-48 space-y-1 overflow-y-auto">
+          <ul className="max-h-80 overflow-y-auto rounded-lg border border-white/10 bg-surface/40">
             {filtrados.length === 0 ? (
-              <li className="px-2 py-2 text-xs text-muted">
+              <li className="px-3 py-3 text-sm text-muted">
                 No hay conjuros disponibles en la lista SRD para esta sección.
               </li>
             ) : (
               filtrados.map((s) => {
-              const enLista = idsLista(listaUi).includes(s.id);
-              const bloqueado =
-                enLista ||
-                idsLista(listaUi).length >= limiteLista(listaUi) ||
-                (listaUi === "preparados" &&
-                  max.grimorio > 0 &&
-                  ![...grimorioBase, ...seleccion.spellsKnown].includes(s.id));
-              return (
-                <li
-                  key={s.id}
-                  className="flex flex-wrap items-center justify-between gap-2 rounded border border-white/5 px-2 py-1 text-sm"
-                >
-                  <span>
-                    {catalog.t("spells", s.id, s.nameEn)}
-                    <span className="ml-1 text-xs text-muted">
-                      {s.level === 0 ? "truco" : `niv.${s.level}`}
-                    </span>
-                    <EtiquetaConcentracion spellId={s.id} />
-                    <EtiquetaRitual spellId={s.id} />
-                  </span>
-                  <div className="flex gap-1">
-                    <Button variant="ghost" className="text-xs" onClick={() => setInfoConjuroId(s.id)}>
-                      Info
-                    </Button>
-                    <Button
-                      className="text-xs"
-                      disabled={bloqueado}
-                      onClick={() => agregar(s.id, s.level)}
-                    >
-                      {enLista ? "Añadido" : "Añadir"}
-                    </Button>
-                  </div>
-                </li>
-              );
-            })
+                const lleno = idsLista(listaUi).length >= limiteLista(listaUi);
+                return (
+                  <SpellCatalogRow
+                    key={s.id}
+                    spellId={s.id}
+                    name={catalog.t("spells", s.id, s.nameEn)}
+                    level={s.level}
+                    onInfo={() => setInfoConjuroId(s.id)}
+                    onAdd={() => agregar(s.id, s.level)}
+                    addDisabled={lleno}
+                    addLabel="Añadir"
+                  />
+                );
+              })
             )}
           </ul>
         </section>
@@ -262,7 +285,7 @@ export function SpellChoicesForm({
             name={catalog.t("spells", infoConjuroId, infoConjuroId)}
             meta={metaTiradaConjuro(infoConjuroId, catalog.obtenerConjuro(infoConjuroId))}
           />
-          <Button variant="ghost" className="mt-2 text-xs" onClick={() => setInfoConjuroId(null)}>
+          <Button variant="ghost" className="mt-2" onClick={() => setInfoConjuroId(null)}>
             Cerrar
           </Button>
         </div>

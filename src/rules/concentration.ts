@@ -4,7 +4,7 @@ import { modificadorSalvacion } from "@/rules/character";
 import type { Character } from "@/schemas/character";
 
 export function cdConcentracion(damageTaken: number): number {
-  return Math.max(10, Math.ceil(damageTaken / 2));
+  return Math.max(10, Math.floor(damageTaken / 2));
 }
 
 export type ResultadoConcentracion = {

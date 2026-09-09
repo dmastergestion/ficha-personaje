@@ -1,6 +1,7 @@
 import classWeaponMasteryMeta from "@/data/srd/class-weapon-mastery-meta.json";
 import weaponMasteryProperties from "@/data/srd/weapon-mastery-properties.json";
-import { bonificadorCompetencia } from "@/rules/ability";
+import type { AbilityKey } from "@/lib/constants";
+import { bonificadorCompetencia, modificadorAtributo } from "@/rules/ability";
 import { esCompetenteConArma } from "@/rules/proficiencies";
 import { srdWeapons, t, type SrdWeapon } from "@/rules/srd";
 import type { Character, ClassLevel } from "@/schemas/character";
@@ -142,9 +143,17 @@ export function maestriasArmasCompletas(character: Character): boolean {
   );
 }
 
-/** PB para fórmulas de recursos de rasgo. */
-export function maxRecursoPorFormula(formula: string, level: number): number {
+/** PB o modificador de atributo para fórmulas de recursos de rasgo. */
+export function maxRecursoPorFormula(
+  formula: string,
+  level: number,
+  abilities?: Partial<Record<AbilityKey, number>>,
+): number {
   if (formula === "pb") return Math.max(1, bonificadorCompetencia(level));
+  if (formula === "cha" || formula === "max(1,cha)") {
+    const mod = modificadorAtributo(abilities?.cha ?? 10);
+    return formula === "max(1,cha)" ? Math.max(1, mod) : Math.max(0, mod);
+  }
   const n = Number(formula);
   return Number.isFinite(n) ? n : 0;
 }

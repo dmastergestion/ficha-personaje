@@ -16,7 +16,9 @@
     "category": "general",
     "categoryLabel": "General",
     "description": "You gain the following benefits.\n\nImpersonation: While you're disguised as a real or fictional person, you have XPHB or Performance) checks to convince others that you are that person.\n\nMimicry: You can mimic the sounds of other creatures, including speech. A creature that hears the mimicry must succeed on a Wisdom (Insight) check to determine the effect is faked ({@dc 8} plus your Charisma modifier and Proficiency Bonus).",
-    "prerequisite": "Nivel 4+",
+    "prerequisite": "Nivel 4+, Carisma 13+",
+    "ability": "cha",
+    "abilityMin": 13,
     "repeatable": false,
     "srd52": false,
     "descriptionEs": "Obtienes los siguientes beneficios.\n\nImitación: mientras estés disfrazado como una persona real o ficticia, tienes ventaja en las pruebas de Carisma (Engaño o Interpretación) para convencer a otros de que eres esa persona.\n\nMimetismo: puedes imitar los sonidos de otras criaturas, incluido el habla. Una criatura que oiga el mimetismo debe tener éxito en una prueba de Sabiduría (Perspicacia) para determinar que el efecto es falso (CD 8 + tu modificador de Carisma + bonificador de competencia)."
@@ -47,7 +49,7 @@
     "category": "general",
     "categoryLabel": "General",
     "description": "You gain the following benefits.\n\nClimb Speed: You gain a XPHB.\n\nHop Up: When you have the Prone condition, you can right yourself with only 5 feet of movement.\n\nJumping: You can make a running Long or High Jump|XPHB after moving only 5 feet.",
-    "prerequisite": "Nivel 4+ · Nivel 4+",
+    "prerequisite": "Nivel 4+",
     "repeatable": false,
     "srd52": false,
     "descriptionEs": "Obtienes los siguientes beneficios.\n\nvelocidad de escalada: ganas una velocidad de escalada igual a tu velocidad.\n\nLevantarse: cuando tengas la condición derribado, puedes enderezarte usando solo 5 pies (1,5 m) de movimiento.\n\nSalto: puedes hacer un salto en longitud o en alto con carrera después de moverte solo 5 pies (1,5 m)."
@@ -210,7 +212,7 @@
     "category": "general",
     "categoryLabel": "General",
     "description": "You gain the following benefits.\n\nImproved Dash: When you take the {@action Dash|XPHB} action, your Speed|XPHB increases by 10 feet for that action.\n\nCharge Attack: If you move at least 10 feet in a straight line toward a target immediately before hitting it with a melee attack roll as part of the {@action Attack|XPHB} action, choose one of the following effects: gain a 1d8 bonus to the attack's damage roll, or push the target up to 10 feet away if it is no more than one size larger than you. You can use this benefit only once on each of your turns.",
-    "prerequisite": "Nivel 4+ · Nivel 4+",
+    "prerequisite": "Nivel 4+",
     "repeatable": false,
     "srd52": false,
     "descriptionEs": "Obtienes los siguientes beneficios.\n\nCorrer mejorado: cuando realizas la acción Correr, tu velocidad aumenta en 10 pies (3 m) durante esa acción.\n\nAtaque de carga: si te mueves al menos 10 pies (3 m) en línea recta hacia un objetivo inmediatamente antes de impactarlo con una tirada de ataque cuerpo a cuerpo como parte de la acción de Ataque, elige uno de los siguientes efectos: ganas un bonificador de 1d8 a la tirada de daño del ataque, o empujas al objetivo hasta 10 pies (3 m) si no es más de un tamaño mayor que tú. Solo puedes usar este beneficio una vez en cada uno de tus turnos."
@@ -295,7 +297,7 @@
     "category": "general",
     "categoryLabel": "General",
     "description": "You gain the following benefits.\n\nEnhanced Dual Wielding: When you take the {@action Attack|XPHB} action on your turn and attack with a weapon that has the {@itemProperty L|XPHB|Light} property, you can make one extra attack as a XPHB|Two-Handed property. You don't add your ability modifier to the extra attack's damage unless that modifier is negative.\n\nQuick Draw: You can draw or stow two weapons that lack the {@itemProperty 2H|XPHB|Two-Handed} property when you would normally be able to draw or stow only one.",
-    "prerequisite": "Nivel 4+ · Nivel 4+",
+    "prerequisite": "Nivel 4+",
     "repeatable": false,
     "srd52": false,
     "descriptionEs": "Obtienes los siguientes beneficios.\n\nCombate con dos armas mejorado: cuando realizas la acción de Ataque en tu turno e impactas con un arma con la propiedad Ligera, puedes hacer un ataque extra como acción adicional más tarde en el mismo turno con un arma distinta, que debe ser un arma cuerpo a cuerpo sin la propiedad a dos manos. No sumas tu modificador de característica al daño del ataque extra a menos que ese modificador sea negativo.\n\nSacar rápido: puedes desenvainar o guardar dos armas sin la propiedad a dos manos cuando normalmente solo podrías desenvainar o guardar una."
@@ -349,7 +351,7 @@
     "category": "general",
     "categoryLabel": "General",
     "description": "You gain the following benefits.\n\nPunch and Grab: When you hit a creature with an XPHB action on your turn, you can use both the Damage and the Grapple option. You can use this benefit only once per turn.\n\nAttack Advantage: You have XPHB by you.\n\nFast Wrestler: You don't have to spend extra movement to move a creature Grappled by you if the creature is your size or smaller.",
-    "prerequisite": "Nivel 4+ · Nivel 4+",
+    "prerequisite": "Nivel 4+",
     "repeatable": false,
     "srd52": true,
     "descriptionEs": "Obtienes los siguientes beneficios.\n\nMejora de puntuación de característica. Aumenta en 1 tu puntuación de fuerza o destreza, hasta un máximo de 20.\n\nPuñetazo y agarre. Cuando impactas a una criatura con un Golpe sin armas como parte de la Acción de Ataque en tu turno, puedes usar tanto la opción de daño como la de Agarre. Solo puedes usar este beneficio una vez por turno.\n\nventaja en el ataque. Tienes ventaja en las tiradas de ataque contra una criatura agarrado por ti.\n\nLuchador veloz. No tienes que gastar Movimiento adicional para mover contigo a una criatura si la criatura es de tu tamaño o más pequeña."
@@ -413,7 +415,7 @@
     "category": "general",
     "categoryLabel": "General",
     "description": "You gain the following benefits.\n\nBolstering Performance: When you finish a Short or XPHB equal to your character level plus the modifier of the ability you increased with this feat.",
-    "prerequisite": "Nivel 4+ · Nivel 4+",
+    "prerequisite": "Nivel 4+",
     "repeatable": false,
     "srd52": false,
     "descriptionEs": "Obtienes los siguientes beneficios.\n\nActuación estimulante: cuando terminas un descanso corto o un descanso largo, puedes ofrecer una actuación inspiradora: un discurso, una canción o un baile. Al hacerlo, elige hasta seis aliados (puedes incluirte) a 30 pies (9 m) o menos de ti que presencien la actuación. Cada criatura elegida gana puntos de golpe temporales igual a tu nivel de personaje más el modificador de la característica que aumentaste con esta dote."
@@ -541,7 +543,7 @@
     "category": "general",
     "categoryLabel": "General",
     "description": "You gain the following benefits.\n\nKeen Observer: Choose one of the following skills: Insight, Investigation, or Perception. If you lack proficiency with the chosen skill, you gain proficiency in it, and if you already have proficiency in it, you gain Expertise|XPHB in it.\n\nQuick Search: You can take the {@action Search|XPHB} action as a Bonus Action|XPHB.",
-    "prerequisite": "Nivel 4+ · Nivel 4+",
+    "prerequisite": "Nivel 4+",
     "repeatable": false,
     "srd52": false,
     "descriptionEs": "Obtienes los siguientes beneficios.\n\nObservador agudo: elige una de las siguientes pericias: Perspicacia, Investigación o Percepción. Si no tienes competencia en la pericia elegida, ganas competencia en ella; si ya la tienes, ganas pericia en ella.\n\nBúsqueda veloz: puedes realizar la acción Buscar como acción adicional."
@@ -574,7 +576,7 @@
     "category": "general",
     "categoryLabel": "General",
     "description": "You gain the following benefits.\n\nPole Strike: Immediately after you take the {@action Attack|XPHB} action and attack with a Quarterstaff, a Spear, or a , you can use a Bonus Action|XPHB to make a melee attack with the opposite end of the weapon. The weapon deals Bludgeoning damage, and the weapon's damage die for this attack is a d4.\n\nReactive Strike: While you're holding a Quarterstaff, a Spear, or a , you can take a Reaction|XPHB to make one melee attack against a creature that enters the reach you have with that weapon.",
-    "prerequisite": "Nivel 4+ · Nivel 4+",
+    "prerequisite": "Nivel 4+",
     "repeatable": false,
     "srd52": false,
     "descriptionEs": "Obtienes los siguientes beneficios.\n\nGolpe de asta: inmediatamente después de realizar la acción de Ataque e impactar con un bastón, una lanza o un arma con las propiedades Pesada y Alcance, puedes usar una acción adicional para hacer un ataque cuerpo a cuerpo con el extremo opuesto del arma. El arma inflige daño contundente y su dado de daño para este ataque es un d4.\n\nGolpe reactivo: mientras sostienes un bastón, una lanza o un arma con las propiedades Pesada y Alcance, puedes usar una reacción para hacer un ataque cuerpo a cuerpo contra una criatura que entre en el alcance que tienes con ese arma."
@@ -606,7 +608,7 @@
     "category": "general",
     "categoryLabel": "General",
     "description": "You gain the following benefits.\n\nRitual Spells: Choose a number of level 1 spells equal to your Proficiency Bonus that have the . You always have those spells prepared, and you can cast them with any spell slots you have. The spells' spellcasting ability is the ability increased by this feat. Whenever your Proficiency Bonus increases thereafter, you can add an additional level 1 spell with the Ritual|XPHB tag to the spells always prepared with this feature.\n\nQuick Ritual: With this benefit, you can cast a XPHB. Doing so doesn't require a spell slot. Once you cast the spell in this way, you can't use this benefit again until you finish a Long Rest|XPHB.",
-    "prerequisite": "Nivel 4+ · Nivel 4+ · Nivel 4+",
+    "prerequisite": "Nivel 4+",
     "repeatable": false,
     "srd52": false,
     "descriptionEs": "Obtienes los siguientes beneficios.\n\nConjuros de ritual: elige un número de conjuros de nivel 1 igual a tu bonificador de competencia que tengan la etiqueta ritual. Siempre los tienes preparados y puedes lanzarlos con los espacios de conjuro que tengas. La característica de lanzamiento de esos conjuros es la característica aumentada por esta dote. Siempre que tu bonificador de competencia aumente después, puedes añadir un conjuro de nivel 1 adicional con la etiqueta ritual a los conjuros siempre preparados con esta característica.\n\nRitual veloz: con este beneficio, puedes lanzar un conjuro de ritual que tengas preparado usando su tiempo de lanzamiento normal en lugar del tiempo extendido para un ritual. Hacerlo no requiere un espacio de conjuro. Una vez que lances el conjuro de esta forma, no puedes volver a usar este beneficio hasta que termines un descanso largo."
@@ -627,7 +629,7 @@
     "category": "general",
     "categoryLabel": "General",
     "description": "You gain the following benefits.\n\nGuardian: Immediately after a creature within 5 feet of you takes the {@action Disengage|XPHB} action or hits a target other than you with an attack, you can make an {@action Opportunity Attack|XPHB} against that creature.\n\nHalt: When you hit a creature with an {@action Opportunity Attack|XPHB}, the creature's Speed|XPHB becomes 0 for the rest of the current turn.",
-    "prerequisite": "Nivel 4+ · Nivel 4+",
+    "prerequisite": "Nivel 4+",
     "repeatable": false,
     "srd52": false,
     "descriptionEs": "Obtienes los siguientes beneficios.\n\nGuardián: inmediatamente después de que una criatura a 5 pies (1,5 m) o menos de ti realice la acción Retirada o impacte a un objetivo distinto de ti con un ataque, puedes hacer un ataque de oportunidad contra esa criatura.\n\nDetener: cuando impactas a una criatura con un ataque de oportunidad, la velocidad de esa criatura pasa a ser 0 durante el resto del turno actual."
@@ -714,7 +716,7 @@
     "category": "general",
     "categoryLabel": "General",
     "description": "You gain the following benefits.\n\nSpeed Increase: Your Speed|XPHB increases by 10 feet.\n\nDash over Difficult Terrain: When you take the {@action Dash|XPHB} action on your turn, Difficult Terrain|XPHB doesn't cost you extra movement for the rest of that turn.\n\nAgile Movement: {@action Opportunity Attack|XPHB|Opportunity Attacks} have Disadvantage|XPHB against you.",
-    "prerequisite": "Nivel 4+ · Nivel 4+",
+    "prerequisite": "Nivel 4+",
     "repeatable": false,
     "srd52": false,
     "descriptionEs": "Obtienes los siguientes beneficios.\n\nAumento de velocidad: tu velocidad aumenta en 10 pies (3 m).\n\nCorrer en terreno difícil: cuando realizas la acción Correr en tu turno, el terreno difícil no te cuesta movimiento adicional durante el resto de ese turno.\n\nMovimiento ágil: los ataques de oportunidad tienen desventaja contra ti."

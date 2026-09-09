@@ -17,7 +17,7 @@
     "baseAc": 16,
     "dexMax": 0,
     "strengthMin": 13,
-    "stealthDisadvantage": false
+    "stealthDisadvantage": true
   },
   {
     "id": "plate-armor",
@@ -27,7 +27,7 @@
     "baseAc": 18,
     "dexMax": 0,
     "strengthMin": 15,
-    "stealthDisadvantage": false
+    "stealthDisadvantage": true
   },
   {
     "id": "ring-mail",
@@ -37,7 +37,7 @@
     "baseAc": 14,
     "dexMax": 0,
     "strengthMin": null,
-    "stealthDisadvantage": false
+    "stealthDisadvantage": true
   },
   {
     "id": "splint-armor",
@@ -47,7 +47,7 @@
     "baseAc": 17,
     "dexMax": 0,
     "strengthMin": 15,
-    "stealthDisadvantage": false
+    "stealthDisadvantage": true
   },
   {
     "id": "leather-armor",
@@ -107,7 +107,7 @@
     "baseAc": 15,
     "dexMax": 2,
     "strengthMin": null,
-    "stealthDisadvantage": false
+    "stealthDisadvantage": true
   },
   {
     "id": "hide-armor",
@@ -127,6 +127,6 @@
     "baseAc": 14,
     "dexMax": 2,
     "strengthMin": null,
-    "stealthDisadvantage": false
+    "stealthDisadvantage": true
   }
 ]

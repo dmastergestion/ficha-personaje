@@ -5,6 +5,7 @@ import {
   eleccionesOrigenCompletas,
   esEleccionEditable,
   fusionarEleccionesOrigen,
+  opcionesEleccionOrigen,
 } from "@/rules/origin-choices";
 
 describe("origin-choices", () => {
@@ -14,12 +15,20 @@ describe("origin-choices", () => {
     expect(defs.some((d) => d.id === "size")).toBe(true);
   });
 
-  it("incluye dote versátil para humano", () => {
+  it("incluye atributo de conjuros de linaje para elfo", () => {
+    const defs = eleccionesEspecie("elf-high");
+    expect(defs.some((d) => d.id === "lineage-casting-ability")).toBe(true);
+    expect(defs.some((d) => d.id === "keen-senses")).toBe(true);
+    expect(defs.some((d) => d.id === "extra-language")).toBe(true);
+  });
+
+  it("incluye dote versátil e idioma extra para humano", () => {
     const defs = eleccionesEspecie("human");
     const versatile = defs.find((d) => d.id === "versatile-feat")!;
     expect(versatile).toBeDefined();
     expect(versatile.options.some((o) => o.value === "alert")).toBe(true);
     expect(versatile.options.some((o) => o.value === "skilled")).toBe(true);
+    expect(defs.some((d) => d.id === "extra-language")).toBe(true);
   });
 
   it("bloquea revelación celestial a partir de nivel 3", () => {
@@ -60,5 +69,41 @@ describe("origin-choices", () => {
         },
       }),
     ).toBe(true);
+  });
+
+  it("no deja repetir Perspicacia si el trasfondo ya la otorga", () => {
+    const catalogo = {
+      background: {
+        skillProficiencies: ["insight", "religion"],
+        feat: "magic initiate — cleric",
+        traits:
+          "Ability Scores:: Intelligence, Wisdom, Charisma Feat:: Magic Initiate Skill Proficiencies:: Insight, Religion",
+      },
+    };
+    const fused = fusionarEleccionesOrigen(
+      "elf-high",
+      "acolyte",
+      { species: { "keen-senses": "insight" }, background: {}, class: {} },
+      catalogo,
+    );
+    expect(fused.species["keen-senses"]).not.toBe("insight");
+    expect(["perception", "survival"]).toContain(fused.species["keen-senses"]);
+
+    const defs = eleccionesEspecie("elf-high");
+    const keen = defs.find((d) => d.id === "keen-senses")!;
+    const opciones = opcionesEleccionOrigen(keen, fused, "acolyte", catalogo);
+    expect(opciones.some((o) => o.value === "insight")).toBe(false);
+
+    const invalidas = {
+      ...fused,
+      species: { ...fused.species, "keen-senses": "insight" },
+    };
+    expect(eleccionesOrigenCompletas("elf-high", "acolyte", invalidas, catalogo)).toBe(false);
+    expect(eleccionesOrigenCompletas("elf-high", "acolyte", fused, catalogo)).toBe(true);
+  });
+
+  it("no deja repetir la dote de origen si el trasfondo ya la otorga", () => {
+    const fused = fusionarEleccionesOrigen("human", "criminal", undefined);
+    expect(fused.species["versatile-feat"]).not.toBe("alert");
   });
 });

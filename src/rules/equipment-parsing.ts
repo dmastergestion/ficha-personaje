@@ -149,6 +149,7 @@ function itemDesdeArma(weapon: SrdWeapon, qty: number, note: string): EquipmentI
     weightLb: weapon.weightLb,
     weaponId: weapon.id,
     notes: note,
+    inCombat: true,
   };
 }
 

@@ -1,6 +1,12 @@
 import type { Character } from "@/schemas/character";
 
-export type SheetTab = "resumen" | "combate" | "hechizos" | "equipo" | "notas";
+export type SheetTab =
+  | "resumen"
+  | "combate"
+  | "hechizos"
+  | "equipo"
+  | "notas"
+  | "informacion";
 
 export const SHEET_TABS: { id: SheetTab; label: string }[] = [
   { id: "resumen", label: "Resumen" },
@@ -8,6 +14,7 @@ export const SHEET_TABS: { id: SheetTab; label: string }[] = [
   { id: "hechizos", label: "Hechizos" },
   { id: "equipo", label: "Equipo" },
   { id: "notas", label: "Notas" },
+  { id: "informacion", label: "Añadir" },
 ];
 
 export interface SheetTabProps {

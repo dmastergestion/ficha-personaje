@@ -1,4 +1,6 @@
+import { opcionesSinDuplicar } from "@/rules/choice-uniqueness";
 import featMechanicsMeta from "@/data/srd/feat-mechanics-meta.json";
+import featMetaJson from "@/data/srd/feat-meta.json";
 import type { AbilityKey, ResourceRecharge, SkillKey } from "@/lib/constants";
 import { SKILL_KEYS } from "@/lib/constants";
 import { bonificadorCompetencia } from "@/rules/ability";
@@ -82,17 +84,44 @@ export function eleccionesPorDefectoDote(featId: string, notes?: string): Record
   };
 }
 
+export type ContextoEleccionesDote = {
+  occupiedSkills?: readonly string[];
+};
+
+export function periciasOcupadasFueraDeDote(
+  character: Character,
+  instanceId: string,
+): SkillKey[] {
+  const out = new Set<SkillKey>(character.proficiencies.skills);
+  for (const feat of character.feats) {
+    if (idInstanciaDote(feat) === instanceId) continue;
+    if (feat.id !== "skilled") continue;
+    for (const key of ["skill-1", "skill-2", "skill-3"] as const) {
+      const raw = feat.choices?.[key];
+      if (raw && (SKILL_KEYS as readonly string[]).includes(raw)) {
+        out.add(raw as SkillKey);
+      }
+    }
+  }
+  return [...out];
+}
+
 export function eleccionesDote(
   feat: CharacterFeat,
   spells: { id: string; level: number; name: string }[],
+  ctx?: ContextoEleccionesDote,
 ): FeatChoiceDefinition[] {
   if (feat.id === "magic-initiate") {
     const list = (feat.choices?.["spell-list"] ?? "") as MagicInitiateList;
     const listSpells = list
       ? spells.filter((s) => conjuroDisponibleParaClase(s.id, list, null))
       : [];
-    const cantrips = listSpells.filter((s) => s.level === 0);
-    const level1 = listSpells.filter((s) => s.level === 1);
+    const cantrips = listSpells
+      .filter((s) => s.level === 0)
+      .sort((a, b) => a.name.localeCompare(b.name, "es", { sensitivity: "base" }));
+    const level1 = listSpells
+      .filter((s) => s.level === 1)
+      .sort((a, b) => a.name.localeCompare(b.name, "es", { sensitivity: "base" }));
     const abilityOpts: AbilityKey[] = ["int", "wis", "cha"];
 
     return [
@@ -113,12 +142,20 @@ export function eleccionesDote(
       {
         id: "cantrip-1",
         label: "Truco 1",
-        options: cantrips.map((s) => ({ value: s.id, label: s.name })),
+        options: opcionesSinDuplicar(
+          cantrips.map((s) => ({ value: s.id, label: s.name })),
+          feat.choices?.["cantrip-2"] ? [feat.choices["cantrip-2"]] : [],
+          feat.choices?.["cantrip-1"],
+        ),
       },
       {
         id: "cantrip-2",
         label: "Truco 2",
-        options: cantrips.map((s) => ({ value: s.id, label: s.name })),
+        options: opcionesSinDuplicar(
+          cantrips.map((s) => ({ value: s.id, label: s.name })),
+          feat.choices?.["cantrip-1"] ? [feat.choices["cantrip-1"]] : [],
+          feat.choices?.["cantrip-2"],
+        ),
       },
       {
         id: "spell-1",
@@ -133,18 +170,33 @@ export function eleccionesDote(
       value,
       label: SKILL_LABELS_ES[value],
     }));
-    return [
-      { id: "skill-1", label: "Pericia 1", options: skillOpts },
-      { id: "skill-2", label: "Pericia 2", options: skillOpts },
-      { id: "skill-3", label: "Pericia 3", options: skillOpts },
-    ];
+    const ids = ["skill-1", "skill-2", "skill-3"] as const;
+    return ids.map((id, index) => {
+      const hermanas = ids
+        .filter((other) => other !== id)
+        .map((other) => feat.choices?.[other])
+        .filter((v): v is string => !!v);
+      return {
+        id,
+        label: `Pericia ${index + 1}`,
+        hint: "No puedes repetir una pericia que ya tengas.",
+        options: opcionesSinDuplicar(
+          skillOpts,
+          [...(ctx?.occupiedSkills ?? []), ...hermanas],
+          feat.choices?.[id],
+        ),
+      };
+    });
   }
 
   return [];
 }
 
-export function doteConfigCompleta(feat: CharacterFeat): boolean {
-  const defs = eleccionesDote(feat, []);
+export function doteConfigCompleta(
+  feat: CharacterFeat,
+  ocupadas?: { skills?: readonly string[] },
+): boolean {
+  const defs = eleccionesDote(feat, [], { occupiedSkills: ocupadas?.skills });
   if (defs.length === 0) return true;
 
   for (const def of defs) {
@@ -156,6 +208,7 @@ export function doteConfigCompleta(feat: CharacterFeat): boolean {
         .filter((d) => d.id.startsWith("skill-") && d.id !== def.id)
         .map((d) => feat.choices?.[d.id]);
       if (others.includes(value)) return false;
+      if (ocupadas?.skills?.includes(value)) return false;
     }
   }
   return true;
@@ -219,7 +272,7 @@ export function recursosDote(character: Character): CharacterResource[] {
       out.push({
         id: `feat:${instanceId}:${entry.id}`,
         name: entry.name,
-        max: maxRecursoPorFormula(entry.maxFormula, character.identity.level),
+        max: maxRecursoPorFormula(entry.maxFormula, character.identity.level, character.abilities),
         used: 0,
         recharge: entry.recharge,
         source: "feat",
@@ -243,6 +296,14 @@ export function periciasExtraDotes(character: Character): SkillKey[] {
     }
   }
   return out;
+}
+
+export function fusionarEleccionesDote(
+  feat: CharacterFeat,
+  extra?: Record<string, string>,
+): CharacterFeat {
+  if (!extra || Object.keys(extra).length === 0) return feat;
+  return { ...feat, choices: { ...feat.choices, ...extra } };
 }
 
 export function herramientasExtraDotes(character: Character): string[] {
@@ -298,4 +359,62 @@ export function actualizarEleccionDote(
     return { ...feat, choices };
   });
   return sincronizarMecanicasDotes({ ...character, feats });
+}
+
+type FeatMetaCategory = {
+  category?: string;
+  ability?: AbilityKey;
+  abilityMin?: number;
+};
+
+const featCatalog = featMetaJson as Record<string, FeatMetaCategory>;
+
+export function claseConcedeEstiloCombate(classId: string, level: number): boolean {
+  if (classId === "fighter" && level >= 1) return true;
+  if (classId === "paladin" && level >= 2) return true;
+  if (classId === "ranger" && level >= 2) return true;
+  return false;
+}
+
+export function tieneRasgoEstiloCombate(character: Character): boolean {
+  return character.identity.classes.some((c) => claseConcedeEstiloCombate(c.classId, c.level));
+}
+
+export function tieneDoteEstiloCombate(feats: readonly Pick<CharacterFeat, "id">[]): boolean {
+  return feats.some((f) => featCatalog[f.id]?.category === "fighting-style");
+}
+
+export type ResultadoPrerrequisitoDote = {
+  ok: boolean;
+  razones: string[];
+};
+
+export function doteCumplePrerrequisitos(
+  character: Character,
+  featId: string,
+): ResultadoPrerrequisitoDote {
+  const category = featCatalog[featId]?.category;
+  const razones: string[] = [];
+  const level = character.identity.level;
+
+  if (category === "general" && level < 4) {
+    razones.push("Requiere nivel 4+");
+  }
+  if (category === "epic-boon" && level < 19) {
+    razones.push("Requiere nivel 19+ (dote épica)");
+  }
+  if (category === "fighting-style" && !tieneRasgoEstiloCombate(character)) {
+    razones.push("Requiere el rasgo Estilo de combate");
+  }
+
+  const ability = featCatalog[featId]?.ability;
+  const abilityMin = featCatalog[featId]?.abilityMin;
+  if (ability && abilityMin != null) {
+    const score = character.abilities[ability];
+    if (score < abilityMin) {
+      razones.push(`Requiere ${ABILITY_LABELS_ES[ability]} ${abilityMin}+`);
+    }
+  }
+
+  return { ok: razones.length === 0, razones };
 }

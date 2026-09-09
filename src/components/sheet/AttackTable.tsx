@@ -52,7 +52,7 @@ export function AttackTable({
             <li
               key={id}
               className={cn(
-                "sheet-table-row sheet-attack-grid items-center",
+                "sheet-table-row sheet-attack-grid items-center py-2",
                 isSelected && "bg-gold/5",
               )}
             >
@@ -76,7 +76,7 @@ export function AttackTable({
               </div>
               <Button
                 variant="combat"
-                className="shrink-0 px-1.5 py-0.5 text-xs tabular-nums"
+                className="shrink-0 px-2 py-1 text-xs tabular-nums"
                 onClick={() => {
                   onSelect(id);
                   onAttack(id);

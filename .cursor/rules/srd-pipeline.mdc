@@ -1,0 +1,15 @@
+---
+description: Pipeline SRD y datos estáticos (build-time)
+globs: scripts/**/*,src/data/**/*,data/i18n/**/*
+alwaysApply: false
+---
+
+# Pipeline SRD
+
+**Solo build/datos estáticos.** Sin React (`ui-layer`) ni reglas puras (`rules-engine`).
+
+- `data/i18n/` = fuentes manuales; `src/data/` = generado (no parchear salvo `*-meta.json`)
+- Esquema export tracker compartido: `../dnd-data-es/schemas/tracker-export-v1.json`
+- IDs internos: `snake_case` inglés; texto visible: i18n ES
+- Cero `fetch` en runtime (salvo export PDF según SPEC)
+- Detalle legal y fuentes: SPEC § Pipeline SRD

@@ -8,6 +8,7 @@ import path from "node:path";
 import { fileURLToPath, pathToFileURL } from "node:url";
 import type { AbilityKey } from "../src/lib/constants";
 import { extractSpellDetails, type FiveSpellLike } from "./five-etools-utils.js";
+import { SPELL_SRD_ALIASES, toId } from "./i18n-shared.js";
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const spellsPath = path.join(root, "src", "data", "srd", "spells.json");
@@ -65,41 +66,6 @@ const DAMAGE_TYPE_ES: Record<string, string> = {
   slashing: "cortante",
   thunder: "trueno",
 };
-
-/** SRD 2024 id → nombre en 5etools XPHB cuando difieren. */
-const ID_ALIASES: Record<string, string> = {
-  "hideous-laughter": "tasha's hideous laughter",
-  "acid-arrow": "melf's acid arrow",
-  "arcanists-magic-aura": "nystul's magic aura",
-  "arcane-hand": "bigby's hand",
-  "tiny-hut": "leomund's tiny hut",
-  "black-tentacles": "evard's black tentacles",
-  "faithful-hound": "mordenkainen's faithful hound",
-  "private-sanctum": "mordenkainen's private sanctum",
-  "resilient-sphere": "otiluke's resilient sphere",
-  "secret-chest": "leomund's secret chest",
-  "telekinetic-hand": "mage hand",
-  "unseen-servant": "unseen servant",
-  "magic-mouth": "arcane mouth",
-  "secret-door": "passwall",
-  "globe-of-invulnerability": "globe of invulnerability",
-  "instant-summons": "drawmij's instant summons",
-  "telepathic-bond": "rary's telepathic bond",
-  "freezing-sphere": "otiluke's freezing sphere",
-  "irresistible-dance": "otto's irresistible dance",
-  "arcane-sword": "mordenkainen's sword",
-  "magnificent-mansion": "mordenkainen's magnificent mansion",
-};
-
-function toId(name: string): string {
-  return name
-    .toLowerCase()
-    .normalize("NFD")
-    .replace(/[\u0300-\u036f]/g, "")
-    .replace(/['']/g, "")
-    .replace(/[^a-z0-9]+/g, "-")
-    .replace(/^-|-$/g, "");
-}
 
 function flattenEntries(entries: unknown): string {
   if (!entries) return "";
@@ -248,7 +214,7 @@ function main() {
   for (const spell of srdSpells) {
     let entry =
       byId.get(spell.id) ??
-      (ID_ALIASES[spell.id] ? byName.get(ID_ALIASES[spell.id]!) : undefined) ??
+      (SPELL_SRD_ALIASES[spell.id] ? byName.get(SPELL_SRD_ALIASES[spell.id]!) : undefined) ??
       byName.get(spell.nameEn.toLowerCase());
 
     if (!entry) {

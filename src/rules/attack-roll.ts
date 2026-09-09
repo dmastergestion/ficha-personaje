@@ -3,6 +3,8 @@ import { bonificadorCompetencia, modificadorAtributo } from "@/rules/ability";
 import type { RollMode, D20Roll, DiceRollOptions } from "@/rules/dice";
 import { tiradaAtaque } from "@/rules/effects";
 import type { ConditionId } from "@/lib/conditions";
+import { extrasAtaque } from "@/rules/attacks";
+import { desventajaPruebaCaracteristica } from "@/rules/proficiencies";
 import type { Character, CombatAttack } from "@/schemas/character";
 
 const ABILITY_LABELS: Record<AbilityKey, string> = {
@@ -27,6 +29,11 @@ export interface DesgloseAtaque {
   abilityMod: number;
   proficiencyMod: number;
   magicMod: number;
+  extraToHit: number;
+  extraToHitLabel: string | null;
+  extraDamage: number;
+  extraDamageLabel: string | null;
+  ventajaRabia: boolean;
   abilityLabel: string;
 }
 
@@ -67,10 +74,16 @@ export function desgloseAtaque(character: Character, attack: CombatAttack): Desg
     ? bonificadorCompetencia(character.identity.level)
     : 0;
   const magicMod = attack.magicBonus ?? 0;
+  const extras = extrasAtaque(character, attack);
   return {
     abilityMod,
     proficiencyMod,
     magicMod,
+    extraToHit: extras.toHit,
+    extraToHitLabel: extras.toHitLabel,
+    extraDamage: extras.damage,
+    extraDamageLabel: extras.damageLabel,
+    ventajaRabia: extras.ventaja,
     abilityLabel: ABILITY_LABELS[attack.abilityKey],
   };
 }
@@ -200,6 +213,9 @@ export function formatearToHit(toHit: D20Roll, desglose: DesgloseAtaque): string
   if (desglose.magicMod !== 0) {
     s += ` ${fmtMod(desglose.magicMod)} (mágico)`;
   }
+  if (desglose.extraToHit !== 0 && desglose.extraToHitLabel) {
+    s += ` ${fmtMod(desglose.extraToHit)} (${desglose.extraToHitLabel})`;
+  }
   return `${s} = ${toHit.total}`;
 }
 
@@ -237,11 +253,15 @@ export function tirarAtaqueCompleto(
 ): ResultadoAtaque | { error: string } {
   const desglose = desgloseAtaque(character, attack);
   const toHitResult = tiradaAtaque(
-    desglose.abilityMod + desglose.proficiencyMod + desglose.magicMod,
+    desglose.abilityMod + desglose.proficiencyMod + desglose.magicMod + desglose.extraToHit,
     rollMode,
     conditionIds,
     exhaustionLevel,
     diceOptions,
+    {
+      ventaja: desglose.ventajaRabia,
+      desventaja: desventajaPruebaCaracteristica(character, attack.abilityKey),
+    },
   );
   if ("error" in toHitResult) return toHitResult;
   const toHit = toHitResult;
@@ -259,7 +279,11 @@ export function tirarAtaqueCompleto(
       const abilityMod = partes.abilityKey
         ? modificadorAtributo(character.abilities[partes.abilityKey])
         : 0;
-      damage = tirarDaño(partes, abilityMod, toHit.isCritical);
+      damage = tirarDaño(
+        { ...partes, flatBonus: partes.flatBonus + desglose.extraDamage },
+        abilityMod,
+        toHit.isCritical,
+      );
       explicacionDaño =
         impacta === null
           ? `Daño potencial: ${damage.explicacion}`

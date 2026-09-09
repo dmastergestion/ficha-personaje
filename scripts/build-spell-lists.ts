@@ -5,6 +5,7 @@
 import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
+import { SPELL_SRD_ALIASES } from "./i18n-shared.js";
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const spellsPath = path.join(root, "src", "data", "srd", "spells.json");
@@ -134,7 +135,10 @@ function main() {
   let matched = 0;
 
   for (const spell of spells) {
-    const key = byNorm.get(normName(spell.nameEn));
+    const aliasEn = SPELL_SRD_ALIASES[spell.id];
+    const key =
+      byNorm.get(normName(spell.nameEn)) ??
+      (aliasEn ? byNorm.get(normName(aliasEn)) : undefined);
     if (!key) continue;
     const entry = xphb[key];
     if (!entry) continue;

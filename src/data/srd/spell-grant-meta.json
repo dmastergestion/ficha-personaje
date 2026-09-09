@@ -1,0 +1,688 @@
+{
+  "feats": {
+    "telepathic": [
+      {
+        "grantKey": "detect-thoughts",
+        "spellId": "detect-thoughts",
+        "level": 2,
+        "alwaysPrepared": true,
+        "resource": {
+          "id": "free-cast",
+          "name": "Detectar pensamientos sin espacio",
+          "recharge": "long",
+          "max": "1"
+        }
+      }
+    ],
+    "fey-touched": [
+      {
+        "grantKey": "misty-step",
+        "spellId": "misty-step",
+        "level": 2,
+        "alwaysPrepared": true,
+        "resource": {
+          "id": "misty-step-free",
+          "name": "Paso brumoso sin espacio",
+          "recharge": "long",
+          "max": "1"
+        }
+      }
+    ],
+    "shadow-touched": [
+      {
+        "grantKey": "invisibility",
+        "spellId": "invisibility",
+        "level": 2,
+        "alwaysPrepared": true,
+        "resource": {
+          "id": "invisibility-free",
+          "name": "Invisibilidad sin espacio",
+          "recharge": "long",
+          "max": "1"
+        }
+      }
+    ]
+  },
+  "species": {
+    "elf-drow": [
+      {
+        "grantKey": "cantrip",
+        "spellId": "dancing-lights",
+        "level": 0,
+        "minCharacterLevel": 1,
+        "alwaysPrepared": true,
+        "abilityChoiceKey": "lineage-casting-ability"
+      },
+      {
+        "grantKey": "l3",
+        "spellId": "faerie-fire",
+        "level": 1,
+        "minCharacterLevel": 3,
+        "alwaysPrepared": true,
+        "abilityChoiceKey": "lineage-casting-ability",
+        "resource": {
+          "id": "l3-free",
+          "name": "Fuego feérico sin espacio",
+          "recharge": "long",
+          "max": "1"
+        }
+      },
+      {
+        "grantKey": "l5",
+        "spellId": "darkness",
+        "level": 2,
+        "minCharacterLevel": 5,
+        "alwaysPrepared": true,
+        "abilityChoiceKey": "lineage-casting-ability",
+        "resource": {
+          "id": "l5-free",
+          "name": "Oscuridad sin espacio",
+          "recharge": "long",
+          "max": "1"
+        }
+      }
+    ],
+    "elf-high": [
+      {
+        "grantKey": "cantrip",
+        "spellId": "prestidigitation",
+        "level": 0,
+        "minCharacterLevel": 1,
+        "alwaysPrepared": true,
+        "abilityChoiceKey": "lineage-casting-ability"
+      },
+      {
+        "grantKey": "l3",
+        "spellId": "detect-magic",
+        "level": 1,
+        "minCharacterLevel": 3,
+        "alwaysPrepared": true,
+        "abilityChoiceKey": "lineage-casting-ability",
+        "resource": {
+          "id": "l3-free",
+          "name": "Detectar magia sin espacio",
+          "recharge": "long",
+          "max": "1"
+        }
+      },
+      {
+        "grantKey": "l5",
+        "spellId": "misty-step",
+        "level": 2,
+        "minCharacterLevel": 5,
+        "alwaysPrepared": true,
+        "abilityChoiceKey": "lineage-casting-ability",
+        "resource": {
+          "id": "l5-free",
+          "name": "Paso brumoso sin espacio",
+          "recharge": "long",
+          "max": "1"
+        }
+      }
+    ],
+    "elf-wood": [
+      {
+        "grantKey": "cantrip",
+        "spellId": "druidcraft",
+        "level": 0,
+        "minCharacterLevel": 1,
+        "alwaysPrepared": true,
+        "abilityChoiceKey": "lineage-casting-ability"
+      },
+      {
+        "grantKey": "l3",
+        "spellId": "longstrider",
+        "level": 1,
+        "minCharacterLevel": 3,
+        "alwaysPrepared": true,
+        "abilityChoiceKey": "lineage-casting-ability",
+        "resource": {
+          "id": "l3-free",
+          "name": "Zancada prodigiosa sin espacio",
+          "recharge": "long",
+          "max": "1"
+        }
+      },
+      {
+        "grantKey": "l5",
+        "spellId": "pass-without-trace",
+        "level": 2,
+        "minCharacterLevel": 5,
+        "alwaysPrepared": true,
+        "abilityChoiceKey": "lineage-casting-ability",
+        "resource": {
+          "id": "l5-free",
+          "name": "Pasar sin rastro sin espacio",
+          "recharge": "long",
+          "max": "1"
+        }
+      }
+    ],
+    "tiefling-abyssal": [
+      {
+        "grantKey": "cantrip",
+        "spellId": "poison-spray",
+        "level": 0,
+        "minCharacterLevel": 1,
+        "alwaysPrepared": true,
+        "abilityChoiceKey": "lineage-casting-ability"
+      },
+      {
+        "grantKey": "l3",
+        "spellId": "ray-of-sickness",
+        "level": 1,
+        "minCharacterLevel": 3,
+        "alwaysPrepared": true,
+        "abilityChoiceKey": "lineage-casting-ability",
+        "resource": {
+          "id": "l3-free",
+          "name": "Rayo nauseabundo sin espacio",
+          "recharge": "long",
+          "max": "1"
+        }
+      },
+      {
+        "grantKey": "l5",
+        "spellId": "hold-person",
+        "level": 2,
+        "minCharacterLevel": 5,
+        "alwaysPrepared": true,
+        "abilityChoiceKey": "lineage-casting-ability",
+        "resource": {
+          "id": "l5-free",
+          "name": "Inmovilizar persona sin espacio",
+          "recharge": "long",
+          "max": "1"
+        }
+      }
+    ],
+    "tiefling-chthonic": [
+      {
+        "grantKey": "cantrip",
+        "spellId": "chill-touch",
+        "level": 0,
+        "minCharacterLevel": 1,
+        "alwaysPrepared": true,
+        "abilityChoiceKey": "lineage-casting-ability"
+      },
+      {
+        "grantKey": "l3",
+        "spellId": "false-life",
+        "level": 1,
+        "minCharacterLevel": 3,
+        "alwaysPrepared": true,
+        "abilityChoiceKey": "lineage-casting-ability",
+        "resource": {
+          "id": "l3-free",
+          "name": "Falsa vida sin espacio",
+          "recharge": "long",
+          "max": "1"
+        }
+      },
+      {
+        "grantKey": "l5",
+        "spellId": "ray-of-enfeeblement",
+        "level": 2,
+        "minCharacterLevel": 5,
+        "alwaysPrepared": true,
+        "abilityChoiceKey": "lineage-casting-ability",
+        "resource": {
+          "id": "l5-free",
+          "name": "Rayo debilitador sin espacio",
+          "recharge": "long",
+          "max": "1"
+        }
+      }
+    ],
+    "tiefling-infernal": [
+      {
+        "grantKey": "cantrip",
+        "spellId": "fire-bolt",
+        "level": 0,
+        "minCharacterLevel": 1,
+        "alwaysPrepared": true,
+        "abilityChoiceKey": "lineage-casting-ability"
+      },
+      {
+        "grantKey": "l3",
+        "spellId": "hellish-rebuke",
+        "level": 1,
+        "minCharacterLevel": 3,
+        "alwaysPrepared": true,
+        "abilityChoiceKey": "lineage-casting-ability",
+        "resource": {
+          "id": "l3-free",
+          "name": "Reprensión infernal sin espacio",
+          "recharge": "long",
+          "max": "1"
+        }
+      },
+      {
+        "grantKey": "l5",
+        "spellId": "darkness",
+        "level": 2,
+        "minCharacterLevel": 5,
+        "alwaysPrepared": true,
+        "abilityChoiceKey": "lineage-casting-ability",
+        "resource": {
+          "id": "l5-free",
+          "name": "Oscuridad sin espacio",
+          "recharge": "long",
+          "max": "1"
+        }
+      }
+    ],
+    "gnome-forest": [
+      {
+        "grantKey": "cantrip",
+        "spellId": "minor-illusion",
+        "level": 0,
+        "minCharacterLevel": 1,
+        "alwaysPrepared": true,
+        "abilityChoiceKey": "lineage-casting-ability"
+      },
+      {
+        "grantKey": "speak-with-animals",
+        "spellId": "speak-with-animals",
+        "level": 1,
+        "minCharacterLevel": 1,
+        "alwaysPrepared": true,
+        "abilityChoiceKey": "lineage-casting-ability",
+        "resource": {
+          "id": "speak-with-animals-free",
+          "name": "Hablar con los animales",
+          "recharge": "long",
+          "max": "pb"
+        }
+      }
+    ]
+  },
+  "classes": {
+    "paladin": [
+      {
+        "grantKey": "divine-smite",
+        "spellId": "divine-smite",
+        "level": 1,
+        "minClassLevel": 2,
+        "alwaysPrepared": true,
+        "abilityKey": "cha",
+        "resource": {
+          "id": "divine-smite-free",
+          "name": "Castigo divino sin espacio",
+          "recharge": "long",
+          "max": "1"
+        }
+      },
+      {
+        "grantKey": "find-steed",
+        "spellId": "find-steed",
+        "level": 2,
+        "minClassLevel": 5,
+        "alwaysPrepared": true,
+        "abilityKey": "cha",
+        "resource": {
+          "id": "find-steed-free",
+          "name": "Encontrar corcel sin espacio",
+          "recharge": "long",
+          "max": "1"
+        }
+      }
+    ],
+    "ranger": [
+      {
+        "grantKey": "hunters-mark",
+        "spellId": "hunters-mark",
+        "level": 1,
+        "minClassLevel": 1,
+        "alwaysPrepared": true,
+        "abilityKey": "wis",
+        "resource": {
+          "id": "hunters-mark-free",
+          "name": "Marca del cazador sin espacio",
+          "recharge": "long",
+          "maxPerClassLevel": { "1": 2, "5": 3, "9": 4, "13": 5, "17": 6 }
+        }
+      }
+    ],
+    "warlock": [
+      {
+        "grantKey": "contact-patron",
+        "spellId": "contact-other-plane",
+        "level": 5,
+        "minClassLevel": 9,
+        "alwaysPrepared": true,
+        "abilityKey": "cha",
+        "resource": {
+          "id": "contact-patron-free",
+          "name": "Contactar patrono sin espacio",
+          "recharge": "long",
+          "max": "1"
+        }
+      }
+    ],
+    "cleric": [
+      {
+        "grantKey": "divine-intervention",
+        "spellId": "",
+        "level": 5,
+        "minClassLevel": 10,
+        "resource": {
+          "id": "divine-intervention-free",
+          "name": "Intervención divina (conjuro ≤5 sin espacio)",
+          "recharge": "long",
+          "max": "1"
+        }
+      }
+    ]
+  },
+  "subclasses": {
+    "glamour": [
+      {
+        "grantKey": "mantle-of-majesty",
+        "spellId": "command",
+        "level": 1,
+        "minClassLevel": 6,
+        "classId": "bard",
+        "alwaysPrepared": true,
+        "abilityKey": "cha",
+        "resource": {
+          "id": "command-free",
+          "name": "Mandamiento sin espacio (Manto de majestad)",
+          "recharge": "long",
+          "max": "1"
+        }
+      }
+    ],
+    "stars": [
+      {
+        "grantKey": "guiding-bolt",
+        "spellId": "guiding-bolt",
+        "level": 1,
+        "minClassLevel": 3,
+        "classId": "druid",
+        "alwaysPrepared": true,
+        "abilityKey": "wis",
+        "resource": {
+          "id": "guiding-bolt-free",
+          "name": "Proyectil de luz sin espacio",
+          "recharge": "long",
+          "max": "ability-mod-min-1",
+          "abilityModKey": "wis"
+        }
+      }
+    ],
+    "land": [
+      {
+        "grantKey": "natural-recovery",
+        "spellId": "",
+        "level": 1,
+        "minClassLevel": 6,
+        "classId": "druid",
+        "resource": {
+          "id": "natural-recovery-free",
+          "name": "Recuperación natural (conjuro del círculo sin espacio)",
+          "recharge": "long",
+          "max": "1"
+        }
+      }
+    ],
+    "psi-warrior": [
+      {
+        "grantKey": "telekinesis",
+        "spellId": "telekinesis",
+        "level": 5,
+        "minClassLevel": 18,
+        "classId": "fighter",
+        "alwaysPrepared": true,
+        "abilityKey": "int",
+        "resource": {
+          "id": "telekinesis-free",
+          "name": "Telequinesis sin espacio",
+          "recharge": "long",
+          "max": "1"
+        }
+      }
+    ],
+    "archfey": [
+      {
+        "grantKey": "misty-step",
+        "spellId": "misty-step",
+        "level": 2,
+        "minClassLevel": 3,
+        "classId": "warlock",
+        "alwaysPrepared": true,
+        "abilityKey": "cha",
+        "resource": {
+          "id": "misty-step-free",
+          "name": "Paso brumoso sin espacio",
+          "recharge": "long",
+          "max": "ability-mod-min-1",
+          "abilityModKey": "cha"
+        }
+      },
+      {
+        "grantKey": "calm-emotions",
+        "spellId": "calm-emotions",
+        "level": 2,
+        "minClassLevel": 3,
+        "classId": "warlock",
+        "alwaysPrepared": true,
+        "abilityKey": "cha"
+      },
+      {
+        "grantKey": "faerie-fire",
+        "spellId": "faerie-fire",
+        "level": 1,
+        "minClassLevel": 3,
+        "classId": "warlock",
+        "alwaysPrepared": true,
+        "abilityKey": "cha"
+      },
+      {
+        "grantKey": "phantasmal-force",
+        "spellId": "phantasmal-force",
+        "level": 2,
+        "minClassLevel": 3,
+        "classId": "warlock",
+        "alwaysPrepared": true,
+        "abilityKey": "cha"
+      },
+      {
+        "grantKey": "sleep",
+        "spellId": "sleep",
+        "level": 1,
+        "minClassLevel": 3,
+        "classId": "warlock",
+        "alwaysPrepared": true,
+        "abilityKey": "cha"
+      },
+      {
+        "grantKey": "blink",
+        "spellId": "blink",
+        "level": 3,
+        "minClassLevel": 5,
+        "classId": "warlock",
+        "alwaysPrepared": true,
+        "abilityKey": "cha"
+      },
+      {
+        "grantKey": "plant-growth",
+        "spellId": "plant-growth",
+        "level": 3,
+        "minClassLevel": 5,
+        "classId": "warlock",
+        "alwaysPrepared": true,
+        "abilityKey": "cha"
+      },
+      {
+        "grantKey": "dominate-beast",
+        "spellId": "dominate-beast",
+        "level": 4,
+        "minClassLevel": 7,
+        "classId": "warlock",
+        "alwaysPrepared": true,
+        "abilityKey": "cha"
+      },
+      {
+        "grantKey": "greater-invisibility",
+        "spellId": "greater-invisibility",
+        "level": 4,
+        "minClassLevel": 7,
+        "classId": "warlock",
+        "alwaysPrepared": true,
+        "abilityKey": "cha"
+      },
+      {
+        "grantKey": "dominate-person",
+        "spellId": "dominate-person",
+        "level": 5,
+        "minClassLevel": 9,
+        "classId": "warlock",
+        "alwaysPrepared": true,
+        "abilityKey": "cha"
+      },
+      {
+        "grantKey": "seeming",
+        "spellId": "seeming",
+        "level": 5,
+        "minClassLevel": 9,
+        "classId": "warlock",
+        "alwaysPrepared": true,
+        "abilityKey": "cha"
+      }
+    ],
+    "fey-wanderer": [
+      {
+        "grantKey": "misty-wanderer",
+        "spellId": "misty-step",
+        "level": 2,
+        "minClassLevel": 15,
+        "classId": "ranger",
+        "alwaysPrepared": true,
+        "abilityKey": "wis",
+        "resource": {
+          "id": "misty-wanderer-free",
+          "name": "Paso brumoso sin espacio",
+          "recharge": "long",
+          "max": "ability-mod-min-1",
+          "abilityModKey": "wis"
+        }
+      }
+    ],
+    "draconic": [
+      {
+        "grantKey": "summon-dragon",
+        "spellId": "summon-dragon",
+        "level": 5,
+        "minClassLevel": 3,
+        "classId": "sorcerer",
+        "alwaysPrepared": true,
+        "abilityKey": "cha",
+        "resource": {
+          "id": "summon-dragon-free",
+          "name": "Invocar dragón sin espacio",
+          "recharge": "long",
+          "max": "1"
+        }
+      }
+    ]
+  },
+  "dynamicClassChoices": {
+    "warlock": [
+      {
+        "choiceKey": "arcanum-6",
+        "minClassLevel": 11,
+        "spellLevel": 6,
+        "resource": {
+          "id": "arcanum-6-free",
+          "name": "Arcanum místico (6.º) sin espacio",
+          "recharge": "long",
+          "max": "1"
+        }
+      },
+      {
+        "choiceKey": "arcanum-7",
+        "minClassLevel": 13,
+        "spellLevel": 7,
+        "resource": {
+          "id": "arcanum-7-free",
+          "name": "Arcanum místico (7.º) sin espacio",
+          "recharge": "long",
+          "max": "1"
+        }
+      },
+      {
+        "choiceKey": "arcanum-8",
+        "minClassLevel": 15,
+        "spellLevel": 8,
+        "resource": {
+          "id": "arcanum-8-free",
+          "name": "Arcanum místico (8.º) sin espacio",
+          "recharge": "long",
+          "max": "1"
+        }
+      },
+      {
+        "choiceKey": "arcanum-9",
+        "minClassLevel": 17,
+        "spellLevel": 9,
+        "resource": {
+          "id": "arcanum-9-free",
+          "name": "Arcanum místico (9.º) sin espacio",
+          "recharge": "long",
+          "max": "1"
+        }
+      }
+    ],
+    "wizard": [
+      {
+        "choiceKey": "signature-1",
+        "minClassLevel": 20,
+        "spellLevel": 3,
+        "resource": {
+          "id": "signature-1-free",
+          "name": "Conjuro signature 1 sin espacio",
+          "recharge": "short",
+          "max": "1"
+        }
+      },
+      {
+        "choiceKey": "signature-2",
+        "minClassLevel": 20,
+        "spellLevel": 3,
+        "resource": {
+          "id": "signature-2-free",
+          "name": "Conjuro signature 2 sin espacio",
+          "recharge": "short",
+          "max": "1"
+        }
+      }
+    ]
+  },
+  "dynamicFeatChoices": {
+    "fey-touched": [
+      {
+        "choiceKey": "spell-1",
+        "spellLevel": 1,
+        "resource": {
+          "id": "spell-1-free",
+          "name": "Conjuro elegido sin espacio",
+          "recharge": "long",
+          "max": "1"
+        }
+      }
+    ],
+    "shadow-touched": [
+      {
+        "choiceKey": "spell-1",
+        "spellLevel": 1,
+        "resource": {
+          "id": "spell-1-free",
+          "name": "Conjuro elegido sin espacio",
+          "recharge": "long",
+          "max": "1"
+        }
+      }
+    ]
+  }
+}

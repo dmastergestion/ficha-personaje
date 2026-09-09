@@ -1,8 +1,9 @@
 import { ClassPicker } from "@/components/ClassPicker";
 import { SpeciesPicker } from "@/components/SpeciesPicker";
+import { SubclassPicker } from "@/components/SubclassPicker";
 import { Button } from "@/components/layout";
 import { cn } from "@/lib/utils";
-import { descripcionClases } from "@/rules/multiclass";
+import { descripcionClases, faltaElegirSubclase } from "@/rules/multiclass";
 import type { GameCatalog } from "@/rules/catalog";
 import type { Character } from "@/schemas/character";
 
@@ -50,6 +51,7 @@ export function CharacterIdentityBar({
   catalog,
   onChange,
   onClassChange,
+  onOriginChange,
   onLevelChange,
   className,
 }: {
@@ -57,6 +59,7 @@ export function CharacterIdentityBar({
   catalog: GameCatalog;
   onChange: (next: Character) => void;
   onClassChange: (classId: string) => void;
+  onOriginChange: (speciesId: string | null, backgroundId: string | null) => void;
   onLevelChange: (delta: -1 | 1) => void;
   className?: string;
 }) {
@@ -76,6 +79,33 @@ export function CharacterIdentityBar({
           <span className="truncate">{descripcionClases(character.identity.classes)}</span>
         </div>
       )}
+      {character.identity.classes.map((cl) => (
+        <SubclassPicker
+          key={cl.classId}
+          compact
+          catalog={catalog}
+          classLevel={cl}
+          classLabel={catalog.t("classes", cl.classId, cl.classId)}
+          onChange={(subclassId) =>
+            onChange({
+              ...character,
+              identity: {
+                ...character.identity,
+                classes: character.identity.classes.map((c) =>
+                  c.classId === cl.classId ? { ...c, subclassId } : c,
+                ),
+                subclassId:
+                  cl.classId === character.identity.classId
+                    ? subclassId
+                    : character.identity.subclassId,
+              },
+            })
+          }
+        />
+      ))}
+      {character.identity.classes.some(faltaElegirSubclase) && (
+        <p className="text-xs text-amber-200">Falta elegir subclase (puedes abrir la ficha igual).</p>
+      )}
       <div className="flex items-center gap-2 text-sm">
         <span className="shrink-0 text-muted">Nivel</span>
         <NivelStepper
@@ -91,12 +121,7 @@ export function CharacterIdentityBar({
         catalog={catalog}
         speciesId={character.identity.speciesId}
         className="sheet-select-compact min-w-[5.5rem]"
-        onChange={(speciesId) =>
-          onChange({
-            ...character,
-            identity: { ...character.identity, speciesId },
-          })
-        }
+        onChange={(speciesId) => onOriginChange(speciesId, character.identity.backgroundId)}
       />
       <label className="flex min-w-0 items-center gap-2 text-sm">
         <span className="shrink-0 text-muted whitespace-nowrap">Trasfondo</span>
@@ -104,10 +129,7 @@ export function CharacterIdentityBar({
           className="sheet-select-compact min-w-[5.5rem]"
           value={character.identity.backgroundId ?? ""}
           onChange={(e) =>
-            onChange({
-              ...character,
-              identity: { ...character.identity, backgroundId: e.target.value || null },
-            })
+            onOriginChange(character.identity.speciesId, e.target.value || null)
           }
         >
           <option value="">—</option>

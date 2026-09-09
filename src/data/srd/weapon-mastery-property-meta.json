@@ -1,0 +1,42 @@
+{
+  "cleave": {
+    "labelEs": "Hendir",
+    "resumenEs": "Tras impactar, atacas a otra criatura adyacente al objetivo.",
+    "descripcionEs": "Si impactas a una criatura con esta arma, puedes hacer un ataque contra una segunda criatura a 5 pies (1,5 m) o menos de la primera y dentro de tu alcance."
+  },
+  "graze": {
+    "labelEs": "Rasguño",
+    "resumenEs": "Si fallas el ataque, igual infliges daño.",
+    "descripcionEs": "Si fallas un ataque con esta arma contra un objetivo, ese objetivo sufre daño igual al modificador de atributo que usaste para el ataque. El daño es del mismo tipo que el de la arma y solo puede afectar al objetivo del ataque."
+  },
+  "nick": {
+    "labelEs": "Corte veloz",
+    "resumenEs": "El ataque extra por arma ligera va en la acción de Atacar.",
+    "descripcionEs": "Cuando haces el ataque adicional de la propiedad Ligera, puedes hacerlo como parte de la acción Atacar en lugar de usar una acción adicional. Solo puedes hacer este ataque adicional una vez por turno."
+  },
+  "push": {
+    "labelEs": "Empujar",
+    "resumenEs": "Tras impactar, empujas al objetivo 10 pies (3 m).",
+    "descripcionEs": "Si impactas a una criatura con esta arma, puedes empujarla hasta 10 pies (3 m) en línea recta alejándola de ti si es Grande o más pequeña."
+  },
+  "sap": {
+    "labelEs": "Debilitar",
+    "resumenEs": "Tras impactar, el objetivo tiene desventaja en su siguiente ataque.",
+    "descripcionEs": "Si impactas a una criatura con esta arma, esa criatura tiene desventaja en su siguiente tirada de ataque antes del inicio de tu siguiente turno."
+  },
+  "slow": {
+    "labelEs": "Ralentizar",
+    "resumenEs": "Tras impactar, reduces la velocidad del objetivo 10 pies (3 m).",
+    "descripcionEs": "Si impactas a una criatura con esta arma y le infliges daño, puedes reducir su velocidad en 10 pies (3 m) hasta el inicio de tu siguiente turno. Si la criatura sufre más de un golpe así, la reducción no supera 10 pies (3 m)."
+  },
+  "topple": {
+    "labelEs": "Derribar",
+    "resumenEs": "Tras impactar, el objetivo puede caer derribado.",
+    "descripcionEs": "Si impactas a una criatura con esta arma, puedes forzarla a superar una salvación de Constitución (CD 8 + modificador de atributo del ataque + bonificador de competencia). Con un fallo, queda derribada."
+  },
+  "vex": {
+    "labelEs": "Hostigar",
+    "resumenEs": "Tras impactar, ventaja en tu siguiente ataque contra ese objetivo.",
+    "descripcionEs": "Si impactas a una criatura con esta arma, tienes ventaja en tu siguiente tirada de ataque contra esa criatura antes del final de tu siguiente turno."
+  }
+}

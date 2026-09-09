@@ -1,7 +1,7 @@
 import type { ConditionId } from "@/lib/conditions";
 import { CONDITION_IDS, CONDITION_LABELS_ES } from "@/lib/conditions";
 import type { Character } from "@/schemas/character";
-import { resumenEfectosActivos } from "@/rules/effects";
+import { aplicarCondicionesPersonaje, resumenEfectosActivos } from "@/rules/effects";
 
 interface ConditionPanelProps {
   character: Character;
@@ -10,15 +10,10 @@ interface ConditionPanelProps {
 
 function toggleCondition(character: Character, id: ConditionId): Character {
   const active = character.combat.conditionIds.includes(id);
-  return {
-    ...character,
-    combat: {
-      ...character.combat,
-      conditionIds: active
-        ? character.combat.conditionIds.filter((c) => c !== id)
-        : [...character.combat.conditionIds, id],
-    },
-  };
+  const ids = active
+    ? character.combat.conditionIds.filter((c) => c !== id)
+    : [...character.combat.conditionIds, id];
+  return aplicarCondicionesPersonaje(character, ids);
 }
 
 export function ConditionPanel({ character, onChange }: ConditionPanelProps) {

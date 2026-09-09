@@ -1,13 +1,23 @@
 import { useEffect, useMemo, useRef, useState } from "react";
+import { FeatPicker } from "@/components/FeatPicker";
 import { SpellChoicesForm } from "@/components/SpellChoicesForm";
+import { SubclassPicker } from "@/components/SubclassPicker";
 import { Button } from "@/components/layout";
+import { ABILITY_KEYS } from "@/lib/constants";
+import type { AbilityKey, SkillKey } from "@/lib/constants";
+import type { LevelUpExtras } from "@/hooks/useCharacterIdentityControls";
+import { modificadorAtributo } from "@/rules/ability";
+import { SKILL_LABELS_ES, ABILITY_LABELS_ES, esProficientePericia } from "@/rules/character";
+import { periciasExpertiseAlNivel } from "@/rules/class-features";
 import { tirarDadoDenominacion } from "@/rules/dice";
-import type { LevelUpPreview } from "@/rules/level-up";
+import { aplicarMejoraAtributos, type LevelUpPreview } from "@/rules/level-up";
+import { faltaElegirSubclase } from "@/rules/multiclass";
 import {
   deltaRequisitosSubida,
   validarDeltaConjuros,
   type SeleccionConjuros,
 } from "@/rules/spell-choices";
+import { idsConjurosAsignados } from "@/rules/spell-grants";
 import type { ClassLevel, Character } from "@/schemas/character";
 import { useCatalogStore } from "@/stores/catalog-store";
 
@@ -27,7 +37,12 @@ export function LevelUpModal({
   preview: LevelUpPreview;
   character: Character;
   pendingClasses: ClassLevel[];
-  onConfirm: (hpGain: number, addToCurrentHp: boolean, spellDelta: SeleccionConjuros) => void;
+  onConfirm: (
+    hpGain: number,
+    addToCurrentHp: boolean,
+    spellDelta: SeleccionConjuros,
+    extras?: LevelUpExtras,
+  ) => void;
   onCancel: () => void;
 }) {
   const catalog = useCatalogStore((s) => s.catalog);
@@ -36,7 +51,26 @@ export function LevelUpModal({
   const [addToCurrentHp, setAddToCurrentHp] = useState(true);
   const [spellDelta, setSpellDelta] = useState<SeleccionConjuros>(DELTA_VACIO);
   const [spellError, setSpellError] = useState<string | null>(null);
+  const [subclassId, setSubclassId] = useState<string | null>(null);
+  const [abilities, setAbilities] = useState(character.abilities);
+  const [feats, setFeats] = useState(character.feats);
+  const [expertise, setExpertise] = useState<SkillKey[]>([
+    ...(character.proficiencies.expertise ?? []),
+  ]);
+  const [asiModo, setAsiModo] = useState<"asi" | "feat">("asi");
+  const [asiA, setAsiA] = useState<AbilityKey>("str");
+  const [asiB, setAsiB] = useState<AbilityKey>("dex");
+  const [asiDos, setAsiDos] = useState(false);
   const spellSectionRef = useRef<HTMLElement>(null);
+  const dialogRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    function onKey(e: KeyboardEvent) {
+      if (e.key === "Escape") onCancel();
+    }
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [onCancel]);
 
   useEffect(() => {
     if (spellError && spellSectionRef.current) {
@@ -57,6 +91,12 @@ export function LevelUpModal({
   const requiereConjuros =
     deltaConjuros.cantrips > 0 || deltaConjuros.grimorio > 0 || deltaConjuros.preparados > 0;
 
+  const pideAsi = preview.milestones.some((m) => /atributos|dote/i.test(m));
+  const pideExpertise = periciasExpertiseAlNivel(preview.classId, preview.newClassLevel);
+  const pideSubclase =
+    faltaElegirSubclase({ ...claseSubida, subclassId: subclassId ?? claseSubida.subclassId }) ||
+    preview.milestones.some((m) => /subclase/i.test(m));
+
   function confirmar() {
     if (requiereConjuros) {
       const msg = validarDeltaConjuros(
@@ -70,14 +110,20 @@ export function LevelUpModal({
       }
     }
     setSpellError(null);
-    onConfirm(hpGain, addToCurrentHp, spellDelta);
+    onConfirm(hpGain, addToCurrentHp, spellDelta, {
+      abilities:
+        pideAsi && asiModo === "asi"
+          ? aplicarMejoraAtributos(abilities, asiA, asiB, asiDos)
+          : abilities,
+      feats,
+      expertise,
+      subclassId: subclassId ?? claseSubida.subclassId,
+    });
   }
 
   function tirarVida() {
-    const match = /^d(\d+)$/i.exec(preview.hpGain.die.trim());
-    const sides = match ? Number.parseInt(match[1] ?? "8", 10) : 8;
     const roll = tirarDadoDenominacion(preview.hpGain.die);
-    const conPart = preview.hpGain.maximum - sides; // modificador CON
+    const conPart = modificadorAtributo(character.abilities.con);
     const total = Math.max(1, roll + conPart);
     setHpRolled(roll);
     setHpGain(total);
@@ -89,8 +135,13 @@ export function LevelUpModal({
       role="dialog"
       aria-modal="true"
       aria-labelledby="level-up-title"
+      onClick={onCancel}
     >
-      <div className="flex max-h-[90vh] w-full max-w-2xl flex-col overflow-hidden rounded-xl border border-white/10 bg-panel shadow-xl">
+      <div
+        ref={dialogRef}
+        className="flex max-h-[90vh] w-full max-w-2xl flex-col overflow-hidden rounded-xl border border-white/10 bg-panel shadow-xl"
+        onClick={(e) => e.stopPropagation()}
+      >
         <header className="border-b border-white/10 px-4 py-3">
           <h2 id="level-up-title" className="text-lg font-bold text-gold">
             ¡Subes de nivel!
@@ -181,6 +232,127 @@ export function LevelUpModal({
             </section>
           )}
 
+          {pideSubclase && (
+            <section className="rounded-lg bg-surface p-3">
+              <h3 className="mb-2 font-semibold">Subclase</h3>
+              <SubclassPicker
+                catalog={catalog}
+                classLevel={{ ...claseSubida, subclassId: subclassId ?? claseSubida.subclassId }}
+                subclassId={subclassId ?? claseSubida.subclassId}
+                required
+                onChange={setSubclassId}
+              />
+            </section>
+          )}
+
+          {pideAsi && (
+            <section className="rounded-lg bg-surface p-3">
+              <h3 className="mb-2 font-semibold">Mejora de atributos o dote</h3>
+              <div className="mb-2 flex flex-wrap gap-2 text-xs">
+                <Button
+                  variant={asiModo === "asi" ? "primary" : "ghost"}
+                  className="text-xs"
+                  onClick={() => setAsiModo("asi")}
+                >
+                  ASI
+                </Button>
+                <Button
+                  variant={asiModo === "feat" ? "primary" : "ghost"}
+                  className="text-xs"
+                  onClick={() => setAsiModo("feat")}
+                >
+                  Dote
+                </Button>
+              </div>
+              {asiModo === "asi" ? (
+                <div className="space-y-2 text-xs">
+                  <label className="flex items-center gap-2">
+                    <input
+                      type="checkbox"
+                      checked={asiDos}
+                      onChange={(e) => setAsiDos(e.target.checked)}
+                    />
+                    +1 a dos atributos (si no, +2 a uno). Tope 20.
+                  </label>
+                  <label className="block">
+                    Atributo A
+                    <select
+                      className="sheet-select mt-1"
+                      value={asiA}
+                      onChange={(e) => setAsiA(e.target.value as AbilityKey)}
+                    >
+                      {ABILITY_KEYS.map((k) => (
+                        <option key={k} value={k}>
+                          {ABILITY_LABELS_ES[k]} ({abilities[k]})
+                        </option>
+                      ))}
+                    </select>
+                  </label>
+                  {asiDos && (
+                    <label className="block">
+                      Atributo B
+                      <select
+                        className="sheet-select mt-1"
+                        value={asiB}
+                        onChange={(e) => setAsiB(e.target.value as AbilityKey)}
+                      >
+                        {ABILITY_KEYS.map((k) => (
+                          <option key={k} value={k}>
+                            {ABILITY_LABELS_ES[k]} ({abilities[k]})
+                          </option>
+                        ))}
+                      </select>
+                    </label>
+                  )}
+                </div>
+              ) : (
+                <FeatPicker
+                  character={{ ...character, abilities, feats }}
+                  onChange={(next) => {
+                    setFeats(next.feats);
+                    setAbilities(next.abilities);
+                  }}
+                  modo="catalogo"
+                />
+              )}
+            </section>
+          )}
+
+          {pideExpertise > 0 && (
+            <section className="rounded-lg bg-surface p-3">
+              <h3 className="mb-2 font-semibold">
+                Expertise ({pideExpertise} pericias competentes)
+              </h3>
+              <ul className="space-y-1 text-xs">
+                {(Object.keys(SKILL_LABELS_ES) as SkillKey[])
+                  .filter((skill) => esProficientePericia(character, skill))
+                  .map((skill) => (
+                    <li key={skill}>
+                      <label className="flex items-center gap-2">
+                        <input
+                          type="checkbox"
+                          checked={expertise.includes(skill)}
+                          onChange={() => {
+                            const has = expertise.includes(skill);
+                            if (has) {
+                              setExpertise(expertise.filter((s) => s !== skill));
+                              return;
+                            }
+                            const nuevas = expertise.filter(
+                              (s) => !character.proficiencies.expertise?.includes(s),
+                            );
+                            if (nuevas.length >= pideExpertise) return;
+                            setExpertise([...expertise, skill]);
+                          }}
+                        />
+                        {SKILL_LABELS_ES[skill]}
+                      </label>
+                    </li>
+                  ))}
+              </ul>
+            </section>
+          )}
+
           {preview.features.length > 0 && (
             <section className="rounded-lg bg-surface p-3">
               <h3 className="mb-2 font-semibold">Nuevos rasgos</h3>
@@ -263,6 +435,7 @@ export function LevelUpModal({
                 titulo="Añade los conjuros que ganas con este nivel"
                 soloAnadir={deltaConjuros}
                 grimorioBase={character.spells.spellsKnown}
+                idsExcluidos={[...idsConjurosAsignados(character)]}
               />
               {spellError && <p className="mt-2 text-xs text-red-400">{spellError}</p>}
             </section>
@@ -270,7 +443,7 @@ export function LevelUpModal({
         </div>
 
         <footer className="flex gap-2 border-t border-white/10 px-4 py-3">
-          <Button variant="ghost" className="flex-1" onClick={onCancel}>
+          <Button autoFocus variant="ghost" className="flex-1" onClick={onCancel}>
             Cancelar
           </Button>
           <Button variant="primary" className="flex-1" onClick={confirmar}>

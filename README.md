@@ -66,12 +66,12 @@ Los JSON generados en `src/data/` se versionan para que CI y usuarios no dependa
 
 Flujo habitual al editar textos en español:
 
-1. Edita los JSON en `data/i18n/` (manuales) o deja que `build:phb-i18n` fusione Foundry.
+1. Edita los JSON en `src/data/i18n/` (p. ej. `phb-es-manual.json`) o deja que `build:phb-i18n` fusione Foundry.
 2. `npm run normalize:manual-i18n` — unifica términos (descanso largo, ventaja, metros, etc.).
 3. `npm run build:phb-i18n` — escribe en `src/data/i18n/` y `src/data/srd/subclass-feature-meta.json`.
 4. `npm test` y commit de los JSON en `src/data/`.
 
-**Rasgos de subclase PHB:** las traducciones curadas viven en `data/i18n/subclass-features-manual.json`. El script `generate:subclass-features-manual` solo sirve para **reconstruir un borrador** desde `data/i18n/_subclass-features-en-extract.json` y los fragmentos en `scripts/subclass-features-manual-data*.ts`; no lo uses en CI ni en el flujo normal si ya tienes el manual revisado.
+**Rasgos de subclase PHB:** el runtime usa `src/data/srd/subclass-feature-meta.json`. El script `generate:subclass-features-manual` solo reconstruye un borrador (no CI).
 
 **Alcances y metadatos de conjuro:** `npm run build:spell-meta` (requiere `vendor/5etools-src`) regenera `src/data/srd/spell-meta.json` con alcances en formato **pies (m)**.
 

@@ -1,26 +1,96 @@
-import type { AbilityKey } from "@/lib/constants";
+import type { AbilityKey, SkillKey } from "@/lib/constants";
 import { ABILITY_KEYS } from "@/lib/constants";
+import { aplicarMejoraAtributos } from "@/rules/level-up";
+import { eleccionesPorDefectoDote, fusionarEleccionesDote, sincronizarMecanicasDotes } from "@/rules/feat-mechanics";
+import { nombreDote } from "@/rules/feat-text";
 import { poblarRecursosSugeridos } from "@/rules/resources-tracker";
-import { pvMaximoPersonaje, recursosCompletos } from "@/rules/resources";
+import { bonusPgRobustez, pvMaximoPersonaje, recursosCompletos } from "@/rules/resources";
 import type { Tirada4d6 } from "@/rules/dice";
 import {
   aplicarBonificadoresAtributo,
   calcularBeneficiosOrigen,
   type OrigenCatalogo,
 } from "@/rules/origin-benefits";
+import { periciasClaseDesdeElecciones } from "@/rules/class-skills";
 import { proficienciasIniciales } from "@/rules/proficiencies";
+import {
+  aplicarCompetenciasOrdenDivino,
+  aplicarEquipoClase,
+  fusionarEleccionesClase,
+} from "@/rules/class-equipment";
 import { atributoConjuroPredeterminado } from "@/rules/spell-lists";
 import type { SeleccionConjuros } from "@/rules/spell-choices";
 import { esLanzador } from "@/rules/spells";
 import { obtenerClase } from "@/rules/srd";
 import { fusionarEleccionesOrigen, type OriginChoices } from "@/rules/origin-choices";
-import { fusionarEleccionesClase, aplicarEquipoClase } from "@/rules/class-equipment";
 import { aplicarEquipoTrasfondo } from "@/rules/origin-equipment";
-import { sincronizarMecanicasDotes } from "@/rules/feat-mechanics";
 import { ajustarMaestriasArmas } from "@/rules/weapon-mastery";
-import { crearPersonajeVacio, type Character } from "@/schemas/character";
+import { crearPersonajeVacio, type Character, type CharacterFeat } from "@/schemas/character";
 
 export const ARRAY_ESTANDAR = [15, 14, 13, 12, 10, 8] as const;
+
+/** Costes de compra de puntos PHB 2024 (presupuesto 27; 8 = 0 … 15 = 9). */
+export const COSTES_POINT_BUY: Record<number, number> = {
+  8: 0,
+  9: 1,
+  10: 2,
+  11: 3,
+  12: 4,
+  13: 5,
+  14: 7,
+  15: 9,
+};
+
+export const PRESUPUESTO_POINT_BUY = 27;
+export const POINT_BUY_MIN = 8;
+export const POINT_BUY_MAX = 15;
+
+export function costePointBuy(score: number): number {
+  return COSTES_POINT_BUY[score] ?? Number.POSITIVE_INFINITY;
+}
+
+export function puntosGastadosPointBuy(abilities: Record<AbilityKey, number>): number {
+  return ABILITY_KEYS.reduce((sum, key) => sum + costePointBuy(abilities[key]), 0);
+}
+
+export function pointBuyValido(abilities: Record<AbilityKey, number>): boolean {
+  if (ABILITY_KEYS.some((key) => abilities[key] < POINT_BUY_MIN || abilities[key] > POINT_BUY_MAX)) {
+    return false;
+  }
+  return puntosGastadosPointBuy(abilities) === PRESUPUESTO_POINT_BUY;
+}
+
+export function abilitiesPointBuyInicial(): Record<AbilityKey, number> {
+  return Object.fromEntries(ABILITY_KEYS.map((k) => [k, 8])) as Record<AbilityKey, number>;
+}
+
+/** Índices aún libres para un atributo; el valor ya puesto en ese atributo sigue visible. */
+export function indicesLibresAsignacion(
+  asignacion: Partial<Record<AbilityKey, number>>,
+  clave: AbilityKey,
+  total: number,
+): number[] {
+  const ocupados = new Set<number>();
+  for (const key of ABILITY_KEYS) {
+    if (key === clave) continue;
+    const i = asignacion[key];
+    if (i !== undefined) ocupados.add(i);
+  }
+  const actual = asignacion[clave];
+  const out: number[] = [];
+  for (let i = 0; i < total; i++) {
+    if (i === actual || !ocupados.has(i)) out.push(i);
+  }
+  return out;
+}
+
+export interface MejoraCreacion {
+  modo: "asi" | "feat";
+  asiDos: boolean;
+  asiA: AbilityKey;
+  asiB: AbilityKey;
+  featId?: string;
+}
 
 export interface DatosAsistente {
   name: string;
@@ -34,6 +104,11 @@ export interface DatosAsistente {
   originChoices?: OriginChoices;
   weaponMasteries?: string[];
   spellSelection?: SeleccionConjuros;
+  fightingStyleFeatId?: string | null;
+  mejorasNivel?: MejoraCreacion[];
+  expertise?: SkillKey[];
+  /** Elecciones mecánicas de dotes de origen (Hábil, Iniciado en la magia…). */
+  featChoices?: Record<string, Record<string, string>>;
 }
 
 /** Asigna manualmente los seis valores del array estándar a atributos. */
@@ -110,6 +185,7 @@ export function crearPersonajeDesdeAsistente(
       datos.originChoices,
       catalogo,
     ),
+    { classLevel: datos.level },
   );
   const origen = calcularBeneficiosOrigen(
     datos.speciesId,
@@ -119,8 +195,37 @@ export function crearPersonajeDesdeAsistente(
     originChoices,
   );
   const abilities = aplicarBonificadoresAtributo(datos.abilities, origen.abilityBonuses);
+  const abilitiesConAsi = (datos.mejorasNivel ?? []).reduce((scores, mejora) => {
+    if (mejora.modo !== "asi") return scores;
+    return aplicarMejoraAtributos(scores, mejora.asiA, mejora.asiB, mejora.asiDos);
+  }, abilities);
+  const dotesExtra: CharacterFeat[] = [];
+  if (datos.fightingStyleFeatId) {
+    dotesExtra.push({
+      id: datos.fightingStyleFeatId,
+      instanceId: crypto.randomUUID(),
+      name: nombreDote(datos.fightingStyleFeatId),
+      choices: eleccionesPorDefectoDote(datos.fightingStyleFeatId),
+    });
+  }
+  for (const mejora of datos.mejorasNivel ?? []) {
+    if (mejora.modo !== "feat" || !mejora.featId) continue;
+    dotesExtra.push({
+      id: mejora.featId,
+      instanceId: crypto.randomUUID(),
+      name: nombreDote(mejora.featId),
+      choices: eleccionesPorDefectoDote(mejora.featId),
+    });
+  }
+  const featsOrigen = [
+    ...(origen.speciesFeat ? [origen.speciesFeat] : []),
+    ...(origen.feat ? [origen.feat] : []),
+    ...dotesExtra,
+  ].map((f) => fusionarEleccionesDote(f, datos.featChoices?.[f.id]));
   const hpMax =
-    pvMaximoPersonaje(hitDie, abilities.con, datos.level) + origen.hpBonusTotal;
+    pvMaximoPersonaje(hitDie, abilitiesConAsi.con, datos.level) +
+    origen.hpBonusTotal +
+    bonusPgRobustez(featsOrigen, datos.level);
   const draft = crearPersonajeVacio({
     name: datos.name.trim(),
     playerName: datos.playerName.trim(),
@@ -131,7 +236,7 @@ export function crearPersonajeDesdeAsistente(
   const spellAbility = esLanzador(datos.classId)
     ? atributoConjuroPredeterminado({
         ...draft,
-        abilities,
+        abilities: abilitiesConAsi,
         identity: {
           ...draft.identity,
           subclassId: datos.subclassId,
@@ -140,17 +245,28 @@ export function crearPersonajeDesdeAsistente(
       })
     : null;
 
-  const proficiencies = proficienciasIniciales(
+  const classSkills = periciasClaseDesdeElecciones(datos.classId, originChoices.class);
+  const baseProfs = proficienciasIniciales(
     datos.classId,
     origen.skills,
     origen.toolProficiencies,
+    classSkills,
   );
+  const proficiencies = {
+    ...baseProfs,
+    ...aplicarCompetenciasOrdenDivino(
+      datos.classId,
+      originChoices,
+      baseProfs.armorProficiencies,
+      baseProfs.weaponProficiencies,
+    ),
+  };
 
   const languages = [...draft.proficiencies.languages, ...origen.languages];
-  const feats = [
-    ...(origen.speciesFeat ? [origen.speciesFeat] : []),
-    ...(origen.feat ? [origen.feat] : []),
-  ].map((f) => ({ ...f, instanceId: f.instanceId ?? crypto.randomUUID() }));
+  const feats = featsOrigen.map((f) => ({
+    ...f,
+    instanceId: f.instanceId ?? crypto.randomUUID(),
+  }));
 
   const personaje = poblarRecursosSugeridos(
     recursosCompletos({
@@ -167,11 +283,12 @@ export function crearPersonajeDesdeAsistente(
         },
       ],
     },
-    abilities,
+    abilities: abilitiesConAsi,
     proficiencies: {
       savingThrows: proficiencies.savingThrows,
       skills: proficiencies.skills,
       skillOverrides: {},
+      expertise: [...new Set(datos.expertise ?? [])],
       languages: [...new Set(languages)],
       armorProficiencies: proficiencies.armorProficiencies,
       weaponProficiencies: proficiencies.weaponProficiencies,

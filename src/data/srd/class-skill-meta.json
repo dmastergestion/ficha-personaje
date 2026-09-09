@@ -1,0 +1,50 @@
+{
+  "barbarian": {
+    "count": 2,
+    "skills": ["animalHandling", "athletics", "intimidation", "nature", "perception", "survival"]
+  },
+  "bard": {
+    "count": 3,
+    "skills": "any"
+  },
+  "cleric": {
+    "count": 2,
+    "skills": ["history", "insight", "medicine", "persuasion", "religion"]
+  },
+  "druid": {
+    "count": 2,
+    "skills": ["animalHandling", "arcana", "insight", "medicine", "nature", "perception", "religion", "survival"]
+  },
+  "fighter": {
+    "count": 2,
+    "skills": ["acrobatics", "animalHandling", "athletics", "history", "insight", "intimidation", "persuasion", "survival"]
+  },
+  "monk": {
+    "count": 2,
+    "skills": ["acrobatics", "athletics", "history", "insight", "religion", "stealth"]
+  },
+  "paladin": {
+    "count": 2,
+    "skills": ["athletics", "insight", "intimidation", "medicine", "persuasion", "religion"]
+  },
+  "ranger": {
+    "count": 3,
+    "skills": ["animalHandling", "athletics", "insight", "investigation", "nature", "perception", "stealth", "survival"]
+  },
+  "rogue": {
+    "count": 4,
+    "skills": ["acrobatics", "athletics", "deception", "insight", "intimidation", "investigation", "perception", "persuasion", "sleightOfHand", "stealth"]
+  },
+  "sorcerer": {
+    "count": 2,
+    "skills": ["arcana", "deception", "insight", "intimidation", "persuasion", "religion"]
+  },
+  "warlock": {
+    "count": 2,
+    "skills": ["arcana", "deception", "history", "intimidation", "investigation", "nature", "religion"]
+  },
+  "wizard": {
+    "count": 2,
+    "skills": ["arcana", "history", "insight", "investigation", "medicine", "religion"]
+  }
+}

@@ -1,9 +1,96 @@
+import backgroundMetaJson from "@/data/srd/background-meta.json";
 import type { AbilityKey, SkillKey } from "@/lib/constants";
+import { COMMON_LANGUAGES, SKILL_KEYS } from "@/lib/constants";
 import { ABILITY_LABELS_ES, SKILL_LABELS_ES } from "@/rules/character";
 import { etiquetaHerramienta } from "@/lib/origin-text";
-import { dotesOrigenDisponibles } from "@/rules/feat-text";
+import { dotesOrigenDisponibles, idDoteDesdeTexto } from "@/rules/feat-text";
 import type { OrigenCatalogo } from "@/rules/origin-benefits";
+import { opcionesSinDuplicar, valorLibre } from "@/rules/choice-uniqueness";
 import { inferSpeciesGroupId } from "@/rules/species-catalog";
+
+const backgroundMeta = backgroundMetaJson as Record<
+  string,
+  { skillProficiencies?: string[]; feat?: string }
+>;
+
+const IDS_ELECCION_PERICIA = new Set(["keen-senses", "skillful"]);
+
+function clavePericiaLista(raw: string): SkillKey | null {
+  const trimmed = raw.trim();
+  if ((SKILL_KEYS as readonly string[]).includes(trimmed)) return trimmed as SkillKey;
+  const lower = trimmed.toLowerCase();
+  if (lower === "animal handling") return "animalHandling";
+  if (lower === "sleight of hand") return "sleightOfHand";
+  return null;
+}
+
+function periciasFijasTrasfondo(
+  backgroundId: string | null,
+  catalogo?: OrigenCatalogo,
+): Set<string> {
+  const lista =
+    catalogo?.background?.skillProficiencies ??
+    (backgroundId ? backgroundMeta[backgroundId]?.skillProficiencies : undefined) ??
+    [];
+  const out = new Set<string>();
+  for (const raw of lista) {
+    const key = clavePericiaLista(raw);
+    if (key) out.add(key);
+  }
+  return out;
+}
+
+function idDoteTrasfondo(backgroundId: string | null, catalogo?: OrigenCatalogo): string | undefined {
+  const raw =
+    catalogo?.background?.feat ?? (backgroundId ? backgroundMeta[backgroundId]?.feat : undefined);
+  return raw ? idDoteDesdeTexto(raw) : undefined;
+}
+
+export function esEleccionPericia(defId: string): boolean {
+  return IDS_ELECCION_PERICIA.has(defId);
+}
+
+/** Valores que no se pueden repetir en esta elección (pericia, dote o +1). */
+export function valoresOcupadosEleccion(
+  def: OriginChoiceDefinition,
+  choices: OriginChoices,
+  backgroundId: string | null,
+  catalogo?: OrigenCatalogo,
+): Set<string> {
+  if (esEleccionPericia(def.id)) {
+    const ocupadas = periciasFijasTrasfondo(backgroundId, catalogo);
+    for (const id of IDS_ELECCION_PERICIA) {
+      if (id === def.id) continue;
+      const v = choices.species[id];
+      if (v) ocupadas.add(v);
+    }
+    return ocupadas;
+  }
+  if (def.id === "versatile-feat") {
+    const featId = idDoteTrasfondo(backgroundId, catalogo);
+    return featId ? new Set([featId]) : new Set();
+  }
+  if (def.id === "ability-plus-1") {
+    const plus2 = choices.background["ability-plus-2"];
+    return plus2 ? new Set([plus2]) : new Set();
+  }
+  return new Set();
+}
+
+export function opcionesEleccionOrigen(
+  def: OriginChoiceDefinition,
+  choices: OriginChoices,
+  backgroundId: string | null,
+  catalogo?: OrigenCatalogo,
+): OriginChoiceOption[] {
+  const actual =
+    def.scope === "species" ? choices.species[def.id] : choices.background[def.id];
+  return opcionesSinDuplicar(
+    def.options,
+    valoresOcupadosEleccion(def, choices, backgroundId, catalogo),
+    actual,
+  );
+}
 
 export type OriginChoiceScope = "species" | "background" | "class";
 
@@ -22,6 +109,8 @@ export interface OriginChoiceDefinition {
   options: OriginChoiceOption[];
   defaultValue?: string;
   editable: OriginChoiceEditable;
+  kind?: "select" | "multi";
+  maxSelections?: number;
 }
 
 export interface OriginChoices {
@@ -56,6 +145,37 @@ const ABILITY_MODE_OPTIONS: OriginChoiceOption[] = [
   { value: "even", label: "+1 a los tres atributos del trasfondo" },
   { value: "split", label: "+2 a uno y +1 a otro" },
 ];
+
+const LINEAGE_CASTING_OPTIONS: OriginChoiceOption[] = (
+  ["int", "wis", "cha"] as AbilityKey[]
+).map((id) => ({ value: id, label: ABILITY_LABELS_ES[id] }));
+
+const LINEAGE_CASTING_CHOICE: OriginChoiceDefinition = {
+  id: "lineage-casting-ability",
+  scope: "species",
+  label: "Atributo de conjuros de linaje",
+  hint: "Inteligencia, Sabiduría o Carisma para los conjuros del linaje (elfo o gnomo).",
+  options: LINEAGE_CASTING_OPTIONS,
+  defaultValue: "int",
+  editable: "never",
+};
+
+function eleccionIdiomaExtra(excluir: string[], defaultValue: string): OriginChoiceDefinition {
+  const options = COMMON_LANGUAGES.filter((lang) => lang !== "Común" && !excluir.includes(lang)).map(
+    (value) => ({ value, label: value }),
+  );
+  return {
+    id: "extra-language",
+    scope: "species",
+    label: "Idioma extra",
+    hint: "Además de los idiomas de tu especie, eliges uno más.",
+    options,
+    defaultValue: options.some((o) => o.value === defaultValue)
+      ? defaultValue
+      : (options[0]?.value ?? "Élfico"),
+    editable: "never",
+  };
+}
 
 const GAMING_SET_OPTIONS: OriginChoiceOption[] = [
   { value: "dice", label: "Juego de dados" },
@@ -149,18 +269,21 @@ const SPECIES_GROUP_CHOICES: Record<string, OriginChoiceDefinition[]> = {
       id: "keen-senses",
       scope: "species",
       label: "Sentidos agudos",
-      hint: "Pericia de origen del elfo.",
+      hint: "Pericia de origen del elfo. No puedes repetir una que ya tengas.",
       options: KEEN_SENSES_OPTIONS,
       defaultValue: "perception",
       editable: "never",
     },
+    LINEAGE_CASTING_CHOICE,
+    eleccionIdiomaExtra(["Élfico"], "Silvano"),
   ],
+  gnome: [LINEAGE_CASTING_CHOICE],
   human: [
     {
       id: "skillful",
       scope: "species",
       label: "Hábil (pericia)",
-      hint: "El rasgo Hábil del humano otorga una pericia a tu elección.",
+      hint: "El rasgo Hábil del humano otorga una pericia a tu elección. No puedes repetir una que ya tengas.",
       options: Object.entries(SKILL_LABELS_ES).map(([value, label]) => ({ value, label })),
       defaultValue: "perception",
       editable: "never",
@@ -169,11 +292,12 @@ const SPECIES_GROUP_CHOICES: Record<string, OriginChoiceDefinition[]> = {
       id: "versatile-feat",
       scope: "species",
       label: "Versátil (dote de origen)",
-      hint: "El rasgo Versátil del humano PHB 2024 otorga una dote de origen.",
+      hint: "El rasgo Versátil del humano PHB 2024 otorga una dote de origen. Distinta de la dote del trasfondo.",
       options: dotesOrigenDisponibles(),
       defaultValue: "alert",
       editable: "never",
     },
+    eleccionIdiomaExtra([], "Élfico"),
   ],
 };
 
@@ -356,6 +480,20 @@ export function fusionarEleccionesOrigen(
     }
   }
 
+  const merged: OriginChoices = { species, background, class: actual?.class ?? {} };
+  for (const def of defs) {
+    if (def.scope !== "species" && def.id !== "ability-plus-1") continue;
+    const ocupadas = valoresOcupadosEleccion(def, merged, backgroundId, catalogo);
+    if (ocupadas.size === 0) continue;
+    if (def.scope === "species") {
+      species[def.id] = valorLibre(def.options, ocupadas, species[def.id]);
+      merged.species = species;
+    } else {
+      background[def.id] = valorLibre(def.options, ocupadas, background[def.id]);
+      merged.background = background;
+    }
+  }
+
   for (const [key, value] of Object.entries(actual?.species ?? {})) {
     if (!(key in species)) species[key] = value;
   }
@@ -400,6 +538,7 @@ export function eleccionesOrigenCompletas(
     const value =
       def.scope === "species" ? choices.species[def.id] : choices.background[def.id];
     if (!value) return false;
+    if (valoresOcupadosEleccion(def, choices, backgroundId, catalogo).has(value)) return false;
   }
 
   if (incluirAtributos && !bonificacionAtributosCompleta(backgroundId, choices, catalogo)) {
@@ -478,6 +617,7 @@ export function resumenEleccionesOrigen(
   const lines: string[] = [];
   for (const def of todasEleccionesOrigen(speciesId, backgroundId, catalogo)) {
     if (!eleccionVisible(def, choices)) continue;
+    if (esEleccionBonificacionAtributos(def.id)) continue;
     const value =
       def.scope === "species" ? choices.species[def.id] : choices.background[def.id];
     if (!value) continue;

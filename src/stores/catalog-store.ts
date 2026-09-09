@@ -22,6 +22,7 @@ async function fetchBundledPack(): Promise<ContentPack | null> {
 
 interface CatalogState {
   ready: boolean;
+  packSource: "none" | "bundled" | "user";
   pack: ContentPack | null;
   catalog: GameCatalog;
   init: () => Promise<void>;
@@ -29,43 +30,54 @@ interface CatalogState {
   removePack: () => Promise<void>;
 }
 
-export const useCatalogStore = create<CatalogState>((set) => ({
-  ready: false,
+export const useCatalogStore = create<CatalogState>((set, get) => ({
+  ready: true,
+  packSource: "none",
   pack: null,
   catalog: defaultCatalog,
   init: async () => {
     const active = await loadActiveContentPackRow();
 
-    // No sobrescribir nunca un pack importado por el usuario.
     if (active?.origin === "user") {
-      set({ pack: active.pack, catalog: buildCatalog(active.pack), ready: true });
+      set({
+        pack: active.pack,
+        catalog: buildCatalog(active.pack),
+        packSource: "user",
+        ready: true,
+      });
       return;
+    }
+
+    if (active?.pack) {
+      set({
+        pack: active.pack,
+        catalog: buildCatalog(active.pack),
+        packSource: "bundled",
+        ready: true,
+      });
+    } else {
+      set({ ready: true });
     }
 
     const bundled = await fetchBundledPack();
+    if (!bundled) return;
+    if (get().packSource === "user") return;
 
-    // Auto-cargar el pack incluido si no hay nada, o si trae una versión más reciente.
-    const debeActualizar =
-      bundled &&
-      (!active || bundled.generatedAt > active.pack.generatedAt);
+    const debeActualizar = !active || bundled.generatedAt > active.pack.generatedAt;
+    if (!debeActualizar) return;
 
-    if (bundled && debeActualizar) {
-      await saveActiveContentPack(bundled, "bundled");
-      set({ pack: bundled, catalog: buildCatalog(bundled), ready: true });
-      return;
-    }
-
-    const pack = active?.pack ?? null;
-    set({ pack, catalog: buildCatalog(pack), ready: true });
+    await saveActiveContentPack(bundled, "bundled");
+    if (get().packSource === "user") return;
+    set({ pack: bundled, catalog: buildCatalog(bundled), packSource: "bundled", ready: true });
   },
   importPack: async (json) => {
     const pack = parseContentPackJson(json);
     await saveActiveContentPack(pack, "user");
-    set({ pack, catalog: buildCatalog(pack), ready: true });
+    set({ pack, catalog: buildCatalog(pack), packSource: "user", ready: true });
     return pack;
   },
   removePack: async () => {
     await clearActiveContentPack();
-    set({ pack: null, catalog: defaultCatalog, ready: true });
+    set({ pack: null, catalog: defaultCatalog, packSource: "none", ready: true });
   },
 }));
