@@ -5,6 +5,7 @@ import { tiradaAtaque } from "@/rules/effects";
 import type { ConditionId } from "@/lib/conditions";
 import { extrasAtaque } from "@/rules/attacks";
 import { desventajaPruebaCaracteristica } from "@/rules/proficiencies";
+import { atributosEfectivos } from "@/rules/wild-shape";
 import type { Character, CombatAttack } from "@/schemas/character";
 
 const ABILITY_LABELS: Record<AbilityKey, string> = {
@@ -69,12 +70,25 @@ export interface ResultadoAtaque {
 }
 
 export function desgloseAtaque(character: Character, attack: CombatAttack): DesgloseAtaque {
-  const abilityMod = modificadorAtributo(character.abilities[attack.abilityKey]);
+  const extras = extrasAtaque(character, attack);
+  if (attack.toHitOverride != null) {
+    return {
+      abilityMod: 0,
+      proficiencyMod: 0,
+      magicMod: 0,
+      extraToHit: attack.toHitOverride + extras.toHit,
+      extraToHitLabel: extras.toHitLabel ?? "Bloque de bestia",
+      extraDamage: extras.damage,
+      extraDamageLabel: extras.damageLabel,
+      ventajaRabia: extras.ventaja,
+      abilityLabel: ABILITY_LABELS[attack.abilityKey],
+    };
+  }
+  const abilityMod = modificadorAtributo(atributosEfectivos(character)[attack.abilityKey]);
   const proficiencyMod = attack.proficient
     ? bonificadorCompetencia(character.identity.level)
     : 0;
   const magicMod = attack.magicBonus ?? 0;
-  const extras = extrasAtaque(character, attack);
   return {
     abilityMod,
     proficiencyMod,
@@ -101,7 +115,7 @@ export function parsePartesDaño(damage: string, attack: CombatAttack): PartesDa
     if (flatMatch) flatBase = Number(flatMatch[1]);
   }
 
-  let abilityKey: AbilityKey | null = attack.abilityKey;
+  let abilityKey: AbilityKey | null = attack.toHitOverride != null ? null : attack.abilityKey;
   const modMatch = /MOD\s+(FUE|DES|CON|INT|SAB|CAR)/i.exec(text);
   if (modMatch) {
     abilityKey = MOD_TOKEN[modMatch[1]!.toUpperCase()] ?? attack.abilityKey;
@@ -277,7 +291,7 @@ export function tirarAtaqueCompleto(
     } else {
       const partes = parsePartesDaño(damageFormula, attack);
       const abilityMod = partes.abilityKey
-        ? modificadorAtributo(character.abilities[partes.abilityKey])
+        ? modificadorAtributo(atributosEfectivos(character)[partes.abilityKey])
         : 0;
       damage = tirarDaño(
         { ...partes, flatBonus: partes.flatBonus + desglose.extraDamage },

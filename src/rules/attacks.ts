@@ -11,6 +11,7 @@ export { PACT_WEAPON_ATTACK_ID };
 import { obtenerArma, t, type SrdWeapon } from "@/rules/srd";
 import { esCompetenteConArma } from "@/rules/proficiencies";
 import { metaTiradaConjuro } from "@/rules/spell-cast-meta";
+import { atributosEfectivos, bestiaFormaActiva } from "@/rules/wild-shape";
 import type { Character, CombatAttack, EquipmentItem } from "@/schemas/character";
 
 const MOD_SHORT: Record<AbilityKey, string> = {
@@ -156,7 +157,8 @@ export function extrasAtaque(character: Character, attack: CombatAttack): Extras
 }
 
 export function modificadorAtaque(character: Character, attack: CombatAttack): number {
-  const base = modificadorAtributo(character.abilities[attack.abilityKey]);
+  if (attack.toHitOverride != null) return attack.toHitOverride;
+  const base = modificadorAtributo(atributosEfectivos(character)[attack.abilityKey]);
   const pb = attack.proficient ? bonificadorCompetencia(character.identity.level) : 0;
   const magic = attack.magicBonus ?? 0;
   return base + pb + magic + extrasAtaque(character, attack).toHit;
@@ -364,6 +366,12 @@ export function golpeDesarmadoPersonaje(character: Character): CombatAttack {
 }
 
 export function armaAtaqueValida(attackId: string, character: Character): boolean {
+  if (character.combat.wildShapeBeastId) {
+    return listarAtaquesFicha(character).some((row) => row.id === attackId);
+  }
+  if (attackId.startsWith("wild-shape:")) {
+    return listarAtaquesFicha(character).some((row) => row.id === attackId);
+  }
   if (attackId === ATAQUE_DESARMADO_ID) return true;
   if (attackId === PACT_WEAPON_ATTACK_ID) return !!ataqueArmaPactoConvocada(character);
   const item = character.equipment.items.find((i) => i.id === attackId);
@@ -371,12 +379,19 @@ export function armaAtaqueValida(attackId: string, character: Character): boolea
 }
 
 export function idAtaqueDefecto(character: Character): string {
+  if (character.combat.wildShapeBeastId) {
+    const forma = listarAtaquesFicha(character)[0];
+    if (forma) return forma.id;
+  }
   const stored = character.equipment.defaultAttackId;
   if (stored && armaAtaqueValida(stored, character)) return stored;
   return ATAQUE_DESARMADO_ID;
 }
 
 export function ataquePorId(character: Character, attackId: string): CombatAttack | null {
+  if (attackId.startsWith("wild-shape:")) {
+    return listarAtaquesFicha(character).find((row) => row.id === attackId)?.attack ?? null;
+  }
   if (attackId === ATAQUE_DESARMADO_ID) return golpeDesarmadoPersonaje(character);
   if (attackId === PACT_WEAPON_ATTACK_ID) return ataqueArmaPactoConvocada(character);
   const item = character.equipment.items.find((i) => i.id === attackId);
@@ -425,6 +440,21 @@ export type AtaqueFicha = { id: string; attack: CombatAttack };
 
 /** Ataques en el mismo orden que la ficha PDF (desarmado + inventario en combate, máx. 6). */
 export function listarAtaquesFicha(character: Character): AtaqueFicha[] {
+  const bestia = bestiaFormaActiva(character);
+  if (bestia?.combat) {
+    return bestia.combat.attacks.map((atk, index) => ({
+      id: `wild-shape:${bestia.id}:${index}`,
+      attack: crearAtaqueVacio({
+        id: `wild-shape:${bestia.id}:${index}`,
+        name: atk.nameEs,
+        abilityKey: "str",
+        proficient: true,
+        damage: atk.damage,
+        notes: bestia.combat?.notes,
+        toHitOverride: atk.toHit,
+      }),
+    }));
+  }
   const rows: AtaqueFicha[] = [
     { id: ATAQUE_DESARMADO_ID, attack: golpeDesarmadoPersonaje(character) },
   ];
@@ -438,6 +468,9 @@ export function listarAtaquesFicha(character: Character): AtaqueFicha[] {
 }
 
 export function etiquetaAtaqueId(character: Character, attackId: string): string {
+  if (attackId.startsWith("wild-shape:")) {
+    return ataquePorId(character, attackId)?.name ?? "Forma salvaje";
+  }
   if (attackId === ATAQUE_DESARMADO_ID) return "Golpe desarmado";
   if (attackId === PACT_WEAPON_ATTACK_ID) {
     return ataqueArmaPactoConvocada(character)?.name ?? "Arma de pacto";

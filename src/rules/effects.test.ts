@@ -44,6 +44,13 @@ describe("calcularModificadoresCondiciones", () => {
     const mods = calcularModificadoresCondiciones(["grappled"]);
     expect(mods.velocidadCero).toBe(true);
   });
+
+  it("paralizado y petrificado ponen velocidad a 0", () => {
+    expect(calcularModificadoresCondiciones(["paralyzed"]).velocidadCero).toBe(true);
+    expect(calcularModificadoresCondiciones(["petrified"]).velocidadCero).toBe(true);
+    expect(calcularModificadoresCondiciones(["stunned"]).velocidadCero).toBe(true);
+    expect(calcularModificadoresCondiciones(["unconscious"]).velocidadCero).toBe(true);
+  });
 });
 
 describe("resolverModoTirada", () => {

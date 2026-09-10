@@ -100,4 +100,20 @@ describe("defensa sin armadura y estilo", () => {
     });
     expect(ac).toBe(12);
   });
+
+  it("suma CA de objeto sintonizado", () => {
+    const pj = crearPersonajeVacio({ name: "M", playerName: "J", classId: "wizard" });
+    pj.equipment.items = [
+      {
+        id: "ring",
+        name: "Anillo de protección",
+        qty: 1,
+        weightLb: 0,
+        requiresAttunement: true,
+        attuned: true,
+        acBonus: 1,
+      },
+    ];
+    expect(claseArmaduraPersonaje(pj)).toBe(11);
+  });
 });

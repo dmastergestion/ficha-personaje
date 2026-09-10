@@ -20,6 +20,7 @@ import {
   puedeSintonizar,
 } from "@/rules/inventory";
 import { srdArmor, t } from "@/rules/srd";
+import { DAMAGE_TYPES } from "@/lib/constants";
 import type { SheetTabProps } from "@/pages/character-sheet/types";
 import type { EquipmentItem } from "@/schemas/character";
 import { useMemo } from "react";
@@ -360,6 +361,65 @@ export function TabEquipo({ character, onChange }: SheetTabProps) {
                       />
                       Sint
                     </label>
+                    <label className="flex items-center gap-1 text-[11px] text-muted">
+                      CA
+                      <select
+                        className="sheet-input-sm w-12 py-0.5 text-[11px]"
+                        aria-label="Bonificador de CA del objeto"
+                        value={item.acBonus ?? 0}
+                        onChange={(e) =>
+                          actualizarItem(index, {
+                            acBonus: Math.min(3, Math.max(0, Number(e.target.value) || 0)),
+                          })
+                        }
+                      >
+                        {[0, 1, 2, 3].map((n) => (
+                          <option key={n} value={n}>
+                            +{n}
+                          </option>
+                        ))}
+                      </select>
+                    </label>
+                    <select
+                      className="sheet-input-sm max-w-[9rem] py-0.5 text-[11px]"
+                      aria-label="Resistencia que otorga el objeto"
+                      value=""
+                      onChange={(e) => {
+                        const tipo = e.target.value;
+                        if (!tipo) return;
+                        const actuales = item.grantedResistances ?? [];
+                        if (actuales.some((t) => t.toLowerCase() === tipo.toLowerCase())) return;
+                        actualizarItem(index, { grantedResistances: [...actuales, tipo] });
+                      }}
+                    >
+                      <option value="">+ Resistencia…</option>
+                      {DAMAGE_TYPES.filter(
+                        (t) =>
+                          !(item.grantedResistances ?? []).some(
+                            (g) => g.toLowerCase() === t.toLowerCase(),
+                          ),
+                      ).map((t) => (
+                        <option key={t} value={t}>
+                          {t}
+                        </option>
+                      ))}
+                    </select>
+                    {(item.grantedResistances ?? []).map((tipo) => (
+                      <button
+                        key={tipo}
+                        type="button"
+                        className="rounded bg-gold/15 px-1.5 py-0.5 text-[11px] text-gold"
+                        onClick={() =>
+                          actualizarItem(index, {
+                            grantedResistances: (item.grantedResistances ?? []).filter(
+                              (t) => t !== tipo,
+                            ),
+                          })
+                        }
+                      >
+                        {tipo} ×
+                      </button>
+                    ))}
                   </div>
                 </article>
               );

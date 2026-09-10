@@ -213,3 +213,15 @@ describe("estilos, sutil y artes marciales", () => {
     expect(golpe.damage).toMatch(/1d6/);
   });
 });
+
+describe("forma salvaje en ataques", () => {
+  it("sustituye la tabla por el mordisco del lobo", () => {
+    const pj = crearPersonajeVacio({ name: "D", playerName: "J", classId: "druid", level: 2 });
+    pj.combat.wildShapeBeastId = "wolf";
+    const rows = listarAtaquesFicha(pj);
+    expect(rows).toHaveLength(1);
+    expect(rows[0]!.attack.name).toBe("Mordisco");
+    expect(modificadorAtaque(pj, rows[0]!.attack)).toBe(4);
+    expect(idAtaqueDefecto(pj)).toBe("wild-shape:wolf:0");
+  });
+});

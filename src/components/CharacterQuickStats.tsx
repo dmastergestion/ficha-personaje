@@ -4,14 +4,13 @@ import { percepcionPasiva, iniciativa, velocidad } from "@/rules/character";
 import { bonificadorIniciativaDotes } from "@/rules/feat-mechanics";
 import { alcanceVisionOscura, etiquetaVisionOscura } from "@/rules/sensory";
 
-import { desgloseClaseArmadura, opcionesCaPersonaje } from "@/rules/combat";
+import { desgloseCaPersonaje } from "@/rules/combat";
 import { abreviaturaArmadura } from "@/rules/armor-text";
 
 import { etiquetaDadosGolpe } from "@/rules/hit-dice";
-
 import { descripcionDadosGolpe } from "@/rules/multiclass";
-
 import { srdArmor } from "@/rules/srd";
+import { atributosEfectivos } from "@/rules/wild-shape";
 
 import type { Character } from "@/schemas/character";
 
@@ -44,23 +43,13 @@ export function CharacterQuickStats({
 
   const catalog = useCatalogStore((s) => s.catalog);
 
-  const shield = srdArmor.find((item) => item.category === "shield");
-
   const armor = srdArmor.find((item) => item.id === character.equipment.armorId) ?? null;
 
-  const caDesglose = desgloseClaseArmadura(
-    character.abilities.dex,
-    armor,
-    character.equipment.shieldEquipped,
-    shield,
-    character.combat.armorClassOverride,
-    {
-      ...opcionesCaPersonaje(character),
-      etiquetaArmadura: armor
-        ? abreviaturaArmadura(armor, catalog.t("armor", armor.id, armor.nameEn))
-        : undefined,
-    },
-  );
+  const caDesglose = desgloseCaPersonaje(character, {
+    etiquetaArmadura: armor
+      ? abreviaturaArmadura(armor, catalog.t("armor", armor.id, armor.nameEn))
+      : undefined,
+  });
 
   const speciesSpeed = character.identity.speciesId
 
@@ -75,7 +64,7 @@ export function CharacterQuickStats({
   const ini = iniciativa(character);
   const iniBonusDote = bonificadorIniciativaDotes(character);
 
-  const dexMod = modificadorAtributo(character.abilities.dex);
+  const dexMod = modificadorAtributo(atributosEfectivos(character).dex);
 
   const pb = bonificadorCompetencia(character.identity.level);
 

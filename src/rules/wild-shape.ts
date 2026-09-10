@@ -1,16 +1,41 @@
 import beastsJson from "@/data/srd/wild-shape-beasts.json";
-import type { ClassLevel } from "@/schemas/character";
+import combatJson from "@/data/srd/wild-shape-combat.json";
+import { ajustarRecurso } from "@/rules/resources-tracker";
+import type { Character, ClassLevel } from "@/schemas/character";
 
 export const WILD_SHAPE_FORMS_KEY = "wild-shape-forms";
+export const WILD_SHAPE_RESOURCE_ID = "druid:wild-shape";
+
+export type WildShapeAttack = {
+  nameEs: string;
+  toHit: number;
+  damage: string;
+};
+
+export type WildShapeCombat = {
+  ac: number;
+  speed: number;
+  str: number;
+  dex: number;
+  con: number;
+  attacks: WildShapeAttack[];
+  notes?: string;
+};
 
 export type WildShapeBeast = {
   id: string;
   nameEs: string;
   cr: number;
   fly: boolean;
+  combat?: WildShapeCombat;
 };
 
-const BEASTS = beastsJson as WildShapeBeast[];
+type CombatFile = Record<string, WildShapeCombat>;
+
+const COMBAT = combatJson as CombatFile;
+const BEASTS: WildShapeBeast[] = (beastsJson as Omit<WildShapeBeast, "combat">[]).map(
+  (b) => ({ ...b, combat: COMBAT[b.id] }),
+);
 
 export const FORMAS_SALVAJE_RECOMENDADAS = ["rat", "riding-horse", "spider", "wolf"] as const;
 
@@ -40,6 +65,10 @@ export function catalogoBestias(): WildShapeBeast[] {
 
 export function bestiaPorId(id: string): WildShapeBeast | undefined {
   return BEASTS.find((b) => b.id === id);
+}
+
+export function tieneBloqueCombate(beast: WildShapeBeast | undefined): boolean {
+  return !!beast?.combat && beast.combat.attacks.length > 0;
 }
 
 export function bestiasElegibles(druidLevel: number): WildShapeBeast[] {
@@ -100,4 +129,73 @@ export function resumenFormasSalvaje(druidLevel: number, raw: string | undefined
     const b = bestiaPorId(id);
     return b ? `${b.nameEs} (ID ${etiquetaCr(b.cr)})` : id;
   });
+}
+
+export function formasConocidasPersonaje(character: Character): string[] {
+  const nivel = nivelDruida(character.identity.classes);
+  return parsearFormasSalvaje(
+    fusionarFormasSalvaje(nivel, character.originChoices?.class?.[WILD_SHAPE_FORMS_KEY]),
+  );
+}
+
+export function bestiaFormaActiva(character: Character): WildShapeBeast | undefined {
+  const id = character.combat.wildShapeBeastId;
+  if (!id) return undefined;
+  return bestiaPorId(id);
+}
+
+export function atributosEfectivos(character: Character): Character["abilities"] {
+  const combat = bestiaFormaActiva(character)?.combat;
+  if (!combat) return character.abilities;
+  return {
+    ...character.abilities,
+    str: combat.str,
+    dex: combat.dex,
+    con: combat.con,
+  };
+}
+
+export function recursoFormaSalvaje(character: Character) {
+  return character.resources.find((r) => r.id === WILD_SHAPE_RESOURCE_ID);
+}
+
+export function desactivarFormaSalvaje(character: Character): Character {
+  if (!character.combat.wildShapeBeastId) return character;
+  return {
+    ...character,
+    combat: { ...character.combat, wildShapeBeastId: null },
+  };
+}
+
+/** Activa una forma conocida. Gasta un uso si no estabas ya transformado. */
+export function activarFormaSalvaje(
+  character: Character,
+  beastId: string,
+): Character | { error: string } {
+  const nivel = nivelDruida(character.identity.classes);
+  if (nivel < 2) return { error: "Forma salvaje requiere druida nivel 2." };
+  const conocidas = new Set(formasConocidasPersonaje(character));
+  if (!conocidas.has(beastId)) return { error: "Esa bestia no está entre tus formas conocidas." };
+  const beast = bestiaPorId(beastId);
+  if (!beast) return { error: "Bestia desconocida." };
+
+  const yaTransformado = !!character.combat.wildShapeBeastId;
+  let next = character;
+  if (!yaTransformado) {
+    const recurso = recursoFormaSalvaje(character);
+    if (!recurso || recurso.used >= recurso.max) {
+      return { error: "No te quedan usos de Forma salvaje." };
+    }
+    next = ajustarRecurso(character, WILD_SHAPE_RESOURCE_ID, 1);
+  }
+
+  const temp = Math.max(next.combat.hpTemp, nivel);
+  return {
+    ...next,
+    combat: {
+      ...next.combat,
+      wildShapeBeastId: beastId,
+      hpTemp: temp,
+    },
+  };
 }

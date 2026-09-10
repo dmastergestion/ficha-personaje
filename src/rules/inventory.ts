@@ -37,6 +37,39 @@ export function estadoCarga(strScore: number, pesoTotal: number): EstadoCarga {
   return pesoTotal > capacidadCarga(strScore) ? "sobrecarga" : "ligera";
 }
 
+export function itemEfectosActivos(item: EquipmentItem): boolean {
+  if (item.qty <= 0) return false;
+  if (item.requiresAttunement) return !!item.attuned;
+  return (item.acBonus ?? 0) > 0 || (item.grantedResistances?.length ?? 0) > 0 || !!item.attuned;
+}
+
+export function bonusCaObjetosMagicos(itemsOrCharacter: EquipmentItem[] | { equipment: { items: EquipmentItem[] } }): number {
+  const items = Array.isArray(itemsOrCharacter)
+    ? itemsOrCharacter
+    : itemsOrCharacter.equipment.items;
+  return items.reduce((sum, item) => {
+    if (!itemEfectosActivos(item)) return sum;
+    return sum + (item.acBonus ?? 0);
+  }, 0);
+}
+
+export function resistenciasObjetosMagicos(
+  itemsOrCharacter: EquipmentItem[] | { equipment: { items: EquipmentItem[] } },
+): string[] {
+  const items = Array.isArray(itemsOrCharacter)
+    ? itemsOrCharacter
+    : itemsOrCharacter.equipment.items;
+  const out: string[] = [];
+  for (const item of items) {
+    if (!itemEfectosActivos(item)) continue;
+    for (const tipo of item.grantedResistances ?? []) {
+      const clave = tipo.toLowerCase();
+      if (!out.some((t) => t.toLowerCase() === clave)) out.push(tipo);
+    }
+  }
+  return out;
+}
+
 export function etiquetaEstadoCarga(estado: EstadoCarga): string {
   return estado === "sobrecarga" ? "Sobrecarga" : "Carga normal";
 }

@@ -22,6 +22,7 @@ import { dadosGolpeDisponibles } from "@/rules/hit-dice";
 import { descripcionDadosGolpe } from "@/rules/multiclass";
 import { HitDiceSpendButtons } from "@/components/HitDiceSpendButtons";
 import { AttackTable } from "@/components/sheet/AttackTable";
+import { WildShapePanel } from "@/components/WildShapePanel";
 import { desventajaPruebaCaracteristica } from "@/rules/proficiencies";
 import type { SheetTabProps } from "@/pages/character-sheet/types";
 import { useDiceRollOptions } from "@/hooks/useDiceRollOptions";
@@ -205,6 +206,7 @@ export function TabCombate({ character, onChange }: SheetTabProps) {
             Ataque temerario (ventaja en ataques de FUE; los ataques contra ti tienen ventaja)
           </label>
         )}
+        <WildShapePanel character={character} onChange={onChange} />
         <p className="mb-2 text-xs text-muted">
           Actual: {character.combat.hpCurrent}/{character.combat.hpMax}
           {character.combat.hpTemp > 0 ? ` (+${character.combat.hpTemp} temp)` : ""} · usa ± o la barra inferior

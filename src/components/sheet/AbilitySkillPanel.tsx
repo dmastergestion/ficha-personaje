@@ -10,6 +10,7 @@ import { bonificadorCompetencia, modificadorAtributo } from "@/rules/ability";
 import { modificadorPericia, modificadorSalvacion, tieneExpertisePericia, esProficientePericia } from "@/rules/character";
 import { periciasExtraDotes } from "@/rules/feat-mechanics";
 import { ajustarPgPorCambioCon } from "@/rules/resources";
+import { atributosEfectivos } from "@/rules/wild-shape";
 import type { Character } from "@/schemas/character";
 
 function fmtMod(n: number): string {
@@ -90,7 +91,8 @@ export function AbilitySkillPanel({
           <div key={colIdx} className="flex flex-col gap-2">
             {column.map((ability) => {
               const score = character.abilities[ability];
-              const mod = modificadorAtributo(score);
+              const efectivo = atributosEfectivos(character)[ability];
+              const mod = modificadorAtributo(efectivo);
               const saveMod = modificadorSalvacion(character, ability);
               const saveProf = character.proficiencies.savingThrows.includes(ability);
               const skills = SKILLS_BY_ABILITY[ability];
@@ -129,6 +131,11 @@ export function AbilitySkillPanel({
                         />
                       ) : (
                         <span className="sheet-ability-score">{score}</span>
+                      )}
+                      {efectivo !== score && (
+                        <span className="text-[10px] text-gold" title="Atributo de la bestia">
+                          → {efectivo}
+                        </span>
                       )}
                       <Button
                         variant="combat"

@@ -208,6 +208,7 @@ export function defaultsV6(char: z.infer<typeof CharacterSchemaV5>): Character {
       damageResistances: combat.damageResistances ?? [],
       damageVulnerabilities: combat.damageVulnerabilities ?? [],
       damageImmunities: combat.damageImmunities ?? [],
+      wildShapeBeastId: (combat as { wildShapeBeastId?: string | null }).wildShapeBeastId ?? null,
     },
     equipment: {
       ...equipment,
@@ -455,6 +456,7 @@ export function migrarRegistroDexieV5(char: Record<string, unknown>): void {
   combat.damageResistances = combat.damageResistances ?? [];
   combat.damageVulnerabilities = combat.damageVulnerabilities ?? [];
   combat.damageImmunities = combat.damageImmunities ?? [];
+  combat.wildShapeBeastId = combat.wildShapeBeastId ?? null;
 
   const equipment = char.equipment as {
     currency?: Record<string, number>;

@@ -10,6 +10,7 @@ import { reduccionVelocidadAgotamiento } from "@/rules/edition";
 import { bonificadorIniciativaDotes, periciasExtraDotes } from "@/rules/feat-mechanics";
 import { penalizacionVelocidadArmaduraPesada } from "@/rules/combat";
 import { obtenerArmadura } from "@/rules/srd";
+import { atributosEfectivos, bestiaFormaActiva } from "@/rules/wild-shape";
 import type { Character } from "@/schemas/character";
 
 export { ABILITY_SHEET_COLUMNS, SKILLS_BY_ABILITY };
@@ -92,7 +93,8 @@ function nivelEnClase(character: Character, classId: string): number {
 
 export function modificadorPericia(character: Character, skill: SkillKey): number {
   const ability = SKILL_ABILITIES[skill];
-  const base = modificadorAtributo(character.abilities[ability]);
+  const scores = atributosEfectivos(character);
+  const base = modificadorAtributo(scores[ability]);
   const pb = bonificadorCompetencia(character.identity.level);
   const proficient = esProficiente(character, skill);
   let total = proficient
@@ -105,13 +107,13 @@ export function modificadorPericia(character: Character, skill: SkillKey): numbe
     nivelEnClase(character, "cleric") >= 1 &&
     character.originChoices.class["divine-order"] === "thaumaturge"
   ) {
-    total += Math.max(1, modificadorAtributo(character.abilities.wis));
+    total += Math.max(1, modificadorAtributo(atributosEfectivos(character).wis));
   }
   return total;
 }
 
 export function modificadorSalvacion(character: Character, ability: AbilityKey): number {
-  const base = modificadorAtributo(character.abilities[ability]);
+  const base = modificadorAtributo(atributosEfectivos(character)[ability]);
   const pb = character.proficiencies.savingThrows.includes(ability)
     ? bonificadorCompetencia(character.identity.level)
     : 0;
@@ -120,7 +122,8 @@ export function modificadorSalvacion(character: Character, ability: AbilityKey):
 
 export function iniciativa(character: Character): number {
   const base =
-    character.combat.initiativeOverride ?? modificadorAtributo(character.abilities.dex);
+    character.combat.initiativeOverride ??
+    modificadorAtributo(atributosEfectivos(character).dex);
   return base + bonificadorIniciativaDotes(character);
 }
 
@@ -148,7 +151,10 @@ function bonusVelocidadClase(character: Character): number {
 }
 
 export function velocidad(character: Character, base = 30): number {
-  const baseSpeed = (character.combat.speedOverride ?? base) + bonusVelocidadClase(character);
+  const bestia = bestiaFormaActiva(character)?.combat;
+  const baseSpeed = bestia
+    ? (character.combat.speedOverride ?? bestia.speed)
+    : (character.combat.speedOverride ?? base) + bonusVelocidadClase(character);
   const mods = calcularModificadoresCondiciones(
     character.combat.conditionIds,
     character.combat.exhaustionLevel,
@@ -156,7 +162,7 @@ export function velocidad(character: Character, base = 30): number {
   if (mods.velocidadCero) return 0;
   const trasCondicion = Math.floor(baseSpeed * mods.multiplicadorVelocidad);
   const agotamiento = reduccionVelocidadAgotamiento(character.combat.exhaustionLevel);
-  const armadura = penalizacionVelocidadArmaduraPesada(character);
+  const armadura = bestia ? 0 : penalizacionVelocidadArmaduraPesada(character);
   return Math.max(0, trasCondicion - agotamiento - armadura);
 }
 

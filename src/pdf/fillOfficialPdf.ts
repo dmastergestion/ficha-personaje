@@ -36,9 +36,9 @@ function marcarCasilla(form: PDFForm, name: string): boolean {
     /* seguir */
   }
   try {
-    const field = form.getField(name);
-    if (typeof (field as { check?: () => void }).check === "function") {
-      (field as { check: () => void }).check();
+    const field = form.getField(name) as unknown as { check?: () => void };
+    if (typeof field.check === "function") {
+      field.check();
       return true;
     }
   } catch {

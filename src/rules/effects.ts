@@ -37,7 +37,10 @@ const CONDICION_REGLAS: Record<ConditionId, ReglaCondicion> = {
     notas: ["Fallas pruebas que requieran ver", "Ataques contra ti: ventaja"],
   },
   charmed: {
-    notas: ["No puedes atacar a quien te hechizó ni elegirla como objetivo de efecto dañino"],
+    notas: [
+      "No puedes atacar a quien te hechizó ni elegirla como objetivo de efecto dañino",
+      "Quien te hechizó tiene ventaja en pruebas sociales contra ti",
+    ],
   },
   deafened: {
     notas: ["Fallas pruebas que requieran oír"],
@@ -58,6 +61,7 @@ const CONDICION_REGLAS: Record<ConditionId, ReglaCondicion> = {
   },
   paralyzed: {
     rompeConcentracion: true,
+    velocidadCero: true,
     salvacionAutoFallo: ["str", "dex"],
     notas: [
       "Incapacitado (sin acciones; se acaba la concentración)",
@@ -66,8 +70,12 @@ const CONDICION_REGLAS: Record<ConditionId, ReglaCondicion> = {
   },
   petrified: {
     rompeConcentracion: true,
+    velocidadCero: true,
     salvacionAutoFallo: ["str", "dex"],
-    notas: ["Incapacitado (sin acciones; se acaba la concentración)"],
+    notas: [
+      "Incapacitado (sin acciones; se acaba la concentración)",
+      "Resistencia a todo el daño; inmunidad al veneno",
+    ],
   },
   poisoned: {
     desventajaD20: true,
@@ -85,11 +93,13 @@ const CONDICION_REGLAS: Record<ConditionId, ReglaCondicion> = {
   },
   stunned: {
     rompeConcentracion: true,
+    velocidadCero: true,
     salvacionAutoFallo: ["str", "dex"],
     notas: ["Incapacitado (sin acciones; se acaba la concentración)", "Ataques contra ti: ventaja"],
   },
   unconscious: {
     rompeConcentracion: true,
+    velocidadCero: true,
     salvacionAutoFallo: ["str", "dex"],
     notas: [
       "Incapacitado y tumbado (se acaba la concentración)",

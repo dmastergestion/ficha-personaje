@@ -5,7 +5,13 @@ import {
   fusionarFormasSalvaje,
   limitesFormaSalvaje,
   parsearFormasSalvaje,
+  activarFormaSalvaje,
+  desactivarFormaSalvaje,
+  atributosEfectivos,
+  WILD_SHAPE_RESOURCE_ID,
 } from "@/rules/wild-shape";
+import { poblarRecursosSugeridos } from "@/rules/resources-tracker";
+import { crearPersonajeVacio } from "@/schemas/character";
 
 describe("wild-shape", () => {
   it("aplica tabla SRD 2024 por nivel", () => {
@@ -31,5 +37,49 @@ describe("wild-shape", () => {
   it("requiere el número exacto de formas conocidas", () => {
     expect(formasSalvajeCompletas(2, "rat,wolf,spider")).toBe(false);
     expect(formasSalvajeCompletas(2, "rat,wolf,spider,riding-horse")).toBe(true);
+  });
+
+  it("al activar lobo gasta un uso, da PG temp y sustituye FUE/DES/CON", () => {
+    const base = crearPersonajeVacio({
+      name: "Dru",
+      playerName: "J",
+      classId: "druid",
+      level: 2,
+    });
+    base.identity.classes = [{ classId: "druid", subclassId: null, level: 2 }];
+    base.originChoices = {
+      ...base.originChoices,
+      class: { "wild-shape-forms": "rat,riding-horse,spider,wolf" },
+    };
+    const pj = poblarRecursosSugeridos(base);
+    const next = activarFormaSalvaje(pj, "wolf");
+    expect("error" in next).toBe(false);
+    if ("error" in next) return;
+    expect(next.combat.wildShapeBeastId).toBe("wolf");
+    expect(next.combat.hpTemp).toBe(2);
+    expect(next.resources.find((r) => r.id === WILD_SHAPE_RESOURCE_ID)?.used).toBe(1);
+    expect(atributosEfectivos(next).str).toBe(12);
+    expect(atributosEfectivos(next).dex).toBe(15);
+    expect(desactivarFormaSalvaje(next).combat.wildShapeBeastId).toBeNull();
+  });
+
+  it("no activa si no quedan usos", () => {
+    const base = crearPersonajeVacio({
+      name: "Dru",
+      playerName: "J",
+      classId: "druid",
+      level: 2,
+    });
+    base.identity.classes = [{ classId: "druid", subclassId: null, level: 2 }];
+    base.originChoices = {
+      ...base.originChoices,
+      class: { "wild-shape-forms": "rat,riding-horse,spider,wolf" },
+    };
+    const pj = poblarRecursosSugeridos(base);
+    pj.resources = pj.resources.map((r) =>
+      r.id === WILD_SHAPE_RESOURCE_ID ? { ...r, used: r.max } : r,
+    );
+    const next = activarFormaSalvaje(pj, "wolf");
+    expect(next).toEqual({ error: "No te quedan usos de Forma salvaje." });
   });
 });

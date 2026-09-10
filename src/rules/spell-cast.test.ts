@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { crearPersonajeVacio } from "@/schemas/character";
 import { inferirAtributoConjuro, lanzarConjuro, opcionesRanuraConjuro, textoDañoMostradoConjuro } from "@/rules/spell-cast";
-import { metaTiradaConjuro } from "@/rules/spell-cast-meta";
+import { metaTiradaConjuro, type SpellDamage } from "@/rules/spell-cast-meta";
 import { srdSpells } from "@/rules/srd";
 import { clasesParaConjuros } from "@/rules/spells";
 import { poblarRecursosSugeridos } from "@/rules/resources-tracker";
@@ -204,13 +204,14 @@ describe("lanzarConjuro", () => {
     expect(textoDañoMostradoConjuro(character, "eldritch-blast", { dice: "1d10", type: "fuerza" }, 0)).toBe(
       "2×1d10",
     );
-    expect(textoDañoMostradoConjuro(character, "hex", { type: "necrótico" } as { dice: string })).toBe("");
+    expect(
+      textoDañoMostradoConjuro(character, "hex", { type: "necrótico" } as unknown as SpellDamage),
+    ).toBe("");
     for (const spell of srdSpells) {
       const meta = metaTiradaConjuro(spell.id, spell);
-      if (!meta.damage) continue;
-      expect(() =>
-        textoDañoMostradoConjuro(character, spell.id, meta.damage, spell.level),
-      ).not.toThrow();
+      const daño = meta.damage;
+      if (!daño) continue;
+      expect(() => textoDañoMostradoConjuro(character, spell.id, daño, spell.level)).not.toThrow();
     }
   });
 });

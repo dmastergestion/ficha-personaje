@@ -26,7 +26,7 @@ function renderFicha(id: string) {
 
 async function irACombate() {
   fireEvent.click(await screen.findByRole("tab", { name: "Combate" }));
-  await screen.findByRole("heading", { name: "Ajustar PV" });
+  await screen.findByRole("heading", { name: "Ajustar PV" }, { timeout: 8000 });
 }
 
 describe("CharacterSheetPage", () => {

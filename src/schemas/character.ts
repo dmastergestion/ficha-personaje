@@ -74,6 +74,9 @@ const equipmentItemSchema = z.object({
   requiresAttunement: z.boolean().optional(),
   /** Si false, no aparece en la tabla de ataques. Ausente = sí (compat). */
   inCombat: z.boolean().optional(),
+  /** CA extra mientras el objeto aporta efectos (p. ej. anillo +1). */
+  acBonus: z.number().int().min(0).max(3).optional(),
+  grantedResistances: z.array(z.string()).optional(),
 });
 
 export const combatAttackSchema = z.object({
@@ -85,6 +88,8 @@ export const combatAttackSchema = z.object({
   notes: z.string().optional(),
   weaponId: z.string().nullable().optional(),
   magicBonus: z.number().int().min(0).max(3).optional(),
+  /** Bonificador de ataque fijo (bloque de bestia en Forma salvaje). */
+  toHitOverride: z.number().int().optional(),
 });
 
 export type CombatAttack = z.infer<typeof combatAttackSchema>;
@@ -160,6 +165,8 @@ export const CharacterSchema = z.object({
     damageResistances: z.array(z.string()),
     damageVulnerabilities: z.array(z.string()),
     damageImmunities: z.array(z.string()),
+    /** Id SRD de la bestia si Forma salvaje está activa. */
+    wildShapeBeastId: z.string().nullable().default(null),
   }),
   equipment: z.object({
     armorId: z.string().nullable(),
@@ -277,6 +284,7 @@ export function crearPersonajeVacio(input: {
       damageResistances: [],
       damageVulnerabilities: [],
       damageImmunities: [],
+      wildShapeBeastId: null,
     },
     equipment: {
       armorId: null,

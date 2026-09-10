@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { DAMAGE_TYPES } from "@/lib/constants";
+import { resistenciasObjetosMagicos } from "@/rules/inventory";
 import type { Character } from "@/schemas/character";
 
 function toggleType(list: string[], type: string, add: boolean): string[] {
@@ -88,6 +89,11 @@ export function DamageTypesEditor({
             onChange({ ...character, combat: { ...character.combat, damageResistances } })
           }
         />
+        {resistenciasObjetosMagicos(character).length > 0 && (
+          <p className="text-xs text-gold">
+            De objetos sintonizados: {resistenciasObjetosMagicos(character).join(", ")}
+          </p>
+        )}
         <TypeChips
           label="Vulnerabilidades"
           list={character.combat.damageVulnerabilities}

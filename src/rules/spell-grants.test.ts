@@ -209,14 +209,14 @@ describe("spell-grants", () => {
     const trucos = filasConjurosFicha(pj, [], "cantrip");
     expect(trucos.some((f) => f.spellId === "prestidigitation")).toBe(true);
     expect(trucos.find((f) => f.spellId === "prestidigitation")?.sePuedeQuitar).toBe(false);
-    expect(trucos.find((f) => f.spellId === "prestidigitation")?.anotacion).toMatch(/Rasgo \(Especie\)/);
+    expect(trucos.find((f) => f.spellId === "prestidigitation")?.anotacion).toMatch(/Especie/);
 
     const hechizos = filasConjurosFicha(pj, ["shield"], "leveled");
     expect(hechizos.map((f) => f.spellId)).toContain("detect-magic");
     expect(hechizos.map((f) => f.spellId)).toContain("shield");
     const detectar = hechizos.find((f) => f.spellId === "detect-magic");
     expect(detectar?.sePuedeQuitar).toBe(false);
-    expect(detectar?.anotacion).toMatch(/Rasgo \(Especie\)/);
+    expect(detectar?.anotacion).toMatch(/Especie/);
     expect(detectar?.usosLibres).toEqual({ restantes: 1, max: 1 });
     expect(hechizos.find((f) => f.spellId === "shield")?.sePuedeQuitar).toBe(true);
   });

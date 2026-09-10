@@ -13,6 +13,7 @@ import {
   type SeleccionConjuros,
 } from "@/rules/spell-choices";
 import { compararConjurosPorNivel, ordenarIdsConjuro } from "@/rules/spells";
+import type { GameCatalog } from "@/rules/catalog";
 import type { OriginChoices } from "@/rules/origin-choices";
 
 type ListaConjuro = ListaEleccionConjuro;

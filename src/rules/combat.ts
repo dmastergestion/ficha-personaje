@@ -1,6 +1,8 @@
 import { modificadorAtributo } from "@/rules/ability";
+import { bonusCaObjetosMagicos } from "@/rules/inventory";
 import type { SrdArmor } from "@/rules/srd";
 import { obtenerArmadura, srdArmor } from "@/rules/srd";
+import { atributosEfectivos, bestiaFormaActiva } from "@/rules/wild-shape";
 import type { Character } from "@/schemas/character";
 
 export type ParteClaseArmadura = {
@@ -21,6 +23,7 @@ export type OpcionesClaseArmadura = {
   conScore?: number;
   wisScore?: number;
   estiloDefensa?: boolean;
+  acBonus?: number;
 };
 
 function fmtModCa(n: number): string {
@@ -143,33 +146,81 @@ export function calcularClaseArmadura(
     ac += 1;
   }
 
+  if (opts?.acBonus) {
+    ac += opts.acBonus;
+  }
+
   return ac;
 }
 
 export function opcionesCaPersonaje(character: Character): OpcionesClaseArmadura {
+  const magico = bonusCaObjetosMagicos(character);
   return {
     classIds: character.identity.classes.map((c) => c.classId),
     conScore: character.abilities.con,
     wisScore: character.abilities.wis,
     estiloDefensa: character.feats.some((f) => f.id === "defense"),
+    extras: magico > 0 ? [{ id: "magic-items", label: `Objetos +${magico}` }] : undefined,
+    acBonus: magico,
   };
 }
 
 export function claseArmaduraPersonaje(character: Character): number {
+  const beastAc = bestiaFormaActiva(character)?.combat?.ac;
+  const magico = bonusCaObjetosMagicos(character);
+  if (character.combat.armorClassOverride !== null) {
+    return character.combat.armorClassOverride;
+  }
+  if (beastAc != null) {
+    return beastAc + magico;
+  }
   const shield = srdArmor.find((item) => item.category === "shield");
   const armor = obtenerArmadura(character.equipment.armorId) ?? null;
   return calcularClaseArmadura(
-    character.abilities.dex,
+    atributosEfectivos(character).dex,
     armor,
     character.equipment.shieldEquipped,
     shield,
-    character.combat.armorClassOverride,
+    null,
     opcionesCaPersonaje(character),
   );
 }
 
 export function penalizacionVelocidadArmaduraPesada(character: Character): number {
+  if (bestiaFormaActiva(character)?.combat) return 0;
   const armor = obtenerArmadura(character.equipment.armorId);
   if (!armor || armor.category !== "heavy" || armor.strengthMin == null) return 0;
-  return character.abilities.str < armor.strengthMin ? 10 : 0;
+  return atributosEfectivos(character).str < armor.strengthMin ? 10 : 0;
+}
+
+export function desgloseCaPersonaje(
+  character: Character,
+  opts?: { etiquetaArmadura?: string },
+): DesgloseClaseArmadura {
+  const bestia = bestiaFormaActiva(character);
+  const magico = bonusCaObjetosMagicos(character);
+  if (bestia?.combat && character.combat.armorClassOverride === null) {
+    const partes: ParteClaseArmadura[] = [
+      { id: "wild-shape", label: `${bestia.nameEs} ${bestia.combat.ac}` },
+    ];
+    if (magico > 0) partes.push({ id: "magic-items", label: `Objetos +${magico}` });
+    return {
+      total: bestia.combat.ac + magico,
+      partes,
+      resumen: partes.map((p) => p.label).join(" + "),
+    };
+  }
+  const shield = srdArmor.find((item) => item.category === "shield");
+  const armor = obtenerArmadura(character.equipment.armorId) ?? null;
+  return desgloseClaseArmadura(
+    atributosEfectivos(character).dex,
+    armor,
+    character.equipment.shieldEquipped,
+    shield,
+    character.combat.armorClassOverride,
+    {
+      ...opcionesCaPersonaje(character),
+      etiquetaArmadura: opts?.etiquetaArmadura,
+    },
+  );
 }
