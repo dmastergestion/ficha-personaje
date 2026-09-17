@@ -21,7 +21,7 @@ import {
   atributoConjuroEsFijo,
   atributoConjuroPredeterminado,
 } from "@/rules/spell-lists";
-import { etiquetaSalvacion, metaTiradaConjuro } from "@/rules/spell-cast-meta";
+import { conjuroRequiereD20, etiquetaSalvacion, metaTiradaConjuro } from "@/rules/spell-cast-meta";
 import {
   ajustarEspaciosRestantes,
   ajustarPactoRestante,
@@ -92,11 +92,11 @@ export function TabHechizos({ character, onChange }: SheetTabProps) {
   }
 
   function lanzar(spellId: string, resourceId?: string, ranura?: OpcionRanuraConjuro) {
-    if (!diceRoll.isReady) {
+    const level = nivelConjuro(spellId);
+    if (conjuroRequiereD20(spellId, catalog.obtenerConjuro(spellId)) && !diceRoll.isReady) {
       pedirDadoFisico(diceRoll.error);
       return;
     }
-    const level = nivelConjuro(spellId);
     const concentracion = catalog.requiereConcentracion(spellId);
     const featResourceId =
       resourceId ?? (ranura ? undefined : mejorRecursoLibreParaConjuro(character, spellId));
@@ -111,6 +111,7 @@ export function TabHechizos({ character, onChange }: SheetTabProps) {
       featResourceId,
       slotLevel: ranura?.tipo === "slot" ? ranura.level : undefined,
       usarPacto: ranura?.tipo === "pact",
+      usarRitual: ranura?.tipo === "ritual",
     });
     if (result.ok) {
       onChange(result.character);
@@ -366,7 +367,9 @@ export function TabHechizos({ character, onChange }: SheetTabProps) {
                   otorgados.prepared ? ` (+${otorgados.prepared} siempre)` : ""
                 }`
               : !resumen.known.max
-                ? ` · Conocidos ${resumen.known.actual}`
+                ? ` · Conocidos ${resumen.known.actual}${
+                    otorgados.prepared ? ` (+${otorgados.prepared} siempre)` : ""
+                  }`
                 : null}
             {resumen.cantrips.actual > resumen.cantrips.max && (
               <span className="ml-1 text-amber-400">(sobre el límite)</span>

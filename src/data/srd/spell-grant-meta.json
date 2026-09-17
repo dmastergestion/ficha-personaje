@@ -596,6 +596,36 @@
         "alwaysPrepared": true,
         "abilityKey": "wis",
         "existingResourceId": "monk:focus-points"
+      },
+      {
+        "grantKey": "darkvision-focus",
+        "spellId": "darkvision",
+        "level": 2,
+        "minClassLevel": 3,
+        "classId": "monk",
+        "alwaysPrepared": true,
+        "abilityKey": "wis",
+        "existingResourceId": "monk:focus-points"
+      },
+      {
+        "grantKey": "pass-without-trace-focus",
+        "spellId": "pass-without-trace",
+        "level": 2,
+        "minClassLevel": 3,
+        "classId": "monk",
+        "alwaysPrepared": true,
+        "abilityKey": "wis",
+        "existingResourceId": "monk:focus-points"
+      },
+      {
+        "grantKey": "silence-focus",
+        "spellId": "silence",
+        "level": 2,
+        "minClassLevel": 3,
+        "classId": "monk",
+        "alwaysPrepared": true,
+        "abilityKey": "wis",
+        "existingResourceId": "monk:focus-points"
       }
     ]
   },

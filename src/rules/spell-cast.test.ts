@@ -1,6 +1,14 @@
 import { describe, expect, it } from "vitest";
 import { crearPersonajeVacio } from "@/schemas/character";
-import { inferirAtributoConjuro, lanzarConjuro, opcionesRanuraConjuro, textoDañoMostradoConjuro } from "@/rules/spell-cast";
+import {
+  extraCuracionAtributo,
+  inferirAtributoConjuro,
+  lanzarConjuro,
+  opcionesRanuraConjuro,
+  puedeLanzarComoRitual,
+  ranuraAutomaticaConjuro,
+  textoDañoMostradoConjuro,
+} from "@/rules/spell-cast";
 import { metaTiradaConjuro, type SpellDamage } from "@/rules/spell-cast-meta";
 import { srdSpells } from "@/rules/srd";
 import { clasesParaConjuros } from "@/rules/spells";
@@ -36,6 +44,24 @@ describe("lanzarConjuro", () => {
     if (!ataque.ok) return;
     expect(ataque.castType).toBe("attack");
     expect(ataque.roll).not.toBeNull();
+  });
+
+  it("Curar heridas suma el modificador de lanzamiento", () => {
+    const character = crearPersonajeVacio({ name: "B", playerName: "J", classId: "bard", level: 6 });
+    character.spells.abilityKey = "cha";
+    character.abilities.cha = 16;
+
+    expect(extraCuracionAtributo(character, "cure-wounds")).toBe(3);
+    expect(textoDañoMostradoConjuro(character, "cure-wounds", { dice: "2d8", type: "curación", scalePerSlot: "2d8" }, 1)).toBe(
+      "2d8+3",
+    );
+
+    const result = lanzarConjuro(character, 1, "normal", { spellId: "cure-wounds", slotLevel: "2" });
+    expect(result.ok).toBe(true);
+    if (!result.ok) return;
+    expect(result.damage?.formula).toMatch(/^4d8\+3$/);
+    expect(result.damage?.total).toBe((result.damage?.rolls.reduce((a, b) => a + b, 0) ?? 0) + 3);
+    expect(result.character.spells.spellSlotsUsed["2"]).toBe(1);
   });
 
   it("conjuros de salvación gastan espacio sin tirada de ataque", () => {
@@ -176,6 +202,46 @@ describe("lanzarConjuro", () => {
     expect(result.character.spells.spellSlotsUsed["1"]).toBe(0);
     expect(result.character.spells.spellSlotsUsed["3"]).toBe(1);
     expect(result.slotGastado).toBe("Espacio niv. 3");
+  });
+
+  it("bardo ritualiza un preparado sin gastar espacio", () => {
+    const character = crearPersonajeVacio({ name: "B", playerName: "J", classId: "bard", level: 3 });
+    character.spells.abilityKey = "cha";
+    character.spells.spellsPrepared = ["detect-magic"];
+    expect(puedeLanzarComoRitual(character, "detect-magic")).toBe(true);
+    expect(puedeLanzarComoRitual(character, "fireball")).toBe(false);
+    const opciones = opcionesRanuraConjuro(character, 1, "detect-magic");
+    expect(opciones.some((o) => o.tipo === "ritual")).toBe(true);
+    expect(ranuraAutomaticaConjuro(character, 1, "detect-magic")).toBeUndefined();
+
+    const result = lanzarConjuro(character, 1, "normal", {
+      spellId: "detect-magic",
+      usarRitual: true,
+      requiereConcentracion: true,
+    });
+    expect(result.ok).toBe(true);
+    if (!result.ok) return;
+    expect(result.slotGastado).toBe("Ritual");
+    expect(result.character.spells.spellSlotsUsed["1"]).toBe(0);
+    expect(result.character.spells.concentratingOn).toBe("detect-magic");
+  });
+
+  it("mago ritualiza desde el grimorio aunque no esté preparado", () => {
+    const character = crearPersonajeVacio({ name: "M", playerName: "J", classId: "wizard", level: 1 });
+    character.spells.spellsKnown = ["alarm"];
+    expect(puedeLanzarComoRitual(character, "alarm")).toBe(true);
+    const result = lanzarConjuro(character, 1, "normal", { spellId: "alarm", usarRitual: true });
+    expect(result.ok).toBe(true);
+    if (!result.ok) return;
+    expect(result.character.spells.spellSlotsUsed["1"]).toBe(0);
+  });
+
+  it("monje no ritualiza Silencio: gasta enfoque", () => {
+    const base = crearPersonajeVacio({ name: "S", playerName: "J", classId: "monk", level: 3 });
+    base.identity.classes = [{ classId: "monk", subclassId: "shadow", level: 3 }];
+    base.identity.subclassId = "shadow";
+    expect(puedeLanzarComoRitual(base, "silence")).toBe(false);
+    expect(opcionesRanuraConjuro(base, 2, "silence").some((o) => o.tipo === "ritual")).toBe(false);
   });
 
   it("brujo siempre gasta pacto al nivel máximo, sin ranuras inferiores", () => {

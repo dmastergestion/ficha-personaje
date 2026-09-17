@@ -17,7 +17,8 @@ import {
   nivelEspacioPacto,
 } from "@/rules/spells";
 import { srdSpells } from "@/rules/srd";
-import { conjuroRequiereConcentracion } from "@/rules/spell-meta";
+import { idsConjurosOtorgadosPreparados } from "@/rules/spell-grants";
+import { conjuroEsRitual, conjuroRequiereConcentracion } from "@/rules/spell-meta";
 import {
   metaTiradaConjuro,
   textoDadosDañoConjuro,
@@ -135,12 +136,40 @@ function encontrarEspacioParaConjuro(
 
 export type OpcionRanuraConjuro =
   | { tipo: "slot"; level: SpellSlotLevel; restantes: number; max: number }
-  | { tipo: "pact"; level: number; restantes: number; max: number };
+  | { tipo: "pact"; level: number; restantes: number; max: number }
+  | { tipo: "ritual" };
 
-/** Espacios (y pacto) con los que se puede lanzar un conjuro de ese nivel, incluido upcast. */
+const CLASES_RITUAL_PREPARADO = new Set(["bard", "cleric", "druid"]);
+
+/** PHB 2024: bardo/clérigo/druida ritualizan preparados; mago, los del grimorio. */
+export function puedeLanzarComoRitual(
+  character: Character,
+  spellId: string | null | undefined,
+): boolean {
+  if (!spellId || !conjuroEsRitual(spellId)) return false;
+  const spell = srdSpells.find((s) => s.id === spellId);
+  if ((spell?.level ?? 1) <= 0) return false;
+  const classes = clasesParaConjuros(character);
+  const preparado =
+    character.spells.spellsPrepared.includes(spellId) ||
+    idsConjurosOtorgadosPreparados(character).has(spellId);
+  const enGrimorio = character.spells.spellsKnown.includes(spellId);
+  const ritualPreparado = classes.some((c) => CLASES_RITUAL_PREPARADO.has(c.classId));
+  const ritualMago = classes.some((c) => c.classId === "wizard");
+  if (ritualPreparado && preparado) return true;
+  if (ritualMago && (enGrimorio || preparado)) return true;
+  return false;
+}
+
+function opcionRitual(character: Character, spellId?: string): OpcionRanuraConjuro | null {
+  return spellId && puedeLanzarComoRitual(character, spellId) ? { tipo: "ritual" } : null;
+}
+
+/** Espacios (y pacto/ritual) con los que se puede lanzar un conjuro de ese nivel, incluido upcast. */
 export function opcionesRanuraConjuro(
   character: Character,
   spellLevel: number,
+  spellId?: string,
 ): OpcionRanuraConjuro[] {
   if (spellLevel <= 0) return [];
   const preparado = prepararPersonajeConjuro(character);
@@ -157,10 +186,11 @@ export function opcionesRanuraConjuro(
           max: pactMax,
         } satisfies OpcionRanuraConjuro)
       : null;
+  const ritual = opcionRitual(preparado, spellId);
 
   // Magia de pacto: todos los espacios son del mismo nivel; no hay upcast a elegir.
   if (esSoloMagiaPacto(preparado)) {
-    return pacto ? [pacto] : [];
+    return [pacto, ritual].filter((o): o is OpcionRanuraConjuro => o !== null);
   }
 
   const max = espaciosMaximosPersonaje(preparado);
@@ -177,19 +207,28 @@ export function opcionesRanuraConjuro(
   }
 
   if (pacto) opciones.push(pacto);
+  if (ritual) opciones.push(ritual);
   return opciones;
 }
 
-/** Ranura a usar sin preguntar (brujo solo, o una sola opción). */
+function opcionesPagadas(opciones: OpcionRanuraConjuro[]): OpcionRanuraConjuro[] {
+  return opciones.filter((o) => o.tipo !== "ritual");
+}
+
+/** Ranura a usar sin preguntar (brujo solo, o una sola opción de espacio). El ritual se elige. */
 export function ranuraAutomaticaConjuro(
   character: Character,
   spellLevel: number,
+  spellId?: string,
 ): OpcionRanuraConjuro | undefined {
-  const opciones = opcionesRanuraConjuro(character, spellLevel);
+  const opciones = opcionesRanuraConjuro(character, spellLevel, spellId);
   if (esSoloMagiaPacto(character)) {
-    return opciones.find((o) => o.tipo === "pact") ?? opciones[0];
+    return opciones.find((o) => o.tipo === "pact") ?? opcionesPagadas(opciones)[0];
   }
-  return opciones.length === 1 ? opciones[0] : undefined;
+  const pagadas = opcionesPagadas(opciones);
+  return pagadas.length === 1 && !opciones.some((o) => o.tipo === "ritual")
+    ? pagadas[0]
+    : undefined;
 }
 
 /** Dados de daño en ficha: el brujo muestra el upcast al nivel de pacto. */
@@ -207,17 +246,19 @@ export function textoDañoMostradoConjuro(
     textoDadosDañoConjuro(damage, nivelBase, nivelRanura, character.identity.level) ??
     (typeof damage.dice === "string" ? damage.dice : "");
   const conInv = textoDañoConjuroConInvocaciones(character, spellId, dados);
+  const conCuracion = `${conInv}${sufijoModificador(extraCuracionAtributo(character, spellId))}`;
   const proyectiles = proyectilesConjuro(
     spellId,
     nivelBase,
     nivelRanura,
     character.identity.level,
   );
-  if (proyectiles > 1 && conInv) return `${proyectiles}×${conInv}`;
-  return conInv;
+  if (proyectiles > 1 && conCuracion) return `${proyectiles}×${conCuracion}`;
+  return conCuracion;
 }
 
 export function etiquetaOpcionRanura(opcion: OpcionRanuraConjuro): string {
+  if (opcion.tipo === "ritual") return "Ritual";
   if (opcion.tipo === "pact") {
     return `Pacto ${opcion.level} (${opcion.restantes})`;
   }
@@ -258,16 +299,49 @@ export type LanzarConjuroResult =
     }
   | { ok: false; error: string; cd: number | null };
 
+/** Curaciones 2024 que suman el modificador de lanzamiento. Prayer of Healing no. */
+const CURACION_CON_ATRIBUTO = new Set([
+  "cure-wounds",
+  "healing-word",
+  "mass-cure-wounds",
+  "mass-healing-word",
+]);
+
+function sufijoModificador(valor: number): string {
+  if (valor === 0) return "";
+  return valor > 0 ? `+${valor}` : `${valor}`;
+}
+
+export function extraCuracionAtributo(
+  character: Character,
+  spellId: string | null | undefined,
+  abilityKey?: AbilityKey | null,
+): number {
+  if (!spellId || !CURACION_CON_ATRIBUTO.has(spellId)) return 0;
+  const key = abilityKey ?? inferirAtributoConjuro(character);
+  if (!key) return 0;
+  return modificadorAtributo(character.abilities[key]);
+}
+
+function conExtraAlTotal(
+  damage: TiradaDañoConjuro | null,
+  extra: number,
+): TiradaDañoConjuro | null {
+  if (!damage || extra === 0) return damage;
+  return {
+    ...damage,
+    total: damage.total + extra,
+    formula: `${damage.formula}${sufijoModificador(extra)}`,
+  };
+}
+
 function aplicarDañoAgonizante(
   character: Character,
   spellId: string | null | undefined,
   damage: TiradaDañoConjuro | null,
 ): TiradaDañoConjuro | null {
   if (!damage || !spellId) return damage;
-  const extra = extraDañoAgonizante(character, spellId);
-  if (extra === 0) return damage;
-  const signo = extra > 0 ? `+${extra}` : `${extra}`;
-  return { ...damage, total: damage.total + extra, formula: `${damage.formula}${signo}` };
+  return conExtraAlTotal(damage, extraDañoAgonizante(character, spellId));
 }
 
 export function lanzarConjuro(
@@ -283,6 +357,8 @@ export function lanzarConjuro(
     /** Ranura concreta (upcast). Si falta, se usa la más baja disponible. */
     slotLevel?: SpellSlotLevel;
     usarPacto?: boolean;
+    /** Sin espacio; +10 min. */
+    usarRitual?: boolean;
   },
 ): LanzarConjuroResult {
   const preparado = prepararPersonajeConjuro(character);
@@ -309,7 +385,11 @@ export function lanzarConjuro(
     const base = meta.damage
       ? tirarDañoConjuro(meta.damage, spellLevel, nivelRanura, nivelPersonaje)
       : null;
-    return aplicarDañoAgonizante(preparado, opts?.spellId, base);
+    const conCuracion = conExtraAlTotal(
+      base,
+      extraCuracionAtributo(preparado, opts?.spellId, abilityKey),
+    );
+    return aplicarDañoAgonizante(preparado, opts?.spellId, conCuracion);
   };
 
   // Solo los conjuros de ataque tiran un d20; el resto gasta el espacio sin tirada.
@@ -343,6 +423,22 @@ export function lanzarConjuro(
       castType,
       saveAbility,
       damage: dañoEn(0),
+      cd,
+    };
+  }
+
+  if (spellLevel > 0 && opts?.usarRitual) {
+    if (!puedeLanzarComoRitual(preparado, opts.spellId)) {
+      return { ok: false, error: "Ese conjuro no se puede lanzar como ritual.", cd };
+    }
+    return {
+      ok: true,
+      character: activarConcentracion(preparado, opts.spellId, opts.requiereConcentracion),
+      roll,
+      castType,
+      saveAbility,
+      damage: dañoEn(spellLevel),
+      slotGastado: "Ritual",
       cd,
     };
   }

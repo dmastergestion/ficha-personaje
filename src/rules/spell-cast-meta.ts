@@ -182,6 +182,14 @@ export function etiquetaTipoConjuro(tipo: SpellCastType): string {
   return ETIQUETA[tipo];
 }
 
+/** El d20 físico solo hace falta si el conjuro tira ataque. Salvación y utilidad no. */
+export function conjuroRequiereD20(
+  spellId: string | null | undefined,
+  spell?: SrdSpell | null,
+): boolean {
+  return metaTiradaConjuro(spellId, spell).tipo === "attack";
+}
+
 const ABILITY_LABEL_3: Record<AbilityKey, string> = {
   str: "FUE",
   dex: "DES",

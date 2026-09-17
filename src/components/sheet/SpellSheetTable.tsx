@@ -102,7 +102,12 @@ export function SpellSheetTable({
       return;
     }
     const level = catalog.obtenerConjuro(id)?.level ?? 1;
-    const automatica = ranuraAutomaticaConjuro(character, level);
+    if (level <= 0) {
+      setPendienteId(null);
+      onCast(id);
+      return;
+    }
+    const automatica = ranuraAutomaticaConjuro(character, level, id);
     if (automatica || soloPacto) {
       setPendienteId(null);
       onCast(id, undefined, automatica);
@@ -139,6 +144,8 @@ export function SpellSheetTable({
           const meta = metaConjuroParaMostrar(id, metaTiradaConjuro(id, spell));
           const pools = fila?.usosPorOrigen ?? [];
           const hayLibre = pools.some((p) => p.restantes > 0);
+          const ranuras = character && level > 0 ? opcionesRanuraConjuro(character, level, id) : [];
+          const puedeEspacio = level <= 0 || ranuras.length > 0;
           const origenesSinUso = (fila?.origenes ?? []).filter(
             (origen) =>
               !pools.some(
@@ -160,9 +167,7 @@ export function SpellSheetTable({
               : 1;
           const etiquetaDaño = dadosDaño || (proyectiles > 1 ? `${proyectiles}×` : null);
           const opciones =
-            character && pendienteId === id && !hayLibre
-              ? opcionesRanuraConjuro(character, level)
-              : [];
+            character && pendienteId === id && !hayLibre ? ranuras : [];
           return (
             <li
               key={id}
@@ -246,14 +251,24 @@ export function SpellSheetTable({
                     {detalleOrigen(origen, catalog)}
                   </span>
                 ))}
-                {onCast && !hayLibre && opciones.length > 1 && (
+                {onCast && !hayLibre && pendienteId === id && opciones.length > 0 && (
                   <span className="flex max-w-full flex-wrap items-center justify-end gap-1">
                     {opciones.map((opcion) => (
                       <Button
-                        key={opcion.tipo === "pact" ? "pact" : opcion.level}
+                        key={
+                          opcion.tipo === "pact"
+                            ? "pact"
+                            : opcion.tipo === "ritual"
+                              ? "ritual"
+                              : opcion.level
+                        }
                         variant="primary"
                         className="min-h-10 px-3 text-sm"
-                        title="Espacio a gastar (upcast si es mayor que el nivel del conjuro)"
+                        title={
+                          opcion.tipo === "ritual"
+                            ? "Sin espacio; +10 minutos de lanzamiento"
+                            : "Espacio a gastar (upcast si es mayor que el nivel del conjuro)"
+                        }
                         onClick={() => {
                           setPendienteId(null);
                           onCast(id, undefined, opcion);
@@ -264,7 +279,7 @@ export function SpellSheetTable({
                     ))}
                   </span>
                 )}
-                {onCast && !hayLibre && opciones.length <= 1 && (
+                {onCast && !hayLibre && puedeEspacio && pendienteId !== id && (
                   <Button
                     variant="primary"
                     className="min-h-10 px-3 text-sm"

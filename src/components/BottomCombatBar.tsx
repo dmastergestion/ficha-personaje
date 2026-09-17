@@ -8,6 +8,7 @@ import {
 } from "@/rules/attacks";
 import { aplicarCambioPvConConcentracion, AVISO_DANIO_SIN_TIPO_RABIA } from "@/rules/combat-hp";
 import { lanzarConjuro } from "@/rules/spell-cast";
+import { conjuroRequiereD20 } from "@/rules/spell-cast-meta";
 import type { Character } from "@/schemas/character";
 import type { SheetTab } from "@/pages/character-sheet/types";
 import { useCatalogStore } from "@/stores/catalog-store";
@@ -36,6 +37,7 @@ export function BottomCombatBar({
       ? catalog.t("spells", accion.id, accion.etiqueta)
       : accion.etiqueta;
   const enCombate = activeTab === "combate";
+  const enHechizos = activeTab === "hechizos";
 
   function cambiarPv(delta: number) {
     if (delta === 0) return;
@@ -68,11 +70,14 @@ export function BottomCombatBar({
   }
 
   function atacar() {
-    if (!diceRoll.isReady) {
-      pedirDadoFisico(diceRoll.error);
-      return;
-    }
     if (accion.tipo === "truco") {
+      if (
+        conjuroRequiereD20(accion.id, catalog.obtenerConjuro(accion.id)) &&
+        !diceRoll.isReady
+      ) {
+        pedirDadoFisico(diceRoll.error);
+        return;
+      }
       const result = lanzarConjuro(character, 0, rollMode, {
         spellId: accion.id,
         requiereConcentracion: catalog.requiereConcentracion(accion.id),
@@ -89,6 +94,11 @@ export function BottomCombatBar({
         partes.push(`Daño ${result.damage.formula} = ${result.damage.total}${tipo}`);
       }
       setUltimaTirada(result.roll, partes.join(" · "));
+      return;
+    }
+
+    if (!diceRoll.isReady) {
+      pedirDadoFisico(diceRoll.error);
       return;
     }
 
@@ -113,10 +123,10 @@ export function BottomCombatBar({
   if (enCombate) return null;
 
   return (
-    <div className="fixed inset-x-0 bottom-0 z-40 border-t border-white/10 bg-surface/95 px-2 py-1.5 pb-[max(0.35rem,env(safe-area-inset-bottom))] backdrop-blur lg:hidden">
+    <div className="pointer-events-none fixed inset-x-0 bottom-0 z-40 border-t border-white/10 bg-surface/95 px-2 py-1.5 pb-[max(0.35rem,env(safe-area-inset-bottom))] backdrop-blur lg:hidden">
       <div className="mb-1 flex items-center gap-1.5">
         <HpTypeSelect
-          className="min-w-0 flex-1 max-w-none"
+          className="pointer-events-auto min-w-0 w-1/2 max-w-[14rem]"
           required={character.combat.raging}
         />
         {character.combat.raging && !tipoDanio && (
@@ -126,7 +136,7 @@ export function BottomCombatBar({
         )}
       </div>
       <div className="flex items-center gap-1.5">
-        <div className="flex shrink-0 items-center gap-0.5">
+        <div className="pointer-events-auto flex shrink-0 items-center gap-0.5">
           <Button
             variant="danger"
             className="px-1.5 py-1 text-xs"
@@ -165,17 +175,22 @@ export function BottomCombatBar({
           </Button>
         </div>
         {!enCombate && (
-          <Button className="shrink-0 px-2.5 py-1.5 text-sm" onClick={() => onSelectTab("combate")}>
+          <Button
+            className="pointer-events-auto shrink-0 px-2.5 py-1.5 text-sm"
+            onClick={() => onSelectTab("combate")}
+          >
             Combate
           </Button>
         )}
-        <Button
-          variant="primary"
-          className="min-h-10 min-w-0 flex-1 truncate px-2 py-1.5 text-sm"
-          onClick={atacar}
-        >
-          {accion.tipo === "truco" ? "Lanzar" : "Atacar"} · {etiqueta}
-        </Button>
+        {!enHechizos && (
+          <Button
+            variant="primary"
+            className="pointer-events-auto min-h-10 min-w-0 flex-1 truncate px-2 py-1.5 text-sm"
+            onClick={atacar}
+          >
+            {accion.tipo === "truco" ? "Lanzar" : "Atacar"} · {etiqueta}
+          </Button>
+        )}
       </div>
     </div>
   );

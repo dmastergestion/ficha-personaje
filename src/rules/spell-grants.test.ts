@@ -400,5 +400,10 @@ describe("spell-grants", () => {
     expect(pj.resources.some((r) => r.id === "monk:focus-points")).toBe(true);
     expect(otorgamientoPorRecursoLibre(pj, "monk:focus-points")).toBeUndefined();
     expect(mejorRecursoLibreParaConjuro(pj, "darkness")).toBe("monk:focus-points");
+    for (const id of ["darkvision", "pass-without-trace", "silence"] as const) {
+      expect(mejorRecursoLibreParaConjuro(pj, id)).toBe("monk:focus-points");
+    }
+    expect(conjurosOtorgadosPersonaje(pj).some((g) => g.spellId === "minor-illusion")).toBe(true);
+    expect(conteoConjurosOtorgados(pj)).toEqual({ cantrips: 1, prepared: 4 });
   });
 });

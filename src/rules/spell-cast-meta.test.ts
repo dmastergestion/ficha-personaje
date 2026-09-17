@@ -1,5 +1,6 @@
 import { describe, expect, it } from "vitest";
 import {
+  conjuroRequiereD20,
   estadisticasMetaConjuros,
   metaTiradaConjuro,
   textoDadosDañoConjuro,
@@ -25,6 +26,13 @@ describe("metaTiradaConjuro", () => {
     expect(meta.tipo).toBe("save");
     expect(meta.save).toBe("dex");
     expect(meta.damage?.dice).toBe("8d6");
+  });
+
+  it("el d20 físico solo aplica a conjuros de ataque", () => {
+    expect(conjuroRequiereD20("fire-bolt")).toBe(true);
+    expect(conjuroRequiereD20("guiding-bolt")).toBe(true);
+    expect(conjuroRequiereD20("fireball")).toBe(false);
+    expect(conjuroRequiereD20("cure-wounds")).toBe(false);
   });
 
   it("usa el dato del catálogo si está disponible", () => {
