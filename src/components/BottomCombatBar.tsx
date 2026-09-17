@@ -110,6 +110,8 @@ export function BottomCombatBar({
     setUltimoAtaque(result);
   }
 
+  if (enCombate) return null;
+
   return (
     <div className="fixed inset-x-0 bottom-0 z-40 border-t border-white/10 bg-surface/95 px-2 py-1.5 pb-[max(0.35rem,env(safe-area-inset-bottom))] backdrop-blur lg:hidden">
       <div className="mb-1 flex items-center gap-1.5">

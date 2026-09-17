@@ -163,7 +163,7 @@ export function CharacterSheetLoaded({
           </button>
         }
       >
-        <div className="pb-20 lg:pb-4">
+        <div className={tab === "combate" ? "pb-4 lg:pb-4" : "pb-28 lg:pb-4"}>
           <div className="sheet-pdf-combat-stats">
             <CharacterQuickStats character={character} onChange={(n) => void persist(n)} />
           </div>

@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { crearPersonajeVacio } from "@/schemas/character";
-import { aplicarCambioPv, aplicarDeltaPvPersonaje } from "@/rules/combat-hp";
+import { aplicarCambioPv, aplicarCambioPvConConcentracion, aplicarDeltaPvPersonaje } from "@/rules/combat-hp";
 
 describe("aplicarCambioPv", () => {
   it("el daño agota primero los PV temporales", () => {
@@ -95,6 +95,25 @@ describe("aplicarCambioPv", () => {
 
     const cortante = aplicarDeltaPvPersonaje(pj, -10, { damageType: "cortante" });
     expect(cortante.character.combat.hpCurrent).toBe(13);
+    expect(cortante.damageTaken).toBe(5);
     expect(cortante.warning).toBeUndefined();
+  });
+
+  it("la concentración usa el daño tras resistencia de rabia", () => {
+    const pj = crearPersonajeVacio({ name: "B", playerName: "J", classId: "barbarian" });
+    pj.combat.hpCurrent = 40;
+    pj.combat.hpMax = 40;
+    pj.combat.raging = true;
+    pj.spells.concentratingOn = "hunter-s-mark";
+    const result = aplicarCambioPvConConcentracion(
+      pj,
+      -24,
+      "normal",
+      { source: "virtual" },
+      { damageType: "cortante" },
+    );
+    expect(result.character.combat.hpCurrent).toBe(28);
+    expect(result.damageTaken).toBe(12);
+    expect(result.concentration?.dc).toBe(10);
   });
 });

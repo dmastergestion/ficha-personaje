@@ -167,14 +167,14 @@ export function aplicarDeltaPvPersonaje(
     if (prevHp > 0 && damageAfterTemp - prevHp >= character.combat.hpMax) {
       return {
         character: { ...character, combat: marcarMuerto(character.combat) },
-        damageTaken: Math.abs(delta),
+        damageTaken: Math.abs(adjustedDelta),
         deathMessage: "Muerte instantánea: el daño restante iguala o supera los PV máximos.",
       };
     }
     if (prevHp === 0 && damageAfterTemp >= character.combat.hpMax) {
       return {
         character: { ...character, combat: marcarMuerto(character.combat) },
-        damageTaken: Math.abs(delta),
+        damageTaken: Math.abs(adjustedDelta),
         deathMessage: "Muerte instantánea: el daño iguala o supera los PV máximos.",
       };
     }
@@ -200,7 +200,7 @@ export function aplicarDeltaPvPersonaje(
 
   return {
     character: next,
-    damageTaken: delta < 0 ? Math.abs(delta) : 0,
+    damageTaken: adjustedDelta < 0 ? Math.abs(adjustedDelta) : 0,
     deathMessage,
   };
 }
