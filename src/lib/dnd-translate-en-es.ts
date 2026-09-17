@@ -241,7 +241,7 @@ export const PHB_SPELL_NAMES_ES: Record<string, string> = {
   "thorn-whip": "Latigazo de espinas",
   thunderclap: "Aplauso atronador",
   "thunderous-smite": "Golpe atronador",
-  "toll-the-dead": "Doblegar a los muertos",
+  "toll-the-dead": "Doblar a los muertos",
   "witch-bolt": "Rayo de bruja",
   "word-of-radiance": "Palabra de radiancia",
   "wrathful-smite": "Golpe iracundo",

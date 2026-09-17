@@ -1,4 +1,6 @@
+import { SUBCLASS_ID_ALIASES } from "@/rules/class-features";
 import spellGrantMetaJson from "@/data/srd/spell-grant-meta.json";
+import subclassSpellGrantsJson from "@/data/srd/subclass-spell-grants.json";
 import type { AbilityKey, ResourceRecharge, ResourceSource } from "@/lib/constants";
 import { modificadorAtributo } from "@/rules/ability";
 import {
@@ -7,9 +9,11 @@ import {
   MAGIC_INITIATE_LIST_LABELS,
   type MagicInitiateList,
 } from "@/rules/feat-mechanics";
+import { nombreDote } from "@/rules/feat-text";
 import type { OriginChoiceDefinition } from "@/rules/origin-choices";
 import { idsEquivalentesConjuro } from "@/rules/spell-aliases";
-import { conjuroDisponibleParaClase } from "@/rules/spell-lists";
+import { conjuroDisponibleParaClase, nivelMaximoConjuroClase } from "@/rules/spell-lists";
+import { srdSpells } from "@/rules/srd";
 import { maxRecursoPorFormula } from "@/rules/weapon-mastery";
 import type { Character, CharacterResource, ClassLevel } from "@/schemas/character";
 
@@ -33,7 +37,11 @@ type SpellGrantEntryDef = {
   alwaysPrepared?: boolean;
   abilityKey?: AbilityKey;
   abilityChoiceKey?: string;
+  choiceKey?: string;
+  choiceValue?: string;
   resource?: SpellGrantResourceDef;
+  /** Gasta un recurso de clase ya existente (p. ej. puntos de enfoque). */
+  existingResourceId?: string;
 };
 
 type SpellGrantMetaFile = {
@@ -67,8 +75,27 @@ export type VinculoRecursoConjuro = {
 };
 
 const meta = spellGrantMetaJson as SpellGrantMetaFile;
+const subclassPrepared = subclassSpellGrantsJson as Record<string, SpellGrantEntryDef[]>;
+
+function idsSubclase(subclassId: string): string[] {
+  return [subclassId, ...(SUBCLASS_ID_ALIASES[subclassId] ?? [])];
+}
+
+function entradasSubclase(subclassId: string): SpellGrantEntryDef[] {
+  const authored: SpellGrantEntryDef[] = [];
+  const generated: SpellGrantEntryDef[] = [];
+  for (const id of idsSubclase(subclassId)) {
+    authored.push(...(meta.subclasses[id] ?? []));
+    generated.push(...(subclassPrepared[id] ?? []));
+  }
+  const seen = new Set(authored.map((e) => `${e.spellId}:${e.minClassLevel ?? 1}`));
+  const extra = generated.filter((e) => !seen.has(`${e.spellId}:${e.minClassLevel ?? 1}`));
+  return [...authored, ...extra];
+}
 
 const ABILITY_KEYS: AbilityKey[] = ["str", "dex", "con", "int", "wis", "cha"];
+const LORE_SECRET_KEYS = ["lore-secret-1", "lore-secret-2"] as const;
+const LORE_SECRET_LISTS = ["cleric", "druid", "wizard"] as const;
 
 export type SpellGrant = {
   grantId: string;
@@ -79,6 +106,8 @@ export type SpellGrant = {
   sourceLabel: string;
   alwaysPrepared?: boolean;
   freeResourceId?: string;
+  /** El recurso libre es compartido (no ocultar en el panel de Recursos). */
+  sharedFreeResource?: boolean;
   /** Sin botón Lanzar si el conjuro lo eliges al usar el recurso. */
   resourceOnly?: boolean;
 };
@@ -127,6 +156,14 @@ function otorgamientoElegible(
 ): boolean {
   if (character.identity.level < (entry.minCharacterLevel ?? 1)) return false;
   if (entry.minClassLevel != null && classLevel < entry.minClassLevel) return false;
+  if (entry.choiceKey) {
+    const actual = character.originChoices.class[entry.choiceKey];
+    if (entry.choiceValue) {
+      if (actual !== entry.choiceValue) return false;
+    } else if (!actual) {
+      return false;
+    }
+  }
   return true;
 }
 
@@ -175,9 +212,8 @@ function pushGrant(
 
   const ability = atributoGrant(character, entry, opts);
 
-  const freeResourceId = entry.resource
-    ? resourceId(opts.source, opts.scopeId, entry.resource.id)
-    : undefined;
+  const freeResourceId = entry.existingResourceId
+    ?? (entry.resource ? resourceId(opts.source, opts.scopeId, entry.resource.id) : undefined);
 
   const resourceOnly = !entry.spellId;
 
@@ -190,6 +226,7 @@ function pushGrant(
     sourceLabel: opts.sourceLabel,
     alwaysPrepared: entry.alwaysPrepared,
     freeResourceId,
+    sharedFreeResource: Boolean(entry.existingResourceId),
     resourceOnly,
   });
 }
@@ -204,7 +241,7 @@ function grantsEstaticos(character: Character): SpellGrant[] {
       pushGrant(out, character, entry, {
         source: "feat",
         scopeId: instanceId,
-        sourceLabel: feat.name,
+        sourceLabel: nombreDote(feat.id) || feat.name,
         classLevel: level,
       });
     }
@@ -232,7 +269,7 @@ function grantsEstaticos(character: Character): SpellGrant[] {
     }
 
     if (cl.subclassId) {
-      for (const entry of meta.subclasses[cl.subclassId] ?? []) {
+      for (const entry of entradasSubclase(cl.subclassId)) {
         const classIdReq = entry.classId ?? cl.classId;
         if (classIdReq !== cl.classId) continue;
         pushGrant(out, character, entry, {
@@ -263,6 +300,24 @@ function grantsEstaticos(character: Character): SpellGrant[] {
         freeResourceId: resourceId("class", cl.classId, dyn.resource.id),
       });
     }
+
+    if (cl.classId === "bard" && cl.subclassId === "lore" && cl.level >= 6) {
+      const vistos = new Set<string>();
+      for (const key of LORE_SECRET_KEYS) {
+        const spellId = character.originChoices.class[key];
+        if (!spellId || vistos.has(spellId)) continue;
+        vistos.add(spellId);
+        out.push({
+          grantId: `subclass:lore:${key}`,
+          spellId,
+          level: srdSpells.find((s) => s.id === spellId)?.level ?? 1,
+          abilityKey: "cha",
+          source: "subclass",
+          sourceLabel: "lore",
+          alwaysPrepared: true,
+        });
+      }
+    }
   }
 
   return out;
@@ -289,7 +344,7 @@ function grantsIniciadoMagia(character: Character): SpellGrant[] {
         level: 0,
         abilityKey: ability,
         source: "feat",
-        sourceLabel: `${feat.name} · ${listLabel}`,
+        sourceLabel: `${nombreDote(feat.id) || feat.name} · ${listLabel}`,
         alwaysPrepared: true,
       });
     }
@@ -302,7 +357,7 @@ function grantsIniciadoMagia(character: Character): SpellGrant[] {
         level: 1,
         abilityKey: ability,
         source: "feat",
-        sourceLabel: `${feat.name} · ${listLabel}`,
+        sourceLabel: `${nombreDote(feat.id) || feat.name} · ${listLabel}`,
         alwaysPrepared: true,
         freeResourceId: resourceId("feat", instanceId, "free-cast-1"),
       });
@@ -330,7 +385,7 @@ function grantsDotesDinamicos(character: Character): SpellGrant[] {
         level: dyn.spellLevel,
         abilityKey: ability,
         source: "feat",
-        sourceLabel: feat.name,
+        sourceLabel: nombreDote(feat.id) || feat.name,
         alwaysPrepared: true,
         freeResourceId: resourceId("feat", instanceId, dyn.resource.id),
       });
@@ -491,11 +546,6 @@ export function grantLanzableDeConjuro(
   return conjurosOtorgadosLanzables(character).find((g) => g.spellId === spellId);
 }
 
-/** @deprecated Usar conjurosOtorgadosPersonaje */
-export function conjurosOtorgadosPorDotes(character: Character): SpellGrant[] {
-  return conjurosOtorgadosPersonaje(character).filter((g) => g.source === "feat");
-}
-
 export function otorgamientosConjuro(
   character: Character,
   spellId: string,
@@ -546,7 +596,7 @@ export function otorgamientoPorRecursoLibre(
   recursoId: string,
 ): SpellGrant | undefined {
   return conjurosOtorgadosPersonaje(character).find(
-    (g) => g.freeResourceId === recursoId && g.spellId,
+    (g) => g.freeResourceId === recursoId && g.spellId && !g.sharedFreeResource,
   );
 }
 
@@ -601,7 +651,7 @@ export function recursosConjurosOtorgados(character: Character): CharacterResour
       pushRecurso(out, character, entry.resource, {
         source: "feat",
         scopeId: instanceId,
-        sourceLabel: feat.name,
+        sourceLabel: nombreDote(feat.id) || feat.name,
         classLevel: level,
       });
     }
@@ -618,7 +668,7 @@ export function recursosConjurosOtorgados(character: Character): CharacterResour
         {
           source: "feat",
           scopeId: instanceId,
-          sourceLabel: feat.name,
+          sourceLabel: nombreDote(feat.id) || feat.name,
           classLevel: level,
         },
       );
@@ -628,7 +678,7 @@ export function recursosConjurosOtorgados(character: Character): CharacterResour
       pushRecurso(out, character, dyn.resource, {
         source: "feat",
         scopeId: instanceId,
-        sourceLabel: feat.name,
+        sourceLabel: nombreDote(feat.id) || feat.name,
         classLevel: level,
       });
     }
@@ -660,7 +710,7 @@ export function recursosConjurosOtorgados(character: Character): CharacterResour
     }
 
     if (cl.subclassId) {
-      for (const entry of meta.subclasses[cl.subclassId] ?? []) {
+      for (const entry of entradasSubclase(cl.subclassId)) {
         if (!entry.resource) continue;
         if ((entry.classId ?? cl.classId) !== cl.classId) continue;
         if (!otorgamientoElegible(character, entry, cl.level)) continue;
@@ -689,8 +739,12 @@ export function recursosConjurosOtorgados(character: Character): CharacterResour
 }
 
 export function claseTieneEleccionesConjuro(classId: string, classes: ClassLevel[]): boolean {
-  const clLevel = nivelClase(classes, classId);
-  return (meta.dynamicClassChoices[classId] ?? []).some((dyn) => clLevel >= dyn.minClassLevel);
+  const cl = classes.find((c) => c.classId === classId);
+  const clLevel = cl?.level ?? 0;
+  if ((meta.dynamicClassChoices[classId] ?? []).some((dyn) => clLevel >= dyn.minClassLevel)) {
+    return true;
+  }
+  return classId === "bard" && cl?.subclassId === "lore" && clLevel >= 6;
 }
 
 export function eleccionesConjurosClase(
@@ -698,7 +752,8 @@ export function eleccionesConjurosClase(
   classes: ClassLevel[],
   spells: { id: string; level: number; name: string }[],
 ): OriginChoiceDefinition[] {
-  const clLevel = nivelClase(classes, classId);
+  const cl = classes.find((c) => c.classId === classId);
+  const clLevel = cl?.level ?? 0;
   const defs: OriginChoiceDefinition[] = [];
 
   for (const dyn of meta.dynamicClassChoices[classId] ?? []) {
@@ -722,6 +777,30 @@ export function eleccionesConjurosClase(
       options,
       editable: "always",
     });
+  }
+
+  if (classId === "bard" && cl?.subclassId === "lore" && clLevel >= 6) {
+    const maxNivel = nivelMaximoConjuroClase("bard", clLevel);
+    const options = spells
+      .filter(
+        (s) =>
+          s.level <= maxNivel &&
+          LORE_SECRET_LISTS.some((lista) => conjuroDisponibleParaClase(s.id, lista, null)),
+      )
+      .map((s) => ({ value: s.id, label: `${s.name} (${s.level === 0 ? "truco" : `${s.level}.º`})` }))
+      .sort((a, b) => a.label.localeCompare(b.label, "es", { sensitivity: "base" }));
+    if (options.length > 0) {
+      for (const [i, key] of LORE_SECRET_KEYS.entries()) {
+        defs.push({
+          id: key,
+          scope: "class",
+          label: `Descubrimiento mágico (${i + 1})`,
+          hint: "Siempre preparado. Elige un truco o un conjuro de clérigo, druida o mago para el que tengas espacios.",
+          options: [{ value: "", label: "Elige un conjuro" }, ...options],
+          editable: "always",
+        });
+      }
+    }
   }
 
   return defs;
@@ -751,6 +830,17 @@ export function idsConjurosOtorgadosPreparados(character: Character): Set<string
       .filter((g) => g.spellId && g.level > 0)
       .map((g) => g.spellId),
   );
+}
+
+/** Conjuros de rasgo que la lista mezcla con preparados/trucos persistidos. */
+export function conteoConjurosOtorgados(character: Character): {
+  cantrips: number;
+  prepared: number;
+} {
+  return {
+    cantrips: idsTrucosOtorgados(character).size,
+    prepared: idsConjurosOtorgadosPreparados(character).size,
+  };
 }
 
 export function esConjuroOtorgadoPorRasgo(character: Character, spellId: string): boolean {

@@ -8,21 +8,9 @@ import {
 import { buildCatalog, defaultCatalog, type GameCatalog } from "@/rules/catalog";
 import type { ContentPack } from "@/schemas/content-pack";
 
-const PACK_URL = `${import.meta.env.BASE_URL}content-pack/xphb-pack.json`;
-
-async function fetchBundledPack(): Promise<ContentPack | null> {
-  try {
-    const res = await fetch(PACK_URL);
-    if (!res.ok) return null;
-    return parseContentPackJson(await res.text());
-  } catch {
-    return null;
-  }
-}
-
 interface CatalogState {
   ready: boolean;
-  packSource: "none" | "bundled" | "user";
+  packSource: "none" | "user";
   pack: ContentPack | null;
   catalog: GameCatalog;
   init: () => Promise<void>;
@@ -30,7 +18,7 @@ interface CatalogState {
   removePack: () => Promise<void>;
 }
 
-export const useCatalogStore = create<CatalogState>((set, get) => ({
+export const useCatalogStore = create<CatalogState>((set) => ({
   ready: true,
   packSource: "none",
   pack: null,
@@ -48,27 +36,11 @@ export const useCatalogStore = create<CatalogState>((set, get) => ({
       return;
     }
 
-    if (active?.pack) {
-      set({
-        pack: active.pack,
-        catalog: buildCatalog(active.pack),
-        packSource: "bundled",
-        ready: true,
-      });
-    } else {
-      set({ ready: true });
+    if (active?.origin === "bundled") {
+      await clearActiveContentPack();
     }
 
-    const bundled = await fetchBundledPack();
-    if (!bundled) return;
-    if (get().packSource === "user") return;
-
-    const debeActualizar = !active || bundled.generatedAt > active.pack.generatedAt;
-    if (!debeActualizar) return;
-
-    await saveActiveContentPack(bundled, "bundled");
-    if (get().packSource === "user") return;
-    set({ pack: bundled, catalog: buildCatalog(bundled), packSource: "bundled", ready: true });
+    set({ pack: null, catalog: defaultCatalog, packSource: "none", ready: true });
   },
   importPack: async (json) => {
     const pack = parseContentPackJson(json);

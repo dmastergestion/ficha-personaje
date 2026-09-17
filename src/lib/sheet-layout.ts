@@ -18,11 +18,6 @@ export const SKILLS_BY_ABILITY: Record<AbilityKey, readonly SkillKey[]> = {
   cha: ["deception", "intimidation", "performance", "persuasion"],
 };
 
-/** @deprecated Usar ABILITY_SHEET_COLUMNS */
-export const SKILL_ABILITY_COLUMNS = ABILITY_SHEET_COLUMNS.filter((col) =>
-  col.some((ability) => SKILLS_BY_ABILITY[ability].length > 0),
-);
-
 /** Etiqueta de atributo (ficha oficial). */
 export function etiquetaAtributoOficial(key: AbilityKey): string {
   return ABILITY_PDF[key].score;

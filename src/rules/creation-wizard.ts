@@ -16,6 +16,7 @@ import {
 } from "@/rules/creation";
 import type { Tirada4d6 } from "@/rules/dice";
 import { claseConcedeEstiloCombate, doteConfigCompleta, eleccionesDote } from "@/rules/feat-mechanics";
+import { nombreDote } from "@/rules/feat-text";
 import {
   bonificacionAtributosCompleta,
   eleccionesOrigenCompletas,
@@ -135,7 +136,7 @@ export function validarDotesOrigenCreacion(
     };
     if (eleccionesDote(merged, [], { occupiedSkills: ocupadas }).length === 0) continue;
     if (!doteConfigCompleta(merged, { skills: ocupadas })) {
-      return `Completa las elecciones de la dote de origen (${feat.name}).`;
+      return `Completa las elecciones de la dote de origen (${nombreDote(feat.id)}).`;
     }
   }
   return null;
@@ -201,7 +202,7 @@ export function validarPasoAsistente(
   }
   if (stepId === "clase" && !extras.eleccionClaseOk) {
     return datos.classId === "warlock"
-      ? "Elige el equipo inicial y las invocaciones eldritch."
+      ? "Elige el equipo inicial y las invocaciones místicas."
       : datos.classId === "cleric"
         ? "Elige el equipo inicial y la Orden divino."
         : "Elige el equipo inicial de clase.";

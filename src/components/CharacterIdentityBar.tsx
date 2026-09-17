@@ -3,7 +3,14 @@ import { SpeciesPicker } from "@/components/SpeciesPicker";
 import { SubclassPicker } from "@/components/SubclassPicker";
 import { Button } from "@/components/layout";
 import { cn } from "@/lib/utils";
-import { descripcionClases, faltaElegirSubclase } from "@/rules/multiclass";
+import {
+  descripcionClases,
+  errorRequisitoAtributos,
+  faltaElegirSubclase,
+  nivelTotalClases,
+  textoRequisitoMulticlase,
+  validarRequisitosMulticlase,
+} from "@/rules/multiclass";
 import type { GameCatalog } from "@/rules/catalog";
 import type { Character } from "@/schemas/character";
 
@@ -23,7 +30,6 @@ function NivelStepper({
   return (
     <div className="flex w-fit max-w-[9rem] items-stretch overflow-hidden rounded-lg border border-white/10 bg-surface">
       <Button
-        variant="danger"
         className="shrink-0 rounded-none border-0 px-2.5 py-1"
         disabled={value <= min}
         onClick={onDecrement}
@@ -51,6 +57,7 @@ export function CharacterIdentityBar({
   catalog,
   onChange,
   onClassChange,
+  onAddClass,
   onOriginChange,
   onLevelChange,
   className,
@@ -59,10 +66,20 @@ export function CharacterIdentityBar({
   catalog: GameCatalog;
   onChange: (next: Character) => void;
   onClassChange: (classId: string) => void;
+  onAddClass: (classId: string) => void;
   onOriginChange: (speciesId: string | null, backgroundId: string | null) => void;
   onLevelChange: (delta: -1 | 1) => void;
   className?: string;
 }) {
+  const idsActuales = new Set(character.identity.classes.map((c) => c.classId));
+  const puedeAnadir =
+    nivelTotalClases(character.identity.classes) < 20 &&
+    catalog.classes.some((c) => !idsActuales.has(c.id));
+  const bloqueoClaseActual = errorRequisitoAtributos(
+    character.identity.classes,
+    character.abilities,
+  );
+
   return (
     <div className={cn("sheet-pdf-identity border-0 pb-0", className)}>
       {character.identity.classes.length === 1 ? (
@@ -78,6 +95,45 @@ export function CharacterIdentityBar({
           <span className="shrink-0 text-muted">Clase</span>
           <span className="truncate">{descripcionClases(character.identity.classes)}</span>
         </div>
+      )}
+      {puedeAnadir && (
+        <label className="flex min-w-0 items-center gap-2 text-sm">
+          <span className="shrink-0 text-muted whitespace-nowrap">Añadir clase</span>
+          <select
+            className="sheet-select-compact min-w-[6rem]"
+            aria-label="Añadir clase (multiclase)"
+            value=""
+            disabled={!!bloqueoClaseActual}
+            onChange={(e) => {
+              const id = e.target.value;
+              if (id) onAddClass(id);
+            }}
+          >
+            <option value="">—</option>
+            {!bloqueoClaseActual &&
+              catalog.classes
+                .filter((c) => !idsActuales.has(c.id))
+                .map((c) => {
+                  const bloqueo = validarRequisitosMulticlase(
+                    [
+                      ...character.identity.classes,
+                      { classId: c.id, subclassId: null, level: 1 },
+                    ],
+                    character.abilities,
+                  );
+                  const req = textoRequisitoMulticlase(c.id);
+                  return (
+                    <option key={c.id} value={c.id} disabled={!!bloqueo}>
+                      {catalog.t("classes", c.id, c.nameEn)}
+                      {bloqueo ? ` · ${req}` : ""}
+                    </option>
+                  );
+                })}
+          </select>
+          {bloqueoClaseActual && (
+            <span className="truncate text-xs text-amber-200">{bloqueoClaseActual}</span>
+          )}
+        </label>
       )}
       {character.identity.classes.map((cl) => (
         <SubclassPicker

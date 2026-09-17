@@ -10,8 +10,8 @@ export function DiceSourceSelector({
   compact?: boolean;
 }) {
   const modes: { id: DiceSource; label: string }[] = [
-    { id: "virtual", label: "Virtual" },
     { id: "physical", label: "Físico" },
+    { id: "virtual", label: "Virtual" },
   ];
 
   return (
@@ -25,7 +25,7 @@ export function DiceSourceSelector({
           onClick={() => onChange(m.id)}
           className={`rounded-lg text-xs transition ${
             compact ? "px-1.5 py-0.5" : "px-2 py-1"
-          } ${source === m.id ? "bg-gold font-semibold text-black" : "bg-surface text-muted hover:text-white"}`}
+          } ${source === m.id ? "bg-accent font-semibold text-ink" : "bg-surface text-muted hover:text-cream"}`}
         >
           {m.label}
         </button>

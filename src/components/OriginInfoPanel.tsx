@@ -24,8 +24,8 @@ function Lista({ label, items }: { label: string; items?: string[] }) {
 
 function BloqueObtienes({ children }: { children: ReactNode }) {
   return (
-    <div className="mt-2 space-y-1 rounded-md border border-gold/20 bg-gold/5 px-2 py-2">
-      <p className="text-sm font-semibold text-gold">Obtienes</p>
+    <div className="mt-2 space-y-1 rounded-md border border-accent/20 bg-accent/5 px-2 py-2">
+      <p className="text-sm font-semibold">Obtienes</p>
       {children}
     </div>
   );
@@ -147,7 +147,7 @@ export function BackgroundInfoPanel({
             <div>
               <p className="text-sm">
                 <span className="text-muted">Dote: </span>
-                {beneficios.feat.name}
+                {nombreDote(beneficios.feat.id)}
                 {beneficios.feat.notes ? ` (${beneficios.feat.notes})` : ""}
               </p>
               {detalleDote && featDesc && (

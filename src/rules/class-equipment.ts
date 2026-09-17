@@ -10,6 +10,11 @@ import {
   KEYS_SEGUIMIENTO_INVOCACION,
   nivelBrujoClases,
 } from "@/rules/invocations";
+import { eleccionesManiobras } from "@/rules/battle-master";
+import {
+  WILD_HEART_RAGE_KEY,
+  WILD_HEART_RAGE_OPTIONS,
+} from "@/rules/wild-heart";
 import { competenciasClase } from "@/rules/proficiencies";
 import { srdArmor, t } from "@/rules/srd";
 import type { OriginChoiceDefinition, OriginChoices } from "@/rules/origin-choices";
@@ -21,6 +26,7 @@ const classStartEquipment = classStartEquipmentJson as Record<string, ClassEquip
 export const ORIGIN_CLASS_EQUIPMENT_NOTE = "[origen:clase]";
 export const CLASS_EQUIP_GP_KEY = "_classEquipGp";
 export const DIVINE_ORDER_KEY = "divine-order";
+export const LAND_TERRAIN_KEY = "land-terrain";
 export type OrdenDivino = "protector" | "thaumaturge";
 
 function uniq<T>(items: T[]): T[] {
@@ -48,6 +54,7 @@ function etiquetaOpcionEquipo(segment: string, letter: ClassEquipmentChoice): st
 export type OpcionesEleccionClase = {
   classes?: ClassLevel[];
   classLevel?: number;
+  subclassId?: string | null;
   invocaciones?: string;
   trucosConocidos?: string[];
 };
@@ -61,6 +68,17 @@ function nivelParaEleccion(classId: string, opts?: OpcionesEleccionClase): numbe
   }
   return 1;
 }
+
+function subclassDeClase(classId: string, opts?: OpcionesEleccionClase): string | null {
+  return opts?.classes?.find((c) => c.classId === classId)?.subclassId ?? opts?.subclassId ?? null;
+}
+
+const LAND_TERRAIN_OPTIONS: { value: string; label: string }[] = [
+  { value: "arid", label: "Tierra árida" },
+  { value: "polar", label: "Tierra polar" },
+  { value: "temperate", label: "Tierra templada" },
+  { value: "tropical", label: "Tierra tropical" },
+];
 
 export function eleccionesClase(
   classId: string | null,
@@ -98,6 +116,31 @@ export function eleccionesClase(
       editable: "never",
     });
   }
+  if (classId === "druid" && subclassDeClase(classId, opts) === "land") {
+    defs.push({
+      id: LAND_TERRAIN_KEY,
+      scope: "class",
+      label: "Terreno del círculo",
+      hint: "Determina los conjuros siempre preparados del Círculo de la Tierra.",
+      options: LAND_TERRAIN_OPTIONS,
+      defaultValue: "temperate",
+      editable: "always",
+    });
+  }
+  if (classId === "barbarian" && subclassDeClase(classId, opts) === "wild-heart") {
+    defs.push({
+      id: WILD_HEART_RAGE_KEY,
+      scope: "class",
+      label: "Rabia de las tierras salvajes",
+      hint: "La eliges al activar la Rabia. Oso aplica resistencia extra mientras rages.",
+      options: WILD_HEART_RAGE_OPTIONS.map((o) => ({ value: o.value, label: o.label })),
+      defaultValue: "bear",
+      editable: "always",
+    });
+  }
+  defs.push(
+    ...eleccionesManiobras(classId, nivelParaEleccion(classId, opts), subclassDeClase(classId, opts)),
+  );
   defs.push(...eleccionesInvocaciones(classId, nivelParaEleccion(classId, opts)));
   defs.push(...eleccionArmaPacto(opts?.invocaciones));
   defs.push(...eleccionesTrucoInvocacion(opts?.invocaciones, opts?.trucosConocidos));
@@ -164,24 +207,28 @@ export function sincronizarCompetenciasOrdenDivino(character: Character): Charac
   };
 }
 
+function idsClaseParaElecciones(classId: string | null, opts?: OpcionesEleccionClase): string[] {
+  return [...new Set([...(opts?.classes?.map((c) => c.classId) ?? []), ...(classId ? [classId] : [])])];
+}
+
 export function fusionarEleccionesClase(
   classId: string | null,
   actual: OriginChoices | undefined,
   opts?: OpcionesEleccionClase,
 ): Pick<OriginChoices, "class"> & OriginChoices {
-  const classLevel = classId ? nivelParaEleccion(classId, opts) : 1;
-  const invocaciones =
-    classId === "warlock"
-      ? fusionarInvocaciones(classLevel, actual?.class?.[INVOCATIONS_KEY])
-      : (opts?.invocaciones ?? actual?.class?.[INVOCATIONS_KEY]);
-  const defs = eleccionesClase(classId, { ...opts, invocaciones });
+  const classIds = idsClaseParaElecciones(classId, opts);
+  const warlockLevel = classIds.includes("warlock") ? nivelParaEleccion("warlock", opts) : 1;
+  const invocaciones = classIds.includes("warlock")
+    ? fusionarInvocaciones(warlockLevel, actual?.class?.[INVOCATIONS_KEY])
+    : (opts?.invocaciones ?? actual?.class?.[INVOCATIONS_KEY]);
+  const defs = classIds.flatMap((id) => eleccionesClase(id, { ...opts, invocaciones }));
   const classChoices: Record<string, string> = {};
   for (const def of defs) {
     const prev = actual?.class?.[def.id];
     if (def.kind === "multi") {
       classChoices[def.id] =
         def.id === INVOCATIONS_KEY
-          ? fusionarInvocaciones(classLevel, prev)
+          ? fusionarInvocaciones(warlockLevel, prev)
           : (prev ?? "");
       continue;
     }

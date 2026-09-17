@@ -9,6 +9,10 @@ type OriginDescriptions = {
 
 const descriptions = descriptionsJson as OriginDescriptions;
 
+function pareceIngles(text: string): boolean {
+  return /\b(you|your|when|the|hit points|advantage|darkvision|long rest)\b/i.test(text);
+}
+
 /** Descripción narrativa en español de especie o trasfondo, si existe. */
 export function descripcionOrigenEs(
   kind: "species" | "backgrounds",
@@ -18,6 +22,9 @@ export function descripcionOrigenEs(
   const map = kind === "species" ? descriptions.species : descriptions.backgrounds;
   const fromEs = map[id]?.trim();
   if (fromEs) return pulirTextoReglasEs(fromEs);
-  if (fallbackEn?.trim()) return limpiarTextoOrigen(fallbackEn);
+  if (fallbackEn?.trim()) {
+    const cleaned = limpiarTextoOrigen(fallbackEn);
+    if (cleaned && !pareceIngles(cleaned)) return cleaned;
+  }
   return undefined;
 }

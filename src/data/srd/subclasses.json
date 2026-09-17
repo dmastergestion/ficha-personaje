@@ -1,27 +1,63 @@
 [
   {
+    "id": "aberrant",
+    "srdId": "Aberrant Sorcery|XPHB",
+    "nameEn": "Aberrant Sorcery",
+    "classId": "sorcerer"
+  },
+  {
+    "id": "abjurer",
+    "srdId": "Abjurer|XPHB",
+    "nameEn": "Abjurer",
+    "classId": "wizard"
+  },
+  {
+    "id": "ancients",
+    "srdId": "Oath of the Ancients|XPHB",
+    "nameEn": "Oath of the Ancients",
+    "classId": "paladin"
+  },
+  {
+    "id": "arcane-trickster",
+    "srdId": "Arcane Trickster|XPHB",
+    "nameEn": "Arcane Trickster",
+    "classId": "rogue"
+  },
+  {
+    "id": "archfey",
+    "srdId": "Archfey Patron|XPHB",
+    "nameEn": "Archfey Patron",
+    "classId": "warlock"
+  },
+  {
+    "id": "assassin",
+    "srdId": "Assassin|XPHB",
+    "nameEn": "Assassin",
+    "classId": "rogue"
+  },
+  {
+    "id": "battle-master",
+    "srdId": "Battle Master|XPHB",
+    "nameEn": "Battle Master",
+    "classId": "fighter"
+  },
+  {
+    "id": "beast-master",
+    "srdId": "Beast Master|XPHB",
+    "nameEn": "Beast Master",
+    "classId": "ranger"
+  },
+  {
     "id": "berserker",
     "srdId": "phbbrbBerserker0",
     "nameEn": "Path of the Berserker",
     "classId": "barbarian"
   },
   {
-    "id": "lore",
-    "srdId": "phbbrdLore000000",
-    "nameEn": "College of Lore",
-    "classId": "bard"
-  },
-  {
-    "id": "life",
-    "srdId": "phbclcLifeDomain",
-    "nameEn": "Life Domain",
-    "classId": "cleric"
-  },
-  {
-    "id": "land",
-    "srdId": "phbdrdCirland000",
-    "nameEn": "Circle of the Land",
-    "classId": "druid"
+    "id": "celestial",
+    "srdId": "Celestial Patron|XPHB",
+    "nameEn": "Celestial Patron",
+    "classId": "warlock"
   },
   {
     "id": "champion",
@@ -30,10 +66,16 @@
     "classId": "fighter"
   },
   {
-    "id": "hand",
-    "srdId": "phbmnkOpenHandWa",
-    "nameEn": "Warrior of the Open Hand",
-    "classId": "monk"
+    "id": "clockwork",
+    "srdId": "Clockwork Sorcery|XPHB",
+    "nameEn": "Clockwork Sorcery",
+    "classId": "sorcerer"
+  },
+  {
+    "id": "dance",
+    "srdId": "College of Dance|XPHB",
+    "nameEn": "College of Dance",
+    "classId": "bard"
   },
   {
     "id": "devotion",
@@ -42,16 +84,10 @@
     "classId": "paladin"
   },
   {
-    "id": "hunter",
-    "srdId": "phbrgrHunter0000",
-    "nameEn": "Hunter",
-    "classId": "ranger"
-  },
-  {
-    "id": "thief",
-    "srdId": "phbrgeThief00000",
-    "nameEn": "Thief",
-    "classId": "rogue"
+    "id": "diviner",
+    "srdId": "Diviner|XPHB",
+    "nameEn": "Diviner",
+    "classId": "wizard"
   },
   {
     "id": "draconic",
@@ -60,15 +96,195 @@
     "classId": "sorcerer"
   },
   {
-    "id": "fiend",
-    "srdId": "phbwlkFiendPatro",
-    "nameEn": "Fiend Patron",
-    "classId": "warlock"
+    "id": "eldritch-knight",
+    "srdId": "Eldritch Knight|XPHB",
+    "nameEn": "Eldritch Knight",
+    "classId": "fighter"
+  },
+  {
+    "id": "elements",
+    "srdId": "Warrior of the Elements|XPHB",
+    "nameEn": "Warrior of the Elements",
+    "classId": "monk"
   },
   {
     "id": "evoker",
     "srdId": "phbwzdEvoker0000",
     "nameEn": "Evoker",
     "classId": "wizard"
+  },
+  {
+    "id": "fey-wanderer",
+    "srdId": "Fey Wanderer|XPHB",
+    "nameEn": "Fey Wanderer",
+    "classId": "ranger"
+  },
+  {
+    "id": "fiend",
+    "srdId": "phbwlkFiendPatro",
+    "nameEn": "Fiend Patron",
+    "classId": "warlock"
+  },
+  {
+    "id": "glamour",
+    "srdId": "College of Glamour|XPHB",
+    "nameEn": "College of Glamour",
+    "classId": "bard"
+  },
+  {
+    "id": "gloom-stalker",
+    "srdId": "Gloom Stalker|XPHB",
+    "nameEn": "Gloom Stalker",
+    "classId": "ranger"
+  },
+  {
+    "id": "glory",
+    "srdId": "Oath of Glory|XPHB",
+    "nameEn": "Oath of Glory",
+    "classId": "paladin"
+  },
+  {
+    "id": "great-old-one",
+    "srdId": "Great Old One Patron|XPHB",
+    "nameEn": "Great Old One Patron",
+    "classId": "warlock"
+  },
+  {
+    "id": "hand",
+    "srdId": "phbmnkOpenHandWa",
+    "nameEn": "Warrior of the Open Hand",
+    "classId": "monk"
+  },
+  {
+    "id": "hunter",
+    "srdId": "phbrgrHunter0000",
+    "nameEn": "Hunter",
+    "classId": "ranger"
+  },
+  {
+    "id": "illusionist",
+    "srdId": "Illusionist|XPHB",
+    "nameEn": "Illusionist",
+    "classId": "wizard"
+  },
+  {
+    "id": "land",
+    "srdId": "phbdrdCirland000",
+    "nameEn": "Circle of the Land",
+    "classId": "druid"
+  },
+  {
+    "id": "life",
+    "srdId": "phbclcLifeDomain",
+    "nameEn": "Life Domain",
+    "classId": "cleric"
+  },
+  {
+    "id": "light",
+    "srdId": "Light Domain|XPHB",
+    "nameEn": "Light Domain",
+    "classId": "cleric"
+  },
+  {
+    "id": "lore",
+    "srdId": "phbbrdLore000000",
+    "nameEn": "College of Lore",
+    "classId": "bard"
+  },
+  {
+    "id": "mercy",
+    "srdId": "Warrior of Mercy|XPHB",
+    "nameEn": "Warrior of Mercy",
+    "classId": "monk"
+  },
+  {
+    "id": "moon",
+    "srdId": "Circle of the Moon|XPHB",
+    "nameEn": "Circle of the Moon",
+    "classId": "druid"
+  },
+  {
+    "id": "psi-warrior",
+    "srdId": "Psi Warrior|XPHB",
+    "nameEn": "Psi Warrior",
+    "classId": "fighter"
+  },
+  {
+    "id": "sea",
+    "srdId": "Circle of the Sea|XPHB",
+    "nameEn": "Circle of the Sea",
+    "classId": "druid"
+  },
+  {
+    "id": "shadow",
+    "srdId": "Warrior of Shadow|XPHB",
+    "nameEn": "Warrior of Shadow",
+    "classId": "monk"
+  },
+  {
+    "id": "soulknife",
+    "srdId": "Soulknife|XPHB",
+    "nameEn": "Soulknife",
+    "classId": "rogue"
+  },
+  {
+    "id": "stars",
+    "srdId": "Circle of the Stars|XPHB",
+    "nameEn": "Circle of the Stars",
+    "classId": "druid"
+  },
+  {
+    "id": "thief",
+    "srdId": "phbrgeThief00000",
+    "nameEn": "Thief",
+    "classId": "rogue"
+  },
+  {
+    "id": "trickery",
+    "srdId": "Trickery Domain|XPHB",
+    "nameEn": "Trickery Domain",
+    "classId": "cleric"
+  },
+  {
+    "id": "valor",
+    "srdId": "College of Valor|XPHB",
+    "nameEn": "College of Valor",
+    "classId": "bard"
+  },
+  {
+    "id": "vengeance",
+    "srdId": "Oath of Vengeance|XPHB",
+    "nameEn": "Oath of Vengeance",
+    "classId": "paladin"
+  },
+  {
+    "id": "war",
+    "srdId": "War Domain|XPHB",
+    "nameEn": "War Domain",
+    "classId": "cleric"
+  },
+  {
+    "id": "wild-heart",
+    "srdId": "Path of the Wild Heart|XPHB",
+    "nameEn": "Path of the Wild Heart",
+    "classId": "barbarian"
+  },
+  {
+    "id": "wild-magic",
+    "srdId": "Wild Magic Sorcery|XPHB",
+    "nameEn": "Wild Magic Sorcery",
+    "classId": "sorcerer"
+  },
+  {
+    "id": "world-tree",
+    "srdId": "Path of the World Tree|XPHB",
+    "nameEn": "Path of the World Tree",
+    "classId": "barbarian"
+  },
+  {
+    "id": "zealot",
+    "srdId": "Path of the Zealot|XPHB",
+    "nameEn": "Path of the Zealot",
+    "classId": "barbarian"
   }
 ]

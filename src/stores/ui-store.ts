@@ -21,6 +21,10 @@ interface UiState {
   physicalDie2: string;
   setPhysicalDie1: (value: string) => void;
   setPhysicalDie2: (value: string) => void;
+  tipoDanio: string;
+  setTipoDanio: (tipo: string) => void;
+  focusPhysicalDie: "1" | "2" | null;
+  setFocusPhysicalDie: (which: "1" | "2" | null) => void;
 }
 
 export const useUiStore = create<UiState>((set) => ({
@@ -48,10 +52,14 @@ export const useUiStore = create<UiState>((set) => ({
   setRollPanelExpanded: (rollPanelExpanded) => set({ rollPanelExpanded }),
   rollMode: "normal",
   setRollMode: (rollMode) => set({ rollMode }),
-  diceSource: "virtual",
+  diceSource: "physical",
   setDiceSource: (diceSource) => set({ diceSource }),
   physicalDie1: "",
   physicalDie2: "",
   setPhysicalDie1: (physicalDie1) => set({ physicalDie1 }),
   setPhysicalDie2: (physicalDie2) => set({ physicalDie2 }),
+  tipoDanio: "",
+  setTipoDanio: (tipoDanio) => set({ tipoDanio }),
+  focusPhysicalDie: null,
+  setFocusPhysicalDie: (focusPhysicalDie) => set({ focusPhysicalDie }),
 }));

@@ -14,8 +14,6 @@ import { atributosEfectivos, bestiaFormaActiva } from "@/rules/wild-shape";
 import type { Character } from "@/schemas/character";
 
 export { ABILITY_SHEET_COLUMNS, SKILLS_BY_ABILITY };
-/** @deprecated Usar ABILITY_SHEET_COLUMNS */
-export const SKILL_ABILITY_COLUMNS = ABILITY_SHEET_COLUMNS;
 
 export const SKILL_ABILITIES: Record<SkillKey, AbilityKey> = {
   acrobatics: "dex",

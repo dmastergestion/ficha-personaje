@@ -1,7 +1,13 @@
+/**
+ * Contadores de usos (clase, especie, dote, subclase): poblar, ajustar, recargar.
+ * Gastar un uso con efecto mecánico: resource-use.ts. PV máximos: resources.ts.
+ */
 import classResourceMeta from "@/data/srd/class-resource-meta.json";
+import subclassResourceMeta from "@/data/srd/subclass-resource-meta.json";
 import traitResourceMeta from "@/data/srd/trait-resource-meta.json";
 import type { ResourceRecharge, ResourceSource } from "@/lib/constants";
 import { inferSpeciesGroupId } from "@/rules/species-catalog";
+import { SUBCLASS_ID_ALIASES } from "@/rules/class-features";
 import { recursosDote } from "@/rules/feat-mechanics";
 import { recursosConjurosOtorgados, sincronizarConjurosOtorgados } from "@/rules/spell-grants";
 import { maxRecursoPorFormula } from "@/rules/weapon-mastery";
@@ -14,6 +20,8 @@ type ResourceMetaEntry = {
   perLevel?: Record<string, number>;
   maxFormula?: string;
   rechargeShortFromLevel?: number;
+  subclassId?: string;
+  minLevel?: number;
 };
 
 type TraitResourceEntry = {
@@ -26,9 +34,11 @@ type TraitResourceEntry = {
 
 type ClassResourceMetaFile = Record<string, ResourceMetaEntry[]>;
 type TraitResourceMetaFile = Record<string, TraitResourceEntry[]>;
+type SubclassResourceMetaFile = Record<string, ResourceMetaEntry[]>;
 
 const classMeta = classResourceMeta as unknown as ClassResourceMetaFile;
 const traitMeta = traitResourceMeta as unknown as TraitResourceMetaFile;
+const subclassMeta = subclassResourceMeta as unknown as SubclassResourceMetaFile;
 
 const SOURCE_LABELS: Record<ResourceSource, string> = {
   class: "Clase",
@@ -50,6 +60,15 @@ export function maxRecursoClase(
 ): number {
   const entry = classMeta[classId]?.find((r) => r.id === resourceId);
   if (!entry) return 0;
+  return maxDesdeEntrada(entry, level, abilities);
+}
+
+function maxDesdeEntrada(
+  entry: ResourceMetaEntry,
+  level: number,
+  abilities?: Character["abilities"],
+): number {
+  if (entry.minLevel != null && level < entry.minLevel) return 0;
   if (entry.maxFormula) {
     return maxRecursoPorFormula(entry.maxFormula, level, abilities);
   }
@@ -67,8 +86,10 @@ function recursosClase(
 ): CharacterResource[] {
   const byId = new Map<string, CharacterResource>();
 
-  for (const { classId, level } of classes) {
+  for (const { classId, level, subclassId } of classes) {
     for (const entry of classMeta[classId] ?? []) {
+      if (entry.subclassId && entry.subclassId !== subclassId) continue;
+      if (entry.minLevel != null && level < entry.minLevel) continue;
       const max = maxRecursoClase(classId, entry.id, level, abilities);
       if (max <= 0) continue;
       const key = `${classId}:${entry.id}`;
@@ -89,6 +110,51 @@ function recursosClase(
           recharge,
           source: "class",
           sourceLabel: classId,
+        });
+      }
+    }
+  }
+
+  return [...byId.values()];
+}
+
+function entradasSubclase(subclassId: string): ResourceMetaEntry[] {
+  if (subclassMeta[subclassId]) return subclassMeta[subclassId]!;
+  for (const alt of SUBCLASS_ID_ALIASES[subclassId] ?? []) {
+    if (subclassMeta[alt]) return subclassMeta[alt]!;
+  }
+  return [];
+}
+
+function recursosSubclase(
+  classes: ClassLevel[],
+  abilities?: Character["abilities"],
+): CharacterResource[] {
+  const byId = new Map<string, CharacterResource>();
+
+  for (const { classId, level, subclassId } of classes) {
+    if (!subclassId) continue;
+    for (const entry of entradasSubclase(subclassId)) {
+      const max = maxDesdeEntrada(entry, level, abilities);
+      if (max <= 0) continue;
+      const key = `${classId}:${entry.id}`;
+      const recharge: ResourceRecharge =
+        entry.rechargeShortFromLevel != null && level >= entry.rechargeShortFromLevel
+          ? "short"
+          : entry.recharge;
+      const existing = byId.get(key);
+      if (existing) {
+        existing.max = Math.max(existing.max, max);
+        if (recharge === "short") existing.recharge = "short";
+      } else {
+        byId.set(key, {
+          id: key,
+          name: entry.name,
+          max,
+          used: 0,
+          recharge,
+          source: "subclass",
+          sourceLabel: subclassId,
         });
       }
     }
@@ -122,6 +188,7 @@ function recursosEspecie(
 
 export function recursosSugeridos(character: Character): CharacterResource[] {
   const fromClass = recursosClase(character.identity.classes, character.abilities);
+  const fromSubclass = recursosSubclase(character.identity.classes, character.abilities);
   const fromSpecies = recursosEspecie(
     character.identity.speciesId,
     character.identity.level,
@@ -130,13 +197,13 @@ export function recursosSugeridos(character: Character): CharacterResource[] {
   const fromFeats = recursosDote(character);
 
   const byId = new Map<string, CharacterResource>();
-  for (const r of [...fromClass, ...fromSpecies, ...fromFeats]) {
+  for (const r of [...fromClass, ...fromSubclass, ...fromSpecies, ...fromFeats]) {
     byId.set(r.id, r);
   }
   return [...byId.values()];
 }
 
-/** @deprecated Usar recursosSugeridos(character) */
+/** Recursos de clase a partir de niveles (p. ej. preview de subida). */
 export function recursosSugeridosClase(
   classes: ClassLevel[],
   abilities?: Character["abilities"],

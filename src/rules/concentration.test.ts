@@ -19,15 +19,6 @@ describe("tiradaConcentracionPorDanio", () => {
   });
 });
 
-describe("espaciosRestantesPersonaje", () => {
-  it("muestra espacios disponibles, no gastados", () => {
-    const character = crearPersonajeVacio({ name: "M", playerName: "J", classId: "wizard" });
-    character.spells.spellSlotsUsed["1"] = 1;
-
-    expect(espaciosRestantesPersonaje(character)["1"]).toBe(1);
-  });
-});
-
 describe("lanzarConjuro concentración", () => {
   it("activa concentración al lanzar un conjuro que la requiere", () => {
     const character = crearPersonajeVacio({ name: "M", playerName: "J", classId: "wizard" });

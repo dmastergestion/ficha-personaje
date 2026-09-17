@@ -23,7 +23,7 @@ export function InstallBanner() {
   if (hidden || !deferred) return null;
 
   return (
-    <div className="mb-4 flex flex-wrap items-center justify-between gap-3 rounded-xl border border-gold/40 bg-panel px-4 py-3">
+    <div className="mb-4 flex flex-wrap items-center justify-between gap-3 rounded-xl border border-accent/40 bg-panel px-4 py-3">
       <p className="text-sm">{tu("installHint")}</p>
       <div className="flex gap-2">
         <Button

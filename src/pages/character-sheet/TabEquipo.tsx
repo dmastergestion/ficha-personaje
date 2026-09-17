@@ -156,7 +156,7 @@ export function TabEquipo({ character, onChange }: SheetTabProps) {
           <label className="flex shrink-0 items-center gap-2 pb-2.5 text-sm">
             <input
               type="checkbox"
-              className="size-4 accent-gold"
+              className="size-4 accent-accent"
               checked={character.equipment.shieldEquipped}
               onChange={(e) =>
                 onChange({
@@ -215,7 +215,7 @@ export function TabEquipo({ character, onChange }: SheetTabProps) {
         </div>
 
         {character.equipment.items.length === 0 ? (
-          <p className="text-sm text-muted">Sin objetos. Añade uno o un arma SRD en Información.</p>
+          <p className="text-sm text-muted">Sin objetos. Añade uno o un arma del catálogo en Catálogo.</p>
         ) : (
           <div className="sheet-equip-grid">
             {filas.map(({ item, index }) => {
@@ -266,7 +266,7 @@ export function TabEquipo({ character, onChange }: SheetTabProps) {
                   {(atacable || attack?.damage || (item.magicBonus ?? 0) > 0) && (
                     <p className="flex flex-wrap items-center gap-x-1.5 text-[11px] text-muted">
                       {atacable && enCombate && (
-                        <span className="rounded bg-gold/15 px-1 py-0.5 font-medium text-gold">
+                        <span className="rounded bg-accent/15 px-1 py-0.5 font-medium text-accent">
                           Combate
                         </span>
                       )}
@@ -336,14 +336,14 @@ export function TabEquipo({ character, onChange }: SheetTabProps) {
                     <label
                       className={`flex cursor-pointer items-center gap-1 rounded border px-1.5 py-0.5 text-[11px] ${
                         sintonizado
-                          ? "border-gold/40 bg-gold/10 text-gold"
+                          ? "border-accent/40 bg-accent/10 text-accent"
                           : "border-white/10 text-muted"
                       }`}
                       title="Sintonizado (máx. 3)"
                     >
                       <input
                         type="checkbox"
-                        className="size-3 accent-gold"
+                        className="size-3 accent-accent"
                         aria-label="Sintonizado"
                         checked={sintonizado}
                         disabled={
@@ -408,7 +408,7 @@ export function TabEquipo({ character, onChange }: SheetTabProps) {
                       <button
                         key={tipo}
                         type="button"
-                        className="rounded bg-gold/15 px-1.5 py-0.5 text-[11px] text-gold"
+                        className="rounded bg-accent/15 px-1.5 py-0.5 text-[11px] text-accent"
                         onClick={() =>
                           actualizarItem(index, {
                             grantedResistances: (item.grantedResistances ?? []).filter(
@@ -431,8 +431,8 @@ export function TabEquipo({ character, onChange }: SheetTabProps) {
           Añadir objeto
         </Button>
         <p className="mt-2 text-sm text-muted">
-          Puedes marcar varias armas como «En combate». Las del catálogo SRD se añaden en
-          Información.
+          Puedes marcar varias armas como «En combate». Las del catálogo se añaden en
+          Catálogo.
         </p>
       </section>
     </div>

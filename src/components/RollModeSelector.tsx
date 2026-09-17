@@ -26,7 +26,7 @@ export function RollModeSelector({
           onClick={() => onChange(m.id)}
           className={`rounded-lg text-xs transition ${
             compact ? "px-1.5 py-0.5" : "px-2 py-1"
-          } ${mode === m.id ? "bg-gold font-semibold text-black" : "bg-surface text-muted hover:text-white"}`}
+          } ${mode === m.id ? "bg-accent font-semibold text-ink" : "bg-surface text-muted hover:text-cream"}`}
         >
           {m.label}
         </button>

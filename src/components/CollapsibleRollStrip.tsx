@@ -46,8 +46,9 @@ export function CollapsibleRollStrip() {
         <span className="shrink-0 text-sm font-semibold">Tiradas</span>
         <span
           className={`min-w-0 flex-1 truncate text-sm tabular-nums ${
-            hayResultado ? "font-semibold text-gold" : "text-muted"
+            hayResultado ? "font-semibold text-accent" : "text-muted"
           }`}
+          aria-live="polite"
         >
           {resumen}
         </span>

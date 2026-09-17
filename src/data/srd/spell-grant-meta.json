@@ -585,6 +585,18 @@
           "max": "1"
         }
       }
+    ],
+    "shadow": [
+      {
+        "grantKey": "darkness-focus",
+        "spellId": "darkness",
+        "level": 2,
+        "minClassLevel": 3,
+        "classId": "monk",
+        "alwaysPrepared": true,
+        "abilityKey": "wis",
+        "existingResourceId": "monk:focus-points"
+      }
     ]
   },
   "dynamicClassChoices": {

@@ -36,7 +36,7 @@ export function AddWeaponPanel({
 
   return (
     <section className="sheet-card">
-      <h3 className="sheet-section-title">Añadir arma SRD</h3>
+      <h3 className="sheet-section-title">Añadir arma del catálogo</h3>
       <div className="flex flex-wrap items-end gap-3">
         <label className="block min-w-[12rem] flex-1 text-sm">
           <span className="text-muted">Arma</span>

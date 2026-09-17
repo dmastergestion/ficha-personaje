@@ -1,4 +1,5 @@
 import { Button } from "@/components/layout";
+import { UsosContador } from "@/components/UsosContador";
 import { EtiquetaConcentracion, EtiquetaRitual } from "@/components/spell/SpellRow";
 import { SPELL_TABLE_HEADERS } from "@/lib/sheet-layout";
 import {
@@ -41,7 +42,7 @@ function detalleOrigen(
 function claseBadgeOrigen(source: UsoLibreFicha["source"]): string {
   if (source === "species") return "bg-accent/15 text-accent";
   if (source === "subclass") return "bg-[#c4a8e8]/15 text-[#c4a8e8]";
-  return "bg-gold/15 text-gold";
+  return "bg-accent/15 text-accent";
 }
 
 function etiquetaRecarga(recharge: UsoLibreFicha["recharge"]): string {
@@ -166,14 +167,14 @@ export function SpellSheetTable({
             <li
               key={id}
               className={`sheet-table-row sheet-spell-grid items-baseline py-2 ${
-                selectedId === id ? "rounded-lg bg-gold/10" : ""
+                selectedId === id ? "rounded-lg bg-accent/10" : ""
               }`}
             >
               <div className="flex min-w-0 flex-wrap items-center gap-1">
                 <button
                   type="button"
-                  className={`min-w-0 truncate text-left font-medium hover:text-gold ${
-                    selectedId === id ? "text-gold" : ""
+                  className={`min-w-0 truncate text-left font-medium hover:text-accent ${
+                    selectedId === id ? "text-accent" : ""
                   }`}
                   onClick={() => onInfo(id)}
                   aria-pressed={selectedId === id}
@@ -211,19 +212,14 @@ export function SpellSheetTable({
                       >
                         {detalleOrigen(uso, catalog)}
                       </span>
-                      <span
-                        className="tabular-nums text-[11px] text-muted"
-                        title={etiquetaRecarga(uso.recharge)}
-                      >
-                        {uso.restantes}/{uso.max}
-                        <span className="ml-1 font-normal">
-                          {uso.recharge === "short" ? "DC" : uso.recharge === "long" ? "DL" : ""}
-                        </span>
+                      <UsosContador restantes={uso.restantes} max={uso.max} compact />
+                      <span className="text-[11px] text-muted">
+                        {uso.recharge === "short" ? "DC" : uso.recharge === "long" ? "DL" : ""}
                       </span>
                       {onCast && uso.restantes > 0 && (
                         <Button
-                          variant="combat"
-                          className="px-2 py-1 text-xs"
+                          variant="primary"
+                          className="min-h-10 px-3 text-sm"
                           onClick={() => pedirLanzar(id, uso.resourceId)}
                         >
                           Lanzar
@@ -255,8 +251,8 @@ export function SpellSheetTable({
                     {opciones.map((opcion) => (
                       <Button
                         key={opcion.tipo === "pact" ? "pact" : opcion.level}
-                        variant="combat"
-                        className="px-2 py-1 text-xs"
+                        variant="primary"
+                        className="min-h-10 px-3 text-sm"
                         title="Espacio a gastar (upcast si es mayor que el nivel del conjuro)"
                         onClick={() => {
                           setPendienteId(null);
@@ -270,8 +266,8 @@ export function SpellSheetTable({
                 )}
                 {onCast && !hayLibre && opciones.length <= 1 && (
                   <Button
-                    variant="combat"
-                    className="px-2 py-1 text-xs"
+                    variant="primary"
+                    className="min-h-10 px-3 text-sm"
                     onClick={() => pedirLanzar(id)}
                   >
                     Lanzar

@@ -121,6 +121,23 @@ describe("evaluarImpacto", () => {
     );
     expect(miss.impacta).toBe(false);
   });
+
+  it("el texto de crítico usa el d20 real, no siempre 20", () => {
+    const crit = evaluarImpacto(
+      {
+        mode: "normal",
+        rolls: [19],
+        used: 19,
+        modifier: 5,
+        total: 24,
+        isCritical: true,
+        isFumble: false,
+        source: "virtual",
+      },
+      18,
+    );
+    expect(crit.explicacion).toContain("¡Crítico (19)!");
+  });
 });
 
 describe("tirarAtaqueCompleto", () => {
@@ -157,9 +174,64 @@ describe("tirarAtaqueCompleto", () => {
     expect(result.explicacionImpacto).toContain("Impacta");
     expect(result.explicacionDaño).toContain("1d8");
   });
+
+  it("campeón nivel 3 critica con 19 en arma o desarmado", () => {
+    vi.spyOn(Math, "random").mockReturnValue(0.9); // d20 = 19
+    const character = crearPersonajeVacio({ name: "C", playerName: "J", classId: "fighter", level: 3 });
+    character.identity.classes = [{ classId: "fighter", subclassId: "champion", level: 3 }];
+    character.identity.subclassId = "champion";
+    character.abilities.str = 16;
+    const result = tirarAtaqueCompleto(
+      character,
+      {
+        id: "1",
+        name: "Espada",
+        abilityKey: "str",
+        proficient: true,
+        weaponId: "longsword",
+        damage: "1d8 + MOD FUE",
+      },
+      "normal",
+      [],
+      0,
+      30,
+    );
+    if ("error" in result) throw new Error(result.error);
+    expect(result.toHit.used).toBe(19);
+    expect(result.toHit.isCritical).toBe(true);
+    expect(result.impacta).toBe(true);
+  });
+
+  it("un guerrero sin Campeón no critica con 19", () => {
+    vi.spyOn(Math, "random").mockReturnValue(0.9);
+    const character = crearPersonajeVacio({ name: "G", playerName: "J", classId: "fighter", level: 3 });
+    character.identity.classes = [{ classId: "fighter", subclassId: null, level: 3 }];
+    const result = tirarAtaqueCompleto(
+      character,
+      {
+        id: "1",
+        name: "Espada",
+        abilityKey: "str",
+        proficient: true,
+        weaponId: "longsword",
+        damage: "1d8 + MOD FUE",
+      },
+      "normal",
+      [],
+      0,
+      30,
+    );
+    if ("error" in result) throw new Error(result.error);
+    expect(result.toHit.used).toBe(19);
+    expect(result.toHit.isCritical).toBe(false);
+    expect(result.impacta).toBe(false);
+  });
 });
 
 describe("tirarDaño", () => {
+  afterEach(() => {
+    vi.restoreAllMocks();
+  });
   it("duplica dados en critico", () => {
     vi.spyOn(Math, "random").mockReturnValue(0);
 
@@ -170,5 +242,28 @@ describe("tirarDaño", () => {
     );
     expect(dmg.rolls).toHaveLength(2);
     expect(dmg.explicacion).toContain("2d8");
+  });
+
+  it("etiqueta extras de rabia, no como mágico", () => {
+    vi.spyOn(Math, "random").mockReturnValue(0);
+    const dmg = tirarDaño(
+      { dice: { count: 1, sides: 12 }, flatBase: 0, abilityKey: "str", flatBonus: 0 },
+      3,
+      false,
+      { amount: 2, label: "Rabia +2" },
+    );
+    expect(dmg.total).toBe(6);
+    expect(dmg.explicacion).toContain("Rabia");
+    expect(dmg.explicacion).not.toContain("mágico");
+  });
+
+  it("el bonus del arma sigue diciendo mágico", () => {
+    vi.spyOn(Math, "random").mockReturnValue(0);
+    const dmg = tirarDaño(
+      { dice: { count: 1, sides: 8 }, flatBase: 0, abilityKey: "str", flatBonus: 1 },
+      3,
+      false,
+    );
+    expect(dmg.explicacion).toContain("mágico");
   });
 });

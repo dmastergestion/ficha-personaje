@@ -126,7 +126,7 @@ export function detectarSubidaNivel(
         classId: dep.classId,
         oldLevel: 0,
         newLevel: dep.level,
-        isFirstLevelInClass: true,
+        isFirstLevelInClass: totalAntes === 0,
       };
     }
     if (dep.level > ant.level) {

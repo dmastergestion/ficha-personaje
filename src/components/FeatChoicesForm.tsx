@@ -5,6 +5,7 @@ import {
   periciasOcupadasFueraDeDote,
   actualizarEleccionDote,
 } from "@/rules/feat-mechanics";
+import { nombreDote } from "@/rules/feat-text";
 import type { Character, CharacterFeat } from "@/schemas/character";
 import { useCatalogStore } from "@/stores/catalog-store";
 
@@ -35,7 +36,7 @@ export function FeatChoicesFields({
       <p className="text-xs font-medium uppercase tracking-wide text-muted">
         Configuración mecánica
         {!completa && !disabled && (
-          <span className="ml-1 normal-case text-gold"> · incompleta</span>
+          <span className="ml-1 normal-case text-amber-200"> · incompleta</span>
         )}
         {disabled && <span className="ml-1 normal-case text-muted"> · fijada en origen</span>}
       </p>
@@ -88,9 +89,9 @@ export function OriginGrantedFeatsConfig({
   if (configurables.length === 0) return null;
 
   return (
-    <div className="space-y-3 rounded-lg border border-gold/30 bg-gold/5 p-3">
+    <div className="space-y-3 rounded-lg border border-accent/30 bg-accent/5 p-3">
       <div>
-        <p className="text-sm font-medium text-gold">Dote de origen</p>
+        <p className="text-sm font-medium">Dote de origen</p>
         <p className="text-xs text-muted">
           Elige aquí las pericias o conjuros que concede la dote del trasfondo o de la especie.
           Quedarán fijadas al crear el personaje.
@@ -98,7 +99,7 @@ export function OriginGrantedFeatsConfig({
       </div>
       {configurables.map(({ feat }) => (
         <div key={feat.id}>
-          <p className="text-sm font-medium">{feat.name}</p>
+          <p className="text-sm font-medium">{nombreDote(feat.id)}</p>
           <FeatChoicesFields
             feat={feat}
             occupiedSkills={occupiedSkills}

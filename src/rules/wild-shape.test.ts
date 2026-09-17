@@ -1,6 +1,7 @@
 import { describe, expect, it } from "vitest";
 import {
   bestiasElegibles,
+  catalogoBestias,
   formasSalvajeCompletas,
   fusionarFormasSalvaje,
   limitesFormaSalvaje,
@@ -8,6 +9,7 @@ import {
   activarFormaSalvaje,
   desactivarFormaSalvaje,
   atributosEfectivos,
+  tieneBloqueCombate,
   WILD_SHAPE_RESOURCE_ID,
 } from "@/rules/wild-shape";
 import { poblarRecursosSugeridos } from "@/rules/resources-tracker";
@@ -27,6 +29,16 @@ describe("wild-shape", () => {
     expect(nivel4.some((b) => b.id === "giant-eagle")).toBe(false);
     const nivel8 = bestiasElegibles(8);
     expect(nivel8.some((b) => b.id === "giant-eagle")).toBe(true);
+  });
+
+  it("el simio pasa a ID 1/2 en SRD 2024 y no es legal a nivel 2", () => {
+    expect(bestiasElegibles(2).some((b) => b.id === "ape")).toBe(false);
+    expect(bestiasElegibles(4).some((b) => b.id === "ape")).toBe(true);
+  });
+
+  it("todas las bestias del catálogo salvo estirge tienen bloque SRD 5.2.1", () => {
+    const sinBloque = catalogoBestias().filter((b) => !tieneBloqueCombate(b)).map((b) => b.id);
+    expect(sinBloque).toEqual(["stirge"]);
   });
 
   it("asigna formas recomendadas si no hay elección", () => {
@@ -58,7 +70,7 @@ describe("wild-shape", () => {
     expect(next.combat.wildShapeBeastId).toBe("wolf");
     expect(next.combat.hpTemp).toBe(2);
     expect(next.resources.find((r) => r.id === WILD_SHAPE_RESOURCE_ID)?.used).toBe(1);
-    expect(atributosEfectivos(next).str).toBe(12);
+    expect(atributosEfectivos(next).str).toBe(14);
     expect(atributosEfectivos(next).dex).toBe(15);
     expect(desactivarFormaSalvaje(next).combat.wildShapeBeastId).toBeNull();
   });

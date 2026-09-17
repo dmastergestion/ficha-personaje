@@ -1,6 +1,15 @@
-import type { ClassLevel } from "@/schemas/character";
+import type { AbilityKey } from "@/lib/constants";
+import { etiquetaAtributoOficial } from "@/lib/sheet-layout";
 import { nivelSubclase } from "@/rules/class-features";
 import { srdSubclasses, obtenerClase, t } from "@/rules/srd";
+import type { Character, ClassLevel } from "@/schemas/character";
+
+const UMBRAL_MULTICLASE = 13;
+
+/** PHB 2024: el guerrero pide FUE o DES; el resto de listas múltiples piden todas. */
+function requisitoEsDisyuntivo(classId: string): boolean {
+  return classId === "fighter";
+}
 
 export function nivelTotalClases(classes: ClassLevel[]): number {
   return classes.reduce((sum, c) => sum + c.level, 0);
@@ -31,6 +40,12 @@ export function descripcionClases(classes: ClassLevel[]): string {
   return classes
     .map((c) => `${t("classes", c.classId, c.classId)} ${c.level}`)
     .join(" / ");
+}
+
+/** Línea de la lista: «Bárbaro 3»; con multiclase, «Bárbaro 3 / Mago 2 · Total 5». */
+export function etiquetaListaPersonaje(classes: ClassLevel[], level: number): string {
+  const desc = descripcionClases(classes);
+  return classes.length > 1 ? `${desc} · Total ${level}` : desc;
 }
 
 /** Desglose de dados de golpe agrupados por denominación (ej. 10d10 + 2d6). */
@@ -66,6 +81,53 @@ export function validarClases(classes: ClassLevel[]): string | null {
   const ids = classes.map((c) => c.classId);
   if (new Set(ids).size !== ids.length) return "No repitas la misma clase.";
   return null;
+}
+
+export function atributosRequisitoClase(classId: string): AbilityKey[] {
+  return obtenerClase(classId)?.primaryAbilities ?? [];
+}
+
+export function textoRequisitoMulticlase(classId: string): string {
+  const keys = atributosRequisitoClase(classId);
+  if (keys.length === 0) return "";
+  const partes = keys.map((k) => `${etiquetaAtributoOficial(k)} ${UMBRAL_MULTICLASE}`);
+  const union = requisitoEsDisyuntivo(classId) ? " o " : " y ";
+  return partes.join(union);
+}
+
+export function cumpleRequisitoClase(
+  abilities: Character["abilities"],
+  classId: string,
+): boolean {
+  const keys = atributosRequisitoClase(classId);
+  if (keys.length === 0) return true;
+  if (requisitoEsDisyuntivo(classId)) {
+    return keys.some((k) => abilities[k] >= UMBRAL_MULTICLASE);
+  }
+  return keys.every((k) => abilities[k] >= UMBRAL_MULTICLASE);
+}
+
+/** Null si cada clase cumple su prerrequisito de atributo (también con una sola). */
+export function errorRequisitoAtributos(
+  classes: ClassLevel[],
+  abilities: Character["abilities"],
+): string | null {
+  for (const { classId } of classes) {
+    if (cumpleRequisitoClase(abilities, classId)) continue;
+    const nombre = t("classes", classId, classId);
+    const req = textoRequisitoMulticlase(classId);
+    return `${nombre} requiere ${req}.`;
+  }
+  return null;
+}
+
+/** Null si el conjunto de clases cumple los prerrequisitos de atributo (PHB 2024). */
+export function validarRequisitosMulticlase(
+  classes: ClassLevel[],
+  abilities: Character["abilities"],
+): string | null {
+  if (classes.length <= 1) return null;
+  return errorRequisitoAtributos(classes, abilities);
 }
 
 export function agregarClase(classes: ClassLevel[], classId: string): ClassLevel[] | null {

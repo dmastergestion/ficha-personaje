@@ -23,7 +23,7 @@
     {
       "level": 2,
       "name": "Sentido del peligro",
-      "description": "ventaja en salvaciones de Destreza salvo que estés incapacitado."
+      "description": "Ventaja en salvaciones de Destreza salvo que estés incapacitado."
     },
     {
       "level": 3,
@@ -33,7 +33,7 @@
     {
       "level": 3,
       "name": "Subclase de bárbaro",
-      "description": "Eliges una vía/primordial que define rasgos adicionales en niveles posteriores."
+      "description": "Eliges una senda que define rasgos adicionales en niveles posteriores."
     },
     {
       "level": 5,
@@ -872,7 +872,7 @@
   "warlock": [
     {
       "level": 1,
-      "name": "Invocaciones eldritch",
+      "name": "Invocaciones místicas",
       "description": "Eliges invocaciones místicas (cantidad en tabla); puedes cambiar una al subir de nivel."
     },
     {
@@ -932,7 +932,7 @@
     },
     {
       "level": 20,
-      "name": "Maestro eldritch",
+      "name": "Maestro sobrenatural",
       "description": "Recuperas un espacio de pacto gastado al terminar un descanso corto (1/descanso largo)."
     }
   ],

@@ -45,8 +45,8 @@ export function HitDiceSpendButtons({
             onRoll?.(mensajeTiradaDadoGolpe(die, result.tirada, result.conMod, result.curacion));
           }}
         >
-          {opciones.length > 1 ? `Gastar ${die}` : "Gastar dado"}
-          {disponibles > 1 ? ` ×${disponibles}` : ""}
+          {`Gastar 1 ${die}`}
+          {disponibles > 1 ? ` (quedan ${disponibles})` : ""}
         </Button>
       ))}
     </div>

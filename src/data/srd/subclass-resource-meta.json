@@ -1,0 +1,342 @@
+{
+  "berserker": [
+    {
+      "id": "intimidating-presence",
+      "name": "Presencia intimidante",
+      "recharge": "long",
+      "maxFormula": "1",
+      "minLevel": 14
+    }
+  ],
+  "zealot": [
+    {
+      "id": "warrior-of-the-gods",
+      "name": "Guerrero de los dioses",
+      "recharge": "long",
+      "perLevel": { "3": 4, "6": 5, "12": 6, "17": 7 }
+    },
+    {
+      "id": "zealous-presence",
+      "name": "Presencia celosa",
+      "recharge": "long",
+      "maxFormula": "1",
+      "minLevel": 10
+    }
+  ],
+  "glamour": [
+    {
+      "id": "bewitching-magic",
+      "name": "Magia embaucadora",
+      "recharge": "long",
+      "maxFormula": "1",
+      "minLevel": 3
+    },
+    {
+      "id": "unbreakable-majesty",
+      "name": "Majestad inquebrantable",
+      "recharge": "short",
+      "maxFormula": "1",
+      "minLevel": 14
+    }
+  ],
+  "light": [
+    {
+      "id": "warding-flare",
+      "name": "Destello protector",
+      "recharge": "long",
+      "maxFormula": "max(1,wis)",
+      "minLevel": 3,
+      "rechargeShortFromLevel": 6
+    },
+    {
+      "id": "corona-of-light",
+      "name": "Corona de luz",
+      "recharge": "long",
+      "maxFormula": "max(1,wis)",
+      "minLevel": 17
+    }
+  ],
+  "war": [
+    {
+      "id": "war-priest",
+      "name": "Sacerdote de la guerra",
+      "recharge": "short",
+      "maxFormula": "max(1,wis)",
+      "minLevel": 3
+    }
+  ],
+  "moon": [
+    {
+      "id": "lunar-step",
+      "name": "Paso a la luz de la luna",
+      "recharge": "long",
+      "maxFormula": "max(1,wis)",
+      "minLevel": 10
+    }
+  ],
+  "stars": [
+    {
+      "id": "cosmic-omen",
+      "name": "Presagio cósmico",
+      "recharge": "long",
+      "maxFormula": "max(1,wis)",
+      "minLevel": 6
+    }
+  ],
+  "battle-master": [
+    {
+      "id": "know-your-enemy",
+      "name": "Conoce a tu enemigo",
+      "recharge": "long",
+      "maxFormula": "1",
+      "minLevel": 7
+    }
+  ],
+  "psi-warrior": [
+    {
+      "id": "energy-dice",
+      "name": "Dados de energía psiónica",
+      "recharge": "long",
+      "maxFormula": "2pb",
+      "minLevel": 3
+    },
+    {
+      "id": "telekinetic-movement",
+      "name": "Movimiento telequinético",
+      "recharge": "short",
+      "maxFormula": "1",
+      "minLevel": 3
+    },
+    {
+      "id": "psi-powered-leap",
+      "name": "Salto psiónico",
+      "recharge": "short",
+      "maxFormula": "1",
+      "minLevel": 7
+    },
+    {
+      "id": "bulwark-of-force",
+      "name": "Baluarte de fuerza",
+      "recharge": "long",
+      "maxFormula": "1",
+      "minLevel": 15
+    }
+  ],
+  "open-hand": [
+    {
+      "id": "wholeness-of-body",
+      "name": "Plenitud del cuerpo",
+      "recharge": "long",
+      "maxFormula": "max(1,wis)",
+      "minLevel": 6
+    }
+  ],
+  "ancients": [
+    {
+      "id": "undying-sentinel",
+      "name": "Centinela inmortal",
+      "recharge": "long",
+      "maxFormula": "1",
+      "minLevel": 15
+    },
+    {
+      "id": "elder-champion",
+      "name": "Campeón ancestral",
+      "recharge": "long",
+      "maxFormula": "1",
+      "minLevel": 20
+    }
+  ],
+  "devotion": [
+    {
+      "id": "holy-nimbus",
+      "name": "Nimbo sagrado",
+      "recharge": "long",
+      "maxFormula": "1",
+      "minLevel": 20
+    }
+  ],
+  "glory": [
+    {
+      "id": "glorious-defense",
+      "name": "Defensa gloriosa",
+      "recharge": "long",
+      "maxFormula": "max(1,cha)",
+      "minLevel": 15
+    },
+    {
+      "id": "living-legend",
+      "name": "Leyenda viviente",
+      "recharge": "long",
+      "maxFormula": "1",
+      "minLevel": 20
+    }
+  ],
+  "vengeance": [
+    {
+      "id": "avenging-angel",
+      "name": "Ángel vengador",
+      "recharge": "long",
+      "maxFormula": "1",
+      "minLevel": 20
+    }
+  ],
+  "fey-wanderer": [
+    {
+      "id": "summon-fey-free",
+      "name": "Invocar hada sin espacio",
+      "recharge": "long",
+      "maxFormula": "1",
+      "minLevel": 11
+    }
+  ],
+  "arcane-trickster": [
+    {
+      "id": "spell-thief",
+      "name": "Ladrón de conjuros",
+      "recharge": "long",
+      "maxFormula": "1",
+      "minLevel": 17
+    }
+  ],
+  "soulknife": [
+    {
+      "id": "energy-dice",
+      "name": "Dados de energía psiónica",
+      "recharge": "long",
+      "maxFormula": "2pb",
+      "minLevel": 3
+    },
+    {
+      "id": "psychic-veil",
+      "name": "Velo psíquico",
+      "recharge": "long",
+      "maxFormula": "1",
+      "minLevel": 13
+    },
+    {
+      "id": "rend-mind",
+      "name": "Desgarrar la mente",
+      "recharge": "long",
+      "maxFormula": "1",
+      "minLevel": 17
+    }
+  ],
+  "aberrant": [
+    {
+      "id": "warping-implosion",
+      "name": "Implosión distorsionante",
+      "recharge": "long",
+      "maxFormula": "1",
+      "minLevel": 18
+    }
+  ],
+  "clockwork": [
+    {
+      "id": "restore-balance",
+      "name": "Restaurar el equilibrio",
+      "recharge": "long",
+      "maxFormula": "max(1,cha)",
+      "minLevel": 3
+    },
+    {
+      "id": "trance-of-order",
+      "name": "Trance del orden",
+      "recharge": "long",
+      "maxFormula": "1",
+      "minLevel": 14
+    },
+    {
+      "id": "clockwork-cavalcade",
+      "name": "Caravana del mecanismo",
+      "recharge": "long",
+      "maxFormula": "1",
+      "minLevel": 18
+    }
+  ],
+  "draconic": [
+    {
+      "id": "dragon-wings",
+      "name": "Alas de dragón",
+      "recharge": "long",
+      "maxFormula": "1",
+      "minLevel": 14
+    }
+  ],
+  "wild-magic": [
+    {
+      "id": "tides-of-chaos",
+      "name": "Mareas del caos",
+      "recharge": "long",
+      "maxFormula": "1",
+      "minLevel": 3
+    }
+  ],
+  "archfey": [
+    {
+      "id": "beguiling-defenses",
+      "name": "Defensas seductoras",
+      "recharge": "long",
+      "maxFormula": "1",
+      "minLevel": 10
+    }
+  ],
+  "celestial": [
+    {
+      "id": "healing-light",
+      "name": "Luz curativa",
+      "recharge": "long",
+      "maxFormula": "1+level",
+      "minLevel": 3
+    },
+    {
+      "id": "searing-vengeance",
+      "name": "Venganza abrasadora",
+      "recharge": "long",
+      "maxFormula": "1",
+      "minLevel": 14
+    }
+  ],
+  "fiend": [
+    {
+      "id": "dark-ones-own-luck",
+      "name": "Suerte propia del Oscuro",
+      "recharge": "long",
+      "maxFormula": "max(1,cha)",
+      "minLevel": 6
+    },
+    {
+      "id": "hurl-through-hell",
+      "name": "Arrojar a través del Infierno",
+      "recharge": "long",
+      "maxFormula": "1",
+      "minLevel": 14
+    }
+  ],
+  "diviner": [
+    {
+      "id": "portent",
+      "name": "Presagio",
+      "recharge": "long",
+      "perLevel": { "3": 2, "14": 3 }
+    }
+  ],
+  "evoker": [
+    {
+      "id": "overchannel",
+      "name": "Sobrecargar",
+      "recharge": "long",
+      "maxFormula": "1",
+      "minLevel": 14
+    }
+  ],
+  "illusionist": [
+    {
+      "id": "illusory-self",
+      "name": "Yo ilusorio",
+      "recharge": "short",
+      "maxFormula": "1",
+      "minLevel": 10
+    }
+  ]
+}

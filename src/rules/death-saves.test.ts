@@ -9,11 +9,28 @@ describe("death-saves", () => {
       ...crearPersonajeVacio({ name: "T", playerName: "J", classId: "fighter" }).combat,
       hpCurrent: 0,
       deathSaves: { successes: 2, failures: 1 },
+      conditionIds: ["unconscious" as const],
     };
     const next = aplicarCambioPv(combat, 5);
     expect(next.hpCurrent).toBeGreaterThan(0);
     expect(next.deathSaves).toEqual({ successes: 0, failures: 0 });
     expect(next.exhaustionLevel).toBe(1);
+    expect(next.conditionIds.includes("unconscious")).toBe(false);
+  });
+
+  it("20 natural: 1 PV, +1 agotamiento y deja de estar inconsciente", () => {
+    const pj = crearPersonajeVacio({ name: "T", playerName: "J", classId: "fighter" });
+    pj.combat.hpCurrent = 0;
+    pj.combat.conditionIds = ["unconscious"];
+    const result = tirarSalvacionMuerte(pj, "normal", {
+      source: "physical",
+      manual: { die1: 20 },
+    });
+    expect("error" in result).toBe(false);
+    if ("error" in result) return;
+    expect(result.character.combat.hpCurrent).toBe(1);
+    expect(result.character.combat.exhaustionLevel).toBe(1);
+    expect(result.character.combat.conditionIds.includes("unconscious")).toBe(false);
   });
 
   it("acumula fallos hasta la muerte", () => {

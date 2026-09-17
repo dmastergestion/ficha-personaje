@@ -5,10 +5,12 @@
 import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
-import { SPELL_SRD_ALIASES } from "./i18n-shared.js";
+import { SPELL_SRD_ALIASES, contentPackPaths, idSubclaseCanonico, toId } from "./i18n-shared.js";
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const spellsPath = path.join(root, "src", "data", "srd", "spells.json");
+const packPaths = contentPackPaths();
+const classDir = path.join(root, "vendor", "5etools-src", "data", "class");
 const lookupPath = path.join(
   root,
   "vendor",
@@ -21,10 +23,12 @@ const outPath = path.join(root, "src", "data", "srd", "spell-lists.json");
 
 const CLASS_NAME_TO_ID: Record<string, string> = {
   Artificer: "artificer",
+  Barbarian: "barbarian",
   Bard: "bard",
   Cleric: "cleric",
   Druid: "druid",
   Fighter: "fighter",
+  Monk: "monk",
   Paladin: "paladin",
   Ranger: "ranger",
   Rogue: "rogue",
@@ -33,25 +37,23 @@ const CLASS_NAME_TO_ID: Record<string, string> = {
   Wizard: "wizard",
 };
 
-/** Nombre de subclase 5etools → id en nuestro catálogo SRD. */
-const SUBCLASS_NAME_TO_ID: Record<string, string> = {
-  "College of Lore": "lore",
-  "Circle of the Land": "land",
-  "Life Domain": "life",
-  "Light Domain": "light",
-  "Evoker": "evoker",
-  "Fiend Patron": "fiend",
-  "The Fiend": "fiend",
-  "Eldritch Knight": "eldritch-knight",
-  "Arcane Trickster": "arcane-trickster",
-  Champion: "champion",
-  Hunter: "hunter",
-  Thief: "thief",
-  "Oath of Devotion": "devotion",
-  "Draconic Sorcery": "draconic",
-  "Path of the Berserker": "berserker",
-  "Warrior of the Open Hand": "hand",
-};
+function mapaNombresSubclase(): Record<string, string> {
+  const map: Record<string, string> = {
+    "The Fiend": "fiend",
+    "Fiend Patron": "fiend",
+  };
+  if (!fs.existsSync(classDir)) return map;
+  for (const file of fs.readdirSync(classDir).filter((f) => /^class-[a-z]+\.json$/.test(f))) {
+    const data = JSON.parse(fs.readFileSync(path.join(classDir, file), "utf8")) as {
+      subclass?: { source?: string; name?: string; shortName?: string }[];
+    };
+    for (const sc of data.subclass ?? []) {
+      if (sc.source !== "XPHB" || !sc.name) continue;
+      map[sc.name] = idSubclaseCanonico(toId(sc.shortName ?? sc.name));
+    }
+  }
+  return map;
+}
 
 type LookupEntry = {
   class?: Record<string, Record<string, boolean>>;
@@ -83,7 +85,10 @@ function extractClasses(entry: LookupEntry): string[] {
   return [...ids].sort();
 }
 
-function extractSubclasses(entry: LookupEntry): { classId: string; subclassId: string }[] {
+function extractSubclasses(
+  entry: LookupEntry,
+  nameMap: Record<string, string>,
+): { classId: string; subclassId: string }[] {
   const out: { classId: string; subclassId: string }[] = [];
   const seen = new Set<string>();
 
@@ -95,7 +100,7 @@ function extractSubclasses(entry: LookupEntry): { classId: string; subclassId: s
         for (const sub of Object.values(subs)) {
           const name = sub?.name;
           if (!name) continue;
-          const subclassId = SUBCLASS_NAME_TO_ID[name];
+          const subclassId = nameMap[name];
           if (!subclassId) continue;
           const key = `${classId}:${subclassId}`;
           if (seen.has(key)) continue;
@@ -117,10 +122,24 @@ function main() {
     process.exit(1);
   }
 
-  const spells = JSON.parse(fs.readFileSync(spellsPath, "utf8")) as {
+  const srdSpells = JSON.parse(fs.readFileSync(spellsPath, "utf8")) as {
     id: string;
     nameEn: string;
   }[];
+  const packFile = packPaths.find((p) => fs.existsSync(p));
+  const packSpells = packFile
+    ? (
+        JSON.parse(fs.readFileSync(packFile, "utf8")) as {
+          spells?: { id: string; nameEn: string }[];
+        }
+      ).spells ?? []
+    : [];
+  const spellsById = new Map<string, { id: string; nameEn: string }>();
+  for (const spell of [...srdSpells, ...packSpells]) {
+    if (!spellsById.has(spell.id)) spellsById.set(spell.id, spell);
+  }
+  const spells = [...spellsById.values()];
+  const nameMap = mapaNombresSubclase();
   const lookupFile = JSON.parse(fs.readFileSync(lookupPath, "utf8")) as {
     xphb: Record<string, LookupEntry>;
   };
@@ -144,7 +163,7 @@ function main() {
     if (!entry) continue;
 
     const classes = extractClasses(entry);
-    const subclasses = extractSubclasses(entry);
+    const subclasses = extractSubclasses(entry, nameMap);
     if (classes.length === 0 && subclasses.length === 0) continue;
 
     result[spell.id] = { classes, subclasses };
@@ -152,7 +171,7 @@ function main() {
   }
 
   fs.writeFileSync(outPath, `${JSON.stringify(result, null, 2)}\n`);
-  console.log(`spell-lists.json: ${matched}/${spells.length} conjuros SRD con listas de clase`);
+  console.log(`spell-lists.json: ${matched}/${spells.length} conjuros (SRD+pack) con listas de clase`);
 }
 
 main();

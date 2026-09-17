@@ -69,6 +69,18 @@ export interface ResultadoAtaque {
   explicacionDaño: string | null;
 }
 
+/**
+ * Crítico mejorado (Campeón 19–20 / 18–20).
+ * Solo ataques de arma y golpes sin armas — no Forma salvaje ni conjuros.
+ */
+export function umbralCriticoAtaque(character: Character, attack: CombatAttack): number {
+  if (attack.toHitOverride != null || attack.id.startsWith("wild-shape:")) return 20;
+  const fighter = character.identity.classes.find((c) => c.classId === "fighter");
+  if (!fighter || fighter.subclassId !== "champion") return 20;
+  if (fighter.level < 3) return 20;
+  return fighter.level >= 15 ? 18 : 19;
+}
+
 export function desgloseAtaque(character: Character, attack: CombatAttack): DesgloseAtaque {
   const extras = extrasAtaque(character, attack);
   if (attack.toHitOverride != null) {
@@ -140,10 +152,17 @@ function rollDie(sides: number): number {
   return Math.floor(Math.random() * sides) + 1;
 }
 
+function etiquetaExtraDaño(label: string | null): string {
+  if (!label) return "extra";
+  const limpio = label.replace(/\s*\+\d+/g, "").replace(/\s*·\s*/g, " · ").trim();
+  return limpio || "extra";
+}
+
 export function tirarDaño(
   partes: PartesDaño,
   abilityMod: number,
   isCritical: boolean,
+  extra?: { amount: number; label: string | null },
 ): TiradaDaño {
   const rolls: number[] = [];
   let diceTotal = 0;
@@ -158,7 +177,8 @@ export function tirarDaño(
   }
 
   const ability = partes.abilityKey ? abilityMod : 0;
-  const total = diceTotal + partes.flatBase + ability + partes.flatBonus;
+  const extraAmt = extra?.amount ?? 0;
+  const total = diceTotal + partes.flatBase + ability + partes.flatBonus + extraAmt;
 
   const diceLabel = partes.dice
     ? isCritical
@@ -182,10 +202,14 @@ export function tirarDaño(
   if (partes.flatBonus !== 0) {
     partesTexto.push(`${fmtMod(partes.flatBonus)} (mágico)`);
   }
+  if (extraAmt !== 0) {
+    partesTexto.push(`${fmtMod(extraAmt)} (${etiquetaExtraDaño(extra?.label ?? null)})`);
+  }
 
+  const extraFormula = extraAmt ? ` + ${extraAmt}` : "";
   const formula = partes.dice
-    ? `${isCritical ? partes.dice.count * 2 : partes.dice.count}d${partes.dice.sides}${ability !== 0 ? ` + ${ability}` : ""}${partes.flatBonus ? ` + ${partes.flatBonus}` : ""}`
-    : `${partes.flatBase}${ability !== 0 ? ` + ${ability}` : ""}${partes.flatBonus ? ` + ${partes.flatBonus}` : ""}`;
+    ? `${isCritical ? partes.dice.count * 2 : partes.dice.count}d${partes.dice.sides}${ability !== 0 ? ` + ${ability}` : ""}${partes.flatBonus ? ` + ${partes.flatBonus}` : ""}${extraFormula}`
+    : `${partes.flatBase}${ability !== 0 ? ` + ${ability}` : ""}${partes.flatBonus ? ` + ${partes.flatBonus}` : ""}${extraFormula}`;
 
   return {
     rolls,
@@ -248,7 +272,10 @@ export function evaluarImpacto(
     return { impacta: false, explicacion: `Pifia (1). Fallo automático vs CA ${targetAc}.` };
   }
   if (toHit.isCritical) {
-    return { impacta: true, explicacion: `¡Crítico (20)! Impacta vs CA ${targetAc}.` };
+    return {
+      impacta: true,
+      explicacion: `¡Crítico (${toHit.used})! Impacta vs CA ${targetAc}.`,
+    };
   }
   if (toHit.total >= targetAc) {
     return { impacta: true, explicacion: `Impacta (${toHit.total} ≥ CA ${targetAc}).` };
@@ -278,7 +305,11 @@ export function tirarAtaqueCompleto(
     },
   );
   if ("error" in toHitResult) return toHitResult;
-  const toHit = toHitResult;
+  const umbral = umbralCriticoAtaque(character, attack);
+  const toHit =
+    toHitResult.used >= umbral && !toHitResult.isFumble
+      ? { ...toHitResult, isCritical: true }
+      : toHitResult;
   const { impacta, explicacion: explicacionImpacto } = evaluarImpacto(toHit, targetAc);
 
   let damage: TiradaDaño | null = null;
@@ -293,11 +324,10 @@ export function tirarAtaqueCompleto(
       const abilityMod = partes.abilityKey
         ? modificadorAtributo(atributosEfectivos(character)[partes.abilityKey])
         : 0;
-      damage = tirarDaño(
-        { ...partes, flatBonus: partes.flatBonus + desglose.extraDamage },
-        abilityMod,
-        toHit.isCritical,
-      );
+      damage = tirarDaño(partes, abilityMod, toHit.isCritical, {
+        amount: desglose.extraDamage,
+        label: desglose.extraDamageLabel,
+      });
       explicacionDaño =
         impacta === null
           ? `Daño potencial: ${damage.explicacion}`

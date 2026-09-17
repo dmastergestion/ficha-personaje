@@ -185,7 +185,7 @@ export function SpellChoicesForm({
   return (
     <div className="space-y-4 rounded-lg border border-white/10 bg-panel/40 p-3">
       <div>
-        <p className="text-sm font-medium text-gold">{titulo}</p>
+        <p className="text-sm font-medium">{titulo}</p>
         <p className="text-xs text-muted">
           {pendiente.cantrips > 0 && `Trucos: faltan ${pendiente.cantrips}. `}
           {pendiente.grimorio > 0 && `Grimorio: faltan ${pendiente.grimorio}. `}
@@ -238,7 +238,7 @@ export function SpellChoicesForm({
               .map((s) => (
                 <Button
                   key={s.id}
-                  variant={listaUi === s.id ? "critical" : "ghost"}
+                  variant={listaUi === s.id ? "primary" : "ghost"}
                   className="text-sm"
                   onClick={() => setListaActiva(s.id)}
                 >
@@ -248,7 +248,7 @@ export function SpellChoicesForm({
           </div>
           <input
             type="search"
-            placeholder="Buscar en lista SRD…"
+            placeholder="Buscar en la lista de clase…"
             className="sheet-input"
             value={busqueda}
             onChange={(e) => setBusqueda(e.target.value)}
@@ -256,7 +256,7 @@ export function SpellChoicesForm({
           <ul className="max-h-80 overflow-y-auto rounded-lg border border-white/10 bg-surface/40">
             {filtrados.length === 0 ? (
               <li className="px-3 py-3 text-sm text-muted">
-                No hay conjuros disponibles en la lista SRD para esta sección.
+                No hay conjuros disponibles en la lista de esta clase para esta sección.
               </li>
             ) : (
               filtrados.map((s) => {

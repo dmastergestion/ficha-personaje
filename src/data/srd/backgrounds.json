@@ -5,9 +5,54 @@
     "nameEn": "Acolyte"
   },
   {
+    "id": "artisan",
+    "srdId": "Artisan|XPHB",
+    "nameEn": "Artisan"
+  },
+  {
+    "id": "charlatan",
+    "srdId": "Charlatan|XPHB",
+    "nameEn": "Charlatan"
+  },
+  {
     "id": "criminal",
     "srdId": "phbbgCriminal000",
     "nameEn": "Criminal"
+  },
+  {
+    "id": "entertainer",
+    "srdId": "Entertainer|XPHB",
+    "nameEn": "Entertainer"
+  },
+  {
+    "id": "farmer",
+    "srdId": "Farmer|XPHB",
+    "nameEn": "Farmer"
+  },
+  {
+    "id": "guard",
+    "srdId": "Guard|XPHB",
+    "nameEn": "Guard"
+  },
+  {
+    "id": "guide",
+    "srdId": "Guide|XPHB",
+    "nameEn": "Guide"
+  },
+  {
+    "id": "hermit",
+    "srdId": "Hermit|XPHB",
+    "nameEn": "Hermit"
+  },
+  {
+    "id": "merchant",
+    "srdId": "Merchant|XPHB",
+    "nameEn": "Merchant"
+  },
+  {
+    "id": "noble",
+    "srdId": "Noble|XPHB",
+    "nameEn": "Noble"
   },
   {
     "id": "sage",
@@ -15,8 +60,23 @@
     "nameEn": "Sage"
   },
   {
+    "id": "sailor",
+    "srdId": "Sailor|XPHB",
+    "nameEn": "Sailor"
+  },
+  {
+    "id": "scribe",
+    "srdId": "Scribe|XPHB",
+    "nameEn": "Scribe"
+  },
+  {
     "id": "soldier",
     "srdId": "phbbgSoldier0000",
     "nameEn": "Soldier"
+  },
+  {
+    "id": "wayfarer",
+    "srdId": "Wayfarer|XPHB",
+    "nameEn": "Wayfarer"
   }
 ]

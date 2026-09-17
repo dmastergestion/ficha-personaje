@@ -45,7 +45,7 @@ function translateBySrdId(
 
 function main() {
   if (!fs.existsSync(srdDir)) {
-    console.error("Ejecuta npm run build:srd primero.");
+    console.error("Ejecuta npm run build:srd (o npm run build:data) primero.");
     process.exit(1);
   }
 

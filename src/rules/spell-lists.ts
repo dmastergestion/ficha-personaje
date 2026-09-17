@@ -2,6 +2,7 @@ import { ID_CONJURO_SRD_A_PACK, idsEquivalentesConjuro } from "@/rules/spell-ali
 import type { AbilityKey, SpellSlotLevel } from "@/lib/constants";
 import { SPELL_SLOT_LEVELS } from "@/lib/constants";
 import spellListsJson from "@/data/srd/spell-lists.json";
+import { SUBCLASS_ID_ALIASES } from "@/rules/class-features";
 import type { ClassLevel, Character } from "@/schemas/character";
 import { maxPreparadosClase } from "@/rules/spell-progression";
 import { clasesParaConjuros, esLanzador, espaciosMaximos } from "@/rules/spells";
@@ -161,9 +162,12 @@ export function conjuroDisponibleParaClase(
   const entry = listaConjuro(spellId);
   if (!entry) return false;
   if (entry.classes.includes(classId)) return true;
-  return entry.subclasses.some(
-    (s) => s.classId === classId && s.subclassId === (subclassId ?? ""),
-  );
+  return entry.subclasses.some((s) => {
+    if (s.classId !== classId) return false;
+    if (s.subclassId === (subclassId ?? "")) return true;
+    if (!subclassId) return false;
+    return (SUBCLASS_ID_ALIASES[subclassId] ?? []).includes(s.subclassId);
+  });
 }
 
 export function conjuroDisponibleParaPersonaje(

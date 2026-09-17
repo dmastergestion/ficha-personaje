@@ -1,11 +1,12 @@
+import { HpTypeSelect } from "@/components/HpTypeSelect";
 import { Button } from "@/components/layout";
-import { useDiceRollOptions } from "@/hooks/useDiceRollOptions";
+import { pedirDadoFisico, useDiceRollOptions } from "@/hooks/useDiceRollOptions";
 import { tirarAtaqueCompleto } from "@/rules/attack-roll";
 import {
   accionBarraCombate,
   ataquePorId,
 } from "@/rules/attacks";
-import { aplicarCambioPvConConcentracion } from "@/rules/combat-hp";
+import { aplicarCambioPvConConcentracion, AVISO_DANIO_SIN_TIPO_RABIA } from "@/rules/combat-hp";
 import { lanzarConjuro } from "@/rules/spell-cast";
 import type { Character } from "@/schemas/character";
 import type { SheetTab } from "@/pages/character-sheet/types";
@@ -25,6 +26,7 @@ export function BottomCombatBar({
 }) {
   const catalog = useCatalogStore((s) => s.catalog);
   const rollMode = useUiStore((s) => s.rollMode);
+  const tipoDanio = useUiStore((s) => s.tipoDanio);
   const diceRoll = useDiceRollOptions();
   const setUltimaTirada = useUiStore((s) => s.setUltimaTirada);
   const setUltimoAtaque = useUiStore((s) => s.setUltimoAtaque);
@@ -38,7 +40,7 @@ export function BottomCombatBar({
   function cambiarPv(delta: number) {
     if (delta === 0) return;
     if (delta < 0 && !diceRoll.isReady && character.spells.concentratingOn) {
-      setUltimaTirada(null, diceRoll.error);
+      pedirDadoFisico(diceRoll.error);
       return;
     }
     const aplicado = aplicarCambioPvConConcentracion(
@@ -46,7 +48,12 @@ export function BottomCombatBar({
       delta,
       rollMode,
       diceRoll.options,
+      { damageType: delta < 0 ? tipoDanio || undefined : undefined },
     );
+    if (aplicado.warning) {
+      setUltimaTirada(null, aplicado.warning);
+      return;
+    }
     if (aplicado.deathMessage) setUltimaTirada(null, aplicado.deathMessage);
     if (aplicado.concentration) {
       const conc = aplicado.concentration;
@@ -62,7 +69,7 @@ export function BottomCombatBar({
 
   function atacar() {
     if (!diceRoll.isReady) {
-      setUltimaTirada(null, diceRoll.error);
+      pedirDadoFisico(diceRoll.error);
       return;
     }
     if (accion.tipo === "truco") {
@@ -105,6 +112,17 @@ export function BottomCombatBar({
 
   return (
     <div className="fixed inset-x-0 bottom-0 z-40 border-t border-white/10 bg-surface/95 px-2 py-1.5 pb-[max(0.35rem,env(safe-area-inset-bottom))] backdrop-blur lg:hidden">
+      <div className="mb-1 flex items-center gap-1.5">
+        <HpTypeSelect
+          className="min-w-0 flex-1 max-w-none"
+          required={character.combat.raging}
+        />
+        {character.combat.raging && !tipoDanio && (
+          <span className="shrink-0 text-[10px] leading-tight text-amber-200">
+            {AVISO_DANIO_SIN_TIPO_RABIA}
+          </span>
+        )}
+      </div>
       <div className="flex items-center gap-1.5">
         <div className="flex shrink-0 items-center gap-0.5">
           <Button
@@ -128,6 +146,7 @@ export function BottomCombatBar({
             <span className="text-muted">/{character.combat.hpMax}</span>
           </span>
           <Button
+            variant="success"
             className="px-1.5 py-1 text-xs"
             aria-label="Sumar 1 PV"
             onClick={() => cambiarPv(1)}
@@ -135,6 +154,7 @@ export function BottomCombatBar({
             +1
           </Button>
           <Button
+            variant="success"
             className="px-1.5 py-1 text-xs"
             aria-label="Sumar 5 PV"
             onClick={() => cambiarPv(5)}
@@ -148,8 +168,8 @@ export function BottomCombatBar({
           </Button>
         )}
         <Button
-          variant="combat"
-          className="min-w-0 flex-1 truncate px-2 py-1.5 text-sm"
+          variant="primary"
+          className="min-h-10 min-w-0 flex-1 truncate px-2 py-1.5 text-sm"
           onClick={atacar}
         >
           {accion.tipo === "truco" ? "Lanzar" : "Atacar"} · {etiqueta}

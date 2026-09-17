@@ -14,7 +14,7 @@ export const SHEET_TABS: { id: SheetTab; label: string }[] = [
   { id: "hechizos", label: "Hechizos" },
   { id: "equipo", label: "Equipo" },
   { id: "notas", label: "Notas" },
-  { id: "informacion", label: "Añadir" },
+  { id: "informacion", label: "Catálogo" },
 ];
 
 export interface SheetTabProps {

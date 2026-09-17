@@ -4,6 +4,7 @@ import {
   aplicarBonificadoresAtributo,
   bonificadoresAtributoTrasfondo,
   calcularBeneficiosOrigen,
+  idiomasEspecie,
   normalizarPericia,
 } from "@/rules/origin-benefits";
 
@@ -54,6 +55,17 @@ describe("calcularBeneficiosOrigen", () => {
   it("suma PV extra de enano", () => {
     const b = calcularBeneficiosOrigen("dwarf", null, 3);
     expect(b.hpBonusTotal).toBe(3);
+  });
+
+  it("idiomas de especie incluyen extra de humano", () => {
+    expect(idiomasEspecie("dwarf")).toEqual(["Común", "Enano"]);
+    expect(
+      idiomasEspecie("human", {
+        species: { "extra-language": "Élfico" },
+        background: {},
+        class: {},
+      }),
+    ).toContain("Élfico");
   });
 
   it("usa datos del catálogo PHB para trasfondos fuera del SRD", () => {

@@ -214,4 +214,22 @@ describe("lanzarConjuro", () => {
       expect(() => textoDañoMostradoConjuro(character, spell.id, daño, spell.level)).not.toThrow();
     }
   });
+
+  it("Oscuridad de Sombras gasta un punto de enfoque y concentra", () => {
+    const base = crearPersonajeVacio({ name: "Sombra", playerName: "J", classId: "monk", level: 3 });
+    base.identity.classes = [{ classId: "monk", subclassId: "shadow", level: 3 }];
+    base.identity.subclassId = "shadow";
+    const pj = poblarRecursosSugeridos(base);
+    const recId = mejorRecursoLibreParaConjuro(pj, "darkness");
+    expect(recId).toBe("monk:focus-points");
+    const result = lanzarConjuro(pj, 2, "normal", {
+      spellId: "darkness",
+      featResourceId: recId,
+      requiereConcentracion: true,
+    });
+    expect(result.ok).toBe(true);
+    if (!result.ok) return;
+    expect(result.character.resources.find((r) => r.id === recId)?.used).toBe(1);
+    expect(result.character.spells.concentratingOn).toBe("darkness");
+  });
 });

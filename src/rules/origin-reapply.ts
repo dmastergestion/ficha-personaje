@@ -85,10 +85,11 @@ export function resumenCambioOrigen(
 }
 
 /** Quita dotes/ASI/idiomas del origen anterior y aplica el nuevo. */
-export function reaplicarOrigen(
+export function aplicarCambioOrigen(
   character: Character,
   speciesId: string | null,
   backgroundId: string | null,
+  originChoices: Character["originChoices"],
   catalogo?: OrigenCatalogo,
 ): Character {
   const oldOrigin = calcularBeneficiosOrigen(
@@ -97,19 +98,6 @@ export function reaplicarOrigen(
     character.identity.level,
     catalogo,
     character.originChoices,
-  );
-  const originChoices = fusionarEleccionesOrigen(
-    speciesId,
-    backgroundId,
-    {
-      species: speciesId === character.identity.speciesId ? character.originChoices.species : {},
-      background:
-        backgroundId === character.identity.backgroundId
-          ? character.originChoices.background
-          : {},
-      class: character.originChoices.class,
-    },
-    catalogo,
   );
   const newOrigin = calcularBeneficiosOrigen(
     speciesId,
@@ -192,4 +180,91 @@ export function reaplicarOrigen(
   }
 
   return next;
+}
+
+export function reaplicarOrigen(
+  character: Character,
+  speciesId: string | null,
+  backgroundId: string | null,
+  catalogo?: OrigenCatalogo,
+): Character {
+  const originChoices = fusionarEleccionesOrigen(
+    speciesId,
+    backgroundId,
+    {
+      species: speciesId === character.identity.speciesId ? character.originChoices.species : {},
+      background:
+        backgroundId === character.identity.backgroundId
+          ? character.originChoices.background
+          : {},
+      class: character.originChoices.class,
+    },
+    catalogo,
+  );
+  return aplicarCambioOrigen(character, speciesId, backgroundId, originChoices, catalogo);
+}
+
+/** Reaplica dotes y pericias de origen con las elecciones nuevas (misma especie/trasfondo). */
+export function sincronizarEleccionesOrigen(
+  character: Character,
+  originChoices: Character["originChoices"],
+  catalogo?: OrigenCatalogo,
+): Character {
+  return aplicarCambioOrigen(
+    character,
+    character.identity.speciesId,
+    character.identity.backgroundId,
+    originChoices,
+    catalogo,
+  );
+}
+
+export function origenDesincronizado(
+  character: Character,
+  catalogo?: OrigenCatalogo,
+): boolean {
+  const origin = calcularBeneficiosOrigen(
+    character.identity.speciesId,
+    character.identity.backgroundId,
+    character.identity.level,
+    catalogo,
+    character.originChoices,
+  );
+  for (const feat of [origin.feat, origin.speciesFeat]) {
+    if (feat && !character.feats.some((f) => f.id === feat.id)) return true;
+  }
+  for (const skill of origin.skills) {
+    if (!character.proficiencies.skills.includes(skill)) return true;
+  }
+  return false;
+}
+
+/** Añade dotes/pericias de origen que faltan, sin rehacer ASI. */
+export function sincronizarDotesYPericiasOrigen(
+  character: Character,
+  originChoices: Character["originChoices"],
+  catalogo?: OrigenCatalogo,
+): Character {
+  const origin = calcularBeneficiosOrigen(
+    character.identity.speciesId,
+    character.identity.backgroundId,
+    character.identity.level,
+    catalogo,
+    originChoices,
+  );
+  let feats = character.feats;
+  for (const feat of [origin.speciesFeat, origin.feat]) {
+    if (!feat || feats.some((f) => f.id === feat.id)) continue;
+    feats = [...feats, { ...feat, instanceId: feat.instanceId ?? crypto.randomUUID() }];
+  }
+  const skills = uniq([
+    ...character.proficiencies.skills,
+    ...origin.skills,
+  ]) as SkillKey[];
+  return {
+    ...character,
+    feats,
+    originChoices,
+    proficiencies: { ...character.proficiencies, skills },
+  };
 }

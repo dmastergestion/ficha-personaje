@@ -1,4 +1,10 @@
 import { Button } from "@/components/layout";
+import { UsosContador } from "@/components/UsosContador";
+import {
+  convertirFormaEnEspacio,
+  recuperarFormaConEspacio,
+  WILD_RESURGENCE_SLOT_ID,
+} from "@/rules/resource-use";
 import {
   activarFormaSalvaje,
   bestiaFormaActiva,
@@ -6,11 +12,13 @@ import {
   desactivarFormaSalvaje,
   etiquetaCr,
   formasConocidasPersonaje,
+  nivelDruida,
   recursoFormaSalvaje,
   tieneBloqueCombate,
   tieneFormaSalvaje,
 } from "@/rules/wild-shape";
 import type { Character } from "@/schemas/character";
+import { useUiStore } from "@/stores/ui-store";
 
 export function WildShapePanel({
   character,
@@ -24,7 +32,24 @@ export function WildShapePanel({
   const conocidas = formasConocidasPersonaje(character);
   const activa = bestiaFormaActiva(character);
   const recurso = recursoFormaSalvaje(character);
-  const usos = recurso ? `${Math.max(0, recurso.max - recurso.used)}/${recurso.max}` : "—";
+  const restantes = recurso ? Math.max(0, recurso.max - recurso.used) : 0;
+  const max = recurso?.max ?? 0;
+  const nivel = nivelDruida(character.identity.classes);
+  const resurgimiento = character.resources.find((r) => r.id === WILD_RESURGENCE_SLOT_ID);
+  const resurgimientoRestante = resurgimiento
+    ? Math.max(0, resurgimiento.max - resurgimiento.used)
+    : 0;
+
+  function aplicarResurgimiento(
+    result: { ok: true; character: Character; mensaje: string } | { ok: false; error: string },
+  ) {
+    if (!result.ok) {
+      window.alert(result.error);
+      return;
+    }
+    onChange(result.character);
+    if (result.mensaje) useUiStore.getState().setUltimaTirada(null, result.mensaje);
+  }
 
   function onSelect(beastId: string) {
     if (!beastId) {
@@ -40,10 +65,10 @@ export function WildShapePanel({
   }
 
   return (
-    <div className="mb-3 space-y-2 rounded-lg border border-gold/30 bg-gold/5 p-2">
+    <div className="mb-3 space-y-2 rounded-lg border border-white/10 bg-surface/40 p-2">
       <div className="flex flex-wrap items-center justify-between gap-2">
-        <p className="text-sm font-medium text-gold">Forma salvaje</p>
-        <span className="text-xs text-muted">Usos {usos}</span>
+        <p className="text-sm font-medium">Forma salvaje</p>
+        {recurso ? <UsosContador restantes={restantes} max={max} /> : null}
       </div>
       <label className="block text-sm">
         <span className="text-muted">Forma activa</span>
@@ -76,13 +101,38 @@ export function WildShapePanel({
       )}
       {activa && !activa.combat && (
         <p className="text-xs text-amber-200">
-          No hay bloque de combate SRD para esta bestia: anota CA y ataques a mano.
+          No hay bloque de combate para esta bestia: anota CA y ataques a mano.
         </p>
       )}
       {activa && (
         <Button type="button" variant="ghost" className="text-xs" onClick={() => onSelect("")}>
           Terminar forma
         </Button>
+      )}
+      {nivel >= 5 && (
+        <div className="flex flex-wrap items-center gap-1 border-t border-white/10 pt-2">
+          <Button
+            type="button"
+            variant="primary"
+            className="min-h-10 px-3 text-sm"
+            disabled={!recurso || recurso.used <= 0}
+            onClick={() => aplicarResurgimiento(recuperarFormaConEspacio(character))}
+          >
+            Espacio → forma
+          </Button>
+          <Button
+            type="button"
+            variant="ghost"
+            className="min-h-10 px-3 text-sm"
+            disabled={resurgimientoRestante <= 0 || restantes <= 0}
+            onClick={() => aplicarResurgimiento(convertirFormaEnEspacio(character))}
+          >
+            Forma → espacio 1
+          </Button>
+          {resurgimiento ? (
+            <UsosContador restantes={resurgimientoRestante} max={resurgimiento.max} compact />
+          ) : null}
+        </div>
       )}
     </div>
   );

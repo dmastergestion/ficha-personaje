@@ -14,7 +14,7 @@ export function CharacterSheetPage() {
   const catalog = useCatalogStore((s) => s.catalog);
   const pdf = useCharacterSheetPdf(character, catalog);
 
-  const tab = useUiStore((s) => (id ? s.sheetTabsById[id] : undefined) ?? "resumen");
+  const tab = useUiStore((s) => (id ? s.sheetTabsById[id] : undefined) ?? "combate");
   const setSheetTab = useUiStore((s) => s.setSheetTab);
   const setTab = (next: SheetTab) => {
     if (id) setSheetTab(id, next);

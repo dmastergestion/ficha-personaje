@@ -43,4 +43,11 @@ describe("velocidad", () => {
     pj.equipment.armorId = "chain-mail";
     expect(velocidad(pj, 30)).toBe(20);
   });
+
+  it("bárbaro 5 sin pesada gana +10 pies", () => {
+    const pj = crearPersonajeVacio({ name: "B", playerName: "J", classId: "barbarian" });
+    pj.identity.classes = [{ classId: "barbarian", subclassId: null, level: 5 }];
+    pj.equipment.armorId = null;
+    expect(velocidad(pj, 30)).toBe(40);
+  });
 });

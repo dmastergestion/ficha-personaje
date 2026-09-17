@@ -46,7 +46,7 @@ export function PasoOrigen({
       </label>
       {!datos.backgroundId && (
         <p className="rounded-lg border border-amber-500/40 bg-amber-500/10 px-3 py-2 text-sm text-amber-200">
-          Sin trasfondo: el personaje queda incompleto (homebrew). Puedes seguir y editar dote y ASI
+          Sin trasfondo: el personaje queda incompleto (contenido propio). Puedes seguir y editar dote y ASI
           de origen más tarde en Resumen.
         </p>
       )}

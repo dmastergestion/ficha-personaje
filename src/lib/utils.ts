@@ -5,4 +5,5 @@ export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
 
-export const ACCION_CRITICA = "bg-gold text-black hover:bg-yellow-300 font-semibold";
+export const ACCION_CRITICA =
+  "bg-accent text-ink hover:bg-accent-hover font-semibold";

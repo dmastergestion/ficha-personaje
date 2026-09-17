@@ -8,7 +8,7 @@ const features = classFeatureMeta as FeatureMetaFile;
 const subclassFeatures = subclassFeatureMeta as FeatureMetaFile;
 
 /** IDs equivalentes (SRD `hand` vs meta PHB `open-hand`). */
-const SUBCLASS_ID_ALIASES: Record<string, string[]> = {
+export const SUBCLASS_ID_ALIASES: Record<string, string[]> = {
   hand: ["open-hand"],
   "open-hand": ["hand"],
 };
@@ -149,7 +149,7 @@ const ETIQUETA_SUBCLASE: Record<string, string> = {
   ranger: "Arquetipo",
   rogue: "Arquetipo",
   sorcerer: "Linaje",
-  warlock: "Patrón",
+  warlock: "Patrono",
   wizard: "Tradición",
 };
 

@@ -143,7 +143,7 @@ export function LevelUpModal({
         onClick={(e) => e.stopPropagation()}
       >
         <header className="border-b border-white/10 px-4 py-3">
-          <h2 id="level-up-title" className="text-lg font-bold text-gold">
+          <h2 id="level-up-title" className="text-lg font-bold">
             ¡Subes de nivel!
           </h2>
           <p className="text-sm text-muted">
@@ -211,7 +211,7 @@ export function LevelUpModal({
             <section className="rounded-lg bg-surface p-3">
               <h3 className="font-semibold">Bonificador de competencia</h3>
               <p>
-                +{preview.pbBefore} → <span className="font-bold text-gold">+{preview.pbAfter}</span>
+                +{preview.pbBefore} → <span className="font-bold text-accent">+{preview.pbAfter}</span>
               </p>
             </section>
           )}
@@ -222,8 +222,8 @@ export function LevelUpModal({
           </section>
 
           {preview.milestones.length > 0 && (
-            <section className="rounded-lg border border-gold/30 bg-gold/5 p-3">
-              <h3 className="mb-2 font-semibold text-gold">Decisiones / hitos</h3>
+            <section className="rounded-lg border border-accent/30 bg-accent/5 p-3">
+              <h3 className="mb-2 font-semibold">Decisiones / hitos</h3>
               <ul className="list-inside list-disc space-y-1 text-xs">
                 {preview.milestones.map((m) => (
                   <li key={m}>{m}</li>
@@ -424,9 +424,9 @@ export function LevelUpModal({
           {requiereConjuros && (
             <section
               ref={spellSectionRef}
-              className="scroll-mt-4 rounded-lg border border-gold/30 bg-gold/5 p-3"
+              className="scroll-mt-4 rounded-lg border border-accent/30 bg-accent/5 p-3"
             >
-              <h3 className="mb-2 font-semibold text-gold">Nuevos conjuros</h3>
+              <h3 className="mb-2 font-semibold">Nuevos conjuros</h3>
               <SpellChoicesForm
                 classes={[claseSubida]}
                 seleccion={spellDelta}

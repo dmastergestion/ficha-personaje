@@ -4,6 +4,8 @@ import {
   accionBarraCombate,
   alternarEnCombate,
   ataqueDesdeItem,
+  etiquetaDañoAtaque,
+  extrasAtaque,
   golpeDesarmadoPersonaje,
   idAtaqueDefecto,
   listarAtaquesFicha,
@@ -211,6 +213,45 @@ describe("estilos, sutil y artes marciales", () => {
     const golpe = golpeDesarmadoPersonaje(pj);
     expect(golpe.abilityKey).toBe("dex");
     expect(golpe.damage).toMatch(/1d6/);
+  });
+});
+
+describe("extrasAtaque", () => {
+  it("rabia suma daño y no da ventaja; temerario sí", () => {
+    const pj = crearPersonajeVacio({ name: "B", playerName: "J", classId: "barbarian" });
+    pj.identity.classes = [{ classId: "barbarian", subclassId: null, level: 3 }];
+    pj.combat.raging = true;
+    pj.combat.reckless = false;
+    const attack = {
+      id: "a1",
+      name: "Hacha",
+      abilityKey: "str" as const,
+      proficient: true,
+      weaponId: "greataxe",
+    };
+    const rabia = extrasAtaque(pj, attack);
+    expect(rabia.damage).toBeGreaterThan(0);
+    expect(rabia.ventaja).toBe(false);
+    pj.combat.reckless = true;
+    expect(extrasAtaque(pj, attack).ventaja).toBe(true);
+  });
+});
+
+describe("etiquetaDañoAtaque", () => {
+  it("sustituye MOD por el número y muestra rabia", () => {
+    const pj = crearPersonajeVacio({ name: "B", playerName: "J", classId: "barbarian" });
+    pj.identity.classes = [{ classId: "barbarian", subclassId: null, level: 3 }];
+    pj.abilities.str = 16;
+    pj.combat.raging = true;
+    const attack = {
+      id: "a1",
+      name: "Hacha",
+      abilityKey: "str" as const,
+      proficient: true,
+      weaponId: "greataxe",
+      damage: "1d12 + MOD FUE",
+    };
+    expect(etiquetaDañoAtaque(pj, attack)).toBe("1d12 + 3 + 2 (Rabia)");
   });
 });
 

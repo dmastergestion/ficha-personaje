@@ -126,7 +126,7 @@ export function PasoAtributos({
                   className={cn(
                     "rounded-lg border px-3 py-1 text-sm",
                     usado
-                      ? "border-gold/40 bg-gold/10 text-gold"
+                      ? "border-accent/40 bg-accent/10 text-accent"
                       : "border-white/10 bg-surface text-muted",
                   )}
                 >

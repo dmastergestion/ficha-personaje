@@ -1,19 +1,23 @@
 @import "tailwindcss";
 
 @theme {
-  --color-gold: #e8b84b;
   --color-accent: #8fbfa8;
+  --color-accent-hover: #a3ceb4;
+  --color-ink: #1a1613;
+  --color-cream: #e8dfd2;
   --color-surface: #1a1613;
   --color-panel: #252019;
   --color-elevated: #332c23;
-  --color-muted: #d4c8b8;
+  --color-muted: #c4b8a8;
   --color-border: rgb(210 190 160 / 0.18);
-  --color-danger: #f87171;
-  --color-success: #4ade80;
+  --color-danger: #e07a7a;
+  --color-success: #6fbf8a;
+  /* Alias de transición: no usar en UI nueva */
+  --color-gold: #8fbfa8;
 }
 
 body {
-  @apply bg-surface text-[15px] leading-relaxed text-white antialiased;
+  @apply bg-surface text-[15px] leading-relaxed text-cream antialiased;
   margin: 0;
   min-height: 100vh;
 }
@@ -28,11 +32,11 @@ body {
   }
 
   .sheet-section-title {
-    @apply mb-1.5 text-[15px] font-semibold tracking-tight text-white;
+    @apply mb-1.5 text-[15px] font-semibold tracking-tight text-cream;
   }
 
   .sheet-details > summary {
-    @apply mb-0 cursor-pointer list-none text-base font-semibold tracking-tight text-white;
+    @apply mb-0 cursor-pointer list-none text-base font-semibold tracking-tight text-cream;
   }
 
   .sheet-details > summary::-webkit-details-marker {
@@ -58,7 +62,7 @@ body {
   }
 
   .sheet-prose {
-    @apply whitespace-pre-wrap text-[15px] leading-relaxed text-white/90;
+    @apply whitespace-pre-wrap text-[15px] leading-relaxed text-cream/90;
   }
 
   .sheet-tab-stack {
@@ -70,20 +74,20 @@ body {
   }
 
   .sheet-input {
-    @apply w-full rounded-lg border border-white/15 bg-surface px-3 py-2.5 text-[15px] text-white transition-colors placeholder:text-muted/60 focus:border-gold/40 focus:outline-none focus:ring-2 focus:ring-gold/20;
+    @apply w-full rounded-lg border border-white/15 bg-surface px-3 py-2.5 text-[15px] text-cream transition-colors placeholder:text-muted/60 focus:border-accent/40 focus:outline-none focus:ring-2 focus:ring-accent/30;
   }
 
   .sheet-input-sm {
-    @apply w-full rounded-lg border border-white/15 bg-surface px-2 py-1 text-sm text-white tabular-nums transition-colors placeholder:text-muted/60 focus:border-gold/40 focus:outline-none focus:ring-2 focus:ring-gold/20;
+    @apply w-full rounded-lg border border-white/15 bg-surface px-2 py-1 text-sm text-cream tabular-nums transition-colors placeholder:text-muted/60 focus:border-accent/40 focus:outline-none focus:ring-2 focus:ring-accent/30;
   }
 
   .sheet-select {
-    @apply w-full appearance-none rounded-lg border border-white/15 bg-surface bg-[length:1rem] bg-[right_0.65rem_center] bg-no-repeat px-3 py-2.5 pr-9 text-[15px] text-white transition-colors focus:border-gold/40 focus:outline-none focus:ring-2 focus:ring-gold/20;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3E%3Cpath stroke='%23a8b0bd' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='m6 8 4 4 4-4'/%3E%3C/svg%3E");
+    @apply w-full appearance-none rounded-lg border border-white/15 bg-surface bg-[length:1rem] bg-[right_0.65rem_center] bg-no-repeat px-3 py-2.5 pr-9 text-[15px] text-cream transition-colors focus:border-accent/40 focus:outline-none focus:ring-2 focus:ring-accent/30;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3E%3Cpath stroke='%23c4b8a8' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='m6 8 4 4 4-4'/%3E%3C/svg%3E");
   }
 
   .sheet-quick-stats {
-    @apply mb-2 grid grid-cols-2 gap-px overflow-visible rounded-lg border border-white/10 bg-white/10 sm:grid-cols-4 lg:grid-cols-8;
+    @apply mb-2 grid grid-cols-2 gap-px overflow-visible rounded-lg border border-white/10 bg-white/10 sm:grid-cols-3 lg:grid-cols-6;
   }
 
   .sheet-stat-pill {
@@ -91,7 +95,7 @@ body {
   }
 
   .sheet-stat-pill-accent {
-    @apply bg-gold/8;
+    @apply bg-accent/10;
   }
 
   .sheet-stat-pill-label {
@@ -111,7 +115,7 @@ body {
   }
 
   .sheet-stat-pill-input {
-    @apply w-14 shrink-0 rounded-lg border border-white/10 bg-surface px-1.5 py-0.5 text-sm text-white tabular-nums transition-colors placeholder:text-muted/60 focus:border-gold/40 focus:outline-none focus:ring-2 focus:ring-gold/20 sm:w-16 sm:px-2 sm:py-1;
+    @apply w-14 shrink-0 rounded-lg border border-white/10 bg-surface px-1.5 py-0.5 text-sm text-cream tabular-nums transition-colors placeholder:text-muted/60 focus:border-accent/40 focus:outline-none focus:ring-2 focus:ring-accent/30 sm:w-16 sm:px-2 sm:py-1;
   }
 
   .sheet-tab-bar {
@@ -119,11 +123,11 @@ body {
   }
 
   .sheet-tab {
-    @apply min-w-fit flex-1 rounded-lg px-2.5 py-1.5 text-sm font-medium whitespace-nowrap text-muted transition-colors hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold/50;
+    @apply min-w-fit flex-1 rounded-lg px-2.5 py-1.5 text-sm font-medium whitespace-nowrap text-muted transition-colors hover:text-cream focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/50;
   }
 
   .sheet-tab-active {
-    @apply bg-gold font-semibold text-black shadow-sm hover:text-black;
+    @apply bg-elevated font-semibold text-cream shadow-sm hover:text-cream;
   }
 
   .sheet-sidebar-panel {
@@ -140,11 +144,11 @@ body {
   }
 
   .sheet-select-compact {
-    @apply min-w-0 rounded-lg border border-white/15 bg-surface px-2 py-1 text-sm text-white transition-colors focus:border-gold/40 focus:outline-none focus:ring-2 focus:ring-gold/20;
+    @apply min-w-0 rounded-lg border border-white/15 bg-surface px-2 py-1 text-sm text-cream transition-colors focus:border-accent/40 focus:outline-none focus:ring-2 focus:ring-accent/30;
   }
 
   .sheet-input-compact {
-    @apply min-w-0 rounded-lg border border-white/15 bg-surface px-2 py-1 text-sm text-white transition-colors placeholder:text-muted/60 focus:border-gold/40 focus:outline-none focus:ring-2 focus:ring-gold/20;
+    @apply min-w-0 rounded-lg border border-white/15 bg-surface px-2 py-1 text-sm text-cream transition-colors placeholder:text-muted/60 focus:border-accent/40 focus:outline-none focus:ring-2 focus:ring-accent/30;
   }
 
   .sheet-ability-cluster {
@@ -206,7 +210,7 @@ body {
   }
 
   .sheet-equip-item-weapon {
-    @apply border-gold/25 bg-gold/[0.04];
+    @apply border-accent/25 bg-accent/[0.04];
   }
 
   .sheet-equip-item-attuned {
@@ -218,7 +222,7 @@ body {
   }
 
   .sheet-equip-metrics input {
-    @apply w-11 rounded border border-white/15 bg-surface px-1 py-0.5 text-xs text-white tabular-nums;
+    @apply w-11 rounded border border-white/15 bg-surface px-1 py-0.5 text-xs text-cream tabular-nums;
   }
 
   .sheet-equip-field {
@@ -230,6 +234,18 @@ body {
   }
 
   .sheet-pdf-combat-stats .sheet-quick-stats {
-    @apply rounded-xl border-gold/20;
+    @apply rounded-xl border-white/15;
+  }
+
+  .sheet-overflow-menu {
+    @apply relative;
+  }
+
+  .sheet-overflow-menu > summary {
+    @apply list-none;
+  }
+
+  .sheet-overflow-menu > summary::-webkit-details-marker {
+    display: none;
   }
 }

@@ -10,20 +10,11 @@ import {
   extractFeatDetails,
   extractSpeciesDetails,
 } from "./five-etools-utils.js";
+import { toId } from "./i18n-shared.js";
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const dataRoot = path.join(root, "vendor", "5etools-src", "data");
 const srdDir = path.join(root, "src", "data", "srd");
-
-function toId(name: string): string {
-  return name
-    .toLowerCase()
-    .normalize("NFD")
-    .replace(/[\u0300-\u036f]/g, "")
-    .replace(/['']/g, "")
-    .replace(/[^a-z0-9]+/g, "-")
-    .replace(/^-|-$/g, "");
-}
 
 const SPECIES_ALIASES: Record<string, string> = {
   "elf-drow": "elf",

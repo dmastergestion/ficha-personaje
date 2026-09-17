@@ -1,5 +1,6 @@
 import classWeaponMasteryMeta from "@/data/srd/class-weapon-mastery-meta.json";
 import weaponMasteryProperties from "@/data/srd/weapon-mastery-properties.json";
+import weaponMasteryPropertyMeta from "@/data/srd/weapon-mastery-property-meta.json";
 import type { AbilityKey } from "@/lib/constants";
 import { bonificadorCompetencia, modificadorAtributo } from "@/rules/ability";
 import { esCompetenteConArma } from "@/rules/proficiencies";
@@ -13,9 +14,10 @@ type ClassMasteryMeta = {
 };
 
 const classMeta = classWeaponMasteryMeta as Record<string, ClassMasteryMeta>;
-const masteryProps = weaponMasteryProperties as Record<
+const masteryByWeapon = weaponMasteryProperties as Record<string, { property: string }>;
+const masteryByProp = weaponMasteryPropertyMeta as Record<
   string,
-  { property: string; labelEs: string }
+  { labelEs: string; resumenEs: string; descripcionEs: string }
 >;
 
 export const CLASES_CON_MAESTRIA_ARMAS = Object.keys(classMeta);
@@ -75,8 +77,30 @@ export function armasElegiblesMaestria(character: Character): SrdWeapon[] {
   );
 }
 
+export function propiedadMaestriaArma(weaponId: string): string | null {
+  return masteryByWeapon[weaponId]?.property ?? null;
+}
+
+export function textoMaestriaArma(weaponId: string): {
+  property: string;
+  label: string;
+  resumen: string;
+  descripcion: string;
+} | null {
+  const property = propiedadMaestriaArma(weaponId);
+  if (!property) return null;
+  const meta = masteryByProp[property];
+  if (!meta) return null;
+  return {
+    property,
+    label: meta.labelEs,
+    resumen: meta.resumenEs,
+    descripcion: meta.descripcionEs,
+  };
+}
+
 export function etiquetaMaestriaArma(weaponId: string): string | null {
-  return masteryProps[weaponId]?.labelEs ?? null;
+  return textoMaestriaArma(weaponId)?.label ?? null;
 }
 
 export function resumenMaestriaArma(weaponId: string): string {
@@ -143,6 +167,8 @@ export function maestriasArmasCompletas(character: Character): boolean {
   );
 }
 
+const ABILITY_KEYS_FORMULA: AbilityKey[] = ["str", "dex", "con", "int", "wis", "cha"];
+
 /** PB o modificador de atributo para fórmulas de recursos de rasgo. */
 export function maxRecursoPorFormula(
   formula: string,
@@ -150,10 +176,21 @@ export function maxRecursoPorFormula(
   abilities?: Partial<Record<AbilityKey, number>>,
 ): number {
   if (formula === "pb") return Math.max(1, bonificadorCompetencia(level));
-  if (formula === "cha" || formula === "max(1,cha)") {
-    const mod = modificadorAtributo(abilities?.cha ?? 10);
-    return formula === "max(1,cha)" ? Math.max(1, mod) : Math.max(0, mod);
+  if (formula === "2pb" || formula === "pb*2") {
+    return 2 * Math.max(1, bonificadorCompetencia(level));
   }
+  if (formula === "1+level") return 1 + level;
+
+  const maxUno = formula.match(/^max\(1,(str|dex|con|int|wis|cha)\)$/);
+  if (maxUno) {
+    const key = maxUno[1] as AbilityKey;
+    return Math.max(1, modificadorAtributo(abilities?.[key] ?? 10));
+  }
+
+  if ((ABILITY_KEYS_FORMULA as string[]).includes(formula)) {
+    return Math.max(0, modificadorAtributo(abilities?.[formula as AbilityKey] ?? 10));
+  }
+
   const n = Number(formula);
   return Number.isFinite(n) ? n : 0;
 }

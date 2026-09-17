@@ -1,9 +1,12 @@
+import { InfoTrigger } from "@/components/InfoTrigger";
+import { ResourceInfoPanel } from "@/components/ResourceInfoPanel";
 import { t } from "@/rules/srd";
 import {
   armasElegiblesMaestria,
   maestriasArmasValidas,
   ranurasMaestriaTotales,
   resumenMaestriaArma,
+  textoMaestriaArma,
 } from "@/rules/weapon-mastery";
 import type { Character } from "@/schemas/character";
 
@@ -41,9 +44,22 @@ export function WeaponMasteryPanel({
         Elige {slots} tipo{slots > 1 ? "s" : ""} de arma. Puedes cambiar una tras descanso largo.
       </p>
       <div className="space-y-3">
-        {Array.from({ length: slots }, (_, index) => (
-          <label key={index} className="block space-y-1 text-sm">
-            <span className="text-muted">Arma {index + 1}</span>
+        {Array.from({ length: slots }, (_, index) => {
+          const weaponId = picks[index];
+          const texto = weaponId ? textoMaestriaArma(weaponId) : null;
+          return (
+            <label key={index} className="block space-y-1 text-sm">
+            <span className="flex items-center gap-1 text-muted">
+              Arma {index + 1}
+              {texto ? (
+                <InfoTrigger
+                  tip={texto.resumen}
+                  title={texto.label}
+                  panel={<ResourceInfoPanel texto={texto.descripcion} />}
+                  className="h-5 w-5 shrink-0 text-[10px]"
+                />
+              ) : null}
+            </span>
             {editable ? (
               <select
                 className="sheet-select"
@@ -62,8 +78,9 @@ export function WeaponMasteryPanel({
                 {picks[index] ? resumenMaestriaArma(picks[index]!) : "—"}
               </p>
             )}
-          </label>
-        ))}
+            </label>
+          );
+        })}
       </div>
       {editable && incomplete && (
         <p className="text-sm text-amber-400/90">Completa todas las maestrías de arma.</p>

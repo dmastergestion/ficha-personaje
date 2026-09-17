@@ -1,0 +1,2115 @@
+{
+  "aberrant": [
+    {
+      "grantKey": "arms-of-hadar-3",
+      "spellId": "arms-of-hadar",
+      "level": 1,
+      "minClassLevel": 3,
+      "classId": "sorcerer",
+      "alwaysPrepared": true,
+      "abilityKey": "cha"
+    },
+    {
+      "grantKey": "calm-emotions-3",
+      "spellId": "calm-emotions",
+      "level": 2,
+      "minClassLevel": 3,
+      "classId": "sorcerer",
+      "alwaysPrepared": true,
+      "abilityKey": "cha"
+    },
+    {
+      "grantKey": "detect-thoughts-3",
+      "spellId": "detect-thoughts",
+      "level": 2,
+      "minClassLevel": 3,
+      "classId": "sorcerer",
+      "alwaysPrepared": true,
+      "abilityKey": "cha"
+    },
+    {
+      "grantKey": "dissonant-whispers-3",
+      "spellId": "dissonant-whispers",
+      "level": 1,
+      "minClassLevel": 3,
+      "classId": "sorcerer",
+      "alwaysPrepared": true,
+      "abilityKey": "cha"
+    },
+    {
+      "grantKey": "mind-sliver-3",
+      "spellId": "mind-sliver",
+      "level": 0,
+      "minClassLevel": 3,
+      "classId": "sorcerer",
+      "alwaysPrepared": true,
+      "abilityKey": "cha"
+    },
+    {
+      "grantKey": "hunger-of-hadar-5",
+      "spellId": "hunger-of-hadar",
+      "level": 3,
+      "minClassLevel": 5,
+      "classId": "sorcerer",
+      "alwaysPrepared": true,
+      "abilityKey": "cha"
+    },
+    {
+      "grantKey": "sending-5",
+      "spellId": "sending",
+      "level": 3,
+      "minClassLevel": 5,
+      "classId": "sorcerer",
+      "alwaysPrepared": true,
+      "abilityKey": "cha"
+    },
+    {
+      "grantKey": "evards-black-tentacles-7",
+      "spellId": "evards-black-tentacles",
+      "level": 4,
+      "minClassLevel": 7,
+      "classId": "sorcerer",
+      "alwaysPrepared": true,
+      "abilityKey": "cha"
+    },
+    {
+      "grantKey": "summon-aberration-7",
+      "spellId": "summon-aberration",
+      "level": 4,
+      "minClassLevel": 7,
+      "classId": "sorcerer",
+      "alwaysPrepared": true,
+      "abilityKey": "cha"
+    },
+    {
+      "grantKey": "rarys-telepathic-bond-9",
+      "spellId": "rarys-telepathic-bond",
+      "level": 5,
+      "minClassLevel": 9,
+      "classId": "sorcerer",
+      "alwaysPrepared": true,
+      "abilityKey": "cha"
+    },
+    {
+      "grantKey": "telekinesis-9",
+      "spellId": "telekinesis",
+      "level": 5,
+      "minClassLevel": 9,
+      "classId": "sorcerer",
+      "alwaysPrepared": true,
+      "abilityKey": "cha"
+    }
+  ],
+  "abjurer": [
+    {
+      "grantKey": "counterspell-10",
+      "spellId": "counterspell",
+      "level": 3,
+      "minClassLevel": 10,
+      "classId": "wizard",
+      "alwaysPrepared": true,
+      "abilityKey": "int"
+    },
+    {
+      "grantKey": "dispel-magic-10",
+      "spellId": "dispel-magic",
+      "level": 3,
+      "minClassLevel": 10,
+      "classId": "wizard",
+      "alwaysPrepared": true,
+      "abilityKey": "int"
+    }
+  ],
+  "ancients": [
+    {
+      "grantKey": "ensnaring-strike-3",
+      "spellId": "ensnaring-strike",
+      "level": 1,
+      "minClassLevel": 3,
+      "classId": "paladin",
+      "alwaysPrepared": true,
+      "abilityKey": "cha"
+    },
+    {
+      "grantKey": "speak-with-animals-3",
+      "spellId": "speak-with-animals",
+      "level": 1,
+      "minClassLevel": 3,
+      "classId": "paladin",
+      "alwaysPrepared": true,
+      "abilityKey": "cha"
+    },
+    {
+      "grantKey": "misty-step-5",
+      "spellId": "misty-step",
+      "level": 2,
+      "minClassLevel": 5,
+      "classId": "paladin",
+      "alwaysPrepared": true,
+      "abilityKey": "cha"
+    },
+    {
+      "grantKey": "moonbeam-5",
+      "spellId": "moonbeam",
+      "level": 2,
+      "minClassLevel": 5,
+      "classId": "paladin",
+      "alwaysPrepared": true,
+      "abilityKey": "cha"
+    },
+    {
+      "grantKey": "plant-growth-9",
+      "spellId": "plant-growth",
+      "level": 3,
+      "minClassLevel": 9,
+      "classId": "paladin",
+      "alwaysPrepared": true,
+      "abilityKey": "cha"
+    },
+    {
+      "grantKey": "protection-from-energy-9",
+      "spellId": "protection-from-energy",
+      "level": 3,
+      "minClassLevel": 9,
+      "classId": "paladin",
+      "alwaysPrepared": true,
+      "abilityKey": "cha"
+    },
+    {
+      "grantKey": "ice-storm-13",
+      "spellId": "ice-storm",
+      "level": 4,
+      "minClassLevel": 13,
+      "classId": "paladin",
+      "alwaysPrepared": true,
+      "abilityKey": "cha"
+    },
+    {
+      "grantKey": "stoneskin-13",
+      "spellId": "stoneskin",
+      "level": 4,
+      "minClassLevel": 13,
+      "classId": "paladin",
+      "alwaysPrepared": true,
+      "abilityKey": "cha"
+    },
+    {
+      "grantKey": "commune-with-nature-17",
+      "spellId": "commune-with-nature",
+      "level": 5,
+      "minClassLevel": 17,
+      "classId": "paladin",
+      "alwaysPrepared": true,
+      "abilityKey": "cha"
+    },
+    {
+      "grantKey": "tree-stride-17",
+      "spellId": "tree-stride",
+      "level": 5,
+      "minClassLevel": 17,
+      "classId": "paladin",
+      "alwaysPrepared": true,
+      "abilityKey": "cha"
+    }
+  ],
+  "arcane-trickster": [
+    {
+      "grantKey": "mage-hand-3",
+      "spellId": "mage-hand",
+      "level": 0,
+      "minClassLevel": 3,
+      "classId": "rogue",
+      "alwaysPrepared": true,
+      "abilityKey": "int"
+    }
+  ],
+  "archfey": [
+    {
+      "grantKey": "calm-emotions-3",
+      "spellId": "calm-emotions",
+      "level": 2,
+      "minClassLevel": 3,
+      "classId": "warlock",
+      "alwaysPrepared": true,
+      "abilityKey": "cha"
+    },
+    {
+      "grantKey": "faerie-fire-3",
+      "spellId": "faerie-fire",
+      "level": 1,
+      "minClassLevel": 3,
+      "classId": "warlock",
+      "alwaysPrepared": true,
+      "abilityKey": "cha"
+    },
+    {
+      "grantKey": "misty-step-3",
+      "spellId": "misty-step",
+      "level": 2,
+      "minClassLevel": 3,
+      "classId": "warlock",
+      "alwaysPrepared": true,
+      "abilityKey": "cha"
+    },
+    {
+      "grantKey": "phantasmal-force-3",
+      "spellId": "phantasmal-force",
+      "level": 2,
+      "minClassLevel": 3,
+      "classId": "warlock",
+      "alwaysPrepared": true,
+      "abilityKey": "cha"
+    },
+    {
+      "grantKey": "sleep-3",
+      "spellId": "sleep",
+      "level": 1,
+      "minClassLevel": 3,
+      "classId": "warlock",
+      "alwaysPrepared": true,
+      "abilityKey": "cha"
+    },
+    {
+      "grantKey": "blink-5",
+      "spellId": "blink",
+      "level": 3,
+      "minClassLevel": 5,
+      "classId": "warlock",
+      "alwaysPrepared": true,
+      "abilityKey": "cha"
+    },
+    {
+      "grantKey": "plant-growth-5",
+      "spellId": "plant-growth",
+      "level": 3,
+      "minClassLevel": 5,
+      "classId": "warlock",
+      "alwaysPrepared": true,
+      "abilityKey": "cha"
+    },
+    {
+      "grantKey": "dominate-beast-7",
+      "spellId": "dominate-beast",
+      "level": 4,
+      "minClassLevel": 7,
+      "classId": "warlock",
+      "alwaysPrepared": true,
+      "abilityKey": "cha"
+    },
+    {
+      "grantKey": "greater-invisibility-7",
+      "spellId": "greater-invisibility",
+      "level": 4,
+      "minClassLevel": 7,
+      "classId": "warlock",
+      "alwaysPrepared": true,
+      "abilityKey": "cha"
+    },
+    {
+      "grantKey": "dominate-person-9",
+      "spellId": "dominate-person",
+      "level": 5,
+      "minClassLevel": 9,
+      "classId": "warlock",
+      "alwaysPrepared": true,
+      "abilityKey": "cha"
+    },
+    {
+      "grantKey": "misty-step-NaN",
+      "spellId": "misty-step",
+      "level": 2,
+      "minClassLevel": null,
+      "classId": "warlock",
+      "alwaysPrepared": true,
+      "abilityKey": "cha"
+    },
+    {
+      "grantKey": "seeming-9",
+      "spellId": "seeming",
+      "level": 5,
+      "minClassLevel": 9,
+      "classId": "warlock",
+      "alwaysPrepared": true,
+      "abilityKey": "cha"
+    }
+  ],
+  "celestial": [
+    {
+      "grantKey": "light-1",
+      "spellId": "light",
+      "level": 0,
+      "minClassLevel": 1,
+      "classId": "warlock",
+      "alwaysPrepared": true,
+      "abilityKey": "cha"
+    },
+    {
+      "grantKey": "sacred-flame-1",
+      "spellId": "sacred-flame",
+      "level": 0,
+      "minClassLevel": 1,
+      "classId": "warlock",
+      "alwaysPrepared": true,
+      "abilityKey": "cha"
+    },
+    {
+      "grantKey": "aid-3",
+      "spellId": "aid",
+      "level": 2,
+      "minClassLevel": 3,
+      "classId": "warlock",
+      "alwaysPrepared": true,
+      "abilityKey": "cha"
+    },
+    {
+      "grantKey": "cure-wounds-3",
+      "spellId": "cure-wounds",
+      "level": 1,
+      "minClassLevel": 3,
+      "classId": "warlock",
+      "alwaysPrepared": true,
+      "abilityKey": "cha"
+    },
+    {
+      "grantKey": "guiding-bolt-3",
+      "spellId": "guiding-bolt",
+      "level": 1,
+      "minClassLevel": 3,
+      "classId": "warlock",
+      "alwaysPrepared": true,
+      "abilityKey": "cha"
+    },
+    {
+      "grantKey": "lesser-restoration-3",
+      "spellId": "lesser-restoration",
+      "level": 2,
+      "minClassLevel": 3,
+      "classId": "warlock",
+      "alwaysPrepared": true,
+      "abilityKey": "cha"
+    },
+    {
+      "grantKey": "daylight-5",
+      "spellId": "daylight",
+      "level": 3,
+      "minClassLevel": 5,
+      "classId": "warlock",
+      "alwaysPrepared": true,
+      "abilityKey": "cha"
+    },
+    {
+      "grantKey": "revivify-5",
+      "spellId": "revivify",
+      "level": 3,
+      "minClassLevel": 5,
+      "classId": "warlock",
+      "alwaysPrepared": true,
+      "abilityKey": "cha"
+    },
+    {
+      "grantKey": "guardian-of-faith-7",
+      "spellId": "guardian-of-faith",
+      "level": 4,
+      "minClassLevel": 7,
+      "classId": "warlock",
+      "alwaysPrepared": true,
+      "abilityKey": "cha"
+    },
+    {
+      "grantKey": "wall-of-fire-7",
+      "spellId": "wall-of-fire",
+      "level": 4,
+      "minClassLevel": 7,
+      "classId": "warlock",
+      "alwaysPrepared": true,
+      "abilityKey": "cha"
+    },
+    {
+      "grantKey": "greater-restoration-9",
+      "spellId": "greater-restoration",
+      "level": 5,
+      "minClassLevel": 9,
+      "classId": "warlock",
+      "alwaysPrepared": true,
+      "abilityKey": "cha"
+    },
+    {
+      "grantKey": "summon-celestial-9",
+      "spellId": "summon-celestial",
+      "level": 5,
+      "minClassLevel": 9,
+      "classId": "warlock",
+      "alwaysPrepared": true,
+      "abilityKey": "cha"
+    }
+  ],
+  "clockwork": [
+    {
+      "grantKey": "aid-3",
+      "spellId": "aid",
+      "level": 2,
+      "minClassLevel": 3,
+      "classId": "sorcerer",
+      "alwaysPrepared": true,
+      "abilityKey": "cha"
+    },
+    {
+      "grantKey": "alarm-3",
+      "spellId": "alarm",
+      "level": 1,
+      "minClassLevel": 3,
+      "classId": "sorcerer",
+      "alwaysPrepared": true,
+      "abilityKey": "cha"
+    },
+    {
+      "grantKey": "lesser-restoration-3",
+      "spellId": "lesser-restoration",
+      "level": 2,
+      "minClassLevel": 3,
+      "classId": "sorcerer",
+      "alwaysPrepared": true,
+      "abilityKey": "cha"
+    },
+    {
+      "grantKey": "protection-from-evil-and-good-3",
+      "spellId": "protection-from-evil-and-good",
+      "level": 1,
+      "minClassLevel": 3,
+      "classId": "sorcerer",
+      "alwaysPrepared": true,
+      "abilityKey": "cha"
+    },
+    {
+      "grantKey": "dispel-magic-5",
+      "spellId": "dispel-magic",
+      "level": 3,
+      "minClassLevel": 5,
+      "classId": "sorcerer",
+      "alwaysPrepared": true,
+      "abilityKey": "cha"
+    },
+    {
+      "grantKey": "protection-from-energy-5",
+      "spellId": "protection-from-energy",
+      "level": 3,
+      "minClassLevel": 5,
+      "classId": "sorcerer",
+      "alwaysPrepared": true,
+      "abilityKey": "cha"
+    },
+    {
+      "grantKey": "freedom-of-movement-7",
+      "spellId": "freedom-of-movement",
+      "level": 4,
+      "minClassLevel": 7,
+      "classId": "sorcerer",
+      "alwaysPrepared": true,
+      "abilityKey": "cha"
+    },
+    {
+      "grantKey": "summon-construct-7",
+      "spellId": "summon-construct",
+      "level": 4,
+      "minClassLevel": 7,
+      "classId": "sorcerer",
+      "alwaysPrepared": true,
+      "abilityKey": "cha"
+    },
+    {
+      "grantKey": "greater-restoration-9",
+      "spellId": "greater-restoration",
+      "level": 5,
+      "minClassLevel": 9,
+      "classId": "sorcerer",
+      "alwaysPrepared": true,
+      "abilityKey": "cha"
+    },
+    {
+      "grantKey": "wall-of-force-9",
+      "spellId": "wall-of-force",
+      "level": 5,
+      "minClassLevel": 9,
+      "classId": "sorcerer",
+      "alwaysPrepared": true,
+      "abilityKey": "cha"
+    }
+  ],
+  "devotion": [
+    {
+      "grantKey": "protection-from-evil-and-good-3",
+      "spellId": "protection-from-evil-and-good",
+      "level": 1,
+      "minClassLevel": 3,
+      "classId": "paladin",
+      "alwaysPrepared": true,
+      "abilityKey": "cha"
+    },
+    {
+      "grantKey": "shield-of-faith-3",
+      "spellId": "shield-of-faith",
+      "level": 1,
+      "minClassLevel": 3,
+      "classId": "paladin",
+      "alwaysPrepared": true,
+      "abilityKey": "cha"
+    },
+    {
+      "grantKey": "aid-5",
+      "spellId": "aid",
+      "level": 2,
+      "minClassLevel": 5,
+      "classId": "paladin",
+      "alwaysPrepared": true,
+      "abilityKey": "cha"
+    },
+    {
+      "grantKey": "zone-of-truth-5",
+      "spellId": "zone-of-truth",
+      "level": 2,
+      "minClassLevel": 5,
+      "classId": "paladin",
+      "alwaysPrepared": true,
+      "abilityKey": "cha"
+    },
+    {
+      "grantKey": "beacon-of-hope-9",
+      "spellId": "beacon-of-hope",
+      "level": 3,
+      "minClassLevel": 9,
+      "classId": "paladin",
+      "alwaysPrepared": true,
+      "abilityKey": "cha"
+    },
+    {
+      "grantKey": "dispel-magic-9",
+      "spellId": "dispel-magic",
+      "level": 3,
+      "minClassLevel": 9,
+      "classId": "paladin",
+      "alwaysPrepared": true,
+      "abilityKey": "cha"
+    },
+    {
+      "grantKey": "freedom-of-movement-13",
+      "spellId": "freedom-of-movement",
+      "level": 4,
+      "minClassLevel": 13,
+      "classId": "paladin",
+      "alwaysPrepared": true,
+      "abilityKey": "cha"
+    },
+    {
+      "grantKey": "guardian-of-faith-13",
+      "spellId": "guardian-of-faith",
+      "level": 4,
+      "minClassLevel": 13,
+      "classId": "paladin",
+      "alwaysPrepared": true,
+      "abilityKey": "cha"
+    },
+    {
+      "grantKey": "commune-17",
+      "spellId": "commune",
+      "level": 5,
+      "minClassLevel": 17,
+      "classId": "paladin",
+      "alwaysPrepared": true,
+      "abilityKey": "cha"
+    },
+    {
+      "grantKey": "flame-strike-17",
+      "spellId": "flame-strike",
+      "level": 5,
+      "minClassLevel": 17,
+      "classId": "paladin",
+      "alwaysPrepared": true,
+      "abilityKey": "cha"
+    }
+  ],
+  "draconic": [
+    {
+      "grantKey": "alter-self-3",
+      "spellId": "alter-self",
+      "level": 2,
+      "minClassLevel": 3,
+      "classId": "sorcerer",
+      "alwaysPrepared": true,
+      "abilityKey": "cha"
+    },
+    {
+      "grantKey": "chromatic-orb-3",
+      "spellId": "chromatic-orb",
+      "level": 1,
+      "minClassLevel": 3,
+      "classId": "sorcerer",
+      "alwaysPrepared": true,
+      "abilityKey": "cha"
+    },
+    {
+      "grantKey": "command-3",
+      "spellId": "command",
+      "level": 1,
+      "minClassLevel": 3,
+      "classId": "sorcerer",
+      "alwaysPrepared": true,
+      "abilityKey": "cha"
+    },
+    {
+      "grantKey": "dragons-breath-3",
+      "spellId": "dragons-breath",
+      "level": 2,
+      "minClassLevel": 3,
+      "classId": "sorcerer",
+      "alwaysPrepared": true,
+      "abilityKey": "cha"
+    },
+    {
+      "grantKey": "fear-5",
+      "spellId": "fear",
+      "level": 3,
+      "minClassLevel": 5,
+      "classId": "sorcerer",
+      "alwaysPrepared": true,
+      "abilityKey": "cha"
+    },
+    {
+      "grantKey": "fly-5",
+      "spellId": "fly",
+      "level": 3,
+      "minClassLevel": 5,
+      "classId": "sorcerer",
+      "alwaysPrepared": true,
+      "abilityKey": "cha"
+    },
+    {
+      "grantKey": "arcane-eye-7",
+      "spellId": "arcane-eye",
+      "level": 4,
+      "minClassLevel": 7,
+      "classId": "sorcerer",
+      "alwaysPrepared": true,
+      "abilityKey": "cha"
+    },
+    {
+      "grantKey": "charm-monster-7",
+      "spellId": "charm-monster",
+      "level": 4,
+      "minClassLevel": 7,
+      "classId": "sorcerer",
+      "alwaysPrepared": true,
+      "abilityKey": "cha"
+    },
+    {
+      "grantKey": "legend-lore-9",
+      "spellId": "legend-lore",
+      "level": 5,
+      "minClassLevel": 9,
+      "classId": "sorcerer",
+      "alwaysPrepared": true,
+      "abilityKey": "cha"
+    },
+    {
+      "grantKey": "summon-dragon-9",
+      "spellId": "summon-dragon",
+      "level": 5,
+      "minClassLevel": 9,
+      "classId": "sorcerer",
+      "alwaysPrepared": true,
+      "abilityKey": "cha"
+    }
+  ],
+  "elements": [
+    {
+      "grantKey": "elementalism-3",
+      "spellId": "elementalism",
+      "level": 0,
+      "minClassLevel": 3,
+      "classId": "monk",
+      "alwaysPrepared": true,
+      "abilityKey": "wis"
+    }
+  ],
+  "fey-wanderer": [
+    {
+      "grantKey": "charm-person-3",
+      "spellId": "charm-person",
+      "level": 1,
+      "minClassLevel": 3,
+      "classId": "ranger",
+      "alwaysPrepared": true,
+      "abilityKey": "wis"
+    },
+    {
+      "grantKey": "misty-step-5",
+      "spellId": "misty-step",
+      "level": 2,
+      "minClassLevel": 5,
+      "classId": "ranger",
+      "alwaysPrepared": true,
+      "abilityKey": "wis"
+    },
+    {
+      "grantKey": "summon-fey-9",
+      "spellId": "summon-fey",
+      "level": 3,
+      "minClassLevel": 9,
+      "classId": "ranger",
+      "alwaysPrepared": true,
+      "abilityKey": "wis"
+    },
+    {
+      "grantKey": "dimension-door-13",
+      "spellId": "dimension-door",
+      "level": 4,
+      "minClassLevel": 13,
+      "classId": "ranger",
+      "alwaysPrepared": true,
+      "abilityKey": "wis"
+    },
+    {
+      "grantKey": "mislead-17",
+      "spellId": "mislead",
+      "level": 5,
+      "minClassLevel": 17,
+      "classId": "ranger",
+      "alwaysPrepared": true,
+      "abilityKey": "wis"
+    }
+  ],
+  "fiend": [
+    {
+      "grantKey": "burning-hands-3",
+      "spellId": "burning-hands",
+      "level": 1,
+      "minClassLevel": 3,
+      "classId": "warlock",
+      "alwaysPrepared": true,
+      "abilityKey": "cha"
+    },
+    {
+      "grantKey": "command-3",
+      "spellId": "command",
+      "level": 1,
+      "minClassLevel": 3,
+      "classId": "warlock",
+      "alwaysPrepared": true,
+      "abilityKey": "cha"
+    },
+    {
+      "grantKey": "scorching-ray-3",
+      "spellId": "scorching-ray",
+      "level": 2,
+      "minClassLevel": 3,
+      "classId": "warlock",
+      "alwaysPrepared": true,
+      "abilityKey": "cha"
+    },
+    {
+      "grantKey": "suggestion-3",
+      "spellId": "suggestion",
+      "level": 2,
+      "minClassLevel": 3,
+      "classId": "warlock",
+      "alwaysPrepared": true,
+      "abilityKey": "cha"
+    },
+    {
+      "grantKey": "fireball-5",
+      "spellId": "fireball",
+      "level": 3,
+      "minClassLevel": 5,
+      "classId": "warlock",
+      "alwaysPrepared": true,
+      "abilityKey": "cha"
+    },
+    {
+      "grantKey": "stinking-cloud-5",
+      "spellId": "stinking-cloud",
+      "level": 3,
+      "minClassLevel": 5,
+      "classId": "warlock",
+      "alwaysPrepared": true,
+      "abilityKey": "cha"
+    },
+    {
+      "grantKey": "fire-shield-7",
+      "spellId": "fire-shield",
+      "level": 4,
+      "minClassLevel": 7,
+      "classId": "warlock",
+      "alwaysPrepared": true,
+      "abilityKey": "cha"
+    },
+    {
+      "grantKey": "wall-of-fire-7",
+      "spellId": "wall-of-fire",
+      "level": 4,
+      "minClassLevel": 7,
+      "classId": "warlock",
+      "alwaysPrepared": true,
+      "abilityKey": "cha"
+    },
+    {
+      "grantKey": "geas-9",
+      "spellId": "geas",
+      "level": 5,
+      "minClassLevel": 9,
+      "classId": "warlock",
+      "alwaysPrepared": true,
+      "abilityKey": "cha"
+    },
+    {
+      "grantKey": "insect-plague-9",
+      "spellId": "insect-plague",
+      "level": 5,
+      "minClassLevel": 9,
+      "classId": "warlock",
+      "alwaysPrepared": true,
+      "abilityKey": "cha"
+    }
+  ],
+  "glamour": [
+    {
+      "grantKey": "charm-person-3",
+      "spellId": "charm-person",
+      "level": 1,
+      "minClassLevel": 3,
+      "classId": "bard",
+      "alwaysPrepared": true,
+      "abilityKey": "cha"
+    },
+    {
+      "grantKey": "mirror-image-3",
+      "spellId": "mirror-image",
+      "level": 2,
+      "minClassLevel": 3,
+      "classId": "bard",
+      "alwaysPrepared": true,
+      "abilityKey": "cha"
+    },
+    {
+      "grantKey": "command-6",
+      "spellId": "command",
+      "level": 1,
+      "minClassLevel": 6,
+      "classId": "bard",
+      "alwaysPrepared": true,
+      "abilityKey": "cha"
+    }
+  ],
+  "gloom-stalker": [
+    {
+      "grantKey": "disguise-self-3",
+      "spellId": "disguise-self",
+      "level": 1,
+      "minClassLevel": 3,
+      "classId": "ranger",
+      "alwaysPrepared": true,
+      "abilityKey": "wis"
+    },
+    {
+      "grantKey": "rope-trick-5",
+      "spellId": "rope-trick",
+      "level": 2,
+      "minClassLevel": 5,
+      "classId": "ranger",
+      "alwaysPrepared": true,
+      "abilityKey": "wis"
+    },
+    {
+      "grantKey": "fear-9",
+      "spellId": "fear",
+      "level": 3,
+      "minClassLevel": 9,
+      "classId": "ranger",
+      "alwaysPrepared": true,
+      "abilityKey": "wis"
+    },
+    {
+      "grantKey": "greater-invisibility-13",
+      "spellId": "greater-invisibility",
+      "level": 4,
+      "minClassLevel": 13,
+      "classId": "ranger",
+      "alwaysPrepared": true,
+      "abilityKey": "wis"
+    },
+    {
+      "grantKey": "seeming-17",
+      "spellId": "seeming",
+      "level": 5,
+      "minClassLevel": 17,
+      "classId": "ranger",
+      "alwaysPrepared": true,
+      "abilityKey": "wis"
+    }
+  ],
+  "glory": [
+    {
+      "grantKey": "guiding-bolt-3",
+      "spellId": "guiding-bolt",
+      "level": 1,
+      "minClassLevel": 3,
+      "classId": "paladin",
+      "alwaysPrepared": true,
+      "abilityKey": "cha"
+    },
+    {
+      "grantKey": "heroism-3",
+      "spellId": "heroism",
+      "level": 1,
+      "minClassLevel": 3,
+      "classId": "paladin",
+      "alwaysPrepared": true,
+      "abilityKey": "cha"
+    },
+    {
+      "grantKey": "enhance-ability-5",
+      "spellId": "enhance-ability",
+      "level": 2,
+      "minClassLevel": 5,
+      "classId": "paladin",
+      "alwaysPrepared": true,
+      "abilityKey": "cha"
+    },
+    {
+      "grantKey": "magic-weapon-5",
+      "spellId": "magic-weapon",
+      "level": 2,
+      "minClassLevel": 5,
+      "classId": "paladin",
+      "alwaysPrepared": true,
+      "abilityKey": "cha"
+    },
+    {
+      "grantKey": "haste-9",
+      "spellId": "haste",
+      "level": 3,
+      "minClassLevel": 9,
+      "classId": "paladin",
+      "alwaysPrepared": true,
+      "abilityKey": "cha"
+    },
+    {
+      "grantKey": "protection-from-energy-9",
+      "spellId": "protection-from-energy",
+      "level": 3,
+      "minClassLevel": 9,
+      "classId": "paladin",
+      "alwaysPrepared": true,
+      "abilityKey": "cha"
+    },
+    {
+      "grantKey": "compulsion-13",
+      "spellId": "compulsion",
+      "level": 4,
+      "minClassLevel": 13,
+      "classId": "paladin",
+      "alwaysPrepared": true,
+      "abilityKey": "cha"
+    },
+    {
+      "grantKey": "freedom-of-movement-13",
+      "spellId": "freedom-of-movement",
+      "level": 4,
+      "minClassLevel": 13,
+      "classId": "paladin",
+      "alwaysPrepared": true,
+      "abilityKey": "cha"
+    },
+    {
+      "grantKey": "legend-lore-17",
+      "spellId": "legend-lore",
+      "level": 5,
+      "minClassLevel": 17,
+      "classId": "paladin",
+      "alwaysPrepared": true,
+      "abilityKey": "cha"
+    },
+    {
+      "grantKey": "yolandes-regal-presence-17",
+      "spellId": "yolandes-regal-presence",
+      "level": 5,
+      "minClassLevel": 17,
+      "classId": "paladin",
+      "alwaysPrepared": true,
+      "abilityKey": "cha"
+    }
+  ],
+  "great-old-one": [
+    {
+      "grantKey": "detect-thoughts-3",
+      "spellId": "detect-thoughts",
+      "level": 2,
+      "minClassLevel": 3,
+      "classId": "warlock",
+      "alwaysPrepared": true,
+      "abilityKey": "cha"
+    },
+    {
+      "grantKey": "dissonant-whispers-3",
+      "spellId": "dissonant-whispers",
+      "level": 1,
+      "minClassLevel": 3,
+      "classId": "warlock",
+      "alwaysPrepared": true,
+      "abilityKey": "cha"
+    },
+    {
+      "grantKey": "phantasmal-force-3",
+      "spellId": "phantasmal-force",
+      "level": 2,
+      "minClassLevel": 3,
+      "classId": "warlock",
+      "alwaysPrepared": true,
+      "abilityKey": "cha"
+    },
+    {
+      "grantKey": "tashas-hideous-laughter-3",
+      "spellId": "tashas-hideous-laughter",
+      "level": 1,
+      "minClassLevel": 3,
+      "classId": "warlock",
+      "alwaysPrepared": true,
+      "abilityKey": "cha"
+    },
+    {
+      "grantKey": "clairvoyance-5",
+      "spellId": "clairvoyance",
+      "level": 3,
+      "minClassLevel": 5,
+      "classId": "warlock",
+      "alwaysPrepared": true,
+      "abilityKey": "cha"
+    },
+    {
+      "grantKey": "hunger-of-hadar-5",
+      "spellId": "hunger-of-hadar",
+      "level": 3,
+      "minClassLevel": 5,
+      "classId": "warlock",
+      "alwaysPrepared": true,
+      "abilityKey": "cha"
+    },
+    {
+      "grantKey": "confusion-7",
+      "spellId": "confusion",
+      "level": 4,
+      "minClassLevel": 7,
+      "classId": "warlock",
+      "alwaysPrepared": true,
+      "abilityKey": "cha"
+    },
+    {
+      "grantKey": "summon-aberration-7",
+      "spellId": "summon-aberration",
+      "level": 4,
+      "minClassLevel": 7,
+      "classId": "warlock",
+      "alwaysPrepared": true,
+      "abilityKey": "cha"
+    },
+    {
+      "grantKey": "modify-memory-9",
+      "spellId": "modify-memory",
+      "level": 5,
+      "minClassLevel": 9,
+      "classId": "warlock",
+      "alwaysPrepared": true,
+      "abilityKey": "cha"
+    },
+    {
+      "grantKey": "telekinesis-9",
+      "spellId": "telekinesis",
+      "level": 5,
+      "minClassLevel": 9,
+      "classId": "warlock",
+      "alwaysPrepared": true,
+      "abilityKey": "cha"
+    }
+  ],
+  "illusionist": [
+    {
+      "grantKey": "minor-illusion-3",
+      "spellId": "minor-illusion",
+      "level": 0,
+      "minClassLevel": 3,
+      "classId": "wizard",
+      "alwaysPrepared": true,
+      "abilityKey": "int"
+    },
+    {
+      "grantKey": "summon-beast-6",
+      "spellId": "summon-beast",
+      "level": 2,
+      "minClassLevel": 6,
+      "classId": "wizard",
+      "alwaysPrepared": true,
+      "abilityKey": "int"
+    },
+    {
+      "grantKey": "summon-fey-6",
+      "spellId": "summon-fey",
+      "level": 3,
+      "minClassLevel": 6,
+      "classId": "wizard",
+      "alwaysPrepared": true,
+      "abilityKey": "int"
+    }
+  ],
+  "land": [
+    {
+      "grantKey": "acid-splash-3-tropical",
+      "spellId": "acid-splash",
+      "level": 0,
+      "minClassLevel": 3,
+      "classId": "druid",
+      "alwaysPrepared": true,
+      "abilityKey": "wis",
+      "choiceKey": "land-terrain",
+      "choiceValue": "tropical"
+    },
+    {
+      "grantKey": "blur-3-arid",
+      "spellId": "blur",
+      "level": 2,
+      "minClassLevel": 3,
+      "classId": "druid",
+      "alwaysPrepared": true,
+      "abilityKey": "wis",
+      "choiceKey": "land-terrain",
+      "choiceValue": "arid"
+    },
+    {
+      "grantKey": "burning-hands-3-arid",
+      "spellId": "burning-hands",
+      "level": 1,
+      "minClassLevel": 3,
+      "classId": "druid",
+      "alwaysPrepared": true,
+      "abilityKey": "wis",
+      "choiceKey": "land-terrain",
+      "choiceValue": "arid"
+    },
+    {
+      "grantKey": "fire-bolt-3-arid",
+      "spellId": "fire-bolt",
+      "level": 0,
+      "minClassLevel": 3,
+      "classId": "druid",
+      "alwaysPrepared": true,
+      "abilityKey": "wis",
+      "choiceKey": "land-terrain",
+      "choiceValue": "arid"
+    },
+    {
+      "grantKey": "fog-cloud-3-polar",
+      "spellId": "fog-cloud",
+      "level": 1,
+      "minClassLevel": 3,
+      "classId": "druid",
+      "alwaysPrepared": true,
+      "abilityKey": "wis",
+      "choiceKey": "land-terrain",
+      "choiceValue": "polar"
+    },
+    {
+      "grantKey": "hold-person-3-polar",
+      "spellId": "hold-person",
+      "level": 2,
+      "minClassLevel": 3,
+      "classId": "druid",
+      "alwaysPrepared": true,
+      "abilityKey": "wis",
+      "choiceKey": "land-terrain",
+      "choiceValue": "polar"
+    },
+    {
+      "grantKey": "misty-step-3-temperate",
+      "spellId": "misty-step",
+      "level": 2,
+      "minClassLevel": 3,
+      "classId": "druid",
+      "alwaysPrepared": true,
+      "abilityKey": "wis",
+      "choiceKey": "land-terrain",
+      "choiceValue": "temperate"
+    },
+    {
+      "grantKey": "ray-of-frost-3-polar",
+      "spellId": "ray-of-frost",
+      "level": 0,
+      "minClassLevel": 3,
+      "classId": "druid",
+      "alwaysPrepared": true,
+      "abilityKey": "wis",
+      "choiceKey": "land-terrain",
+      "choiceValue": "polar"
+    },
+    {
+      "grantKey": "ray-of-sickness-3-tropical",
+      "spellId": "ray-of-sickness",
+      "level": 1,
+      "minClassLevel": 3,
+      "classId": "druid",
+      "alwaysPrepared": true,
+      "abilityKey": "wis",
+      "choiceKey": "land-terrain",
+      "choiceValue": "tropical"
+    },
+    {
+      "grantKey": "shocking-grasp-3-temperate",
+      "spellId": "shocking-grasp",
+      "level": 0,
+      "minClassLevel": 3,
+      "classId": "druid",
+      "alwaysPrepared": true,
+      "abilityKey": "wis",
+      "choiceKey": "land-terrain",
+      "choiceValue": "temperate"
+    },
+    {
+      "grantKey": "sleep-3-temperate",
+      "spellId": "sleep",
+      "level": 1,
+      "minClassLevel": 3,
+      "classId": "druid",
+      "alwaysPrepared": true,
+      "abilityKey": "wis",
+      "choiceKey": "land-terrain",
+      "choiceValue": "temperate"
+    },
+    {
+      "grantKey": "web-3-tropical",
+      "spellId": "web",
+      "level": 2,
+      "minClassLevel": 3,
+      "classId": "druid",
+      "alwaysPrepared": true,
+      "abilityKey": "wis",
+      "choiceKey": "land-terrain",
+      "choiceValue": "tropical"
+    },
+    {
+      "grantKey": "fireball-5-arid",
+      "spellId": "fireball",
+      "level": 3,
+      "minClassLevel": 5,
+      "classId": "druid",
+      "alwaysPrepared": true,
+      "abilityKey": "wis",
+      "choiceKey": "land-terrain",
+      "choiceValue": "arid"
+    },
+    {
+      "grantKey": "lightning-bolt-5-temperate",
+      "spellId": "lightning-bolt",
+      "level": 3,
+      "minClassLevel": 5,
+      "classId": "druid",
+      "alwaysPrepared": true,
+      "abilityKey": "wis",
+      "choiceKey": "land-terrain",
+      "choiceValue": "temperate"
+    },
+    {
+      "grantKey": "sleet-storm-5-polar",
+      "spellId": "sleet-storm",
+      "level": 3,
+      "minClassLevel": 5,
+      "classId": "druid",
+      "alwaysPrepared": true,
+      "abilityKey": "wis",
+      "choiceKey": "land-terrain",
+      "choiceValue": "polar"
+    },
+    {
+      "grantKey": "stinking-cloud-5-tropical",
+      "spellId": "stinking-cloud",
+      "level": 3,
+      "minClassLevel": 5,
+      "classId": "druid",
+      "alwaysPrepared": true,
+      "abilityKey": "wis",
+      "choiceKey": "land-terrain",
+      "choiceValue": "tropical"
+    },
+    {
+      "grantKey": "blight-7-arid",
+      "spellId": "blight",
+      "level": 4,
+      "minClassLevel": 7,
+      "classId": "druid",
+      "alwaysPrepared": true,
+      "abilityKey": "wis",
+      "choiceKey": "land-terrain",
+      "choiceValue": "arid"
+    },
+    {
+      "grantKey": "freedom-of-movement-7-temperate",
+      "spellId": "freedom-of-movement",
+      "level": 4,
+      "minClassLevel": 7,
+      "classId": "druid",
+      "alwaysPrepared": true,
+      "abilityKey": "wis",
+      "choiceKey": "land-terrain",
+      "choiceValue": "temperate"
+    },
+    {
+      "grantKey": "ice-storm-7-polar",
+      "spellId": "ice-storm",
+      "level": 4,
+      "minClassLevel": 7,
+      "classId": "druid",
+      "alwaysPrepared": true,
+      "abilityKey": "wis",
+      "choiceKey": "land-terrain",
+      "choiceValue": "polar"
+    },
+    {
+      "grantKey": "polymorph-7-tropical",
+      "spellId": "polymorph",
+      "level": 4,
+      "minClassLevel": 7,
+      "classId": "druid",
+      "alwaysPrepared": true,
+      "abilityKey": "wis",
+      "choiceKey": "land-terrain",
+      "choiceValue": "tropical"
+    },
+    {
+      "grantKey": "cone-of-cold-9-polar",
+      "spellId": "cone-of-cold",
+      "level": 5,
+      "minClassLevel": 9,
+      "classId": "druid",
+      "alwaysPrepared": true,
+      "abilityKey": "wis",
+      "choiceKey": "land-terrain",
+      "choiceValue": "polar"
+    },
+    {
+      "grantKey": "insect-plague-9-tropical",
+      "spellId": "insect-plague",
+      "level": 5,
+      "minClassLevel": 9,
+      "classId": "druid",
+      "alwaysPrepared": true,
+      "abilityKey": "wis",
+      "choiceKey": "land-terrain",
+      "choiceValue": "tropical"
+    },
+    {
+      "grantKey": "tree-stride-9-temperate",
+      "spellId": "tree-stride",
+      "level": 5,
+      "minClassLevel": 9,
+      "classId": "druid",
+      "alwaysPrepared": true,
+      "abilityKey": "wis",
+      "choiceKey": "land-terrain",
+      "choiceValue": "temperate"
+    },
+    {
+      "grantKey": "wall-of-stone-9-arid",
+      "spellId": "wall-of-stone",
+      "level": 5,
+      "minClassLevel": 9,
+      "classId": "druid",
+      "alwaysPrepared": true,
+      "abilityKey": "wis",
+      "choiceKey": "land-terrain",
+      "choiceValue": "arid"
+    }
+  ],
+  "life": [
+    {
+      "grantKey": "aid-3",
+      "spellId": "aid",
+      "level": 2,
+      "minClassLevel": 3,
+      "classId": "cleric",
+      "alwaysPrepared": true,
+      "abilityKey": "wis"
+    },
+    {
+      "grantKey": "bless-3",
+      "spellId": "bless",
+      "level": 1,
+      "minClassLevel": 3,
+      "classId": "cleric",
+      "alwaysPrepared": true,
+      "abilityKey": "wis"
+    },
+    {
+      "grantKey": "cure-wounds-3",
+      "spellId": "cure-wounds",
+      "level": 1,
+      "minClassLevel": 3,
+      "classId": "cleric",
+      "alwaysPrepared": true,
+      "abilityKey": "wis"
+    },
+    {
+      "grantKey": "lesser-restoration-3",
+      "spellId": "lesser-restoration",
+      "level": 2,
+      "minClassLevel": 3,
+      "classId": "cleric",
+      "alwaysPrepared": true,
+      "abilityKey": "wis"
+    },
+    {
+      "grantKey": "mass-healing-word-5",
+      "spellId": "mass-healing-word",
+      "level": 3,
+      "minClassLevel": 5,
+      "classId": "cleric",
+      "alwaysPrepared": true,
+      "abilityKey": "wis"
+    },
+    {
+      "grantKey": "revivify-5",
+      "spellId": "revivify",
+      "level": 3,
+      "minClassLevel": 5,
+      "classId": "cleric",
+      "alwaysPrepared": true,
+      "abilityKey": "wis"
+    },
+    {
+      "grantKey": "aura-of-life-7",
+      "spellId": "aura-of-life",
+      "level": 4,
+      "minClassLevel": 7,
+      "classId": "cleric",
+      "alwaysPrepared": true,
+      "abilityKey": "wis"
+    },
+    {
+      "grantKey": "death-ward-7",
+      "spellId": "death-ward",
+      "level": 4,
+      "minClassLevel": 7,
+      "classId": "cleric",
+      "alwaysPrepared": true,
+      "abilityKey": "wis"
+    },
+    {
+      "grantKey": "greater-restoration-9",
+      "spellId": "greater-restoration",
+      "level": 5,
+      "minClassLevel": 9,
+      "classId": "cleric",
+      "alwaysPrepared": true,
+      "abilityKey": "wis"
+    },
+    {
+      "grantKey": "mass-cure-wounds-9",
+      "spellId": "mass-cure-wounds",
+      "level": 5,
+      "minClassLevel": 9,
+      "classId": "cleric",
+      "alwaysPrepared": true,
+      "abilityKey": "wis"
+    }
+  ],
+  "light": [
+    {
+      "grantKey": "burning-hands-3",
+      "spellId": "burning-hands",
+      "level": 1,
+      "minClassLevel": 3,
+      "classId": "cleric",
+      "alwaysPrepared": true,
+      "abilityKey": "wis"
+    },
+    {
+      "grantKey": "faerie-fire-3",
+      "spellId": "faerie-fire",
+      "level": 1,
+      "minClassLevel": 3,
+      "classId": "cleric",
+      "alwaysPrepared": true,
+      "abilityKey": "wis"
+    },
+    {
+      "grantKey": "scorching-ray-3",
+      "spellId": "scorching-ray",
+      "level": 2,
+      "minClassLevel": 3,
+      "classId": "cleric",
+      "alwaysPrepared": true,
+      "abilityKey": "wis"
+    },
+    {
+      "grantKey": "see-invisibility-3",
+      "spellId": "see-invisibility",
+      "level": 2,
+      "minClassLevel": 3,
+      "classId": "cleric",
+      "alwaysPrepared": true,
+      "abilityKey": "wis"
+    },
+    {
+      "grantKey": "daylight-5",
+      "spellId": "daylight",
+      "level": 3,
+      "minClassLevel": 5,
+      "classId": "cleric",
+      "alwaysPrepared": true,
+      "abilityKey": "wis"
+    },
+    {
+      "grantKey": "fireball-5",
+      "spellId": "fireball",
+      "level": 3,
+      "minClassLevel": 5,
+      "classId": "cleric",
+      "alwaysPrepared": true,
+      "abilityKey": "wis"
+    },
+    {
+      "grantKey": "arcane-eye-7",
+      "spellId": "arcane-eye",
+      "level": 4,
+      "minClassLevel": 7,
+      "classId": "cleric",
+      "alwaysPrepared": true,
+      "abilityKey": "wis"
+    },
+    {
+      "grantKey": "wall-of-fire-7",
+      "spellId": "wall-of-fire",
+      "level": 4,
+      "minClassLevel": 7,
+      "classId": "cleric",
+      "alwaysPrepared": true,
+      "abilityKey": "wis"
+    },
+    {
+      "grantKey": "flame-strike-9",
+      "spellId": "flame-strike",
+      "level": 5,
+      "minClassLevel": 9,
+      "classId": "cleric",
+      "alwaysPrepared": true,
+      "abilityKey": "wis"
+    },
+    {
+      "grantKey": "scrying-9",
+      "spellId": "scrying",
+      "level": 5,
+      "minClassLevel": 9,
+      "classId": "cleric",
+      "alwaysPrepared": true,
+      "abilityKey": "wis"
+    }
+  ],
+  "moon": [
+    {
+      "grantKey": "cure-wounds-3",
+      "spellId": "cure-wounds",
+      "level": 1,
+      "minClassLevel": 3,
+      "classId": "druid",
+      "alwaysPrepared": true,
+      "abilityKey": "wis"
+    },
+    {
+      "grantKey": "moonbeam-3",
+      "spellId": "moonbeam",
+      "level": 2,
+      "minClassLevel": 3,
+      "classId": "druid",
+      "alwaysPrepared": true,
+      "abilityKey": "wis"
+    },
+    {
+      "grantKey": "starry-wisp-3",
+      "spellId": "starry-wisp",
+      "level": 0,
+      "minClassLevel": 3,
+      "classId": "druid",
+      "alwaysPrepared": true,
+      "abilityKey": "wis"
+    },
+    {
+      "grantKey": "conjure-animals-5",
+      "spellId": "conjure-animals",
+      "level": 3,
+      "minClassLevel": 5,
+      "classId": "druid",
+      "alwaysPrepared": true,
+      "abilityKey": "wis"
+    },
+    {
+      "grantKey": "fount-of-moonlight-7",
+      "spellId": "fount-of-moonlight",
+      "level": 4,
+      "minClassLevel": 7,
+      "classId": "druid",
+      "alwaysPrepared": true,
+      "abilityKey": "wis"
+    },
+    {
+      "grantKey": "mass-cure-wounds-9",
+      "spellId": "mass-cure-wounds",
+      "level": 5,
+      "minClassLevel": 9,
+      "classId": "druid",
+      "alwaysPrepared": true,
+      "abilityKey": "wis"
+    }
+  ],
+  "psi-warrior": [
+    {
+      "grantKey": "telekinesis-18",
+      "spellId": "telekinesis",
+      "level": 5,
+      "minClassLevel": 18,
+      "classId": "fighter",
+      "alwaysPrepared": true,
+      "abilityKey": "int"
+    }
+  ],
+  "sea": [
+    {
+      "grantKey": "fog-cloud-3",
+      "spellId": "fog-cloud",
+      "level": 1,
+      "minClassLevel": 3,
+      "classId": "druid",
+      "alwaysPrepared": true,
+      "abilityKey": "wis"
+    },
+    {
+      "grantKey": "gust-of-wind-3",
+      "spellId": "gust-of-wind",
+      "level": 2,
+      "minClassLevel": 3,
+      "classId": "druid",
+      "alwaysPrepared": true,
+      "abilityKey": "wis"
+    },
+    {
+      "grantKey": "ray-of-frost-3",
+      "spellId": "ray-of-frost",
+      "level": 0,
+      "minClassLevel": 3,
+      "classId": "druid",
+      "alwaysPrepared": true,
+      "abilityKey": "wis"
+    },
+    {
+      "grantKey": "shatter-3",
+      "spellId": "shatter",
+      "level": 2,
+      "minClassLevel": 3,
+      "classId": "druid",
+      "alwaysPrepared": true,
+      "abilityKey": "wis"
+    },
+    {
+      "grantKey": "thunderwave-3",
+      "spellId": "thunderwave",
+      "level": 1,
+      "minClassLevel": 3,
+      "classId": "druid",
+      "alwaysPrepared": true,
+      "abilityKey": "wis"
+    },
+    {
+      "grantKey": "lightning-bolt-5",
+      "spellId": "lightning-bolt",
+      "level": 3,
+      "minClassLevel": 5,
+      "classId": "druid",
+      "alwaysPrepared": true,
+      "abilityKey": "wis"
+    },
+    {
+      "grantKey": "water-breathing-5",
+      "spellId": "water-breathing",
+      "level": 3,
+      "minClassLevel": 5,
+      "classId": "druid",
+      "alwaysPrepared": true,
+      "abilityKey": "wis"
+    },
+    {
+      "grantKey": "control-water-7",
+      "spellId": "control-water",
+      "level": 4,
+      "minClassLevel": 7,
+      "classId": "druid",
+      "alwaysPrepared": true,
+      "abilityKey": "wis"
+    },
+    {
+      "grantKey": "ice-storm-7",
+      "spellId": "ice-storm",
+      "level": 4,
+      "minClassLevel": 7,
+      "classId": "druid",
+      "alwaysPrepared": true,
+      "abilityKey": "wis"
+    },
+    {
+      "grantKey": "conjure-elemental-9",
+      "spellId": "conjure-elemental",
+      "level": 5,
+      "minClassLevel": 9,
+      "classId": "druid",
+      "alwaysPrepared": true,
+      "abilityKey": "wis"
+    },
+    {
+      "grantKey": "hold-monster-9",
+      "spellId": "hold-monster",
+      "level": 5,
+      "minClassLevel": 9,
+      "classId": "druid",
+      "alwaysPrepared": true,
+      "abilityKey": "wis"
+    }
+  ],
+  "shadow": [
+    {
+      "grantKey": "minor-illusion-3",
+      "spellId": "minor-illusion",
+      "level": 0,
+      "minClassLevel": 3,
+      "classId": "monk",
+      "alwaysPrepared": true,
+      "abilityKey": "wis"
+    }
+  ],
+  "stars": [
+    {
+      "grantKey": "guidance-3",
+      "spellId": "guidance",
+      "level": 0,
+      "minClassLevel": 3,
+      "classId": "druid",
+      "alwaysPrepared": true,
+      "abilityKey": "wis"
+    },
+    {
+      "grantKey": "guiding-bolt-3",
+      "spellId": "guiding-bolt",
+      "level": 1,
+      "minClassLevel": 3,
+      "classId": "druid",
+      "alwaysPrepared": true,
+      "abilityKey": "wis"
+    }
+  ],
+  "trickery": [
+    {
+      "grantKey": "charm-person-3",
+      "spellId": "charm-person",
+      "level": 1,
+      "minClassLevel": 3,
+      "classId": "cleric",
+      "alwaysPrepared": true,
+      "abilityKey": "wis"
+    },
+    {
+      "grantKey": "disguise-self-3",
+      "spellId": "disguise-self",
+      "level": 1,
+      "minClassLevel": 3,
+      "classId": "cleric",
+      "alwaysPrepared": true,
+      "abilityKey": "wis"
+    },
+    {
+      "grantKey": "invisibility-3",
+      "spellId": "invisibility",
+      "level": 2,
+      "minClassLevel": 3,
+      "classId": "cleric",
+      "alwaysPrepared": true,
+      "abilityKey": "wis"
+    },
+    {
+      "grantKey": "pass-without-trace-3",
+      "spellId": "pass-without-trace",
+      "level": 2,
+      "minClassLevel": 3,
+      "classId": "cleric",
+      "alwaysPrepared": true,
+      "abilityKey": "wis"
+    },
+    {
+      "grantKey": "hypnotic-pattern-5",
+      "spellId": "hypnotic-pattern",
+      "level": 3,
+      "minClassLevel": 5,
+      "classId": "cleric",
+      "alwaysPrepared": true,
+      "abilityKey": "wis"
+    },
+    {
+      "grantKey": "nondetection-5",
+      "spellId": "nondetection",
+      "level": 3,
+      "minClassLevel": 5,
+      "classId": "cleric",
+      "alwaysPrepared": true,
+      "abilityKey": "wis"
+    },
+    {
+      "grantKey": "confusion-7",
+      "spellId": "confusion",
+      "level": 4,
+      "minClassLevel": 7,
+      "classId": "cleric",
+      "alwaysPrepared": true,
+      "abilityKey": "wis"
+    },
+    {
+      "grantKey": "dimension-door-7",
+      "spellId": "dimension-door",
+      "level": 4,
+      "minClassLevel": 7,
+      "classId": "cleric",
+      "alwaysPrepared": true,
+      "abilityKey": "wis"
+    },
+    {
+      "grantKey": "dominate-person-9",
+      "spellId": "dominate-person",
+      "level": 5,
+      "minClassLevel": 9,
+      "classId": "cleric",
+      "alwaysPrepared": true,
+      "abilityKey": "wis"
+    },
+    {
+      "grantKey": "modify-memory-9",
+      "spellId": "modify-memory",
+      "level": 5,
+      "minClassLevel": 9,
+      "classId": "cleric",
+      "alwaysPrepared": true,
+      "abilityKey": "wis"
+    }
+  ],
+  "vengeance": [
+    {
+      "grantKey": "bane-3",
+      "spellId": "bane",
+      "level": 1,
+      "minClassLevel": 3,
+      "classId": "paladin",
+      "alwaysPrepared": true,
+      "abilityKey": "cha"
+    },
+    {
+      "grantKey": "hunters-mark-3",
+      "spellId": "hunters-mark",
+      "level": 1,
+      "minClassLevel": 3,
+      "classId": "paladin",
+      "alwaysPrepared": true,
+      "abilityKey": "cha"
+    },
+    {
+      "grantKey": "hold-person-5",
+      "spellId": "hold-person",
+      "level": 2,
+      "minClassLevel": 5,
+      "classId": "paladin",
+      "alwaysPrepared": true,
+      "abilityKey": "cha"
+    },
+    {
+      "grantKey": "misty-step-5",
+      "spellId": "misty-step",
+      "level": 2,
+      "minClassLevel": 5,
+      "classId": "paladin",
+      "alwaysPrepared": true,
+      "abilityKey": "cha"
+    },
+    {
+      "grantKey": "haste-9",
+      "spellId": "haste",
+      "level": 3,
+      "minClassLevel": 9,
+      "classId": "paladin",
+      "alwaysPrepared": true,
+      "abilityKey": "cha"
+    },
+    {
+      "grantKey": "protection-from-energy-9",
+      "spellId": "protection-from-energy",
+      "level": 3,
+      "minClassLevel": 9,
+      "classId": "paladin",
+      "alwaysPrepared": true,
+      "abilityKey": "cha"
+    },
+    {
+      "grantKey": "banishment-13",
+      "spellId": "banishment",
+      "level": 4,
+      "minClassLevel": 13,
+      "classId": "paladin",
+      "alwaysPrepared": true,
+      "abilityKey": "cha"
+    },
+    {
+      "grantKey": "dimension-door-13",
+      "spellId": "dimension-door",
+      "level": 4,
+      "minClassLevel": 13,
+      "classId": "paladin",
+      "alwaysPrepared": true,
+      "abilityKey": "cha"
+    },
+    {
+      "grantKey": "hold-monster-17",
+      "spellId": "hold-monster",
+      "level": 5,
+      "minClassLevel": 17,
+      "classId": "paladin",
+      "alwaysPrepared": true,
+      "abilityKey": "cha"
+    },
+    {
+      "grantKey": "scrying-17",
+      "spellId": "scrying",
+      "level": 5,
+      "minClassLevel": 17,
+      "classId": "paladin",
+      "alwaysPrepared": true,
+      "abilityKey": "cha"
+    }
+  ],
+  "war": [
+    {
+      "grantKey": "guiding-bolt-3",
+      "spellId": "guiding-bolt",
+      "level": 1,
+      "minClassLevel": 3,
+      "classId": "cleric",
+      "alwaysPrepared": true,
+      "abilityKey": "wis"
+    },
+    {
+      "grantKey": "magic-weapon-3",
+      "spellId": "magic-weapon",
+      "level": 2,
+      "minClassLevel": 3,
+      "classId": "cleric",
+      "alwaysPrepared": true,
+      "abilityKey": "wis"
+    },
+    {
+      "grantKey": "shield-of-faith-3",
+      "spellId": "shield-of-faith",
+      "level": 1,
+      "minClassLevel": 3,
+      "classId": "cleric",
+      "alwaysPrepared": true,
+      "abilityKey": "wis"
+    },
+    {
+      "grantKey": "spiritual-weapon-3",
+      "spellId": "spiritual-weapon",
+      "level": 2,
+      "minClassLevel": 3,
+      "classId": "cleric",
+      "alwaysPrepared": true,
+      "abilityKey": "wis"
+    },
+    {
+      "grantKey": "crusaders-mantle-5",
+      "spellId": "crusaders-mantle",
+      "level": 3,
+      "minClassLevel": 5,
+      "classId": "cleric",
+      "alwaysPrepared": true,
+      "abilityKey": "wis"
+    },
+    {
+      "grantKey": "spirit-guardians-5",
+      "spellId": "spirit-guardians",
+      "level": 3,
+      "minClassLevel": 5,
+      "classId": "cleric",
+      "alwaysPrepared": true,
+      "abilityKey": "wis"
+    },
+    {
+      "grantKey": "fire-shield-7",
+      "spellId": "fire-shield",
+      "level": 4,
+      "minClassLevel": 7,
+      "classId": "cleric",
+      "alwaysPrepared": true,
+      "abilityKey": "wis"
+    },
+    {
+      "grantKey": "freedom-of-movement-7",
+      "spellId": "freedom-of-movement",
+      "level": 4,
+      "minClassLevel": 7,
+      "classId": "cleric",
+      "alwaysPrepared": true,
+      "abilityKey": "wis"
+    },
+    {
+      "grantKey": "hold-monster-9",
+      "spellId": "hold-monster",
+      "level": 5,
+      "minClassLevel": 9,
+      "classId": "cleric",
+      "alwaysPrepared": true,
+      "abilityKey": "wis"
+    },
+    {
+      "grantKey": "steel-wind-strike-9",
+      "spellId": "steel-wind-strike",
+      "level": 5,
+      "minClassLevel": 9,
+      "classId": "cleric",
+      "alwaysPrepared": true,
+      "abilityKey": "wis"
+    }
+  ],
+  "wild-heart": [
+    {
+      "grantKey": "beast-sense-3",
+      "spellId": "beast-sense",
+      "level": 2,
+      "minClassLevel": 3,
+      "classId": "barbarian",
+      "alwaysPrepared": true,
+      "abilityKey": "wis"
+    },
+    {
+      "grantKey": "speak-with-animals-3",
+      "spellId": "speak-with-animals",
+      "level": 1,
+      "minClassLevel": 3,
+      "classId": "barbarian",
+      "alwaysPrepared": true,
+      "abilityKey": "wis"
+    },
+    {
+      "grantKey": "commune-with-nature-10",
+      "spellId": "commune-with-nature",
+      "level": 5,
+      "minClassLevel": 10,
+      "classId": "barbarian",
+      "alwaysPrepared": true,
+      "abilityKey": "wis"
+    }
+  ]
+}

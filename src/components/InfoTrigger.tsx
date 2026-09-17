@@ -42,7 +42,7 @@ export function InfoTrigger({
         ref={btnRef}
         type="button"
         className={cn(
-          "relative inline-flex cursor-help items-center justify-center text-muted hover:text-gold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold/50",
+          "relative inline-flex cursor-help items-center justify-center text-muted hover:text-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/50",
           className,
         )}
         aria-label={`Información: ${title}`}

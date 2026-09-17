@@ -1,37 +1,48 @@
 {
-  "rat": {
-    "ac": 10,
-    "speed": 20,
-    "str": 2,
-    "dex": 11,
-    "con": 9,
-    "attacks": [{ "nameEs": "Mordisco", "toHit": 0, "damage": "1 perforante" }]
-  },
-  "spider": {
+  "baboon": {
     "ac": 12,
-    "speed": 20,
-    "str": 2,
+    "speed": 30,
+    "str": 8,
     "dex": 14,
-    "con": 8,
-    "attacks": [{ "nameEs": "Mordisco", "toHit": 4, "damage": "1 perforante" }],
-    "notes": "Trepar 20 pies; veneno CD 9 CON"
+    "con": 11,
+    "attacks": [
+      {
+        "nameEs": "Mordisco",
+        "toHit": 1,
+        "damage": "1d4-1 perforante"
+      }
+    ],
+    "notes": "Trepar 30 pies; Tácticas de manada"
   },
-  "riding-horse": {
-    "ac": 10,
-    "speed": 60,
-    "str": 16,
-    "dex": 10,
-    "con": 12,
-    "attacks": [{ "nameEs": "Cascos", "toHit": 5, "damage": "2d4+3 contundente" }]
+  "badger": {
+    "ac": 11,
+    "speed": 20,
+    "str": 10,
+    "dex": 11,
+    "con": 16,
+    "attacks": [
+      {
+        "nameEs": "Mordisco",
+        "toHit": 2,
+        "damage": "1 perforante"
+      }
+    ],
+    "notes": "Excavar 5 pies"
   },
-  "wolf": {
-    "ac": 13,
-    "speed": 40,
-    "str": 12,
+  "bat": {
+    "ac": 12,
+    "speed": 5,
+    "str": 2,
     "dex": 15,
-    "con": 12,
-    "attacks": [{ "nameEs": "Mordisco", "toHit": 4, "damage": "2d4+2 perforante" }],
-    "notes": "Tácticas de manada"
+    "con": 8,
+    "attacks": [
+      {
+        "nameEs": "Mordisco",
+        "toHit": 4,
+        "damage": "1 perforante"
+      }
+    ],
+    "notes": "Vuelo 30 pies"
   },
   "cat": {
     "ac": 12,
@@ -39,7 +50,364 @@
     "str": 3,
     "dex": 15,
     "con": 10,
-    "attacks": [{ "nameEs": "Garras", "toHit": 0, "damage": "1 cortante" }]
+    "attacks": [
+      {
+        "nameEs": "Scratch",
+        "toHit": 4,
+        "damage": "1 cortante"
+      }
+    ],
+    "notes": "Trepar 40 pies"
+  },
+  "crab": {
+    "ac": 11,
+    "speed": 20,
+    "str": 6,
+    "dex": 11,
+    "con": 12,
+    "attacks": [
+      {
+        "nameEs": "Garra",
+        "toHit": 2,
+        "damage": "1 contundente"
+      }
+    ],
+    "notes": "Nadar 20 pies"
+  },
+  "deer": {
+    "ac": 13,
+    "speed": 50,
+    "str": 11,
+    "dex": 16,
+    "con": 11,
+    "attacks": [
+      {
+        "nameEs": "Embestida",
+        "toHit": 2,
+        "damage": "1d4 contundente"
+      }
+    ]
+  },
+  "eagle": {
+    "ac": 12,
+    "speed": 10,
+    "str": 6,
+    "dex": 15,
+    "con": 12,
+    "attacks": [
+      {
+        "nameEs": "Garras",
+        "toHit": 4,
+        "damage": "1d4+2 cortante"
+      }
+    ],
+    "notes": "Vuelo 60 pies"
+  },
+  "frog": {
+    "ac": 11,
+    "speed": 20,
+    "str": 1,
+    "dex": 13,
+    "con": 8,
+    "attacks": [
+      {
+        "nameEs": "Mordisco",
+        "toHit": 3,
+        "damage": "1 perforante"
+      }
+    ],
+    "notes": "Nadar 20 pies"
+  },
+  "goat": {
+    "ac": 10,
+    "speed": 40,
+    "str": 11,
+    "dex": 10,
+    "con": 11,
+    "attacks": [
+      {
+        "nameEs": "Embestida",
+        "toHit": 2,
+        "damage": "1 contundente"
+      }
+    ],
+    "notes": "Trepar 30 pies"
+  },
+  "hawk": {
+    "ac": 13,
+    "speed": 10,
+    "str": 5,
+    "dex": 16,
+    "con": 8,
+    "attacks": [
+      {
+        "nameEs": "Garras",
+        "toHit": 5,
+        "damage": "1 cortante"
+      }
+    ],
+    "notes": "Vuelo 60 pies"
+  },
+  "hyena": {
+    "ac": 11,
+    "speed": 50,
+    "str": 11,
+    "dex": 13,
+    "con": 12,
+    "attacks": [
+      {
+        "nameEs": "Mordisco",
+        "toHit": 2,
+        "damage": "1d6 perforante"
+      }
+    ],
+    "notes": "Tácticas de manada"
+  },
+  "jackal": {
+    "ac": 12,
+    "speed": 40,
+    "str": 8,
+    "dex": 15,
+    "con": 11,
+    "attacks": [
+      {
+        "nameEs": "Mordisco",
+        "toHit": 1,
+        "damage": "1d4-1 perforante"
+      }
+    ]
+  },
+  "lizard": {
+    "ac": 10,
+    "speed": 20,
+    "str": 2,
+    "dex": 11,
+    "con": 10,
+    "attacks": [
+      {
+        "nameEs": "Mordisco",
+        "toHit": 2,
+        "damage": "1 perforante"
+      }
+    ],
+    "notes": "Trepar 20 pies"
+  },
+  "octopus": {
+    "ac": 12,
+    "speed": 5,
+    "str": 4,
+    "dex": 15,
+    "con": 11,
+    "attacks": [
+      {
+        "nameEs": "Tentáculos",
+        "toHit": 4,
+        "damage": "1 contundente"
+      }
+    ],
+    "notes": "Nadar 30 pies"
+  },
+  "owl": {
+    "ac": 11,
+    "speed": 5,
+    "str": 3,
+    "dex": 13,
+    "con": 8,
+    "attacks": [
+      {
+        "nameEs": "Garras",
+        "toHit": 3,
+        "damage": "1 cortante"
+      }
+    ],
+    "notes": "Vuelo 60 pies"
+  },
+  "quipper": {
+    "ac": 13,
+    "speed": 5,
+    "str": 2,
+    "dex": 16,
+    "con": 9,
+    "attacks": [
+      {
+        "nameEs": "Mordisco",
+        "toHit": 5,
+        "damage": "1 perforante"
+      }
+    ],
+    "notes": "Nadar 40 pies"
+  },
+  "rat": {
+    "ac": 10,
+    "speed": 20,
+    "str": 2,
+    "dex": 11,
+    "con": 9,
+    "attacks": [
+      {
+        "nameEs": "Mordisco",
+        "toHit": 2,
+        "damage": "1 perforante"
+      }
+    ],
+    "notes": "Trepar 20 pies"
+  },
+  "raven": {
+    "ac": 12,
+    "speed": 10,
+    "str": 2,
+    "dex": 14,
+    "con": 10,
+    "attacks": [
+      {
+        "nameEs": "Pico",
+        "toHit": 4,
+        "damage": "1 perforante"
+      }
+    ],
+    "notes": "Vuelo 50 pies"
+  },
+  "scorpion": {
+    "ac": 11,
+    "speed": 10,
+    "str": 2,
+    "dex": 11,
+    "con": 8,
+    "attacks": [
+      {
+        "nameEs": "Aguijón",
+        "toHit": 2,
+        "damage": "1 perforante"
+      }
+    ]
+  },
+  "sea-horse": {
+    "ac": 12,
+    "speed": 5,
+    "str": 1,
+    "dex": 12,
+    "con": 8,
+    "attacks": [],
+    "notes": "Nadar 20 pies; Sin ataque ofensivo"
+  },
+  "spider": {
+    "ac": 12,
+    "speed": 20,
+    "str": 2,
+    "dex": 14,
+    "con": 8,
+    "attacks": [
+      {
+        "nameEs": "Mordisco",
+        "toHit": 4,
+        "damage": "1 perforante"
+      }
+    ],
+    "notes": "Trepar 20 pies"
+  },
+  "vulture": {
+    "ac": 10,
+    "speed": 10,
+    "str": 7,
+    "dex": 10,
+    "con": 13,
+    "attacks": [
+      {
+        "nameEs": "Pico",
+        "toHit": 2,
+        "damage": "1d4 perforante"
+      }
+    ],
+    "notes": "Vuelo 50 pies; Tácticas de manada"
+  },
+  "weasel": {
+    "ac": 13,
+    "speed": 30,
+    "str": 3,
+    "dex": 16,
+    "con": 8,
+    "attacks": [
+      {
+        "nameEs": "Mordisco",
+        "toHit": 5,
+        "damage": "1 perforante"
+      }
+    ],
+    "notes": "Trepar 30 pies"
+  },
+  "blood-hawk": {
+    "ac": 12,
+    "speed": 10,
+    "str": 6,
+    "dex": 14,
+    "con": 10,
+    "attacks": [
+      {
+        "nameEs": "Pico",
+        "toHit": 4,
+        "damage": "1d4+2 perforante"
+      }
+    ],
+    "notes": "Vuelo 60 pies; Tácticas de manada"
+  },
+  "camel": {
+    "ac": 10,
+    "speed": 50,
+    "str": 15,
+    "dex": 8,
+    "con": 17,
+    "attacks": [
+      {
+        "nameEs": "Mordisco",
+        "toHit": 4,
+        "damage": "1d4+2 contundente"
+      }
+    ]
+  },
+  "flying-snake": {
+    "ac": 14,
+    "speed": 30,
+    "str": 4,
+    "dex": 15,
+    "con": 11,
+    "attacks": [
+      {
+        "nameEs": "Mordisco",
+        "toHit": 4,
+        "damage": "1 perforante"
+      }
+    ],
+    "notes": "Vuelo 60 pies; Nadar 30 pies"
+  },
+  "giant-crab": {
+    "ac": 15,
+    "speed": 30,
+    "str": 13,
+    "dex": 13,
+    "con": 11,
+    "attacks": [
+      {
+        "nameEs": "Garra",
+        "toHit": 3,
+        "damage": "1d6+1 contundente"
+      }
+    ],
+    "notes": "Nadar 30 pies"
+  },
+  "giant-rat": {
+    "ac": 13,
+    "speed": 30,
+    "str": 7,
+    "dex": 16,
+    "con": 11,
+    "attacks": [
+      {
+        "nameEs": "Mordisco",
+        "toHit": 5,
+        "damage": "1d4+3 perforante"
+      }
+    ],
+    "notes": "Trepar 30 pies; Tácticas de manada"
   },
   "mastiff": {
     "ac": 12,
@@ -47,7 +415,56 @@
     "str": 13,
     "dex": 14,
     "con": 12,
-    "attacks": [{ "nameEs": "Mordisco", "toHit": 3, "damage": "1d6+1 perforante" }]
+    "attacks": [
+      {
+        "nameEs": "Mordisco",
+        "toHit": 3,
+        "damage": "1d6+1 perforante"
+      }
+    ]
+  },
+  "mule": {
+    "ac": 10,
+    "speed": 40,
+    "str": 14,
+    "dex": 10,
+    "con": 13,
+    "attacks": [
+      {
+        "nameEs": "Cascos",
+        "toHit": 4,
+        "damage": "1d4+2 contundente"
+      }
+    ]
+  },
+  "poisonous-snake": {
+    "ac": 12,
+    "speed": 30,
+    "str": 2,
+    "dex": 15,
+    "con": 11,
+    "attacks": [
+      {
+        "nameEs": "Mordisco",
+        "toHit": 4,
+        "damage": "1d4+2 perforante"
+      }
+    ],
+    "notes": "Nadar 30 pies"
+  },
+  "pony": {
+    "ac": 10,
+    "speed": 40,
+    "str": 15,
+    "dex": 10,
+    "con": 13,
+    "attacks": [
+      {
+        "nameEs": "Cascos",
+        "toHit": 4,
+        "damage": "1d4+2 contundente"
+      }
+    ]
   },
   "ape": {
     "ac": 12,
@@ -56,44 +473,120 @@
     "dex": 14,
     "con": 14,
     "attacks": [
-      { "nameEs": "Puño", "toHit": 5, "damage": "1d4+3 contundente" },
-      { "nameEs": "Roca", "toHit": 5, "damage": "1d6+3 contundente" }
-    ]
+      {
+        "nameEs": "Puño",
+        "toHit": 5,
+        "damage": "1d4+3 contundente"
+      },
+      {
+        "nameEs": "Roca",
+        "toHit": 5,
+        "damage": "2d6+3 contundente"
+      }
+    ],
+    "notes": "Trepar 30 pies; Ataque múltiple"
   },
   "black-bear": {
     "ac": 11,
-    "speed": 40,
+    "speed": 30,
     "str": 15,
-    "dex": 10,
+    "dex": 12,
     "con": 14,
     "attacks": [
-      { "nameEs": "Mordisco", "toHit": 3, "damage": "1d6+2 perforante" },
-      { "nameEs": "Garras", "toHit": 3, "damage": "2d4+2 cortante" }
-    ]
+      {
+        "nameEs": "Desgarrar",
+        "toHit": 4,
+        "damage": "1d6+2 cortante"
+      }
+    ],
+    "notes": "Trepar 30 pies; Nadar 30 pies; Ataque múltiple"
   },
   "boar": {
     "ac": 11,
     "speed": 40,
     "str": 13,
     "dex": 11,
+    "con": 14,
+    "attacks": [
+      {
+        "nameEs": "Cornamenta",
+        "toHit": 3,
+        "damage": "1d6+1 perforante"
+      }
+    ]
+  },
+  "constrictor-snake": {
+    "ac": 13,
+    "speed": 30,
+    "str": 15,
+    "dex": 14,
     "con": 12,
-    "attacks": [{ "nameEs": "Colmillo", "toHit": 3, "damage": "1d6+1 cortante" }]
+    "attacks": [
+      {
+        "nameEs": "Mordisco",
+        "toHit": 4,
+        "damage": "1d8+2 perforante"
+      }
+    ],
+    "notes": "Nadar 30 pies"
   },
   "draft-horse": {
     "ac": 10,
     "speed": 40,
     "str": 18,
     "dex": 10,
-    "con": 12,
-    "attacks": [{ "nameEs": "Cascos", "toHit": 6, "damage": "2d4+4 contundente" }]
+    "con": 15,
+    "attacks": [
+      {
+        "nameEs": "Cascos",
+        "toHit": 6,
+        "damage": "1d4+4 contundente"
+      }
+    ]
   },
   "elk": {
     "ac": 10,
     "speed": 50,
     "str": 16,
     "dex": 10,
-    "con": 12,
-    "attacks": [{ "nameEs": "Cornamenta", "toHit": 5, "damage": "1d6+3 contundente" }]
+    "con": 11,
+    "attacks": [
+      {
+        "nameEs": "Embestida",
+        "toHit": 5,
+        "damage": "1d6+3 contundente"
+      }
+    ]
+  },
+  "giant-badger": {
+    "ac": 13,
+    "speed": 30,
+    "str": 13,
+    "dex": 10,
+    "con": 17,
+    "attacks": [
+      {
+        "nameEs": "Mordisco",
+        "toHit": 3,
+        "damage": "2d4+1 perforante"
+      }
+    ],
+    "notes": "Excavar 10 pies"
+  },
+  "giant-bat": {
+    "ac": 13,
+    "speed": 10,
+    "str": 15,
+    "dex": 16,
+    "con": 11,
+    "attacks": [
+      {
+        "nameEs": "Mordisco",
+        "toHit": 5,
+        "damage": "1d6+3 perforante"
+      }
+    ],
+    "notes": "Vuelo 60 pies"
   },
   "giant-frog": {
     "ac": 11,
@@ -101,27 +594,148 @@
     "str": 12,
     "dex": 13,
     "con": 11,
-    "attacks": [{ "nameEs": "Mordisco", "toHit": 3, "damage": "1d6+1 perforante" }]
+    "attacks": [
+      {
+        "nameEs": "Mordisco",
+        "toHit": 3,
+        "damage": "1d6+2 perforante"
+      }
+    ],
+    "notes": "Nadar 30 pies"
+  },
+  "giant-lizard": {
+    "ac": 12,
+    "speed": 40,
+    "str": 15,
+    "dex": 12,
+    "con": 13,
+    "attacks": [
+      {
+        "nameEs": "Mordisco",
+        "toHit": 4,
+        "damage": "1d8+2 perforante"
+      }
+    ],
+    "notes": "Trepar 40 pies"
+  },
+  "giant-owl": {
+    "ac": 12,
+    "speed": 5,
+    "str": 13,
+    "dex": 15,
+    "con": 12,
+    "attacks": [
+      {
+        "nameEs": "Garras",
+        "toHit": 4,
+        "damage": "1d10+2 cortante"
+      }
+    ],
+    "notes": "Vuelo 60 pies"
   },
   "giant-poisonous-snake": {
     "ac": 14,
-    "speed": 30,
+    "speed": 40,
     "str": 10,
     "dex": 18,
     "con": 13,
-    "attacks": [{ "nameEs": "Mordisco", "toHit": 6, "damage": "1d4+4 perforante" }],
-    "notes": "Veneno CD 11 CON"
+    "attacks": [
+      {
+        "nameEs": "Mordisco",
+        "toHit": 6,
+        "damage": "1d4+4 perforante"
+      }
+    ],
+    "notes": "Nadar 40 pies"
+  },
+  "giant-weasel": {
+    "ac": 13,
+    "speed": 40,
+    "str": 11,
+    "dex": 17,
+    "con": 10,
+    "attacks": [
+      {
+        "nameEs": "Mordisco",
+        "toHit": 5,
+        "damage": "1d4+3 perforante"
+      }
+    ],
+    "notes": "Trepar 30 pies"
+  },
+  "giant-wolf-spider": {
+    "ac": 13,
+    "speed": 40,
+    "str": 12,
+    "dex": 16,
+    "con": 13,
+    "attacks": [
+      {
+        "nameEs": "Mordisco",
+        "toHit": 5,
+        "damage": "1d4+3 perforante"
+      }
+    ],
+    "notes": "Trepar 40 pies"
   },
   "panther": {
-    "ac": 12,
+    "ac": 13,
     "speed": 50,
     "str": 14,
+    "dex": 16,
+    "con": 10,
+    "attacks": [
+      {
+        "nameEs": "Desgarrar",
+        "toHit": 5,
+        "damage": "1d6+3 cortante"
+      }
+    ],
+    "notes": "Trepar 40 pies"
+  },
+  "pteranodon": {
+    "ac": 13,
+    "speed": 10,
+    "str": 12,
     "dex": 15,
     "con": 10,
     "attacks": [
-      { "nameEs": "Mordisco", "toHit": 4, "damage": "1d6+2 perforante" },
-      { "nameEs": "Garra", "toHit": 4, "damage": "1d4+2 cortante" }
+      {
+        "nameEs": "Mordisco",
+        "toHit": 4,
+        "damage": "1d8+2 perforante"
+      }
+    ],
+    "notes": "Vuelo 60 pies"
+  },
+  "riding-horse": {
+    "ac": 11,
+    "speed": 60,
+    "str": 16,
+    "dex": 13,
+    "con": 12,
+    "attacks": [
+      {
+        "nameEs": "Cascos",
+        "toHit": 5,
+        "damage": "1d8+3 contundente"
+      }
     ]
+  },
+  "wolf": {
+    "ac": 12,
+    "speed": 40,
+    "str": 14,
+    "dex": 15,
+    "con": 12,
+    "attacks": [
+      {
+        "nameEs": "Mordisco",
+        "toHit": 4,
+        "damage": "1d6+2 perforante"
+      }
+    ],
+    "notes": "Tácticas de manada"
   },
   "crocodile": {
     "ac": 12,
@@ -129,7 +743,74 @@
     "str": 15,
     "dex": 10,
     "con": 13,
-    "attacks": [{ "nameEs": "Mordisco", "toHit": 4, "damage": "1d8+2 perforante" }]
+    "attacks": [
+      {
+        "nameEs": "Mordisco",
+        "toHit": 4,
+        "damage": "1d8+2 perforante"
+      }
+    ],
+    "notes": "Nadar 30 pies"
+  },
+  "giant-goat": {
+    "ac": 11,
+    "speed": 40,
+    "str": 17,
+    "dex": 13,
+    "con": 12,
+    "attacks": [
+      {
+        "nameEs": "Embestida",
+        "toHit": 5,
+        "damage": "1d6+3 contundente"
+      }
+    ],
+    "notes": "Trepar 30 pies"
+  },
+  "giant-sea-horse": {
+    "ac": 14,
+    "speed": 5,
+    "str": 15,
+    "dex": 12,
+    "con": 11,
+    "attacks": [
+      {
+        "nameEs": "Embestida",
+        "toHit": 4,
+        "damage": "2d6+2 contundente"
+      }
+    ],
+    "notes": "Nadar 40 pies"
+  },
+  "giant-wasp": {
+    "ac": 13,
+    "speed": 10,
+    "str": 10,
+    "dex": 14,
+    "con": 10,
+    "attacks": [
+      {
+        "nameEs": "Aguijón",
+        "toHit": 4,
+        "damage": "1d6+2 perforante"
+      }
+    ],
+    "notes": "Vuelo 50 pies"
+  },
+  "reef-shark": {
+    "ac": 12,
+    "speed": 5,
+    "str": 14,
+    "dex": 15,
+    "con": 13,
+    "attacks": [
+      {
+        "nameEs": "Mordisco",
+        "toHit": 4,
+        "damage": "2d4+2 perforante"
+      }
+    ],
+    "notes": "Nadar 30 pies; Tácticas de manada"
   },
   "warhorse": {
     "ac": 11,
@@ -137,18 +818,33 @@
     "str": 18,
     "dex": 12,
     "con": 13,
-    "attacks": [{ "nameEs": "Cascos", "toHit": 6, "damage": "2d6+4 contundente" }]
+    "attacks": [
+      {
+        "nameEs": "Cascos",
+        "toHit": 6,
+        "damage": "2d4+4 contundente"
+      }
+    ]
   },
   "brown-bear": {
     "ac": 11,
     "speed": 40,
-    "str": 19,
-    "dex": 10,
-    "con": 16,
+    "str": 17,
+    "dex": 12,
+    "con": 15,
     "attacks": [
-      { "nameEs": "Mordisco", "toHit": 5, "damage": "1d8+4 perforante" },
-      { "nameEs": "Garras", "toHit": 5, "damage": "2d6+4 cortante" }
-    ]
+      {
+        "nameEs": "Mordisco",
+        "toHit": 5,
+        "damage": "1d8+3 perforante"
+      },
+      {
+        "nameEs": "Garra",
+        "toHit": 5,
+        "damage": "1d4+3 cortante"
+      }
+    ],
+    "notes": "Trepar 30 pies; Ataque múltiple"
   },
   "dire-wolf": {
     "ac": 14,
@@ -156,7 +852,13 @@
     "str": 17,
     "dex": 15,
     "con": 15,
-    "attacks": [{ "nameEs": "Mordisco", "toHit": 5, "damage": "2d6+3 perforante" }],
+    "attacks": [
+      {
+        "nameEs": "Mordisco",
+        "toHit": 5,
+        "damage": "1d10+3 perforante"
+      }
+    ],
     "notes": "Tácticas de manada"
   },
   "giant-eagle": {
@@ -166,10 +868,42 @@
     "dex": 17,
     "con": 13,
     "attacks": [
-      { "nameEs": "Pico", "toHit": 5, "damage": "1d6+3 perforante" },
-      { "nameEs": "Garras", "toHit": 5, "damage": "2d6+3 cortante" }
+      {
+        "nameEs": "Desgarrar",
+        "toHit": 5,
+        "damage": "1d4+3 cortante"
+      }
     ],
-    "notes": "Vuelo 80 pies"
+    "notes": "Vuelo 80 pies; Ataque múltiple"
+  },
+  "giant-hyena": {
+    "ac": 12,
+    "speed": 50,
+    "str": 16,
+    "dex": 14,
+    "con": 14,
+    "attacks": [
+      {
+        "nameEs": "Mordisco",
+        "toHit": 5,
+        "damage": "2d6+3 perforante"
+      }
+    ]
+  },
+  "giant-octopus": {
+    "ac": 11,
+    "speed": 10,
+    "str": 17,
+    "dex": 13,
+    "con": 13,
+    "attacks": [
+      {
+        "nameEs": "Tentáculos",
+        "toHit": 5,
+        "damage": "2d6+3 contundente"
+      }
+    ],
+    "notes": "Nadar 60 pies"
   },
   "giant-spider": {
     "ac": 14,
@@ -177,29 +911,57 @@
     "str": 14,
     "dex": 16,
     "con": 12,
-    "attacks": [{ "nameEs": "Mordisco", "toHit": 5, "damage": "1d8+3 perforante" }],
-    "notes": "Trepar 30 pies; veneno"
+    "attacks": [
+      {
+        "nameEs": "Mordisco",
+        "toHit": 5,
+        "damage": "1d8+3 perforante"
+      }
+    ],
+    "notes": "Trepar 30 pies"
+  },
+  "giant-toad": {
+    "ac": 11,
+    "speed": 30,
+    "str": 15,
+    "dex": 13,
+    "con": 13,
+    "attacks": [
+      {
+        "nameEs": "Mordisco",
+        "toHit": 4,
+        "damage": "1d6+2 perforante"
+      }
+    ],
+    "notes": "Nadar 30 pies"
   },
   "lion": {
     "ac": 12,
     "speed": 50,
     "str": 17,
     "dex": 15,
-    "con": 13,
+    "con": 11,
     "attacks": [
-      { "nameEs": "Mordisco", "toHit": 5, "damage": "1d8+3 perforante" },
-      { "nameEs": "Garra", "toHit": 5, "damage": "1d6+3 cortante" }
-    ]
+      {
+        "nameEs": "Desgarrar",
+        "toHit": 5,
+        "damage": "1d8+3 cortante"
+      }
+    ],
+    "notes": "Ataque múltiple; Tácticas de manada"
   },
   "tiger": {
-    "ac": 12,
+    "ac": 13,
     "speed": 40,
     "str": 17,
-    "dex": 15,
+    "dex": 16,
     "con": 14,
     "attacks": [
-      { "nameEs": "Mordisco", "toHit": 5, "damage": "1d10+3 perforante" },
-      { "nameEs": "Garra", "toHit": 5, "damage": "1d8+3 cortante" }
+      {
+        "nameEs": "Desgarrar",
+        "toHit": 5,
+        "damage": "2d6+3 cortante"
+      }
     ]
   }
 }

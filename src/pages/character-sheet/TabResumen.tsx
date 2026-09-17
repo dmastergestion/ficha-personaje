@@ -19,10 +19,15 @@ import {
   aplicarEquipoTrasfondo,
   personajeNecesitaEquipoTrasfondo,
 } from "@/rules/origin-equipment";
+import {
+  origenDesincronizado,
+  sincronizarDotesYPericiasOrigen,
+  sincronizarEleccionesOrigen,
+} from "@/rules/origin-reapply";
 import { poblarRecursosSugeridos } from "@/rules/resources-tracker";
 import { ajustarMaestriasArmas } from "@/rules/weapon-mastery";
 import type { SheetTabProps } from "@/pages/character-sheet/types";
-import { useDiceRollOptions } from "@/hooks/useDiceRollOptions";
+import { pedirDadoFisico, useDiceRollOptions } from "@/hooks/useDiceRollOptions";
 import { useCatalogStore } from "@/stores/catalog-store";
 import { useUiStore } from "@/stores/ui-store";
 
@@ -55,23 +60,34 @@ export function TabResumen({ character, onChange }: SheetTabProps) {
   const setUltimaTirada = useUiStore((s) => s.setUltimaTirada);
 
   useEffect(() => {
-    if (equipoSyncRef.current === character.id) return;
-    if (!personajeNecesitaEquipoTrasfondo(character)) return;
-    equipoSyncRef.current = character.id;
-    onChange(aplicarEquipoTrasfondo(character, catalogoOrigen));
+    let next = character;
+    let changed = false;
+    if (equipoSyncRef.current !== character.id && personajeNecesitaEquipoTrasfondo(character)) {
+      equipoSyncRef.current = character.id;
+      next = aplicarEquipoTrasfondo(next, catalogoOrigen);
+      changed = true;
+    }
+    if (origenDesincronizado({ ...next, originChoices }, catalogoOrigen)) {
+      next = sincronizarDotesYPericiasOrigen(next, originChoices, catalogoOrigen);
+      changed = true;
+    }
+    if (changed) onChange(poblarRecursosSugeridos(next));
   }, [character, catalogoOrigen, onChange]);
 
   function actualizarEleccionesOrigen(next: typeof originChoices) {
     onChange(
       poblarRecursosSugeridos(
-        aplicarEquipoTrasfondo({ ...character, originChoices: next }, catalogoOrigen),
+        aplicarEquipoTrasfondo(
+          sincronizarEleccionesOrigen(character, next, catalogoOrigen),
+          catalogoOrigen,
+        ),
       ),
     );
   }
 
   function tirarAtributoRoll(_key: AbilityKey, mod: number) {
     if (!diceRoll.isReady) {
-      setUltimaTirada(null, diceRoll.error);
+      pedirDadoFisico(diceRoll.error);
       return;
     }
     const result = tiradaPericia(
@@ -94,7 +110,7 @@ export function TabResumen({ character, onChange }: SheetTabProps) {
 
   function tirarSalvacionRoll(key: AbilityKey) {
     if (!diceRoll.isReady) {
-      setUltimaTirada(null, diceRoll.error);
+      pedirDadoFisico(diceRoll.error);
       return;
     }
     const mod = modificadorSalvacion(character, key);
@@ -109,7 +125,7 @@ export function TabResumen({ character, onChange }: SheetTabProps) {
     );
     if ("autoFallo" in result) {
       if (result.razon.includes("dado")) {
-        setUltimaTirada(null, result.razon);
+        pedirDadoFisico(result.razon);
         return;
       }
       setUltimaTirada({
@@ -129,7 +145,7 @@ export function TabResumen({ character, onChange }: SheetTabProps) {
 
   function tirarPericiaRoll(skill: SkillKey) {
     if (!diceRoll.isReady) {
-      setUltimaTirada(null, diceRoll.error);
+      pedirDadoFisico(diceRoll.error);
       return;
     }
     const mod = modificadorPericia(character, skill);

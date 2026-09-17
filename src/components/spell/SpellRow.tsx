@@ -10,7 +10,7 @@ export function EtiquetaConcentracion({ spellId }: { spellId: string }) {
   const catalog = useCatalogStore((s) => s.catalog);
   if (!catalog.requiereConcentracion(spellId)) return null;
   return (
-    <span className="ml-1 rounded bg-gold/20 px-1.5 py-0.5 text-[10px] font-semibold uppercase tracking-wide text-gold">
+    <span className="ml-1 rounded bg-accent/20 px-1.5 py-0.5 text-[10px] font-semibold uppercase tracking-wide text-accent">
       Conc.
     </span>
   );
@@ -72,7 +72,7 @@ export function SpellRow({
   const catalog = useCatalogStore((s) => s.catalog);
   return (
     <li className="flex items-center justify-between gap-2 text-sm">
-      <button type="button" className="min-w-0 text-left hover:text-gold" onClick={onInfo}>
+      <button type="button" className="min-w-0 text-left hover:text-accent" onClick={onInfo}>
         {catalog.t("spells", id, id)}
         <EtiquetaTipoTirada spellId={id} />
         <EtiquetaConcentracion spellId={id} />
@@ -83,7 +83,7 @@ export function SpellRow({
         <Button variant="ghost" className="px-2 py-1" onClick={onInfo}>
           Info
         </Button>
-        <Button variant="combat" className="px-2 py-1" onClick={onCast}>
+        <Button variant="primary" className="min-h-10 px-3" onClick={onCast}>
           Lanzar
         </Button>
         <Button variant="ghost" className="px-2 py-1" onClick={onRemove}>

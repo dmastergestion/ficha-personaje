@@ -197,6 +197,37 @@ export function formulaDañoArma(
   return `${die} + ${mod}`;
 }
 
+function fmtModDaño(n: number): string {
+  return n >= 0 ? `+ ${n}` : `- ${Math.abs(n)}`;
+}
+
+function etiquetaExtraDañoColumna(label: string | null): string | null {
+  if (!label) return null;
+  const limpio = label.replace(/\s*\+\d+/g, "").replace(/\s*·\s*/g, " · ").trim();
+  return limpio || null;
+}
+
+/** Fórmula de daño con el modificador numérico (y extras de rabia/duelo). */
+export function etiquetaDañoAtaque(character: Character, attack: CombatAttack): string {
+  const raw = attack.damage?.trim();
+  if (!raw) return "—";
+  const abilities = atributosEfectivos(character);
+  let out = raw;
+  for (const key of Object.keys(MOD_SHORT) as AbilityKey[]) {
+    const n = modificadorAtributo(abilities[key]);
+    const token = MOD_SHORT[key];
+    out = out.replace(new RegExp(`([+\\-])\\s*MOD ${token}\\b`, "gi"), fmtModDaño(n));
+    out = out.replace(new RegExp(`\\bMOD ${token}\\b`, "gi"), String(n));
+  }
+  const extra = extrasAtaque(character, attack);
+  if (extra.damage !== 0) {
+    const etiqueta = etiquetaExtraDañoColumna(extra.damageLabel);
+    out += ` ${fmtModDaño(extra.damage)}`;
+    if (etiqueta) out += ` (${etiqueta})`;
+  }
+  return out.replace(/\s+/g, " ").trim();
+}
+
 export function notasArma(weapon: SrdWeapon): string | undefined {
   const parts: string[] = [];
   if (weapon.range) {

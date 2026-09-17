@@ -13,7 +13,8 @@ import {
 } from "@/rules/feat-mechanics";
 import { poblarRecursosSugeridos } from "@/rules/resources-tracker";
 import { sincronizarPgPorDotes } from "@/rules/resources";
-import { esDoteOrigenFijada } from "@/rules/origin-benefits";
+import { dotesOrigenConcedidas, esDoteOrigenFijada } from "@/rules/origin-benefits";
+import { fusionarEleccionesOrigen } from "@/rules/origin-choices";
 import { descripcionDote as textoDote, nombreDote as nombreDoteTexto } from "@/rules/feat-text";
 import type { Character, CharacterFeat } from "@/schemas/character";
 
@@ -33,17 +34,36 @@ const featMeta = featMetaJson as Record<string, FeatMetaEntry>;
 
 const CATEGORY_ORDER = ["origin", "general", "fighting-style", "epic-boon"];
 
-function labelFeat(entry: FeatMetaEntry): string {
-  return entry.nameEs || entry.name;
-}
-
 export function nombreDote(id: string): string {
-  const entry = featMeta[id];
-  return entry ? labelFeat(entry) : nombreDoteTexto(id);
+  return nombreDoteTexto(id);
 }
 
 export function descripcionDote(id: string): string | undefined {
   return textoDote(id);
+}
+
+function eleccionesOrigenFicha(character: Character) {
+  return fusionarEleccionesOrigen(
+    character.identity.speciesId,
+    character.identity.backgroundId,
+    character.originChoices,
+  );
+}
+
+function dotesUsoConOrigen(character: Character): CharacterFeat[] {
+  const fused = eleccionesOrigenFicha(character);
+  const concedidas = dotesOrigenConcedidas(
+    character.identity.speciesId,
+    character.identity.backgroundId,
+    character.identity.level,
+    undefined,
+    fused,
+  );
+  const extra = concedidas.filter((c) => !character.feats.some((f) => f.id === c.id));
+  return [
+    ...extra.map((f) => ({ ...f, instanceId: f.instanceId ?? `origen:${f.id}` })),
+    ...character.feats,
+  ];
 }
 
 function aplicarCambioDotes(character: Character, next: Character): Character {
@@ -62,7 +82,19 @@ export function FeatPicker({
   /** `uso`: dotes que ya tienes. `catalogo`: solo las que aún no tienes. */
   modo?: "uso" | "gestion" | "catalogo";
 }) {
-  const feats = character.feats;
+  const feats =
+    modo === "uso"
+      ? dotesUsoConOrigen(character)
+      : character.feats;
+  const idsOrigen = new Set(
+    dotesOrigenConcedidas(
+      character.identity.speciesId,
+      character.identity.backgroundId,
+      character.identity.level,
+      undefined,
+      eleccionesOrigenFicha(character),
+    ).map((f) => f.id),
+  );
   const byCategory =
     modo === "uso"
       ? []
@@ -72,7 +104,7 @@ export function FeatPicker({
             ?.categoryLabel ?? category,
           items: Object.entries(featMeta)
             .filter(([, m]) => m.category === category)
-            .sort((a, b) => labelFeat(a[1]).localeCompare(labelFeat(b[1]), "es")),
+            .sort((a, b) => nombreDote(a[0]).localeCompare(nombreDote(b[0]), "es")),
         })).filter((g) => g.items.length > 0);
 
   const [pendingId, setPendingId] = useState("");
@@ -91,7 +123,7 @@ export function FeatPicker({
     const feat: CharacterFeat = {
       id: pendingId,
       instanceId: crypto.randomUUID(),
-      name: labelFeat(meta),
+      name: nombreDote(pendingId),
       notes: textoDote(pendingId),
       choices: eleccionesPorDefectoDote(pendingId),
     };
@@ -120,14 +152,14 @@ export function FeatPicker({
           const desc = textoDote(feat.id, feat.notes);
           const instanceId = idInstanciaDote(feat);
           const tieneMecanica = !!metaMecanicaDote(feat.id);
-          const origenFijada = esDoteOrigenFijada(character, feat);
+          const origenFijada = idsOrigen.has(feat.id) || esDoteOrigenFijada(character, feat);
           const ocupadas = periciasOcupadasFueraDeDote(character, instanceId);
           const configCompleta = doteConfigCompleta(feat, { skills: ocupadas });
           return (
             <li key={instanceId} className="rounded-lg border border-white/10 bg-surface p-3">
               <div className="flex items-start justify-between gap-2">
                 <div>
-                  <span className="font-medium">{feat.name}</span>
+                  <span className="font-medium">{nombreDote(feat.id)}</span>
                   {meta?.prerequisite && (
                     <span className="ml-2 text-xs text-muted">({meta.prerequisite})</span>
                   )}
@@ -137,17 +169,17 @@ export function FeatPicker({
                     </span>
                   )}
                   {tieneMecanica && (
-                    <span className="ml-1 rounded bg-gold/15 px-1 text-[10px] text-gold">
+                    <span className="ml-1 rounded bg-white/10 px-1 text-[10px] text-muted">
                       Mecánica activa
                     </span>
                   )}
                   {!doteCumplePrerrequisitos(character, feat.id).ok && (
                     <span className="ml-1 rounded bg-amber-500/20 px-1 text-[10px] text-amber-200">
-                      Prerrequisitos no cumplidos (homebrew)
+                      Prerrequisitos no cumplidos (contenido propio)
                     </span>
                   )}
                   {!meta?.srd52 && (
-                    <span className="ml-1 rounded bg-gold/20 px-1 text-[10px] text-gold">PHB</span>
+                    <span className="ml-1 rounded bg-white/10 px-1 text-[10px] text-muted">PHB</span>
                   )}
                 </div>
                 {!origenFijada && (
@@ -190,7 +222,7 @@ export function FeatPicker({
                   const disabled = !puedeAnadir(id) || !prereq.ok;
                   return (
                     <option key={id} value={id} disabled={disabled}>
-                      {labelFeat(meta)}
+                      {nombreDote(id)}
                       {meta.prerequisite ? ` · ${meta.prerequisite}` : ""}
                       {!prereq.ok ? ` — ${prereq.razones.join("; ")}` : ""}
                     </option>

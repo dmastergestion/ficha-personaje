@@ -1,10 +1,16 @@
 import { describe, expect, it } from "vitest";
 import { ORIGIN_CHOICES_EMPTY } from "@/rules/origin-choices";
 import {
+  aplicarCompetenciasOrdenDivino,
   aplicarEquipoClase,
+  extraTrucosOrdenDivino,
+  eleccionesClase,
+  fusionarEleccionesClase,
+  LAND_TERRAIN_KEY,
   ORIGIN_CLASS_EQUIPMENT_NOTE,
   parsearPaqueteEquipoClase,
 } from "@/rules/class-equipment";
+import { competenciasClase } from "@/rules/proficiencies";
 import { crearPersonajeVacio } from "@/schemas/character";
 
 describe("parsearPaqueteEquipoClase", () => {
@@ -54,5 +60,48 @@ describe("aplicarEquipoClase", () => {
     expect(result.equipment.items.some((i) => i.weaponId === "longsword")).toBe(true);
     expect(result.equipment.defaultAttackId).toBeTruthy();
     expect(result.equipment.currency.gp).toBe(9);
+  });
+});
+
+describe("terreno del círculo de la tierra", () => {
+  it("pide terreno y fusiona templado por defecto", () => {
+    const classes = [{ classId: "druid", subclassId: "land", level: 3 }];
+    expect(
+      eleccionesClase("druid", { classes }).some((d) => d.id === LAND_TERRAIN_KEY),
+    ).toBe(true);
+    const fused = fusionarEleccionesClase("druid", ORIGIN_CHOICES_EMPTY, { classes });
+    expect(fused.class[LAND_TERRAIN_KEY]).toBe("temperate");
+  });
+});
+
+describe("Orden divino", () => {
+  it("protector añade pesada y marcial; taumaturgo un truco extra", () => {
+    const base = competenciasClase("cleric");
+    const next = aplicarCompetenciasOrdenDivino(
+      "cleric",
+      { species: {}, background: {}, class: { "divine-order": "protector" } },
+      base.armorProficiencies,
+      base.weaponProficiencies,
+    );
+    expect(next.armorProficiencies).toContain("heavy");
+    expect(next.weaponProficiencies).toContain("martial");
+    expect(
+      extraTrucosOrdenDivino("cleric", {
+        species: {},
+        background: {},
+        class: { "divine-order": "thaumaturge" },
+      }),
+    ).toBe(1);
+  });
+});
+
+describe("Corazón Salvaje", () => {
+  it("elige opción de Rabia y fusiona oso por defecto", () => {
+    const classes = [{ classId: "barbarian", subclassId: "wild-heart", level: 3 }];
+    expect(eleccionesClase("barbarian", { classes }).some((d) => d.id === "wild-heart-rage")).toBe(
+      true,
+    );
+    const fused = fusionarEleccionesClase("barbarian", ORIGIN_CHOICES_EMPTY, { classes });
+    expect(fused.class["wild-heart-rage"]).toBe("bear");
   });
 });

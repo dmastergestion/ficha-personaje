@@ -29,12 +29,12 @@ export function CharacterNewPage() {
               aria-current={activo ? "step" : undefined}
               className={cn(
                 "flex min-h-11 items-center gap-2 rounded-lg px-3 py-2 text-sm transition",
-                activo && "bg-gold font-semibold text-black",
+                activo && "bg-accent font-semibold text-ink",
                 completado &&
-                  "border border-gold/40 text-gold hover:bg-gold/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold/50",
+                  "border border-accent/40 text-accent hover:bg-accent/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/50",
                 !activo &&
                   !completado &&
-                  "border border-white/10 text-muted hover:border-white/20 hover:text-white",
+                  "border border-white/10 text-muted hover:border-white/20 hover:text-cream",
               )}
               onClick={() => asistente.irAPaso(index)}
             >

@@ -33,7 +33,7 @@ export function OriginSidePanel({
 
   return (
     <aside className="sticky top-4 space-y-3 rounded-xl border border-white/10 bg-surface/80 p-4 text-sm">
-      <h3 className="font-semibold text-gold">Qué obtienes</h3>
+      <h3 className="font-semibold">Qué obtienes</h3>
 
       {!speciesId && !backgroundId && classLevels.length === 0 && (
         <p className="text-xs text-muted">Elige especie, trasfondo o clase para ver sus rasgos.</p>

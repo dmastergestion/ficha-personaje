@@ -6,13 +6,13 @@ Lee **`SPEC.md`** antes de cualquier cambio. Es el contrato compartido para **cu
 
 ## Resumen para IA
 
-- PWA **React + TypeScript**, offline-first, **español**, D&D **2024 SRD**.
+- PWA **React + TypeScript**, offline-first, **español**, D&D **2024 PHB / SRD**.
 - Proyecto **aislado** de `suiteDM`; sin imports cruzados.
 - **React sin lógica de reglas** → todo en `src/rules/`.
 - **Zod** = forma persistida; **Dexie** = IndexedDB; derivados **no se guardan**.
 - Fase activa: **v2 completa** (efectos, inventario, PWA+, multiclass, PDF). Mantener alcance SPEC.
-- UX mesa: acciones críticas `#ffd54f`; daño PV ≤2 clics; tirada ≤1 clic.
-- SRD: build desde Markdown EN + i18n ES híbrido (SPEC § Pipeline SRD).
+- UX mesa: acento sage `#8fbfa8`; texto crema; daño PV ≤2 clics; tirada ≤1 clic.
+- SRD: `npm run build:data` (Foundry YAML + 5etools + i18n ES). SPEC § Pipeline SRD.
 - Cambio mínimo por iteración; una mejora visible por paso.
 - Código y comentarios en **castellano**.
 

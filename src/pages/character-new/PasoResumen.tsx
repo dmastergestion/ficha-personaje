@@ -5,7 +5,8 @@ import { ABILITY_LABELS_ES, SKILL_LABELS_ES } from "@/rules/character";
 import { cantidadExpertiseHastaNivel, cantidadMejorasAtributosHastaNivel, hitosMecanicos } from "@/rules/class-features";
 import { periciasClaseDesdeElecciones } from "@/rules/class-skills";
 import { mejorasCreacionVacias } from "@/rules/creation-wizard";
-import { dotesParaMejoraAtributos } from "@/rules/feat-text";
+import { dotesParaMejoraAtributos, nombreDote } from "@/rules/feat-text";
+import { etiquetaHerramienta } from "@/lib/origin-text";
 import type { GameCatalog } from "@/rules/catalog";
 import type { DatosAsistente } from "@/rules/creation";
 import type { BeneficiosOrigen, OrigenCatalogo } from "@/rules/origin-benefits";
@@ -47,8 +48,8 @@ export function PasoResumen({
         <p>Trasfondo: {catalog.t("backgrounds", datos.backgroundId, datos.backgroundId)}</p>
       )}
       {cantidadMejorasAtributosHastaNivel(datos.classId, datos.level) > 0 && (
-        <div className="space-y-3 rounded-lg border border-gold/30 bg-gold/5 p-3">
-          <p className="font-medium text-gold">Mejoras de atributos o dotes (obligatorio para crear)</p>
+        <div className="space-y-3 rounded-lg border border-accent/30 bg-accent/5 p-3">
+          <p className="font-medium">Mejoras de atributos o dotes (obligatorio para crear)</p>
           {mejorasCreacionVacias(
             cantidadMejorasAtributosHastaNivel(datos.classId, datos.level),
             datos.mejorasNivel,
@@ -216,7 +217,7 @@ export function PasoResumen({
         </div>
       )}
       {!datos.backgroundId && (
-        <p className="text-amber-200">Trasfondo vacío: personaje incompleto (homebrew).</p>
+        <p className="text-amber-200">Trasfondo vacío: personaje incompleto (contenido propio).</p>
       )}
       <p>
         PV estimados:{" "}
@@ -232,11 +233,11 @@ export function PasoResumen({
         </p>
       )}
       {beneficiosOrigen.toolProficiencies.length > 0 && (
-        <p className="text-muted">Herramientas: {beneficiosOrigen.toolProficiencies.join(", ")}</p>
+        <p className="text-muted">Herramientas: {beneficiosOrigen.toolProficiencies.map(etiquetaHerramienta).join(", ")}</p>
       )}
       {beneficiosOrigen.feat && (
         <p className="text-muted">
-          Dote de trasfondo: {beneficiosOrigen.feat.name}
+          Dote de trasfondo: {nombreDote(beneficiosOrigen.feat.id)}
           {datos.featChoices?.[beneficiosOrigen.feat.id] &&
             ` (${Object.values(datos.featChoices[beneficiosOrigen.feat.id]!)
               .map((id) => SKILL_LABELS_ES[id as SkillKey] ?? id)
@@ -259,7 +260,7 @@ export function PasoResumen({
           return (
             <span key={key} className="rounded bg-surface px-2 py-1">
               {ABILITY_LABELS_ES[key].slice(0, 3).toUpperCase()} {atributosFinales[key]}
-              {bonus > 0 && <span className="text-gold"> (+{bonus})</span>}
+              {bonus > 0 && <span className="text-accent"> (+{bonus})</span>}
             </span>
           );
         })}

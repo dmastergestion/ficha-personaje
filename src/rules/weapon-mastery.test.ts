@@ -1,8 +1,10 @@
 import { describe, expect, it } from "vitest";
 import {
   maestriasArmasCompletas,
+  maxRecursoPorFormula,
   ranurasMaestriaClase,
   resumenMaestriaArma,
+  textoMaestriaArma,
 } from "@/rules/weapon-mastery";
 import { proficienciasIniciales } from "@/rules/proficiencies";
 import { crearPersonajeVacio } from "@/schemas/character";
@@ -31,7 +33,14 @@ describe("weapon-mastery", () => {
     expect(maestriasArmasCompletas(character)).toBe(false);
   });
 
-  it("resume maestría con propiedad", () => {
+  it("resume maestría con propiedad del catálogo", () => {
     expect(resumenMaestriaArma("longsword")).toContain("Debilitar");
+    expect(textoMaestriaArma("longsword")?.descripcion).toMatch(/desventaja/i);
+  });
+
+  it("fórmulas de recurso: 2pb y max(1,wis)", () => {
+    expect(maxRecursoPorFormula("2pb", 5)).toBe(6);
+    expect(maxRecursoPorFormula("max(1,wis)", 1, { wis: 16 })).toBe(3);
+    expect(maxRecursoPorFormula("1+level", 3)).toBe(4);
   });
 });

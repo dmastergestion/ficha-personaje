@@ -151,7 +151,7 @@ export function eleccionesInvocaciones(
     {
       id: INVOCATIONS_KEY,
       scope: "class",
-      label: "Invocaciones eldritch",
+      label: "Invocaciones místicas",
       hint: `Elige ${max} invocación${max > 1 ? "es" : ""} (PHB 2024). Puedes cambiar una al subir de nivel.`,
       options: opciones,
       editable: "always",

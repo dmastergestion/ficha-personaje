@@ -1,0 +1,22 @@
+[
+  { "id": "ambush", "nameEs": "Emboscada", "hint": "Suma el dado a Iniciativa o a Sigilo." },
+  { "id": "bait-and-switch", "nameEs": "Señuelo", "hint": "Cambias de sitio con un aliado; uno de los dos suma el dado a la CA." },
+  { "id": "commanders-strike", "nameEs": "Golpe del comandante", "hint": "Un aliado ataca usando su reacción y suma el dado al daño." },
+  { "id": "commanding-presence", "nameEs": "Presencia imponente", "hint": "Suma el dado a Intimidar, Interpretar o Persuadir." },
+  { "id": "disarming-attack", "nameEs": "Ataque desarmador", "hint": "Añade el dado al daño; salvación de Fuerza o suelta un objeto." },
+  { "id": "distracting-strike", "nameEs": "Golpe distractor", "hint": "Añade el dado al daño; el siguiente ataque de un aliado tiene ventaja." },
+  { "id": "evasive-footwork", "nameEs": "Pie evasivo", "hint": "Al moverte, suma el dado a la CA hasta el final del turno." },
+  { "id": "feinting-attack", "nameEs": "Finta", "hint": "Ventaja en un ataque cuerpo a cuerpo y suma el dado al daño." },
+  { "id": "goading-attack", "nameEs": "Ataque provocador", "hint": "Añade el dado al daño; salvación de Sabiduría o desventaja al atacar a otros." },
+  { "id": "lunging-attack", "nameEs": "Ataque en estocada", "hint": "+5 pies de alcance en un ataque cuerpo a cuerpo y suma el dado al daño." },
+  { "id": "maneuvering-attack", "nameEs": "Ataque de maniobra", "hint": "Añade el dado al daño; un aliado se mueve sin ataques de oportunidad." },
+  { "id": "menacing-attack", "nameEs": "Ataque amenazante", "hint": "Añade el dado al daño; salvación de Sabiduría o asustado." },
+  { "id": "parry", "nameEs": "Parada", "hint": "Reduce el daño de un ataque cuerpo a cuerpo en el dado + DES." },
+  { "id": "precision-attack", "nameEs": "Ataque de precisión", "hint": "Suma el dado a la tirada de ataque (también tras ver el d20)." },
+  { "id": "pushing-attack", "nameEs": "Ataque empujón", "hint": "Añade el dado al daño; salvación de Fuerza o empuje de 15 pies." },
+  { "id": "rally", "nameEs": "Reagrupar", "hint": "Un aliado gana PG temporales iguales al dado + CAR." },
+  { "id": "riposte", "nameEs": "Contraataque", "hint": "Si un ataque cuerpo a cuerpo te falla, atacas con reacción y sumas el dado al daño." },
+  { "id": "sweeping-attack", "nameEs": "Ataque barrido", "hint": "Otra criatura a 5 pies recibe daño igual al dado si el ataque impacta." },
+  { "id": "tactical-assessment", "nameEs": "Evaluación táctica", "hint": "Suma el dado a Historia, Investigación o Perspicacia." },
+  { "id": "trip-attack", "nameEs": "Ataque derribo", "hint": "Añade el dado al daño; salvación de Fuerza o derribado (Grande o menor)." }
+]

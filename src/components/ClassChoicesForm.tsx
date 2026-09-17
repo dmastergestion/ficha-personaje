@@ -199,7 +199,7 @@ function MultiChoice({
         >
           <input
             type="checkbox"
-            className="mt-1 size-4 accent-gold"
+            className="mt-1 size-4 accent-accent"
             checked={checked}
             disabled={bloqueado && !checked}
             onChange={() => alternar(opt.value)}

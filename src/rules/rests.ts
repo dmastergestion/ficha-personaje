@@ -1,3 +1,6 @@
+/**
+ * Descansos corto/largo, dados de golpe y ajuste de espacios/pacto.
+ */
 import { dadosGolpeRecuperadosDescansoLargo } from "@/rules/edition";
 import {
   gastadosPorDado,
@@ -9,7 +12,11 @@ import type { SpellSlotLevel } from "@/lib/constants";
 import { SPELL_SLOT_LEVELS } from "@/lib/constants";
 import { modificadorAtributo } from "@/rules/ability";
 import { tirarDadoDenominacion } from "@/rules/dice";
-import { aplicarRecargaRecursos } from "@/rules/resources-tracker";
+import {
+  SORCEROUS_RESTORATION_RESOURCE_ID,
+  SORCERY_POINTS_RESOURCE_ID,
+} from "@/rules/resource-ids";
+import { aplicarRecargaRecursos, ajustarRecurso } from "@/rules/resources-tracker";
 import { aplicarInspiracionHeroicaTrasDescanso } from "@/rules/heroic-inspiration";
 import { espaciosMaximosPersonaje, espaciosPactoMaximos, nivelBrujo } from "@/rules/spells";
 import type { Character } from "@/schemas/character";
@@ -62,10 +69,38 @@ export function aplicarDescansoLargo(character: Character): Character {
   };
 }
 
+/** Tras descanso corto: puntos de hechicería ≤ mitad de nivel de hechicero (1/descanso largo). */
+function aplicarRestauracionHechicera(character: Character): Character {
+  const rasgo = character.resources.find((r) => r.id === SORCEROUS_RESTORATION_RESOURCE_ID);
+  const puntos = character.resources.find((r) => r.id === SORCERY_POINTS_RESOURCE_ID);
+  if (!rasgo || rasgo.used >= rasgo.max) return character;
+  if (!puntos || puntos.used <= 0) return character;
+  const nivel = character.identity.classes.find((c) => c.classId === "sorcerer")?.level ?? 0;
+  const recupera = Math.min(puntos.used, Math.floor(nivel / 2));
+  if (recupera <= 0) return character;
+  let next = ajustarRecurso(character, SORCERY_POINTS_RESOURCE_ID, -recupera);
+  return ajustarRecurso(next, SORCEROUS_RESTORATION_RESOURCE_ID, 1);
+}
+
+/** Incansable (explorador 10+): al terminar un descanso corto reduces 1 nivel de agotamiento. */
+function aplicarIncansableAgotamiento(character: Character): Character {
+  const nivel = character.identity.classes.find((c) => c.classId === "ranger")?.level ?? 0;
+  if (nivel < 10 || character.combat.exhaustionLevel <= 0) return character;
+  return {
+    ...character,
+    combat: {
+      ...character.combat,
+      exhaustionLevel: Math.max(0, character.combat.exhaustionLevel - 1),
+    },
+  };
+}
+
 /** Descanso corto: el brujo recupera sus espacios de pacto (los espacios normales NO se recuperan). */
 export function aplicarDescansoCorto(character: Character): Character {
   let next = aplicarRecargaRecursos(character, "short");
   next = aplicarInspiracionHeroicaTrasDescanso(next, "short");
+  next = aplicarRestauracionHechicera(next);
+  next = aplicarIncansableAgotamiento(next);
   if (nivelBrujo(character.identity.classes) > 0) {
     next = {
       ...next,

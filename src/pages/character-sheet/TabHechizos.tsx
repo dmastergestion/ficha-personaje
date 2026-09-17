@@ -1,5 +1,7 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { Button } from "@/components/layout";
+import { RecuperacionEspaciosControls } from "@/components/RecuperacionEspaciosControls";
+import { UsosContador } from "@/components/UsosContador";
 import { ABILITY_KEYS, SPELL_SLOT_LEVELS } from "@/lib/constants";
 import type { AbilityKey } from "@/lib/constants";
 import { ABILITY_LABELS_ES } from "@/rules/character";
@@ -26,11 +28,18 @@ import {
   espaciosRestantesPersonaje,
   pactoRestante,
 } from "@/rules/rests";
+import {
+  ARCANE_RECOVERY_RESOURCE_ID,
+  MAGICAL_CUNNING_RESOURCE_ID,
+  usarAstuciaMagica,
+  usarRecuperacionArcana,
+} from "@/rules/resource-use";
 import type { SheetTabProps } from "@/pages/character-sheet/types";
 import { SpellInfoPanel } from "@/components/SpellInfoPanel";
 import { SpellSheetTable } from "@/components/sheet/SpellSheetTable";
 import {
   conjurosOtorgadosLanzables,
+  conteoConjurosOtorgados,
   filasConjurosFicha,
   grantLanzableDeConjuro,
   mejorRecursoLibreParaConjuro,
@@ -38,7 +47,7 @@ import {
 } from "@/rules/spell-grants";
 import { ajustarRecurso } from "@/rules/resources-tracker";
 import { quitarConjuro } from "@/pages/character-sheet/spell-list-mutations";
-import { useDiceRollOptions } from "@/hooks/useDiceRollOptions";
+import { pedirDadoFisico, useDiceRollOptions } from "@/hooks/useDiceRollOptions";
 import { useCatalogStore } from "@/stores/catalog-store";
 import { useUiStore } from "@/stores/ui-store";
 import { llevaArmaduraSinAdiestramiento } from "@/rules/proficiencies";
@@ -84,7 +93,7 @@ export function TabHechizos({ character, onChange }: SheetTabProps) {
 
   function lanzar(spellId: string, resourceId?: string, ranura?: OpcionRanuraConjuro) {
     if (!diceRoll.isReady) {
-      setUltimaTirada(null, diceRoll.error);
+      pedirDadoFisico(diceRoll.error);
       return;
     }
     const level = nivelConjuro(spellId);
@@ -155,6 +164,7 @@ export function TabHechizos({ character, onChange }: SheetTabProps) {
 
   const effectiveLevel = nivelEfectivoConjuro(classesConjuro);
   const resumen = resumenConjuros(character);
+  const otorgados = conteoConjurosOtorgados(character);
   const sinAdiestramiento = llevaArmaduraSinAdiestramiento(character);
   const filasTrucos = useMemo(
     () => filasConjurosFicha(character, character.spells.cantripsKnown, "cantrip"),
@@ -187,19 +197,23 @@ export function TabHechizos({ character, onChange }: SheetTabProps) {
                 className="min-w-[4.5rem] flex-1 rounded-lg bg-surface px-1.5 py-1.5 text-center text-sm"
               >
                 <div className="text-muted">Niv {level}</div>
-                <div className="text-lg font-bold">
-                  {restantes}/{maxSlots[level]}
+                <div className={restantes <= 0 ? "opacity-60" : ""}>
+                  <UsosContador restantes={restantes} max={maxSlots[level]} compact />
                 </div>
                 <div className="mt-0.5 flex justify-center gap-0.5">
                   <Button
-                    variant="danger"
                     className="px-2 py-0.5"
+                    aria-label={`Gastar espacio de nivel ${level}`}
+                    disabled={restantes <= 0}
                     onClick={() => onChange(ajustarEspaciosRestantes(character, level, -1))}
                   >
-                    −
+                    Gastar
                   </Button>
                   <Button
+                    variant="ghost"
                     className="px-2 py-0.5"
+                    aria-label={`Devolver espacio de nivel ${level}`}
+                    disabled={restantes >= maxSlots[level]}
                     onClick={() => onChange(ajustarEspaciosRestantes(character, level, 1))}
                   >
                     +
@@ -209,29 +223,58 @@ export function TabHechizos({ character, onChange }: SheetTabProps) {
             );
           })}
         </div>
+        <RecuperacionEspaciosControls
+          character={character}
+          onChange={onChange}
+          resourceId={ARCANE_RECOVERY_RESOURCE_ID}
+          classId="wizard"
+          minLevel={1}
+          titulo="Recuperación arcana"
+          fallbackTexto="Tras un descanso corto recuperas espacios de 1.º a 5.º cuya suma de niveles no supera la mitad de tu nivel de mago."
+          accion="Recuperar espacios"
+          usar={usarRecuperacionArcana}
+        />
         {pactMax > 0 && (
-          <div className="mt-2 flex flex-wrap items-center gap-3 border-t border-white/10 pt-2">
-            <span className="text-sm font-semibold">
-              Magia de pacto (brujo {nivelBrujo(classesConjuro)}
-              {nivelEspacioPacto(classesConjuro) > 0
-                ? ` · niv. ${nivelEspacioPacto(classesConjuro)}`
-                : ""}
-              )
-            </span>
-            <span className="text-lg font-bold">
-              {pactRestante}/{pactMax}
-            </span>
-            <Button
-              variant="danger"
-              className="px-2 py-0.5"
-              onClick={() => onChange(ajustarPactoRestante(character, -1))}
-            >
-              −
-            </Button>
-            <Button className="px-2 py-0.5" onClick={() => onChange(ajustarPactoRestante(character, 1))}>
-              +
-            </Button>
-          </div>
+          <>
+            <div className="mt-2 flex flex-wrap items-center gap-3 border-t border-white/10 pt-2">
+              <span className="text-sm font-semibold">
+                Magia de pacto (brujo {nivelBrujo(classesConjuro)}
+                {nivelEspacioPacto(classesConjuro) > 0
+                  ? ` · niv. ${nivelEspacioPacto(classesConjuro)}`
+                  : ""}
+                )
+              </span>
+              <UsosContador restantes={pactRestante} max={pactMax} compact />
+              <Button
+                className="px-2 py-0.5"
+                aria-label="Gastar espacio de pacto"
+                disabled={pactRestante <= 0}
+                onClick={() => onChange(ajustarPactoRestante(character, -1))}
+              >
+                Gastar
+              </Button>
+              <Button
+                variant="ghost"
+                className="px-2 py-0.5"
+                aria-label="Devolver espacio de pacto"
+                disabled={pactRestante >= pactMax}
+                onClick={() => onChange(ajustarPactoRestante(character, 1))}
+              >
+                +
+              </Button>
+            </div>
+            <RecuperacionEspaciosControls
+              character={character}
+              onChange={onChange}
+              resourceId={MAGICAL_CUNNING_RESOURCE_ID}
+              classId="warlock"
+              minLevel={2}
+              titulo="Astucia mágica"
+              fallbackTexto="Ritual de 1 minuto: recuperas espacios de pacto gastados, hasta la mitad del máximo."
+              accion="Recuperar pacto"
+              usar={usarAstuciaMagica}
+            />
+          </>
         )}
       </section>
     ) : effectiveLevel === 0 && pactMax > 0 ? (
@@ -244,20 +287,36 @@ export function TabHechizos({ character, onChange }: SheetTabProps) {
           )
         </h3>
         <div className="flex flex-wrap items-center gap-3">
-          <span className="text-lg font-bold">
-            {pactRestante}/{pactMax}
-          </span>
+          <UsosContador restantes={pactRestante} max={pactMax} compact />
           <Button
-            variant="danger"
             className="px-2 py-0.5"
+            aria-label="Gastar espacio de pacto"
+            disabled={pactRestante <= 0}
             onClick={() => onChange(ajustarPactoRestante(character, -1))}
           >
-            −
+            Gastar
           </Button>
-          <Button className="px-2 py-0.5" onClick={() => onChange(ajustarPactoRestante(character, 1))}>
+          <Button
+            variant="ghost"
+            className="px-2 py-0.5"
+            aria-label="Devolver espacio de pacto"
+            disabled={pactRestante >= pactMax}
+            onClick={() => onChange(ajustarPactoRestante(character, 1))}
+          >
             +
           </Button>
         </div>
+        <RecuperacionEspaciosControls
+          character={character}
+          onChange={onChange}
+          resourceId={MAGICAL_CUNNING_RESOURCE_ID}
+          classId="warlock"
+          minLevel={2}
+          titulo="Astucia mágica"
+          fallbackTexto="Ritual de 1 minuto: recuperas espacios de pacto gastados, hasta la mitad del máximo."
+          accion="Recuperar pacto"
+          usar={usarAstuciaMagica}
+        />
       </section>
     ) : null;
 
@@ -298,11 +357,14 @@ export function TabHechizos({ character, onChange }: SheetTabProps) {
         <div className="mb-2 flex flex-wrap items-end gap-x-4 gap-y-2">
           <p className="min-w-0 flex-1 text-sm text-muted">
             Trucos {resumen.cantrips.actual}/{resumen.cantrips.max}
+            {otorgados.cantrips ? ` (+${otorgados.cantrips} de rasgo)` : ""}
             {resumen.known.max
               ? ` · Grimorio ${resumen.known.actual}/${resumen.known.max}`
               : null}
             {resumen.prepared
-              ? ` · Preparados ${resumen.prepared.actual}/${resumen.prepared.max}`
+              ? ` · Preparados ${resumen.prepared.actual}/${resumen.prepared.max}${
+                  otorgados.prepared ? ` (+${otorgados.prepared} siempre)` : ""
+                }`
               : !resumen.known.max
                 ? ` · Conocidos ${resumen.known.actual}`
                 : null}
@@ -342,7 +404,7 @@ export function TabHechizos({ character, onChange }: SheetTabProps) {
           </p>
         </div>
         {character.spells.concentratingOn && (
-          <div className="mt-2 flex flex-wrap items-center gap-2 rounded-lg border border-gold/30 bg-gold/10 px-3 py-2 text-sm">
+          <div className="mt-2 flex flex-wrap items-center gap-2 rounded-lg border border-accent/30 bg-accent/10 px-3 py-2 text-sm">
             <span>
               Concentración:{" "}
               <strong>
@@ -382,7 +444,7 @@ export function TabHechizos({ character, onChange }: SheetTabProps) {
               </summary>
               <SpellSheetTable
                 rows={filasTrucos}
-                emptyMessage="Sin trucos. Añádelos en Información."
+                emptyMessage="Sin trucos. Añádelos en Catálogo."
                 onRemove={(id) => onChange(quitarConjuro(character, id, "cantrips"))}
                 onCast={lanzar}
                 onReponerUso={reponerUso}
@@ -405,7 +467,7 @@ export function TabHechizos({ character, onChange }: SheetTabProps) {
                     spellId,
                     sePuedeQuitar: true,
                   }))}
-                  emptyMessage="Sin conjuros en el grimorio. Añádelos en Información."
+                  emptyMessage="Sin conjuros en el grimorio. Añádelos en Catálogo."
                   onRemove={(id) => onChange(quitarConjuro(character, id, "known"))}
                   onCast={lanzar}
                   onReponerUso={reponerUso}
@@ -423,7 +485,7 @@ export function TabHechizos({ character, onChange }: SheetTabProps) {
               </summary>
               <SpellSheetTable
                 rows={filasConjuros}
-                emptyMessage="Sin conjuros. Añádelos en Información."
+                emptyMessage="Sin conjuros. Añádelos en Catálogo."
                 onRemove={(id) =>
                   onChange(quitarConjuro(character, id, preparados ? "prepared" : "known"))
                 }

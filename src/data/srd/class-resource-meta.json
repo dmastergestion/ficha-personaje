@@ -5,6 +5,13 @@
       "name": "Rabia",
       "recharge": "long",
       "perLevel": { "1": 2, "3": 3, "6": 4, "12": 5, "17": 6 }
+    },
+    {
+      "id": "persistent-rage",
+      "name": "Rabia persistente",
+      "recharge": "long",
+      "maxFormula": "1",
+      "minLevel": 15
     }
   ],
   "bard": [
@@ -30,6 +37,13 @@
       "name": "Forma salvaje",
       "recharge": "long",
       "perLevel": { "2": 2, "4": 3, "8": 4, "10": 5, "12": 6, "16": 7, "20": 8 }
+    },
+    {
+      "id": "wild-resurgence-slot",
+      "name": "Resurgimiento salvaje (espacio niv. 1)",
+      "recharge": "long",
+      "maxFormula": "1",
+      "minLevel": 5
     }
   ],
   "fighter": [
@@ -44,6 +58,19 @@
       "name": "Oleada de acción",
       "recharge": "short",
       "perLevel": { "2": 1, "17": 2 }
+    },
+    {
+      "id": "superiority-dice",
+      "name": "Dados de superioridad",
+      "recharge": "short",
+      "subclassId": "battle-master",
+      "perLevel": { "3": 4, "7": 5, "15": 6 }
+    },
+    {
+      "id": "indomitable",
+      "name": "Indomable",
+      "recharge": "long",
+      "perLevel": { "9": 1, "13": 2, "17": 3 }
     }
   ],
   "monk": [
@@ -52,6 +79,13 @@
       "name": "Puntos de enfoque",
       "recharge": "short",
       "perLevel": { "2": 2, "3": 3, "4": 4, "5": 5, "6": 6, "7": 7, "8": 8, "9": 9, "10": 10, "11": 11, "12": 12, "13": 13, "14": 14, "15": 15, "16": 16, "17": 17, "18": 18, "19": 19, "20": 20 }
+    },
+    {
+      "id": "uncanny-metabolism",
+      "name": "Metabolismo asombroso",
+      "recharge": "long",
+      "maxFormula": "1",
+      "minLevel": 2
     }
   ],
   "paladin": [
@@ -70,13 +104,29 @@
   ],
   "ranger": [
     {
-      "id": "favored-enemy",
-      "name": "Enemigo favorecido",
+      "id": "tireless",
+      "name": "Incansable",
       "recharge": "long",
-      "perLevel": { "1": 2, "5": 3, "9": 4, "13": 5, "17": 6 }
+      "maxFormula": "max(1,wis)",
+      "minLevel": 10
+    },
+    {
+      "id": "natures-veil",
+      "name": "Velo de la naturaleza",
+      "recharge": "long",
+      "maxFormula": "max(1,wis)",
+      "minLevel": 14
     }
   ],
-  "rogue": [],
+  "rogue": [
+    {
+      "id": "stroke-of-luck",
+      "name": "Golpe de suerte",
+      "recharge": "short",
+      "maxFormula": "1",
+      "minLevel": 20
+    }
+  ],
   "sorcerer": [
     {
       "id": "innate-sorcery",
@@ -89,15 +139,44 @@
       "name": "Puntos de hechicería",
       "recharge": "long",
       "perLevel": { "2": 2, "3": 3, "4": 4, "5": 5, "6": 6, "7": 7, "8": 8, "9": 9, "10": 10, "11": 11, "12": 12, "13": 13, "14": 14, "15": 15, "16": 16, "17": 17, "18": 18, "19": 19, "20": 20 }
+    },
+    {
+      "id": "sorcerous-restoration",
+      "name": "Restauración hechicera",
+      "recharge": "long",
+      "maxFormula": "1",
+      "minLevel": 5
     }
   ],
-  "warlock": [],
+  "warlock": [
+    {
+      "id": "magical-cunning",
+      "name": "Astucia mágica",
+      "recharge": "long",
+      "maxFormula": "1",
+      "minLevel": 2
+    },
+    {
+      "id": "eldritch-master",
+      "name": "Maestro sobrenatural",
+      "recharge": "long",
+      "maxFormula": "1",
+      "minLevel": 20
+    }
+  ],
   "wizard": [
     {
       "id": "arcane-recovery",
       "name": "Recuperación arcana",
       "recharge": "long",
       "perLevel": { "1": 1 }
+    },
+    {
+      "id": "memorize-spell",
+      "name": "Memorizar conjuro",
+      "recharge": "short",
+      "maxFormula": "1",
+      "minLevel": 5
     }
   ]
 }

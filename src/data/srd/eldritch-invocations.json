@@ -1,5 +1,5 @@
 [
-  { "id": "armor-of-shadows", "nameEs": "Armadura de sombras", "minLevel": 1, "hint": "Armadura mago a voluntad, sin espacio ni armadura." },
+  { "id": "armor-of-shadows", "nameEs": "Armadura de sombras", "minLevel": 1, "hint": "Armadura de mago a voluntad, sin espacio ni armadura." },
   { "id": "eldritch-mind", "nameEs": "Mente sobrenatural", "minLevel": 1, "hint": "Ventaja en salvaciones para mantener concentración." },
   { "id": "pact-of-the-blade", "nameEs": "Pacto de la hoja", "minLevel": 1, "hint": "Convocas o vinculas un arma cuerpo a cuerpo; atacas y dañas con Carisma." },
   { "id": "pact-of-the-chain", "nameEs": "Pacto de la cadena", "minLevel": 1, "hint": "Familiar mejorado (encontrar familiar)." },

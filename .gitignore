@@ -6,6 +6,7 @@ vendor/
 public/content-pack/
 tmp-filled.pdf
 tmp-pdf-fields.json
+tmp-pdf-fields.txt
 tmp-materials.txt
 *.log
 .env

@@ -1262,7 +1262,7 @@
   "archfey": [
     {
       "level": 3,
-      "name": "Patrón archihada",
+      "name": "Patrono archihada",
       "description": "Tu pacto extrae poder del Feywild. Al elegir esta subclase, podrías hacer un trato con un archihada, como el Príncipe de la Escarcha; la Reina del Aire y la Oscuridad, gobernante del Tribunal del Crepúsculo; Titania del Tribunal del Verano; o una antigua bruja. O quizá recurres a un espectro de seres feéricos, tejiendo una red de favores y deudas. Sea quien sea tu patrón, a menudo resulta inescrutable y caprichoso."
     },
     {
@@ -1294,7 +1294,7 @@
   "celestial": [
     {
       "level": 3,
-      "name": "Patrón celestial",
+      "name": "Patrono celestial",
       "description": "Tu pacto extrae poder de los Planos Superiores, los reinos de la eterna bienaventuranza. Podrías celebrar un acuerdo con un empíreo, un cuatl, una esfinge, un unicornio u otra entidad celestial. O quizá recurres a numerosos seres de ese tipo mientras persigues objetivos afines a los suyos. Tu pacto te permite experimentar un atisbo de la santa luz que ilumina el multiverso."
     },
     {
@@ -1326,7 +1326,7 @@
   "fiend": [
     {
       "level": 3,
-      "name": "Patrón infernal",
+      "name": "Patrono infernal",
       "description": "Haz un trato con los Planos Inferiores\n\nTu pacto extrae poder de los Planos Inferiores, los reinos de la perdición. Podrías forjar un acuerdo con un señor demoníaco como Demogorgon u Orcus; un archidiablo como Asmodeus; o un diablo mayor, un balor, un yugoloth o una bruja nocturna especialmente poderosa. Los objetivos de ese patrón son malvados: la corrupción o destrucción de todas las cosas, lo que al final también te incluye a ti, y tu camino se define por hasta qué punto luchas contra esos objetivos."
     },
     {
@@ -1358,7 +1358,7 @@
   "great-old-one": [
     {
       "level": 3,
-      "name": "Patrón Gran Antiguo",
+      "name": "Patrono del Gran Antiguo",
       "description": "Al elegir esta subclase, podrías vincularte a un ser indescriptible del Reino Lejano o a un dios antiguo: un ser como Tharizdun, el Dios Encadenado; Zargon, el que Regresa; Hadar, el Hambre Oscura; o el Gran Cthulhu. O quizá invocas a varias entidades sin atarte a ninguna. Los motivos de estos seres son incomprensibles y el Gran Antiguo podría ser indiferente a tu existencia. Aun así, los secretos que has aprendido te permiten extraer de él una extraña magia."
     },
     {

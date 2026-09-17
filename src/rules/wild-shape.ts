@@ -1,3 +1,4 @@
+/** Bloques de combate: SRD 5.2.1 Animals. Regenerar con scripts/build-wild-shape-combat.mjs */
 import beastsJson from "@/data/srd/wild-shape-beasts.json";
 import combatJson from "@/data/srd/wild-shape-combat.json";
 import { ajustarRecurso } from "@/rules/resources-tracker";
@@ -68,7 +69,7 @@ export function bestiaPorId(id: string): WildShapeBeast | undefined {
 }
 
 export function tieneBloqueCombate(beast: WildShapeBeast | undefined): boolean {
-  return !!beast?.combat && beast.combat.attacks.length > 0;
+  return !!beast?.combat;
 }
 
 export function bestiasElegibles(druidLevel: number): WildShapeBeast[] {

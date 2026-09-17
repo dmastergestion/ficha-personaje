@@ -1,5 +1,32 @@
 [
   {
+    "id": "acid-arrow",
+    "srdId": "phbsplMelfsAcidA",
+    "nameEn": "Acid Arrow",
+    "level": 2,
+    "school": "evo",
+    "concentration": false,
+    "ritual": false
+  },
+  {
+    "id": "acid-splash",
+    "srdId": "phbsplAcidSplash",
+    "nameEn": "Acid Splash",
+    "level": 0,
+    "school": "evo",
+    "concentration": false,
+    "ritual": false
+  },
+  {
+    "id": "aid",
+    "srdId": "phbsplAid0000000",
+    "nameEn": "Aid",
+    "level": 2,
+    "school": "abj",
+    "concentration": false,
+    "ritual": false
+  },
+  {
     "id": "alarm",
     "srdId": "phbsplAlarm00000",
     "nameEn": "Alarm",
@@ -9,11 +36,258 @@
     "ritual": true
   },
   {
+    "id": "alter-self",
+    "srdId": "phbsplAlterSelf0",
+    "nameEn": "Alter Self",
+    "level": 2,
+    "school": "trs",
+    "concentration": true,
+    "ritual": false
+  },
+  {
     "id": "animal-friendship",
     "srdId": "phbsplAnimalFrie",
     "nameEn": "Animal Friendship",
     "level": 1,
     "school": "enc",
+    "concentration": false,
+    "ritual": false
+  },
+  {
+    "id": "animal-messenger",
+    "srdId": "phbsplAnimalMess",
+    "nameEn": "Animal Messenger",
+    "level": 2,
+    "school": "enc",
+    "concentration": false,
+    "ritual": true
+  },
+  {
+    "id": "animal-shapes",
+    "srdId": "phbsplAnimalShap",
+    "nameEn": "Animal Shapes",
+    "level": 8,
+    "school": "trs",
+    "concentration": false,
+    "ritual": false
+  },
+  {
+    "id": "animate-dead",
+    "srdId": "phbsplAnimateDea",
+    "nameEn": "Animate Dead",
+    "level": 3,
+    "school": "nec",
+    "concentration": false,
+    "ritual": false
+  },
+  {
+    "id": "animate-objects",
+    "srdId": "phbsplAnimateObj",
+    "nameEn": "Animate Objects",
+    "level": 5,
+    "school": "trs",
+    "concentration": true,
+    "ritual": false
+  },
+  {
+    "id": "antilife-shell",
+    "srdId": "phbsplAntilifeSh",
+    "nameEn": "Antilife Shell",
+    "level": 5,
+    "school": "abj",
+    "concentration": true,
+    "ritual": false
+  },
+  {
+    "id": "antimagic-field",
+    "srdId": "phbsplAntimagicF",
+    "nameEn": "Antimagic Field",
+    "level": 8,
+    "school": "abj",
+    "concentration": true,
+    "ritual": false
+  },
+  {
+    "id": "antipathy-sympathy",
+    "srdId": "phbsplAntipathyS",
+    "nameEn": "Antipathy/Sympathy",
+    "level": 8,
+    "school": "enc",
+    "concentration": false,
+    "ritual": false
+  },
+  {
+    "id": "arcane-eye",
+    "srdId": "phbsplArcaneEye0",
+    "nameEn": "Arcane Eye",
+    "level": 4,
+    "school": "div",
+    "concentration": true,
+    "ritual": false
+  },
+  {
+    "id": "arcane-gate",
+    "srdId": "Arcane Gate|XPHB",
+    "nameEn": "Arcane Gate",
+    "level": 6,
+    "school": "con",
+    "concentration": true,
+    "ritual": false,
+    "castType": "none",
+    "castingTime": "1 acción",
+    "range": "500 pies",
+    "components": "V, S",
+    "duration": "Concentración, hasta 10 minutos"
+  },
+  {
+    "id": "arcane-hand",
+    "srdId": "phbsplBigbysHand",
+    "nameEn": "Arcane Hand",
+    "level": 5,
+    "school": "evo",
+    "concentration": true,
+    "ritual": false
+  },
+  {
+    "id": "arcane-lock",
+    "srdId": "phbsplArcaneLock",
+    "nameEn": "Arcane Lock",
+    "level": 2,
+    "school": "abj",
+    "concentration": false,
+    "ritual": false
+  },
+  {
+    "id": "arcane-sword",
+    "srdId": "phbswdMordenkain",
+    "nameEn": "Arcane Sword",
+    "level": 7,
+    "school": "evo",
+    "concentration": true,
+    "ritual": false
+  },
+  {
+    "id": "arcane-vigor",
+    "srdId": "phbsplArcaneVigo",
+    "nameEn": "Arcane Vigor",
+    "level": 2,
+    "school": "abj",
+    "concentration": false,
+    "ritual": false
+  },
+  {
+    "id": "arcanists-magic-aura",
+    "srdId": "phbsplNystulsMag",
+    "nameEn": "Arcanist's Magic Aura",
+    "level": 2,
+    "school": "ill",
+    "concentration": false,
+    "ritual": false
+  },
+  {
+    "id": "armor-of-agathys",
+    "srdId": "Armor of Agathys|XPHB",
+    "nameEn": "Armor of Agathys",
+    "level": 1,
+    "school": "abj",
+    "concentration": false,
+    "ritual": false,
+    "castType": "none",
+    "castingTime": "1 acción adicional",
+    "range": "point",
+    "components": "V, S, M (a shard of blue glass)",
+    "duration": "1 hora"
+  },
+  {
+    "id": "arms-of-hadar",
+    "srdId": "Arms of Hadar|XPHB",
+    "nameEn": "Arms of Hadar",
+    "level": 1,
+    "school": "con",
+    "concentration": false,
+    "ritual": false,
+    "castType": "save",
+    "save": "str",
+    "damage": {
+      "dice": "2d6",
+      "type": "necrótico",
+      "scalePerSlot": "1d6"
+    },
+    "castingTime": "1 acción",
+    "range": "10 feet",
+    "components": "V, S",
+    "duration": "Instantáneo",
+    "areaTags": [
+      "Esfera"
+    ]
+  },
+  {
+    "id": "astral-projection",
+    "srdId": "phbsplAstralProj",
+    "nameEn": "Astral Projection",
+    "level": 9,
+    "school": "nec",
+    "concentration": false,
+    "ritual": false
+  },
+  {
+    "id": "augury",
+    "srdId": "phbsplAugury0000",
+    "nameEn": "Augury",
+    "level": 2,
+    "school": "div",
+    "concentration": false,
+    "ritual": true
+  },
+  {
+    "id": "aura-of-life",
+    "srdId": "phbsplAuraofLife",
+    "nameEn": "Aura of Life",
+    "level": 4,
+    "school": "abj",
+    "concentration": true,
+    "ritual": false
+  },
+  {
+    "id": "aura-of-purity",
+    "srdId": "Aura of Purity|XPHB",
+    "nameEn": "Aura of Purity",
+    "level": 4,
+    "school": "abj",
+    "concentration": true,
+    "ritual": false,
+    "castType": "none",
+    "castingTime": "1 acción",
+    "range": "30 feet",
+    "components": "V",
+    "duration": "Concentración, hasta 10 minutos",
+    "areaTags": [
+      "Esfera"
+    ]
+  },
+  {
+    "id": "aura-of-vitality",
+    "srdId": "Aura of Vitality|XPHB",
+    "nameEn": "Aura of Vitality",
+    "level": 3,
+    "school": "abj",
+    "concentration": true,
+    "ritual": false,
+    "castType": "none",
+    "castingTime": "1 acción",
+    "range": "30 feet",
+    "components": "V",
+    "duration": "Concentración, hasta 1 minuto",
+    "areaTags": [
+      "Esfera"
+    ]
+  },
+  {
+    "id": "awaken",
+    "srdId": "phbsplAwaken0000",
+    "nameEn": "Awaken",
+    "level": 5,
+    "school": "trs",
     "concentration": false,
     "ritual": false
   },
@@ -27,11 +301,179 @@
     "ritual": false
   },
   {
+    "id": "banishing-smite",
+    "srdId": "Banishing Smite|XPHB",
+    "nameEn": "Banishing Smite",
+    "level": 5,
+    "school": "con",
+    "concentration": true,
+    "ritual": false,
+    "castType": "none",
+    "damage": {
+      "dice": "5d10",
+      "type": "fuerza"
+    },
+    "castingTime": "1 acción adicional",
+    "range": "point",
+    "components": "V",
+    "duration": "Concentración, hasta 1 minuto"
+  },
+  {
+    "id": "banishment",
+    "srdId": "phbsplBanishment",
+    "nameEn": "Banishment",
+    "level": 4,
+    "school": "abj",
+    "concentration": true,
+    "ritual": false
+  },
+  {
+    "id": "barkskin",
+    "srdId": "phbsplBarkskin00",
+    "nameEn": "Barkskin",
+    "level": 2,
+    "school": "trs",
+    "concentration": false,
+    "ritual": false
+  },
+  {
+    "id": "beacon-of-hope",
+    "srdId": "phbsplBeaconofHo",
+    "nameEn": "Beacon of Hope",
+    "level": 3,
+    "school": "abj",
+    "concentration": true,
+    "ritual": false
+  },
+  {
+    "id": "beast-sense",
+    "srdId": "Beast Sense|XPHB",
+    "nameEn": "Beast Sense",
+    "level": 2,
+    "school": "div",
+    "concentration": true,
+    "ritual": false,
+    "castType": "none",
+    "castingTime": "1 acción",
+    "range": "point",
+    "components": "S",
+    "duration": "Concentración, hasta 1 hora",
+    "areaTags": [
+      "Un objetivo"
+    ]
+  },
+  {
+    "id": "befuddlement",
+    "srdId": "phbsplBefuddleme",
+    "nameEn": "Befuddlement",
+    "level": 8,
+    "school": "enc",
+    "concentration": false,
+    "ritual": false
+  },
+  {
+    "id": "bestow-curse",
+    "srdId": "phbsplBestowCurs",
+    "nameEn": "Bestow Curse",
+    "level": 3,
+    "school": "nec",
+    "concentration": true,
+    "ritual": false
+  },
+  {
+    "id": "black-tentacles",
+    "srdId": "phbsplEvardsBlac",
+    "nameEn": "Black Tentacles",
+    "level": 4,
+    "school": "con",
+    "concentration": true,
+    "ritual": false
+  },
+  {
+    "id": "blade-barrier",
+    "srdId": "phbsplBladeBarri",
+    "nameEn": "Blade Barrier",
+    "level": 6,
+    "school": "evo",
+    "concentration": true,
+    "ritual": false
+  },
+  {
+    "id": "blade-ward",
+    "srdId": "Blade Ward|XPHB",
+    "nameEn": "Blade Ward",
+    "level": 0,
+    "school": "abj",
+    "concentration": true,
+    "ritual": false,
+    "castType": "none",
+    "castingTime": "1 acción",
+    "range": "point",
+    "components": "V, S",
+    "duration": "Concentración, hasta 1 minuto"
+  },
+  {
     "id": "bless",
     "srdId": "phbsplBless00000",
     "nameEn": "Bless",
     "level": 1,
     "school": "enc",
+    "concentration": true,
+    "ritual": false
+  },
+  {
+    "id": "blight",
+    "srdId": "phbsplBlight0000",
+    "nameEn": "Blight",
+    "level": 4,
+    "school": "nec",
+    "concentration": false,
+    "ritual": false
+  },
+  {
+    "id": "blinding-smite",
+    "srdId": "Blinding Smite|XPHB",
+    "nameEn": "Blinding Smite",
+    "level": 3,
+    "school": "evo",
+    "concentration": false,
+    "ritual": false,
+    "castType": "save",
+    "save": "con",
+    "damage": {
+      "dice": "3d8",
+      "type": "radiante",
+      "scalePerSlot": "1d8"
+    },
+    "castingTime": "1 acción adicional",
+    "range": "point",
+    "components": "V",
+    "duration": "1 minuto"
+  },
+  {
+    "id": "blindness-deafness",
+    "srdId": "phbsplBlindnessD",
+    "nameEn": "Blindness/Deafness",
+    "level": 2,
+    "school": "trs",
+    "concentration": false,
+    "ritual": false
+  },
+  {
+    "id": "blink",
+    "srdId": "phbsplBlink00000",
+    "nameEn": "Blink",
+    "level": 3,
+    "school": "trs",
+    "concentration": false,
+    "ritual": false
+  },
+  {
+    "id": "blur",
+    "srdId": "phbsplBlur000000",
+    "nameEn": "Blur",
+    "level": 2,
+    "school": "ill",
     "concentration": true,
     "ritual": false
   },
@@ -45,11 +487,56 @@
     "ritual": false
   },
   {
+    "id": "call-lightning",
+    "srdId": "phbsplCallLightn",
+    "nameEn": "Call Lightning",
+    "level": 3,
+    "school": "con",
+    "concentration": true,
+    "ritual": false
+  },
+  {
+    "id": "calm-emotions",
+    "srdId": "phbsplCalmEmotio",
+    "nameEn": "Calm Emotions",
+    "level": 2,
+    "school": "enc",
+    "concentration": true,
+    "ritual": false
+  },
+  {
+    "id": "chain-lightning",
+    "srdId": "phbsplChainLight",
+    "nameEn": "Chain Lightning",
+    "level": 6,
+    "school": "evo",
+    "concentration": false,
+    "ritual": false
+  },
+  {
+    "id": "charm-monster",
+    "srdId": "phbsplCharmMonst",
+    "nameEn": "Charm Monster",
+    "level": 4,
+    "school": "enc",
+    "concentration": false,
+    "ritual": false
+  },
+  {
     "id": "charm-person",
     "srdId": "phbsplCharmPerso",
     "nameEn": "Charm Person",
     "level": 1,
     "school": "enc",
+    "concentration": false,
+    "ritual": false
+  },
+  {
+    "id": "chill-touch",
+    "srdId": "phbsplChillTouch",
+    "nameEn": "Chill Touch",
+    "level": 0,
+    "school": "nec",
     "concentration": false,
     "ritual": false
   },
@@ -60,6 +547,81 @@
     "level": 1,
     "school": "evo",
     "concentration": false,
+    "ritual": false
+  },
+  {
+    "id": "circle-of-death",
+    "srdId": "phbsplCircleofDe",
+    "nameEn": "Circle of Death",
+    "level": 6,
+    "school": "nec",
+    "concentration": false,
+    "ritual": false
+  },
+  {
+    "id": "circle-of-power",
+    "srdId": "Circle of Power|XPHB",
+    "nameEn": "Circle of Power",
+    "level": 5,
+    "school": "abj",
+    "concentration": true,
+    "ritual": false,
+    "castType": "none",
+    "castingTime": "1 acción",
+    "range": "30 feet",
+    "components": "V",
+    "duration": "Concentración, hasta 10 minutos",
+    "areaTags": [
+      "Esfera"
+    ]
+  },
+  {
+    "id": "clairvoyance",
+    "srdId": "phbsplClairvoyan",
+    "nameEn": "Clairvoyance",
+    "level": 3,
+    "school": "div",
+    "concentration": true,
+    "ritual": false
+  },
+  {
+    "id": "clone",
+    "srdId": "phbsplClone00000",
+    "nameEn": "Clone",
+    "level": 8,
+    "school": "nec",
+    "concentration": false,
+    "ritual": false
+  },
+  {
+    "id": "cloud-of-daggers",
+    "srdId": "Cloud of Daggers|XPHB",
+    "nameEn": "Cloud of Daggers",
+    "level": 2,
+    "school": "con",
+    "concentration": true,
+    "ritual": false,
+    "castType": "none",
+    "damage": {
+      "dice": "4d4",
+      "type": "cortante",
+      "scalePerSlot": "2d4"
+    },
+    "castingTime": "1 acción",
+    "range": "60 pies",
+    "components": "V, S, M (a sliver of glass)",
+    "duration": "Concentración, hasta 1 minuto",
+    "areaTags": [
+      "Cilindro"
+    ]
+  },
+  {
+    "id": "cloudkill",
+    "srdId": "phbsplCloudkill0",
+    "nameEn": "Cloudkill",
+    "level": 5,
+    "school": "con",
+    "concentration": true,
     "ritual": false
   },
   {
@@ -81,6 +643,42 @@
     "ritual": false
   },
   {
+    "id": "commune",
+    "srdId": "phbsplCommune000",
+    "nameEn": "Commune",
+    "level": 5,
+    "school": "div",
+    "concentration": false,
+    "ritual": true
+  },
+  {
+    "id": "commune-with-nature",
+    "srdId": "phbsplCommunewit",
+    "nameEn": "Commune with Nature",
+    "level": 5,
+    "school": "div",
+    "concentration": false,
+    "ritual": true
+  },
+  {
+    "id": "compelled-duel",
+    "srdId": "Compelled Duel|XPHB",
+    "nameEn": "Compelled Duel",
+    "level": 1,
+    "school": "enc",
+    "concentration": true,
+    "ritual": false,
+    "castType": "save",
+    "save": "wis",
+    "castingTime": "1 acción adicional",
+    "range": "30 pies",
+    "components": "V",
+    "duration": "Concentración, hasta 1 minuto",
+    "areaTags": [
+      "Un objetivo"
+    ]
+  },
+  {
     "id": "comprehend-languages",
     "srdId": "phbsplComprehend",
     "nameEn": "Comprehend Languages",
@@ -88,6 +686,226 @@
     "school": "div",
     "concentration": false,
     "ritual": true
+  },
+  {
+    "id": "compulsion",
+    "srdId": "phbsplCompulsion",
+    "nameEn": "Compulsion",
+    "level": 4,
+    "school": "enc",
+    "concentration": true,
+    "ritual": false
+  },
+  {
+    "id": "cone-of-cold",
+    "srdId": "phbsplConeofCold",
+    "nameEn": "Cone of Cold",
+    "level": 5,
+    "school": "evo",
+    "concentration": false,
+    "ritual": false
+  },
+  {
+    "id": "confusion",
+    "srdId": "phbsplConfusion0",
+    "nameEn": "Confusion",
+    "level": 4,
+    "school": "enc",
+    "concentration": true,
+    "ritual": false
+  },
+  {
+    "id": "conjure-animals",
+    "srdId": "phbsplConjureAni",
+    "nameEn": "Conjure Animals",
+    "level": 3,
+    "school": "con",
+    "concentration": true,
+    "ritual": false
+  },
+  {
+    "id": "conjure-barrage",
+    "srdId": "Conjure Barrage|XPHB",
+    "nameEn": "Conjure Barrage",
+    "level": 3,
+    "school": "con",
+    "concentration": false,
+    "ritual": false,
+    "castType": "save",
+    "save": "dex",
+    "damage": {
+      "dice": "5d8",
+      "type": "fuerza",
+      "scalePerSlot": "1d8"
+    },
+    "castingTime": "1 acción",
+    "range": "60 feet",
+    "components": "V, S, M (a Melee or Ranged weapon worth at least 1 CP)",
+    "duration": "Instantáneo",
+    "areaTags": [
+      "Cono"
+    ]
+  },
+  {
+    "id": "conjure-celestial",
+    "srdId": "phbsplConjureCel",
+    "nameEn": "Conjure Celestial",
+    "level": 7,
+    "school": "con",
+    "concentration": true,
+    "ritual": false
+  },
+  {
+    "id": "conjure-elemental",
+    "srdId": "phbsplConjureEle",
+    "nameEn": "Conjure Elemental",
+    "level": 5,
+    "school": "con",
+    "concentration": true,
+    "ritual": false
+  },
+  {
+    "id": "conjure-fey",
+    "srdId": "phbsplConjureFey",
+    "nameEn": "Conjure Fey",
+    "level": 6,
+    "school": "con",
+    "concentration": true,
+    "ritual": false
+  },
+  {
+    "id": "conjure-minor-elementals",
+    "srdId": "phbsplConjureMin",
+    "nameEn": "Conjure Minor Elementals",
+    "level": 4,
+    "school": "con",
+    "concentration": true,
+    "ritual": false
+  },
+  {
+    "id": "conjure-volley",
+    "srdId": "Conjure Volley|XPHB",
+    "nameEn": "Conjure Volley",
+    "level": 5,
+    "school": "con",
+    "concentration": false,
+    "ritual": false,
+    "castType": "save",
+    "save": "dex",
+    "damage": {
+      "dice": "8d8",
+      "type": "fuerza"
+    },
+    "castingTime": "1 acción",
+    "range": "150 pies",
+    "components": "V, S, M (a Melee or Ranged weapon worth at least 1 CP)",
+    "duration": "Instantáneo",
+    "areaTags": [
+      "Y"
+    ]
+  },
+  {
+    "id": "conjure-woodland-beings",
+    "srdId": "phbsplConjureWoo",
+    "nameEn": "Conjure Woodland Beings",
+    "level": 4,
+    "school": "con",
+    "concentration": true,
+    "ritual": false
+  },
+  {
+    "id": "contact-other-plane",
+    "srdId": "phbsplContactOth",
+    "nameEn": "Contact Other Plane",
+    "level": 5,
+    "school": "div",
+    "concentration": false,
+    "ritual": true
+  },
+  {
+    "id": "contagion",
+    "srdId": "phbsplContagion0",
+    "nameEn": "Contagion",
+    "level": 5,
+    "school": "nec",
+    "concentration": false,
+    "ritual": false
+  },
+  {
+    "id": "contingency",
+    "srdId": "phbsplContingenc",
+    "nameEn": "Contingency",
+    "level": 6,
+    "school": "abj",
+    "concentration": false,
+    "ritual": false
+  },
+  {
+    "id": "continual-flame",
+    "srdId": "phbsplContinualF",
+    "nameEn": "Continual Flame",
+    "level": 2,
+    "school": "evo",
+    "concentration": false,
+    "ritual": false
+  },
+  {
+    "id": "control-water",
+    "srdId": "phbsplControlWat",
+    "nameEn": "Control Water",
+    "level": 4,
+    "school": "trs",
+    "concentration": true,
+    "ritual": false
+  },
+  {
+    "id": "control-weather",
+    "srdId": "phbsplControlWea",
+    "nameEn": "Control Weather",
+    "level": 8,
+    "school": "trs",
+    "concentration": true,
+    "ritual": false
+  },
+  {
+    "id": "cordon-of-arrows",
+    "srdId": "Cordon of Arrows|XPHB",
+    "nameEn": "Cordon of Arrows",
+    "level": 2,
+    "school": "trs",
+    "concentration": false,
+    "ritual": false,
+    "castType": "save",
+    "save": "dex",
+    "damage": {
+      "dice": "2d4",
+      "type": "perforante"
+    },
+    "castingTime": "1 acción",
+    "range": "point",
+    "components": "V, S, M (four or more arrows or bolts)",
+    "duration": "8 horas",
+    "areaTags": [
+      "Esfera"
+    ]
+  },
+  {
+    "id": "counterspell",
+    "srdId": "phbsplCounterspe",
+    "nameEn": "Counterspell",
+    "level": 3,
+    "school": "abj",
+    "concentration": false,
+    "ritual": false
+  },
+  {
+    "id": "create-food-and-water",
+    "srdId": "phbsplCreateFood",
+    "nameEn": "Create Food and Water",
+    "level": 3,
+    "school": "con",
+    "concentration": false,
+    "ritual": false
   },
   {
     "id": "create-or-destroy-water",
@@ -99,6 +917,63 @@
     "ritual": false
   },
   {
+    "id": "create-undead",
+    "srdId": "phbsplCreateUnde",
+    "nameEn": "Create Undead",
+    "level": 6,
+    "school": "nec",
+    "concentration": false,
+    "ritual": false
+  },
+  {
+    "id": "creation",
+    "srdId": "phbsplCreation00",
+    "nameEn": "Creation",
+    "level": 5,
+    "school": "ill",
+    "concentration": false,
+    "ritual": false
+  },
+  {
+    "id": "crown-of-madness",
+    "srdId": "Crown of Madness|XPHB",
+    "nameEn": "Crown of Madness",
+    "level": 2,
+    "school": "enc",
+    "concentration": true,
+    "ritual": false,
+    "castType": "save",
+    "save": "wis",
+    "castingTime": "1 acción",
+    "range": "120 pies",
+    "components": "V, S",
+    "duration": "Concentración, hasta 1 minuto",
+    "areaTags": [
+      "Un objetivo"
+    ]
+  },
+  {
+    "id": "crusaders-mantle",
+    "srdId": "Crusader's Mantle|XPHB",
+    "nameEn": "Crusader's Mantle",
+    "level": 3,
+    "school": "evo",
+    "concentration": true,
+    "ritual": false,
+    "castType": "none",
+    "damage": {
+      "dice": "1d4",
+      "type": "radiante"
+    },
+    "castingTime": "1 acción",
+    "range": "30 feet",
+    "components": "V",
+    "duration": "Concentración, hasta 1 minuto",
+    "areaTags": [
+      "Esfera"
+    ]
+  },
+  {
     "id": "cure-wounds",
     "srdId": "phbsplCureWounds",
     "nameEn": "Cure Wounds",
@@ -106,6 +981,92 @@
     "school": "abj",
     "concentration": false,
     "ritual": false
+  },
+  {
+    "id": "dancing-lights",
+    "srdId": "phbsplDancingLig",
+    "nameEn": "Dancing Lights",
+    "level": 0,
+    "school": "ill",
+    "concentration": true,
+    "ritual": false
+  },
+  {
+    "id": "darkness",
+    "srdId": "phbsplDarkness00",
+    "nameEn": "Darkness",
+    "level": 2,
+    "school": "evo",
+    "concentration": true,
+    "ritual": false
+  },
+  {
+    "id": "darkvision",
+    "srdId": "phbsplDarkvision",
+    "nameEn": "Darkvision",
+    "level": 2,
+    "school": "trs",
+    "concentration": false,
+    "ritual": false
+  },
+  {
+    "id": "daylight",
+    "srdId": "phbsplDaylight00",
+    "nameEn": "Daylight",
+    "level": 3,
+    "school": "evo",
+    "concentration": false,
+    "ritual": false
+  },
+  {
+    "id": "death-ward",
+    "srdId": "phbsplDeathWard0",
+    "nameEn": "Death Ward",
+    "level": 4,
+    "school": "abj",
+    "concentration": false,
+    "ritual": false
+  },
+  {
+    "id": "delayed-blast-fireball",
+    "srdId": "phbsplDelayedBla",
+    "nameEn": "Delayed Blast Fireball",
+    "level": 7,
+    "school": "evo",
+    "concentration": true,
+    "ritual": false
+  },
+  {
+    "id": "demiplane",
+    "srdId": "phbsplDemiplane0",
+    "nameEn": "Demiplane",
+    "level": 8,
+    "school": "con",
+    "concentration": false,
+    "ritual": false
+  },
+  {
+    "id": "destructive-wave",
+    "srdId": "Destructive Wave|XPHB",
+    "nameEn": "Destructive Wave",
+    "level": 5,
+    "school": "evo",
+    "concentration": false,
+    "ritual": false,
+    "castType": "save",
+    "save": "con",
+    "damage": {
+      "dice": "5d6",
+      "type": "necrótico"
+    },
+    "castingTime": "1 acción",
+    "range": "30 feet",
+    "components": "V",
+    "duration": "Instantáneo",
+    "areaTags": [
+      "Varios objetivos",
+      "Esfera"
+    ]
   },
   {
     "id": "detect-evil-and-good",
@@ -135,11 +1096,56 @@
     "ritual": true
   },
   {
+    "id": "detect-thoughts",
+    "srdId": "phbsplDetectThou",
+    "nameEn": "Detect Thoughts",
+    "level": 2,
+    "school": "div",
+    "concentration": true,
+    "ritual": false
+  },
+  {
+    "id": "dimension-door",
+    "srdId": "phbsplDimensionD",
+    "nameEn": "Dimension Door",
+    "level": 4,
+    "school": "con",
+    "concentration": false,
+    "ritual": false
+  },
+  {
     "id": "disguise-self",
     "srdId": "phbsplDisguiseSe",
     "nameEn": "Disguise Self",
     "level": 1,
     "school": "ill",
+    "concentration": false,
+    "ritual": false
+  },
+  {
+    "id": "disintegrate",
+    "srdId": "phbsplDisintegra",
+    "nameEn": "Disintegrate",
+    "level": 6,
+    "school": "trs",
+    "concentration": false,
+    "ritual": false
+  },
+  {
+    "id": "dispel-evil-and-good",
+    "srdId": "phbsplDispelEvil",
+    "nameEn": "Dispel Evil and Good",
+    "level": 5,
+    "school": "abj",
+    "concentration": true,
+    "ritual": false
+  },
+  {
+    "id": "dispel-magic",
+    "srdId": "phbsplDispelMagi",
+    "nameEn": "Dispel Magic",
+    "level": 3,
+    "school": "abj",
     "concentration": false,
     "ritual": false
   },
@@ -151,6 +1157,15 @@
     "school": "enc",
     "concentration": false,
     "ritual": false
+  },
+  {
+    "id": "divination",
+    "srdId": "phbsplDivination",
+    "nameEn": "Divination",
+    "level": 4,
+    "school": "div",
+    "concentration": false,
+    "ritual": true
   },
   {
     "id": "divine-favor",
@@ -168,6 +1183,132 @@
     "level": 1,
     "school": "evo",
     "concentration": false,
+    "ritual": false
+  },
+  {
+    "id": "divine-word",
+    "srdId": "phbsplDivineWord",
+    "nameEn": "Divine Word",
+    "level": 7,
+    "school": "evo",
+    "concentration": false,
+    "ritual": false
+  },
+  {
+    "id": "dominate-beast",
+    "srdId": "phbsplDominateBe",
+    "nameEn": "Dominate Beast",
+    "level": 4,
+    "school": "enc",
+    "concentration": true,
+    "ritual": false
+  },
+  {
+    "id": "dominate-monster",
+    "srdId": "phbsplDominateMo",
+    "nameEn": "Dominate Monster",
+    "level": 8,
+    "school": "enc",
+    "concentration": true,
+    "ritual": false
+  },
+  {
+    "id": "dominate-person",
+    "srdId": "phbsplDominatePe",
+    "nameEn": "Dominate Person",
+    "level": 5,
+    "school": "enc",
+    "concentration": true,
+    "ritual": false
+  },
+  {
+    "id": "dragons-breath",
+    "srdId": "phbsplDragonsBre",
+    "nameEn": "Dragon's Breath",
+    "level": 2,
+    "school": "trs",
+    "concentration": true,
+    "ritual": false
+  },
+  {
+    "id": "dream",
+    "srdId": "phbsplDream00000",
+    "nameEn": "Dream",
+    "level": 5,
+    "school": "ill",
+    "concentration": false,
+    "ritual": false
+  },
+  {
+    "id": "druidcraft",
+    "srdId": "phbsplDruidcraft",
+    "nameEn": "Druidcraft",
+    "level": 0,
+    "school": "trs",
+    "concentration": false,
+    "ritual": false
+  },
+  {
+    "id": "earthquake",
+    "srdId": "phbsplEarthquake",
+    "nameEn": "Earthquake",
+    "level": 8,
+    "school": "trs",
+    "concentration": true,
+    "ritual": false
+  },
+  {
+    "id": "eldritch-blast",
+    "srdId": "phbsplEldritchBl",
+    "nameEn": "Eldritch Blast",
+    "level": 0,
+    "school": "evo",
+    "concentration": false,
+    "ritual": false
+  },
+  {
+    "id": "elemental-weapon",
+    "srdId": "Elemental Weapon|XPHB",
+    "nameEn": "Elemental Weapon",
+    "level": 3,
+    "school": "trs",
+    "concentration": true,
+    "ritual": false,
+    "castType": "none",
+    "damage": {
+      "dice": "1d4",
+      "type": "ácido"
+    },
+    "castingTime": "1 acción",
+    "range": "point",
+    "components": "V, S",
+    "duration": "Concentración, hasta 1 hora"
+  },
+  {
+    "id": "elementalism",
+    "srdId": "phbsplElementali",
+    "nameEn": "Elementalism",
+    "level": 0,
+    "school": "trs",
+    "concentration": false,
+    "ritual": false
+  },
+  {
+    "id": "enhance-ability",
+    "srdId": "phbsplEnhanceAbi",
+    "nameEn": "Enhance Ability",
+    "level": 2,
+    "school": "trs",
+    "concentration": true,
+    "ritual": false
+  },
+  {
+    "id": "enlarge-reduce",
+    "srdId": "phbsplEnlargeRed",
+    "nameEn": "Enlarge/Reduce",
+    "level": 2,
+    "school": "trs",
+    "concentration": true,
     "ritual": false
   },
   {
@@ -189,12 +1330,48 @@
     "ritual": false
   },
   {
+    "id": "enthrall",
+    "srdId": "phbsplEnthrall00",
+    "nameEn": "Enthrall",
+    "level": 2,
+    "school": "enc",
+    "concentration": true,
+    "ritual": false
+  },
+  {
+    "id": "etherealness",
+    "srdId": "phbsplEtherealne",
+    "nameEn": "Etherealness",
+    "level": 7,
+    "school": "con",
+    "concentration": false,
+    "ritual": false
+  },
+  {
     "id": "expeditious-retreat",
     "srdId": "phbsplExpeditiou",
     "nameEn": "Expeditious Retreat",
     "level": 1,
     "school": "trs",
     "concentration": true,
+    "ritual": false
+  },
+  {
+    "id": "eyebite",
+    "srdId": "phbsplEyebite000",
+    "nameEn": "Eyebite",
+    "level": 6,
+    "school": "nec",
+    "concentration": true,
+    "ritual": false
+  },
+  {
+    "id": "fabricate",
+    "srdId": "phbsplFabricate0",
+    "nameEn": "Fabricate",
+    "level": 4,
+    "school": "trs",
+    "concentration": false,
     "ritual": false
   },
   {
@@ -207,12 +1384,30 @@
     "ritual": false
   },
   {
+    "id": "faithful-hound",
+    "srdId": "phbFaithfulHound",
+    "nameEn": "Faithful Hound",
+    "level": 4,
+    "school": "con",
+    "concentration": false,
+    "ritual": false
+  },
+  {
     "id": "false-life",
     "srdId": "phbsplFalseLife0",
     "nameEn": "False Life",
     "level": 1,
     "school": "nec",
     "concentration": false,
+    "ritual": false
+  },
+  {
+    "id": "fear",
+    "srdId": "phbsplFear000000",
+    "nameEn": "Fear",
+    "level": 3,
+    "school": "ill",
+    "concentration": true,
     "ritual": false
   },
   {
@@ -225,6 +1420,23 @@
     "ritual": false
   },
   {
+    "id": "feign-death",
+    "srdId": "Feign Death|XPHB",
+    "nameEn": "Feign Death",
+    "level": 3,
+    "school": "nec",
+    "concentration": false,
+    "ritual": false,
+    "castType": "none",
+    "castingTime": "1 acción",
+    "range": "point",
+    "components": "V, S, M (a pinch of graveyard dirt)",
+    "duration": "1 hora",
+    "areaTags": [
+      "Un objetivo"
+    ]
+  },
+  {
     "id": "find-familiar",
     "srdId": "phbsplFindFamili",
     "nameEn": "Find Familiar",
@@ -234,13 +1446,121 @@
     "ritual": true
   },
   {
-    "id": "tensers-floating-disk",
-    "srdId": "phbsplTensersFlo",
-    "nameEn": "Floating Disk",
-    "level": 1,
+    "id": "find-steed",
+    "srdId": "phbsplFindSteed0",
+    "nameEn": "Find Steed",
+    "level": 2,
     "school": "con",
     "concentration": false,
-    "ritual": true
+    "ritual": false
+  },
+  {
+    "id": "find-the-path",
+    "srdId": "phbsplFindthePat",
+    "nameEn": "Find the Path",
+    "level": 6,
+    "school": "div",
+    "concentration": true,
+    "ritual": false
+  },
+  {
+    "id": "find-traps",
+    "srdId": "phbsplFindTraps0",
+    "nameEn": "Find Traps",
+    "level": 2,
+    "school": "div",
+    "concentration": false,
+    "ritual": false
+  },
+  {
+    "id": "finger-of-death",
+    "srdId": "phbsplFingerofDe",
+    "nameEn": "Finger of Death",
+    "level": 7,
+    "school": "nec",
+    "concentration": false,
+    "ritual": false
+  },
+  {
+    "id": "fire-bolt",
+    "srdId": "phbsplFireBolt00",
+    "nameEn": "Fire Bolt",
+    "level": 0,
+    "school": "evo",
+    "concentration": false,
+    "ritual": false
+  },
+  {
+    "id": "fire-shield",
+    "srdId": "phbsplFireShield",
+    "nameEn": "Fire Shield",
+    "level": 4,
+    "school": "evo",
+    "concentration": false,
+    "ritual": false
+  },
+  {
+    "id": "fire-storm",
+    "srdId": "phbsplFireStorm0",
+    "nameEn": "Fire Storm",
+    "level": 7,
+    "school": "evo",
+    "concentration": false,
+    "ritual": false
+  },
+  {
+    "id": "fireball",
+    "srdId": "phbsplFireball00",
+    "nameEn": "Fireball",
+    "level": 3,
+    "school": "evo",
+    "concentration": false,
+    "ritual": false
+  },
+  {
+    "id": "flame-blade",
+    "srdId": "phbsplFlameBlade",
+    "nameEn": "Flame Blade",
+    "level": 2,
+    "school": "evo",
+    "concentration": true,
+    "ritual": false
+  },
+  {
+    "id": "flame-strike",
+    "srdId": "phbsplFlameStrik",
+    "nameEn": "Flame Strike",
+    "level": 5,
+    "school": "evo",
+    "concentration": false,
+    "ritual": false
+  },
+  {
+    "id": "flaming-sphere",
+    "srdId": "phbsplFlamingSph",
+    "nameEn": "Flaming Sphere",
+    "level": 2,
+    "school": "con",
+    "concentration": true,
+    "ritual": false
+  },
+  {
+    "id": "flesh-to-stone",
+    "srdId": "phbsplFleshtoSto",
+    "nameEn": "Flesh to Stone",
+    "level": 6,
+    "school": "trs",
+    "concentration": true,
+    "ritual": false
+  },
+  {
+    "id": "fly",
+    "srdId": "phbsplFly0000000",
+    "nameEn": "Fly",
+    "level": 3,
+    "school": "trs",
+    "concentration": true,
+    "ritual": false
   },
   {
     "id": "fog-cloud",
@@ -249,6 +1569,160 @@
     "level": 1,
     "school": "con",
     "concentration": true,
+    "ritual": false
+  },
+  {
+    "id": "forbiddance",
+    "srdId": "phbsplForbiddanc",
+    "nameEn": "Forbiddance",
+    "level": 6,
+    "school": "abj",
+    "concentration": false,
+    "ritual": false
+  },
+  {
+    "id": "forcecage",
+    "srdId": "phbsplForcecage0",
+    "nameEn": "Forcecage",
+    "level": 7,
+    "school": "evo",
+    "concentration": true,
+    "ritual": false
+  },
+  {
+    "id": "foresight",
+    "srdId": "phbsplForesight0",
+    "nameEn": "Foresight",
+    "level": 9,
+    "school": "div",
+    "concentration": false,
+    "ritual": false
+  },
+  {
+    "id": "fount-of-moonlight",
+    "srdId": "Fount of Moonlight|XPHB",
+    "nameEn": "Fount of Moonlight",
+    "level": 4,
+    "school": "evo",
+    "concentration": true,
+    "ritual": false,
+    "castType": "save",
+    "save": "con",
+    "damage": {
+      "dice": "2d6",
+      "type": "radiante"
+    },
+    "castingTime": "1 acción",
+    "range": "point",
+    "components": "V, S",
+    "duration": "Concentración, hasta 10 minutos"
+  },
+  {
+    "id": "freedom-of-movement",
+    "srdId": "phbsplFreedomofM",
+    "nameEn": "Freedom of Movement",
+    "level": 4,
+    "school": "abj",
+    "concentration": false,
+    "ritual": false
+  },
+  {
+    "id": "freezing-sphere",
+    "srdId": "phbsplOtilukesFr",
+    "nameEn": "Freezing Sphere",
+    "level": 6,
+    "school": "evo",
+    "concentration": false,
+    "ritual": false
+  },
+  {
+    "id": "friends",
+    "srdId": "Friends|XPHB",
+    "nameEn": "Friends",
+    "level": 0,
+    "school": "enc",
+    "concentration": true,
+    "ritual": false,
+    "castType": "save",
+    "save": "wis",
+    "castingTime": "1 acción",
+    "range": "10 pies",
+    "components": "S, M (some makeup)",
+    "duration": "Concentración, hasta 1 minuto",
+    "areaTags": [
+      "Un objetivo"
+    ]
+  },
+  {
+    "id": "gaseous-form",
+    "srdId": "phbsplGaseousFor",
+    "nameEn": "Gaseous Form",
+    "level": 3,
+    "school": "trs",
+    "concentration": true,
+    "ritual": false
+  },
+  {
+    "id": "gate",
+    "srdId": "phbsplGate000000",
+    "nameEn": "Gate",
+    "level": 9,
+    "school": "con",
+    "concentration": true,
+    "ritual": false
+  },
+  {
+    "id": "geas",
+    "srdId": "phbsplGeas000000",
+    "nameEn": "Geas",
+    "level": 5,
+    "school": "enc",
+    "concentration": false,
+    "ritual": false
+  },
+  {
+    "id": "gentle-repose",
+    "srdId": "phbsplGentleRepo",
+    "nameEn": "Gentle Repose",
+    "level": 2,
+    "school": "nec",
+    "concentration": false,
+    "ritual": true
+  },
+  {
+    "id": "giant-insect",
+    "srdId": "phbsplGiantInsec",
+    "nameEn": "Giant Insect",
+    "level": 4,
+    "school": "con",
+    "concentration": true,
+    "ritual": false
+  },
+  {
+    "id": "glibness",
+    "srdId": "phbsplGlibness00",
+    "nameEn": "Glibness",
+    "level": 8,
+    "school": "enc",
+    "concentration": false,
+    "ritual": false
+  },
+  {
+    "id": "globe-of-invulnerability",
+    "srdId": "phbsplGlobeofInv",
+    "nameEn": "Globe of Invulnerability",
+    "level": 6,
+    "school": "abj",
+    "concentration": true,
+    "ritual": false
+  },
+  {
+    "id": "glyph-of-warding",
+    "srdId": "phbsplGlyphofWar",
+    "nameEn": "Glyph of Warding",
+    "level": 3,
+    "school": "abj",
+    "concentration": false,
     "ritual": false
   },
   {
@@ -261,6 +1735,27 @@
     "ritual": false
   },
   {
+    "id": "grasping-vine",
+    "srdId": "Grasping Vine|XPHB",
+    "nameEn": "Grasping Vine",
+    "level": 4,
+    "school": "con",
+    "concentration": true,
+    "ritual": false,
+    "castType": "attack",
+    "damage": {
+      "dice": "4d8",
+      "type": "contundente"
+    },
+    "castingTime": "1 acción adicional",
+    "range": "60 pies",
+    "components": "V, S",
+    "duration": "Concentración, hasta 1 minuto",
+    "areaTags": [
+      "Un objetivo"
+    ]
+  },
+  {
     "id": "grease",
     "srdId": "phbsplGrease0000",
     "nameEn": "Grease",
@@ -270,11 +1765,133 @@
     "ritual": false
   },
   {
+    "id": "greater-invisibility",
+    "srdId": "phbsplGreaterInv",
+    "nameEn": "Greater Invisibility",
+    "level": 4,
+    "school": "ill",
+    "concentration": true,
+    "ritual": false
+  },
+  {
+    "id": "greater-restoration",
+    "srdId": "phbsplGreaterRes",
+    "nameEn": "Greater Restoration",
+    "level": 5,
+    "school": "abj",
+    "concentration": false,
+    "ritual": false
+  },
+  {
+    "id": "guardian-of-faith",
+    "srdId": "phbsplGuardianof",
+    "nameEn": "Guardian of Faith",
+    "level": 4,
+    "school": "con",
+    "concentration": false,
+    "ritual": false
+  },
+  {
+    "id": "guards-and-wards",
+    "srdId": "phbsplGuardsandW",
+    "nameEn": "Guards and Wards",
+    "level": 6,
+    "school": "abj",
+    "concentration": false,
+    "ritual": false
+  },
+  {
+    "id": "guidance",
+    "srdId": "phbsplGuidance00",
+    "nameEn": "Guidance",
+    "level": 0,
+    "school": "div",
+    "concentration": true,
+    "ritual": false
+  },
+  {
     "id": "guiding-bolt",
     "srdId": "phbsplGuidingBol",
     "nameEn": "Guiding Bolt",
     "level": 1,
     "school": "evo",
+    "concentration": false,
+    "ritual": false
+  },
+  {
+    "id": "gust-of-wind",
+    "srdId": "phbsplGustofWind",
+    "nameEn": "Gust of Wind",
+    "level": 2,
+    "school": "evo",
+    "concentration": true,
+    "ritual": false
+  },
+  {
+    "id": "hail-of-thorns",
+    "srdId": "Hail of Thorns|XPHB",
+    "nameEn": "Hail of Thorns",
+    "level": 1,
+    "school": "con",
+    "concentration": false,
+    "ritual": false,
+    "castType": "save",
+    "save": "dex",
+    "damage": {
+      "dice": "1d10",
+      "type": "perforante",
+      "scalePerSlot": "1d10"
+    },
+    "castingTime": "1 acción adicional",
+    "range": "point",
+    "components": "V",
+    "duration": "Instantáneo",
+    "areaTags": [
+      "Esfera"
+    ]
+  },
+  {
+    "id": "hallow",
+    "srdId": "phbsplHallow0000",
+    "nameEn": "Hallow",
+    "level": 5,
+    "school": "abj",
+    "concentration": false,
+    "ritual": false
+  },
+  {
+    "id": "hallucinatory-terrain",
+    "srdId": "phbsplHallucinat",
+    "nameEn": "Hallucinatory Terrain",
+    "level": 4,
+    "school": "ill",
+    "concentration": false,
+    "ritual": false
+  },
+  {
+    "id": "harm",
+    "srdId": "phbsplHarm000000",
+    "nameEn": "Harm",
+    "level": 6,
+    "school": "nec",
+    "concentration": false,
+    "ritual": false
+  },
+  {
+    "id": "haste",
+    "srdId": "phbsplHaste00000",
+    "nameEn": "Haste",
+    "level": 3,
+    "school": "trs",
+    "concentration": true,
+    "ritual": false
+  },
+  {
+    "id": "heal",
+    "srdId": "phbsplHeal000000",
+    "nameEn": "Heal",
+    "level": 6,
+    "school": "abj",
     "concentration": false,
     "ritual": false
   },
@@ -288,11 +1905,29 @@
     "ritual": false
   },
   {
+    "id": "heat-metal",
+    "srdId": "phbsplHeatMetal0",
+    "nameEn": "Heat Metal",
+    "level": 2,
+    "school": "trs",
+    "concentration": true,
+    "ritual": false
+  },
+  {
     "id": "hellish-rebuke",
     "srdId": "phbsplHellishReb",
     "nameEn": "Hellish Rebuke",
     "level": 1,
     "school": "evo",
+    "concentration": false,
+    "ritual": false
+  },
+  {
+    "id": "heroes-feast",
+    "srdId": "phbsplHeroesFeas",
+    "nameEn": "Heroes' Feast",
+    "level": 6,
+    "school": "con",
     "concentration": false,
     "ritual": false
   },
@@ -324,6 +1959,56 @@
     "ritual": false
   },
   {
+    "id": "hold-monster",
+    "srdId": "phbsplHoldMonste",
+    "nameEn": "Hold Monster",
+    "level": 5,
+    "school": "enc",
+    "concentration": true,
+    "ritual": false
+  },
+  {
+    "id": "hold-person",
+    "srdId": "phbsplHoldPerson",
+    "nameEn": "Hold Person",
+    "level": 2,
+    "school": "enc",
+    "concentration": true,
+    "ritual": false
+  },
+  {
+    "id": "holy-aura",
+    "srdId": "phbsplHolyAura00",
+    "nameEn": "Holy Aura",
+    "level": 8,
+    "school": "abj",
+    "concentration": true,
+    "ritual": false
+  },
+  {
+    "id": "hunger-of-hadar",
+    "srdId": "Hunger of Hadar|XPHB",
+    "nameEn": "Hunger of Hadar",
+    "level": 3,
+    "school": "con",
+    "concentration": true,
+    "ritual": false,
+    "castType": "save",
+    "save": "dex",
+    "damage": {
+      "dice": "2d6",
+      "type": "ácido",
+      "scalePerSlot": "1d6"
+    },
+    "castingTime": "1 acción",
+    "range": "150 pies",
+    "components": "V, S, M (a pickled tentacle)",
+    "duration": "Concentración, hasta 1 minuto",
+    "areaTags": [
+      "Esfera"
+    ]
+  },
+  {
     "id": "hunters-mark",
     "srdId": "phbsplHuntersMar",
     "nameEn": "Hunter's Mark",
@@ -333,11 +2018,29 @@
     "ritual": false
   },
   {
+    "id": "hypnotic-pattern",
+    "srdId": "phbsplHypnoticPa",
+    "nameEn": "Hypnotic Pattern",
+    "level": 3,
+    "school": "ill",
+    "concentration": false,
+    "ritual": false
+  },
+  {
     "id": "ice-knife",
     "srdId": "phbsplIceKnife00",
     "nameEn": "Ice Knife",
     "level": 1,
     "school": "con",
+    "concentration": false,
+    "ritual": false
+  },
+  {
+    "id": "ice-storm",
+    "srdId": "phbsplIceStorm00",
+    "nameEn": "Ice Storm",
+    "level": 4,
+    "school": "evo",
     "concentration": false,
     "ritual": false
   },
@@ -360,6 +2063,24 @@
     "ritual": true
   },
   {
+    "id": "imprisonment",
+    "srdId": "phbsplImprisonme",
+    "nameEn": "Imprisonment",
+    "level": 9,
+    "school": "abj",
+    "concentration": false,
+    "ritual": false
+  },
+  {
+    "id": "incendiary-cloud",
+    "srdId": "phbsplIncendiary",
+    "nameEn": "Incendiary Cloud",
+    "level": 8,
+    "school": "con",
+    "concentration": true,
+    "ritual": false
+  },
+  {
     "id": "inflict-wounds",
     "srdId": "phbsplInflictWou",
     "nameEn": "Inflict Wounds",
@@ -369,400 +2090,22 @@
     "ritual": false
   },
   {
-    "id": "jump",
-    "srdId": "phbsplJump000000",
-    "nameEn": "Jump",
-    "level": 1,
-    "school": "trs",
-    "concentration": false,
-    "ritual": false
-  },
-  {
-    "id": "longstrider",
-    "srdId": "phbsplLongstride",
-    "nameEn": "Longstrider",
-    "level": 1,
-    "school": "trs",
-    "concentration": false,
-    "ritual": false
-  },
-  {
-    "id": "mage-armor",
-    "srdId": "phbsplMageArmor0",
-    "nameEn": "Mage Armor",
-    "level": 1,
-    "school": "abj",
-    "concentration": false,
-    "ritual": false
-  },
-  {
-    "id": "magic-missile",
-    "srdId": "phbsplMagicMissi",
-    "nameEn": "Magic Missile",
-    "level": 1,
-    "school": "evo",
-    "concentration": false,
-    "ritual": false
-  },
-  {
-    "id": "protection-from-evil-and-good",
-    "srdId": "phbEvilAndGoodPr",
-    "nameEn": "Protection from Evil and Good",
-    "level": 1,
-    "school": "abj",
-    "concentration": true,
-    "ritual": false
-  },
-  {
-    "id": "purify-food-and-drink",
-    "srdId": "phbsplPurifyFood",
-    "nameEn": "Purify Food and Drink",
-    "level": 1,
-    "school": "trs",
-    "concentration": false,
-    "ritual": true
-  },
-  {
-    "id": "ray-of-sickness",
-    "srdId": "phbsplRayofSickn",
-    "nameEn": "Ray of Sickness",
-    "level": 1,
-    "school": "nec",
-    "concentration": false,
-    "ritual": false
-  },
-  {
-    "id": "sanctuary",
-    "srdId": "phbSanctuary0000",
-    "nameEn": "Sanctuary",
-    "level": 1,
-    "school": "abj",
-    "concentration": false,
-    "ritual": false
-  },
-  {
-    "id": "searing-smite",
-    "srdId": "phbsplSearingSmi",
-    "nameEn": "Searing Smite",
-    "level": 1,
-    "school": "evo",
-    "concentration": false,
-    "ritual": false
-  },
-  {
-    "id": "shield-of-faith",
-    "srdId": "phbsplShieldofFa",
-    "nameEn": "Shield of Faith",
-    "level": 1,
-    "school": "abj",
-    "concentration": true,
-    "ritual": false
-  },
-  {
-    "id": "shield",
-    "srdId": "phbsplShield0000",
-    "nameEn": "Shield",
-    "level": 1,
-    "school": "abj",
-    "concentration": false,
-    "ritual": false
-  },
-  {
-    "id": "silent-image",
-    "srdId": "phbsplSilentImag",
-    "nameEn": "Silent Image",
-    "level": 1,
-    "school": "ill",
-    "concentration": true,
-    "ritual": false
-  },
-  {
-    "id": "sleep",
-    "srdId": "phbsplSleep00000",
-    "nameEn": "Sleep",
-    "level": 1,
-    "school": "enc",
-    "concentration": true,
-    "ritual": false
-  },
-  {
-    "id": "speak-with-animals",
-    "srdId": "phbsplSpeakwithA",
-    "nameEn": "Speak with Animals",
-    "level": 1,
-    "school": "div",
-    "concentration": false,
-    "ritual": true
-  },
-  {
-    "id": "thunderwave",
-    "srdId": "phbsplThunderwav",
-    "nameEn": "Thunderwave",
-    "level": 1,
-    "school": "evo",
-    "concentration": false,
-    "ritual": false
-  },
-  {
-    "id": "unseen-servant",
-    "srdId": "phbsplUnseenServ",
-    "nameEn": "Unseen Servant",
-    "level": 1,
-    "school": "con",
-    "concentration": false,
-    "ritual": true
-  },
-  {
-    "id": "acid-arrow",
-    "srdId": "phbsplMelfsAcidA",
-    "nameEn": "Acid Arrow",
-    "level": 2,
-    "school": "evo",
-    "concentration": false,
-    "ritual": false
-  },
-  {
-    "id": "aid",
-    "srdId": "phbsplAid0000000",
-    "nameEn": "Aid",
-    "level": 2,
-    "school": "abj",
-    "concentration": false,
-    "ritual": false
-  },
-  {
-    "id": "alter-self",
-    "srdId": "phbsplAlterSelf0",
-    "nameEn": "Alter Self",
-    "level": 2,
-    "school": "trs",
-    "concentration": true,
-    "ritual": false
-  },
-  {
-    "id": "animal-messenger",
-    "srdId": "phbsplAnimalMess",
-    "nameEn": "Animal Messenger",
-    "level": 2,
-    "school": "enc",
-    "concentration": false,
-    "ritual": true
-  },
-  {
-    "id": "arcane-lock",
-    "srdId": "phbsplArcaneLock",
-    "nameEn": "Arcane Lock",
-    "level": 2,
-    "school": "abj",
-    "concentration": false,
-    "ritual": false
-  },
-  {
-    "id": "arcane-vigor",
-    "srdId": "phbsplArcaneVigo",
-    "nameEn": "Arcane Vigor",
-    "level": 2,
-    "school": "abj",
-    "concentration": false,
-    "ritual": false
-  },
-  {
-    "id": "arcanists-magic-aura",
-    "srdId": "phbsplNystulsMag",
-    "nameEn": "Arcanist's Magic Aura",
-    "level": 2,
-    "school": "ill",
-    "concentration": false,
-    "ritual": false
-  },
-  {
-    "id": "augury",
-    "srdId": "phbsplAugury0000",
-    "nameEn": "Augury",
-    "level": 2,
-    "school": "div",
-    "concentration": false,
-    "ritual": true
-  },
-  {
-    "id": "barkskin",
-    "srdId": "phbsplBarkskin00",
-    "nameEn": "Barkskin",
-    "level": 2,
-    "school": "trs",
-    "concentration": false,
-    "ritual": false
-  },
-  {
-    "id": "blindness-deafness",
-    "srdId": "phbsplBlindnessD",
-    "nameEn": "Blindness/Deafness",
-    "level": 2,
-    "school": "trs",
-    "concentration": false,
-    "ritual": false
-  },
-  {
-    "id": "blur",
-    "srdId": "phbsplBlur000000",
-    "nameEn": "Blur",
-    "level": 2,
-    "school": "ill",
-    "concentration": true,
-    "ritual": false
-  },
-  {
-    "id": "calm-emotions",
-    "srdId": "phbsplCalmEmotio",
-    "nameEn": "Calm Emotions",
-    "level": 2,
-    "school": "enc",
-    "concentration": true,
-    "ritual": false
-  },
-  {
-    "id": "continual-flame",
-    "srdId": "phbsplContinualF",
-    "nameEn": "Continual Flame",
-    "level": 2,
-    "school": "evo",
-    "concentration": false,
-    "ritual": false
-  },
-  {
-    "id": "darkness",
-    "srdId": "phbsplDarkness00",
-    "nameEn": "Darkness",
-    "level": 2,
-    "school": "evo",
-    "concentration": true,
-    "ritual": false
-  },
-  {
-    "id": "darkvision",
-    "srdId": "phbsplDarkvision",
-    "nameEn": "Darkvision",
-    "level": 2,
-    "school": "trs",
-    "concentration": false,
-    "ritual": false
-  },
-  {
-    "id": "detect-thoughts",
-    "srdId": "phbsplDetectThou",
-    "nameEn": "Detect Thoughts",
-    "level": 2,
-    "school": "div",
-    "concentration": true,
-    "ritual": false
-  },
-  {
-    "id": "dragons-breath",
-    "srdId": "phbsplDragonsBre",
-    "nameEn": "Dragon's Breath",
-    "level": 2,
-    "school": "trs",
-    "concentration": true,
-    "ritual": false
-  },
-  {
-    "id": "enhance-ability",
-    "srdId": "phbsplEnhanceAbi",
-    "nameEn": "Enhance Ability",
-    "level": 2,
-    "school": "trs",
-    "concentration": true,
-    "ritual": false
-  },
-  {
-    "id": "enlarge-reduce",
-    "srdId": "phbsplEnlargeRed",
-    "nameEn": "Enlarge/Reduce",
-    "level": 2,
-    "school": "trs",
-    "concentration": true,
-    "ritual": false
-  },
-  {
-    "id": "enthrall",
-    "srdId": "phbsplEnthrall00",
-    "nameEn": "Enthrall",
-    "level": 2,
-    "school": "enc",
-    "concentration": true,
-    "ritual": false
-  },
-  {
-    "id": "find-steed",
-    "srdId": "phbsplFindSteed0",
-    "nameEn": "Find Steed",
-    "level": 2,
-    "school": "con",
-    "concentration": false,
-    "ritual": false
-  },
-  {
-    "id": "find-traps",
-    "srdId": "phbsplFindTraps0",
-    "nameEn": "Find Traps",
-    "level": 2,
-    "school": "div",
-    "concentration": false,
-    "ritual": false
-  },
-  {
-    "id": "flame-blade",
-    "srdId": "phbsplFlameBlade",
-    "nameEn": "Flame Blade",
-    "level": 2,
-    "school": "evo",
-    "concentration": true,
-    "ritual": false
-  },
-  {
-    "id": "flaming-sphere",
-    "srdId": "phbsplFlamingSph",
-    "nameEn": "Flaming Sphere",
-    "level": 2,
+    "id": "insect-plague",
+    "srdId": "phbsplInsectPlag",
+    "nameEn": "Insect Plague",
+    "level": 5,
     "school": "con",
     "concentration": true,
     "ritual": false
   },
   {
-    "id": "gentle-repose",
-    "srdId": "phbsplGentleRepo",
-    "nameEn": "Gentle Repose",
-    "level": 2,
-    "school": "nec",
+    "id": "instant-summons",
+    "srdId": "phbsplDrawmijsIn",
+    "nameEn": "Instant Summons",
+    "level": 6,
+    "school": "con",
     "concentration": false,
     "ritual": true
-  },
-  {
-    "id": "gust-of-wind",
-    "srdId": "phbsplGustofWind",
-    "nameEn": "Gust of Wind",
-    "level": 2,
-    "school": "evo",
-    "concentration": true,
-    "ritual": false
-  },
-  {
-    "id": "heat-metal",
-    "srdId": "phbsplHeatMetal0",
-    "nameEn": "Heat Metal",
-    "level": 2,
-    "school": "trs",
-    "concentration": true,
-    "ritual": false
-  },
-  {
-    "id": "hold-person",
-    "srdId": "phbsplHoldPerson",
-    "nameEn": "Hold Person",
-    "level": 2,
-    "school": "enc",
-    "concentration": true,
-    "ritual": false
   },
   {
     "id": "invisibility",
@@ -774,11 +2117,61 @@
     "ritual": false
   },
   {
+    "id": "irresistible-dance",
+    "srdId": "phbsplOttosIrres",
+    "nameEn": "Irresistible Dance",
+    "level": 6,
+    "school": "enc",
+    "concentration": true,
+    "ritual": false
+  },
+  {
+    "id": "jallarzis-storm-of-radiance",
+    "srdId": "Jallarzi's Storm of Radiance|XPHB",
+    "nameEn": "Jallarzi's Storm of Radiance",
+    "level": 5,
+    "school": "evo",
+    "concentration": true,
+    "ritual": false,
+    "castType": "save",
+    "save": "con",
+    "damage": {
+      "dice": "2d10",
+      "type": "radiante",
+      "scalePerSlot": "1d10"
+    },
+    "castingTime": "1 acción",
+    "range": "120 pies",
+    "components": "V, S, M (a pinch of phosphorus)",
+    "duration": "Concentración, hasta 1 minuto",
+    "areaTags": [
+      "Y"
+    ]
+  },
+  {
+    "id": "jump",
+    "srdId": "phbsplJump000000",
+    "nameEn": "Jump",
+    "level": 1,
+    "school": "trs",
+    "concentration": false,
+    "ritual": false
+  },
+  {
     "id": "knock",
     "srdId": "phbsplKnock00000",
     "nameEn": "Knock",
     "level": 2,
     "school": "trs",
+    "concentration": false,
+    "ritual": false
+  },
+  {
+    "id": "legend-lore",
+    "srdId": "phbsplLegendLore",
+    "nameEn": "Legend Lore",
+    "level": 5,
+    "school": "div",
     "concentration": false,
     "ritual": false
   },
@@ -801,6 +2194,47 @@
     "ritual": false
   },
   {
+    "id": "light",
+    "srdId": "phbsplLight00000",
+    "nameEn": "Light",
+    "level": 0,
+    "school": "evo",
+    "concentration": false,
+    "ritual": false
+  },
+  {
+    "id": "lightning-arrow",
+    "srdId": "Lightning Arrow|XPHB",
+    "nameEn": "Lightning Arrow",
+    "level": 3,
+    "school": "trs",
+    "concentration": false,
+    "ritual": false,
+    "castType": "save",
+    "save": "dex",
+    "damage": {
+      "dice": "4d8",
+      "type": "relámpago",
+      "scalePerSlot": "1d8"
+    },
+    "castingTime": "1 acción adicional",
+    "range": "point",
+    "components": "V, S",
+    "duration": "Instantáneo",
+    "areaTags": [
+      "Esfera"
+    ]
+  },
+  {
+    "id": "lightning-bolt",
+    "srdId": "phbsplLightningB",
+    "nameEn": "Lightning Bolt",
+    "level": 3,
+    "school": "evo",
+    "concentration": false,
+    "ritual": false
+  },
+  {
     "id": "locate-animals-or-plants",
     "srdId": "phbsplLocateAnim",
     "nameEn": "Locate Animals or Plants",
@@ -810,12 +2244,75 @@
     "ritual": true
   },
   {
+    "id": "locate-creature",
+    "srdId": "phbsplLocateCrea",
+    "nameEn": "Locate Creature",
+    "level": 4,
+    "school": "div",
+    "concentration": true,
+    "ritual": false
+  },
+  {
     "id": "locate-object",
     "srdId": "phbsplLocateObje",
     "nameEn": "Locate Object",
     "level": 2,
     "school": "div",
     "concentration": true,
+    "ritual": false
+  },
+  {
+    "id": "longstrider",
+    "srdId": "phbsplLongstride",
+    "nameEn": "Longstrider",
+    "level": 1,
+    "school": "trs",
+    "concentration": false,
+    "ritual": false
+  },
+  {
+    "id": "mage-armor",
+    "srdId": "phbsplMageArmor0",
+    "nameEn": "Mage Armor",
+    "level": 1,
+    "school": "abj",
+    "concentration": false,
+    "ritual": false
+  },
+  {
+    "id": "mage-hand",
+    "srdId": "phbsplMageHand00",
+    "nameEn": "Mage Hand",
+    "level": 0,
+    "school": "con",
+    "concentration": false,
+    "ritual": false
+  },
+  {
+    "id": "magic-circle",
+    "srdId": "phbsplMagicCircl",
+    "nameEn": "Magic Circle",
+    "level": 3,
+    "school": "abj",
+    "concentration": false,
+    "ritual": false
+  },
+  {
+    "id": "magic-jar",
+    "srdId": "phbsplMagicJar00",
+    "nameEn": "Magic Jar",
+    "level": 6,
+    "school": "nec",
+    "concentration": false,
+    "ritual": false
+  },
+  {
+    "id": "magic-missile",
+    "srdId": "phbsplMagicMissi",
+    "nameEn": "Magic Missile",
+    "level": 1,
+    "school": "evo",
+    "concentration": false,
     "ritual": false
   },
   {
@@ -837,380 +2334,11 @@
     "ritual": false
   },
   {
-    "id": "mind-spike",
-    "srdId": "phbsplMindSpike0",
-    "nameEn": "Mind Spike",
-    "level": 2,
-    "school": "div",
-    "concentration": true,
-    "ritual": false
-  },
-  {
-    "id": "mirror-image",
-    "srdId": "phbsplMirrorImag",
-    "nameEn": "Mirror Image",
-    "level": 2,
-    "school": "ill",
-    "concentration": false,
-    "ritual": false
-  },
-  {
-    "id": "misty-step",
-    "srdId": "phbsplMistyStep0",
-    "nameEn": "Misty Step",
-    "level": 2,
+    "id": "magnificent-mansion",
+    "srdId": "phbMagnificentMa",
+    "nameEn": "Magnificent Mansion",
+    "level": 7,
     "school": "con",
-    "concentration": false,
-    "ritual": false
-  },
-  {
-    "id": "moonbeam",
-    "srdId": "phbsplMoonbeam00",
-    "nameEn": "Moonbeam",
-    "level": 2,
-    "school": "evo",
-    "concentration": true,
-    "ritual": false
-  },
-  {
-    "id": "pass-without-trace",
-    "srdId": "phbsplPasswithou",
-    "nameEn": "Pass without Trace",
-    "level": 2,
-    "school": "abj",
-    "concentration": true,
-    "ritual": false
-  },
-  {
-    "id": "phantasmal-force",
-    "srdId": "phbPhantasmalFor",
-    "nameEn": "Phantasmal Force",
-    "level": 2,
-    "school": "ill",
-    "concentration": true,
-    "ritual": false
-  },
-  {
-    "id": "prayer-of-healing",
-    "srdId": "phbsplPrayerofHe",
-    "nameEn": "Prayer of Healing",
-    "level": 2,
-    "school": "abj",
-    "concentration": false,
-    "ritual": false
-  },
-  {
-    "id": "protection-from-poison",
-    "srdId": "phbsplProtection",
-    "nameEn": "Protection from Poison",
-    "level": 2,
-    "school": "abj",
-    "concentration": false,
-    "ritual": false
-  },
-  {
-    "id": "ray-of-enfeeblement",
-    "srdId": "phbsplRayofEnfee",
-    "nameEn": "Ray of Enfeeblement",
-    "level": 2,
-    "school": "nec",
-    "concentration": true,
-    "ritual": false
-  },
-  {
-    "id": "rope-trick",
-    "srdId": "phbsplRopeTrick0",
-    "nameEn": "Rope Trick",
-    "level": 2,
-    "school": "trs",
-    "concentration": false,
-    "ritual": false
-  },
-  {
-    "id": "scorching-ray",
-    "srdId": "phbsplScorchingR",
-    "nameEn": "Scorching Ray",
-    "level": 2,
-    "school": "evo",
-    "concentration": false,
-    "ritual": false
-  },
-  {
-    "id": "see-invisibility",
-    "srdId": "phbsplSeeInvisib",
-    "nameEn": "See Invisibility",
-    "level": 2,
-    "school": "div",
-    "concentration": false,
-    "ritual": false
-  },
-  {
-    "id": "shatter",
-    "srdId": "phbsplShatter000",
-    "nameEn": "Shatter",
-    "level": 2,
-    "school": "evo",
-    "concentration": false,
-    "ritual": false
-  },
-  {
-    "id": "shining-smite",
-    "srdId": "phbsplShiningSmi",
-    "nameEn": "Shining Smite",
-    "level": 2,
-    "school": "trs",
-    "concentration": true,
-    "ritual": false
-  },
-  {
-    "id": "silence",
-    "srdId": "phbsplSilence000",
-    "nameEn": "Silence",
-    "level": 2,
-    "school": "ill",
-    "concentration": true,
-    "ritual": true
-  },
-  {
-    "id": "spider-climb",
-    "srdId": "phbsplSpiderClim",
-    "nameEn": "Spider Climb",
-    "level": 2,
-    "school": "trs",
-    "concentration": true,
-    "ritual": false
-  },
-  {
-    "id": "spike-growth",
-    "srdId": "phbsplSpikeGrowt",
-    "nameEn": "Spike Growth",
-    "level": 2,
-    "school": "trs",
-    "concentration": true,
-    "ritual": false
-  },
-  {
-    "id": "spiritual-weapon",
-    "srdId": "phbsplSpiritualW",
-    "nameEn": "Spiritual Weapon",
-    "level": 2,
-    "school": "evo",
-    "concentration": true,
-    "ritual": false
-  },
-  {
-    "id": "suggestion",
-    "srdId": "phbsplSuggestion",
-    "nameEn": "Suggestion",
-    "level": 2,
-    "school": "enc",
-    "concentration": true,
-    "ritual": false
-  },
-  {
-    "id": "warding-bond",
-    "srdId": "phbsplWardingBon",
-    "nameEn": "Warding Bond",
-    "level": 2,
-    "school": "abj",
-    "concentration": false,
-    "ritual": false
-  },
-  {
-    "id": "web",
-    "srdId": "phbsplWeb0000000",
-    "nameEn": "Web",
-    "level": 2,
-    "school": "con",
-    "concentration": true,
-    "ritual": false
-  },
-  {
-    "id": "zone-of-truth",
-    "srdId": "phbsplZoneofTrut",
-    "nameEn": "Zone of Truth",
-    "level": 2,
-    "school": "enc",
-    "concentration": false,
-    "ritual": false
-  },
-  {
-    "id": "animate-dead",
-    "srdId": "phbsplAnimateDea",
-    "nameEn": "Animate Dead",
-    "level": 3,
-    "school": "nec",
-    "concentration": false,
-    "ritual": false
-  },
-  {
-    "id": "beacon-of-hope",
-    "srdId": "phbsplBeaconofHo",
-    "nameEn": "Beacon of Hope",
-    "level": 3,
-    "school": "abj",
-    "concentration": true,
-    "ritual": false
-  },
-  {
-    "id": "bestow-curse",
-    "srdId": "phbsplBestowCurs",
-    "nameEn": "Bestow Curse",
-    "level": 3,
-    "school": "nec",
-    "concentration": true,
-    "ritual": false
-  },
-  {
-    "id": "blink",
-    "srdId": "phbsplBlink00000",
-    "nameEn": "Blink",
-    "level": 3,
-    "school": "trs",
-    "concentration": false,
-    "ritual": false
-  },
-  {
-    "id": "call-lightning",
-    "srdId": "phbsplCallLightn",
-    "nameEn": "Call Lightning",
-    "level": 3,
-    "school": "con",
-    "concentration": true,
-    "ritual": false
-  },
-  {
-    "id": "clairvoyance",
-    "srdId": "phbsplClairvoyan",
-    "nameEn": "Clairvoyance",
-    "level": 3,
-    "school": "div",
-    "concentration": true,
-    "ritual": false
-  },
-  {
-    "id": "conjure-animals",
-    "srdId": "phbsplConjureAni",
-    "nameEn": "Conjure Animals",
-    "level": 3,
-    "school": "con",
-    "concentration": true,
-    "ritual": false
-  },
-  {
-    "id": "counterspell",
-    "srdId": "phbsplCounterspe",
-    "nameEn": "Counterspell",
-    "level": 3,
-    "school": "abj",
-    "concentration": false,
-    "ritual": false
-  },
-  {
-    "id": "create-food-and-water",
-    "srdId": "phbsplCreateFood",
-    "nameEn": "Create Food and Water",
-    "level": 3,
-    "school": "con",
-    "concentration": false,
-    "ritual": false
-  },
-  {
-    "id": "daylight",
-    "srdId": "phbsplDaylight00",
-    "nameEn": "Daylight",
-    "level": 3,
-    "school": "evo",
-    "concentration": false,
-    "ritual": false
-  },
-  {
-    "id": "dispel-magic",
-    "srdId": "phbsplDispelMagi",
-    "nameEn": "Dispel Magic",
-    "level": 3,
-    "school": "abj",
-    "concentration": false,
-    "ritual": false
-  },
-  {
-    "id": "fear",
-    "srdId": "phbsplFear000000",
-    "nameEn": "Fear",
-    "level": 3,
-    "school": "ill",
-    "concentration": true,
-    "ritual": false
-  },
-  {
-    "id": "fireball",
-    "srdId": "phbsplFireball00",
-    "nameEn": "Fireball",
-    "level": 3,
-    "school": "evo",
-    "concentration": false,
-    "ritual": false
-  },
-  {
-    "id": "fly",
-    "srdId": "phbsplFly0000000",
-    "nameEn": "Fly",
-    "level": 3,
-    "school": "trs",
-    "concentration": true,
-    "ritual": false
-  },
-  {
-    "id": "gaseous-form",
-    "srdId": "phbsplGaseousFor",
-    "nameEn": "Gaseous Form",
-    "level": 3,
-    "school": "trs",
-    "concentration": true,
-    "ritual": false
-  },
-  {
-    "id": "glyph-of-warding",
-    "srdId": "phbsplGlyphofWar",
-    "nameEn": "Glyph of Warding",
-    "level": 3,
-    "school": "abj",
-    "concentration": false,
-    "ritual": false
-  },
-  {
-    "id": "haste",
-    "srdId": "phbsplHaste00000",
-    "nameEn": "Haste",
-    "level": 3,
-    "school": "trs",
-    "concentration": true,
-    "ritual": false
-  },
-  {
-    "id": "hypnotic-pattern",
-    "srdId": "phbsplHypnoticPa",
-    "nameEn": "Hypnotic Pattern",
-    "level": 3,
-    "school": "ill",
-    "concentration": false,
-    "ritual": false
-  },
-  {
-    "id": "lightning-bolt",
-    "srdId": "phbsplLightningB",
-    "nameEn": "Lightning Bolt",
-    "level": 3,
-    "school": "evo",
-    "concentration": false,
-    "ritual": false
-  },
-  {
-    "id": "magic-circle",
-    "srdId": "phbsplMagicCircl",
-    "nameEn": "Magic Circle",
-    "level": 3,
-    "school": "abj",
     "concentration": false,
     "ritual": false
   },
@@ -1224,699 +2352,6 @@
     "ritual": false
   },
   {
-    "id": "mass-healing-word",
-    "srdId": "phbsplMassHealin",
-    "nameEn": "Mass Healing Word",
-    "level": 3,
-    "school": "abj",
-    "concentration": false,
-    "ritual": false
-  },
-  {
-    "id": "meld-into-stone",
-    "srdId": "phbsplMeldintoSt",
-    "nameEn": "Meld into Stone",
-    "level": 3,
-    "school": "trs",
-    "concentration": false,
-    "ritual": true
-  },
-  {
-    "id": "nondetection",
-    "srdId": "phbsplNondetecti",
-    "nameEn": "Nondetection",
-    "level": 3,
-    "school": "abj",
-    "concentration": false,
-    "ritual": false
-  },
-  {
-    "id": "phantom-steed",
-    "srdId": "phbsplPhantomSte",
-    "nameEn": "Phantom Steed",
-    "level": 3,
-    "school": "ill",
-    "concentration": false,
-    "ritual": true
-  },
-  {
-    "id": "plant-growth",
-    "srdId": "phbsplPlantGrowt",
-    "nameEn": "Plant Growth",
-    "level": 3,
-    "school": "trs",
-    "concentration": false,
-    "ritual": false
-  },
-  {
-    "id": "protection-from-energy",
-    "srdId": "phbProtectionFro",
-    "nameEn": "Protection from Energy",
-    "level": 3,
-    "school": "abj",
-    "concentration": true,
-    "ritual": false
-  },
-  {
-    "id": "remove-curse",
-    "srdId": "phbsplRemoveCurs",
-    "nameEn": "Remove Curse",
-    "level": 3,
-    "school": "abj",
-    "concentration": false,
-    "ritual": false
-  },
-  {
-    "id": "revivify",
-    "srdId": "phbsplRevivify00",
-    "nameEn": "Revivify",
-    "level": 3,
-    "school": "nec",
-    "concentration": false,
-    "ritual": false
-  },
-  {
-    "id": "sending",
-    "srdId": "phbsplSending000",
-    "nameEn": "Sending",
-    "level": 3,
-    "school": "div",
-    "concentration": false,
-    "ritual": false
-  },
-  {
-    "id": "sleet-storm",
-    "srdId": "phbsplSleetStorm",
-    "nameEn": "Sleet Storm",
-    "level": 3,
-    "school": "con",
-    "concentration": true,
-    "ritual": false
-  },
-  {
-    "id": "slow",
-    "srdId": "phbsplSlow000000",
-    "nameEn": "Slow",
-    "level": 3,
-    "school": "trs",
-    "concentration": true,
-    "ritual": false
-  },
-  {
-    "id": "speak-with-dead",
-    "srdId": "phbsplSpeakwithD",
-    "nameEn": "Speak with Dead",
-    "level": 3,
-    "school": "nec",
-    "concentration": false,
-    "ritual": false
-  },
-  {
-    "id": "speak-with-plants",
-    "srdId": "phbsplSpeakwithP",
-    "nameEn": "Speak with Plants",
-    "level": 3,
-    "school": "trs",
-    "concentration": false,
-    "ritual": false
-  },
-  {
-    "id": "spirit-guardians",
-    "srdId": "phbsplSpiritGuar",
-    "nameEn": "Spirit Guardians",
-    "level": 3,
-    "school": "con",
-    "concentration": true,
-    "ritual": false
-  },
-  {
-    "id": "stinking-cloud",
-    "srdId": "phbsplStinkingCl",
-    "nameEn": "Stinking Cloud",
-    "level": 3,
-    "school": "con",
-    "concentration": true,
-    "ritual": false
-  },
-  {
-    "id": "tiny-hut",
-    "srdId": "phbsplLeomundsTi",
-    "nameEn": "Tiny Hut",
-    "level": 3,
-    "school": "evo",
-    "concentration": false,
-    "ritual": true
-  },
-  {
-    "id": "tongues",
-    "srdId": "phbsplTongues000",
-    "nameEn": "Tongues",
-    "level": 3,
-    "school": "div",
-    "concentration": false,
-    "ritual": false
-  },
-  {
-    "id": "vampiric-touch",
-    "srdId": "phbsplVampiricTo",
-    "nameEn": "Vampiric Touch",
-    "level": 3,
-    "school": "nec",
-    "concentration": true,
-    "ritual": false
-  },
-  {
-    "id": "water-breathing",
-    "srdId": "phbsplWaterBreat",
-    "nameEn": "Water Breathing",
-    "level": 3,
-    "school": "trs",
-    "concentration": false,
-    "ritual": true
-  },
-  {
-    "id": "water-walk",
-    "srdId": "phbsplWaterWalk0",
-    "nameEn": "Water Walk",
-    "level": 3,
-    "school": "trs",
-    "concentration": false,
-    "ritual": true
-  },
-  {
-    "id": "wind-wall",
-    "srdId": "phbsplWindWall00",
-    "nameEn": "Wind Wall",
-    "level": 3,
-    "school": "evo",
-    "concentration": true,
-    "ritual": false
-  },
-  {
-    "id": "arcane-eye",
-    "srdId": "phbsplArcaneEye0",
-    "nameEn": "Arcane Eye",
-    "level": 4,
-    "school": "div",
-    "concentration": true,
-    "ritual": false
-  },
-  {
-    "id": "aura-of-life",
-    "srdId": "phbsplAuraofLife",
-    "nameEn": "Aura of Life",
-    "level": 4,
-    "school": "abj",
-    "concentration": true,
-    "ritual": false
-  },
-  {
-    "id": "banishment",
-    "srdId": "phbsplBanishment",
-    "nameEn": "Banishment",
-    "level": 4,
-    "school": "abj",
-    "concentration": true,
-    "ritual": false
-  },
-  {
-    "id": "black-tentacles",
-    "srdId": "phbsplEvardsBlac",
-    "nameEn": "Black Tentacles",
-    "level": 4,
-    "school": "con",
-    "concentration": true,
-    "ritual": false
-  },
-  {
-    "id": "blight",
-    "srdId": "phbsplBlight0000",
-    "nameEn": "Blight",
-    "level": 4,
-    "school": "nec",
-    "concentration": false,
-    "ritual": false
-  },
-  {
-    "id": "charm-monster",
-    "srdId": "phbsplCharmMonst",
-    "nameEn": "Charm Monster",
-    "level": 4,
-    "school": "enc",
-    "concentration": false,
-    "ritual": false
-  },
-  {
-    "id": "compulsion",
-    "srdId": "phbsplCompulsion",
-    "nameEn": "Compulsion",
-    "level": 4,
-    "school": "enc",
-    "concentration": true,
-    "ritual": false
-  },
-  {
-    "id": "confusion",
-    "srdId": "phbsplConfusion0",
-    "nameEn": "Confusion",
-    "level": 4,
-    "school": "enc",
-    "concentration": true,
-    "ritual": false
-  },
-  {
-    "id": "conjure-minor-elementals",
-    "srdId": "phbsplConjureMin",
-    "nameEn": "Conjure Minor Elementals",
-    "level": 4,
-    "school": "con",
-    "concentration": true,
-    "ritual": false
-  },
-  {
-    "id": "conjure-woodland-beings",
-    "srdId": "phbsplConjureWoo",
-    "nameEn": "Conjure Woodland Beings",
-    "level": 4,
-    "school": "con",
-    "concentration": true,
-    "ritual": false
-  },
-  {
-    "id": "control-water",
-    "srdId": "phbsplControlWat",
-    "nameEn": "Control Water",
-    "level": 4,
-    "school": "trs",
-    "concentration": true,
-    "ritual": false
-  },
-  {
-    "id": "death-ward",
-    "srdId": "phbsplDeathWard0",
-    "nameEn": "Death Ward",
-    "level": 4,
-    "school": "abj",
-    "concentration": false,
-    "ritual": false
-  },
-  {
-    "id": "dimension-door",
-    "srdId": "phbsplDimensionD",
-    "nameEn": "Dimension Door",
-    "level": 4,
-    "school": "con",
-    "concentration": false,
-    "ritual": false
-  },
-  {
-    "id": "divination",
-    "srdId": "phbsplDivination",
-    "nameEn": "Divination",
-    "level": 4,
-    "school": "div",
-    "concentration": false,
-    "ritual": true
-  },
-  {
-    "id": "dominate-beast",
-    "srdId": "phbsplDominateBe",
-    "nameEn": "Dominate Beast",
-    "level": 4,
-    "school": "enc",
-    "concentration": true,
-    "ritual": false
-  },
-  {
-    "id": "fabricate",
-    "srdId": "phbsplFabricate0",
-    "nameEn": "Fabricate",
-    "level": 4,
-    "school": "trs",
-    "concentration": false,
-    "ritual": false
-  },
-  {
-    "id": "faithful-hound",
-    "srdId": "phbFaithfulHound",
-    "nameEn": "Faithful Hound",
-    "level": 4,
-    "school": "con",
-    "concentration": false,
-    "ritual": false
-  },
-  {
-    "id": "fire-shield",
-    "srdId": "phbsplFireShield",
-    "nameEn": "Fire Shield",
-    "level": 4,
-    "school": "evo",
-    "concentration": false,
-    "ritual": false
-  },
-  {
-    "id": "freedom-of-movement",
-    "srdId": "phbsplFreedomofM",
-    "nameEn": "Freedom of Movement",
-    "level": 4,
-    "school": "abj",
-    "concentration": false,
-    "ritual": false
-  },
-  {
-    "id": "giant-insect",
-    "srdId": "phbsplGiantInsec",
-    "nameEn": "Giant Insect",
-    "level": 4,
-    "school": "con",
-    "concentration": true,
-    "ritual": false
-  },
-  {
-    "id": "greater-invisibility",
-    "srdId": "phbsplGreaterInv",
-    "nameEn": "Greater Invisibility",
-    "level": 4,
-    "school": "ill",
-    "concentration": true,
-    "ritual": false
-  },
-  {
-    "id": "guardian-of-faith",
-    "srdId": "phbsplGuardianof",
-    "nameEn": "Guardian of Faith",
-    "level": 4,
-    "school": "con",
-    "concentration": false,
-    "ritual": false
-  },
-  {
-    "id": "hallucinatory-terrain",
-    "srdId": "phbsplHallucinat",
-    "nameEn": "Hallucinatory Terrain",
-    "level": 4,
-    "school": "ill",
-    "concentration": false,
-    "ritual": false
-  },
-  {
-    "id": "ice-storm",
-    "srdId": "phbsplIceStorm00",
-    "nameEn": "Ice Storm",
-    "level": 4,
-    "school": "evo",
-    "concentration": false,
-    "ritual": false
-  },
-  {
-    "id": "locate-creature",
-    "srdId": "phbsplLocateCrea",
-    "nameEn": "Locate Creature",
-    "level": 4,
-    "school": "div",
-    "concentration": true,
-    "ritual": false
-  },
-  {
-    "id": "phantasmal-killer",
-    "srdId": "phbsplPhantasmal",
-    "nameEn": "Phantasmal Killer",
-    "level": 4,
-    "school": "ill",
-    "concentration": true,
-    "ritual": false
-  },
-  {
-    "id": "polymorph",
-    "srdId": "phbsplPolymorph0",
-    "nameEn": "Polymorph",
-    "level": 4,
-    "school": "trs",
-    "concentration": true,
-    "ritual": false
-  },
-  {
-    "id": "private-sanctum",
-    "srdId": "phbPrivateSanctu",
-    "nameEn": "Private Sanctum",
-    "level": 4,
-    "school": "abj",
-    "concentration": false,
-    "ritual": false
-  },
-  {
-    "id": "resilient-sphere",
-    "srdId": "phbsplOtilukesRe",
-    "nameEn": "Resilient Sphere",
-    "level": 4,
-    "school": "abj",
-    "concentration": false,
-    "ritual": false
-  },
-  {
-    "id": "secret-chest",
-    "srdId": "phbsplLeomundsSe",
-    "nameEn": "Secret Chest",
-    "level": 4,
-    "school": "con",
-    "concentration": false,
-    "ritual": false
-  },
-  {
-    "id": "stone-shape",
-    "srdId": "phbsplStoneShape",
-    "nameEn": "Stone Shape",
-    "level": 4,
-    "school": "trs",
-    "concentration": false,
-    "ritual": false
-  },
-  {
-    "id": "stoneskin",
-    "srdId": "phbsplStoneskin0",
-    "nameEn": "Stoneskin",
-    "level": 4,
-    "school": "trs",
-    "concentration": true,
-    "ritual": false
-  },
-  {
-    "id": "vitriolic-sphere",
-    "srdId": "phbsplVitriolicS",
-    "nameEn": "Vitriolic Sphere",
-    "level": 4,
-    "school": "evo",
-    "concentration": false,
-    "ritual": false
-  },
-  {
-    "id": "wall-of-fire",
-    "srdId": "phbsplWallofFire",
-    "nameEn": "Wall of Fire",
-    "level": 4,
-    "school": "evo",
-    "concentration": true,
-    "ritual": false
-  },
-  {
-    "id": "animate-objects",
-    "srdId": "phbsplAnimateObj",
-    "nameEn": "Animate Objects",
-    "level": 5,
-    "school": "trs",
-    "concentration": true,
-    "ritual": false
-  },
-  {
-    "id": "antilife-shell",
-    "srdId": "phbsplAntilifeSh",
-    "nameEn": "Antilife Shell",
-    "level": 5,
-    "school": "abj",
-    "concentration": true,
-    "ritual": false
-  },
-  {
-    "id": "arcane-hand",
-    "srdId": "phbsplBigbysHand",
-    "nameEn": "Arcane Hand",
-    "level": 5,
-    "school": "evo",
-    "concentration": true,
-    "ritual": false
-  },
-  {
-    "id": "awaken",
-    "srdId": "phbsplAwaken0000",
-    "nameEn": "Awaken",
-    "level": 5,
-    "school": "trs",
-    "concentration": false,
-    "ritual": false
-  },
-  {
-    "id": "cloudkill",
-    "srdId": "phbsplCloudkill0",
-    "nameEn": "Cloudkill",
-    "level": 5,
-    "school": "con",
-    "concentration": true,
-    "ritual": false
-  },
-  {
-    "id": "commune-with-nature",
-    "srdId": "phbsplCommunewit",
-    "nameEn": "Commune with Nature",
-    "level": 5,
-    "school": "div",
-    "concentration": false,
-    "ritual": true
-  },
-  {
-    "id": "commune",
-    "srdId": "phbsplCommune000",
-    "nameEn": "Commune",
-    "level": 5,
-    "school": "div",
-    "concentration": false,
-    "ritual": true
-  },
-  {
-    "id": "cone-of-cold",
-    "srdId": "phbsplConeofCold",
-    "nameEn": "Cone of Cold",
-    "level": 5,
-    "school": "evo",
-    "concentration": false,
-    "ritual": false
-  },
-  {
-    "id": "conjure-elemental",
-    "srdId": "phbsplConjureEle",
-    "nameEn": "Conjure Elemental",
-    "level": 5,
-    "school": "con",
-    "concentration": true,
-    "ritual": false
-  },
-  {
-    "id": "contact-other-plane",
-    "srdId": "phbsplContactOth",
-    "nameEn": "Contact Other Plane",
-    "level": 5,
-    "school": "div",
-    "concentration": false,
-    "ritual": true
-  },
-  {
-    "id": "contagion",
-    "srdId": "phbsplContagion0",
-    "nameEn": "Contagion",
-    "level": 5,
-    "school": "nec",
-    "concentration": false,
-    "ritual": false
-  },
-  {
-    "id": "creation",
-    "srdId": "phbsplCreation00",
-    "nameEn": "Creation",
-    "level": 5,
-    "school": "ill",
-    "concentration": false,
-    "ritual": false
-  },
-  {
-    "id": "dispel-evil-and-good",
-    "srdId": "phbsplDispelEvil",
-    "nameEn": "Dispel Evil and Good",
-    "level": 5,
-    "school": "abj",
-    "concentration": true,
-    "ritual": false
-  },
-  {
-    "id": "dominate-person",
-    "srdId": "phbsplDominatePe",
-    "nameEn": "Dominate Person",
-    "level": 5,
-    "school": "enc",
-    "concentration": true,
-    "ritual": false
-  },
-  {
-    "id": "dream",
-    "srdId": "phbsplDream00000",
-    "nameEn": "Dream",
-    "level": 5,
-    "school": "ill",
-    "concentration": false,
-    "ritual": false
-  },
-  {
-    "id": "flame-strike",
-    "srdId": "phbsplFlameStrik",
-    "nameEn": "Flame Strike",
-    "level": 5,
-    "school": "evo",
-    "concentration": false,
-    "ritual": false
-  },
-  {
-    "id": "geas",
-    "srdId": "phbsplGeas000000",
-    "nameEn": "Geas",
-    "level": 5,
-    "school": "enc",
-    "concentration": false,
-    "ritual": false
-  },
-  {
-    "id": "greater-restoration",
-    "srdId": "phbsplGreaterRes",
-    "nameEn": "Greater Restoration",
-    "level": 5,
-    "school": "abj",
-    "concentration": false,
-    "ritual": false
-  },
-  {
-    "id": "hallow",
-    "srdId": "phbsplHallow0000",
-    "nameEn": "Hallow",
-    "level": 5,
-    "school": "abj",
-    "concentration": false,
-    "ritual": false
-  },
-  {
-    "id": "hold-monster",
-    "srdId": "phbsplHoldMonste",
-    "nameEn": "Hold Monster",
-    "level": 5,
-    "school": "enc",
-    "concentration": true,
-    "ritual": false
-  },
-  {
-    "id": "insect-plague",
-    "srdId": "phbsplInsectPlag",
-    "nameEn": "Insect Plague",
-    "level": 5,
-    "school": "con",
-    "concentration": true,
-    "ritual": false
-  },
-  {
-    "id": "legend-lore",
-    "srdId": "phbsplLegendLore",
-    "nameEn": "Legend Lore",
-    "level": 5,
-    "school": "div",
-    "concentration": false,
-    "ritual": false
-  },
-  {
     "id": "mass-cure-wounds",
     "srdId": "phbsplMassCureWo",
     "nameEn": "Mass Cure Wounds",
@@ -1926,317 +2361,20 @@
     "ritual": false
   },
   {
-    "id": "mislead",
-    "srdId": "phbsplMislead000",
-    "nameEn": "Mislead",
-    "level": 5,
-    "school": "ill",
-    "concentration": true,
-    "ritual": false
-  },
-  {
-    "id": "modify-memory",
-    "srdId": "phbsplModifyMemo",
-    "nameEn": "Modify Memory",
-    "level": 5,
-    "school": "enc",
-    "concentration": true,
-    "ritual": false
-  },
-  {
-    "id": "passwall",
-    "srdId": "phbsplPasswall00",
-    "nameEn": "Passwall",
-    "level": 5,
-    "school": "trs",
-    "concentration": false,
-    "ritual": false
-  },
-  {
-    "id": "planar-binding",
-    "srdId": "phbsplPlanarBind",
-    "nameEn": "Planar Binding",
-    "level": 5,
+    "id": "mass-heal",
+    "srdId": "phbsplMassHeal00",
+    "nameEn": "Mass Heal",
+    "level": 9,
     "school": "abj",
     "concentration": false,
     "ritual": false
   },
   {
-    "id": "raise-dead",
-    "srdId": "phbsplRaiseDead0",
-    "nameEn": "Raise Dead",
-    "level": 5,
-    "school": "nec",
-    "concentration": false,
-    "ritual": false
-  },
-  {
-    "id": "reincarnate",
-    "srdId": "phbsplReincarnat",
-    "nameEn": "Reincarnate",
-    "level": 5,
-    "school": "nec",
-    "concentration": false,
-    "ritual": false
-  },
-  {
-    "id": "scrying",
-    "srdId": "phbsplScrying000",
-    "nameEn": "Scrying",
-    "level": 5,
-    "school": "div",
-    "concentration": true,
-    "ritual": false
-  },
-  {
-    "id": "seeming",
-    "srdId": "phbsplSeeming000",
-    "nameEn": "Seeming",
-    "level": 5,
-    "school": "ill",
-    "concentration": false,
-    "ritual": false
-  },
-  {
-    "id": "summon-dragon",
-    "srdId": "phbsplSummonDrag",
-    "nameEn": "Summon Dragon",
-    "level": 5,
-    "school": "con",
-    "concentration": true,
-    "ritual": false
-  },
-  {
-    "id": "telekinesis",
-    "srdId": "phbsplTelekinesi",
-    "nameEn": "Telekinesis",
-    "level": 5,
-    "school": "trs",
-    "concentration": true,
-    "ritual": false
-  },
-  {
-    "id": "telepathic-bond",
-    "srdId": "phbsplRarysTelep",
-    "nameEn": "Telepathic Bond",
-    "level": 5,
-    "school": "div",
-    "concentration": false,
-    "ritual": true
-  },
-  {
-    "id": "teleportation-circle",
-    "srdId": "phbsplTeleportat",
-    "nameEn": "Teleportation Circle",
-    "level": 5,
-    "school": "con",
-    "concentration": false,
-    "ritual": false
-  },
-  {
-    "id": "tree-stride",
-    "srdId": "phbsplTreeStride",
-    "nameEn": "Tree Stride",
-    "level": 5,
-    "school": "con",
-    "concentration": true,
-    "ritual": false
-  },
-  {
-    "id": "wall-of-force",
-    "srdId": "phbsplWallofForc",
-    "nameEn": "Wall of Force",
-    "level": 5,
-    "school": "evo",
-    "concentration": true,
-    "ritual": false
-  },
-  {
-    "id": "wall-of-stone",
-    "srdId": "phbsplWallofSton",
-    "nameEn": "Wall of Stone",
-    "level": 5,
-    "school": "evo",
-    "concentration": true,
-    "ritual": false
-  },
-  {
-    "id": "blade-barrier",
-    "srdId": "phbsplBladeBarri",
-    "nameEn": "Blade Barrier",
-    "level": 6,
-    "school": "evo",
-    "concentration": true,
-    "ritual": false
-  },
-  {
-    "id": "chain-lightning",
-    "srdId": "phbsplChainLight",
-    "nameEn": "Chain Lightning",
-    "level": 6,
-    "school": "evo",
-    "concentration": false,
-    "ritual": false
-  },
-  {
-    "id": "circle-of-death",
-    "srdId": "phbsplCircleofDe",
-    "nameEn": "Circle of Death",
-    "level": 6,
-    "school": "nec",
-    "concentration": false,
-    "ritual": false
-  },
-  {
-    "id": "conjure-fey",
-    "srdId": "phbsplConjureFey",
-    "nameEn": "Conjure Fey",
-    "level": 6,
-    "school": "con",
-    "concentration": true,
-    "ritual": false
-  },
-  {
-    "id": "contingency",
-    "srdId": "phbsplContingenc",
-    "nameEn": "Contingency",
-    "level": 6,
+    "id": "mass-healing-word",
+    "srdId": "phbsplMassHealin",
+    "nameEn": "Mass Healing Word",
+    "level": 3,
     "school": "abj",
-    "concentration": false,
-    "ritual": false
-  },
-  {
-    "id": "create-undead",
-    "srdId": "phbsplCreateUnde",
-    "nameEn": "Create Undead",
-    "level": 6,
-    "school": "nec",
-    "concentration": false,
-    "ritual": false
-  },
-  {
-    "id": "disintegrate",
-    "srdId": "phbsplDisintegra",
-    "nameEn": "Disintegrate",
-    "level": 6,
-    "school": "trs",
-    "concentration": false,
-    "ritual": false
-  },
-  {
-    "id": "eyebite",
-    "srdId": "phbsplEyebite000",
-    "nameEn": "Eyebite",
-    "level": 6,
-    "school": "nec",
-    "concentration": true,
-    "ritual": false
-  },
-  {
-    "id": "find-the-path",
-    "srdId": "phbsplFindthePat",
-    "nameEn": "Find the Path",
-    "level": 6,
-    "school": "div",
-    "concentration": true,
-    "ritual": false
-  },
-  {
-    "id": "flesh-to-stone",
-    "srdId": "phbsplFleshtoSto",
-    "nameEn": "Flesh to Stone",
-    "level": 6,
-    "school": "trs",
-    "concentration": true,
-    "ritual": false
-  },
-  {
-    "id": "forbiddance",
-    "srdId": "phbsplForbiddanc",
-    "nameEn": "Forbiddance",
-    "level": 6,
-    "school": "abj",
-    "concentration": false,
-    "ritual": false
-  },
-  {
-    "id": "freezing-sphere",
-    "srdId": "phbsplOtilukesFr",
-    "nameEn": "Freezing Sphere",
-    "level": 6,
-    "school": "evo",
-    "concentration": false,
-    "ritual": false
-  },
-  {
-    "id": "globe-of-invulnerability",
-    "srdId": "phbsplGlobeofInv",
-    "nameEn": "Globe of Invulnerability",
-    "level": 6,
-    "school": "abj",
-    "concentration": true,
-    "ritual": false
-  },
-  {
-    "id": "guards-and-wards",
-    "srdId": "phbsplGuardsandW",
-    "nameEn": "Guards and Wards",
-    "level": 6,
-    "school": "abj",
-    "concentration": false,
-    "ritual": false
-  },
-  {
-    "id": "harm",
-    "srdId": "phbsplHarm000000",
-    "nameEn": "Harm",
-    "level": 6,
-    "school": "nec",
-    "concentration": false,
-    "ritual": false
-  },
-  {
-    "id": "heal",
-    "srdId": "phbsplHeal000000",
-    "nameEn": "Heal",
-    "level": 6,
-    "school": "abj",
-    "concentration": false,
-    "ritual": false
-  },
-  {
-    "id": "heroes-feast",
-    "srdId": "phbsplHeroesFeas",
-    "nameEn": "Heroes' Feast",
-    "level": 6,
-    "school": "con",
-    "concentration": false,
-    "ritual": false
-  },
-  {
-    "id": "instant-summons",
-    "srdId": "phbsplDrawmijsIn",
-    "nameEn": "Instant Summons",
-    "level": 6,
-    "school": "con",
-    "concentration": false,
-    "ritual": true
-  },
-  {
-    "id": "irresistible-dance",
-    "srdId": "phbsplOttosIrres",
-    "nameEn": "Irresistible Dance",
-    "level": 6,
-    "school": "enc",
-    "concentration": true,
-    "ritual": false
-  },
-  {
-    "id": "magic-jar",
-    "srdId": "phbsplMagicJar00",
-    "nameEn": "Magic Jar",
-    "level": 6,
-    "school": "nec",
     "concentration": false,
     "ritual": false
   },
@@ -2250,6 +2388,155 @@
     "ritual": false
   },
   {
+    "id": "maze",
+    "srdId": "phbsplMaze000000",
+    "nameEn": "Maze",
+    "level": 8,
+    "school": "con",
+    "concentration": true,
+    "ritual": false
+  },
+  {
+    "id": "meld-into-stone",
+    "srdId": "phbsplMeldintoSt",
+    "nameEn": "Meld into Stone",
+    "level": 3,
+    "school": "trs",
+    "concentration": false,
+    "ritual": true
+  },
+  {
+    "id": "mending",
+    "srdId": "phbsplMending000",
+    "nameEn": "Mending",
+    "level": 0,
+    "school": "trs",
+    "concentration": false,
+    "ritual": false
+  },
+  {
+    "id": "message",
+    "srdId": "phbsplMessage000",
+    "nameEn": "Message",
+    "level": 0,
+    "school": "trs",
+    "concentration": false,
+    "ritual": false
+  },
+  {
+    "id": "meteor-swarm",
+    "srdId": "phbsplMeteorSwar",
+    "nameEn": "Meteor Swarm",
+    "level": 9,
+    "school": "evo",
+    "concentration": false,
+    "ritual": false
+  },
+  {
+    "id": "mind-blank",
+    "srdId": "phbsplMindBlank0",
+    "nameEn": "Mind Blank",
+    "level": 8,
+    "school": "abj",
+    "concentration": false,
+    "ritual": false
+  },
+  {
+    "id": "mind-sliver",
+    "srdId": "Mind Sliver|XPHB",
+    "nameEn": "Mind Sliver",
+    "level": 0,
+    "school": "enc",
+    "concentration": false,
+    "ritual": false,
+    "castType": "save",
+    "save": "int",
+    "damage": {
+      "dice": "1d6",
+      "type": "psíquico",
+      "cantripScaling": true
+    },
+    "castingTime": "1 acción",
+    "range": "60 pies",
+    "components": "V",
+    "duration": "Instantáneo",
+    "areaTags": [
+      "Un objetivo"
+    ]
+  },
+  {
+    "id": "mind-spike",
+    "srdId": "phbsplMindSpike0",
+    "nameEn": "Mind Spike",
+    "level": 2,
+    "school": "div",
+    "concentration": true,
+    "ritual": false
+  },
+  {
+    "id": "minor-illusion",
+    "srdId": "phbsplMinorIllus",
+    "nameEn": "Minor Illusion",
+    "level": 0,
+    "school": "ill",
+    "concentration": false,
+    "ritual": false
+  },
+  {
+    "id": "mirage-arcane",
+    "srdId": "phbsplMirageArca",
+    "nameEn": "Mirage Arcane",
+    "level": 7,
+    "school": "ill",
+    "concentration": false,
+    "ritual": false
+  },
+  {
+    "id": "mirror-image",
+    "srdId": "phbsplMirrorImag",
+    "nameEn": "Mirror Image",
+    "level": 2,
+    "school": "ill",
+    "concentration": false,
+    "ritual": false
+  },
+  {
+    "id": "mislead",
+    "srdId": "phbsplMislead000",
+    "nameEn": "Mislead",
+    "level": 5,
+    "school": "ill",
+    "concentration": true,
+    "ritual": false
+  },
+  {
+    "id": "misty-step",
+    "srdId": "phbsplMistyStep0",
+    "nameEn": "Misty Step",
+    "level": 2,
+    "school": "con",
+    "concentration": false,
+    "ritual": false
+  },
+  {
+    "id": "modify-memory",
+    "srdId": "phbsplModifyMemo",
+    "nameEn": "Modify Memory",
+    "level": 5,
+    "school": "enc",
+    "concentration": true,
+    "ritual": false
+  },
+  {
+    "id": "moonbeam",
+    "srdId": "phbsplMoonbeam00",
+    "nameEn": "Moonbeam",
+    "level": 2,
+    "school": "evo",
+    "concentration": true,
+    "ritual": false
+  },
+  {
     "id": "move-earth",
     "srdId": "phbsplMoveEarth0",
     "nameEn": "Move Earth",
@@ -2259,10 +2546,207 @@
     "ritual": false
   },
   {
+    "id": "nondetection",
+    "srdId": "phbsplNondetecti",
+    "nameEn": "Nondetection",
+    "level": 3,
+    "school": "abj",
+    "concentration": false,
+    "ritual": false
+  },
+  {
+    "id": "pass-without-trace",
+    "srdId": "phbsplPasswithou",
+    "nameEn": "Pass without Trace",
+    "level": 2,
+    "school": "abj",
+    "concentration": true,
+    "ritual": false
+  },
+  {
+    "id": "passwall",
+    "srdId": "phbsplPasswall00",
+    "nameEn": "Passwall",
+    "level": 5,
+    "school": "trs",
+    "concentration": false,
+    "ritual": false
+  },
+  {
+    "id": "phantasmal-force",
+    "srdId": "phbPhantasmalFor",
+    "nameEn": "Phantasmal Force",
+    "level": 2,
+    "school": "ill",
+    "concentration": true,
+    "ritual": false
+  },
+  {
+    "id": "phantasmal-killer",
+    "srdId": "phbsplPhantasmal",
+    "nameEn": "Phantasmal Killer",
+    "level": 4,
+    "school": "ill",
+    "concentration": true,
+    "ritual": false
+  },
+  {
+    "id": "phantom-steed",
+    "srdId": "phbsplPhantomSte",
+    "nameEn": "Phantom Steed",
+    "level": 3,
+    "school": "ill",
+    "concentration": false,
+    "ritual": true
+  },
+  {
     "id": "planar-ally",
     "srdId": "phbsplPlanarAlly",
     "nameEn": "Planar Ally",
     "level": 6,
+    "school": "con",
+    "concentration": false,
+    "ritual": false
+  },
+  {
+    "id": "planar-binding",
+    "srdId": "phbsplPlanarBind",
+    "nameEn": "Planar Binding",
+    "level": 5,
+    "school": "abj",
+    "concentration": false,
+    "ritual": false
+  },
+  {
+    "id": "plane-shift",
+    "srdId": "phbsplPlaneShift",
+    "nameEn": "Plane Shift",
+    "level": 7,
+    "school": "con",
+    "concentration": false,
+    "ritual": false
+  },
+  {
+    "id": "plant-growth",
+    "srdId": "phbsplPlantGrowt",
+    "nameEn": "Plant Growth",
+    "level": 3,
+    "school": "trs",
+    "concentration": false,
+    "ritual": false
+  },
+  {
+    "id": "poison-spray",
+    "srdId": "phbsplPoisonSpra",
+    "nameEn": "Poison Spray",
+    "level": 0,
+    "school": "nec",
+    "concentration": false,
+    "ritual": false
+  },
+  {
+    "id": "polymorph",
+    "srdId": "phbsplPolymorph0",
+    "nameEn": "Polymorph",
+    "level": 4,
+    "school": "trs",
+    "concentration": true,
+    "ritual": false
+  },
+  {
+    "id": "power-word-fortify",
+    "srdId": "Power Word Fortify|XPHB",
+    "nameEn": "Power Word Fortify",
+    "level": 7,
+    "school": "enc",
+    "concentration": false,
+    "ritual": false,
+    "castType": "none",
+    "castingTime": "1 acción",
+    "range": "60 pies",
+    "components": "V",
+    "duration": "Instantáneo",
+    "areaTags": [
+      "Varios objetivos"
+    ]
+  },
+  {
+    "id": "power-word-heal",
+    "srdId": "phbsplPowerWordH",
+    "nameEn": "Power Word Heal",
+    "level": 9,
+    "school": "enc",
+    "concentration": false,
+    "ritual": false
+  },
+  {
+    "id": "power-word-kill",
+    "srdId": "phbsplPowerWordK",
+    "nameEn": "Power Word Kill",
+    "level": 9,
+    "school": "enc",
+    "concentration": false,
+    "ritual": false
+  },
+  {
+    "id": "power-word-stun",
+    "srdId": "phbsplPowerWordS",
+    "nameEn": "Power Word Stun",
+    "level": 8,
+    "school": "enc",
+    "concentration": false,
+    "ritual": false
+  },
+  {
+    "id": "prayer-of-healing",
+    "srdId": "phbsplPrayerofHe",
+    "nameEn": "Prayer of Healing",
+    "level": 2,
+    "school": "abj",
+    "concentration": false,
+    "ritual": false
+  },
+  {
+    "id": "prestidigitation",
+    "srdId": "phbsplPrestidigi",
+    "nameEn": "Prestidigitation",
+    "level": 0,
+    "school": "trs",
+    "concentration": false,
+    "ritual": false
+  },
+  {
+    "id": "prismatic-spray",
+    "srdId": "phbsplPrismaticS",
+    "nameEn": "Prismatic Spray",
+    "level": 7,
+    "school": "evo",
+    "concentration": false,
+    "ritual": false
+  },
+  {
+    "id": "prismatic-wall",
+    "srdId": "phbsplPrismaticW",
+    "nameEn": "Prismatic Wall",
+    "level": 9,
+    "school": "abj",
+    "concentration": false,
+    "ritual": false
+  },
+  {
+    "id": "private-sanctum",
+    "srdId": "phbPrivateSanctu",
+    "nameEn": "Private Sanctum",
+    "level": 4,
+    "school": "abj",
+    "concentration": false,
+    "ritual": false
+  },
+  {
+    "id": "produce-flame",
+    "srdId": "phbsplProduceFla",
+    "nameEn": "Produce Flame",
+    "level": 0,
     "school": "con",
     "concentration": false,
     "ritual": false
@@ -2277,177 +2761,6 @@
     "ritual": false
   },
   {
-    "id": "sunbeam",
-    "srdId": "phbsplSunbeam000",
-    "nameEn": "Sunbeam",
-    "level": 6,
-    "school": "evo",
-    "concentration": true,
-    "ritual": false
-  },
-  {
-    "id": "transport-via-plants",
-    "srdId": "phbsplTransportv",
-    "nameEn": "Transport via Plants",
-    "level": 6,
-    "school": "con",
-    "concentration": false,
-    "ritual": false
-  },
-  {
-    "id": "true-seeing",
-    "srdId": "phbsplTrueSeeing",
-    "nameEn": "True Seeing",
-    "level": 6,
-    "school": "div",
-    "concentration": false,
-    "ritual": false
-  },
-  {
-    "id": "wall-of-ice",
-    "srdId": "phbsplWallofIce0",
-    "nameEn": "Wall of Ice",
-    "level": 6,
-    "school": "evo",
-    "concentration": true,
-    "ritual": false
-  },
-  {
-    "id": "wall-of-thorns",
-    "srdId": "phbsplWallofThor",
-    "nameEn": "Wall of Thorns",
-    "level": 6,
-    "school": "con",
-    "concentration": true,
-    "ritual": false
-  },
-  {
-    "id": "wind-walk",
-    "srdId": "phbsplWindWalk00",
-    "nameEn": "Wind Walk",
-    "level": 6,
-    "school": "trs",
-    "concentration": false,
-    "ritual": false
-  },
-  {
-    "id": "word-of-recall",
-    "srdId": "phbsplWordofReca",
-    "nameEn": "Word of Recall",
-    "level": 6,
-    "school": "con",
-    "concentration": false,
-    "ritual": false
-  },
-  {
-    "id": "arcane-sword",
-    "srdId": "phbswdMordenkain",
-    "nameEn": "Arcane Sword",
-    "level": 7,
-    "school": "evo",
-    "concentration": true,
-    "ritual": false
-  },
-  {
-    "id": "conjure-celestial",
-    "srdId": "phbsplConjureCel",
-    "nameEn": "Conjure Celestial",
-    "level": 7,
-    "school": "con",
-    "concentration": true,
-    "ritual": false
-  },
-  {
-    "id": "delayed-blast-fireball",
-    "srdId": "phbsplDelayedBla",
-    "nameEn": "Delayed Blast Fireball",
-    "level": 7,
-    "school": "evo",
-    "concentration": true,
-    "ritual": false
-  },
-  {
-    "id": "divine-word",
-    "srdId": "phbsplDivineWord",
-    "nameEn": "Divine Word",
-    "level": 7,
-    "school": "evo",
-    "concentration": false,
-    "ritual": false
-  },
-  {
-    "id": "etherealness",
-    "srdId": "phbsplEtherealne",
-    "nameEn": "Etherealness",
-    "level": 7,
-    "school": "con",
-    "concentration": false,
-    "ritual": false
-  },
-  {
-    "id": "finger-of-death",
-    "srdId": "phbsplFingerofDe",
-    "nameEn": "Finger of Death",
-    "level": 7,
-    "school": "nec",
-    "concentration": false,
-    "ritual": false
-  },
-  {
-    "id": "fire-storm",
-    "srdId": "phbsplFireStorm0",
-    "nameEn": "Fire Storm",
-    "level": 7,
-    "school": "evo",
-    "concentration": false,
-    "ritual": false
-  },
-  {
-    "id": "forcecage",
-    "srdId": "phbsplForcecage0",
-    "nameEn": "Forcecage",
-    "level": 7,
-    "school": "evo",
-    "concentration": true,
-    "ritual": false
-  },
-  {
-    "id": "magnificent-mansion",
-    "srdId": "phbMagnificentMa",
-    "nameEn": "Magnificent Mansion",
-    "level": 7,
-    "school": "con",
-    "concentration": false,
-    "ritual": false
-  },
-  {
-    "id": "mirage-arcane",
-    "srdId": "phbsplMirageArca",
-    "nameEn": "Mirage Arcane",
-    "level": 7,
-    "school": "ill",
-    "concentration": false,
-    "ritual": false
-  },
-  {
-    "id": "plane-shift",
-    "srdId": "phbsplPlaneShift",
-    "nameEn": "Plane Shift",
-    "level": 7,
-    "school": "con",
-    "concentration": false,
-    "ritual": false
-  },
-  {
-    "id": "prismatic-spray",
-    "srdId": "phbsplPrismaticS",
-    "nameEn": "Prismatic Spray",
-    "level": 7,
-    "school": "evo",
-    "concentration": false,
-    "ritual": false
-  },
-  {
     "id": "project-image",
     "srdId": "phbsplProjectIma",
     "nameEn": "Project Image",
@@ -2457,12 +2770,120 @@
     "ritual": false
   },
   {
+    "id": "protection-from-energy",
+    "srdId": "phbProtectionFro",
+    "nameEn": "Protection from Energy",
+    "level": 3,
+    "school": "abj",
+    "concentration": true,
+    "ritual": false
+  },
+  {
+    "id": "protection-from-evil-and-good",
+    "srdId": "phbEvilAndGoodPr",
+    "nameEn": "Protection from Evil and Good",
+    "level": 1,
+    "school": "abj",
+    "concentration": true,
+    "ritual": false
+  },
+  {
+    "id": "protection-from-poison",
+    "srdId": "phbsplProtection",
+    "nameEn": "Protection from Poison",
+    "level": 2,
+    "school": "abj",
+    "concentration": false,
+    "ritual": false
+  },
+  {
+    "id": "purify-food-and-drink",
+    "srdId": "phbsplPurifyFood",
+    "nameEn": "Purify Food and Drink",
+    "level": 1,
+    "school": "trs",
+    "concentration": false,
+    "ritual": true
+  },
+  {
+    "id": "raise-dead",
+    "srdId": "phbsplRaiseDead0",
+    "nameEn": "Raise Dead",
+    "level": 5,
+    "school": "nec",
+    "concentration": false,
+    "ritual": false
+  },
+  {
+    "id": "ray-of-enfeeblement",
+    "srdId": "phbsplRayofEnfee",
+    "nameEn": "Ray of Enfeeblement",
+    "level": 2,
+    "school": "nec",
+    "concentration": true,
+    "ritual": false
+  },
+  {
+    "id": "ray-of-frost",
+    "srdId": "phbsplRayofFrost",
+    "nameEn": "Ray of Frost",
+    "level": 0,
+    "school": "evo",
+    "concentration": false,
+    "ritual": false
+  },
+  {
+    "id": "ray-of-sickness",
+    "srdId": "phbsplRayofSickn",
+    "nameEn": "Ray of Sickness",
+    "level": 1,
+    "school": "nec",
+    "concentration": false,
+    "ritual": false
+  },
+  {
     "id": "regenerate",
     "srdId": "phbsplRegenerate",
     "nameEn": "Regenerate",
     "level": 7,
     "school": "trs",
     "concentration": false,
+    "ritual": false
+  },
+  {
+    "id": "reincarnate",
+    "srdId": "phbsplReincarnat",
+    "nameEn": "Reincarnate",
+    "level": 5,
+    "school": "nec",
+    "concentration": false,
+    "ritual": false
+  },
+  {
+    "id": "remove-curse",
+    "srdId": "phbsplRemoveCurs",
+    "nameEn": "Remove Curse",
+    "level": 3,
+    "school": "abj",
+    "concentration": false,
+    "ritual": false
+  },
+  {
+    "id": "resilient-sphere",
+    "srdId": "phbsplOtilukesRe",
+    "nameEn": "Resilient Sphere",
+    "level": 4,
+    "school": "abj",
+    "concentration": false,
+    "ritual": false
+  },
+  {
+    "id": "resistance",
+    "srdId": "phbsplResistance",
+    "nameEn": "Resistance",
+    "level": 0,
+    "school": "abj",
+    "concentration": true,
     "ritual": false
   },
   {
@@ -2484,272 +2905,110 @@
     "ritual": false
   },
   {
-    "id": "sequester",
-    "srdId": "phbsplSequester0",
-    "nameEn": "Sequester",
-    "level": 7,
-    "school": "trs",
-    "concentration": false,
-    "ritual": false
-  },
-  {
-    "id": "simulacrum",
-    "srdId": "phbsplSimulacrum",
-    "nameEn": "Simulacrum",
-    "level": 7,
-    "school": "ill",
-    "concentration": false,
-    "ritual": false
-  },
-  {
-    "id": "symbol",
-    "srdId": "phbsplSymbol0000",
-    "nameEn": "Symbol",
-    "level": 7,
-    "school": "abj",
-    "concentration": false,
-    "ritual": false
-  },
-  {
-    "id": "teleport",
-    "srdId": "phbsplTeleport00",
-    "nameEn": "Teleport",
-    "level": 7,
-    "school": "con",
-    "concentration": false,
-    "ritual": false
-  },
-  {
-    "id": "animal-shapes",
-    "srdId": "phbsplAnimalShap",
-    "nameEn": "Animal Shapes",
-    "level": 8,
-    "school": "trs",
-    "concentration": false,
-    "ritual": false
-  },
-  {
-    "id": "antimagic-field",
-    "srdId": "phbsplAntimagicF",
-    "nameEn": "Antimagic Field",
-    "level": 8,
-    "school": "abj",
-    "concentration": true,
-    "ritual": false
-  },
-  {
-    "id": "antipathy-sympathy",
-    "srdId": "phbsplAntipathyS",
-    "nameEn": "Antipathy/Sympathy",
-    "level": 8,
-    "school": "enc",
-    "concentration": false,
-    "ritual": false
-  },
-  {
-    "id": "befuddlement",
-    "srdId": "phbsplBefuddleme",
-    "nameEn": "Befuddlement",
-    "level": 8,
-    "school": "enc",
-    "concentration": false,
-    "ritual": false
-  },
-  {
-    "id": "clone",
-    "srdId": "phbsplClone00000",
-    "nameEn": "Clone",
-    "level": 8,
+    "id": "revivify",
+    "srdId": "phbsplRevivify00",
+    "nameEn": "Revivify",
+    "level": 3,
     "school": "nec",
     "concentration": false,
     "ritual": false
   },
   {
-    "id": "control-weather",
-    "srdId": "phbsplControlWea",
-    "nameEn": "Control Weather",
-    "level": 8,
+    "id": "rope-trick",
+    "srdId": "phbsplRopeTrick0",
+    "nameEn": "Rope Trick",
+    "level": 2,
     "school": "trs",
-    "concentration": true,
-    "ritual": false
-  },
-  {
-    "id": "demiplane",
-    "srdId": "phbsplDemiplane0",
-    "nameEn": "Demiplane",
-    "level": 8,
-    "school": "con",
     "concentration": false,
     "ritual": false
   },
   {
-    "id": "dominate-monster",
-    "srdId": "phbsplDominateMo",
-    "nameEn": "Dominate Monster",
-    "level": 8,
-    "school": "enc",
-    "concentration": true,
-    "ritual": false
-  },
-  {
-    "id": "earthquake",
-    "srdId": "phbsplEarthquake",
-    "nameEn": "Earthquake",
-    "level": 8,
-    "school": "trs",
-    "concentration": true,
-    "ritual": false
-  },
-  {
-    "id": "glibness",
-    "srdId": "phbsplGlibness00",
-    "nameEn": "Glibness",
-    "level": 8,
-    "school": "enc",
-    "concentration": false,
-    "ritual": false
-  },
-  {
-    "id": "holy-aura",
-    "srdId": "phbsplHolyAura00",
-    "nameEn": "Holy Aura",
-    "level": 8,
-    "school": "abj",
-    "concentration": true,
-    "ritual": false
-  },
-  {
-    "id": "incendiary-cloud",
-    "srdId": "phbsplIncendiary",
-    "nameEn": "Incendiary Cloud",
-    "level": 8,
-    "school": "con",
-    "concentration": true,
-    "ritual": false
-  },
-  {
-    "id": "maze",
-    "srdId": "phbsplMaze000000",
-    "nameEn": "Maze",
-    "level": 8,
-    "school": "con",
-    "concentration": true,
-    "ritual": false
-  },
-  {
-    "id": "mind-blank",
-    "srdId": "phbsplMindBlank0",
-    "nameEn": "Mind Blank",
-    "level": 8,
-    "school": "abj",
-    "concentration": false,
-    "ritual": false
-  },
-  {
-    "id": "power-word-stun",
-    "srdId": "phbsplPowerWordS",
-    "nameEn": "Power Word Stun",
-    "level": 8,
-    "school": "enc",
-    "concentration": false,
-    "ritual": false
-  },
-  {
-    "id": "sunburst",
-    "srdId": "phbsplSunburst00",
-    "nameEn": "Sunburst",
-    "level": 8,
+    "id": "sacred-flame",
+    "srdId": "phbsplSacredFlam",
+    "nameEn": "Sacred Flame",
+    "level": 0,
     "school": "evo",
     "concentration": false,
     "ritual": false
   },
   {
-    "id": "tsunami",
-    "srdId": "phbsplTsunami000",
-    "nameEn": "Tsunami",
-    "level": 8,
-    "school": "con",
-    "concentration": true,
-    "ritual": false
-  },
-  {
-    "id": "astral-projection",
-    "srdId": "phbsplAstralProj",
-    "nameEn": "Astral Projection",
-    "level": 9,
-    "school": "nec",
+    "id": "sanctuary",
+    "srdId": "phbSanctuary0000",
+    "nameEn": "Sanctuary",
+    "level": 1,
+    "school": "abj",
     "concentration": false,
     "ritual": false
   },
   {
-    "id": "foresight",
-    "srdId": "phbsplForesight0",
-    "nameEn": "Foresight",
-    "level": 9,
+    "id": "scorching-ray",
+    "srdId": "phbsplScorchingR",
+    "nameEn": "Scorching Ray",
+    "level": 2,
+    "school": "evo",
+    "concentration": false,
+    "ritual": false
+  },
+  {
+    "id": "scrying",
+    "srdId": "phbsplScrying000",
+    "nameEn": "Scrying",
+    "level": 5,
+    "school": "div",
+    "concentration": true,
+    "ritual": false
+  },
+  {
+    "id": "searing-smite",
+    "srdId": "phbsplSearingSmi",
+    "nameEn": "Searing Smite",
+    "level": 1,
+    "school": "evo",
+    "concentration": false,
+    "ritual": false
+  },
+  {
+    "id": "secret-chest",
+    "srdId": "phbsplLeomundsSe",
+    "nameEn": "Secret Chest",
+    "level": 4,
+    "school": "con",
+    "concentration": false,
+    "ritual": false
+  },
+  {
+    "id": "see-invisibility",
+    "srdId": "phbsplSeeInvisib",
+    "nameEn": "See Invisibility",
+    "level": 2,
     "school": "div",
     "concentration": false,
     "ritual": false
   },
   {
-    "id": "gate",
-    "srdId": "phbsplGate000000",
-    "nameEn": "Gate",
-    "level": 9,
-    "school": "con",
-    "concentration": true,
-    "ritual": false
-  },
-  {
-    "id": "imprisonment",
-    "srdId": "phbsplImprisonme",
-    "nameEn": "Imprisonment",
-    "level": 9,
-    "school": "abj",
+    "id": "seeming",
+    "srdId": "phbsplSeeming000",
+    "nameEn": "Seeming",
+    "level": 5,
+    "school": "ill",
     "concentration": false,
     "ritual": false
   },
   {
-    "id": "mass-heal",
-    "srdId": "phbsplMassHeal00",
-    "nameEn": "Mass Heal",
-    "level": 9,
-    "school": "abj",
+    "id": "sending",
+    "srdId": "phbsplSending000",
+    "nameEn": "Sending",
+    "level": 3,
+    "school": "div",
     "concentration": false,
     "ritual": false
   },
   {
-    "id": "meteor-swarm",
-    "srdId": "phbsplMeteorSwar",
-    "nameEn": "Meteor Swarm",
-    "level": 9,
-    "school": "evo",
-    "concentration": false,
-    "ritual": false
-  },
-  {
-    "id": "power-word-heal",
-    "srdId": "phbsplPowerWordH",
-    "nameEn": "Power Word Heal",
-    "level": 9,
-    "school": "enc",
-    "concentration": false,
-    "ritual": false
-  },
-  {
-    "id": "power-word-kill",
-    "srdId": "phbsplPowerWordK",
-    "nameEn": "Power Word Kill",
-    "level": 9,
-    "school": "enc",
-    "concentration": false,
-    "ritual": false
-  },
-  {
-    "id": "prismatic-wall",
-    "srdId": "phbsplPrismaticW",
-    "nameEn": "Prismatic Wall",
-    "level": 9,
-    "school": "abj",
+    "id": "sequester",
+    "srdId": "phbsplSequester0",
+    "nameEn": "Sequester",
+    "level": 7,
+    "school": "trs",
     "concentration": false,
     "ritual": false
   },
@@ -2763,228 +3022,30 @@
     "ritual": false
   },
   {
-    "id": "storm-of-vengeance",
-    "srdId": "phbsplStormofVen",
-    "nameEn": "Storm of Vengeance",
-    "level": 9,
-    "school": "con",
-    "concentration": true,
-    "ritual": false
-  },
-  {
-    "id": "time-stop",
-    "srdId": "phbsplTimeStop00",
-    "nameEn": "Time Stop",
-    "level": 9,
-    "school": "trs",
-    "concentration": false,
-    "ritual": false
-  },
-  {
-    "id": "true-polymorph",
-    "srdId": "phbsplTruePolymo",
-    "nameEn": "True Polymorph",
-    "level": 9,
-    "school": "trs",
-    "concentration": true,
-    "ritual": false
-  },
-  {
-    "id": "true-resurrection",
-    "srdId": "phbsplTrueResurr",
-    "nameEn": "True Resurrection",
-    "level": 9,
-    "school": "nec",
-    "concentration": false,
-    "ritual": false
-  },
-  {
-    "id": "weird",
-    "srdId": "phbsplWeird00000",
-    "nameEn": "Weird",
-    "level": 9,
-    "school": "ill",
-    "concentration": true,
-    "ritual": false
-  },
-  {
-    "id": "wish",
-    "srdId": "phbsplWish000000",
-    "nameEn": "Wish",
-    "level": 9,
-    "school": "con",
-    "concentration": false,
-    "ritual": false
-  },
-  {
-    "id": "acid-splash",
-    "srdId": "phbsplAcidSplash",
-    "nameEn": "Acid Splash",
-    "level": 0,
+    "id": "shatter",
+    "srdId": "phbsplShatter000",
+    "nameEn": "Shatter",
+    "level": 2,
     "school": "evo",
     "concentration": false,
     "ritual": false
   },
   {
-    "id": "chill-touch",
-    "srdId": "phbsplChillTouch",
-    "nameEn": "Chill Touch",
-    "level": 0,
-    "school": "nec",
+    "id": "shield",
+    "srdId": "phbsplShield0000",
+    "nameEn": "Shield",
+    "level": 1,
+    "school": "abj",
     "concentration": false,
     "ritual": false
   },
   {
-    "id": "dancing-lights",
-    "srdId": "phbsplDancingLig",
-    "nameEn": "Dancing Lights",
-    "level": 0,
-    "school": "ill",
-    "concentration": true,
-    "ritual": false
-  },
-  {
-    "id": "druidcraft",
-    "srdId": "phbsplDruidcraft",
-    "nameEn": "Druidcraft",
-    "level": 0,
-    "school": "trs",
-    "concentration": false,
-    "ritual": false
-  },
-  {
-    "id": "eldritch-blast",
-    "srdId": "phbsplEldritchBl",
-    "nameEn": "Eldritch Blast",
-    "level": 0,
-    "school": "evo",
-    "concentration": false,
-    "ritual": false
-  },
-  {
-    "id": "elementalism",
-    "srdId": "phbsplElementali",
-    "nameEn": "Elementalism",
-    "level": 0,
-    "school": "trs",
-    "concentration": false,
-    "ritual": false
-  },
-  {
-    "id": "fire-bolt",
-    "srdId": "phbsplFireBolt00",
-    "nameEn": "Fire Bolt",
-    "level": 0,
-    "school": "evo",
-    "concentration": false,
-    "ritual": false
-  },
-  {
-    "id": "guidance",
-    "srdId": "phbsplGuidance00",
-    "nameEn": "Guidance",
-    "level": 0,
-    "school": "div",
-    "concentration": true,
-    "ritual": false
-  },
-  {
-    "id": "light",
-    "srdId": "phbsplLight00000",
-    "nameEn": "Light",
-    "level": 0,
-    "school": "evo",
-    "concentration": false,
-    "ritual": false
-  },
-  {
-    "id": "mage-hand",
-    "srdId": "phbsplMageHand00",
-    "nameEn": "Mage Hand",
-    "level": 0,
-    "school": "con",
-    "concentration": false,
-    "ritual": false
-  },
-  {
-    "id": "mending",
-    "srdId": "phbsplMending000",
-    "nameEn": "Mending",
-    "level": 0,
-    "school": "trs",
-    "concentration": false,
-    "ritual": false
-  },
-  {
-    "id": "message",
-    "srdId": "phbsplMessage000",
-    "nameEn": "Message",
-    "level": 0,
-    "school": "trs",
-    "concentration": false,
-    "ritual": false
-  },
-  {
-    "id": "minor-illusion",
-    "srdId": "phbsplMinorIllus",
-    "nameEn": "Minor Illusion",
-    "level": 0,
-    "school": "ill",
-    "concentration": false,
-    "ritual": false
-  },
-  {
-    "id": "poison-spray",
-    "srdId": "phbsplPoisonSpra",
-    "nameEn": "Poison Spray",
-    "level": 0,
-    "school": "nec",
-    "concentration": false,
-    "ritual": false
-  },
-  {
-    "id": "prestidigitation",
-    "srdId": "phbsplPrestidigi",
-    "nameEn": "Prestidigitation",
-    "level": 0,
-    "school": "trs",
-    "concentration": false,
-    "ritual": false
-  },
-  {
-    "id": "produce-flame",
-    "srdId": "phbsplProduceFla",
-    "nameEn": "Produce Flame",
-    "level": 0,
-    "school": "con",
-    "concentration": false,
-    "ritual": false
-  },
-  {
-    "id": "ray-of-frost",
-    "srdId": "phbsplRayofFrost",
-    "nameEn": "Ray of Frost",
-    "level": 0,
-    "school": "evo",
-    "concentration": false,
-    "ritual": false
-  },
-  {
-    "id": "resistance",
-    "srdId": "phbsplResistance",
-    "nameEn": "Resistance",
-    "level": 0,
+    "id": "shield-of-faith",
+    "srdId": "phbsplShieldofFa",
+    "nameEn": "Shield of Faith",
+    "level": 1,
     "school": "abj",
     "concentration": true,
-    "ritual": false
-  },
-  {
-    "id": "sacred-flame",
-    "srdId": "phbsplSacredFlam",
-    "nameEn": "Sacred Flame",
-    "level": 0,
-    "school": "evo",
-    "concentration": false,
     "ritual": false
   },
   {
@@ -2997,12 +3058,75 @@
     "ritual": false
   },
   {
+    "id": "shining-smite",
+    "srdId": "phbsplShiningSmi",
+    "nameEn": "Shining Smite",
+    "level": 2,
+    "school": "trs",
+    "concentration": true,
+    "ritual": false
+  },
+  {
     "id": "shocking-grasp",
     "srdId": "phbsplShockingGr",
     "nameEn": "Shocking Grasp",
     "level": 0,
     "school": "evo",
     "concentration": false,
+    "ritual": false
+  },
+  {
+    "id": "silence",
+    "srdId": "phbsplSilence000",
+    "nameEn": "Silence",
+    "level": 2,
+    "school": "ill",
+    "concentration": true,
+    "ritual": true
+  },
+  {
+    "id": "silent-image",
+    "srdId": "phbsplSilentImag",
+    "nameEn": "Silent Image",
+    "level": 1,
+    "school": "ill",
+    "concentration": true,
+    "ritual": false
+  },
+  {
+    "id": "simulacrum",
+    "srdId": "phbsplSimulacrum",
+    "nameEn": "Simulacrum",
+    "level": 7,
+    "school": "ill",
+    "concentration": false,
+    "ritual": false
+  },
+  {
+    "id": "sleep",
+    "srdId": "phbsplSleep00000",
+    "nameEn": "Sleep",
+    "level": 1,
+    "school": "enc",
+    "concentration": true,
+    "ritual": false
+  },
+  {
+    "id": "sleet-storm",
+    "srdId": "phbsplSleetStorm",
+    "nameEn": "Sleet Storm",
+    "level": 3,
+    "school": "con",
+    "concentration": true,
+    "ritual": false
+  },
+  {
+    "id": "slow",
+    "srdId": "phbsplSlow000000",
+    "nameEn": "Slow",
+    "level": 3,
+    "school": "trs",
+    "concentration": true,
     "ritual": false
   },
   {
@@ -3024,6 +3148,89 @@
     "ritual": false
   },
   {
+    "id": "speak-with-animals",
+    "srdId": "phbsplSpeakwithA",
+    "nameEn": "Speak with Animals",
+    "level": 1,
+    "school": "div",
+    "concentration": false,
+    "ritual": true
+  },
+  {
+    "id": "speak-with-dead",
+    "srdId": "phbsplSpeakwithD",
+    "nameEn": "Speak with Dead",
+    "level": 3,
+    "school": "nec",
+    "concentration": false,
+    "ritual": false
+  },
+  {
+    "id": "speak-with-plants",
+    "srdId": "phbsplSpeakwithP",
+    "nameEn": "Speak with Plants",
+    "level": 3,
+    "school": "trs",
+    "concentration": false,
+    "ritual": false
+  },
+  {
+    "id": "spider-climb",
+    "srdId": "phbsplSpiderClim",
+    "nameEn": "Spider Climb",
+    "level": 2,
+    "school": "trs",
+    "concentration": true,
+    "ritual": false
+  },
+  {
+    "id": "spike-growth",
+    "srdId": "phbsplSpikeGrowt",
+    "nameEn": "Spike Growth",
+    "level": 2,
+    "school": "trs",
+    "concentration": true,
+    "ritual": false
+  },
+  {
+    "id": "spirit-guardians",
+    "srdId": "phbsplSpiritGuar",
+    "nameEn": "Spirit Guardians",
+    "level": 3,
+    "school": "con",
+    "concentration": true,
+    "ritual": false
+  },
+  {
+    "id": "spiritual-weapon",
+    "srdId": "phbsplSpiritualW",
+    "nameEn": "Spiritual Weapon",
+    "level": 2,
+    "school": "evo",
+    "concentration": true,
+    "ritual": false
+  },
+  {
+    "id": "staggering-smite",
+    "srdId": "Staggering Smite|XPHB",
+    "nameEn": "Staggering Smite",
+    "level": 4,
+    "school": "enc",
+    "concentration": false,
+    "ritual": false,
+    "castType": "save",
+    "save": "wis",
+    "damage": {
+      "dice": "4d6",
+      "type": "psíquico",
+      "scalePerSlot": "1d6"
+    },
+    "castingTime": "1 acción adicional",
+    "range": "point",
+    "components": "V",
+    "duration": "Instantáneo"
+  },
+  {
     "id": "starry-wisp",
     "srdId": "phbsplStarryWisp",
     "nameEn": "Starry Wisp",
@@ -3033,11 +3240,505 @@
     "ritual": false
   },
   {
+    "id": "steel-wind-strike",
+    "srdId": "Steel Wind Strike|XPHB",
+    "nameEn": "Steel Wind Strike",
+    "level": 5,
+    "school": "con",
+    "concentration": false,
+    "ritual": false,
+    "castType": "attack",
+    "damage": {
+      "dice": "6d10",
+      "type": "fuerza"
+    },
+    "castingTime": "1 acción",
+    "range": "30 pies",
+    "components": "S, M (a Melee weapon worth 1+ SP)",
+    "duration": "Instantáneo",
+    "areaTags": [
+      "Varios objetivos"
+    ]
+  },
+  {
+    "id": "stinking-cloud",
+    "srdId": "phbsplStinkingCl",
+    "nameEn": "Stinking Cloud",
+    "level": 3,
+    "school": "con",
+    "concentration": true,
+    "ritual": false
+  },
+  {
+    "id": "stone-shape",
+    "srdId": "phbsplStoneShape",
+    "nameEn": "Stone Shape",
+    "level": 4,
+    "school": "trs",
+    "concentration": false,
+    "ritual": false
+  },
+  {
+    "id": "stoneskin",
+    "srdId": "phbsplStoneskin0",
+    "nameEn": "Stoneskin",
+    "level": 4,
+    "school": "trs",
+    "concentration": true,
+    "ritual": false
+  },
+  {
+    "id": "storm-of-vengeance",
+    "srdId": "phbsplStormofVen",
+    "nameEn": "Storm of Vengeance",
+    "level": 9,
+    "school": "con",
+    "concentration": true,
+    "ritual": false
+  },
+  {
+    "id": "suggestion",
+    "srdId": "phbsplSuggestion",
+    "nameEn": "Suggestion",
+    "level": 2,
+    "school": "enc",
+    "concentration": true,
+    "ritual": false
+  },
+  {
+    "id": "summon-aberration",
+    "srdId": "Summon Aberration|XPHB",
+    "nameEn": "Summon Aberration",
+    "level": 4,
+    "school": "con",
+    "concentration": true,
+    "ritual": false,
+    "castType": "none",
+    "castingTime": "1 acción",
+    "range": "90 pies",
+    "components": "V, S, M (a pickled tentacle and an eyeball in a platinum-inlaid vial worth 400+ GP)",
+    "duration": "Concentración, hasta 1 hora"
+  },
+  {
+    "id": "summon-beast",
+    "srdId": "Summon Beast|XPHB",
+    "nameEn": "Summon Beast",
+    "level": 2,
+    "school": "con",
+    "concentration": true,
+    "ritual": false,
+    "castType": "none",
+    "castingTime": "1 acción",
+    "range": "90 pies",
+    "components": "V, S, M (a feather, tuft of fur, and fish tail inside a gilded acorn worth 200+ GP)",
+    "duration": "Concentración, hasta 1 hora"
+  },
+  {
+    "id": "summon-celestial",
+    "srdId": "Summon Celestial|XPHB",
+    "nameEn": "Summon Celestial",
+    "level": 5,
+    "school": "con",
+    "concentration": true,
+    "ritual": false,
+    "castType": "none",
+    "castingTime": "1 acción",
+    "range": "90 pies",
+    "components": "V, S, M (a reliquary worth 500+ GP)",
+    "duration": "Concentración, hasta 1 hora"
+  },
+  {
+    "id": "summon-construct",
+    "srdId": "Summon Construct|XPHB",
+    "nameEn": "Summon Construct",
+    "level": 4,
+    "school": "con",
+    "concentration": true,
+    "ritual": false,
+    "castType": "none",
+    "castingTime": "1 acción",
+    "range": "90 pies",
+    "components": "V, S, M (a lockbox worth 400+ GP)",
+    "duration": "Concentración, hasta 1 hora"
+  },
+  {
+    "id": "summon-dragon",
+    "srdId": "phbsplSummonDrag",
+    "nameEn": "Summon Dragon",
+    "level": 5,
+    "school": "con",
+    "concentration": true,
+    "ritual": false
+  },
+  {
+    "id": "summon-elemental",
+    "srdId": "Summon Elemental|XPHB",
+    "nameEn": "Summon Elemental",
+    "level": 4,
+    "school": "con",
+    "concentration": true,
+    "ritual": false,
+    "castType": "none",
+    "castingTime": "1 acción",
+    "range": "90 pies",
+    "components": "V, S, M (air, a pebble, ash, and water inside a gold-inlaid vial worth 400+ GP)",
+    "duration": "Concentración, hasta 1 hora"
+  },
+  {
+    "id": "summon-fey",
+    "srdId": "Summon Fey|XPHB",
+    "nameEn": "Summon Fey",
+    "level": 3,
+    "school": "con",
+    "concentration": true,
+    "ritual": false,
+    "castType": "none",
+    "castingTime": "1 acción",
+    "range": "90 pies",
+    "components": "V, S, M (a gilded flower worth 300+ GP)",
+    "duration": "Concentración, hasta 1 hora"
+  },
+  {
+    "id": "summon-fiend",
+    "srdId": "Summon Fiend|XPHB",
+    "nameEn": "Summon Fiend",
+    "level": 6,
+    "school": "con",
+    "concentration": true,
+    "ritual": false,
+    "castType": "none",
+    "castingTime": "1 acción",
+    "range": "90 pies",
+    "components": "V, S, M (a bloody vial worth 600+ GP)",
+    "duration": "Concentración, hasta 1 hora"
+  },
+  {
+    "id": "summon-undead",
+    "srdId": "Summon Undead|XPHB",
+    "nameEn": "Summon Undead",
+    "level": 3,
+    "school": "nec",
+    "concentration": true,
+    "ritual": false,
+    "castType": "none",
+    "castingTime": "1 acción",
+    "range": "90 pies",
+    "components": "V, S, M (a gilded skull worth 300+ GP)",
+    "duration": "Concentración, hasta 1 hora"
+  },
+  {
+    "id": "sunbeam",
+    "srdId": "phbsplSunbeam000",
+    "nameEn": "Sunbeam",
+    "level": 6,
+    "school": "evo",
+    "concentration": true,
+    "ritual": false
+  },
+  {
+    "id": "sunburst",
+    "srdId": "phbsplSunburst00",
+    "nameEn": "Sunburst",
+    "level": 8,
+    "school": "evo",
+    "concentration": false,
+    "ritual": false
+  },
+  {
+    "id": "swift-quiver",
+    "srdId": "Swift Quiver|XPHB",
+    "nameEn": "Swift Quiver",
+    "level": 5,
+    "school": "trs",
+    "concentration": true,
+    "ritual": false,
+    "castType": "none",
+    "castingTime": "1 acción adicional",
+    "range": "point",
+    "components": "V, S, M (a Quiver worth 1+ GP)",
+    "duration": "Concentración, hasta 1 minuto"
+  },
+  {
+    "id": "symbol",
+    "srdId": "phbsplSymbol0000",
+    "nameEn": "Symbol",
+    "level": 7,
+    "school": "abj",
+    "concentration": false,
+    "ritual": false
+  },
+  {
+    "id": "synaptic-static",
+    "srdId": "Synaptic Static|XPHB",
+    "nameEn": "Synaptic Static",
+    "level": 5,
+    "school": "enc",
+    "concentration": false,
+    "ritual": false,
+    "castType": "save",
+    "save": "int",
+    "damage": {
+      "dice": "8d6",
+      "type": "psíquico"
+    },
+    "castingTime": "1 acción",
+    "range": "120 pies",
+    "components": "V, S",
+    "duration": "Instantáneo",
+    "areaTags": [
+      "Esfera"
+    ]
+  },
+  {
+    "id": "tashas-bubbling-cauldron",
+    "srdId": "Tasha's Bubbling Cauldron|XPHB",
+    "nameEn": "Tasha's Bubbling Cauldron",
+    "level": 6,
+    "school": "con",
+    "concentration": false,
+    "ritual": false,
+    "castType": "none",
+    "castingTime": "1 acción",
+    "range": "5 pies",
+    "components": "V, S, M (a gilded ladle worth 500 + GP)",
+    "duration": "10 minutos"
+  },
+  {
+    "id": "telekinesis",
+    "srdId": "phbsplTelekinesi",
+    "nameEn": "Telekinesis",
+    "level": 5,
+    "school": "trs",
+    "concentration": true,
+    "ritual": false
+  },
+  {
+    "id": "telepathic-bond",
+    "srdId": "phbsplRarysTelep",
+    "nameEn": "Telepathic Bond",
+    "level": 5,
+    "school": "div",
+    "concentration": false,
+    "ritual": true
+  },
+  {
+    "id": "telepathy",
+    "srdId": "Telepathy|XPHB",
+    "nameEn": "Telepathy",
+    "level": 8,
+    "school": "div",
+    "concentration": false,
+    "ritual": false,
+    "castType": "none",
+    "castingTime": "1 acción",
+    "range": "point",
+    "components": "V, S, M (a pair of linked silver rings)",
+    "duration": "24 horas",
+    "areaTags": [
+      "Un objetivo"
+    ]
+  },
+  {
+    "id": "teleport",
+    "srdId": "phbsplTeleport00",
+    "nameEn": "Teleport",
+    "level": 7,
+    "school": "con",
+    "concentration": false,
+    "ritual": false
+  },
+  {
+    "id": "teleportation-circle",
+    "srdId": "phbsplTeleportat",
+    "nameEn": "Teleportation Circle",
+    "level": 5,
+    "school": "con",
+    "concentration": false,
+    "ritual": false
+  },
+  {
+    "id": "tensers-floating-disk",
+    "srdId": "phbsplTensersFlo",
+    "nameEn": "Floating Disk",
+    "level": 1,
+    "school": "con",
+    "concentration": false,
+    "ritual": true
+  },
+  {
     "id": "thaumaturgy",
     "srdId": "phbsplThaumaturg",
     "nameEn": "Thaumaturgy",
     "level": 0,
     "school": "trs",
+    "concentration": false,
+    "ritual": false
+  },
+  {
+    "id": "thorn-whip",
+    "srdId": "Thorn Whip|XPHB",
+    "nameEn": "Thorn Whip",
+    "level": 0,
+    "school": "trs",
+    "concentration": false,
+    "ritual": false,
+    "castType": "attack",
+    "damage": {
+      "dice": "1d6",
+      "type": "perforante",
+      "cantripScaling": true
+    },
+    "castingTime": "1 acción",
+    "range": "30 pies",
+    "components": "V, S, M (the stem of a plant with thorns)",
+    "duration": "Instantáneo",
+    "areaTags": [
+      "Un objetivo"
+    ]
+  },
+  {
+    "id": "thunderclap",
+    "srdId": "Thunderclap|XPHB",
+    "nameEn": "Thunderclap",
+    "level": 0,
+    "school": "evo",
+    "concentration": false,
+    "ritual": false,
+    "castType": "save",
+    "save": "con",
+    "damage": {
+      "dice": "1d6",
+      "type": "trueno",
+      "cantripScaling": true
+    },
+    "castingTime": "1 acción",
+    "range": "5 feet",
+    "components": "S",
+    "duration": "Instantáneo",
+    "areaTags": [
+      "Esfera"
+    ]
+  },
+  {
+    "id": "thunderous-smite",
+    "srdId": "Thunderous Smite|XPHB",
+    "nameEn": "Thunderous Smite",
+    "level": 1,
+    "school": "evo",
+    "concentration": false,
+    "ritual": false,
+    "castType": "save",
+    "save": "str",
+    "damage": {
+      "dice": "2d6",
+      "type": "trueno",
+      "scalePerSlot": "1d6"
+    },
+    "castingTime": "1 acción adicional",
+    "range": "point",
+    "components": "V",
+    "duration": "Instantáneo"
+  },
+  {
+    "id": "thunderwave",
+    "srdId": "phbsplThunderwav",
+    "nameEn": "Thunderwave",
+    "level": 1,
+    "school": "evo",
+    "concentration": false,
+    "ritual": false
+  },
+  {
+    "id": "time-stop",
+    "srdId": "phbsplTimeStop00",
+    "nameEn": "Time Stop",
+    "level": 9,
+    "school": "trs",
+    "concentration": false,
+    "ritual": false
+  },
+  {
+    "id": "tiny-hut",
+    "srdId": "phbsplLeomundsTi",
+    "nameEn": "Tiny Hut",
+    "level": 3,
+    "school": "evo",
+    "concentration": false,
+    "ritual": true
+  },
+  {
+    "id": "toll-the-dead",
+    "srdId": "Toll the Dead|XPHB",
+    "nameEn": "Toll the Dead",
+    "level": 0,
+    "school": "nec",
+    "concentration": false,
+    "ritual": false,
+    "castType": "save",
+    "save": "wis",
+    "damage": {
+      "dice": "1d8",
+      "type": "necrótico"
+    },
+    "castingTime": "1 acción",
+    "range": "60 pies",
+    "components": "V, S",
+    "duration": "Instantáneo",
+    "areaTags": [
+      "Un objetivo"
+    ]
+  },
+  {
+    "id": "tongues",
+    "srdId": "phbsplTongues000",
+    "nameEn": "Tongues",
+    "level": 3,
+    "school": "div",
+    "concentration": false,
+    "ritual": false
+  },
+  {
+    "id": "transport-via-plants",
+    "srdId": "phbsplTransportv",
+    "nameEn": "Transport via Plants",
+    "level": 6,
+    "school": "con",
+    "concentration": false,
+    "ritual": false
+  },
+  {
+    "id": "tree-stride",
+    "srdId": "phbsplTreeStride",
+    "nameEn": "Tree Stride",
+    "level": 5,
+    "school": "con",
+    "concentration": true,
+    "ritual": false
+  },
+  {
+    "id": "true-polymorph",
+    "srdId": "phbsplTruePolymo",
+    "nameEn": "True Polymorph",
+    "level": 9,
+    "school": "trs",
+    "concentration": true,
+    "ritual": false
+  },
+  {
+    "id": "true-resurrection",
+    "srdId": "phbsplTrueResurr",
+    "nameEn": "True Resurrection",
+    "level": 9,
+    "school": "nec",
+    "concentration": false,
+    "ritual": false
+  },
+  {
+    "id": "true-seeing",
+    "srdId": "phbsplTrueSeeing",
+    "nameEn": "True Seeing",
+    "level": 6,
+    "school": "div",
     "concentration": false,
     "ritual": false
   },
@@ -3051,10 +3752,268 @@
     "ritual": false
   },
   {
+    "id": "tsunami",
+    "srdId": "phbsplTsunami000",
+    "nameEn": "Tsunami",
+    "level": 8,
+    "school": "con",
+    "concentration": true,
+    "ritual": false
+  },
+  {
+    "id": "unseen-servant",
+    "srdId": "phbsplUnseenServ",
+    "nameEn": "Unseen Servant",
+    "level": 1,
+    "school": "con",
+    "concentration": false,
+    "ritual": true
+  },
+  {
+    "id": "vampiric-touch",
+    "srdId": "phbsplVampiricTo",
+    "nameEn": "Vampiric Touch",
+    "level": 3,
+    "school": "nec",
+    "concentration": true,
+    "ritual": false
+  },
+  {
     "id": "vicious-mockery",
     "srdId": "phbsplViciousMoc",
     "nameEn": "Vicious Mockery",
     "level": 0,
+    "school": "enc",
+    "concentration": false,
+    "ritual": false
+  },
+  {
+    "id": "vitriolic-sphere",
+    "srdId": "phbsplVitriolicS",
+    "nameEn": "Vitriolic Sphere",
+    "level": 4,
+    "school": "evo",
+    "concentration": false,
+    "ritual": false
+  },
+  {
+    "id": "wall-of-fire",
+    "srdId": "phbsplWallofFire",
+    "nameEn": "Wall of Fire",
+    "level": 4,
+    "school": "evo",
+    "concentration": true,
+    "ritual": false
+  },
+  {
+    "id": "wall-of-force",
+    "srdId": "phbsplWallofForc",
+    "nameEn": "Wall of Force",
+    "level": 5,
+    "school": "evo",
+    "concentration": true,
+    "ritual": false
+  },
+  {
+    "id": "wall-of-ice",
+    "srdId": "phbsplWallofIce0",
+    "nameEn": "Wall of Ice",
+    "level": 6,
+    "school": "evo",
+    "concentration": true,
+    "ritual": false
+  },
+  {
+    "id": "wall-of-stone",
+    "srdId": "phbsplWallofSton",
+    "nameEn": "Wall of Stone",
+    "level": 5,
+    "school": "evo",
+    "concentration": true,
+    "ritual": false
+  },
+  {
+    "id": "wall-of-thorns",
+    "srdId": "phbsplWallofThor",
+    "nameEn": "Wall of Thorns",
+    "level": 6,
+    "school": "con",
+    "concentration": true,
+    "ritual": false
+  },
+  {
+    "id": "warding-bond",
+    "srdId": "phbsplWardingBon",
+    "nameEn": "Warding Bond",
+    "level": 2,
+    "school": "abj",
+    "concentration": false,
+    "ritual": false
+  },
+  {
+    "id": "water-breathing",
+    "srdId": "phbsplWaterBreat",
+    "nameEn": "Water Breathing",
+    "level": 3,
+    "school": "trs",
+    "concentration": false,
+    "ritual": true
+  },
+  {
+    "id": "water-walk",
+    "srdId": "phbsplWaterWalk0",
+    "nameEn": "Water Walk",
+    "level": 3,
+    "school": "trs",
+    "concentration": false,
+    "ritual": true
+  },
+  {
+    "id": "web",
+    "srdId": "phbsplWeb0000000",
+    "nameEn": "Web",
+    "level": 2,
+    "school": "con",
+    "concentration": true,
+    "ritual": false
+  },
+  {
+    "id": "weird",
+    "srdId": "phbsplWeird00000",
+    "nameEn": "Weird",
+    "level": 9,
+    "school": "ill",
+    "concentration": true,
+    "ritual": false
+  },
+  {
+    "id": "wind-walk",
+    "srdId": "phbsplWindWalk00",
+    "nameEn": "Wind Walk",
+    "level": 6,
+    "school": "trs",
+    "concentration": false,
+    "ritual": false
+  },
+  {
+    "id": "wind-wall",
+    "srdId": "phbsplWindWall00",
+    "nameEn": "Wind Wall",
+    "level": 3,
+    "school": "evo",
+    "concentration": true,
+    "ritual": false
+  },
+  {
+    "id": "wish",
+    "srdId": "phbsplWish000000",
+    "nameEn": "Wish",
+    "level": 9,
+    "school": "con",
+    "concentration": false,
+    "ritual": false
+  },
+  {
+    "id": "witch-bolt",
+    "srdId": "Witch Bolt|XPHB",
+    "nameEn": "Witch Bolt",
+    "level": 1,
+    "school": "evo",
+    "concentration": true,
+    "ritual": false,
+    "castType": "attack",
+    "damage": {
+      "dice": "2d12",
+      "type": "relámpago",
+      "scalePerSlot": "1d12"
+    },
+    "castingTime": "1 acción",
+    "range": "60 pies",
+    "components": "V, S, M (a twig struck by lightning)",
+    "duration": "Concentración, hasta 1 minuto",
+    "areaTags": [
+      "Un objetivo"
+    ]
+  },
+  {
+    "id": "word-of-radiance",
+    "srdId": "Word of Radiance|XPHB",
+    "nameEn": "Word of Radiance",
+    "level": 0,
+    "school": "evo",
+    "concentration": false,
+    "ritual": false,
+    "castType": "save",
+    "save": "con",
+    "damage": {
+      "dice": "1d6",
+      "type": "radiante",
+      "cantripScaling": true
+    },
+    "castingTime": "1 acción",
+    "range": "5 feet",
+    "components": "V, M (a sunburst token)",
+    "duration": "Instantáneo",
+    "areaTags": [
+      "Varios objetivos"
+    ]
+  },
+  {
+    "id": "word-of-recall",
+    "srdId": "phbsplWordofReca",
+    "nameEn": "Word of Recall",
+    "level": 6,
+    "school": "con",
+    "concentration": false,
+    "ritual": false
+  },
+  {
+    "id": "wrathful-smite",
+    "srdId": "Wrathful Smite|XPHB",
+    "nameEn": "Wrathful Smite",
+    "level": 1,
+    "school": "nec",
+    "concentration": false,
+    "ritual": false,
+    "castType": "save",
+    "save": "wis",
+    "damage": {
+      "dice": "1d6",
+      "type": "necrótico",
+      "scalePerSlot": "1d6"
+    },
+    "castingTime": "1 acción adicional",
+    "range": "point",
+    "components": "V",
+    "duration": "1 minuto"
+  },
+  {
+    "id": "yolandes-regal-presence",
+    "srdId": "Yolande's Regal Presence|XPHB",
+    "nameEn": "Yolande's Regal Presence",
+    "level": 5,
+    "school": "enc",
+    "concentration": true,
+    "ritual": false,
+    "castType": "save",
+    "save": "wis",
+    "damage": {
+      "dice": "4d6",
+      "type": "psíquico"
+    },
+    "castingTime": "1 acción",
+    "range": "10 feet",
+    "components": "V, S, M (a miniature tiara)",
+    "duration": "Concentración, hasta 1 minuto",
+    "areaTags": [
+      "Esfera"
+    ]
+  },
+  {
+    "id": "zone-of-truth",
+    "srdId": "phbsplZoneofTrut",
+    "nameEn": "Zone of Truth",
+    "level": 2,
     "school": "enc",
     "concentration": false,
     "ritual": false

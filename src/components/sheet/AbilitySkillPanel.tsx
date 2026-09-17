@@ -133,7 +133,7 @@ export function AbilitySkillPanel({
                         <span className="sheet-ability-score">{score}</span>
                       )}
                       {efectivo !== score && (
-                        <span className="text-[10px] text-gold" title="Atributo de la bestia">
+                        <span className="text-[10px] text-muted" title="Atributo de la bestia">
                           → {efectivo}
                         </span>
                       )}
@@ -187,7 +187,7 @@ export function AbilitySkillPanel({
                                   />
                                   <input
                                     type="checkbox"
-                                    className="accent-gold"
+                                    className="accent-accent"
                                     checked={expertise}
                                     disabled={!proficient}
                                     onChange={() => toggleExpertise(skill)}

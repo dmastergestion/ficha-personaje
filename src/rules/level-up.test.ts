@@ -21,13 +21,18 @@ describe("detectarSubidaNivel", () => {
     });
   });
 
-  it("detecta primera clase multiclase", () => {
+  it("un dip en clase nueva no cuenta como nivel 1 del personaje", () => {
     const antes = [{ classId: "fighter", subclassId: null, level: 5 }];
     const despues = [
       { classId: "fighter", subclassId: null, level: 5 },
       { classId: "wizard", subclassId: null, level: 1 },
     ];
-    expect(detectarSubidaNivel(antes, despues)?.isFirstLevelInClass).toBe(true);
+    expect(detectarSubidaNivel(antes, despues)).toEqual({
+      classId: "wizard",
+      oldLevel: 0,
+      newLevel: 1,
+      isFirstLevelInClass: false,
+    });
   });
 });
 
@@ -105,6 +110,25 @@ describe("aplicarSubidaNivel", () => {
     expect(next.combat.hpMax).toBe(13);
     expect(next.combat.hpCurrent).toBe(11);
     expect(next.combat.hitDiceTotal).toBe(2);
+  });
+
+  it("suma PG extra de enano y Tough", () => {
+    const pj = crearPersonajeVacio({
+      name: "D",
+      playerName: "J",
+      classId: "fighter",
+      speciesId: "dwarf",
+    });
+    pj.feats = [{ id: "tough", name: "Robustez" }];
+    pj.combat.hpMax = 15;
+    pj.combat.hpCurrent = 15;
+    const next = aplicarSubidaNivel(
+      pj,
+      [{ classId: "fighter", subclassId: null, level: 2 }],
+      7,
+      true,
+    );
+    expect(next.combat.hpMax).toBe(15 + 7 + 1 + 2);
   });
 });
 

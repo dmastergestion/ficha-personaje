@@ -1,3 +1,7 @@
+/**
+ * PV máximos, bonus de CON/dotes y saneado de campos persistidos.
+ * Los usos de clase/especie están en resources-tracker.ts.
+ */
 import { SPELL_SLOT_LEVELS } from "@/lib/constants";
 import { modificadorAtributo } from "@/rules/ability";
 import { espaciosUsadosSeguros } from "@/rules/rests";

@@ -3,6 +3,7 @@ import { InfoTrigger } from "@/components/InfoTrigger";
 import { WeaponInfoPanel } from "@/components/WeaponInfoPanel";
 import { cn } from "@/lib/utils";
 import {
+  etiquetaDañoAtaque,
   idAtaqueDefecto,
   listarAtaquesFicha,
   marcarAtaqueDefecto,
@@ -53,17 +54,32 @@ export function AttackTable({
               key={id}
               className={cn(
                 "sheet-table-row sheet-attack-grid items-center py-2",
-                isSelected && "bg-gold/5",
+                isSelected && "bg-accent/5",
               )}
             >
               <div className="flex min-w-0 items-center gap-0.5">
                 <button
                   type="button"
-                  className="min-w-0 truncate text-left hover:text-gold"
+                  className="min-w-0 truncate text-left hover:text-accent"
                   onClick={() => onSelect(id)}
                 >
                   {attack.name}
-                  {isDefault ? " ★" : ""}
+                </button>
+                <button
+                  type="button"
+                  className="shrink-0 px-0.5 text-sm text-muted hover:text-accent"
+                  title={isDefault ? "Ataque predeterminado" : "Usar este ataque en la barra"}
+                  aria-label={
+                    isDefault
+                      ? `${attack.name}, predeterminado`
+                      : `Marcar ${attack.name} como predeterminado`
+                  }
+                  aria-pressed={isDefault}
+                  onClick={() =>
+                    onChange(marcarAtaqueDefecto(character, isDefault ? null : id))
+                  }
+                >
+                  {isDefault ? "★" : "☆"}
                 </button>
                 {weaponInfo && (
                   <InfoTrigger
@@ -75,8 +91,8 @@ export function AttackTable({
                 )}
               </div>
               <Button
-                variant="combat"
-                className="shrink-0 px-2 py-1 text-xs tabular-nums"
+                variant="primary"
+                className="min-h-10 min-w-10 shrink-0 px-2.5 py-2 text-sm tabular-nums"
                 onClick={() => {
                   onSelect(id);
                   onAttack(id);
@@ -84,27 +100,14 @@ export function AttackTable({
               >
                 {fmtMod(mod)}
               </Button>
-              <span className="min-w-0 truncate text-muted">{attack.damage || "—"}</span>
+              <span className="min-w-0 truncate text-muted">
+                {etiquetaDañoAtaque(character, attack)}
+              </span>
               <span className="min-w-0 truncate text-xs text-muted">{attack.notes || "—"}</span>
             </li>
           );
         })}
       </ul>
-      <label className="mt-2 flex cursor-pointer items-center gap-2 text-xs text-muted">
-        <input
-          type="checkbox"
-          className="size-3.5 accent-gold"
-          checked={defaultId === selectedId}
-          onChange={(e) => {
-            if (e.target.checked) {
-              onChange(marcarAtaqueDefecto(character, selectedId));
-            } else {
-              onChange(marcarAtaqueDefecto(character, null));
-            }
-          }}
-        />
-        Predeterminado
-      </label>
     </div>
   );
 }

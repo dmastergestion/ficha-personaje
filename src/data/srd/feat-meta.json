@@ -219,7 +219,7 @@
   },
   "chef": {
     "name": "Chef",
-    "nameEs": "Chef",
+    "nameEs": "Cocinero",
     "category": "general",
     "categoryLabel": "General",
     "description": "You gain the following benefits.\n\nCook's Utensils: You gain proficiency with Cook's Utensils if you don't already have it.\n\nReplenishing Meal: As part of a XPHB on hand. You can prepare enough of this food for a number of creatures equal to 4 plus your Proficiency Bonus. At the end of the XPHB regains an extra 1d8 Hit Points|XPHB.\n\nBolstering Treats: With 1 hour of work or when you finish a XPHB|Proficiency Bonus if you have ingredients and Cook's Utensils on hand. These special treats last 8 hours after being made. A creature can use a XPHB equal to your Proficiency Bonus.",

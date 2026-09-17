@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { crearPersonajeVacio } from "@/schemas/character";
-import { pvMaximoPersonaje, recursosCompletos, sanitizarRecursos } from "@/rules/resources";
+import { ajustarPgPorCambioCon, pvMaximoPersonaje, recursosCompletos, sanitizarRecursos } from "@/rules/resources";
 
 describe("pvMaximoPersonaje", () => {
   it("nivel 1 usa el máximo del dado + CON", () => {
@@ -9,6 +9,19 @@ describe("pvMaximoPersonaje", () => {
 
   it("niveles superiores usan el promedio del dado + CON", () => {
     expect(pvMaximoPersonaje("d10", 14, 3)).toBe(28);
+  });
+});
+
+describe("ajustarPgPorCambioCon", () => {
+  it("delta CON 14→16 sube hpMax × nivel", () => {
+    const pj = crearPersonajeVacio({ name: "C", playerName: "J", classId: "fighter" });
+    pj.identity.level = 5;
+    pj.identity.classes = [{ classId: "fighter", subclassId: null, level: 5 }];
+    pj.abilities.con = 14;
+    pj.combat.hpMax = 40;
+    pj.combat.hpCurrent = 40;
+    const next = ajustarPgPorCambioCon(pj, 14, 16);
+    expect(next.combat.hpMax).toBe(45);
   });
 });
 

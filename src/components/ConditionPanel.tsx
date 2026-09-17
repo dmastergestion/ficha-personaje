@@ -24,7 +24,7 @@ export function ConditionPanel({ character, onChange }: ConditionPanelProps) {
 
   return (
     <section className="sheet-card h-full">
-      <h3 className="sheet-section-title">Condiciones SRD</h3>
+      <h3 className="sheet-section-title">Condiciones</h3>
       <div className="mb-2 grid grid-cols-2 gap-1 sm:grid-cols-3 lg:grid-cols-2 xl:grid-cols-3">
         {CONDITION_IDS.map((id) => (
           <label key={id} className="flex items-center gap-2 text-sm">
@@ -59,14 +59,14 @@ export function ConditionPanel({ character, onChange }: ConditionPanelProps) {
       </label>
 
       {resumen.length > 0 && (
-        <ul className="mb-2 list-inside list-disc text-xs text-gold">
+        <ul className="mb-2 list-inside list-disc text-xs text-muted">
           {resumen.map((line) => (
             <li key={line}>{line}</li>
           ))}
         </ul>
       )}
 
-      <h4 className="mb-1 text-sm font-medium text-muted">Notas / homebrew</h4>
+      <h4 className="mb-1 text-sm font-medium text-muted">Notas / contenido propio</h4>
       <textarea
         className="min-h-16 w-full rounded-lg border border-white/10 bg-surface px-3 py-2 text-sm"
         placeholder="Condiciones personalizadas, una por línea"

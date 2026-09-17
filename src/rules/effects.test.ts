@@ -40,6 +40,12 @@ describe("calcularModificadoresCondiciones", () => {
     expect(next.spells.concentratingOn).toBeNull();
   });
 
+  it("restringido: desventaja de salvación solo en Destreza", () => {
+    const mods = calcularModificadoresCondiciones(["restrained"]);
+    expect([...mods.salvacionDesventaja]).toEqual(["dex"]);
+    expect(mods.desventajaSalvaciones).toBe(false);
+  });
+
   it("velocidad cero en agarrado", () => {
     const mods = calcularModificadoresCondiciones(["grappled"]);
     expect(mods.velocidadCero).toBe(true);

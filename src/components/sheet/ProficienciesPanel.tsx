@@ -81,7 +81,7 @@ function LanguagesBlock({
             {lang}
             <button
               type="button"
-              className="text-muted hover:text-white"
+              className="text-muted hover:text-cream"
               aria-label={`Quitar ${lang}`}
               onClick={() =>
                 onChange({

@@ -4,22 +4,59 @@ import { aplicarAgotamientoAlRecuperarPg } from "@/rules/exhaustion";
 import { registrarFalloSalvacionMuerte, resetearSalvacionesMuerte } from "@/rules/death-saves";
 import { tiradaConcentracionPorDanio, type ResultadoConcentracion } from "@/rules/concentration";
 import type { DiceRollOptions, RollMode } from "@/rules/dice";
+import {
+  listaIncluyeTipoDano,
+  normalizarTipoDano,
+  resistenciasDerivadasPersonaje,
+} from "@/rules/damage-resistances";
+import { BEAR_RAGE_EXCEPT, opcionRabiaCorazonSalvaje } from "@/rules/wild-heart";
 
 export interface CambioPvOptions {
   damageType?: string;
+  /** Rabia de Oso: resistir todo excepto fuerza/necrótico/psíquico/radiante. */
+  bearRage?: boolean;
+  /** Resistencias derivadas (especie, objetos). No persistir. */
+  extraResistances?: string[];
 }
+
+const DANIO_FISICO = new Set(["contundente", "cortante", "perforante"]);
 
 function multiplicadorTipo(
   combat: Character["combat"],
   damageType: string | undefined,
   delta: number,
+  options?: CambioPvOptions,
 ): number {
   if (delta >= 0 || !damageType) return 1;
-  const type = damageType.toLowerCase();
-  if (combat.damageImmunities.some((t) => t.toLowerCase() === type)) return 0;
-  if (combat.damageVulnerabilities.some((t) => t.toLowerCase() === type)) return 2;
-  if (combat.damageResistances.some((t) => t.toLowerCase() === type)) return 0.5;
+  const type = normalizarTipoDano(damageType);
+  if (listaIncluyeTipoDano(combat.damageImmunities, type)) return 0;
+  const rabiaOso = Boolean(options?.bearRage && combat.raging);
+  const resistencias = [
+    ...combat.damageResistances,
+    ...(options?.extraResistances ?? []),
+  ];
+  const resistente =
+    listaIncluyeTipoDano(resistencias, type) ||
+    (rabiaOso && !BEAR_RAGE_EXCEPT.has(type)) ||
+    (combat.raging && !rabiaOso && DANIO_FISICO.has(type));
+  const vulnerable = listaIncluyeTipoDano(combat.damageVulnerabilities, type);
+  if (vulnerable && resistente) return 1;
+  if (vulnerable) return 2;
+  if (resistente) return 0.5;
   return 1;
+}
+
+function opcionesPvPersonaje(character: Character, extra?: CambioPvOptions): CambioPvOptions {
+  const derivadas = resistenciasDerivadasPersonaje(character);
+  const extraResistances = [...derivadas];
+  for (const tipo of extra?.extraResistances ?? []) {
+    if (!listaIncluyeTipoDano(extraResistances, tipo)) extraResistances.push(tipo);
+  }
+  return {
+    ...extra,
+    bearRage: extra?.bearRage ?? opcionRabiaCorazonSalvaje(character) === "bear",
+    extraResistances,
+  };
 }
 
 function conInconsciente(combat: Character["combat"], activo: boolean): Character["combat"] {
@@ -48,7 +85,7 @@ export function aplicarCambioPv(
 ): Character["combat"] {
   if (delta === 0) return combat;
 
-  const factor = multiplicadorTipo(combat, options?.damageType, delta);
+  const factor = multiplicadorTipo(combat, options?.damageType, delta, options);
   const adjustedDelta =
     delta < 0 ? -Math.floor(Math.abs(delta) * factor) : Math.floor(delta * factor);
 
@@ -87,7 +124,20 @@ export type ResultadoCambioPv = {
   character: Character;
   damageTaken: number;
   deathMessage?: string;
+  warning?: string;
 };
+
+export const AVISO_DANIO_SIN_TIPO_RABIA =
+  "Elige el tipo de daño: la rabia resiste según el tipo.";
+
+/** Con rabia activa el tipo importa; no aplicar daño sin tipo. */
+export function danoRequiereTipo(
+  character: Character,
+  delta: number,
+  damageType?: string,
+): boolean {
+  return delta < 0 && !damageType && Boolean(character.combat.raging);
+}
 
 /** Daño o curación en ficha, con muerte instantánea y fallos de muerte. */
 export function aplicarDeltaPvPersonaje(
@@ -97,9 +147,17 @@ export function aplicarDeltaPvPersonaje(
 ): ResultadoCambioPv {
   if (delta === 0) return { character, damageTaken: 0 };
 
+  const opts = opcionesPvPersonaje(character, options);
+  if (danoRequiereTipo(character, delta, opts.damageType)) {
+    return {
+      character,
+      damageTaken: 0,
+      warning: AVISO_DANIO_SIN_TIPO_RABIA,
+    };
+  }
   const prevHp = character.combat.hpCurrent;
   const prevTemp = character.combat.hpTemp;
-  const factor = multiplicadorTipo(character.combat, options?.damageType, delta);
+  const factor = multiplicadorTipo(character.combat, opts.damageType, delta, opts);
   const adjustedDelta =
     delta < 0 ? -Math.floor(Math.abs(delta) * factor) : Math.floor(delta * factor);
   const damageAfterTemp =
@@ -122,7 +180,7 @@ export function aplicarDeltaPvPersonaje(
     }
   }
 
-  const combat = aplicarCambioPv(character.combat, delta, options);
+  const combat = aplicarCambioPv(character.combat, delta, opts);
   let nextCombat = combat;
   let deathMessage: string | undefined;
 
@@ -159,7 +217,7 @@ export function aplicarCambioPvConConcentracion(
   diceOptions?: DiceRollOptions,
   options?: CambioPvOptions,
 ): ResultadoCambioPvConcentracion {
-  const aplicado = aplicarDeltaPvPersonaje(character, delta, options);
+  const aplicado = aplicarDeltaPvPersonaje(character, delta, opcionesPvPersonaje(character, options));
   let next = aplicado.character;
   let concentration: ResultadoConcentracion | null = null;
   if (aplicado.damageTaken > 0 && character.spells.concentratingOn) {

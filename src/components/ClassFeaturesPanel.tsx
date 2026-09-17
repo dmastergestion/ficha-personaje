@@ -15,12 +15,16 @@ export function ClassFeaturesPanel({ classes }: { classes: ClassLevel[] }) {
           if (list.length === 0) return null;
           return (
             <div key={cl.classId}>
-              <p className="mb-1 text-sm font-medium text-gold">
+              <p className="mb-1 text-sm font-medium">
                 {catalog.t("classes", cl.classId, cl.classId)} (niv {cl.level})
               </p>
               <ul className="space-y-2 text-sm">
                 {list.map((f) => (
-                  <li key={`${f.level}-${f.name}`} className="rounded-lg border border-white/10 bg-surface/40 px-3 py-2">
+                  <li
+                    key={`${f.level}-${f.name}`}
+                    id={`rasgo-${f.level}-${f.name}`}
+                    className="rounded-lg border border-white/10 bg-surface/40 px-3 py-2"
+                  >
                     <span className="font-semibold">
                       Niv {f.level}: {f.name}
                     </span>

@@ -31,6 +31,11 @@ describe("proficienciasIniciales", () => {
     const { skills } = proficienciasIniciales("wizard", ["arcana", "history"]);
     expect(skills).toEqual(["arcana", "history"]);
   });
+
+  it("el mago parte con armas simples", () => {
+    const { weaponProficiencies } = proficienciasIniciales("wizard");
+    expect(weaponProficiencies).toContain("simple");
+  });
 });
 
 describe("esCompetenteConArma", () => {
@@ -39,6 +44,13 @@ describe("esCompetenteConArma", () => {
     pj.proficiencies.weaponProficiencies = ["simple"];
     expect(esCompetenteConArma(pj, "longsword")).toBe(false);
     expect(esCompetenteConArma(pj, "mace")).toBe(true);
+  });
+
+  it("lista vacía de armas no implica competente en todo", () => {
+    const pj = crearPersonajeVacio({ name: "T", playerName: "J", classId: "wizard" });
+    pj.proficiencies.weaponProficiencies = [];
+    expect(esCompetenteConArma(pj, "longsword")).toBe(false);
+    expect(esCompetenteConArma(pj, "mace")).toBe(false);
   });
 
   it("pícaro no es competente con mandoble", () => {

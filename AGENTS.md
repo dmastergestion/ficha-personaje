@@ -26,10 +26,11 @@ React (components/pages) → rules/ (puro) → schemas + Dexie (hechos)
 |------|----------|
 | Core | `character.ts`, `ability.ts`, `level-up.ts`, `multiclass.ts` |
 | Origen/creación | `creation.ts`, `origin-choices.ts`, `origin-benefits.ts`, `origin-equipment.ts` |
-| Combate | `combat.ts`, `combat-hp.ts`, `attacks.ts`, `hit-dice.ts`, `death-saves.ts`, `concentration.ts` |
+| Combate | `combat.ts`, `combat-hp.ts`, `attacks.ts`, `attack-roll.ts`, `hit-dice.ts`, `death-saves.ts`, `concentration.ts` |
 | Hechizos | `spells.ts`, `spell-cast.ts`, `spell-lists.ts`, `spell-choices.ts`, `spell-progression.ts` |
 | Equipo | `inventory.ts`, `class-equipment.ts`, `equipment-parsing.ts`, `weapon-mastery.ts` |
-| Meta | `edition.ts`, `proficiencies.ts`, `resources.ts`, `rests.ts`, `feat-mechanics.ts`, `effects.ts` |
+| Recursos | `resource-ids.ts`, `resource-use.ts`, `resources-tracker.ts`, `resources.ts` (PV), `rests.ts` |
+| Meta | `edition.ts`, `proficiencies.ts`, `feat-mechanics.ts`, `effects.ts` |
 | Texto/catálogo | `catalog.ts`, `feat-text.ts`, `spell-text.ts`, `armor-text.ts`, `weapon-text.ts` |
 
 ## UI
@@ -48,10 +49,20 @@ Componentes compartidos: `src/components/`, layout en `src/components/layout.tsx
 - Schema: `src/schemas/character.ts` — versión: `SCHEMA_VERSION` en `src/lib/constants.ts`
 - Migraciones: `src/schemas/migrate.ts` · DB: `src/db/index.ts`
 
-## SRD
+## SRD / catálogo
 
-- Build: `scripts/build-srd.ts` (y scripts `build-i18n-*`, `build-spell-*`)
-- No editar JSON generado a mano; meta en `src/data/srd/*-meta.json`; textos ES en `src/data/i18n/`
+`npm run build:data` regenera JSON desde `vendor/` (Foundry + 5etools + i18n). CI **no** lo ejecuta: versionamos `src/data/`.
+
+| Origen | Archivos |
+|--------|----------|
+| `build-srd.ts` | `classes`, `subclasses`, `armor`, `weapons`, `spells`, `species`, `backgrounds`, `manifest` (incluye ritual/concentración) |
+| `build-phb-catalog.ts` | Fusiona subclases/trasfondos/especies/conjuros PHB 2024 en esos JSON |
+| `build-srd-extras.ts` | `feats`, `feat-meta`, `weapon-meta`, `species-meta`, `background-meta` |
+| `build-spell-*` | `spell-meta`, `spell-lists`, `subclass-spell-grants` + i18n de conjuros |
+| `build-class-features.ts` / `build-phb-i18n-es.ts` | `class-feature-meta`, `subclass-feature-meta` |
+| A mano | `*-resource-meta`, `feat-mechanics-meta`, `spell-grant-meta`, `class-prof-meta`, invocaciones, maniobras, maestrías |
+
+No editar JSON **generado** a mano. Textos ES: `src/data/i18n/`. Manuales opcionales: `data/i18n/` (si existen, se fusionan).
 
 ## Anti-patrones
 

@@ -23,7 +23,7 @@ export function FloatingInfoModal({
         onClick={(e) => e.stopPropagation()}
       >
         <header className="flex items-start justify-between gap-2 border-b border-white/10 px-4 py-3">
-          <h2 id="floating-info-title" className="text-lg font-bold text-gold">
+          <h2 id="floating-info-title" className="text-lg font-bold">
             {title}
           </h2>
           <Button variant="ghost" className="shrink-0 px-2 text-sm" onClick={onClose}>

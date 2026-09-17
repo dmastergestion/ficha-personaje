@@ -321,6 +321,6 @@ export function esDoteOrigenFijada(character: Character, feat: CharacterFeat): b
   ).map((f) => f.id);
   if (!concedidas.includes(feat.id)) return false;
   const primera = character.feats.find((f) => f.id === feat.id);
-  if (!primera) return false;
+  if (!primera) return true;
   return (primera.instanceId ?? primera.id) === (feat.instanceId ?? feat.id);
 }

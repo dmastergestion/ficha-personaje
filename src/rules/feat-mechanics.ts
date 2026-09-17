@@ -5,6 +5,7 @@ import type { AbilityKey, ResourceRecharge, SkillKey } from "@/lib/constants";
 import { SKILL_KEYS } from "@/lib/constants";
 import { bonificadorCompetencia } from "@/rules/ability";
 import { SKILL_LABELS_ES, ABILITY_LABELS_ES } from "@/rules/character";
+import { nombreDote } from "@/rules/feat-text";
 import { ATRIBUTO_CONJURO_CLASE, conjuroDisponibleParaClase } from "@/rules/spell-lists";
 import { maxRecursoPorFormula } from "@/rules/weapon-mastery";
 import type { Character, CharacterFeat, CharacterResource } from "@/schemas/character";
@@ -234,7 +235,7 @@ export function conjurosOtorgadosPorDotes(character: Character): FeatSpellGrant[
       grants.push({
         featInstanceId: instanceId,
         featId: feat.id,
-        featName: feat.name,
+        featName: nombreDote(feat.id) || feat.name,
         spellId,
         level: 0,
         abilityKey: ability,
@@ -247,7 +248,7 @@ export function conjurosOtorgadosPorDotes(character: Character): FeatSpellGrant[
       grants.push({
         featInstanceId: instanceId,
         featId: feat.id,
-        featName: feat.name,
+        featName: nombreDote(feat.id) || feat.name,
         spellId: spell1,
         level: 1,
         abilityKey: ability,
@@ -276,7 +277,7 @@ export function recursosDote(character: Character): CharacterResource[] {
         used: 0,
         recharge: entry.recharge,
         source: "feat",
-        sourceLabel: feat.name,
+        sourceLabel: nombreDote(feat.id) || feat.name,
       });
     }
   }

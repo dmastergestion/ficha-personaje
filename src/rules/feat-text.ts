@@ -1,4 +1,5 @@
 import featDescriptionsEs from "@/data/i18n/feat-descriptions-es.json";
+import i18nEs from "@/data/i18n/es.json";
 import featMetaJson from "@/data/srd/feat-meta.json";
 import { pulirTextoReglasEs } from "@/lib/rules-text-polish";
 
@@ -12,6 +13,7 @@ type FeatMetaFull = FeatMetaEntry & {
 
 const featMeta = featMetaJson as Record<string, FeatMetaFull>;
 const manualEs = featDescriptionsEs as Record<string, string>;
+const featsEs = (i18nEs as { feats?: Record<string, string> }).feats ?? {};
 
 /** Convierte texto de trasfondo ("magic initiate — cleric") al id del catálogo. */
 export function idDoteDesdeTexto(raw: string): string | undefined {
@@ -26,7 +28,7 @@ export function idDoteDesdeTexto(raw: string): string | undefined {
 
 export function nombreDote(id: string): string {
   const entry = featMeta[id];
-  return entry?.nameEs || entry?.name || id;
+  return featsEs[id] || entry?.nameEs || entry?.name || id;
 }
 
 /** Dotes de origen PHB 2024 (rasgo Versátil del humano, etc.). */
@@ -63,7 +65,5 @@ export function descripcionDote(id: string, notes?: string): string | undefined 
 
   const fromMeta = entry.descriptionEs ?? manualEs[id];
   if (fromMeta) return limpiarTextoDote(fromMeta);
-
-  if (entry.description) return limpiarTextoDote(entry.description);
   return notes?.trim() || undefined;
 }

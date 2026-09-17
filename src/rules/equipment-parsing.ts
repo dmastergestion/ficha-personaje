@@ -79,6 +79,14 @@ export const GEAR_LABELS_ES: Record<string, string> = {
   tent: "Tienda",
   "thieves' tools": "Herramientas de ladrón",
   "traveler's clothes": "Ropa de viajero",
+  "arcane focus": "Foco arcano",
+};
+
+const GEAR_DETAIL_ES: Record<string, string> = {
+  orb: "orbe",
+  crystal: "cristal",
+  quarterstaff: "bastón",
+  "occult lore": "saber oculto",
 };
 
 const weaponByNameEn = new Map<string, SrdWeapon>(
@@ -154,8 +162,18 @@ function itemDesdeArma(weapon: SrdWeapon, qty: number, note: string): EquipmentI
 }
 
 function etiquetaEquipoGenerico(raw: string): string {
-  const lower = raw.trim().toLowerCase();
-  return GEAR_LABELS_ES[lower] ?? raw.trim();
+  const trimmed = raw.trim();
+  const lower = trimmed.toLowerCase();
+  if (GEAR_LABELS_ES[lower]) return GEAR_LABELS_ES[lower];
+  const paren = lower.match(/^(.+?)\s+\((.+)\)$/);
+  if (paren) {
+    const base = GEAR_LABELS_ES[paren[1]!.trim()] ?? trimmed.split("(")[0]!.trim();
+    const detail = GEAR_DETAIL_ES[paren[2]!.trim()] ?? paren[2]!.trim();
+    if (GEAR_LABELS_ES[paren[1]!.trim()] || GEAR_DETAIL_ES[paren[2]!.trim()]) {
+      return `${base} (${detail})`;
+    }
+  }
+  return trimmed;
 }
 
 function resolverReferenciaEquipo(token: string, choices: OriginChoices): string {
@@ -258,10 +276,7 @@ function parsearTokenIndividual(
     qty = count;
     label = `${etiquetaEquipoGenerico(base)} (${count} ${unit})`;
   } else if (label.match(/\([^)]+\)$/)) {
-    const paren = label.match(/^(.+?)\s+(\(.+\))$/);
-    if (paren) {
-      label = `${etiquetaEquipoGenerico(paren[1]!.trim())} ${paren[2]}`;
-    }
+    label = etiquetaEquipoGenerico(label);
   } else {
     label = esNombreHerramienta(label) ? etiquetaHerramienta(label) : etiquetaEquipoGenerico(label);
   }

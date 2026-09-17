@@ -7,11 +7,23 @@ interface LayoutProps {
   subtitle?: React.ReactNode;
   children: React.ReactNode;
   actions?: React.ReactNode;
+  overflow?: React.ReactNode;
+  chrome?: "default" | "sheet";
   wide?: boolean;
   status?: React.ReactNode;
 }
 
-export function Layout({ title, subtitle, children, actions, wide = false, status }: LayoutProps) {
+export function Layout({
+  title,
+  subtitle,
+  children,
+  actions,
+  overflow,
+  chrome = "default",
+  wide = false,
+  status,
+}: LayoutProps) {
+  const compact = chrome === "sheet" || wide;
   return (
     <div
       className={cn(
@@ -27,11 +39,11 @@ export function Layout({ title, subtitle, children, actions, wide = false, statu
       >
         <div className="min-w-0">
           <p className="flex flex-wrap items-center gap-2 text-sm text-muted">
-            <span>D&D 2024 · SRD</span>
+            <span>D&D 2024 · PHB</span>
             <OfflineIndicator />
             {status}
           </p>
-          <h1 className={cn("truncate font-bold", wide ? "text-xl leading-tight" : "text-2xl")}>
+          <h1 className={cn("truncate font-bold text-cream", wide ? "text-xl leading-tight" : "text-2xl")}>
             {title}
           </h1>
           {subtitle ? <div className={cn("min-w-0", wide ? "mt-1.5" : "mt-2")}>{subtitle}</div> : null}
@@ -41,21 +53,47 @@ export function Layout({ title, subtitle, children, actions, wide = false, statu
             to="/"
             className={buttonClassName(
               "default",
-              wide ? "inline-flex px-2.5 py-1.5 text-sm" : "inline-flex px-3 py-2",
+              compact ? "inline-flex px-2.5 py-1.5 text-sm" : "inline-flex px-3 py-2",
             )}
           >
             Personajes
           </Link>
-          <Link
-            to="/settings"
-            className={buttonClassName(
-              "default",
-              wide ? "inline-flex px-2.5 py-1.5 text-sm" : "inline-flex px-3 py-2",
-            )}
-          >
-            Ajustes
-          </Link>
+          {chrome !== "sheet" && (
+            <Link
+              to="/settings"
+              className={buttonClassName(
+                "default",
+                compact ? "inline-flex px-2.5 py-1.5 text-sm" : "inline-flex px-3 py-2",
+              )}
+            >
+              Ajustes
+            </Link>
+          )}
           {actions}
+          {(chrome === "sheet" || overflow) && (
+            <details className="sheet-overflow-menu">
+              <summary
+                className={buttonClassName(
+                  "default",
+                  compact ? "cursor-pointer px-2.5 py-1.5 text-sm" : "cursor-pointer px-3 py-2",
+                )}
+                aria-label="Más acciones"
+              >
+                ⋯
+              </summary>
+              <div className="absolute right-0 z-50 mt-1 flex min-w-[10rem] flex-col gap-1 rounded-xl border border-white/10 bg-elevated p-1.5 shadow-lg">
+                {chrome === "sheet" && (
+                  <Link
+                    to="/settings"
+                    className={buttonClassName("ghost", "w-full justify-start px-3 py-1.5 text-sm")}
+                  >
+                    Ajustes
+                  </Link>
+                )}
+                {overflow}
+              </div>
+            </details>
+          )}
         </nav>
       </header>
       <main className="flex-1">{children}</main>
@@ -68,23 +106,23 @@ export type ButtonVariant =
   | "primary"
   | "ghost"
   | "danger"
-  | "combat"
-  /** @deprecated Usa `primary` */
-  | "critical";
+  | "success"
+  | "combat";
 
 export function buttonClassName(variant: ButtonVariant = "default", className?: string) {
-  const resolved = variant === "critical" ? "primary" : variant;
   return cn(
     "inline-flex items-center justify-center rounded-lg px-4 py-2 text-sm transition",
-    "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold/50 focus-visible:ring-offset-2 focus-visible:ring-offset-surface",
+    "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/50 focus-visible:ring-offset-2 focus-visible:ring-offset-surface",
     "disabled:pointer-events-none disabled:opacity-50",
-    resolved === "primary" && "bg-gold font-semibold text-black hover:bg-yellow-300",
-    resolved === "default" && "border border-white/10 hover:bg-white/5",
-    resolved === "ghost" && "text-muted hover:bg-white/5 hover:text-white",
-    resolved === "danger" &&
-      "border border-red-500/40 bg-red-500/10 text-red-200 hover:bg-red-500/20",
-    resolved === "combat" &&
-      "border border-white/20 bg-elevated font-medium hover:border-white/30 hover:bg-white/10",
+    variant === "primary" && "bg-accent font-semibold text-ink hover:bg-accent-hover",
+    variant === "default" && "border border-white/10 text-cream hover:bg-white/5",
+    variant === "ghost" && "text-muted hover:bg-white/5 hover:text-cream",
+    variant === "danger" &&
+      "border border-danger/40 bg-danger/15 text-danger hover:bg-danger/25",
+    variant === "success" &&
+      "border border-success/40 bg-success/15 text-success hover:bg-success/25",
+    variant === "combat" &&
+      "border border-white/20 bg-elevated font-medium text-cream hover:border-white/30 hover:bg-white/10",
     className,
   );
 }

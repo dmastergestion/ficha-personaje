@@ -55,9 +55,9 @@ export function OriginAbilityBonusForm({
   const completa = bonificacionAtributosCompleta(backgroundId, choices, catalogo);
 
   return (
-    <div className="space-y-3 rounded-lg border border-gold/30 bg-gold/5 p-3">
+    <div className="space-y-3 rounded-lg border border-accent/30 bg-accent/5 p-3">
       <div>
-        <p className="text-sm font-medium text-gold">Bonificación de trasfondo</p>
+        <p className="text-sm font-medium">Bonificación de trasfondo</p>
         <p className="text-xs text-muted">
           Regla 2024: +1 a los tres atributos del trasfondo, o +2 a uno y +1 a otro (solo entre esos
           tres).
@@ -69,7 +69,7 @@ export function OriginAbilityBonusForm({
         {modeDef.options.map((opt) => (
           <label
             key={opt.value}
-            className="flex cursor-pointer items-start gap-2 rounded-lg border border-white/10 bg-surface px-3 py-2 text-sm has-[:checked]:border-gold/50 has-[:checked]:bg-gold/10"
+            className="flex cursor-pointer items-start gap-2 rounded-lg border border-white/10 bg-surface px-3 py-2 text-sm has-[:checked]:border-accent/50 has-[:checked]:bg-accent/10"
           >
             <input
               type="radio"

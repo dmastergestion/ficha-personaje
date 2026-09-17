@@ -1,6 +1,8 @@
 import { DiceSourceSelector } from "@/components/DiceSourceSelector";
 import { RollModeSelector } from "@/components/RollModeSelector";
+import { ID_INPUT_D20, ID_INPUT_D20_2 } from "@/hooks/useDiceRollOptions";
 import { useUiStore } from "@/stores/ui-store";
+import { useEffect } from "react";
 
 export function RollSettingsBar({
   compact = false,
@@ -17,6 +19,15 @@ export function RollSettingsBar({
   const physicalDie2 = useUiStore((s) => s.physicalDie2);
   const setPhysicalDie1 = useUiStore((s) => s.setPhysicalDie1);
   const setPhysicalDie2 = useUiStore((s) => s.setPhysicalDie2);
+  const focusPhysicalDie = useUiStore((s) => s.focusPhysicalDie);
+  const setFocusPhysicalDie = useUiStore((s) => s.setFocusPhysicalDie);
+
+  useEffect(() => {
+    if (!focusPhysicalDie) return;
+    const id = focusPhysicalDie === "2" ? ID_INPUT_D20_2 : ID_INPUT_D20;
+    document.getElementById(id)?.focus();
+    setFocusPhysicalDie(null);
+  }, [focusPhysicalDie, setFocusPhysicalDie]);
 
   return (
     <div className={compact ? "space-y-2" : "sheet-sidebar-panel space-y-3"}>
@@ -35,6 +46,7 @@ export function RollSettingsBar({
             <label className="space-y-1">
               <span className="sheet-field-label">D20</span>
               <input
+                id={ID_INPUT_D20}
                 type="number"
                 min={1}
                 max={20}
@@ -48,6 +60,7 @@ export function RollSettingsBar({
               <label className="space-y-1">
                 <span className="sheet-field-label">2º D20</span>
                 <input
+                  id={ID_INPUT_D20_2}
                   type="number"
                   min={1}
                   max={20}

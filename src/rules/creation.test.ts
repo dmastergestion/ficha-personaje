@@ -127,6 +127,21 @@ describe("crearPersonajeDesdeAsistente", () => {
     expect(character.resources.every((r) => r.used === 0)).toBe(true);
   });
 
+  it("Tough + enano en creación suman PG", () => {
+    const farmer = crearPersonajeDesdeAsistente({
+      name: "Gimli",
+      playerName: "J",
+      speciesId: "dwarf",
+      backgroundId: "farmer",
+      classId: "fighter",
+      subclassId: null,
+      level: 1,
+      abilities: { str: 15, dex: 13, con: 14, int: 10, wis: 12, cha: 8 },
+    });
+    expect(farmer.feats.some((f) => f.id === "tough")).toBe(true);
+    expect(farmer.combat.hpMax).toBeGreaterThanOrEqual(10 + 2 + 1 + 2);
+  });
+
   it("alto elfo brujo archifey recibe prestidigitación, paso brumoso y usos gratis", () => {
     const character = crearPersonajeDesdeAsistente({
       name: "Aelith",

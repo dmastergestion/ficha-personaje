@@ -1,14 +1,14 @@
 {
   "version": 1,
-  "source": "foundryvtt/dnd5e SRD 2024 (CC-BY-4.0)",
-  "generatedAt": "2026-06-08T18:54:02.731Z",
+  "source": "PHB 2024 (XPHB) + SRD 5.2.1",
+  "generatedAt": "2026-09-16T12:01:18.447Z",
   "counts": {
     "classes": 12,
-    "subclasses": 12,
+    "subclasses": 48,
     "armor": 13,
     "weapons": 48,
-    "spells": 340,
-    "species": 14,
-    "backgrounds": 4
+    "spells": 391,
+    "species": 29,
+    "backgrounds": 16
   }
 }

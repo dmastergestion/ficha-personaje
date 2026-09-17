@@ -1,8 +1,58 @@
 [
   {
-    "id": "dragonborn",
-    "srdId": "phbspDragonborn0",
-    "nameEn": "Dragonborn"
+    "id": "aasimar",
+    "srdId": "Aasimar|XPHB",
+    "nameEn": "Aasimar"
+  },
+  {
+    "id": "dragonborn-black",
+    "srdId": "Dragonborn (Black)|XPHB",
+    "nameEn": "Dragonborn (Black)"
+  },
+  {
+    "id": "dragonborn-blue",
+    "srdId": "Dragonborn (Blue)|XPHB",
+    "nameEn": "Dragonborn (Blue)"
+  },
+  {
+    "id": "dragonborn-brass",
+    "srdId": "Dragonborn (Brass)|XPHB",
+    "nameEn": "Dragonborn (Brass)"
+  },
+  {
+    "id": "dragonborn-bronze",
+    "srdId": "Dragonborn (Bronze)|XPHB",
+    "nameEn": "Dragonborn (Bronze)"
+  },
+  {
+    "id": "dragonborn-copper",
+    "srdId": "Dragonborn (Copper)|XPHB",
+    "nameEn": "Dragonborn (Copper)"
+  },
+  {
+    "id": "dragonborn-gold",
+    "srdId": "Dragonborn (Gold)|XPHB",
+    "nameEn": "Dragonborn (Gold)"
+  },
+  {
+    "id": "dragonborn-green",
+    "srdId": "Dragonborn (Green)|XPHB",
+    "nameEn": "Dragonborn (Green)"
+  },
+  {
+    "id": "dragonborn-red",
+    "srdId": "Dragonborn (Red)|XPHB",
+    "nameEn": "Dragonborn (Red)"
+  },
+  {
+    "id": "dragonborn-silver",
+    "srdId": "Dragonborn (Silver)|XPHB",
+    "nameEn": "Dragonborn (Silver)"
+  },
+  {
+    "id": "dragonborn-white",
+    "srdId": "Dragonborn (White)|XPHB",
+    "nameEn": "Dragonborn (White)"
   },
   {
     "id": "dwarf",
@@ -35,9 +85,34 @@
     "nameEn": "Gnome, Rock"
   },
   {
-    "id": "goliath",
-    "srdId": "phbspGoliath0000",
-    "nameEn": "Goliath"
+    "id": "goliath-cloud-giant",
+    "srdId": "Goliath; Cloud Giant Ancestry|XPHB",
+    "nameEn": "Goliath, Cloud Giant"
+  },
+  {
+    "id": "goliath-fire-giant",
+    "srdId": "Goliath; Fire Giant Ancestry|XPHB",
+    "nameEn": "Goliath, Fire Giant"
+  },
+  {
+    "id": "goliath-frost-giant",
+    "srdId": "Goliath; Frost Giant Ancestry|XPHB",
+    "nameEn": "Goliath, Frost Giant"
+  },
+  {
+    "id": "goliath-hill-giant",
+    "srdId": "Goliath; Hill Giant Ancestry|XPHB",
+    "nameEn": "Goliath, Hill Giant"
+  },
+  {
+    "id": "goliath-stone-giant",
+    "srdId": "Goliath; Stone Giant Ancestry|XPHB",
+    "nameEn": "Goliath, Stone Giant"
+  },
+  {
+    "id": "goliath-storm-giant",
+    "srdId": "Goliath; Storm Giant Ancestry|XPHB",
+    "nameEn": "Goliath, Storm Giant"
   },
   {
     "id": "halfling",

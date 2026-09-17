@@ -11,6 +11,7 @@ import {
   purificarListasConjuro,
   vinculoRecursoConjuro,
   claseTieneEleccionesConjuro,
+  conteoConjurosOtorgados,
 } from "@/rules/spell-grants";
 
 describe("spell-grants", () => {
@@ -43,6 +44,71 @@ describe("spell-grants", () => {
     const smite = conjurosOtorgadosPersonaje(pj).find((g) => g.spellId === "divine-smite");
     expect(smite?.freeResourceId).toBe("class:paladin:divine-smite-free");
     expect(mejorRecursoLibreParaConjuro(pj, "divine-smite")).toBe(smite?.freeResourceId);
+  });
+
+  it("explorador usa Marca del cazador sin espacio, no un contador aparte", () => {
+    const pj = poblarRecursosSugeridos(
+      crearPersonajeVacio({ name: "Ranger", playerName: "", classId: "ranger", level: 1 }),
+    );
+    const marca = conjurosOtorgadosPersonaje(pj).find((g) => g.spellId === "hunters-mark");
+    expect(marca?.freeResourceId).toBe("class:ranger:hunters-mark-free");
+    expect(pj.resources.some((r) => r.id === "ranger:favored-enemy")).toBe(false);
+    expect(pj.resources.find((r) => r.id === marca?.freeResourceId)?.max).toBe(2);
+  });
+
+  it("dominio de la vida prepara Bendición a nivel 3", () => {
+    const base = crearPersonajeVacio({
+      name: "Clerigo",
+      playerName: "",
+      classId: "cleric",
+      level: 3,
+    });
+    const pj = {
+      ...base,
+      identity: {
+        ...base.identity,
+        classes: [{ classId: "cleric", subclassId: "life", level: 3 }],
+        subclassId: "life",
+      },
+    };
+    const ids = conjurosOtorgadosPersonaje(pj).map((g) => g.spellId);
+    expect(ids).toContain("bless");
+    expect(ids).toContain("cure-wounds");
+  });
+
+  it("círculo de la tierra solo otorga los conjuros del terreno elegido", () => {
+    const base = crearPersonajeVacio({
+      name: "Druida",
+      playerName: "",
+      classId: "druid",
+      level: 3,
+    });
+    const pjArido = {
+      ...base,
+      identity: {
+        ...base.identity,
+        classes: [{ classId: "druid", subclassId: "land", level: 3 }],
+        subclassId: "land",
+      },
+      originChoices: {
+        ...base.originChoices,
+        class: { ...base.originChoices.class, "land-terrain": "arid" },
+      },
+    };
+    const arido = conjurosOtorgadosPersonaje(pjArido).map((g) => g.spellId);
+    expect(arido).toContain("blur");
+    expect(arido).toContain("burning-hands");
+    expect(arido).not.toContain("fog-cloud");
+
+    const polar = conjurosOtorgadosPersonaje({
+      ...pjArido,
+      originChoices: {
+        ...pjArido.originChoices,
+        class: { ...pjArido.originChoices.class, "land-terrain": "polar" },
+      },
+    }).map((g) => g.spellId);
+    expect(polar).toContain("fog-cloud");
+    expect(polar).not.toContain("blur");
   });
 
   it("iniciado en la magia mantiene recurso de conjuro niv. 1", () => {
@@ -290,5 +356,49 @@ describe("spell-grants", () => {
     );
     expect(trasGasto?.usosPorOrigen?.find((u) => u.source === "species")?.restantes).toBe(0);
     expect(trasGasto?.usosPorOrigen?.find((u) => u.source === "subclass")?.restantes).toBe(3);
+  });
+
+  it("Colegio del Saber otorga dos conjuros siempre preparados", () => {
+    const base = crearPersonajeVacio({ name: "Bardo", playerName: "", classId: "bard", level: 6 });
+    const pj = {
+      ...base,
+      identity: {
+        ...base.identity,
+        classes: [{ classId: "bard", subclassId: "lore", level: 6 }],
+        subclassId: "lore",
+      },
+      originChoices: {
+        ...base.originChoices,
+        class: { "lore-secret-1": "cure-wounds", "lore-secret-2": "fireball" },
+      },
+    };
+    expect(claseTieneEleccionesConjuro("bard", pj.identity.classes)).toBe(true);
+    const ids = conjurosOtorgadosPersonaje(pj).map((g) => g.spellId);
+    expect(ids).toContain("cure-wounds");
+    expect(ids).toContain("fireball");
+    const fireball = conjurosOtorgadosPersonaje(pj).find((g) => g.spellId === "fireball");
+    expect(fireball?.alwaysPrepared).toBe(true);
+    expect(fireball?.freeResourceId).toBeUndefined();
+    expect(conteoConjurosOtorgados(pj).prepared).toBe(2);
+  });
+
+  it("Guerrero de las Sombras lanza Oscuridad gastando enfoque", () => {
+    const base = crearPersonajeVacio({ name: "Monje", playerName: "", classId: "monk", level: 3 });
+    const conSub = {
+      ...base,
+      identity: {
+        ...base.identity,
+        classes: [{ classId: "monk", subclassId: "shadow", level: 3 }],
+        subclassId: "shadow",
+      },
+    };
+    const pj = poblarRecursosSugeridos(conSub);
+    const oscuridad = conjurosOtorgadosPersonaje(pj).find((g) => g.spellId === "darkness");
+    expect(oscuridad?.alwaysPrepared).toBe(true);
+    expect(oscuridad?.freeResourceId).toBe("monk:focus-points");
+    expect(oscuridad?.sharedFreeResource).toBe(true);
+    expect(pj.resources.some((r) => r.id === "monk:focus-points")).toBe(true);
+    expect(otorgamientoPorRecursoLibre(pj, "monk:focus-points")).toBeUndefined();
+    expect(mejorRecursoLibreParaConjuro(pj, "darkness")).toBe("monk:focus-points");
   });
 });

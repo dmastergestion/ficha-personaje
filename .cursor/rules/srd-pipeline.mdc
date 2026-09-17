@@ -8,8 +8,11 @@ alwaysApply: false
 
 **Solo build/datos estáticos.** Sin React (`ui-layer`) ni reglas puras (`rules-engine`).
 
-- `data/i18n/` = fuentes manuales; `src/data/` = generado (no parchear salvo `*-meta.json`)
-- Esquema export tracker compartido: `../dnd-data-es/schemas/tracker-export-v1.json`
+- `data/i18n/` = fuentes manuales opcionales (si no existen, el script sigue)
+- `src/data/srd/` generado por `npm run build:data`; **a mano** solo `*-resource-meta`, `feat-mechanics-meta`, `spell-grant-meta`, proficiencias, invocaciones, maniobras, maestrías
+- `src/data/i18n/` = textos ES versionados (salida de `build-i18n-*` / `build-phb-i18n`)
 - IDs internos: `snake_case` inglés; texto visible: i18n ES
 - Cero `fetch` en runtime (salvo export PDF según SPEC)
+- `build-srd.ts` ya escribe ritual/concentración; no hay parche extra
+- `build-phb-catalog.ts` fusiona IDs PHB 2024 en los JSON embebidos (sin copiar descripciones de conjuro)
 - Detalle legal y fuentes: SPEC § Pipeline SRD

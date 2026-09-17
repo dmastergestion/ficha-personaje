@@ -137,3 +137,20 @@ export function mergeManual<T extends Record<string, string>>(
   const manual = loadJson<Record<string, string>>(manualPath);
   return { ...base, ...manual };
 }
+
+/** SRD `hand` vs pack PHB `open-hand`. */
+export const SUBCLASS_ID_CANONICO: Record<string, string> = {
+  "open-hand": "hand",
+};
+
+export function idSubclaseCanonico(id: string): string {
+  return SUBCLASS_ID_CANONICO[id] ?? id;
+}
+
+/** Pack XPHB: vendor (build) o public (PWA empaquetada). */
+export function contentPackPaths(): string[] {
+  return [
+    path.join(root, "vendor", "content-pack", "xphb-pack.json"),
+    path.join(root, "public", "content-pack", "xphb-pack.json"),
+  ];
+}

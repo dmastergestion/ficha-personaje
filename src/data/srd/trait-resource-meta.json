@@ -18,7 +18,7 @@
       "id": "draconic-flight",
       "name": "Vuelo dracónico",
       "recharge": "long",
-      "maxFormula": "pb",
+      "maxFormula": "1",
       "minLevel": 5
     }
   ],
@@ -35,14 +35,6 @@
       "recharge": "long",
       "maxFormula": "pb",
       "minLevel": 3
-    }
-  ],
-  "gnome-forest": [
-    {
-      "id": "speak-with-animals",
-      "name": "Hablar con animales (linaje)",
-      "recharge": "long",
-      "maxFormula": "pb"
     }
   ],
   "gnome-rock": [
@@ -64,7 +56,7 @@
       "id": "large-form",
       "name": "Forma grande",
       "recharge": "long",
-      "maxFormula": "pb",
+      "maxFormula": "1",
       "minLevel": 5
     }
   ],
@@ -79,14 +71,6 @@
       "id": "adrenaline-rush",
       "name": "Subidón de adrenalina",
       "recharge": "short",
-      "maxFormula": "pb"
-    }
-  ],
-  "tiefling": [
-    {
-      "id": "otherworldly-presence",
-      "name": "Presencia de otro mundo",
-      "recharge": "long",
       "maxFormula": "pb"
     }
   ]

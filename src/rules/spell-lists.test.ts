@@ -68,6 +68,25 @@ describe("filtro de listas", () => {
     expect(conjuroDisponibleParaPersonaje("hideous-laughter", 1, ranger)).toBe(false);
   });
 
+  it("conjuros solo PHB entran en la lista de clase", () => {
+    expect(listaConjuro("armor-of-agathys")?.classes).toContain("warlock");
+    expect(
+      conjuroDisponibleParaPersonaje("armor-of-agathys", 1, {
+        classId: "warlock",
+        subclassId: "fiend",
+        level: 1,
+      }),
+    ).toBe(true);
+  });
+
+  it("dominio de la luz añade bolas de fuego al clérigo", () => {
+    const cleric = { classId: "cleric" as const, subclassId: "light", level: 5 };
+    expect(conjuroDisponibleParaPersonaje("fireball", 3, cleric)).toBe(true);
+    expect(
+      conjuroDisponibleParaPersonaje("fireball", 3, { ...cleric, subclassId: "life" }),
+    ).toBe(false);
+  });
+
   it("todo conjuro SRD tiene lista de clase o subclase", () => {
     const sinLista = srdSpells.filter((s) => !listaConjuro(s.id));
     expect(sinLista.map((s) => s.id)).toEqual([]);

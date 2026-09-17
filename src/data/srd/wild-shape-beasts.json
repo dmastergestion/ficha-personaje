@@ -1,68 +1,398 @@
 [
-  { "id": "baboon", "nameEs": "Babuino", "cr": 0, "fly": false },
-  { "id": "badger", "nameEs": "Tejón", "cr": 0, "fly": false },
-  { "id": "bat", "nameEs": "Murciélago", "cr": 0, "fly": true },
-  { "id": "cat", "nameEs": "Gato", "cr": 0, "fly": false },
-  { "id": "crab", "nameEs": "Cangrejo", "cr": 0, "fly": false },
-  { "id": "deer", "nameEs": "Ciervo", "cr": 0, "fly": false },
-  { "id": "eagle", "nameEs": "Águila", "cr": 0, "fly": true },
-  { "id": "frog", "nameEs": "Rana", "cr": 0, "fly": false },
-  { "id": "goat", "nameEs": "Cabra", "cr": 0, "fly": false },
-  { "id": "hawk", "nameEs": "Halcón", "cr": 0, "fly": true },
-  { "id": "hyena", "nameEs": "Hiena", "cr": 0, "fly": false },
-  { "id": "jackal", "nameEs": "Chacal", "cr": 0, "fly": false },
-  { "id": "lizard", "nameEs": "Lagarto", "cr": 0, "fly": false },
-  { "id": "octopus", "nameEs": "Pulpo", "cr": 0, "fly": false },
-  { "id": "owl", "nameEs": "Búho", "cr": 0, "fly": true },
-  { "id": "quipper", "nameEs": "Pez espada", "cr": 0, "fly": false },
-  { "id": "rat", "nameEs": "Rata", "cr": 0, "fly": false },
-  { "id": "raven", "nameEs": "Cuervo", "cr": 0, "fly": true },
-  { "id": "scorpion", "nameEs": "Escorpión", "cr": 0, "fly": false },
-  { "id": "sea-horse", "nameEs": "Caballito de mar", "cr": 0, "fly": false },
-  { "id": "spider", "nameEs": "Araña", "cr": 0, "fly": false },
-  { "id": "vulture", "nameEs": "Buitre", "cr": 0, "fly": true },
-  { "id": "weasel", "nameEs": "Comadreja", "cr": 0, "fly": false },
-  { "id": "blood-hawk", "nameEs": "Halcón sangriento", "cr": 0.125, "fly": true },
-  { "id": "camel", "nameEs": "Camello", "cr": 0.125, "fly": false },
-  { "id": "flying-snake", "nameEs": "Serpiente voladora", "cr": 0.125, "fly": true },
-  { "id": "giant-crab", "nameEs": "Cangrejo gigante", "cr": 0.125, "fly": false },
-  { "id": "giant-rat", "nameEs": "Rata gigante", "cr": 0.125, "fly": false },
-  { "id": "mastiff", "nameEs": "Mastín", "cr": 0.125, "fly": false },
-  { "id": "mule", "nameEs": "Mula", "cr": 0.125, "fly": false },
-  { "id": "poisonous-snake", "nameEs": "Serpiente venenosa", "cr": 0.125, "fly": false },
-  { "id": "pony", "nameEs": "Poni", "cr": 0.125, "fly": false },
-  { "id": "stirge", "nameEs": "Estirge", "cr": 0.125, "fly": true },
-  { "id": "ape", "nameEs": "Simio", "cr": 0.25, "fly": false },
-  { "id": "black-bear", "nameEs": "Oso negro", "cr": 0.25, "fly": false },
-  { "id": "boar", "nameEs": "Jabalí", "cr": 0.25, "fly": false },
-  { "id": "constrictor-snake", "nameEs": "Serpiente constrictora", "cr": 0.25, "fly": false },
-  { "id": "draft-horse", "nameEs": "Caballo de tiro", "cr": 0.25, "fly": false },
-  { "id": "elk", "nameEs": "Alce", "cr": 0.25, "fly": false },
-  { "id": "giant-badger", "nameEs": "Tejón gigante", "cr": 0.25, "fly": false },
-  { "id": "giant-bat", "nameEs": "Murciélago gigante", "cr": 0.25, "fly": true },
-  { "id": "giant-frog", "nameEs": "Rana gigante", "cr": 0.25, "fly": false },
-  { "id": "giant-lizard", "nameEs": "Lagarto gigante", "cr": 0.25, "fly": false },
-  { "id": "giant-owl", "nameEs": "Búho gigante", "cr": 0.25, "fly": true },
-  { "id": "giant-poisonous-snake", "nameEs": "Serpiente venenosa gigante", "cr": 0.25, "fly": false },
-  { "id": "giant-weasel", "nameEs": "Comadreja gigante", "cr": 0.25, "fly": false },
-  { "id": "giant-wolf-spider", "nameEs": "Araña lobo gigante", "cr": 0.25, "fly": false },
-  { "id": "panther", "nameEs": "Pantera", "cr": 0.25, "fly": false },
-  { "id": "pteranodon", "nameEs": "Pteranodonte", "cr": 0.25, "fly": true },
-  { "id": "riding-horse", "nameEs": "Caballo de montar", "cr": 0.25, "fly": false },
-  { "id": "wolf", "nameEs": "Lobo", "cr": 0.25, "fly": false },
-  { "id": "crocodile", "nameEs": "Cocodrilo", "cr": 0.5, "fly": false },
-  { "id": "giant-goat", "nameEs": "Cabra gigante", "cr": 0.5, "fly": false },
-  { "id": "giant-sea-horse", "nameEs": "Caballito de mar gigante", "cr": 0.5, "fly": false },
-  { "id": "giant-wasp", "nameEs": "Avispa gigante", "cr": 0.5, "fly": true },
-  { "id": "reef-shark", "nameEs": "Tiburón de arrecife", "cr": 0.5, "fly": false },
-  { "id": "warhorse", "nameEs": "Caballo de guerra", "cr": 0.5, "fly": false },
-  { "id": "brown-bear", "nameEs": "Oso pardo", "cr": 1, "fly": false },
-  { "id": "dire-wolf", "nameEs": "Lobo temible", "cr": 1, "fly": false },
-  { "id": "giant-eagle", "nameEs": "Águila gigante", "cr": 1, "fly": true },
-  { "id": "giant-hyena", "nameEs": "Hiena gigante", "cr": 1, "fly": false },
-  { "id": "giant-octopus", "nameEs": "Pulpo gigante", "cr": 1, "fly": false },
-  { "id": "giant-spider", "nameEs": "Araña gigante", "cr": 1, "fly": false },
-  { "id": "giant-toad", "nameEs": "Sapo gigante", "cr": 1, "fly": false },
-  { "id": "lion", "nameEs": "León", "cr": 1, "fly": false },
-  { "id": "tiger", "nameEs": "Tigre", "cr": 1, "fly": false }
+  {
+    "id": "baboon",
+    "nameEs": "Babuino",
+    "cr": 0,
+    "fly": false
+  },
+  {
+    "id": "badger",
+    "nameEs": "Tejón",
+    "cr": 0,
+    "fly": false
+  },
+  {
+    "id": "bat",
+    "nameEs": "Murciélago",
+    "cr": 0,
+    "fly": true
+  },
+  {
+    "id": "cat",
+    "nameEs": "Gato",
+    "cr": 0,
+    "fly": false
+  },
+  {
+    "id": "crab",
+    "nameEs": "Cangrejo",
+    "cr": 0,
+    "fly": false
+  },
+  {
+    "id": "deer",
+    "nameEs": "Ciervo",
+    "cr": 0,
+    "fly": false
+  },
+  {
+    "id": "eagle",
+    "nameEs": "Águila",
+    "cr": 0,
+    "fly": true
+  },
+  {
+    "id": "frog",
+    "nameEs": "Rana",
+    "cr": 0,
+    "fly": false
+  },
+  {
+    "id": "goat",
+    "nameEs": "Cabra",
+    "cr": 0,
+    "fly": false
+  },
+  {
+    "id": "hawk",
+    "nameEs": "Halcón",
+    "cr": 0,
+    "fly": true
+  },
+  {
+    "id": "hyena",
+    "nameEs": "Hiena",
+    "cr": 0,
+    "fly": false
+  },
+  {
+    "id": "jackal",
+    "nameEs": "Chacal",
+    "cr": 0,
+    "fly": false
+  },
+  {
+    "id": "lizard",
+    "nameEs": "Lagarto",
+    "cr": 0,
+    "fly": false
+  },
+  {
+    "id": "octopus",
+    "nameEs": "Pulpo",
+    "cr": 0,
+    "fly": false
+  },
+  {
+    "id": "owl",
+    "nameEs": "Búho",
+    "cr": 0,
+    "fly": true
+  },
+  {
+    "id": "quipper",
+    "nameEs": "Pez espada",
+    "cr": 0,
+    "fly": false
+  },
+  {
+    "id": "rat",
+    "nameEs": "Rata",
+    "cr": 0,
+    "fly": false
+  },
+  {
+    "id": "raven",
+    "nameEs": "Cuervo",
+    "cr": 0,
+    "fly": true
+  },
+  {
+    "id": "scorpion",
+    "nameEs": "Escorpión",
+    "cr": 0,
+    "fly": false
+  },
+  {
+    "id": "sea-horse",
+    "nameEs": "Caballito de mar",
+    "cr": 0,
+    "fly": false
+  },
+  {
+    "id": "spider",
+    "nameEs": "Araña",
+    "cr": 0,
+    "fly": false
+  },
+  {
+    "id": "vulture",
+    "nameEs": "Buitre",
+    "cr": 0,
+    "fly": true
+  },
+  {
+    "id": "weasel",
+    "nameEs": "Comadreja",
+    "cr": 0,
+    "fly": false
+  },
+  {
+    "id": "blood-hawk",
+    "nameEs": "Halcón sangriento",
+    "cr": 0.125,
+    "fly": true
+  },
+  {
+    "id": "camel",
+    "nameEs": "Camello",
+    "cr": 0.125,
+    "fly": false
+  },
+  {
+    "id": "flying-snake",
+    "nameEs": "Serpiente voladora",
+    "cr": 0.125,
+    "fly": true
+  },
+  {
+    "id": "giant-crab",
+    "nameEs": "Cangrejo gigante",
+    "cr": 0.125,
+    "fly": false
+  },
+  {
+    "id": "giant-rat",
+    "nameEs": "Rata gigante",
+    "cr": 0.125,
+    "fly": false
+  },
+  {
+    "id": "mastiff",
+    "nameEs": "Mastín",
+    "cr": 0.125,
+    "fly": false
+  },
+  {
+    "id": "mule",
+    "nameEs": "Mula",
+    "cr": 0.125,
+    "fly": false
+  },
+  {
+    "id": "poisonous-snake",
+    "nameEs": "Serpiente venenosa",
+    "cr": 0.125,
+    "fly": false
+  },
+  {
+    "id": "pony",
+    "nameEs": "Poni",
+    "cr": 0.125,
+    "fly": false
+  },
+  {
+    "id": "stirge",
+    "nameEs": "Estirge",
+    "cr": 0.125,
+    "fly": true
+  },
+  {
+    "id": "ape",
+    "nameEs": "Simio",
+    "cr": 0.5,
+    "fly": false
+  },
+  {
+    "id": "black-bear",
+    "nameEs": "Oso negro",
+    "cr": 0.5,
+    "fly": false
+  },
+  {
+    "id": "boar",
+    "nameEs": "Jabalí",
+    "cr": 0.25,
+    "fly": false
+  },
+  {
+    "id": "constrictor-snake",
+    "nameEs": "Serpiente constrictora",
+    "cr": 0.25,
+    "fly": false
+  },
+  {
+    "id": "draft-horse",
+    "nameEs": "Caballo de tiro",
+    "cr": 0.25,
+    "fly": false
+  },
+  {
+    "id": "elk",
+    "nameEs": "Alce",
+    "cr": 0.25,
+    "fly": false
+  },
+  {
+    "id": "giant-badger",
+    "nameEs": "Tejón gigante",
+    "cr": 0.25,
+    "fly": false
+  },
+  {
+    "id": "giant-bat",
+    "nameEs": "Murciélago gigante",
+    "cr": 0.25,
+    "fly": true
+  },
+  {
+    "id": "giant-frog",
+    "nameEs": "Rana gigante",
+    "cr": 0.25,
+    "fly": false
+  },
+  {
+    "id": "giant-lizard",
+    "nameEs": "Lagarto gigante",
+    "cr": 0.25,
+    "fly": false
+  },
+  {
+    "id": "giant-owl",
+    "nameEs": "Búho gigante",
+    "cr": 0.25,
+    "fly": true
+  },
+  {
+    "id": "giant-poisonous-snake",
+    "nameEs": "Serpiente venenosa gigante",
+    "cr": 0.25,
+    "fly": false
+  },
+  {
+    "id": "giant-weasel",
+    "nameEs": "Comadreja gigante",
+    "cr": 0.125,
+    "fly": false
+  },
+  {
+    "id": "giant-wolf-spider",
+    "nameEs": "Araña lobo gigante",
+    "cr": 0.25,
+    "fly": false
+  },
+  {
+    "id": "panther",
+    "nameEs": "Pantera",
+    "cr": 0.25,
+    "fly": false
+  },
+  {
+    "id": "pteranodon",
+    "nameEs": "Pteranodonte",
+    "cr": 0.25,
+    "fly": true
+  },
+  {
+    "id": "riding-horse",
+    "nameEs": "Caballo de montar",
+    "cr": 0.25,
+    "fly": false
+  },
+  {
+    "id": "wolf",
+    "nameEs": "Lobo",
+    "cr": 0.25,
+    "fly": false
+  },
+  {
+    "id": "crocodile",
+    "nameEs": "Cocodrilo",
+    "cr": 0.5,
+    "fly": false
+  },
+  {
+    "id": "giant-goat",
+    "nameEs": "Cabra gigante",
+    "cr": 0.5,
+    "fly": false
+  },
+  {
+    "id": "giant-sea-horse",
+    "nameEs": "Caballito de mar gigante",
+    "cr": 0.5,
+    "fly": false
+  },
+  {
+    "id": "giant-wasp",
+    "nameEs": "Avispa gigante",
+    "cr": 0.5,
+    "fly": true
+  },
+  {
+    "id": "reef-shark",
+    "nameEs": "Tiburón de arrecife",
+    "cr": 0.5,
+    "fly": false
+  },
+  {
+    "id": "warhorse",
+    "nameEs": "Caballo de guerra",
+    "cr": 0.5,
+    "fly": false
+  },
+  {
+    "id": "brown-bear",
+    "nameEs": "Oso pardo",
+    "cr": 1,
+    "fly": false
+  },
+  {
+    "id": "dire-wolf",
+    "nameEs": "Lobo temible",
+    "cr": 1,
+    "fly": false
+  },
+  {
+    "id": "giant-eagle",
+    "nameEs": "Águila gigante",
+    "cr": 1,
+    "fly": true
+  },
+  {
+    "id": "giant-hyena",
+    "nameEs": "Hiena gigante",
+    "cr": 1,
+    "fly": false
+  },
+  {
+    "id": "giant-octopus",
+    "nameEs": "Pulpo gigante",
+    "cr": 1,
+    "fly": false
+  },
+  {
+    "id": "giant-spider",
+    "nameEs": "Araña gigante",
+    "cr": 1,
+    "fly": false
+  },
+  {
+    "id": "giant-toad",
+    "nameEs": "Sapo gigante",
+    "cr": 1,
+    "fly": false
+  },
+  {
+    "id": "lion",
+    "nameEs": "León",
+    "cr": 1,
+    "fly": false
+  },
+  {
+    "id": "tiger",
+    "nameEs": "Tigre",
+    "cr": 1,
+    "fly": false
+  }
 ]

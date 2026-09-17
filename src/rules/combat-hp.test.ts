@@ -45,6 +45,16 @@ describe("aplicarCambioPv", () => {
     expect(result.hpCurrent).toBe(20);
   });
 
+  it("rabia resiste contundente/perforante/cortante, no elemental", () => {
+    const combat = {
+      ...crearPersonajeVacio({ name: "B", playerName: "J", classId: "barbarian" }).combat,
+      hpCurrent: 20,
+      raging: true,
+    };
+    expect(aplicarCambioPv(combat, -10, { damageType: "cortante" }).hpCurrent).toBe(15);
+    expect(aplicarCambioPv(combat, -10, { damageType: "fuego" }).hpCurrent).toBe(10);
+  });
+
   it("a 0 PV el daño extra suma un fallo de muerte", () => {
     const pj = crearPersonajeVacio({ name: "T", playerName: "J", classId: "fighter" });
     pj.combat.hpCurrent = 0;
@@ -71,5 +81,20 @@ describe("aplicarCambioPv", () => {
     const result = aplicarDeltaPvPersonaje(pj, -12);
     expect(result.character.combat.deathSaves.failures).toBe(3);
     expect(result.deathMessage).toMatch(/instantánea/i);
+  });
+
+  it("con rabia no aplica daño sin tipo", () => {
+    const pj = crearPersonajeVacio({ name: "B", playerName: "J", classId: "barbarian" });
+    pj.combat.hpCurrent = 18;
+    pj.combat.hpMax = 18;
+    pj.combat.raging = true;
+    const sinTipo = aplicarDeltaPvPersonaje(pj, -5);
+    expect(sinTipo.character.combat.hpCurrent).toBe(18);
+    expect(sinTipo.damageTaken).toBe(0);
+    expect(sinTipo.warning).toMatch(/tipo de daño/i);
+
+    const cortante = aplicarDeltaPvPersonaje(pj, -10, { damageType: "cortante" });
+    expect(cortante.character.combat.hpCurrent).toBe(13);
+    expect(cortante.warning).toBeUndefined();
   });
 });

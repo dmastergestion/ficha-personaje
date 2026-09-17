@@ -8,9 +8,9 @@ Regla Cursor: `.cursor/rules/ficha-personaje.mdc` · Resumen operativo: `PROMPT.
 
 ## Visión
 
-PWA offline-first para gestionar fichas de personaje **D&D 5e reglas 2024 (SRD 5.2.1)**. Uso personal o grupos reducidos. Sin backend. Datos locales (IndexedDB). Optimizada para mesa real: acceso rápido, offline tras instalación, automatización de cálculos repetitivos sin sustituir decisiones del jugador.
+PWA offline-first para gestionar fichas de personaje **D&D 5e reglas 2024 (PHB + SRD 5.2.1)**. Uso personal si posees el libro, o grupos reducidos. Sin backend. Datos locales (IndexedDB). Optimizada para mesa real: acceso rápido, offline tras instalación, automatización de cálculos repetitivos sin sustituir decisiones del jugador.
 
-Proyecto **independiente** de [herramientas-dm](https://github.com/dmastergestion/herramientas-dm). Reutilización opcional: export mínimo compatible con tracker, color crítico `#ffd54f`.
+Proyecto **independiente** de [herramientas-dm](https://github.com/dmastergestion/herramientas-dm). Reutilización opcional: export mínimo compatible con tracker. El color de mesa de la ficha es sage (`#8fbfa8`), no el oro del tracker.
 
 ---
 
@@ -37,7 +37,7 @@ Proyecto **independiente** de [herramientas-dm](https://github.com/dmastergestio
 ## Reglas de desarrollo
 
 - No añadir funcionalidades fuera de la fase activa (ver tabla v1/v2).
-- No inventar reglas D&D: solo SRD 2024 / reglas documentadas en esta SPEC.
+- No inventar reglas D&D: PHB 2024 (uso personal) y SRD 5.2.1 / reglas documentadas en esta SPEC.
 - React **nunca** contiene lógica de reglas.
 - Cálculos derivados **nunca** se persisten (modificadores, CA calculada, bonificador de competencia).
 - Sin APIs externas en runtime.
@@ -66,7 +66,7 @@ Tracker de iniciativa de grupo, mapas, multijugador, vista DM/party, VTT, backen
 | Inventario con peso, qty, sintonización; carga STR×15 lb | [x] |
 | Combate: ataques, daño tipado, salvaciones de muerte, concentración | [x] |
 | Hechizos: trucos, preparados/conocidos, ritual, descripciones ES | [x] |
-| Catálogo SRD + pack PHB opcional (local) | [x] |
+| Catálogo PHB 2024 embebido (uso personal; SRD como base legal) | [x] |
 | PWA: banner actualización, offline, shortcuts | [x] |
 | Export JSON backup + tracker mínimo | [x] |
 | PDF oficial AcroForm (`pdf-lib`) en local y Pages | [x] |
@@ -89,10 +89,14 @@ ficha-personaje/
 ├── .github/workflows/     # CI: test, build, deploy Pages
 ├── public/
 ├── scripts/
-│   ├── build-srd.ts              # Markdown EN → src/data/srd/*.json
-│   ├── build-i18n-es.ts          # Traducciones → src/data/i18n/es.json
-│   ├── build-spell-i18n-es.ts    # Descripciones conjuros ES
-│   ├── build-spell-components-es.ts
+│   ├── build-srd.ts              # YAML Foundry → classes/weapons/spells/… (+ ritual/concentración)
+│   ├── build-srd-extras.ts       # 5etools → feats + metas de origen/arma
+│   ├── build-i18n-es.ts          # Nombres ES → src/data/i18n/es.json
+│   ├── build-spell-*.ts          # Meta, listas, componentes y descripciones de conjuros
+│   ├── build-phb-i18n-es.ts      # Textos PHB ES + subclass-feature-meta
+│   ├── build-class-features.ts   # class-feature-meta (rasgos de clase)
+│   ├── convert-5etools.ts        # Pack XPHB local
+│   ├── build-phb-catalog.ts      # Fusiona IDs PHB en JSON embebidos
 │   ├── prepare-pdf-template.py   # Plantilla PDF local (gitignored)
 │   └── check-pdf-template.mjs    # Aviso solo en build local
 ├── src/
@@ -158,6 +162,8 @@ flowchart TB
 - IDs internos: `snake_case` en inglés (estables).
 - Texto visible: `i18n/es.json` (nombres) + descripciones/componentes de conjuros en JSON dedicados.
 - Build-time only; **cero fetch** en runtime salvo plantilla PDF (`HEAD` + `GET` al exportar).
+- Regenerar: `npm run build:data` (requiere `vendor/`). CI usa los JSON versionados, no regenera.
+- `feat-meta` / `species-meta` / `background-meta` / `weapon-meta` salen de `build-srd-extras` (no editar a mano). Metas de recursos, grants, proficiencias y maestrías sí se editan a mano.
 
 ---
 
@@ -278,7 +284,7 @@ Guardar → redirige a `/character/:id`.
 
 **Tab Notas:** texto libre + homebrew (campos libres, sin validación SRD).
 
-**Tab Añadir:** catálogo de dotes, conjuros y equipo a incorporar a la ficha.
+**Tab Catálogo:** dotes, conjuros y equipo a incorporar a la ficha.
 
 Barra fija inferior (solo móvil): acceso rápido Combate + ataque/lanzar. Hidden en `lg+`.
 
@@ -293,7 +299,7 @@ Barra fija inferior (solo móvil): acceso rápido Combate + ataque/lanzar. Hidde
 ## UX
 
 - Tema oscuro por defecto; legible en 16".
-- Acciones críticas (tirar, daño, curación, guardar): color `#ffd54f`.
+- Acciones de mesa (tirar, atacar, lanzar): acento sage `#8fbfa8` sobre pergamino; texto crema `#e8dfd2`. Daño/curación: rojo/verde apagados. Sin oro `#ffd54f` en la UI.
 - Sin chincheta nativa (limitación PWA); recomendar instalación a pantalla completa.
 
 ---

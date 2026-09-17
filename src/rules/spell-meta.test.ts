@@ -41,7 +41,7 @@ describe("mergeConjurosCatalogo", () => {
       ["hideous-laughter", "tashas-hideous-laughter"].includes(s.id),
     );
     expect(risa).toHaveLength(1);
-    expect(risa[0]?.id).toBe("tashas-hideous-laughter");
+    expect(risa[0]?.id).toBe("hideous-laughter");
     expect(risa[0]?.concentration).toBe(true);
     expect(conjuroRequiereConcentracion("hideous-laughter", risa[0])).toBe(true);
   });
@@ -159,5 +159,44 @@ describe("buildCatalog.esRitual", () => {
     });
 
     expect(catalog.esRitual("alarm")).toBe(true);
+  });
+});
+
+describe("buildCatalog subclases", () => {
+  it("unifica open-hand del pack con hand del SRD", () => {
+    const catalog = buildCatalog({
+      version: 1,
+      source: "XPHB",
+      from: "test",
+      generatedAt: new Date().toISOString(),
+      counts: {
+        spells: 0,
+        classes: 0,
+        subclasses: 1,
+        species: 0,
+        backgrounds: 0,
+        weapons: 0,
+        armor: 0,
+      },
+      spells: [],
+      classes: [],
+      subclasses: [{ id: "open-hand", nameEn: "Warrior of the Open Hand", classId: "monk" }],
+      species: [],
+      backgrounds: [],
+      weapons: [],
+      armor: [],
+      i18nEs: {
+        spells: {},
+        classes: {},
+        subclasses: {},
+        species: {},
+        backgrounds: {},
+        weapons: {},
+        armor: {},
+      },
+    });
+    const monk = catalog.subclasses.filter((s) => s.classId === "monk");
+    expect(monk.filter((s) => s.id === "hand" || s.id === "open-hand")).toHaveLength(1);
+    expect(monk.some((s) => s.id === "hand")).toBe(true);
   });
 });

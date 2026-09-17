@@ -10,8 +10,10 @@ import {
 } from "@/rules/level-up";
 import {
   ajustarNivelTotal,
+  agregarClase,
   sincronizarIdentidadMulticlase,
   validarClases,
+  validarRequisitosMulticlase,
 } from "@/rules/multiclass";
 import { competenciasClase, SALVACIONES_CLASE } from "@/rules/proficiencies";
 import type { GameCatalog } from "@/rules/catalog";
@@ -149,6 +151,20 @@ export function useCharacterIdentityControls(
     onChange(reaplicarOrigen(character, speciesId, backgroundId, catalogo));
   }
 
+  function onAddClass(classId: string) {
+    const next = agregarClase(character.identity.classes, classId);
+    if (!next) {
+      setErrorClases("No se puede añadir esa clase (ya la tienes o el nivel total es 20).");
+      return;
+    }
+    const req = validarRequisitosMulticlase(next, character.abilities);
+    if (req) {
+      setErrorClases(req);
+      return;
+    }
+    intentarCambioClases(next);
+  }
+
   function onLevelChange(delta: -1 | 1) {
     const next = ajustarNivelTotal(character.identity.classes, delta);
     if (next) intentarCambioClases(next);
@@ -213,6 +229,7 @@ export function useCharacterIdentityControls(
     levelUpPreview,
     pendingClasses,
     onClassChange,
+    onAddClass,
     onOriginChange,
     onLevelChange,
     confirmarSubidaNivel,

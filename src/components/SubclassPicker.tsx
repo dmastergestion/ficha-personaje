@@ -46,8 +46,7 @@ export function SubclassPicker({
     return (
       <p className="text-xs text-amber-300/90">
         No hay {tipoLabel.toLowerCase()}s en el catálogo para{" "}
-        {catalog.t("classes", classLevel.classId, classLevel.classId)}. Comprueba que el content
-        pack PHB esté cargado en Ajustes.
+        {catalog.t("classes", classLevel.classId, classLevel.classId)}.
       </p>
     );
   }

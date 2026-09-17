@@ -11,6 +11,7 @@ import {
   conjuroRequiereConcentracion,
 } from "@/rules/spell-meta";
 import { inferSpeciesGroupId } from "@/rules/species-catalog";
+import { SUBCLASS_ID_ALIASES } from "@/rules/class-features";
 import {
   i18n,
   srdArmor,
@@ -66,12 +67,54 @@ const weaponMeta = weaponMetaJson as WeaponMetaFile;
 const speciesMeta = speciesMetaJson as SpeciesMetaFile;
 const backgroundMeta = backgroundMetaJson as BackgroundMetaFile;
 
-function mergeById<T extends { id: string }>(base: T[], extra: T[] | undefined): T[] {
+function idSubclaseCanonico(id: string): string {
+  if (id === "open-hand") return "hand";
+  return id;
+}
+
+function idsOcupados(id: string, aliases: (id: string) => string[]): string[] {
+  return [...new Set([id, ...aliases(id)])];
+}
+
+/** Añade solo ids nuevos. No sustituye el PHB embebido ni duplica alias (hand/open-hand). */
+function fusionarSinDuplicar<T extends { id: string }>(
+  base: T[],
+  extra: T[] | undefined,
+  aliases: (id: string) => string[] = (id) => [id],
+): T[] {
   const map = new Map(base.map((item) => [item.id, item]));
+  const ocupados = new Set(base.flatMap((item) => idsOcupados(item.id, aliases)));
   for (const item of extra ?? []) {
-    map.set(item.id, item as T);
+    if (idsOcupados(item.id, aliases).some((id) => ocupados.has(id))) continue;
+    map.set(item.id, item);
+    for (const id of idsOcupados(item.id, aliases)) ocupados.add(id);
   }
   return [...map.values()];
+}
+
+function fusionarEspecies(
+  base: SrdSpecies[],
+  extra: SrdSpecies[] | undefined,
+): SrdSpecies[] {
+  const gruposConVariante = new Set(
+    base
+      .map((s) => inferSpeciesGroupId(s.id))
+      .filter((grupo) => base.some((s) => inferSpeciesGroupId(s.id) === grupo && s.id !== grupo)),
+  );
+  const ocupados = new Set(base.map((s) => s.id));
+  const out = [...base];
+  for (const item of extra ?? []) {
+    if (ocupados.has(item.id)) continue;
+    const grupo = inferSpeciesGroupId(item.id);
+    if (item.id === grupo && gruposConVariante.has(grupo)) continue;
+    ocupados.add(item.id);
+    out.push(item);
+  }
+  return out;
+}
+
+function aliasesSubclase(id: string): string[] {
+  return [idSubclaseCanonico(id), ...(SUBCLASS_ID_ALIASES[id] ?? [])];
 }
 
 function translate(
@@ -82,7 +125,12 @@ function translate(
 ): string {
   if (!id) return fallback;
 
-  const ids = category === "spells" ? idsEquivalentesConjuro(id) : [id];
+  const ids =
+    category === "spells"
+      ? idsEquivalentesConjuro(id)
+      : category === "subclasses"
+        ? [id, ...(SUBCLASS_ID_ALIASES[id] ?? [])]
+        : [id];
 
   if (category === "speciesGroups") {
     const manual = phbManual.speciesGroups as Record<string, string> | undefined;
@@ -95,8 +143,8 @@ function translate(
 
   for (const lookupId of ids) {
     const translated =
-      i18n[category as keyof Omit<I18nBundle, "ui">]?.[lookupId] ??
       manualCat?.[lookupId] ??
+      i18n[category as keyof Omit<I18nBundle, "ui">]?.[lookupId] ??
       pack?.i18nEs?.[category as keyof ContentPack["i18nEs"]]?.[lookupId];
     if (translated) return translated;
   }
@@ -200,7 +248,11 @@ export function buildCatalog(pack: ContentPack | null): GameCatalog {
 
   const packClasses = pack?.classes.map((c) => ({ ...c, srdId: c.externalId ?? c.id })) ?? [];
   const packSubclasses =
-    pack?.subclasses.map((s) => ({ ...s, srdId: s.externalId ?? s.id })) ?? [];
+    pack?.subclasses.map((s) => ({
+      ...s,
+      id: idSubclaseCanonico(s.id),
+      srdId: s.externalId ?? s.id,
+    })) ?? [];
   const packSpecies: SrdSpecies[] =
     pack?.species.map((s) => ({
       id: s.id,
@@ -238,19 +290,23 @@ export function buildCatalog(pack: ContentPack | null): GameCatalog {
   const packArmor = pack?.armor.map((a) => ({ ...a, srdId: a.externalId ?? a.id })) ?? [];
 
   const spells = mergeConjurosCatalogo(srdSpells, packSpells).map(enrichSpell);
-  const weapons = mergeById(srdWeapons, packWeapons).map(enrichWeapon);
-  const species = mergeById(srdSpecies, packSpecies).map(enrichSpecies);
-  const backgrounds = mergeById(srdBackgrounds, packBackgrounds).map(enrichBackground);
+  const weapons = fusionarSinDuplicar(srdWeapons, packWeapons).map(enrichWeapon);
+  const species = fusionarEspecies(srdSpecies, packSpecies).map(enrichSpecies);
+  const backgrounds = fusionarSinDuplicar(srdBackgrounds, packBackgrounds).map(enrichBackground);
 
   const catalog: GameCatalog = {
     pack,
-    classes: mergeById(srdClasses, packClasses as SrdClass[]),
-    subclasses: mergeById(srdSubclasses, packSubclasses as SrdSubclass[]),
+    classes: fusionarSinDuplicar(srdClasses, packClasses as SrdClass[]),
+    subclasses: fusionarSinDuplicar(
+      srdSubclasses,
+      packSubclasses as SrdSubclass[],
+      aliasesSubclase,
+    ),
     species,
     backgrounds,
     spells,
     weapons,
-    armor: mergeById(srdArmor, packArmor as SrdArmor[]),
+    armor: fusionarSinDuplicar(srdArmor, packArmor as SrdArmor[]),
     t(category, id, fallback = "") {
       return translate(category, id, fallback, pack);
     },
@@ -298,6 +354,30 @@ export function buildCatalog(pack: ContentPack | null): GameCatalog {
 }
 
 export const defaultCatalog = buildCatalog(null);
+
+export interface ResumenPackNuevo {
+  spells: number;
+  subclasses: number;
+  species: number;
+  backgrounds: number;
+  classes: number;
+  weapons: number;
+  armor: number;
+}
+
+/** Cuántas entradas nuevas aporta un pack respecto al PHB embebido. */
+export function resumenPackNuevo(pack: ContentPack): ResumenPackNuevo {
+  const merged = buildCatalog(pack);
+  return {
+    spells: merged.spells.length - defaultCatalog.spells.length,
+    subclasses: merged.subclasses.length - defaultCatalog.subclasses.length,
+    species: merged.species.length - defaultCatalog.species.length,
+    backgrounds: merged.backgrounds.length - defaultCatalog.backgrounds.length,
+    classes: merged.classes.length - defaultCatalog.classes.length,
+    weapons: merged.weapons.length - defaultCatalog.weapons.length,
+    armor: merged.armor.length - defaultCatalog.armor.length,
+  };
+}
 
 function buscarConjuro(spells: SrdSpell[], spellId: string): SrdSpell | undefined {
   for (const id of idsEquivalentesConjuro(spellId)) {

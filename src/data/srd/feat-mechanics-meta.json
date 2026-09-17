@@ -35,5 +35,71 @@
   },
   "skilled": {
     "skillChoices": 3
+  },
+  "mage-slayer": {
+    "resources": [
+      {
+        "id": "guarded-mind",
+        "name": "Mente protegida",
+        "recharge": "short",
+        "maxFormula": "1"
+      }
+    ]
+  },
+  "ritual-caster": {
+    "resources": [
+      {
+        "id": "quick-ritual",
+        "name": "Ritual veloz",
+        "recharge": "long",
+        "maxFormula": "1"
+      }
+    ]
+  },
+  "chef": {
+    "resources": [
+      {
+        "id": "treats",
+        "name": "Golosinas estimulantes",
+        "recharge": "long",
+        "maxFormula": "pb"
+      }
+    ]
+  },
+  "crafter": {
+    "resources": [
+      {
+        "id": "fast-craft",
+        "name": "Fabricación rápida",
+        "recharge": "long",
+        "maxFormula": "1"
+      }
+    ]
+  },
+  "boon-of-fate": {
+    "resources": [
+      {
+        "id": "improve-fate",
+        "name": "Mejorar el destino",
+        "recharge": "short",
+        "maxFormula": "1"
+      }
+    ]
+  },
+  "boon-of-recovery": {
+    "resources": [
+      {
+        "id": "last-stand",
+        "name": "Última resistencia",
+        "recharge": "long",
+        "maxFormula": "1"
+      },
+      {
+        "id": "vitality-dice",
+        "name": "Dados de vitalidad",
+        "recharge": "long",
+        "maxFormula": "10"
+      }
+    ]
   }
 }

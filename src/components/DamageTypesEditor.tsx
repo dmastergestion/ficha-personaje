@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { DAMAGE_TYPES } from "@/lib/constants";
+import { resistenciasEspecie } from "@/rules/damage-resistances";
 import { resistenciasObjetosMagicos } from "@/rules/inventory";
 import type { Character } from "@/schemas/character";
 
@@ -35,12 +36,12 @@ function TypeChips({
             <button
               key={type}
               type="button"
-              className="inline-flex items-center gap-1 rounded bg-gold/20 px-2 py-0.5 text-xs text-gold"
+              className="inline-flex items-center gap-1 rounded bg-white/10 px-2 py-0.5 text-xs text-muted"
               onClick={() => onChange(toggleType(list, type, false))}
               title="Quitar"
             >
               {type}
-              <span className="text-gold/70">×</span>
+              <span className="text-accent/70">×</span>
             </button>
           ))}
         </div>
@@ -77,10 +78,14 @@ export function DamageTypesEditor({
   character: Character;
   onChange: (next: Character) => void;
 }) {
+  const deEspecie = resistenciasEspecie(character.identity.speciesId);
+  const deObjetos = resistenciasObjetosMagicos(character);
   return (
     <section className="rounded-xl border border-white/10 bg-panel p-3">
       <h3 className="mb-2 text-sm font-semibold">Daño (resistencias / vulnerabilidades / inmunidades)</h3>
-      <p className="mb-2 text-xs text-muted">Solo se muestran los tipos elegidos. Añade desde el desplegable.</p>
+      <p className="mb-2 text-xs text-muted">
+        Especie y objetos se aplican solos al infligir daño. El desplegable es para extras (conjuros, etc.).
+      </p>
       <div className="space-y-3">
         <TypeChips
           label="Resistencias"
@@ -89,10 +94,11 @@ export function DamageTypesEditor({
             onChange({ ...character, combat: { ...character.combat, damageResistances } })
           }
         />
-        {resistenciasObjetosMagicos(character).length > 0 && (
-          <p className="text-xs text-gold">
-            De objetos sintonizados: {resistenciasObjetosMagicos(character).join(", ")}
-          </p>
+        {deEspecie.length > 0 && (
+          <p className="text-xs text-muted">De especie: {deEspecie.join(", ")}</p>
+        )}
+        {deObjetos.length > 0 && (
+          <p className="text-xs text-muted">De objetos sintonizados: {deObjetos.join(", ")}</p>
         )}
         <TypeChips
           label="Vulnerabilidades"

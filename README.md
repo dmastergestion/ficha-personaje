@@ -1,6 +1,6 @@
 # Ficha de personaje D&D 2024
 
-PWA offline-first para fichas de personaje **D&D 5e (SRD 5.2.1 / reglas 2024)**. Proyecto independiente de la [suite DM](https://github.com/dmastergestion/herramientas-dm).
+PWA offline-first para fichas de personaje **D&D 5e (PHB 2024 / SRD 5.2.1)**. Proyecto independiente de la [suite DM](https://github.com/dmastergestion/herramientas-dm). Uso personal si posees el libro.
 
 ## Uso sin instalar nada (jugadores / mesa)
 
@@ -8,7 +8,7 @@ PWA offline-first para fichas de personaje **D&D 5e (SRD 5.2.1 / reglas 2024)**.
 2. En Chrome/Edge: menú → **Instalar aplicación** / **Añadir a pantalla de inicio**
 3. Listo: funciona **offline** con tus personajes guardados en el dispositivo
 
-Incluye **SRD + PHB 2024 en español** (conjuros, clases, subclases, especies, trasfondos, dotes). No hace falta importar ningún archivo ni instalar Node en el dispositivo donde juegas.
+Incluye el **catálogo PHB 2024 en español** (conjuros, clases, subclases, especies, trasfondos, dotes) embebido en la app. No hace falta importar ningún archivo ni instalar Node en el dispositivo donde juegas.
 
 ## Desarrollo (solo mantenedores)
 
@@ -55,9 +55,12 @@ Los JSON generados en `src/data/` se versionan para que CI y usuarios no dependa
 | `npm run dev` | Servidor local Vite |
 | `npm run build` | Build producción |
 | `npm test` | Vitest (reglas + db) |
-| `npm run build:data` | Regenerar SRD + traducciones ES |
+| `npm run build:data` | Regenerar SRD + PHB embebido + traducciones ES |
+| `npm run build:phb-catalog` | Fusionar IDs PHB 2024 en `src/data/srd/` (requiere pack local) |
+| `npm run build:srd` | Solo catálogo Foundry (`classes.json`, `spells.json`, …) |
 | `npm run fetch:5etools` | Descargar JSON 5etools (solo `data/`) |
 | `npm run build:content-pack` | Generar pack XPHB local desde 5etools |
+| `npm run build:wild-shape-combat` | Combate de forma salvaje: `npm run build:wild-shape-combat -- <animals.md>` |
 | `npm run prepare:pdf-template` | Copiar plantilla oficial editable a `public/pdf/` |
 | `npm run normalize:manual-i18n` | Pulido editorial en JSON manuales y catálogos generados |
 | `npm run generate:subclass-features-manual` | Regenerar borrador de rasgos de subclase PHB (ver abajo) |

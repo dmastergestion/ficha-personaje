@@ -1,4 +1,4 @@
-import { ID_CONJURO_SRD_A_PACK, idSrdConjuro } from "@/rules/spell-aliases";
+import { idSrdConjuro, idsEquivalentesConjuro } from "@/rules/spell-aliases";
 import { srdSpells, type SrdSpell } from "@/rules/srd";
 
 const concentracionSrd = new Map(
@@ -36,19 +36,22 @@ export function mergeConjurosCatalogo(
   extra: SrdSpell[] | undefined,
 ): SrdSpell[] {
   const map = new Map(base.map((item) => [item.id, { ...item }]));
-
-  for (const item of extra ?? []) {
-    const existing = map.get(item.id);
-    map.set(item.id, fusionarConjuro(existing, item));
+  const aliasAId = new Map<string, string>();
+  for (const id of map.keys()) {
+    for (const alias of idsEquivalentesConjuro(id)) aliasAId.set(alias, id);
   }
 
-  for (const [srdId, packId] of Object.entries(ID_CONJURO_SRD_A_PACK)) {
-    if (srdId === packId) continue;
-    const srd = map.get(srdId);
-    const pack = map.get(packId);
-    if (!srd || !pack) continue;
-    map.set(packId, fusionarConjuro(srd, { ...pack, id: packId }));
-    map.delete(srdId);
+  for (const item of extra ?? []) {
+    const existenteId =
+      aliasAId.get(item.id) ??
+      [...idsEquivalentesConjuro(item.id)].find((id) => map.has(id));
+    if (existenteId) {
+      const actual = map.get(existenteId);
+      map.set(existenteId, fusionarConjuro(actual, { ...item, id: existenteId }));
+      continue;
+    }
+    map.set(item.id, { ...item });
+    for (const alias of idsEquivalentesConjuro(item.id)) aliasAId.set(alias, item.id);
   }
 
   return [...map.values()];

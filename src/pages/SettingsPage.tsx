@@ -2,6 +2,7 @@ import { useRef, useState } from "react";
 import { Button, Layout } from "@/components/layout";
 import { SCHEMA_VERSION } from "@/lib/constants";
 import { guardarPersonaje, importarPersonaje, obtenerPersonaje } from "@/db/repository";
+import { resumenPackNuevo } from "@/rules/catalog";
 import { useCatalogStore } from "@/stores/catalog-store";
 
 export function SettingsPage() {
@@ -43,18 +44,29 @@ export function SettingsPage() {
     try {
       const text = await file.text();
       const loaded = await importPack(text);
+      const nuevo = resumenPackNuevo(loaded);
+      const extras =
+        nuevo.spells +
+        nuevo.subclasses +
+        nuevo.species +
+        nuevo.backgrounds +
+        nuevo.classes +
+        nuevo.weapons +
+        nuevo.armor;
       setMensaje(
-        `Pack ${loaded.source} cargado: ${loaded.counts.backgrounds} trasfondos, ${loaded.counts.species} especies, ${loaded.counts.subclasses} subclases.`,
+        extras > 0
+          ? `Pack ${loaded.source}: +${nuevo.backgrounds} trasfondos, +${nuevo.species} especies, +${nuevo.subclasses} subclases, +${nuevo.spells} conjuros (el PHB ya incluido no se duplica).`
+          : `Pack ${loaded.source} importado. No había entradas nuevas: el PHB ya está en la app.`,
       );
     } catch {
-      setMensaje("Pack de contenido inválido. Usa xphb-pack.json generado con npm run build:content-pack.");
+      setMensaje("Pack de contenido inválido. Usa un JSON de catálogo compatible.");
     }
   }
 
   async function onRemovePack() {
     await removePack();
     setMensaje(
-      "Pack importado eliminado. Al recargar la página se restaurará el PHB incluido en la app.",
+      "Pack importado eliminado. Sigue activo el catálogo del PHB incluido en la app.",
     );
   }
 
@@ -62,23 +74,21 @@ export function SettingsPage() {
     <Layout title="Ajustes">
       <div className="space-y-6">
         <section className="rounded-xl border border-white/10 bg-panel p-4">
-          <h2 className="mb-2 text-lg font-semibold">Contenido PHB 2024</h2>
+          <h2 className="mb-2 text-lg font-semibold">Contenido extra</h2>
           <p className="mb-3 text-sm text-muted">
-            La app incluye el PHB 2024 completo en español al instalarse (sin descargas extra). Solo
-            importa un pack manualmente si quieres sustituir el incluido.
+            El PHB 2024 ya está en la ficha. Importa un pack para añadir otro libro o contenido
+            propio; las entradas que coincidan con el PHB se ignoran.
           </p>
           {pack ? (
             <div className="mb-3 rounded-lg bg-surface px-3 py-2 text-sm">
               <p>
-                Activo: <strong>{pack.source}</strong> · {pack.counts.backgrounds} trasfondos ·{" "}
+                Pack extra: <strong>{pack.source}</strong> · {pack.counts.backgrounds} trasfondos ·{" "}
                 {pack.counts.species} especies · {pack.counts.subclasses} subclases ·{" "}
-                {pack.counts.spells} conjuros (textos en español)
+                {pack.counts.spells} conjuros en el archivo (solo se añaden las que no estén ya)
               </p>
             </div>
           ) : (
-            <p className="mb-3 text-sm text-muted">
-              Catálogo SRD activo. El pack PHB se carga en segundo plano al abrir la app.
-            </p>
+            <p className="mb-3 text-sm text-muted">Catálogo del PHB 2024 incluido. Sin pack extra.</p>
           )}
           <input
             ref={packRef}
@@ -92,7 +102,7 @@ export function SettingsPage() {
             }}
           />
           <div className="flex flex-wrap gap-2">
-            <Button onClick={() => packRef.current?.click()}>Importar pack PHB</Button>
+            <Button onClick={() => packRef.current?.click()}>Importar pack extra</Button>
             {pack && (
               <Button variant="ghost" onClick={() => void onRemovePack()}>
                 Quitar pack
@@ -130,11 +140,12 @@ export function SettingsPage() {
             Creative Commons Attribution 4.0.
           </p>
           <p className="mt-2">
-            El pack PHB es uso local si posees el libro; no se redistribuye con la app pública.
+            PHB 2024: uso personal si posees el libro. El SRD 5.2.1 sigue siendo la base pública CC
+            BY 4.0.
           </p>
           <p className="mt-2">
             <a
-              className="text-gold underline"
+              className="text-accent underline"
               href="https://www.dndbeyond.com/srd"
               target="_blank"
               rel="noreferrer"

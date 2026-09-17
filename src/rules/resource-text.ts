@@ -1,5 +1,5 @@
 import classResourceMeta from "@/data/srd/class-resource-meta.json";
-import { rasgosDeClase } from "@/rules/class-features";
+import { rasgosDeClase, rasgosDeSubclase } from "@/rules/class-features";
 import { descripcionDote } from "@/rules/feat-text";
 import { descripcionOrigenEs } from "@/rules/origin-description";
 import { inferSpeciesGroupId } from "@/rules/species-catalog";
@@ -136,6 +136,13 @@ export function descripcionRecurso(
     if (classId && traitId) {
       return descripcionRecursoClase(classId, traitId, r.name);
     }
+  }
+
+  if (r.source === "subclass" && r.sourceLabel) {
+    const rasgo = rasgosDeSubclase(r.sourceLabel).find(
+      (f) => coincideNombre(f.name, r.name),
+    );
+    return typeof rasgo?.description === "string" ? rasgo.description : null;
   }
 
   if (r.source === "species") {

@@ -40,7 +40,7 @@ export function TabNotas({ character, onChange }: SheetTabProps) {
         <h3 className="sheet-section-title">Notas libres</h3>
         <textarea
           className="sheet-input min-h-48"
-          placeholder="Notas, homebrew, rasgos de campaña…"
+          placeholder="Notas, contenido propio, rasgos de campaña…"
           value={character.notes}
           onChange={(e) => onChange({ ...character, notes: e.target.value })}
         />

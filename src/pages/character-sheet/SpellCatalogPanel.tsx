@@ -161,7 +161,7 @@ export function SpellCatalogPanel({ character, onChange }: SheetTabProps) {
                 if (
                   !enLista &&
                   !window.confirm(
-                    `«${catalog.t("spells", spell.id, spell.nameEn)}» no está en tu lista. ¿Añadirlo igual (homebrew)?`,
+                    `«${catalog.t("spells", spell.id, spell.nameEn)}» no está en tu lista. ¿Añadirlo igual (contenido propio)?`,
                   )
                 ) {
                   return;
