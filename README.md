@@ -1,6 +1,6 @@
 # Ficha de personaje D&D 2024
 
-PWA offline-first para fichas de personaje **D&D 5e (PHB 2024 / SRD 5.2.1)**. Proyecto independiente de la [suite DM](https://github.com/dmastergestion/herramientas-dm). Uso personal si posees el libro.
+PWA offline-first para fichas de personaje **D&D 5e (PHB 2024 / SRD 5.2.1)**. Independiente de [suiteDM](https://github.com/dmastergestion/suiteDM) (mesa de roleo) y de trackerDM (combate). Uso personal si posees el libro.
 
 ## Uso sin instalar nada (jugadores / mesa)
 

@@ -10,7 +10,7 @@ Regla Cursor: `.cursor/rules/ficha-personaje.mdc` · Resumen operativo: `PROMPT.
 
 PWA offline-first para gestionar fichas de personaje **D&D 5e reglas 2024 (PHB + SRD 5.2.1)**. Uso personal si posees el libro, o grupos reducidos. Sin backend. Datos locales (IndexedDB). Optimizada para mesa real: acceso rápido, offline tras instalación, automatización de cálculos repetitivos sin sustituir decisiones del jugador.
 
-Proyecto **independiente** de [herramientas-dm](https://github.com/dmastergestion/herramientas-dm). Reutilización opcional: export mínimo compatible con tracker. El color de mesa de la ficha es sage (`#8fbfa8`), no el oro del tracker.
+Proyecto **independiente** de [suiteDM](https://github.com/dmastergestion/suiteDM) y trackerDM. Reutilización opcional: export mínimo compatible con el tracker. El color de mesa de la ficha es sage (`#8fbfa8`), no el oro del tracker.
 
 ---
 
