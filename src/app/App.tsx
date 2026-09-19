@@ -1,5 +1,5 @@
 import { lazy, Suspense } from "react";
-import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
+import { HashRouter, Navigate, Route, Routes } from "react-router-dom";
 import { UpdateBanner } from "@/components/UpdateBanner";
 import { CatalogProvider } from "@/components/CatalogProvider";
 
@@ -18,8 +18,6 @@ const SettingsPage = lazy(() =>
   import("@/pages/SettingsPage").then((m) => ({ default: m.SettingsPage })),
 );
 
-const basename = import.meta.env.BASE_URL.replace(/\/$/, "") || undefined;
-
 function CargandoPagina() {
   return (
     <div className="mx-auto flex min-h-[40vh] max-w-5xl items-center justify-center px-4 text-muted">
@@ -30,7 +28,7 @@ function CargandoPagina() {
 
 export function App() {
   return (
-    <BrowserRouter basename={basename}>
+    <HashRouter>
       <CatalogProvider>
         <UpdateBanner />
         <Suspense fallback={<CargandoPagina />}>
@@ -43,6 +41,6 @@ export function App() {
           </Routes>
         </Suspense>
       </CatalogProvider>
-    </BrowserRouter>
+    </HashRouter>
   );
 }

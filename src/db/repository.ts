@@ -27,6 +27,19 @@ function normalizarAntesDeGuardar(character: Character): Character {
   );
 }
 
+function normalizarFichaDesdeRaw(raw: unknown): Character | undefined {
+  const parsed = CharacterSchema.safeParse(raw);
+  if (parsed.success) {
+    return normalizarAntesDeGuardar(parsed.data);
+  }
+
+  try {
+    return normalizarAntesDeGuardar(normalizarPersonaje(raw));
+  } catch {
+    return undefined;
+  }
+}
+
 export async function listarPersonajes(): Promise<{
   characters: Character[];
   invalidos: number;
@@ -35,19 +48,15 @@ export async function listarPersonajes(): Promise<{
   const characters: Character[] = [];
   let invalidos = 0;
   for (const raw of filas) {
-    const parsed = CharacterSchema.safeParse(raw);
-    if (parsed.success) {
-      characters.push(normalizarAntesDeGuardar(parsed.data));
+    const normalized = normalizarFichaDesdeRaw(raw);
+    if (normalized) {
+      characters.push(normalized);
       continue;
     }
-    try {
-      const recovered = normalizarPersonaje(raw);
-      characters.push(normalizarAntesDeGuardar(recovered));
-    } catch {
-      invalidos += 1;
-      const id = typeof raw === "object" && raw && "id" in raw ? String(raw.id) : "?";
-      console.warn("Ficha omitida en listado (schema inválido):", id, parsed.error.flatten());
-    }
+
+    invalidos += 1;
+    const id = typeof raw === "object" && raw && "id" in raw ? String(raw.id) : "?";
+    console.warn("Ficha omitida en listado (schema inválido):", id);
   }
   return { characters, invalidos };
 }
@@ -55,7 +64,7 @@ export async function listarPersonajes(): Promise<{
 export async function obtenerPersonaje(id: string): Promise<Character | undefined> {
   const raw = await db.characters.get(id);
   if (!raw) return undefined;
-  return normalizarAntesDeGuardar(CharacterSchema.parse(raw));
+  return normalizarFichaDesdeRaw(raw);
 }
 
 export async function guardarPersonaje(character: Character): Promise<void> {

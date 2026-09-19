@@ -50,4 +50,30 @@ describe("guardarPersonaje", () => {
     expect(saved?.feats).toHaveLength(1);
     expect(saved?.identity.name).toBe("Roundtrip");
   });
+
+  it("recupera fichas antiguas con schema V8 cuando el parse directo falla", async () => {
+    const { db } = await import("@/db");
+    const legacy = crearPersonajeVacio({
+      name: "Legacy",
+      playerName: "J",
+      classId: "rogue",
+    });
+
+    const legacyRaw = {
+      ...legacy,
+      schemaVersion: 8,
+      proficiencies: {
+        ...legacy.proficiencies,
+        expertise: undefined,
+      },
+      portraitImage: undefined,
+    } as Record<string, unknown>;
+
+    await db.characters.put(legacyRaw as never);
+    const recovered = await obtenerPersonaje(legacy.id);
+
+    expect(recovered?.id).toBe(legacy.id);
+    expect(recovered?.proficiencies.expertise).toEqual([]);
+    expect(recovered?.identity.name).toBe("Legacy");
+  });
 });
