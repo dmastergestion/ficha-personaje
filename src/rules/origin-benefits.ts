@@ -13,6 +13,8 @@ import {
 } from "@/rules/origin-choices";
 import { bonusPgEnano } from "@/rules/resources";
 import { inferSpeciesGroupId } from "@/rules/species-catalog";
+import { atributosPrincipalesClase, type SrdBackground, type SrdSpecies } from "@/rules/srd";
+import type { Character, CharacterFeat } from "@/schemas/character";
 
 /** Idiomas fijos de especie (Común + racial). El extra de humano/elfo va en elecciones. */
 const IDIOMAS_POR_GRUPO: Record<string, string[]> = {
@@ -39,8 +41,6 @@ export function idiomasEspecie(
   if (extra && !base.includes(extra)) return uniq([...base, extra]);
   return [...base];
 }
-import type { SrdBackground, SrdSpecies } from "@/rules/srd";
-import type { Character, CharacterFeat } from "@/schemas/character";
 
 type SpeciesMetaRow = {
   skillProficiencies?: string[];
@@ -194,6 +194,27 @@ export function atributosTrasfondoLista(traits?: string): AbilityKey[] {
     .split(",")
     .map((part) => ABILITY_FROM_NAME[part.trim().toLowerCase()])
     .filter((k): k is AbilityKey => !!k);
+}
+
+/** PHB 2024: el trasfondo encaja si comparte un atributo con el principal de la clase. */
+export function trasfondoAlineaConClase(classId: string | null, traits?: string): boolean {
+  if (!classId) return false;
+  const primarios = atributosPrincipalesClase(classId);
+  if (primarios.length === 0) return false;
+  return atributosTrasfondoLista(traits).some((key) => primarios.includes(key));
+}
+
+export function agruparTrasfondosPorClase<T extends { traits?: string }>(
+  classId: string | null,
+  backgrounds: T[],
+): { alineados: T[]; otros: T[] } {
+  if (!classId) return { alineados: [], otros: backgrounds };
+  const alineados: T[] = [];
+  const otros: T[] = [];
+  for (const background of backgrounds) {
+    (trasfondoAlineaConClase(classId, background.traits) ? alineados : otros).push(background);
+  }
+  return { alineados, otros };
 }
 
 /** Atributos del trasfondo 2024 (+2 / +1 por defecto si no hay elección). */

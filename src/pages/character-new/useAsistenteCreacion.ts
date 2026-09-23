@@ -19,9 +19,9 @@ import {
   validarPasoAsistente,
 } from "@/rules/creation-wizard";
 import {
-  eleccionClaseCompleta,
   eleccionesClase,
   fusionarEleccionesClase,
+  faltaEleccionClase,
   resumenEquipoClase,
 } from "@/rules/class-equipment";
 import { cantidadMejorasAtributosHastaNivel } from "@/rules/class-features";
@@ -40,14 +40,16 @@ import {
   validarSeleccionConjuros,
   type SeleccionConjuros,
 } from "@/rules/spell-choices";
-import { idsConjurosAsignados } from "@/rules/spell-grants";
+import { idsConjurosAsignados, faltaEleccionConjuroClase } from "@/rules/spell-grants";
 import { claseTieneMaestriaArmas, maestriasArmasCompletas } from "@/rules/weapon-mastery";
+import { atributosPrincipalesClase } from "@/rules/srd";
 import { crearPersonajeVacio } from "@/schemas/character";
 import { useCatalogStore } from "@/stores/catalog-store";
 import {
   ABILITIES_DEFAULT,
   DRAFT_KEY,
   leerBorrador,
+  modoAtributosDesdeBorrador,
   pasosAsistente,
   SELECCION_CONJUROS_VACIA,
 } from "@/pages/character-new/draft";
@@ -68,7 +70,7 @@ export function useAsistenteCreacion() {
     borrador?.asignacionArray ?? {},
   );
   const [modoAtributos, setModoAtributos] = useState<ModoAtributos>(
-    borrador?.modoAtributos ?? "manual",
+    modoAtributosDesdeBorrador(borrador?.modoAtributos),
   );
   const [spellSelection, setSpellSelection] = useState<SeleccionConjuros>(
     borrador?.spellSelection ?? SELECCION_CONJUROS_VACIA,
@@ -76,9 +78,9 @@ export function useAsistenteCreacion() {
   const [datos, setDatos] = useState<DatosAsistente>(() => ({
     name: "",
     playerName: "",
-    speciesId: catalog.species[0]?.id ?? null,
+    speciesId: null,
     backgroundId: null,
-    classId: catalog.classes[0]?.id ?? "fighter",
+    classId: null,
     subclassId: null,
     level: 1,
     abilities: { ...ABILITIES_DEFAULT },
@@ -90,11 +92,19 @@ export function useAsistenteCreacion() {
     () => pasosAsistente(datos.classId, datos.level),
     [datos.classId, datos.level],
   );
-  const pasoActual = pasos[clampIndicePaso(paso, pasos.length)]?.id ?? "identidad";
+  const pasoActual = pasos[clampIndicePaso(paso, pasos.length)]?.id ?? "clase";
 
   const clasesConjuro = useMemo(
-    () => clasesParaEleccionConjuros(datos.classId, datos.subclassId, datos.level),
+    () =>
+      datos.classId
+        ? clasesParaEleccionConjuros(datos.classId, datos.subclassId, datos.level)
+        : [],
     [datos.classId, datos.subclassId, datos.level],
+  );
+
+  const atributosPrincipales = useMemo(
+    () => atributosPrincipalesClase(datos.classId),
+    [datos.classId],
   );
 
   const subclasesFiltradas = useMemo(
@@ -137,6 +147,7 @@ export function useAsistenteCreacion() {
   );
 
   const idsExcluidosConjuros = useMemo(() => {
+    if (!datos.classId) return [];
     const pj = crearPersonajeVacio({
       name: "borrador",
       playerName: "",
@@ -195,8 +206,9 @@ export function useAsistenteCreacion() {
   );
 
   const borradorMaestrias = useMemo(() => {
+    const classId = datos.classId ?? "fighter";
     const profs = proficienciasIniciales(
-      datos.classId,
+      classId,
       beneficiosOrigen.skills,
       beneficiosOrigen.toolProficiencies,
       periciasClaseDesdeElecciones(datos.classId, originChoices.class),
@@ -204,14 +216,14 @@ export function useAsistenteCreacion() {
     const draft = crearPersonajeVacio({
       name: datos.name || "Borrador",
       playerName: datos.playerName,
-      classId: datos.classId,
+      classId,
       level: datos.level,
     });
     return {
       ...draft,
       identity: {
         ...draft.identity,
-        classes: [{ classId: datos.classId, subclassId: datos.subclassId, level: datos.level }],
+        classes: [{ classId, subclassId: datos.subclassId, level: datos.level }],
       },
       proficiencies: {
         ...draft.proficiencies,
@@ -261,14 +273,32 @@ export function useAsistenteCreacion() {
   }
 
   function actualizar(partial: Partial<DatosAsistente>) {
+    setError(null);
     setDatos((prev) => {
       const next = { ...prev, ...partial };
+      if (partial.speciesId !== undefined && partial.speciesId !== prev.speciesId) {
+        next.originChoices = {
+          species: {},
+          background: next.originChoices?.background ?? {},
+          class: next.originChoices?.class ?? {},
+        };
+        next.featChoices = {};
+      }
+      if (partial.backgroundId !== undefined && partial.backgroundId !== prev.backgroundId) {
+        next.originChoices = {
+          species: next.originChoices?.species ?? {},
+          background: {},
+          class: next.originChoices?.class ?? {},
+        };
+        next.featChoices = {};
+      }
       if (partial.classId !== undefined || partial.level !== undefined) {
         setSpellSelection(SELECCION_CONJUROS_VACIA);
         if (partial.classId !== undefined && partial.classId !== prev.classId) {
           next.weaponMasteries = [];
           next.subclassId = null;
           next.fightingStyleFeatId = null;
+          next.expertise = [];
           next.originChoices = {
             species: next.originChoices?.species ?? {},
             background: next.originChoices?.background ?? {},
@@ -353,10 +383,11 @@ export function useAsistenteCreacion() {
       asignacion4d6,
       asignacionArray,
       periciasClaseOk: periciasClaseCompletas(datos.classId, originChoices.class),
-      eleccionClaseOk: eleccionClaseCompleta(datos.classId, originChoices, classOpts),
+      faltaClase: faltaEleccionClase(datos.classId, originChoices, classOpts),
       maestriasOk:
         !claseTieneMaestriaArmas(datos.classId) || maestriasArmasCompletas(borradorMaestrias),
       conjurosMsg,
+      conjurosClaseMsg: faltaEleccionConjuroClase(datos.classId, clasesConjuro, originChoices),
     });
   }
 
@@ -458,6 +489,7 @@ export function useAsistenteCreacion() {
       usarArrayEstandar,
       usarPointBuy,
       asignarValorArray,
+      atributosPrincipales,
     },
     conjuros: {
       spellSelection,
@@ -468,5 +500,6 @@ export function useAsistenteCreacion() {
     siguiente,
     anterior,
     crear,
+    validarPaso,
   };
 }

@@ -66,6 +66,10 @@ export const ABILITY_LABELS_ES: Record<AbilityKey, string> = {
   cha: "Carisma",
 };
 
+export function abreviaturaAtributo(key: AbilityKey): string {
+  return ABILITY_LABELS_ES[key].slice(0, 3).toUpperCase();
+}
+
 export function esProficientePericia(character: Character, skill: SkillKey): boolean {
   if (skill in character.proficiencies.skillOverrides) {
     return character.proficiencies.skillOverrides[skill] ?? false;

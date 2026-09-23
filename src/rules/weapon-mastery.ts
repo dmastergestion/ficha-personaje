@@ -22,8 +22,8 @@ const masteryByProp = weaponMasteryPropertyMeta as Record<
 
 export const CLASES_CON_MAESTRIA_ARMAS = Object.keys(classMeta);
 
-export function claseTieneMaestriaArmas(classId: string): boolean {
-  return classId in classMeta;
+export function claseTieneMaestriaArmas(classId: string | null | undefined): boolean {
+  return !!classId && classId in classMeta;
 }
 
 export function ranurasMaestriaClase(classId: string, level: number): number {

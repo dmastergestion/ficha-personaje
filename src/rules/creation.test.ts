@@ -14,11 +14,28 @@ import {
 import type { Tirada4d6 } from "@/rules/dice";
 import { conjurosOtorgadosLanzables } from "@/rules/spell-grants";
 import { esProficientePericia } from "@/rules/character";
+import { atributosPrincipalesClase, srdClasses } from "@/rules/srd";
 describe("asignarArrayEstandar", () => {
   it("prioriza atributos principales de la clase", () => {
     const attrs = asignarArrayEstandar("wizard");
     expect(attrs.int).toBe(15);
     expect(attrs.con).toBe(14);
+  });
+});
+
+describe("atributosPrincipalesClase", () => {
+  it("usa el atributo primario del PHB en cada clase", () => {
+    expect(atributosPrincipalesClase("wizard")).toEqual(["int"]);
+    expect(atributosPrincipalesClase("cleric")).toEqual(["wis"]);
+    expect(atributosPrincipalesClase("bard")).toEqual(["cha"]);
+    expect(atributosPrincipalesClase("rogue")).toEqual(["dex"]);
+    expect(atributosPrincipalesClase("fighter")).toEqual(["str", "dex"]);
+    expect(atributosPrincipalesClase("monk")).toEqual(["dex", "wis"]);
+    expect(atributosPrincipalesClase("paladin")).toEqual(["str", "cha"]);
+    expect(atributosPrincipalesClase(null)).toEqual([]);
+    for (const clase of srdClasses) {
+      expect(atributosPrincipalesClase(clase.id).length).toBeGreaterThan(0);
+    }
   });
 });
 

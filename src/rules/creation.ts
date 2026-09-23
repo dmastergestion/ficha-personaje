@@ -97,7 +97,7 @@ export interface DatosAsistente {
   playerName: string;
   speciesId: string | null;
   backgroundId: string | null;
-  classId: string;
+  classId: string | null;
   subclassId: string | null;
   level: number;
   abilities: Record<AbilityKey, number>;
@@ -175,6 +175,9 @@ export function crearPersonajeDesdeAsistente(
   datos: DatosAsistente,
   catalogo?: OrigenCatalogo,
 ): Character {
+  if (!datos.classId) {
+    throw new Error("Elige una clase.");
+  }
   const clase = obtenerClase(datos.classId);
   const hitDie = clase?.hitDie ?? "d8";
   const originChoices = fusionarEleccionesClase(

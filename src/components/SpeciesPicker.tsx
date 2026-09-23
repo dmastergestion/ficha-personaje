@@ -13,12 +13,14 @@ export function SpeciesPicker({
   onChange,
   className = "w-full rounded-lg border border-white/10 bg-surface px-3 py-2",
   compact = false,
+  allowEmpty = false,
 }: {
   catalog: GameCatalog;
   speciesId: string | null;
   onChange: (speciesId: string | null) => void;
   className?: string;
   compact?: boolean;
+  allowEmpty?: boolean;
 }) {
   const groups = useMemo(
     () =>
@@ -34,7 +36,8 @@ export function SpeciesPicker({
     [speciesId, groups],
   );
 
-  const activeGroup = groups.find((g) => g.id === groupId) ?? groups[0];
+  const empty = allowEmpty && !speciesId;
+  const activeGroup = empty ? undefined : (groups.find((g) => g.id === groupId) ?? groups[0]);
   const showVariants = activeGroup ? groupHasVariants(activeGroup) : false;
 
   function onGroupChange(nextGroupId: string) {
@@ -100,9 +103,10 @@ export function SpeciesPicker({
         <span className="text-muted">Especie</span>
         <select
           className={className}
-          value={activeGroup?.id ?? ""}
+          value={empty ? "" : (activeGroup?.id ?? "")}
           onChange={(e) => onGroupChange(e.target.value)}
         >
+          {allowEmpty && <option value="">— Elige especie —</option>}
           {groups.map((group) => (
             <option key={group.id} value={group.id}>
               {catalog.t("speciesGroups", group.id, group.id)}

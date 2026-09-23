@@ -10,6 +10,9 @@ export function PasoIdentidad({
   return (
     <div className="space-y-4">
       <h2 className="text-lg font-semibold">¿Cómo se llama tu personaje?</h2>
+      <p className="text-sm text-muted">
+        PHB 2024 deja el nombre para el final, cuando ya está el resto. El del jugador es opcional.
+      </p>
       <label className="block space-y-1 text-sm">
         <span className="text-muted">Nombre del personaje</span>
         <input

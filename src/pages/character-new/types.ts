@@ -6,4 +6,4 @@ export type PasoAsistenteId =
   | "conjuros"
   | "resumen";
 
-export type ModoAtributos = "manual" | "4d6" | "array" | "pointBuy";
+export type ModoAtributos = "sinElegir" | "4d6" | "array" | "pointBuy";

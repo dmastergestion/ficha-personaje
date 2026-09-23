@@ -92,6 +92,12 @@ export function ClassChoicesForm({
       <h3 className="sheet-section-title mb-0">
         {vista === "catalogo" ? "Opciones de clase por elegir" : "Elecciones de clase"}
       </h3>
+      {mode === "create" && vista === "completa" && (
+        <p className="text-xs text-muted">
+          Orden divino, invocaciones, maniobras y conjuros de rasgo hay que marcarlos; no se asignan
+          al primer valor de la lista.
+        </p>
+      )}
       {defsVista.map((def) => {
         const disabled = mode === "sheet" && !esEleccionEditable(def, level);
         if (def.kind === "multi") {
@@ -114,10 +120,13 @@ export function ClassChoicesForm({
             {def.hint && <p className="text-xs text-muted/80">{def.hint}</p>}
             <select
               className="w-full rounded-lg border border-white/10 bg-surface px-3 py-2 disabled:opacity-60"
-              value={choices.class[def.id] ?? def.defaultValue ?? def.options[0]?.value ?? ""}
+              value={choices.class[def.id] ?? def.defaultValue ?? ""}
               disabled={disabled}
               onChange={(e) => setClass(def.id, e.target.value)}
             >
+              {!def.options.some((opt) => opt.value === "") && (
+                <option value="">— Elige —</option>
+              )}
               {def.options.map((opt) => (
                 <option key={opt.value} value={opt.value}>
                   {opt.label}

@@ -5,6 +5,8 @@ import {
   aplicarEquipoClase,
   extraTrucosOrdenDivino,
   eleccionesClase,
+  eleccionClaseCompleta,
+  faltaEleccionClase,
   fusionarEleccionesClase,
   LAND_TERRAIN_KEY,
   ORIGIN_CLASS_EQUIPMENT_NOTE,
@@ -75,6 +77,13 @@ describe("terreno del círculo de la tierra", () => {
 });
 
 describe("Orden divino", () => {
+  it("no asigna Protector por defecto al fusionar", () => {
+    const fused = fusionarEleccionesClase("cleric", ORIGIN_CHOICES_EMPTY);
+    expect(fused.class["divine-order"]).toBe("");
+    expect(eleccionClaseCompleta("cleric", fused)).toBe(false);
+    expect(faltaEleccionClase("cleric", fused)).toMatch(/orden divino/i);
+  });
+
   it("protector añade pesada y marcial; taumaturgo un truco extra", () => {
     const base = competenciasClase("cleric");
     const next = aplicarCompetenciasOrdenDivino(

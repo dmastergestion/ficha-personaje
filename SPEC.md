@@ -263,11 +263,11 @@ flowchart LR
 
 ### `/new` — Asistente de creación (5–6 pasos)
 
-1. **Identidad** — nombre del personaje, jugador
-2. **Origen** — especie, trasfondo (opcional; aviso si vacío)
-3. **Clase** — clase, pericias de clase, subclase si el nivel la exige, nivel inicial
-4. **Atributos** — array estándar, 4d6 o **compra de puntos 27**
-5. **Conjuros** — solo si la clase lanza (paso extra)
+1. **Clase** — sin preselección; atributo principal visible; nivel, subclase, equipo, maestrías y rasgos tras elegir
+2. **Origen** — **trasfondo obligatorio** (primero los que encajan con la clase), especie, pericias de clase (sin repetir las de origen)
+3. **Atributos** — hay que elegir **4d6**, **array estándar** o **compra de puntos 27**; bonus de trasfondo; se destacan los atributos principales
+4. **Conjuros** — solo si la clase lanza (paso extra)
+5. **Identidad** — nombre del personaje (obligatorio) y jugador
 6. **Resumen** — confirmación; PV con media del dado; hitos 2…N si se crea a nivel alto
 
 Guardar → redirige a `/character/:id`.

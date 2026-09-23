@@ -1,3 +1,4 @@
+import { useEffect, useRef } from "react";
 import { OriginSidePanel } from "@/components/OriginSidePanel";
 import { SpellChoicesForm } from "@/components/SpellChoicesForm";
 import { Button, Layout } from "@/components/layout";
@@ -8,10 +9,34 @@ import { PasoIdentidad } from "@/pages/character-new/PasoIdentidad";
 import { PasoOrigen } from "@/pages/character-new/PasoOrigen";
 import { PasoResumen } from "@/pages/character-new/PasoResumen";
 import { useAsistenteCreacion } from "@/pages/character-new/useAsistenteCreacion";
+import type { PasoAsistenteId } from "@/pages/character-new/types";
 
 export function CharacterNewPage() {
   const asistente = useAsistenteCreacion();
   const muestraPanelLateral = asistente.pasoActual === "origen" || asistente.pasoActual === "clase";
+  const errorRef = useRef<HTMLParagraphElement>(null);
+
+  useEffect(() => {
+    if (asistente.error) {
+      errorRef.current?.scrollIntoView({ behavior: "smooth", block: "nearest" });
+    }
+  }, [asistente.error]);
+
+  const pendientesResumen = asistente.pasos
+    .filter((p) => p.id !== "resumen")
+    .map((p) => ({
+      pasoId: p.id,
+      titulo: p.titulo,
+      mensaje: asistente.validarPaso(p.id),
+    }))
+    .filter((p): p is { pasoId: PasoAsistenteId; titulo: string; mensaje: string } =>
+      Boolean(p.mensaje),
+    );
+
+  function irAPasoId(pasoId: PasoAsistenteId) {
+    const index = asistente.pasos.findIndex((p) => p.id === pasoId);
+    if (index >= 0) asistente.irAPaso(index);
+  }
 
   return (
     <Layout title="Nuevo personaje" wide={muestraPanelLateral}>
@@ -22,6 +47,7 @@ export function CharacterNewPage() {
         {asistente.pasos.map((p, index) => {
           const activo = index === asistente.paso;
           const completado = index < asistente.paso;
+          const avisoAtras = completado ? asistente.validarPaso(p.id) : null;
           return (
             <button
               key={p.id}
@@ -31,7 +57,11 @@ export function CharacterNewPage() {
                 "flex min-h-11 items-center gap-2 rounded-lg px-3 py-2 text-sm transition",
                 activo && "bg-accent font-semibold text-ink",
                 completado &&
+                  !avisoAtras &&
                   "border border-accent/40 text-accent hover:bg-accent/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/50",
+                completado &&
+                  avisoAtras &&
+                  "border border-amber-400/50 text-amber-200 hover:bg-amber-400/10",
                 !activo &&
                   !completado &&
                   "border border-white/10 text-muted hover:border-white/20 hover:text-cream",
@@ -52,6 +82,15 @@ export function CharacterNewPage() {
         )}
       >
         <div className="min-w-0">
+          {asistente.error && (
+            <p
+              ref={errorRef}
+              className="mb-4 rounded-lg border border-red-400/40 bg-red-500/10 px-3 py-2 text-sm text-red-300"
+            >
+              {asistente.error}
+            </p>
+          )}
+
           {asistente.pasoActual === "identidad" && (
             <PasoIdentidad datos={asistente.datos} actualizar={asistente.actualizar} />
           )}
@@ -108,15 +147,14 @@ export function CharacterNewPage() {
             <PasoResumen
               catalog={asistente.catalog}
               datos={asistente.datos}
-              actualizar={asistente.actualizar}
               catalogoOrigen={asistente.origen.catalogoOrigen}
               originChoices={asistente.origen.originChoices}
               beneficiosOrigen={asistente.origen.beneficiosOrigen}
               atributosFinales={asistente.origen.atributosFinales}
+              pendientes={pendientesResumen}
+              onIrAPaso={irAPasoId}
             />
           )}
-
-          {asistente.error && <p className="mt-4 text-sm text-red-400">{asistente.error}</p>}
 
           <div className="mt-6 flex justify-between gap-2">
             <Button type="button" variant="ghost" disabled={asistente.paso === 0} onClick={asistente.anterior}>
@@ -145,10 +183,10 @@ export function CharacterNewPage() {
             speciesId={asistente.datos.speciesId}
             backgroundId={asistente.datos.backgroundId}
             level={asistente.datos.level}
-            classId={asistente.pasoActual === "clase" ? asistente.datos.classId : undefined}
+            classId={asistente.pasoActual === "clase" ? asistente.datos.classId ?? undefined : undefined}
             subclassId={asistente.pasoActual === "clase" ? asistente.datos.subclassId : undefined}
             classes={
-              asistente.pasoActual === "clase"
+              asistente.pasoActual === "clase" && asistente.datos.classId
                 ? [
                     {
                       classId: asistente.datos.classId,

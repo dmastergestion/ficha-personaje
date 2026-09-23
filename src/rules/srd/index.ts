@@ -123,6 +123,14 @@ export function obtenerClase(id: string): SrdClass | undefined {
   return srdClasses.find((c) => c.id === id);
 }
 
+/** Atributos primarios de la clase (tabla PHB 2024). */
+export function atributosPrincipalesClase(
+  classId: string | null | undefined,
+): AbilityKey[] {
+  if (!classId) return [];
+  return [...(obtenerClase(classId)?.primaryAbilities ?? [])];
+}
+
 export function obtenerArmadura(id: string | null): SrdArmor | undefined {
   if (!id) return undefined;
   return srdArmor.find((a) => a.id === id);

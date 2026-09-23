@@ -76,7 +76,8 @@ export function deltaRequisitosSubida(
   };
 }
 
-export function necesitaPasoConjuros(classId: string, level: number): boolean {
+export function necesitaPasoConjuros(classId: string | null | undefined, level: number): boolean {
+  if (!classId) return false;
   return claseLanzaConjuros(classId, level) || tipoLanzador(classId) !== "none";
 }
 

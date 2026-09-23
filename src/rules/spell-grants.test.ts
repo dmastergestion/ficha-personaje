@@ -12,6 +12,7 @@ import {
   vinculoRecursoConjuro,
   claseTieneEleccionesConjuro,
   conteoConjurosOtorgados,
+  faltaEleccionConjuroClase,
 } from "@/rules/spell-grants";
 
 describe("spell-grants", () => {
@@ -405,5 +406,19 @@ describe("spell-grants", () => {
     }
     expect(conjurosOtorgadosPersonaje(pj).some((g) => g.spellId === "minor-illusion")).toBe(true);
     expect(conteoConjurosOtorgados(pj)).toEqual({ cantrips: 1, prepared: 4 });
+  });
+
+  it("no da por elegidos los Descubrimientos mágicos vacíos", () => {
+    const classes = [{ classId: "bard" as const, subclassId: "lore", level: 6 }];
+    expect(
+      faltaEleccionConjuroClase("bard", classes, { species: {}, background: {}, class: {} }),
+    ).toMatch(/descubrimiento/i);
+    expect(
+      faltaEleccionConjuroClase("bard", classes, {
+        species: {},
+        background: {},
+        class: { "lore-secret-1": "cure-wounds", "lore-secret-2": "fireball" },
+      }),
+    ).toBeNull();
   });
 });

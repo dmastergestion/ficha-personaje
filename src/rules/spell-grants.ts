@@ -10,7 +10,7 @@ import {
   type MagicInitiateList,
 } from "@/rules/feat-mechanics";
 import { nombreDote } from "@/rules/feat-text";
-import type { OriginChoiceDefinition } from "@/rules/origin-choices";
+import type { OriginChoiceDefinition, OriginChoices } from "@/rules/origin-choices";
 import { idsEquivalentesConjuro } from "@/rules/spell-aliases";
 import { conjuroDisponibleParaClase, nivelMaximoConjuroClase } from "@/rules/spell-lists";
 import { srdSpells } from "@/rules/srd";
@@ -745,6 +745,41 @@ export function claseTieneEleccionesConjuro(classId: string, classes: ClassLevel
     return true;
   }
   return classId === "bard" && cl?.subclassId === "lore" && clLevel >= 6;
+}
+
+/** Arcanum, signature y Descubrimientos mágicos: no se rellenan con el primer conjuro. */
+export function faltaEleccionConjuroClase(
+  classId: string | null,
+  classes: ClassLevel[],
+  choices: OriginChoices,
+): string | null {
+  if (!classId) return null;
+  const cl = classes.find((c) => c.classId === classId);
+  const clLevel = cl?.level ?? 0;
+  for (const dyn of meta.dynamicClassChoices[classId] ?? []) {
+    if (clLevel < dyn.minClassLevel) continue;
+    if (!choices.class[dyn.choiceKey]) {
+      return dyn.choiceKey.startsWith("arcanum")
+        ? `Elige el Arcanum místico de nivel ${dyn.spellLevel}.`
+        : "Elige los conjuros signature del brujo.";
+    }
+  }
+  if (classId === "bard" && cl?.subclassId === "lore" && clLevel >= 6) {
+    for (const [i, key] of LORE_SECRET_KEYS.entries()) {
+      if (!choices.class[key]) {
+        return `Elige el Descubrimiento mágico (${i + 1}).`;
+      }
+    }
+  }
+  return null;
+}
+
+export function eleccionesConjuroClaseCompletas(
+  classId: string,
+  classes: ClassLevel[],
+  choices: OriginChoices,
+): boolean {
+  return faltaEleccionConjuroClase(classId, classes, choices) == null;
 }
 
 export function eleccionesConjurosClase(

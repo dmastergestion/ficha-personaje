@@ -9,6 +9,7 @@ import {
   INVOCATIONS_KEY,
   KEYS_SEGUIMIENTO_INVOCACION,
   nivelBrujoClases,
+  parsearInvocaciones,
 } from "@/rules/invocations";
 import { eleccionesManiobras } from "@/rules/battle-master";
 import {
@@ -232,8 +233,8 @@ export function fusionarEleccionesClase(
           : (prev ?? "");
       continue;
     }
-    const valid = prev && def.options.some((o) => o.value === prev);
-    classChoices[def.id] = valid ? prev : (def.defaultValue ?? def.options[0]?.value ?? "");
+    const valid = prev && def.options.some((o) => o.value === prev && o.value !== "");
+    classChoices[def.id] = valid ? prev : (def.defaultValue ?? "");
   }
   for (const [key, value] of Object.entries(actual?.class ?? {})) {
     if (key in classChoices) continue;
@@ -247,23 +248,41 @@ export function fusionarEleccionesClase(
   };
 }
 
+export function faltaEleccionClase(
+  classId: string | null,
+  choices: OriginChoices,
+  opts?: OpcionesEleccionClase,
+): string | null {
+  const classLevel = classId ? nivelParaEleccion(classId, opts) : 1;
+  const invocaciones = choices.class[INVOCATIONS_KEY] ?? opts?.invocaciones;
+  for (const def of eleccionesClase(classId, { ...opts, invocaciones })) {
+    if (def.kind === "multi") {
+      if (def.id === INVOCATIONS_KEY) {
+        if (!invocacionesCompletas(classLevel, choices.class[def.id])) {
+          return "Elige las invocaciones místicas.";
+        }
+        continue;
+      }
+      const n = parsearInvocaciones(choices.class[def.id]).length;
+      const max = def.maxSelections ?? 0;
+      if (max > 0 && n < max) {
+        return `Elige ${max} en ${def.label} (${n}/${max}).`;
+      }
+      continue;
+    }
+    if (!choices.class[def.id]) {
+      return def.id === "equipment" ? "Elige el equipo inicial de clase." : `Elige: ${def.label}.`;
+    }
+  }
+  return null;
+}
+
 export function eleccionClaseCompleta(
   classId: string | null,
   choices: OriginChoices,
   opts?: OpcionesEleccionClase,
 ): boolean {
-  const classLevel = classId ? nivelParaEleccion(classId, opts) : 1;
-  const invocaciones = choices.class[INVOCATIONS_KEY] ?? opts?.invocaciones;
-  for (const def of eleccionesClase(classId, { ...opts, invocaciones })) {
-    if (def.kind === "multi") {
-      if (def.id === INVOCATIONS_KEY && !invocacionesCompletas(classLevel, choices.class[def.id])) {
-        return false;
-      }
-      continue;
-    }
-    if (!choices.class[def.id]) return false;
-  }
-  return true;
+  return faltaEleccionClase(classId, choices, opts) == null;
 }
 
 export function segmentoEquipoClase(

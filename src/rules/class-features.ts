@@ -166,7 +166,11 @@ export function esNivelMejoraAtributos(classId: string, level: number): boolean 
   return nivelesMejoraAtributos(classId).includes(level);
 }
 
-export function cantidadMejorasAtributosHastaNivel(classId: string, level: number): number {
+export function cantidadMejorasAtributosHastaNivel(
+  classId: string | null | undefined,
+  level: number,
+): number {
+  if (!classId) return 0;
   return nivelesMejoraAtributos(classId).filter((n) => n <= level).length;
 }
 
@@ -178,7 +182,11 @@ export function periciasExpertiseAlNivel(classId: string, level: number): number
 }
 
 /** Expertise acumulada hasta ese nivel de clase (creación y validación). */
-export function cantidadExpertiseHastaNivel(classId: string, level: number): number {
+export function cantidadExpertiseHastaNivel(
+  classId: string | null | undefined,
+  level: number,
+): number {
+  if (!classId) return 0;
   let total = 0;
   for (let n = 1; n <= level; n++) total += periciasExpertiseAlNivel(classId, n);
   return total;

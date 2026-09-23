@@ -5,7 +5,7 @@ import type { Tirada4d6 } from "@/rules/dice";
 import { necesitaPasoConjuros, type SeleccionConjuros } from "@/rules/spell-choices";
 import type { ModoAtributos, PasoAsistenteId } from "@/pages/character-new/types";
 
-export const DRAFT_KEY = "ficha-asistente-borrador";
+export const DRAFT_KEY = "ficha-asistente-borrador-v3";
 
 export const SELECCION_CONJUROS_VACIA: SeleccionConjuros = {
   cantripsKnown: [],
@@ -18,18 +18,18 @@ export const ABILITIES_DEFAULT = Object.fromEntries(
 ) as Record<AbilityKey, number>;
 
 export function pasosAsistente(
-  classId: string,
+  classId: string | null,
   level: number,
 ): { id: PasoAsistenteId; titulo: string }[] {
   const base: { id: PasoAsistenteId; titulo: string }[] = [
-    { id: "identidad", titulo: "Identidad" },
-    { id: "origen", titulo: "Origen" },
     { id: "clase", titulo: "Clase" },
+    { id: "origen", titulo: "Origen" },
     { id: "atributos", titulo: "Atributos" },
   ];
   if (necesitaPasoConjuros(classId, level)) {
     base.push({ id: "conjuros", titulo: "Conjuros" });
   }
+  base.push({ id: "identidad", titulo: "Identidad" });
   base.push({ id: "resumen", titulo: "Resumen" });
   return base;
 }
@@ -43,6 +43,13 @@ export type BorradorAsistente = Partial<{
   spellSelection: SeleccionConjuros;
   tiradas4d6: Tirada4d6[] | null;
 }>;
+
+export function modoAtributosDesdeBorrador(raw: unknown): ModoAtributos {
+  if (raw === "4d6" || raw === "array" || raw === "pointBuy" || raw === "sinElegir") {
+    return raw;
+  }
+  return "sinElegir";
+}
 
 export function leerBorrador(): BorradorAsistente | null {
   try {

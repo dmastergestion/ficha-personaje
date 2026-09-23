@@ -1,5 +1,6 @@
 import type { AbilityKey, SkillKey } from "@/lib/constants";
 import { ABILITY_KEYS } from "@/lib/constants";
+import { ABILITY_LABELS_ES } from "@/rules/character";
 import {
   cantidadExpertiseHastaNivel,
   cantidadMejorasAtributosHastaNivel,
@@ -42,13 +43,26 @@ export function mejorasCreacionVacias(n: number, prev: MejoraCreacion[] = []): M
   });
 }
 
+export function textoMejoraCreacion(mejora: MejoraCreacion): string {
+  if (mejora.modo === "feat") {
+    return mejora.featId ? `Dote: ${nombreDote(mejora.featId)}` : "Dote (sin elegir)";
+  }
+  if (mejora.asiDos) {
+    return `ASI +1 ${ABILITY_LABELS_ES[mejora.asiA]} y +1 ${ABILITY_LABELS_ES[mejora.asiB]}`;
+  }
+  return `ASI +2 ${ABILITY_LABELS_ES[mejora.asiA]}`;
+}
+
 export function validarAsignacionAtributos(opts: {
-  modo: "manual" | "4d6" | "array" | "pointBuy";
+  modo: "sinElegir" | "4d6" | "array" | "pointBuy";
   abilities: Record<AbilityKey, number>;
   tiradas4d6: Tirada4d6[] | null;
   asignacion4d6: Partial<Record<AbilityKey, number>>;
   asignacionArray: Partial<Record<AbilityKey, number>>;
 }): string | null {
+  if (opts.modo === "sinElegir") {
+    return "Elige cómo obtienes los atributos: 4d6, array estándar o compra de puntos.";
+  }
   if (opts.modo === "4d6") {
     if (!opts.tiradas4d6 || asignarTiradas4d6(opts.tiradas4d6, opts.asignacion4d6) == null) {
       return "Asigna las seis tiradas de 4d6 a los atributos.";
@@ -82,7 +96,7 @@ export function validarMejorasCreacion(mejoras: MejoraCreacion[], necesarias: nu
 }
 
 export function validarExpertiseCreacion(
-  classId: string,
+  classId: string | null,
   level: number,
   expertise: SkillKey[] | undefined,
 ): string | null {
@@ -96,11 +110,11 @@ export function validarExpertiseCreacion(
 }
 
 export function validarEstiloCombateCreacion(
-  classId: string,
+  classId: string | null,
   level: number,
   fightingStyleFeatId: string | null | undefined,
 ): string | null {
-  if (!claseConcedeEstiloCombate(classId, level)) return null;
+  if (!classId || !claseConcedeEstiloCombate(classId, level)) return null;
   if (!fightingStyleFeatId) {
     return "Elige un estilo de combate (dote de estilo).";
   }
@@ -148,19 +162,21 @@ export function validarPasoAsistente(
   extras: {
     originChoices: OriginChoices;
     catalogoOrigen?: OrigenCatalogo;
-    modoAtributos: "manual" | "4d6" | "array" | "pointBuy";
+    modoAtributos: "sinElegir" | "4d6" | "array" | "pointBuy";
     tiradas4d6: Tirada4d6[] | null;
     asignacion4d6: Partial<Record<AbilityKey, number>>;
     asignacionArray: Partial<Record<AbilityKey, number>>;
     periciasClaseOk: boolean;
-    eleccionClaseOk: boolean;
+    faltaClase: string | null;
     maestriasOk: boolean;
     conjurosMsg: string | null;
+    conjurosClaseMsg: string | null;
   },
 ): string | null {
   if (stepId === "identidad" && !datos.name.trim()) {
     return "El nombre del personaje es obligatorio.";
   }
+  if (stepId === "origen" && !datos.backgroundId) return "Elige un trasfondo.";
   if (stepId === "origen" && !datos.speciesId) return "Elige una especie.";
   if (
     stepId === "origen" &&
@@ -177,6 +193,21 @@ export function validarPasoAsistente(
   if (stepId === "origen") {
     const dotesOrigen = validarDotesOrigenCreacion(datos, extras.originChoices, extras.catalogoOrigen);
     if (dotesOrigen) return dotesOrigen;
+    if (!extras.periciasClaseOk) return "Elige las pericias de clase.";
+    const skillsOrigen = calcularBeneficiosOrigen(
+      datos.speciesId,
+      datos.backgroundId,
+      datos.level,
+      extras.catalogoOrigen,
+      extras.originChoices,
+    ).skills;
+    const solapa = periciasClaseDesdeElecciones(datos.classId, extras.originChoices.class).some(
+      (skill) => skillsOrigen.includes(skill),
+    );
+    if (solapa) {
+      return "Elige pericias de clase distintas a las del origen (trasfondo o especie).";
+    }
+    return validarExpertiseCreacion(datos.classId, datos.level, datos.expertise);
   }
   if (
     stepId === "atributos" &&
@@ -185,33 +216,32 @@ export function validarPasoAsistente(
     return "Elige cómo repartes la bonificación de atributos del trasfondo.";
   }
   if (stepId === "atributos") {
-    return validarAsignacionAtributos({
+    const asignacion = validarAsignacionAtributos({
       modo: extras.modoAtributos,
       abilities: datos.abilities,
       tiradas4d6: extras.tiradas4d6,
       asignacion4d6: extras.asignacion4d6,
       asignacionArray: extras.asignacionArray,
     });
-  }
-  if (stepId === "clase" && !datos.classId) return "Elige una clase.";
-  if (stepId === "clase" && datos.level >= nivelSubclase(datos.classId) && !datos.subclassId) {
-    return "Elige una subclase: tu nivel ya permite (y exige) la rama de clase.";
-  }
-  if (stepId === "clase" && !extras.periciasClaseOk) {
-    return "Elige las pericias de clase.";
-  }
-  if (stepId === "clase" && !extras.eleccionClaseOk) {
-    return datos.classId === "warlock"
-      ? "Elige el equipo inicial y las invocaciones místicas."
-      : datos.classId === "cleric"
-        ? "Elige el equipo inicial y la Orden divino."
-        : "Elige el equipo inicial de clase.";
-  }
-  if (stepId === "clase" && !extras.maestriasOk) {
-    return "Elige todas las maestrías de arma de tu clase.";
+    if (asignacion) return asignacion;
+    return validarMejorasCreacion(
+      datos.mejorasNivel ?? [],
+      cantidadMejorasAtributosHastaNivel(datos.classId, datos.level),
+    );
   }
   if (stepId === "clase") {
-    return validarEstiloCombateCreacion(datos.classId, datos.level, datos.fightingStyleFeatId);
+    if (!datos.classId) return "Elige una clase.";
+    if (datos.level >= nivelSubclase(datos.classId) && !datos.subclassId) {
+      return "Elige una subclase: tu nivel ya permite (y exige) la rama de clase.";
+    }
+    if (extras.faltaClase) return extras.faltaClase;
+    if (extras.conjurosClaseMsg) return extras.conjurosClaseMsg;
+    if (!extras.maestriasOk) return "Elige todas las maestrías de arma de tu clase.";
+    return validarEstiloCombateCreacion(
+      datos.classId,
+      datos.level,
+      datos.fightingStyleFeatId,
+    );
   }
   if (stepId === "conjuros" || (stepId === "resumen" && extras.conjurosMsg)) {
     return extras.conjurosMsg;

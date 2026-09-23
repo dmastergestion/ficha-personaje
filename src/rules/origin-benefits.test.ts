@@ -6,6 +6,7 @@ import {
   calcularBeneficiosOrigen,
   idiomasEspecie,
   normalizarPericia,
+  trasfondoAlineaConClase,
 } from "@/rules/origin-benefits";
 
 describe("normalizarPericia", () => {
@@ -66,6 +67,13 @@ describe("calcularBeneficiosOrigen", () => {
         class: {},
       }),
     ).toContain("Élfico");
+  });
+
+  it("alinea trasfondo con el atributo principal de la clase", () => {
+    expect(trasfondoAlineaConClase("barbarian", backgroundTraits("soldier"))).toBe(true);
+    expect(trasfondoAlineaConClase("wizard", backgroundTraits("sage"))).toBe(true);
+    expect(trasfondoAlineaConClase("wizard", backgroundTraits("soldier"))).toBe(false);
+    expect(trasfondoAlineaConClase(null, backgroundTraits("soldier"))).toBe(false);
   });
 
   it("usa datos del catálogo PHB para trasfondos fuera del SRD", () => {

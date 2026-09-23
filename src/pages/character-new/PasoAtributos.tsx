@@ -1,9 +1,10 @@
 import { OriginAbilityBonusForm } from "@/components/OriginAbilityBonusForm";
 import { Button } from "@/components/layout";
+import { MejorasNivelForm } from "@/pages/character-new/MejorasNivelForm";
 import { cn } from "@/lib/utils";
 import { ABILITY_KEYS } from "@/lib/constants";
 import type { AbilityKey } from "@/lib/constants";
-import { ABILITY_LABELS_ES } from "@/rules/character";
+import { ABILITY_LABELS_ES, abreviaturaAtributo } from "@/rules/character";
 import {
   ARRAY_ESTANDAR,
   COSTES_POINT_BUY,
@@ -25,7 +26,6 @@ export function PasoAtributos({
   catalogoOrigen,
   originChoices,
   modoAtributos,
-  setModoAtributos,
   tiradas4d6,
   asignacion4d6,
   asignacionArray,
@@ -35,6 +35,7 @@ export function PasoAtributos({
   usarArrayEstandar,
   usarPointBuy,
   asignarValorArray,
+  atributosPrincipales,
 }: {
   datos: DatosAsistente;
   actualizar: (partial: Partial<DatosAsistente>) => void;
@@ -51,30 +52,60 @@ export function PasoAtributos({
   usarArrayEstandar: () => void;
   usarPointBuy: () => void;
   asignarValorArray: (key: AbilityKey, index: number | null) => void;
+  atributosPrincipales: AbilityKey[];
 }) {
+  const primarios = new Set(atributosPrincipales);
+  const etiquetaCampo = (key: AbilityKey) => (
+    <span className={cn(primarios.has(key) && "text-accent")}>
+      {ABILITY_LABELS_ES[key]}
+      {primarios.has(key) ? " · principal" : ""}
+    </span>
+  );
+  const hintPrincipales =
+    atributosPrincipales.length > 0
+      ? `Pon el valor más alto en ${atributosPrincipales.map(abreviaturaAtributo).join(" / ")}.`
+      : "";
+
   return (
     <div className="space-y-4">
       <div className="flex flex-wrap items-center justify-between gap-2">
-        <h2 className="text-lg font-semibold">Atributos</h2>
+        <div>
+          <h2 className="text-lg font-semibold">Atributos</h2>
+          <p className="text-sm text-muted">
+            Elige un método del PHB 2024. Luego reparte el +2/+1 del trasfondo.
+            {hintPrincipales ? ` ${hintPrincipales}` : ""}
+          </p>
+        </div>
         <div className="flex flex-wrap gap-2">
-          <Button type="button" variant="combat" onClick={tirarAtributos4d6}>
+          <Button
+            type="button"
+            variant={modoAtributos === "4d6" ? "primary" : "combat"}
+            onClick={tirarAtributos4d6}
+          >
             Tirar 4d6
           </Button>
-          <Button type="button" onClick={usarArrayEstandar}>
+          <Button
+            type="button"
+            variant={modoAtributos === "array" ? "primary" : "default"}
+            onClick={usarArrayEstandar}
+          >
             Array estándar
           </Button>
-          <Button type="button" onClick={usarPointBuy}>
+          <Button
+            type="button"
+            variant={modoAtributos === "pointBuy" ? "primary" : "default"}
+            onClick={usarPointBuy}
+          >
             Compra de puntos (27)
           </Button>
         </div>
       </div>
 
-      <OriginAbilityBonusForm
-        backgroundId={datos.backgroundId}
-        catalogo={catalogoOrigen}
-        choices={originChoices}
-        onChange={(next) => actualizar({ originChoices: next })}
-      />
+      {modoAtributos === "sinElegir" && (
+        <p className="rounded-lg border border-white/10 bg-surface/50 px-3 py-2 text-sm text-muted">
+          No se avanza con 10 en todo: tira 4d6, usa el array 15–8 o gasta 27 puntos.
+        </p>
+      )}
 
       {modoAtributos === "pointBuy" ? (
         <>
@@ -85,7 +116,7 @@ export function PasoAtributos({
           <div className="grid grid-cols-2 gap-3">
             {ABILITY_KEYS.map((key) => (
               <label key={key} className="rounded-lg bg-surface px-3 py-2 text-sm">
-                <span className="text-muted">{ABILITY_LABELS_ES[key]}</span>
+                {etiquetaCampo(key)}
                 <select
                   className="mt-1 w-full rounded border border-white/10 bg-panel px-2 py-1"
                   value={datos.abilities[key]}
@@ -138,7 +169,7 @@ export function PasoAtributos({
           <div className="grid grid-cols-2 gap-3">
             {ABILITY_KEYS.map((key) => (
               <label key={key} className="rounded-lg bg-surface px-3 py-2 text-sm">
-                <span className="text-muted">{ABILITY_LABELS_ES[key]}</span>
+                {etiquetaCampo(key)}
                 <select
                   className="mt-1 w-full rounded border border-white/10 bg-panel px-2 py-1"
                   value={asignacionArray[key] ?? ""}
@@ -160,7 +191,7 @@ export function PasoAtributos({
             ))}
           </div>
         </>
-      ) : tiradas4d6 ? (
+      ) : modoAtributos === "4d6" && tiradas4d6 ? (
         <>
           <p className="text-sm text-muted">
             Seis tiradas de 4d6 (se descarta el más bajo). Asigna cada resultado a un atributo.
@@ -183,7 +214,7 @@ export function PasoAtributos({
           <div className="grid grid-cols-2 gap-3">
             {ABILITY_KEYS.map((key) => (
               <label key={key} className="rounded-lg bg-surface px-3 py-2 text-sm">
-                <span className="text-muted">{ABILITY_LABELS_ES[key]}</span>
+                {etiquetaCampo(key)}
                 <select
                   className="mt-1 w-full rounded border border-white/10 bg-panel px-2 py-1"
                   value={asignacion4d6[key] ?? ""}
@@ -203,36 +234,17 @@ export function PasoAtributos({
             ))}
           </div>
         </>
-      ) : (
+      ) : null}
+
+      {modoAtributos !== "sinElegir" && (
         <>
-          <p className="text-sm text-muted">
-            Pulsa «Tirar 4d6» para generar atributos, o «Array estándar» (15, 14, 13, 12, 10, 8).
-            También puedes ajustar manualmente.
-          </p>
-          <div className="grid grid-cols-2 gap-3">
-            {ABILITY_KEYS.map((key) => (
-              <label key={key} className="rounded-lg bg-surface px-3 py-2 text-sm">
-                <span className="text-muted">{ABILITY_LABELS_ES[key]}</span>
-                <input
-                  type="number"
-                  min={3}
-                  max={30}
-                  className="mt-1 w-full bg-transparent text-lg font-semibold outline-none"
-                  value={datos.abilities[key]}
-                  onChange={(e) => {
-                    setModoAtributos("manual");
-                    actualizar({
-                      abilities: {
-                        ...datos.abilities,
-                        [key]: Math.min(30, Math.max(3, Number(e.target.value) || 10)),
-                      },
-                    });
-                  }}
-                />
-                <span className="text-xs text-muted">{textoAtributo(key)}</span>
-              </label>
-            ))}
-          </div>
+          <OriginAbilityBonusForm
+            backgroundId={datos.backgroundId}
+            catalogo={catalogoOrigen}
+            choices={originChoices}
+            onChange={(next) => actualizar({ originChoices: next })}
+          />
+          <MejorasNivelForm datos={datos} actualizar={actualizar} />
         </>
       )}
     </div>

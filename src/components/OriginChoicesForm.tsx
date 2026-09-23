@@ -33,6 +33,7 @@ function CampoEleccion({
         disabled={disabled}
         onChange={(e) => onChange(e.target.value)}
       >
+        <option value="">— Elige —</option>
         {options.map((opt) => (
           <option key={opt.value} value={opt.value}>
             {opt.label}
@@ -87,6 +88,11 @@ export function OriginChoicesForm({
   return (
     <div className="sheet-card flex flex-col gap-4">
       <h3 className="sheet-section-title mb-0">Elecciones de origen</h3>
+      {mode === "create" && (
+        <p className="text-xs text-muted">
+          Revisa cada lista: idioma, dote Versátil, equipo A/B y herramientas no se eligen solas.
+        </p>
+      )}
 
       {speciesDefs.length > 0 && (
         <div className="space-y-3">
@@ -94,7 +100,7 @@ export function OriginChoicesForm({
             <CampoEleccion
               key={def.id}
               def={def}
-              value={choices.species[def.id] ?? def.defaultValue ?? def.options[0]?.value ?? ""}
+              value={choices.species[def.id] ?? def.defaultValue ?? ""}
               disabled={mode === "sheet" && !esEleccionEditable(def, level)}
               options={opcionesEleccionOrigen(def, choices, backgroundId, catalogo)}
               onChange={(v) => setSpecies(def.id, v)}
@@ -109,7 +115,7 @@ export function OriginChoicesForm({
             <CampoEleccion
               key={def.id}
               def={def}
-              value={choices.background[def.id] ?? def.defaultValue ?? def.options[0]?.value ?? ""}
+              value={choices.background[def.id] ?? def.defaultValue ?? ""}
               disabled={mode === "sheet" && !esEleccionEditable(def, level)}
               options={opcionesEleccionOrigen(def, choices, backgroundId, catalogo)}
               onChange={(v) => setBackground(def.id, v)}

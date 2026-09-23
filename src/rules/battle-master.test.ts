@@ -7,7 +7,7 @@ import {
   SUPERIORITY_DICE_ID,
   usarManiobra,
 } from "@/rules/battle-master";
-import { eleccionesClase, fusionarEleccionesClase } from "@/rules/class-equipment";
+import { eleccionClaseCompleta, eleccionesClase, fusionarEleccionesClase } from "@/rules/class-equipment";
 import { ORIGIN_CHOICES_EMPTY } from "@/rules/origin-choices";
 import { poblarRecursosSugeridos, recursosSugeridos } from "@/rules/resources-tracker";
 import { crearPersonajeVacio } from "@/schemas/character";
@@ -62,5 +62,6 @@ describe("Maestro de batalla", () => {
     expect(eleccionesClase("fighter", { classes }).some((d) => d.id === MANEUVERS_KEY)).toBe(true);
     const fused = fusionarEleccionesClase("fighter", ORIGIN_CHOICES_EMPTY, { classes });
     expect(fused.class[MANEUVERS_KEY]).toBe("");
+    expect(eleccionClaseCompleta("fighter", fused, { classes })).toBe(false);
   });
 });

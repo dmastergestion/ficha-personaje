@@ -14,14 +14,16 @@ export function metaPericiasClase(classId: string): ClassSkillEntry | undefined 
   return meta[classId];
 }
 
-export function opcionesPericiaClase(classId: string): SkillKey[] {
+export function opcionesPericiaClase(classId: string | null | undefined): SkillKey[] {
+  if (!classId) return [];
   const entry = meta[classId];
   if (!entry) return [];
   if (entry.skills === "any") return [...SKILL_KEYS];
   return entry.skills;
 }
 
-export function cantidadPericiasClase(classId: string): number {
+export function cantidadPericiasClase(classId: string | null | undefined): number {
+  if (!classId) return 0;
   return meta[classId]?.count ?? 0;
 }
 
@@ -30,7 +32,7 @@ export function clavePericiaClase(index: number): string {
 }
 
 export function periciasClaseDesdeElecciones(
-  classId: string,
+  classId: string | null,
   classChoices: Record<string, string> = {},
 ): SkillKey[] {
   const count = cantidadPericiasClase(classId);
@@ -46,7 +48,7 @@ export function periciasClaseDesdeElecciones(
 }
 
 export function periciasClaseCompletas(
-  classId: string,
+  classId: string | null,
   classChoices: Record<string, string> = {},
 ): boolean {
   const count = cantidadPericiasClase(classId);
